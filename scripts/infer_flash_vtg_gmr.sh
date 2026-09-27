@@ -4,6 +4,12 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT_DIR}"
 
+MODEL_PATH="${MODEL_PATH:-Soccergmr/checkpoint/flashVTG_gmr}"
+TEST_PATH="${TEST_PATH:-data/label/Standard/test.jsonl}"
+SLOWFAST_FEAT_DIR="${SLOWFAST_FEAT_DIR:-Soccergmr/slowfast}"
+CLIP_FEAT_DIR="${CLIP_FEAT_DIR:-Soccergmr/clip}"
+TEXT_FEAT_DIR="${TEXT_FEAT_DIR:-Soccergmr/clip_text}"
+
 : "${MODEL_PATH:?Set MODEL_PATH to the downloaded flashvtg_gmr checkpoint}"
 : "${TEST_PATH:?Set TEST_PATH to data/label/Standard/test.jsonl}"
 : "${SLOWFAST_FEAT_DIR:?Set SLOWFAST_FEAT_DIR to the SlowFast feature directory}"

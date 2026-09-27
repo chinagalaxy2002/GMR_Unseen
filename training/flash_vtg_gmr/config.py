@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import torch
 import argparse
@@ -38,7 +39,7 @@ class BaseOptions(object):
         parser.add_argument("--debug", action="store_true",
                             help="debug (fast) mode, break all loops, do not load all data into memory.")
         parser.add_argument("--data_ratio", type=float, default=1.0,
-                            help="how many training and eval data to use. 1.0: use all, 0.1: use 10%."
+                            help="how many training and eval data to use. 1.0: use all, 0.1: use 10%%."
                                  "Use small portion for debug purposes. Note this is different from --debug, "
                                  "which works by breaking the loops, typically they are not used together.")
         parser.add_argument("--results_root", type=str, default="results")
@@ -127,7 +128,7 @@ class BaseOptions(object):
         parser.add_argument('--dropout', default=0.1, type=float,
                             help="Dropout applied in the transformer")
         parser.add_argument("--txt_drop_ratio", default=0, type=float,
-                            help="drop txt_drop_ratio tokens from text input. 0.1=10%")
+                            help="drop txt_drop_ratio tokens from text input. 0.1=10%%")
         parser.add_argument("--use_txt_pos", action="store_true", help="use position_embedding for text as well.")
         parser.add_argument('--nheads', default=8, type=int,
                             help="Number of attention heads inside the transformer's attentions")
@@ -217,6 +218,8 @@ class BaseOptions(object):
                 "v_feat_dim": getattr(opt, "v_feat_dim", None),
                 "t_feat_dim": getattr(opt, "t_feat_dim", None),
             }
+            if any(arg == "--device" or arg.startswith("--device=") for arg in sys.argv):
+                _cli_overrides["device"] = opt.device
 
             # modify model_dir to absolute path
             # opt.model_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", opt.model_dir)

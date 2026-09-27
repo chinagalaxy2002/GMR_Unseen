@@ -77,7 +77,11 @@ def compute_mr_ap(submission, ground_truth, iou_thds=np.linspace(0.5, 0.95, 10),
 def compute_mr_r1(submission, ground_truth, iou_thds=np.linspace(0.3, 0.95, 14)):
     """If a predicted segment has IoU >= iou_thd with one of the 1st GT segment, we define it positive"""
     iou_thds = [float(f"{e:.2f}") for e in iou_thds]
-    pred_qid2window = {d["qid"]: d["pred_relevant_windows"][0][:2] for d in submission}  # :2 rm scores
+    pred_qid2window = {
+        d["qid"]: d["pred_relevant_windows"][0][:2]
+        for d in submission
+        if d.get("pred_relevant_windows") and len(d["pred_relevant_windows"]) > 0
+    }  # :2 rm scores
     # gt_qid2window = {d["qid"]: d["relevant_windows"][0] for d in ground_truth}
     gt_qid2window = {}
     for d in ground_truth:

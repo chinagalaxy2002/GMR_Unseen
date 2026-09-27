@@ -1,0 +1,63 @@
+{
+  "name": "semantic_existence_v1",
+  "format": "GMR-style JSONL with vid and video_id",
+  "formal_splits": [
+    "train.jsonl",
+    "val.jsonl",
+    "test.jsonl"
+  ],
+  "training_and_validation_negatives": "included after dataset-owner global review attestation",
+  "source_sha256": {
+    "data/raw/charades_sta/charades_pos_train.jsonl": "cc061d290f5be0735ecfaf80d9f9d09a5032f8b95faef114fe6ce21add2df9aa",
+    "data/raw/charades_sta/charades_pos_test.jsonl": "fbf26493b5b1b7c08e3cb0b79e3ef400709229205cfea24745798292ba7eb7d6",
+    "data/raw/charades/annotations/Charades_v1_train.csv": "59273c6dc2139ec7eb95b980fd26bc8529774b1ede0602f6ca90b546ed12f0fc",
+    "data/raw/charades/annotations/Charades_v1_test.csv": "8b8b207b55fb95b949018027f69d83bd46cd844d15834f8f592ee8e7446173eb",
+    "data/raw/action_genome/annotations/frame_list.txt": "399aaedac7abe1a117185bd8d57b325dcf7d6ee2289a1fbe49d0106798676860",
+    "data/raw/action_genome/annotations/object_bbox_and_relationship.pkl": "3a1792f2ad4d5d60547fcdc9f54262844b90a1ace9e7a4fa56d031d3d0cb7960",
+    "data/raw/action_genome/annotations/object_classes.txt": "5823f021e6ae332917b8bcb77f71e1714e0e69f36ebad88e2d89384fccd9d0df",
+    "data/raw/action_genome/annotations/person_bbox.pkl": "4d0e186a69d95a89f4f4e38853c225dd8a93b045ec05ddb2c02a065b86fc89da",
+    "data/raw/action_genome/annotations/relationship_classes.txt": "5fe407d438e2d7a5132451a43775eaf30c39252b0bff1530a563b671e55dfcef"
+  },
+  "release_sha256": {
+    "HANDOFF.md": "8ce538a3fbce15b46d35c2f4e74bc531da35a815040d15d2fa856a7e41eb6497",
+    "test_matched_u.jsonl": "142c9ad618cdc1e882cb9c63cac33a795ca6e2a15b3fb68eccbada6d2e782557",
+    "review_report.json": "494e29482e5b5b8901f9869ee9e78baa6d954f0268572c4143d5f1b5963148e0",
+    "train.jsonl": "689b547b219db8aa636f1df7e94439e06adcb8bf7f40f1a7ac584ace29e8b314",
+    "semantic_inventory.json": "ff4852fbfab0d9c1888aecad90f25f2e6f3d58a4eac6620ef37b4953741c295b",
+    "test.jsonl": "df2ec1c7e14e3509d5646fd8b9b6faac6ef3b4cda6f093dd446ab940919817db",
+    "statistics.json": "4cd8af559cac2012f57600453796246ed1666d10230a9b3a50627c26c38d0a67",
+    "matched_u_pairs.jsonl": "f244fe81a9e4e1bfb3f1ff7ce584fcfceea7112d010cbbb3a9930bf25677f4de",
+    "val.jsonl": "676bb64a14a75a7c127795544b30aec04406b3e0e05b8ee8cdc0a5e87c033c24",
+    "text_only_diagnostic.json": "ad3d5a41e2b49c0c8a78f2dbd6fe2761030a015167f735b10d82782304ef5a78"
+  },
+  "test_partition_counts": {
+    "S+": 2090,
+    "U+": 881,
+    "S-": 592,
+    "U-": 947
+  },
+  "quarantined_parser_error_counts": {
+    "train": 0,
+    "val": 0,
+    "test": 3
+  },
+  "video_archive": "downloads/Charades_v1_480.zip",
+  "release_video_count": 5449,
+  "missing_release_videos_in_archive": [],
+  "action_genome_loaded": true,
+  "action_genome_removed_candidates": 360,
+  "action_genome_video_coverage": {
+    "train": {
+      "videos": 3770,
+      "with_action_genome_frames": 3763
+    },
+    "val": {
+      "videos": 466,
+      "with_action_genome_frames": 466
+    },
+    "test": {
+      "videos": 1213,
+      "with_action_genome_frames": 1213
+    }
+  }
+}

@@ -57,8 +57,8 @@ class StartEndDataset(Dataset):
         mr_only=True,
         keep_empty_gt=False,
     ):
-        if dset_name != "soccer_gmr":
-            raise ValueError(f"Moment-DETR-GMR release supports dataset='soccer_gmr', got {dset_name!r}")
+        if dset_name not in ("soccer_gmr", "charades_semantic_existence"):
+            raise ValueError(f"Unsupported dataset: {dset_name!r}")
         if "audio" in ctx_mode:
             raise ValueError("The released Moment-DETR-GMR path expects precomputed video/text features, not audio.")
         if not q_feat_dir:

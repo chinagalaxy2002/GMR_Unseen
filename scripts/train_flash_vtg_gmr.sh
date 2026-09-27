@@ -4,6 +4,12 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${ROOT_DIR}"
 
+TRAIN_PATH="${TRAIN_PATH:-data/label/Standard/train.jsonl}"
+VAL_PATH="${VAL_PATH:-data/label/Standard/val.jsonl}"
+SLOWFAST_FEAT_DIR="${SLOWFAST_FEAT_DIR:-Soccergmr/slowfast}"
+CLIP_FEAT_DIR="${CLIP_FEAT_DIR:-Soccergmr/clip}"
+TEXT_FEAT_DIR="${TEXT_FEAT_DIR:-Soccergmr/clip_text}"
+
 : "${TRAIN_PATH:?Set TRAIN_PATH to data/label/Standard/train.jsonl}"
 : "${VAL_PATH:?Set VAL_PATH to data/label/Standard/val.jsonl}"
 : "${SLOWFAST_FEAT_DIR:?Set SLOWFAST_FEAT_DIR to the SlowFast feature directory}"

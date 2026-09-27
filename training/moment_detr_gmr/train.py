@@ -127,7 +127,7 @@ def train(model, criterion, optimizer, lr_scheduler, train_dataset, val_dataset,
         else:
             es_cnt += 1
             logger.info("Early stop counter: %d/%d", es_cnt, opt.max_es_cnt)
-            if es_cnt >= int(opt.max_es_cnt):
+            if int(opt.max_es_cnt) >= 0 and es_cnt >= int(opt.max_es_cnt):
                 logger.info("Early stopping at epoch %d. Best score %.4f", epoch_i + 1, prev_best_score)
                 break
 
@@ -168,7 +168,7 @@ def main(opt, resume=None):
         opt,
         opt.eval_path,
         load_labels=True,
-        keep_empty_gt=False,
+        keep_empty_gt=bool(getattr(opt, "use_exist_head", False)),
     ))
 
     model, criterion, optimizer, lr_scheduler = setup_model(opt)
@@ -184,11 +184,12 @@ def main(opt, resume=None):
 def parse_args():
     parser = argparse.ArgumentParser(description="Train Moment-DETR-GMR on Soccer-GMR features.")
     parser.add_argument("--model", "-m", default="moment_detr", choices=["moment_detr"])
-    parser.add_argument("--dataset", "-d", default="soccer_gmr", choices=["soccer_gmr"])
+    parser.add_argument("--dataset", "-d", default="soccer_gmr", choices=["soccer_gmr", "charades_semantic_existence"])
     parser.add_argument("--feature", "-f", default="clip_slowfast", choices=["clip_slowfast"])
     parser.add_argument("--resume", "-r", type=str, default=None, help="Optional checkpoint for fine-tuning.")
     parser.add_argument("--run_tag", type=str, default=None, help="Append a tag to the output directory.")
     parser.add_argument("--lr", type=float, default=None)
+    parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--n_epoch", type=int, default=None)
     parser.add_argument("--bsz", type=int, default=None)
     parser.add_argument("--eval_bsz", type=int, default=None)
@@ -214,7 +215,7 @@ if __name__ == "__main__":
         opt.ckpt_filepath = os.path.join(opt.results_dir, opt.ckpt_filename)
         opt.train_log_filepath = os.path.join(opt.results_dir, opt.train_log_filename)
         opt.eval_log_filepath = os.path.join(opt.results_dir, opt.eval_log_filename)
-    for name in ["lr", "n_epoch", "bsz", "eval_bsz", "max_es_cnt", "train_path", "eval_path", "t_feat_dir", "results_dir", "device"]:
+    for name in ["lr", "seed", "n_epoch", "bsz", "eval_bsz", "max_es_cnt", "train_path", "eval_path", "t_feat_dir", "results_dir", "device"]:
         value = getattr(args, name)
         if value is not None:
             setattr(opt, name, value)

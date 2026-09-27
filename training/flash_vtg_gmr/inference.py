@@ -4,12 +4,26 @@ from tqdm import tqdm, trange
 import numpy as np
 import os
 from collections import defaultdict
+
+# Allow direct execution from the repository root as well as module imports.
+if __package__ in (None, ""):
+    _repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    if _repo_root not in sys.path:
+        sys.path.insert(0, _repo_root)
+
 from models.flash_vtg_gmr.utils.basic_utils import AverageMeter
 
 import torch
 import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
+
+
+def safe_torch_load(path, **kwargs):
+    try:
+        return torch.load(path, weights_only=False, **kwargs)
+    except TypeError:
+        return torch.load(path, **kwargs)
 
 from training.flash_vtg_gmr.config import TestOptions
 from training.flash_vtg_gmr.dataset import (
@@ -32,6 +46,28 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
     level=logging.INFO,
 )
+
+
+def compute_gmr_cls_metrics(submission, ground_truth, threshold):
+    predictions = {row["qid"]: row for row in submission}
+    tp = tn = fp = fn = 0
+    for row in ground_truth:
+        pred = predictions.get(row["qid"])
+        if pred is None:
+            continue
+        positive = bool(row.get("relevant_windows"))
+        predicted = float(pred.get("pred_exist_score", 0)) >= threshold
+        if positive and predicted:
+            tp += 1
+        elif positive:
+            fn += 1
+        elif predicted:
+            fp += 1
+        else:
+            tn += 1
+    tpr = tp / (tp + fn) if tp + fn else 0.0
+    tnr = tn / (tn + fp) if tn + fp else 0.0
+    return {"TPR": 100 * tpr, "TNR": 100 * tnr, "BalancedAcc": 50 * (tpr + tnr)}
 
 
 def post_processing_mr_nms(mr_res, nms_thd, max_before_nms, max_after_nms, nms_type):
@@ -61,6 +97,7 @@ def post_processing_mr_nms(mr_res, nms_thd, max_before_nms, max_after_nms, nms_t
 def eval_epoch_post_processing(submission, opt, gt_data, save_submission_filename):
     # IOU_THDS = (0.5, 0.7)
     logger.info("Saving/Evaluating before nms results")
+    os.makedirs(opt.results_dir, exist_ok=True)
     submission_path = os.path.join(opt.results_dir, save_submission_filename)
     save_jsonl(submission, submission_path)
 
@@ -77,29 +114,12 @@ def eval_epoch_post_processing(submission, opt, gt_data, save_submission_filenam
             mr_only=opt.mr_only,
         )
         if getattr(opt, "use_exist_head", False):
-            from models.flash_vtg_gmr.utils.basic_utils import load_jsonl
-            eval_gmr_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'eval_GMR', 'v1'))
-            if eval_gmr_dir not in sys.path:
-                sys.path.insert(0, eval_gmr_dir)
-            from eval_v1_3 import compute_gmr_cls_metrics, normalize_ground_truth, _load_ts_window_cfg
-
-            gt_raw = load_jsonl(opt.eval_path)
-            ts_cfg = _load_ts_window_cfg(None)
-            gt, _ = normalize_ground_truth(gt_raw, ts_cfg, drop_empty_gt=False)
-
+            gt = gt_data
             pred_qids = set(e["qid"] for e in submission if isinstance(e, dict) and "qid" in e)
             shared_qids = pred_qids.intersection(set(e["qid"] for e in gt))
             submission_aligned = [e for e in submission if e.get("qid") in shared_qids]
             gt_aligned = [e for e in gt if e.get("qid") in shared_qids]
-
-            pred_topk_for_cls = int(getattr(opt, "pred_topk_for_cls", 10))
-            pred_score_thd_for_cls = float(getattr(opt, "pred_score_thd_for_cls", 0.5))
-            cls_metrics = compute_gmr_cls_metrics(
-                submission_aligned,
-                gt_aligned,
-                pred_topk=pred_topk_for_cls,
-                pred_score_thd=pred_score_thd_for_cls,
-            )
+            cls_metrics = compute_gmr_cls_metrics(submission_aligned, gt_aligned, opt.exist_gate_thd)
             metrics["brief"]["GMR-TPR"] = cls_metrics["TPR"]
             metrics["brief"]["GMR-TNR"] = cls_metrics["TNR"]
             metrics["brief"]["GMR-BalancedAcc"] = cls_metrics["BalancedAcc"]
@@ -139,14 +159,7 @@ def eval_epoch_post_processing(submission, opt, gt_data, save_submission_filenam
             )
             if getattr(opt, "use_exist_head", False):
                 submission_after_nms_aligned = [e for e in submission_after_nms if e.get("qid") in shared_qids]
-                pred_topk_for_cls = int(getattr(opt, "pred_topk_for_cls", 10))
-                pred_score_thd_for_cls = float(getattr(opt, "pred_score_thd_for_cls", 0.5))
-                cls_metrics_nms = compute_gmr_cls_metrics(
-                    submission_after_nms_aligned,
-                    gt_aligned,
-                    pred_topk=pred_topk_for_cls,
-                    pred_score_thd=pred_score_thd_for_cls,
-                )
+                cls_metrics_nms = compute_gmr_cls_metrics(submission_after_nms_aligned, gt_aligned, opt.exist_gate_thd)
                 metrics_nms["brief"]["GMR-TPR"] = cls_metrics_nms["TPR"]
                 metrics_nms["brief"]["GMR-TNR"] = cls_metrics_nms["TNR"]
                 metrics_nms["brief"]["GMR-BalancedAcc"] = cls_metrics_nms["BalancedAcc"]
@@ -310,12 +323,18 @@ def compute_mr_results(
 
         # Optional existence calibration (GMR): softly suppress window scores for negatives
         pred_exist_scores = None
+        pred_exist_logits = None
         if getattr(opt, "use_exist_head", False) and ("pred_exist_logits" in outputs):
-            pred_exist_scores = torch.sigmoid(outputs["pred_exist_logits"]).detach().cpu()
+            pred_exist_logits = outputs["pred_exist_logits"].detach().cpu()
+            pred_exist_scores = torch.sigmoid(pred_exist_logits)
             thd = float(getattr(opt, "exist_gate_thd", 0.5))
             mult = torch.where(pred_exist_scores >= thd, torch.ones_like(pred_exist_scores), pred_exist_scores)
 
         boundary_out = outputs.get("_out", {}).get("boundary", None)
+        # Preserve candidate scores before existence-score fusion.  The
+        # controlled coverage study exports both representations so downstream
+        # analysis does not mistake fused scores for localization-only scores.
+        raw_boundary_out = boundary_out.clone() if boundary_out is not None else None
         if pred_exist_scores is not None and boundary_out is not None:
             # Boundary decoding currently assumes an inference batch size of one.
             boundary_out = boundary_out.clone()
@@ -357,11 +376,17 @@ def compute_mr_results(
             cur_ranked_preds = [
                 [float(f"{e:.3f}") for e in row] for row in cur_ranked_preds
             ]
+            raw_spans_src = raw_boundary_out if raw_boundary_out is not None else outputs["_out"]["boundary"]
+            raw_spans = torch.clamp(raw_spans_src, 0, meta["duration"])
+            raw_ranked_preds = [
+                [float(f"{e:.3f}") for e in row] for row in raw_spans.tolist()
+            ]
             cur_query_pred = dict(
                 qid=meta["qid"],
                 query=meta["query"],
                 vid=meta["vid"],
                 pred_relevant_windows=cur_ranked_preds,
+                pred_relevant_windows_pre_exist=raw_ranked_preds,
             )
             # Only include saliency outputs when running HL-style evaluation.
             # For MR-only/GMR usage, GT typically has no saliency fields, so omit this to keep submission minimal.
@@ -369,6 +394,7 @@ def compute_mr_results(
                 cur_query_pred["pred_saliency_scores"] = saliency_scores[idx]
             if pred_exist_scores is not None:
                 cur_query_pred["pred_exist_score"] = float(f"{float(pred_exist_scores[idx]):.3f}")
+                cur_query_pred["pred_exist_logit"] = float(f"{float(pred_exist_logits[idx]):.6f}")
             mr_res.append(cur_query_pred)
 
         loss_dict = {k: v for k, v in outputs.items() if 'loss' in k}
@@ -501,6 +527,8 @@ def eval_epoch(
 def setup_model(opt):
     """setup model/optimizer/scheduler and load checkpoints when needed"""
     logger.info("setup model/optimizer/scheduler")
+    if not hasattr(opt, "cfg") or opt.cfg is None:
+        opt.cfg = nncore.Config.from_file(opt.config)
     from models.flash_vtg_gmr.model import build_model1
     model, criterion = build_model1(opt)
     if opt.device.type == "cuda":
@@ -514,19 +542,19 @@ def setup_model(opt):
             "lr": opt.lr,
         },
     ]
-    optimizer = torch.optim.AdamW(param_dicts, lr=opt.lr, weight_decay=opt.wd)
+    optimizer = torch.optim.AdamW(param_dicts, lr=opt.lr, weight_decay=opt.wd, foreach=False)
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, opt.lr_drop, gamma=0.5)
     # lr_scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=15, min_lr=1e-4)
 
     if opt.resume_adapter is not None:
         logger.info(f"Load adapter checkpoint from {opt.resume_adapter}")
-        adapter_checkpoint = torch.load(opt.resume_adapter)
+        adapter_checkpoint = safe_torch_load(opt.resume_adapter)
         adapter_state_dict = {k: v for k, v in adapter_checkpoint['state_dict'].items() if k.startswith('adapter')}
         model.load_state_dict(adapter_state_dict, strict=False)
 
     if opt.resume is not None:
         logger.info(f"Load checkpoint from {opt.resume}")
-        checkpoint = torch.load(opt.resume, map_location="cpu")
+        checkpoint = safe_torch_load(opt.resume, map_location="cpu")
 
         from collections import OrderedDict
 
@@ -543,6 +571,8 @@ def setup_model(opt):
             model.load_state_dict(state, strict=True)
         if opt.resume_all:
             optimizer.load_state_dict(checkpoint["optimizer"])
+            for group in optimizer.param_groups:
+                group["foreach"] = False
             lr_scheduler.load_state_dict(checkpoint["lr_scheduler"])
             opt.start_epoch = checkpoint["epoch"] + 1
     else:

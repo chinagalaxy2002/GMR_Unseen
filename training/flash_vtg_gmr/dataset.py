@@ -7,10 +7,20 @@ from os.path import join, exists
 from models.flash_vtg_gmr.span_utils import span_xx_to_cxw
 from models.flash_vtg_gmr.utils.basic_utils import load_jsonl, l2_normalize_np_array
 from models.flash_vtg_gmr.utils.tensor_utils import pad_sequences_1d
-from torchtext import vocab
+try:
+    from torchtext import vocab
+except (ImportError, OSError):
+    vocab = None
 import torch.nn as nn
 
 logger = logging.getLogger(__name__)
+
+
+def safe_torch_load(path, **kwargs):
+    try:
+        return torch.load(path, weights_only=False, **kwargs)
+    except TypeError:
+        return torch.load(path, **kwargs)
 
 TVSUM_SPLITS = {
     'BK': {
@@ -135,6 +145,8 @@ class StartEndDataset(Dataset):
         self.use_glove = 'vgg' in self.v_feat_dirs[0]
 
         if self.dset_name == 'charadesSTA' and self.use_glove:
+            if vocab is None:
+                raise ImportError("torchtext is required for charadesSTA with GloVe embeddings.")
             self.vocab = vocab.pretrained_aliases['glove.6B.300d']()
             self.vocab.itos.extend(['<unk>'])
             self.vocab.stoi['<unk>'] = self.vocab.vectors.shape[0]
@@ -514,7 +526,7 @@ class StartEndDataset(Dataset):
                     q_feat = self.random_drop_rows(q_feat)
             except:
                 q_feat_path = join(self.q_feat_dir, f"qid{qid}.pt")
-                q_feat = torch.load(q_feat_path).float().numpy()
+                q_feat = safe_torch_load(q_feat_path).float().numpy()
                 if self.q_feat_type == "last_hidden_state":
                     q_feat = q_feat[:self.max_q_l]
                 if self.normalize_t:
@@ -596,7 +608,7 @@ class StartEndDataset(Dataset):
                 except:
                     try:
                         _feat_path = join(_feat_dir, f"{vid_for_path}.pt")
-                        _feat = torch.load(_feat_path)[:self.max_v_l].float().numpy()
+                        _feat = safe_torch_load(_feat_path)[:self.max_v_l].float().numpy()
                     except:
                         _feat_path = join(_feat_dir, f"{vid_for_path}.npy")
                         _feat = np.load(_feat_path)[:self.max_v_l].astype(np.float32)

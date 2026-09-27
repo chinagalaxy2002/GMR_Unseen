@@ -13,6 +13,16 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
+import sys
+from datetime import datetime
+import logging
+
+# Allow both ``python -m training.flash_vtg_gmr.train`` and direct-file execution ``python training/flash_vtg_gmr/train.py``.
+if __package__ in (None, ""):
+    _repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+    if _repo_root not in sys.path:
+        sys.path.insert(0, _repo_root)
+
 from training.flash_vtg_gmr.config import BaseOptions
 from training.flash_vtg_gmr.dataset import (
     StartEndDataset,
@@ -23,8 +33,9 @@ from training.flash_vtg_gmr.inference import eval_epoch, start_inference, setup_
 from models.flash_vtg_gmr.utils.basic_utils import AverageMeter, dict_to_markdown
 
 import nncore
-from datetime import datetime
-import logging
+
+logger = logging.getLogger(__name__)
+opt = None
 
 def set_seed(seed, use_cuda=True):
     random.seed(seed)
@@ -112,7 +123,7 @@ def train(model, criterion, optimizer, lr_scheduler, train_dataset, val_dataset,
         model.to(opt.device)
 
     tb_writer = SummaryWriter(opt.tensorboard_log_dir)
-    tb_writer.add_text("hyperparameters", dict_to_markdown(vars(opt), max_str_len=None))
+    tb_writer.add_text("hyperparameters", dict_to_markdown({k: str(v) for k, v in vars(opt).items()}, max_str_len=None))
     opt.train_log_txt_formatter = "{time_str} [Epoch] {epoch:03d} [Loss] {loss_str}\n"
     opt.eval_log_txt_formatter = "{time_str} [Epoch] {epoch:03d} [Loss] {loss_str} [Metrics] {eval_metrics_str}\n"
 
@@ -381,7 +392,10 @@ def train_hl(
 
     tb_writer.close()
 
-def start_training():
+def start_training(train_opt=None):
+    global opt
+    if train_opt is not None:
+        opt = train_opt
     logger.info("Setup data and model...")
 
     dataset_config = dict(
@@ -468,7 +482,7 @@ if __name__ == "__main__":
     file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger.addHandler(file_handler)
 
-    best_ckpt_path, eval_split_name, eval_path, debug, opt = start_training()
+    best_ckpt_path, eval_split_name, eval_path, debug, opt = start_training(opt)
 
     if not debug:
         input_args = [

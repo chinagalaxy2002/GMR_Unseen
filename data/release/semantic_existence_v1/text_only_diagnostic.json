@@ -1,0 +1,23 @@
+{
+  "method": "character 2-4 gram TF-IDF + class-balanced logistic regression; train split only; no video input",
+  "train_rows": 8317,
+  "test_rows": 4510,
+  "all": {
+    "n": 4510,
+    "roc_auc": 0.7885,
+    "balanced_accuracy_at_0_5": 0.6848
+  },
+  "seen": {
+    "n": 2682,
+    "roc_auc": 0.8889,
+    "balanced_accuracy_at_0_5": 0.8203
+  },
+  "unseen": {
+    "n": 1828,
+    "roc_auc": 0.5678,
+    "balanced_accuracy_at_0_5": 0.5142
+  },
+  "matched_u_pair_text_only_ranking_accuracy": 0.5421,
+  "matched_u_pairs": 535,
+  "interpretation": "AUC above 0.5 indicates residual text-only label signal; it is not evidence of video understanding."
+}

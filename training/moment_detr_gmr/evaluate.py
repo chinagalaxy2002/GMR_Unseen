@@ -64,6 +64,7 @@ def compute_mr_results(epoch_i, model, eval_loader, opt, criterion=None):
         pred_spans = outputs["pred_spans"].cpu()
         prob = F.softmax(outputs["pred_logits"], -1)
         scores = prob[..., 0].cpu()
+        raw_scores = scores.clone()
 
         pred_exist_scores = None
         if "pred_exist_logits" in outputs:
@@ -88,6 +89,11 @@ def compute_mr_results(epoch_i, model, eval_loader, opt, criterion=None):
                 "vid": meta["vid"],
                 "pred_relevant_windows": cur_ranked_preds,
             }
+            raw_ranked_preds = torch.cat([spans, raw_scores[idx, :, None]], dim=1).tolist()
+            cur_query_pred["pred_relevant_windows_pre_exist"] = [
+                [float(f"{e:.4f}") for e in row]
+                for row in sorted(raw_ranked_preds, key=lambda x: x[2], reverse=True)
+            ]
             if pred_exist_scores is not None:
                 cur_query_pred["pred_exist_score"] = float(f"{float(pred_exist_scores[idx]):.4f}")
             mr_res.append(cur_query_pred)
@@ -174,7 +180,7 @@ def build_dataset_config(opt, data_path, load_labels):
         span_loss_type=opt.span_loss_type,
         load_labels=load_labels,
         mr_only=True,
-        keep_empty_gt=not load_labels,
+        keep_empty_gt=True,
     )
 
 def start_inference(opt):
@@ -216,7 +222,7 @@ def start_inference(opt):
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Moment-DETR-GMR inference on Soccer-GMR features.")
     parser.add_argument("--model", "-m", default="moment_detr", choices=["moment_detr"])
-    parser.add_argument("--dataset", "-d", default="soccer_gmr", choices=["soccer_gmr"])
+    parser.add_argument("--dataset", "-d", default="soccer_gmr", choices=["soccer_gmr", "charades_semantic_existence"])
     parser.add_argument("--feature", "-f", default="clip_slowfast", choices=["clip_slowfast"])
     parser.add_argument("--model_path", type=str, required=True)
     parser.add_argument("--split", type=str, required=True, choices=["val", "test"])

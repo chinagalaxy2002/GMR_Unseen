@@ -1,198 +1,120 @@
-# Generalized Moment Retrieval
+# GMR Unseen: Semantic Novelty × Event Existence
 
-Official repository for **Retrieving Any Relevant Moments: Benchmark and Models for Generalized Moment Retrieval**.
+本项目研究广义视频时刻检索中的一个开放语义问题：查询描述的事件在下游训练中未见过时，模型能否判断它在视频中**真的不存在**，而不是仅仅因为语义陌生就拒绝查询？代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
 
-**Generalized Moment Retrieval (GMR)** extends video moment retrieval to a unified setting where a query may correspond to **no moment**, **one moment**, or **multiple moments** in a video. A GMR system must retrieve the complete set of relevant temporal moments, or correctly return an empty set when the queried event is absent.
+> **Status:** Dataset v1 and three baseline experiments are complete. This repository does not yet introduce a new model. Results are diagnostic observations from single runs, not estimates of statistical significance.
 
-<div align="center">
-  <a href="https://arxiv.org/abs/2605.02623"><img src="https://img.shields.io/badge/Paper-arXiv%3A2605.02623-b31b1b?style=for-the-badge" alt="Paper" /></a>
-  <a href="https://dymm9977.github.io/generalized-moment-retrieval/"><img src="https://img.shields.io/badge/Project_Page-Visit-2563eb?style=for-the-badge" alt="Project Page" /></a>
-  <a href="https://huggingface.co/datasets/diiiA22B9S/Soccer-GMR"><img src="https://img.shields.io/badge/Hugging_Face-Soccer--GMR-f59e0b?style=for-the-badge" alt="Hugging Face" /></a>
-</div>
+## Research question and protocol
 
-![Three retrieval scenarios in Generalized Moment Retrieval](assets/intro.png)
+An event can be absent from a video, or present while its action or action–object composition was absent from **task-specific training**. Here, *unseen* means held out from downstream model training. It does **not** mean unseen by the pretrained CLIP or SlowFast feature extractors.
 
-## Task
+| Partition | Semantics in downstream training? | Event in video? | Expected output |
+| --- | --- | --- | --- |
+| S+ | Seen | Present | Relevant time window(s) |
+| S− | Seen | Absent | Empty set |
+| U+ | Unseen | Present | Relevant time window(s) |
+| U− | Unseen | Absent | Empty set |
 
-Traditional Video Moment Retrieval (VMR) commonly assumes that every query has exactly one matching temporal segment. This assumption is too restrictive for realistic retrieval: an event can be absent, occur once, or occur repeatedly within the same video.
+Models train on **S+ and S− only**. Checkpoint selection and existence-threshold calibration use only S+/S− validation rows. The test set contains all four partitions. Held-out U+/U− validation rows must not be used to select models, thresholds, or hyperparameters. Training on the original, unfiltered Charades-STA training split would invalidate the downstream-unseen condition.
 
-GMR unifies these cases into one retrieval task:
+The main diagnostic asks whether the existence score of a same-video U+ query exceeds that of its matched U− query. We also compare localization from the same checkpoint before and after applying the seen-validation existence threshold; this separates localization ability from erroneous refusal.
 
-- **Null-set rejection**: return an empty set when the event does not appear.
-- **Single-moment retrieval**: retrieve the only relevant temporal segment.
-- **Multi-moment retrieval**: retrieve all relevant temporal segments.
+## Released dataset
 
-The output for each query is a set of temporal windows:
+The versioned release is in [`data/release/semantic_existence_v1/`](data/release/semantic_existence_v1/). Its GMR-style JSONL files include `qid`, `vid`, `query`, `duration`, and `relevant_windows`, plus `exist_label`, `partition`, `semantic_status`, `novelty_type`, `construction_type`, `source_qid`, `semantic_graph`, and `verification_status`. Positive rows retain annotated temporal windows; negative rows have `relevant_windows: []`.
 
-```json
-{
-  "qid": 580,
-  "pred_relevant_windows": [[26.0, 34.0, 0.91], [104.0, 112.0, 0.87]],
-  "pred_exist_score": 0.95
-}
-```
-
-## Pipeline
-
-Soccer-GMR is built through a duration-flexible semi-automated data construction pipeline with human verification. The pipeline converts timestamped soccer event supervision into generalized moment retrieval annotations by constructing natural-language queries, sampling positive and in-domain negative query-video pairs, and normalizing temporal annotations into evaluation-ready windows.
-
-![Soccer-GMR construction pipeline](assets/pipeline222.png)
-
-The duration-flexible design allows the benchmark to scale from fixed 150-second clips to longer video horizons by merging adjacent clips while preserving moment-level supervision.
-
-## Dataset
-
-**Soccer-GMR** is a large-scale GMR benchmark built on challenging soccer videos. It includes realistic positive and negative query-video pairs and covers all three retrieval scenarios in a unified format.
-
-
-| Split group | Purpose | Files |
-| --- | --- | --- |
-| `data/label/Standard/` | Benchmark split used for evaluation | `train.jsonl`, `val.jsonl`, `test.jsonl` |
-| `data/label/Full/` | Complete dataset used for scaling studies | `train.jsonl`, `val.jsonl`, `test.jsonl`, `full.jsonl` |
-
-Dataset statistics:
-
-| Split group | Train | Val | Test | Total | Videos |
+| Split | S+ | S− | U+ | U− | Total |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `Standard` | 4,138 | 465 | 1,036 | 5,639 | 1,957 |
-| `Full` | 16,898 | 2,235 | 2,986 | 22,119 | 5,468 |
+| Train | 6,851 | 1,466 | 0 | 0 | 8,317 |
+| Validation | 694 | 168 | 300 | 356 | 1,518 |
+| Test | 2,090 | 592 | 881 | 947 | 4,510 |
 
-For details about label fields and directory organization, see [`data/README.md`](data/README.md). Large assets, including videos, features, and model weights, are hosted on [Hugging Face](https://huggingface.co/datasets/diiiA22B9S/Soccer-GMR). Access is manually reviewed after the requester completes the Soccer-GMR NDA form. Commercial use, redistribution, public hosting, or sharing access links is not permitted.
+`matched_u_pairs.jsonl` contains 535 same-video U+/U− pairs with the same source positive. `test_matched_u.jsonl` expands these pairs into 1,070 rows. `semantic_inventory.json`, `statistics.json`, `review_report.json`, `text_only_diagnostic.json`, and `manifest.json` record the holdouts, statistics, review provenance, language-only diagnostic, and SHA-256 checksums. [`plan.md`](data/release/semantic_existence_v1/plan.md) is the experiment plan; [`HANDOFF.md`](data/release/semantic_existence_v1/HANDOFF.md) describes the original construction workspace. Absolute paths in that historical handoff refer to the original machine; use repository-relative paths here.
 
-<p align="center">
-  <img src="assets/dataset.png" alt="Statistics of Soccer-GMR" width="720" />
-</p>
+The release contains **annotations, not videos or pretrained features**. Obtain Charades-STA/Charades videos and CLIP/SlowFast features under their source terms. The original GMR Soccer-GMR data in this upstream-derived repository is a separate benchmark and is not used for the experiments reported below.
 
-## Metrics
+### How the dataset was constructed
 
-GMR evaluation requires measuring both rejection and localization. The official evaluation toolkit is provided in [`eval/`](eval/).
+1. Preserve original Charades-STA positive queries and human temporal windows. Keep original test videos in test; allocate 10% of original training videos to validation by a deterministic SHA-256 bucket of video ID. Splits do not share videos.
+2. Build the downstream semantic inventory only from the remaining training videos. Hold out `open`, `close` (including normalized `shut`), and 16 selected action–object compositions. Remove training positives containing the held-out semantics. Label original positive queries as S+ or U+ according to this inventory.
+3. Form negative candidates by editing one semantic event edge in a real same-video positive query. Candidate actions/objects must occur in real positive text elsewhere; the edited query is reparsed. Reject candidates contradicted by other same-video positives, Charades action annotations, or available Action Genome relationships. These filters provide **positive conflict evidence only**; their silence does not establish absence.
+4. Review surviving negative candidates against the video. The v1 release records a **dataset-owner global attestation** for the reviewed batch, not a per-query or dual-review log. Confirmed negatives become S− or U−. Pair eligible U+ and U− queries by video and source positive. Quarantine three known parser errors before packaging.
 
-The evaluation protocol reports:
+Construction details and limitations are in [`docs/semantic_existence_dataset.md`](docs/semantic_existence_dataset.md). Source scripts are [`scripts/build_semantic_existence.py`](scripts/build_semantic_existence.py), `validate_semantic_existence.py`, `review_semantic_existence.py`, `package_semantic_existence.py`, `audit_text_only.py`, and `validate_release.py`. The released JSONL files are ready to use without rebuilding the raw dataset.
 
-- **Null-set rejection**: AUROC, Rej-F1, Acc
-- **Temporal localization on positive queries**: mAP, mR@k, mR+@k, mIoU@k, mIoU+@k
-- **End-to-end GMR performance**: G-mIoU@k
-
-Run the example evaluation:
+To **rebuild** the dataset, supply the original Charades-STA positive JSONL files, Charades annotation CSVs and videos, VerbNet, spaCy `en_core_web_sm`, NLTK WordNet, and Action Genome annotations at the paths described in [`docs/semantic_existence_dataset.md`](docs/semantic_existence_dataset.md). Install builder dependencies with `pip install -r requirements-dataset.txt`, then run:
 
 ```bash
-python eval/eval_main.py \
-  --submission_path eval/example/example_test_submission.jsonl \
-  --gt_path data/label/Standard/test.jsonl \
-  --save_path eval/example/example_test_results.json
+python -m spacy download en_core_web_sm
+python -m nltk.downloader wordnet
+python scripts/download_action_genome.py
+python scripts/build_semantic_existence.py
+python scripts/validate_semantic_existence.py
+python scripts/review_semantic_existence.py --reviews path/to/completed_reviews.csv
+python scripts/package_semantic_existence.py
+python scripts/audit_text_only.py
+python scripts/package_semantic_existence.py
+python scripts/validate_release.py
 ```
 
-For input formats, metric definitions, and command-line options, see [`eval/README.md`](eval/README.md).
+The review command requires actual review decisions for a new build. The historical `--user-attests-all-absent` route must only be used when the dataset owner has already verified **that exact candidate batch**. To validate the unchanged included release, run only `python scripts/validate_release.py`.
 
-## Methods
+## Code and environment
 
-The paper studies GMR across two modeling paradigms. This repository releases the feature-level implementations of **Moment-DETR-GMR** and **FlashVTG-GMR**, two discriminative baselines augmented with the GMR Adapter.
+| Path | Purpose |
+| --- | --- |
+| `models/moment_detr_gmr/`, `training/moment_detr_gmr/` | Moment-DETR with GMR existence branch |
+| `models/qd_detr_gmr/`, `training/qd_detr_gmr/` | QD-DETR adaptation with GMR existence branch |
+| `models/flash_vtg_gmr/`, `training/flash_vtg_gmr/` | FlashVTG with GMR existence branch |
+| `configs/` | Model, feature, and dataset configuration |
+| `scripts/prepare_charades_semantic_existence.py` | Seen-only validation view and query CLIP features |
+| `scripts/run_semantic_existence_100ep_tmux.sh` | Three 100-epoch runs with seed 3407 and no early stopping |
+| `scripts/analyze_semantic_existence.py`, `eval/` | Four-partition diagnostics and GMR metrics |
+| `docs/SEMANTIC_EXISTENCE_HANDOFF.md`, `docs/semantic_existence_100ep_results.md` | Experiment records, commands, checkpoints, and detailed results |
 
-**GMR Adapter** is a lightweight plug-and-play module for discriminative VMR backbones. It adds an explicit existence-estimation branch for null-set prediction while preserving the temporal localization backbone. The released Moment-DETR-GMR code pools decoder query representations, predicts `pred_exist_score`, and uses binary existence supervision derived from whether `relevant_windows` is empty.
+Install the base dependencies with `pip install -r requirements.txt`. FlashVTG also has [`requirements-flash-vtg.txt`](requirements-flash-vtg.txt); a CUDA-compatible PyTorch installation is needed for GPU training. The recorded runs used separate `gmr` and `univtg` Python environments. Precomputed **CLIP text** features and **CLIP + SlowFast video** features are required and are not committed. In the recorded setup, video feature files have approximately one-second temporal resolution, CLIP video dimension 512, SlowFast dimension 2304, and `max_v_l=200`.
 
-![Architecture of the GMR Adapter](assets/adapter10.png)
-
-Training and inference entry points are provided in [`training/`](training/), with runnable script templates in [`scripts/`](scripts/). See the [FlashVTG-GMR documentation](models/flash_vtg_gmr/README.md) for its environment, training, and inference details.
-
-**GMR-tailored GRPO Reward** adapts reinforcement learning for generative multimodal large language models by jointly rewarding correct rejection behavior and temporal localization quality.
-
-## Main Results
-
-The main results below are reported on the Soccer-GMR `Standard` benchmark split.
-
-| Model | AUROC | Rej-F1 | mAP | mR@5 | mR+@5 | G-mIoU@1 | G-mIoU@3 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Moment-DETR | 69.92 | 0.00 | 6.98 | 10.92 | 0.78 | 5.39 | 2.47 |
-| Moment-DETR-GMR | 72.09 | **64.01** | 7.52 | 12.96 | 0.84 | 35.84 | 32.89 |
-| EaTR | 70.99 | 0.80 | 18.48 | 25.27 | 11.81 | 12.94 | 6.67 |
-| EaTR-GMR | **79.11** | 62.10 | 18.56 | 24.43 | 13.97 | 37.89 | 31.95 |
-| FlashVTG | 57.33 | 7.12 | 23.61 | 33.06 | 15.30 | 15.41 | 8.21 |
-| FlashVTG-GMR | 74.00 | 61.72 | **24.62** | **33.36** | **19.10** | **39.58** | **33.53** |
-
-## Repository Structure
-
-```text
-Generalized_Moment_Retrieval/
-|-- README.md
-|-- LICENSE
-|-- CITATION.cff
-|-- requirements.txt
-|-- assets/
-|   |-- intro.png
-|   |-- pipeline222.png
-|   |-- dataset.png
-|   `-- adapter10.png
-|-- data/
-|   |-- README.md
-|   `-- label/
-|       |-- Full/
-|       `-- Standard/
-|-- eval/
-|   |-- README.md
-|   |-- eval_main.py
-|   |-- metrics.py
-|   |-- normalization.py
-|   |-- utils.py
-|   `-- example/
-|-- configs/
-|   |-- moment_detr_gmr/
-|   `-- flash_vtg_gmr/
-|-- models/
-|   |-- moment_detr_gmr/
-|   `-- flash_vtg_gmr/
-|-- training/
-|   |-- moment_detr_gmr/
-|   `-- flash_vtg_gmr/
-|-- scripts/
-|   |-- train_moment_detr_gmr.sh
-|   |-- infer_moment_detr_gmr.sh
-|   |-- train_flash_vtg_gmr.sh
-|   `-- infer_flash_vtg_gmr.sh
-|-- docs/
-|   |-- index.html
-|   |-- styles.css
-|   `-- script.js
-`-- pipeline/
-```
-
-## Installation
+Prepare `features/charades_semantic_existence/val_seen.jsonl` and query features with:
 
 ```bash
-pip install -r requirements.txt
+python scripts/prepare_charades_semantic_existence.py \
+  --release data/release/semantic_existence_v1 \
+  --old-text /path/to/original_charades_clip_text \
+  --clip-code /path/to/compatible_clip_implementation \
+  --clip-weights /path/to/clip_vit_b32_weights \
+  --output features/charades_semantic_existence
 ```
 
-PyTorch installation can vary by CUDA version. If needed, install the matching PyTorch build from the official PyTorch instructions before installing the rest of the requirements.
+`--old-text` must contain the original positive-query features. The script symlinks those features and encodes negative queries; it expects a compatible CLIP implementation whose text encoder returns `last_hidden_state`. Check that all 14,345 released queries have a text feature before training. Set `VIDEO_ROOT` to a directory containing `vid_clip/` and `vid_slowfast/` feature subdirectories.
 
-## Moment-DETR-GMR
-
-Train with precomputed CLIP text features and CLIP + SlowFast video features:
+To reproduce the **three parallel, forced 100-epoch** runs on two GPUs:
 
 ```bash
-bash scripts/train_moment_detr_gmr.sh
+export VIDEO_ROOT=/path/to/charades/features
+export GMR_PYTHON=/path/to/gmr-env/bin/python
+export FLASH_PYTHON=/path/to/flash-env/bin/python
+bash scripts/run_semantic_existence_100ep_tmux.sh launch
 ```
 
-Run inference with a trained checkpoint:
+Moment-DETR and QD-DETR share GPU 0; FlashVTG uses GPU 1. Override `DATA_ROOT`, `FEATURE_ROOT`, `RUN_ROOT`, or `SEMANTIC_SEED` when needed. The script writes `exit_code` and `run_metadata.txt` under `results/semantic_existence/seed3407_100ep/{moment,qd,flash}/`. It is a training launcher, so check for existing results before rerunning. Model-specific inference and scoring commands are in the [experiment handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md). `results/` and `features/` are local artifacts excluded from Git.
 
-```bash
-bash scripts/infer_moment_detr_gmr.sh
-```
+## Current results
 
-The scripts can be configured with `MODEL_PATH`, `TEXT_FEAT_DIR`, `CLIP_FEAT_DIR`, `SLOWFAST_FEAT_DIR`, and `RESULTS_DIR`.
+All numbers below use the new seed **3407**, 100 epochs without early stopping, best checkpoint selected on seen validation, and thresholds calibrated on seen validation. These are **test-set diagnostics**, not model-selection criteria.
 
-## FlashVTG-GMR
+| Baseline | Seen existence AUROC | Unseen existence AUROC | U+ false-refusal rate | U− rejection rate | 535-pair score-order accuracy |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Moment-DETR-GMR | 0.867 | 0.570 | 29.2% | 38.3% | 55.7% |
+| QD-DETR-GMR | 0.871 | 0.585 | 63.8% | 80.7% | 48.4% |
+| FlashVTG-GMR | 0.857 | 0.559 | 46.4% | 51.5% | 50.7% |
 
-Train or evaluate FlashVTG-GMR with the provided entry points:
+Existence discrimination drops sharply on held-out semantics for all three baselines. QD-DETR and FlashVTG frequently reject present U+ events; Moment-DETR accepts many absent U− events. The failure modes differ, so a single “over-refusal” explanation does not fit all models. Longer training with a different seed did not remove the observed gap, but changing the seed and epoch limit together does not isolate the effect of training duration. The best checkpoint was at epoch 11, 66, and 60 for Moment-DETR, QD-DETR, and FlashVTG respectively. Full raw-versus-gated localization, official GMR metrics, hashes, and the original shorter runs are in [`docs/semantic_existence_100ep_results.md`](docs/semantic_existence_100ep_results.md) and the [handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md).
 
-```bash
-bash scripts/train_flash_vtg_gmr.sh
-bash scripts/infer_flash_vtg_gmr.sh
-```
+**Known limits:** each configuration has only one run per seed; localization-only and semantic-oracle controls are still pending. Original human positives and minimally edited negatives can differ in textual style. The included text-only diagnostic reaches 0.789 overall AUROC and 0.568 unseen AUROC, so overall scores alone should not be interpreted as purely visual existence reasoning. The release review provenance is a global owner attestation, not per-query review records.
 
-See [`models/flash_vtg_gmr/README.md`](models/flash_vtg_gmr/README.md) for setup, required environment variables, and reproduction settings.
+## Upstream attribution
 
-## Citation
-
-If you find this repository useful, please cite our paper:
+This project extends the [Generalized Moment Retrieval repository](https://github.com/dymm9977/generalized-moment-retrieval) for semantic-novelty experiments. Its original benchmark, code, and paper remain attributable to the upstream authors. The upstream citation is:
 
 ```bibtex
 @article{ding2026retrieving,
@@ -203,3 +125,5 @@ If you find this repository useful, please cite our paper:
   doi={10.48550/arXiv.2605.02623}
 }
 ```
+
+The repository's [`LICENSE`](LICENSE) applies to its software; third-party dataset and model assets retain their own source terms. See the FlashVTG [third-party notices](models/flash_vtg_gmr/THIRD_PARTY_NOTICES.md).

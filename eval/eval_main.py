@@ -16,19 +16,34 @@ from typing import Any, Dict, List, Sequence, Tuple
 
 import numpy as np
 
-from metrics import (
-    DEFAULT_IOU_THRESHOLDS,
-    compute_G_mIoU,
-    compute_gmr_cls,
-    compute_mAP,
-    compute_mIoU,
-    compute_mIoU_plus,
-    compute_mR,
-    compute_mR_plus,
-    prepare_submission_for_gmiou,
-)
-from normalization import load_ts_window_cfg, normalize_ground_truth
-from utils import load_jsonl
+try:
+    from .metrics import (
+        DEFAULT_IOU_THRESHOLDS,
+        compute_G_mIoU,
+        compute_gmr_cls,
+        compute_mAP,
+        compute_mIoU,
+        compute_mIoU_plus,
+        compute_mR,
+        compute_mR_plus,
+        prepare_submission_for_gmiou,
+    )
+    from .normalization import load_ts_window_cfg, normalize_ground_truth
+    from .utils import load_jsonl
+except ImportError:  # Support direct execution from the repository root.
+    from metrics import (
+        DEFAULT_IOU_THRESHOLDS,
+        compute_G_mIoU,
+        compute_gmr_cls,
+        compute_mAP,
+        compute_mIoU,
+        compute_mIoU_plus,
+        compute_mR,
+        compute_mR_plus,
+        prepare_submission_for_gmiou,
+    )
+    from normalization import load_ts_window_cfg, normalize_ground_truth
+    from utils import load_jsonl
 
 
 def evaluate_gmr(
