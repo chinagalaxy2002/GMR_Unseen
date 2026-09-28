@@ -20,8 +20,11 @@ if [[ "${1:-}" == "launch" ]]; then
       echo "Already running: $session"
       continue
     fi
-    tmux new-session -d -s "$session" -c "$ROOT_DIR" \
-      "SEMANTIC_SEED=$SEED RUN_ROOT=$RUN_ROOT bash scripts/run_semantic_existence_100ep_tmux.sh $model"
+    printf -v launch_cmd '%q ' env "SEMANTIC_SEED=$SEED" "RUN_ROOT=$RUN_ROOT" \
+      "DATA_ROOT=$DATA_ROOT" "FEATURE_ROOT=$FEATURE_ROOT" "VIDEO_ROOT=$VIDEO_ROOT" \
+      "GMR_PYTHON=$GMR_PYTHON" "FLASH_PYTHON=$FLASH_PYTHON" \
+      bash scripts/run_semantic_existence_100ep_tmux.sh "$model"
+    tmux new-session -d -s "$session" -c "$ROOT_DIR" "$launch_cmd"
     echo "Started: $session"
   done
   exit 0

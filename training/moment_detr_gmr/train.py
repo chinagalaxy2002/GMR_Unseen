@@ -202,6 +202,7 @@ def parse_args():
     parser.add_argument("--device", type=str, default=None)
     parser.add_argument("--overwrite", action="store_true", help="Remove the output directory before training.")
     parser.add_argument("--mr_only", action="store_true", default=True, help="Disable saliency labels.")
+    parser.add_argument("--no_exist_head", action="store_true", help="Train the localization-only control without an existence head.")
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -227,6 +228,8 @@ if __name__ == "__main__":
         opt.eval_log_filepath = os.path.join(opt.results_dir, opt.eval_log_filename)
     opt.mr_only = True
     opt.lw_saliency = 0
+    if args.no_exist_head:
+        opt.use_exist_head = False
 
     option_manager.clean_and_makedirs(overwrite=args.overwrite)
     main(opt, resume=args.resume)
