@@ -1,5 +1,7 @@
 # Semantic Existence v1 主实验交接
 
+> **历史交接（首轮与 seed 3407 严格 GMR）。** E0–E7 的最新完成状态、定位对照、semantic-seen reference 与清空上下文后的恢复入口，请先读 [`CURRENT_WORK_HANDOFF.md`](CURRENT_WORK_HANDOFF.md)。下文保留早期运行细节，不代表当前待办。
+
 更新时间：2026-09-27（Asia/Shanghai）。这是清空会话上下文后的恢复入口。项目根目录为 `/home/guoxiangyu/paper/Openword`，下文的相对路径均以 `generalized-moment-retrieval/` 为起点。数据构建口径另见 [`data/release/semantic_existence_v1/HANDOFF.md`](../../data/release/semantic_existence_v1/HANDOFF.md)，原实验方案见同目录的 `plan.md`。
 
 ## 1. 本轮目标、完成状态

@@ -1,0 +1,15 @@
+# Phase 2 A1: `put/take` action holdout
+
+The A1 annotation release is [`data/release/semantic_existence_v2/A1/`](../data/release/semantic_existence_v2/A1/). It excludes complete `put` and `take` action classes from downstream task training. It has 8,608 train, 1,759 validation, and 5,170 test queries, including 465 U+, 1,119 U−, and 312 same-video, same-source U+/U− pairs. The released [`statistics.json`](../data/release/semantic_existence_v2/A1/statistics.json) and [`manifest.json`](../data/release/semantic_existence_v2/A1/manifest.json) contain the final counts and file hashes. `python scripts/validate_release.py --release data/release/semantic_existence_v2/A1` passed, with zero overlap between train, validation and test videos.
+
+All three models used seed 3407 and completed 100 epochs with early stopping disabled; their training `exit_code` files are 0. Moment-DETR and QD-DETR shared GPU 0, while FlashVTG used GPU 1. Best checkpoints were selected on the A1 S+/S− validation view. Existence thresholds maximize balanced accuracy on that same seen validation view. No U validation rows were used for selection or calibration. A1 test inference used [`finalize_semantic_multisplit_group.sh`](../scripts/finalize_semantic_multisplit_group.sh); each submission contains exactly the 5,170 distinct A1 test qids.
+
+| Model | Seen AUROC | Unseen AUROC | Gap | U+ FRR | U− RR | PairAcc (312) | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Moment-DETR-GMR | 0.8044 | 0.4973 | 0.3071 | 23.23% | 25.47% | 0.5593 | 23.01% | 17.85% |
+| QD-DETR-GMR | 0.7827 | 0.5058 | 0.2769 | 16.13% | 18.23% | 0.5721 | 24.52% | 20.65% |
+| FlashVTG-GMR | 0.8158 | 0.5065 | 0.3093 | 19.14% | 20.82% | 0.5561 | 29.46% | 23.66% |
+
+FRR is the fraction of present U+ events whose existence score falls below the seen threshold. RR is the fraction of absent U− events below it. PairAcc orders the existence scores of the matched U+ and U− on the same video, awarding half credit for ties. Raw R@1@0.5 uses the best predicted window before hard existence gating; gated R@1@0.5 requires that window to overlap the ground truth and its existence score to pass the seen threshold. These are the script's diagnostic metrics. Official GMR evaluation uses its own gate and fixed thresholds; its full-test AUROC is 65.24%, 64.83%, and 66.03%, respectively, and is not interchangeable with the seen/unseen AUROC above.
+
+The A1 result reproduces a seen-to-unseen AUROC drop for a new action pair. It does not yet establish a trend across independent splits. The other frozen action and composition groups, and the identical-query unseen→seen comparison, must be evaluated before reporting a multi-split conclusion. Each A1 configuration has one training seed. The owner attested video review of the exact new-negative batch as a whole; the release does not provide per-query or dual-review decisions. Videos, feature tensors, per-query predictions, and model checkpoints remain local and are not in Git.

@@ -44,6 +44,8 @@ OBJECT_NEIGHBORS = {
     "book": ["paper", "picture"], "picture": ["book", "paper"],
     "shoe": ["sock", "boot"], "bag": ["box", "basket"],
     "phone": ["remote", "camera"], "pillow": ["blanket", "cushion"],
+    "chair": ["couch", "bed", "sofa"], "couch": ["chair", "bed", "sofa"],
+    "bed": ["chair", "couch", "sofa"], "sofa": ["chair", "couch", "bed"],
 }
 
 
@@ -170,6 +172,33 @@ def pair(graph: dict) -> tuple[str, str] | None:
 
 def pair_id(p: tuple[str, str]) -> str:
     return "|".join(p)
+
+
+def load_split_spec(path: Path) -> dict:
+    spec = json.loads(path.read_text())
+    if spec.get("schema_version") != 1 or spec.get("axis") not in {"action", "composition"}:
+        raise ValueError(f"Invalid split spec schema or axis: {path}")
+    actions = spec.get("held_actions")
+    compositions = spec.get("held_compositions")
+    if not isinstance(actions, list) or not isinstance(compositions, list):
+        raise ValueError("Split spec requires held_actions and held_compositions lists")
+    if len(actions) != len(set(actions)) or len(compositions) != len(set(compositions)):
+        raise ValueError("Duplicate held semantics in split spec")
+    if any(not isinstance(a, str) or not a for a in actions):
+        raise ValueError("Invalid held action")
+    if any(not isinstance(p, str) or p.count("|") != 1 or not all(p.split("|")) for p in compositions):
+        raise ValueError("Invalid held composition")
+    if spec["axis"] == "action" and (not actions or compositions):
+        raise ValueError("Action split must hold actions only")
+    if spec["axis"] == "composition" and (actions or not compositions):
+        raise ValueError("Composition split must hold compositions only")
+    return spec
+
+
+def contains_held_semantics(row: dict, held_actions: set[str], held_pair_ids: set[str]) -> bool:
+    event_pairs = set(row["_pairs"])
+    event_actions = {p.split("|", 1)[0] for p in event_pairs}
+    return bool(set(row["_verbs"]) & held_actions or event_actions & held_actions or event_pairs & held_pair_ids)
 
 
 def read_charades_actions(metadata_dir: Path, nlp, vn) -> dict[str, set[tuple[str, str]]]:
@@ -321,6 +350,11 @@ def inflect_like(source_token, replacement: str) -> str:
         "throw": {"VBD": "threw", "VBN": "thrown", "VBG": "throwing"},
         "drink": {"VBD": "drank", "VBN": "drunk", "VBG": "drinking"},
         "pour": {"VBD": "poured", "VBN": "poured", "VBG": "pouring"},
+        "eat": {"VBD": "ate", "VBN": "eaten", "VBG": "eating"},
+        "run": {"VBD": "ran", "VBN": "run", "VBG": "running"},
+        "sit": {"VBD": "sat", "VBN": "sat", "VBG": "sitting"},
+        "leave": {"VBD": "left", "VBN": "left", "VBG": "leaving"},
+        "stand": {"VBD": "stood", "VBN": "stood", "VBG": "standing"},
     }
     if tag in irregular.get(replacement, {}):
         return irregular[replacement][tag]
@@ -343,10 +377,13 @@ def inflect_noun_like(token: str, replacement: str) -> str:
     return replacement + "s"
 
 
-def action_edit_allowed(source_doc, graph: dict, target_action: str) -> bool:
+def action_edit_allowed(source_doc, graph: dict, target_action: str, allow_general: bool = False) -> bool:
     source = graph["action"]
     if target_action not in ACTION_NEIGHBORS.get(source, []):
-        return False
+        if not allow_general or "_" in source or "_" in target_action:
+            return False
+        verb = next((t for t in source_doc if graph["action_span"] and t.idx == graph["action_span"][0]), None)
+        return verb is not None and not any(t.dep_ == "prt" for t in verb.children)
     if source in {"take_off", "put_on"} and graph["object"] not in CLOTHING:
         return False
     verb = next((t for t in source_doc if graph["action_span"] and t.idx == graph["action_span"][0]), None)
@@ -379,7 +416,7 @@ def output_positive(row: dict, inventory: dict, held_actions, held_pairs) -> dic
     return output
 
 
-def make_candidate(source: dict, target_action: str | None, target_object: str | None, construction: str, inventory, held_actions, held_pairs, evidence, nlp) -> dict | None:
+def make_candidate(source: dict, target_action: str | None, target_object: str | None, construction: str, inventory, held_actions, held_pairs, evidence, nlp, allow_general_action_edit=False) -> dict | None:
     graph = source["semantic_graph"]
     changed_action = target_action is not None and target_action != graph["action"]
     changed_object = target_object is not None and target_object != graph["object"]
@@ -397,7 +434,7 @@ def make_candidate(source: dict, target_action: str | None, target_object: str |
             return None
         if target_object in {t.lemma_.lower() for t in source_doc}:
             return None
-    if changed_action and not action_edit_allowed(source_doc, graph, target_action):
+    if changed_action and not action_edit_allowed(source_doc, graph, target_action, allow_general_action_edit):
         return None
     old_text = source["query"][span[0]:span[1]]
     source_verb = next((t for t in source_doc if t.idx == span[0]), None)
@@ -515,9 +552,13 @@ def main():
     parser.add_argument("--verbnet", type=Path, default=ROOT / "external/verbnet/verbnet3.4")
     parser.add_argument("--action-genome", type=Path, default=ROOT / "data/raw/action_genome/annotations/object_bbox_and_relationship.pkl")
     parser.add_argument("--out", type=Path, default=ROOT / "data/processed/semantic_existence")
-    parser.add_argument("--held-actions", nargs="+", default=["open", "close"])
+    parser.add_argument("--held-actions", nargs="+", default=None)
     parser.add_argument("--composition-cap", type=int, default=16)
+    parser.add_argument("--split-spec", type=Path, help="Frozen v2 split specification; controls all held semantics")
     args = parser.parse_args()
+    spec = load_split_spec(args.split_spec) if args.split_spec else None
+    if spec and (args.held_actions is not None or args.composition_cap != 16):
+        parser.error("--split-spec is the sole semantic selection input; omit --held-actions and --composition-cap")
     nlp = spacy.load("en_core_web_sm", disable=["ner"])
     vn = vn_index(args.verbnet)
     inputs = [("train", read_jsonl(args.train)), ("test", read_jsonl(args.test))]
@@ -528,12 +569,18 @@ def main():
     base_train = [r for r in records if r["source_split"] == "train" and stable_bucket(r["video_id"]) >= 10]
     base_val = [r for r in records if r["source_split"] == "train" and stable_bucket(r["video_id"]) < 10]
     base_test = [r for r in records if r["source_split"] == "test"]
-    held_actions = set(args.held_actions)
-    held_pairs = select_compositions(base_train, base_test, held_actions, args.composition_cap)
+    held_actions = set(spec["held_actions"] if spec else (args.held_actions or ["open", "close"]))
+    held_pairs = ({tuple(p.split("|", 1)) for p in spec["held_compositions"]} if spec else
+                  select_compositions(base_train, base_test, held_actions, args.composition_cap))
     held_pair_ids = {pair_id(p) for p in held_pairs}
+    if spec:
+        available_actions = {r["semantic_graph"]["action"] for r in base_train + base_test}
+        available_pairs = {pair(r["semantic_graph"]) for r in base_train + base_test}
+        if held_actions - available_actions or held_pairs - available_pairs:
+            raise ValueError("Split spec contains semantics absent from parsed original positives")
     downstream_train, removed_train = [], []
     for r in base_train:
-        if set(r["_verbs"]) & held_actions or set(r["_pairs"]) & held_pair_ids:
+        if contains_held_semantics(r, held_actions, held_pair_ids):
             removed_train.append(r)
         elif pair(r["semantic_graph"]):
             downstream_train.append(r)
@@ -544,6 +591,13 @@ def main():
         "relations": {r["semantic_graph"]["relation"] for r in downstream_train if r["semantic_graph"]["relation"]},
         "relation_compositions": {f"{r['semantic_graph']['action']}|{r['semantic_graph']['object']}|{r['semantic_graph']['relation']}" for r in downstream_train if r["semantic_graph"]["relation"]},
     }
+    if spec and spec["axis"] == "composition":
+        unanchored = [pair_id(p) for p in held_pairs if p[0] not in inventory["actions"] or
+                      p[1] not in inventory["objects"] or p in inventory["pairs"]]
+        if unanchored:
+            raise ValueError(f"Held compositions are not genuinely compositional: {unanchored}")
+    if spec and held_actions & inventory["actions"]:
+        raise ValueError("Held action leaked into the downstream train inventory")
     train_pos = [x for r in downstream_train if (x := output_positive(r, inventory, held_actions, held_pairs)) and x["partition"] == "S+"]
     val_pos = [x for r in base_val if (x := output_positive(r, inventory, held_actions, held_pairs))]
     test_pos = [x for r in base_test if (x := output_positive(r, inventory, held_actions, held_pairs))]
@@ -557,6 +611,7 @@ def main():
     ag_index = read_action_genome(args.action_genome, nlp)
     all_human_pairs = {pair(r["semantic_graph"]) for r in all_source if pair(r["semantic_graph"])}
     all_human_signatures = {(pair(r["semantic_graph"]), r["semantic_graph"]["object_role"], r["semantic_graph"]["relation"]) for r in all_source if pair(r["semantic_graph"])}
+    action_signatures = {(p[0], p[1], role, relation) for p, role, relation in all_human_signatures}
     evidence = {"queries": query_index, "charades": charades_index, "ag": ag_index,
                 "verbnet": vn, "all_human_pairs": all_human_pairs,
                 "all_human_signatures": all_human_signatures}
@@ -568,6 +623,9 @@ def main():
             graph = source["semantic_graph"]
             action, obj = graph["action"], graph["object"]
             choices = [(a, None, "action_counterfactual") for a in ACTION_NEIGHBORS.get(action, [])]
+            if spec and spec["axis"] == "action":
+                choices += [(a, None, "action_counterfactual") for a in sorted(held_actions)
+                            if a != action and (a, obj, graph["object_role"], graph["relation"]) in action_signatures]
             observed_pairs = (query_index.get(source["video_id"], set()) |
                               charades_index.get(source["video_id"], set()) |
                               ag_index.get(source["video_id"], set()))
@@ -578,7 +636,8 @@ def main():
             video_actions = sorted({a for a, _ in query_index.get(source["video_id"], set()) if a != action})
             choices += [(a, None, "composition_counterfactual") for a in video_actions if (a, obj) in held_pairs]
             for a, o, kind in choices:
-                candidate = make_candidate(source, a, o, kind, inventory, held_actions, held_pairs, evidence, nlp)
+                candidate = make_candidate(source, a, o, kind, inventory, held_actions, held_pairs, evidence, nlp,
+                                           allow_general_action_edit=bool(spec and spec["axis"] == "action" and a in held_actions))
                 if not candidate or (train_only_seen and candidate["partition"] != "S-"):
                     continue
                 if set(re.findall(r"[a-z]+", candidate["query"].lower())) - positive_words:
@@ -602,6 +661,8 @@ def main():
     for neg in ordered_negatives:
         if neg["partition"] == "U-" and neg["source_qid"] in test_uplus:
             pos = test_uplus[neg["source_qid"]]
+            if pos["novelty_type"] != neg["novelty_type"]:
+                continue
             if pos["qid"] in used_positives:
                 continue
             used_positives.add(pos["qid"])
@@ -642,6 +703,12 @@ def main():
         "formal_test_status": "positives annotated; all negatives require manual video review before official scoring",
     }
     dump_json(args.out / "audit.json", report)
+    if spec:
+        dump_json(args.out / "split_spec_provenance.json", {
+            "split_spec": spec,
+            "split_spec_sha256": hashlib.sha256(args.split_spec.read_bytes()).hexdigest(),
+            "split_spec_path": str(args.split_spec.resolve()),
+        })
     if report["train"]["train_heldout_leakage"] or report["test"]["semantic_seen_unseen_conflicts"]:
         raise RuntimeError("Semantic consistency failure; inspect audit.json")
     print(json.dumps({"outputs": str(args.out), "split_counts": report["split_counts"],

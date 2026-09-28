@@ -1,0 +1,71 @@
+{
+  "split_counts": {
+    "train": {
+      "S+": 7108,
+      "S-": 1500
+    },
+    "val": {
+      "S+": 747,
+      "U+": 159,
+      "U-": 343,
+      "S-": 510
+    },
+    "test": {
+      "S+": 2218,
+      "U+": 465,
+      "U-": 1119,
+      "S-": 1368
+    }
+  },
+  "matched_u_pairs_reviewed": 312,
+  "shared_seen_train_negatives": 1500,
+  "quarantined_parser_error_qids": {
+    "train": [
+      "train1131",
+      "train1681",
+      "train2877",
+      "train4190",
+      "train4336",
+      "train5276",
+      "train5874",
+      "train11938"
+    ],
+    "val": [],
+    "test": [
+      "test1288",
+      "test1974",
+      "test2357"
+    ]
+  },
+  "quality_gates": {
+    "id": "A1",
+    "axis": "action",
+    "status": "reviewed",
+    "measures": {
+      "u_positive": 465,
+      "u_negative": 1119,
+      "u_positive_videos": 370,
+      "matched_pairs": 312,
+      "matched_pair_coverage": 0.671,
+      "largest_semantic_share": 0.514,
+      "per_semantic_u_positive": {
+        "put": 226,
+        "take": 239
+      },
+      "parser_qc": {
+        "source": "dataset_owner_global_attestation",
+        "sample_count": 156
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": true,
+      "matched_pair_coverage": true,
+      "largest_semantic_share": true,
+      "parser_qc": true
+    },
+    "passes_all_gates": true
+  }
+}

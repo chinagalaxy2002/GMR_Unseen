@@ -5,6 +5,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 SEED="${SEMANTIC_SEED:-3407}"
+SESSION_PREFIX="${SESSION_PREFIX:-semantic}"
 RUN_ROOT="${RUN_ROOT:-$ROOT_DIR/results/semantic_existence/seed${SEED}_100ep}"
 DATA_ROOT="${DATA_ROOT:-$ROOT_DIR/data/release/semantic_existence_v1}"
 FEATURE_ROOT="${FEATURE_ROOT:-$ROOT_DIR/features/charades_semantic_existence}"
@@ -15,13 +16,14 @@ FLASH_PYTHON="${FLASH_PYTHON:-python}"
 if [[ "${1:-}" == "launch" ]]; then
   mkdir -p "$RUN_ROOT"
   for model in moment qd flash; do
-    session="semantic_${model}_seed${SEED}_100ep"
+    session="${SESSION_PREFIX}_${model}_seed${SEED}_100ep"
     if tmux has-session -t "$session" 2>/dev/null; then
       echo "Already running: $session"
       continue
     fi
     printf -v launch_cmd '%q ' env "SEMANTIC_SEED=$SEED" "RUN_ROOT=$RUN_ROOT" \
       "DATA_ROOT=$DATA_ROOT" "FEATURE_ROOT=$FEATURE_ROOT" "VIDEO_ROOT=$VIDEO_ROOT" \
+      "SESSION_PREFIX=$SESSION_PREFIX" \
       "GMR_PYTHON=$GMR_PYTHON" "FLASH_PYTHON=$FLASH_PYTHON" \
       bash scripts/run_semantic_existence_100ep_tmux.sh "$model"
     tmux new-session -d -s "$session" -c "$ROOT_DIR" "$launch_cmd"

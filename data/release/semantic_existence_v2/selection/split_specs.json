@@ -1,0 +1,68 @@
+[
+  {
+    "axis": "action",
+    "held_actions": [
+      "put",
+      "take"
+    ],
+    "held_compositions": [],
+    "id": "A1",
+    "schema_version": 1,
+    "selection_family": "manipulation"
+  },
+  {
+    "axis": "action",
+    "fallback_for": "A2",
+    "fallback_reason": "first cohort failed candidate matched-pair gate before model evaluation",
+    "held_actions": [
+      "drink",
+      "pour"
+    ],
+    "held_compositions": [],
+    "id": "A2_alt",
+    "projected_test_positives": 168,
+    "schema_version": 1,
+    "selection_family": "consumption",
+    "shared_object_proxy": 40
+  },
+  {
+    "axis": "action",
+    "held_actions": [
+      "run",
+      "walk"
+    ],
+    "held_compositions": [],
+    "id": "A3",
+    "schema_version": 1,
+    "selection_family": "motion"
+  },
+  {
+    "axis": "composition",
+    "held_actions": [],
+    "held_compositions": [
+      "sit|bed",
+      "sit|chair",
+      "sit|couch"
+    ],
+    "id": "C1",
+    "projected_test_positives": 162,
+    "schema_version": 1,
+    "selection_family": "sit"
+  },
+  {
+    "axis": "composition",
+    "fallback_for": "C2",
+    "fallback_reason": "first cohort failed candidate matched-pair gate before model evaluation",
+    "held_actions": [],
+    "held_compositions": [
+      "close|box",
+      "close|cabinet",
+      "open|box",
+      "open|cabinet"
+    ],
+    "id": "C2_alt",
+    "projected_test_positives": 115,
+    "schema_version": 1,
+    "selection_family": "close+open"
+  }
+]

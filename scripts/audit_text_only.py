@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Measure whether query text alone predicts existence in the released dataset."""
 
+import argparse
 import json
 from pathlib import Path
 
@@ -13,14 +14,17 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/release/semantic_existence_v1"
 
 
-def load(name):
-    return [json.loads(line) for line in (DATA / name).read_text().splitlines() if line]
+def load(data, name):
+    return [json.loads(line) for line in (data / name).read_text().splitlines() if line]
 
 
 def main():
-    train = load("train.jsonl")
-    test = load("test.jsonl")
-    pairs = load("matched_u_pairs.jsonl")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--release", type=Path, default=DATA)
+    args = parser.parse_args()
+    train = load(args.release, "train.jsonl")
+    test = load(args.release, "test.jsonl")
+    pairs = load(args.release, "matched_u_pairs.jsonl")
     vectorizer = TfidfVectorizer(analyzer="char", ngram_range=(2, 4), min_df=3, max_features=50000)
     x_train = vectorizer.fit_transform(r["query"] for r in train)
     model = LogisticRegression(max_iter=2000, class_weight="balanced", random_state=0)
@@ -38,11 +42,11 @@ def main():
         "all": metrics(range(len(test))),
         "seen": metrics([i for i, r in enumerate(test) if r["semantic_status"] == "seen"]),
         "unseen": metrics([i for i, r in enumerate(test) if r["semantic_status"] == "unseen"]),
-        "matched_u_pair_text_only_ranking_accuracy": round(sum(score_by_qid[r["positive_qid"]] > score_by_qid[r["negative_qid"]] for r in pairs) / len(pairs), 4),
+        "matched_u_pair_text_only_ranking_accuracy": (round(sum(score_by_qid[r["positive_qid"]] > score_by_qid[r["negative_qid"]] for r in pairs) / len(pairs), 4) if pairs else None),
         "matched_u_pairs": len(pairs),
         "interpretation": "AUC above 0.5 indicates residual text-only label signal; it is not evidence of video understanding.",
     }
-    (DATA / "text_only_diagnostic.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    (args.release / "text_only_diagnostic.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

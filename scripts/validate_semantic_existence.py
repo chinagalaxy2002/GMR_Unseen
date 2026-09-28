@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check split, GMR fields, novelty labels, and source alignment."""
 
+import argparse
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -10,16 +11,23 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/processed/semantic_existence"
 
 
-def load(name):
-    return [json.loads(s) for s in (DATA / name).read_text().splitlines() if s]
+def load(data, name):
+    return [json.loads(s) for s in (data / name).read_text().splitlines() if s]
 
 
 def main():
-    inventory = json.loads((DATA / "semantic_inventory.json").read_text())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=Path, default=DATA)
+    args = parser.parse_args()
+    inventory = json.loads((args.data / "semantic_inventory.json").read_text())
     held_actions = set(inventory["heldout_actions"])
     held_pairs = set(inventory["heldout_compositions"])
     train_pairs = set(inventory["action_object_compositions"])
-    splits = {s: load(f"{s}_candidates.jsonl") for s in ("train", "val", "test")}
+    assert held_actions.isdisjoint(inventory["actions"])
+    assert held_pairs.isdisjoint(train_pairs)
+    assert all(action in inventory["actions"] and obj in inventory["objects"]
+               for action, obj in (p.split("|", 1) for p in held_pairs))
+    splits = {s: load(args.data, f"{s}_candidates.jsonl") for s in ("train", "val", "test")}
     videos = defaultdict(set)
     qids = set()
     for split, rows in splits.items():
@@ -48,13 +56,14 @@ def main():
     assert all(f"{r['semantic_graph']['action']}|{r['semantic_graph']['object']}" not in held_pairs for r in train_pos)
     positives = {r["qid"]: r for r in splits["test"] if r["exist_label"]}
     negatives = {r["qid"]: r for r in splits["test"] if not r["exist_label"]}
-    pairs = load("matched_u_pairs.jsonl")
+    pairs = load(args.data, "matched_u_pairs.jsonl")
     assert len({r["positive_qid"] for r in pairs}) == len(pairs)
     assert len({r["negative_qid"] for r in pairs}) == len(pairs)
     for item in pairs:
         pos = positives[item["positive_qid"]]
         neg = negatives[item["negative_qid"]]
         assert pos["partition"] == "U+" and neg["partition"] == "U-"
+        assert pos["novelty_type"] == neg["novelty_type"]
         assert pos["video_id"] == neg["video_id"]
         assert neg["source_qid"] == pos["qid"]
     print(json.dumps({"validated_rows": {k: len(v) for k, v in splits.items()},
