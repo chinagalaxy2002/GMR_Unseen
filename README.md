@@ -226,3 +226,29 @@ This project extends the [Generalized Moment Retrieval repository](https://githu
 ```
 
 The repository's [`LICENSE`](LICENSE) applies to its software; third-party dataset and model assets retain their own source terms. See the FlashVTG [third-party notices](models/flash_vtg_gmr/THIRD_PARTY_NOTICES.md).
+
+## Test 子集：未见动作与未见组合
+
+发布版 test 中的 U+/U− 样本按 `novelty_type` 分为互不重叠的 `unseen_action` 和 `unseen_composition`。前者再按 `semantic_graph.action` 分为 `open`、`close`；后者按 `semantic_graph.action|semantic_graph.object` 分为 16 个预留的动作–物体组合。拆分文件保留原始 JSONL 记录和顺序，不改变原始 [`test.jsonl`](data/release/semantic_existence_v1/test.jsonl)。
+
+| 子集 | U+ | U− | 合计 |
+| --- | ---: | ---: | ---: |
+| unseen_action | 675 | 882 | 1,557 |
+| └ open | 442 | 439 | 881 |
+| └ close | 233 | 443 | 676 |
+| unseen_composition | 206 | 65 | 271 |
+
+| Held-out pair | U+ | U− | Held-out pair | U+ | U− |
+| --- | ---: | ---: | --- | ---: | ---: |
+| `cook|food` | 5 | 0 | `dress|front` | 0 | 0 |
+| `drink|water` | 9 | 1 | `eat|food` | 56 | 0 |
+| `hold|pillow` | 10 | 0 | `put_down|book` | 15 | 4 |
+| `put_in|box` | 6 | 5 | `put_in|clothe` | 7 | 2 |
+| `put_on|shoe` | 40 | 22 | `put|picture` | 9 | 14 |
+| `put|towel` | 13 | 0 | `take_out|book` | 3 | 1 |
+| `take_out|towel` | 3 | 0 | `take|bag` | 8 | 0 |
+| `take|book` | 13 | 16 | `walk|room` | 9 | 0 |
+
+可直接读取 [`test_subgroups/views/`](data/release/semantic_existence_v1/test_subgroups/views/) 中的 JSONL 子集；[`counts.csv`](data/release/semantic_existence_v1/test_subgroups/counts.csv) 给出各组数量，[`metrics.csv`](data/release/semantic_existence_v1/test_subgroups/metrics.csv) 给出 Moment-DETR、QD-DETR、FlashVTG 在 strict GMR、semantic-seen reference 和 localization-only 设置下的分组指标。指标定义及空值说明见[子集说明](data/release/semantic_existence_v1/test_subgroups/README.md)。
+
+535 个 matched-U pair 全部属于 `unseen_action`。按**正例 query 的动作**分组时，`open` 有 352 对，`close` 有 183 对；各模型的 PairAcc 见 [`matched_pair_metrics.csv`](data/release/semantic_existence_v1/test_subgroups/matched_pair_metrics.csv)。`unseen_composition` 没有 matched pair，故没有该组的 PairAcc。`dress|front` 在最终 test 中为零条；部分其他 held-out pair 缺少 U− 或样本很少，不能对这些 pair 的 AUROC 作稳定比较。
