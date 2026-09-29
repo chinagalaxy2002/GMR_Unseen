@@ -69,6 +69,23 @@ The release contains **annotations, not videos or pretrained features**. Obtain 
 
 All 15 training jobs completed with exit code 0; the three models were evaluated on all five test sets. A1–A3 use the same reviewed 1,500-row action-axis S− pool; C1/C2_alt use a separate shared 1,500-row composition-axis S− pool. The composition packages include their frozen specs and common negative pool. All five checked-in releases pass `scripts/validate_release.py`, with no video overlap across train, validation and test. The dataset owner attested review of the exact new-negative batch and parser sample as a whole; the packages do not contain per-query review records. Full construction provenance is in each release's manifest and the shared selection directory.
 
+#### Phase 2 data construction: all five groups
+
+1. **Select semantics before model testing.** [`profile_semantic_split_candidates.py`](scripts/profile_semantic_split_candidates.py) counts original train/test positives, videos and object diversity for 123 actions and 1,221 action–object compositions. [`select_semantic_split_specs.py`](scripts/select_semantic_split_specs.py) and the fallback-selection scripts use the frozen [`selection_rules.json`](data/release/semantic_existence_v2/selection/selection_rules.json) to choose disjoint action and composition groups. Initial A2 and C2 failed the candidate pair gate and were replaced by A2_alt and C2_alt before model evaluation. Candidate tables, failure records, final [`split_specs.json`](data/release/semantic_existence_v2/selection/split_specs.json) and the frozen selection hashes are published under [`selection/`](data/release/semantic_existence_v2/selection/).
+2. **Build each split from the same original positives.** [`build_semantic_existence.py`](scripts/build_semantic_existence.py) reads one frozen `--split-spec` per group, retains original positive queries and human time windows, keeps original test videos in test, and assigns validation by a deterministic video-ID hash. For A groups it removes training positives containing a held action; for C groups it removes held action–object pairs while checking that their component action and object remain in training. Each group gets its own seen inventory and S+/U+ labels.
+3. **Construct and review absent queries.** The builder edits an action or object edge in a same-video positive and can recombine a video action with another object. It reparses the query and discards candidates contradicted by same-video positives, Charades action annotations or Action Genome relationships. Those filters detect conflicts; absence depends on video review. The owner globally attested the exact batch of 4,491 new negative candidates and 156 parser-QC samples; 2,485 exact v1 negatives retain their earlier batch provenance. [`review_semantic_multisplit.py`](scripts/review_semantic_multisplit.py) records that distinction. The release does not contain per-qid review decisions. Known `dress|front` parser errors were quarantined before packaging.
+4. **Reuse negatives and enforce release gates.** [`audit_shared_seen_negatives.py`](scripts/audit_shared_seen_negatives.py) forms one reviewed 1,500-row S− training pool shared by all A groups and another shared by both C groups. Each group's test U+/U− pairs use the same video and source positive and the same novelty axis. Before training, [`audit_multisplit_feasibility.py`](scripts/audit_multisplit_feasibility.py) checks at least 80 U+, 40 U−, 50 U+ videos, 20 pairs and 15% pair coverage; it also limits the largest held-semantic share to 70% for actions or 65% for compositions and requires at least 90% parser-QC correctness. [`package_semantic_multisplit.py`](scripts/package_semantic_multisplit.py) writes the five releases and SHA-256 manifests; [`validate_release.py`](scripts/validate_release.py) checks their labels, pairs, video separation, held-out leakage and checksums.
+
+Every release contains `train.jsonl`, `val.jsonl`, `test.jsonl`, `matched_u_pairs.jsonl`, `test_matched_u.jsonl`, `semantic_inventory.json`, `statistics.json`, `review_report.json`, `split_spec_provenance.json` and `manifest.json`. The repository also publishes the frozen specs, candidate statistics, review attestation and both shared S− pools. Rebuilding from scratch additionally needs the original Charades-STA positives, Charades annotations/videos, Action Genome, VerbNet and parser dependencies; raw videos, pretrained feature tensors, checkpoints, per-query predictions and intermediate `work/` candidate files are not part of this release. The exact build protocol, dependency paths and selection rationale are in the [phase 2 plan](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md).
+
+To check the published annotation packages without rebuilding or downloading model features:
+
+```bash
+for split in A1 A2_alt A3 C1 C2_alt; do
+  python scripts/validate_release.py --release "data/release/semantic_existence_v2/$split"
+done
+```
+
 #### A1 data and construction
 
 [`data/release/semantic_existence_v2/A1/`](data/release/semantic_existence_v2/A1/) holds out the complete `put` and `take` action classes from downstream training. The published files contain annotations and provenance, without videos, features, or checkpoints. Each test query is assigned by its semantic status under A1; the two actions have 226 and 239 U+ test examples respectively.
@@ -107,7 +124,9 @@ bash scripts/run_semantic_multisplit_100ep.sh A1 launch
 bash scripts/finalize_semantic_multisplit_group.sh A1
 ```
 
-### How the dataset was constructed
+The same feature preparation, training and test commands apply to A2_alt, A3, C1 and C2_alt by replacing `A1` with the chosen split ID. Each group trains independently; [`queue_semantic_multisplit_training.sh`](scripts/queue_semantic_multisplit_training.sh) records the original order and two-GPU scheduling, while [`finalize_semantic_multisplit_group.sh`](scripts/finalize_semantic_multisplit_group.sh) runs the three test submissions and diagnostics for one completed group. The published [result JSON files](docs/semantic_existence_v2_metrics/) include the seen-validation threshold, official metrics, text-only control, video-cluster intervals and same-query cross-split summaries.
+
+### How the v1 dataset was constructed
 
 1. Preserve original Charades-STA positive queries and human temporal windows. Keep original test videos in test; allocate 10% of original training videos to validation by a deterministic SHA-256 bucket of video ID. Splits do not share videos.
 2. Build the downstream semantic inventory only from the remaining training videos. Hold out `open`, `close` (including normalized `shut`), and 16 selected action–object compositions. Remove training positives containing the held-out semantics. Label original positive queries as S+ or U+ according to this inventory.
