@@ -1,0 +1,134 @@
+[
+  {
+    "id": "A1",
+    "axis": "action",
+    "status": "candidate_upper_bound",
+    "measures": {
+      "u_positive": 465,
+      "u_negative": 1119,
+      "u_positive_videos": 370,
+      "matched_pairs": 312,
+      "matched_pair_coverage": 0.671,
+      "largest_semantic_share": 0.514,
+      "per_semantic_u_positive": {
+        "put": 226,
+        "take": 239
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": true,
+      "matched_pair_coverage": true,
+      "largest_semantic_share": true
+    },
+    "passes_all_gates": true
+  },
+  {
+    "id": "A2",
+    "axis": "action",
+    "status": "candidate_upper_bound",
+    "measures": {
+      "u_positive": 289,
+      "u_negative": 428,
+      "u_positive_videos": 199,
+      "matched_pairs": 11,
+      "matched_pair_coverage": 0.0381,
+      "largest_semantic_share": 0.6159,
+      "per_semantic_u_positive": {
+        "drink": 111,
+        "eat": 178
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": false,
+      "matched_pair_coverage": false,
+      "largest_semantic_share": true
+    },
+    "passes_all_gates": false
+  },
+  {
+    "id": "A3",
+    "axis": "action",
+    "status": "candidate_upper_bound",
+    "measures": {
+      "u_positive": 192,
+      "u_negative": 594,
+      "u_positive_videos": 139,
+      "matched_pairs": 129,
+      "matched_pair_coverage": 0.6719,
+      "largest_semantic_share": 0.6042,
+      "per_semantic_u_positive": {
+        "walk": 76,
+        "run": 116
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": true,
+      "matched_pair_coverage": true,
+      "largest_semantic_share": true
+    },
+    "passes_all_gates": true
+  },
+  {
+    "id": "C1",
+    "axis": "composition",
+    "status": "candidate_upper_bound",
+    "measures": {
+      "u_positive": 162,
+      "u_negative": 270,
+      "u_positive_videos": 107,
+      "matched_pairs": 144,
+      "matched_pair_coverage": 0.8889,
+      "largest_semantic_share": 0.5494,
+      "per_semantic_u_positive": {
+        "sit|chair": 89,
+        "sit|bed": 37,
+        "sit|couch": 36
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": true,
+      "matched_pair_coverage": true,
+      "largest_semantic_share": true
+    },
+    "passes_all_gates": true
+  },
+  {
+    "id": "C2",
+    "axis": "composition",
+    "status": "candidate_upper_bound",
+    "measures": {
+      "u_positive": 99,
+      "u_negative": 14,
+      "u_positive_videos": 83,
+      "matched_pairs": 1,
+      "matched_pair_coverage": 0.0101,
+      "largest_semantic_share": 0.4545,
+      "per_semantic_u_positive": {
+        "drink|glass": 45,
+        "drink|cup": 45,
+        "drink|bottle": 9
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": false,
+      "u_positive_videos": true,
+      "matched_pairs": false,
+      "matched_pair_coverage": false,
+      "largest_semantic_share": true
+    },
+    "passes_all_gates": false
+  }
+]

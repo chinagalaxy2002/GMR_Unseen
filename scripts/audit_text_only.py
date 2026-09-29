@@ -21,6 +21,7 @@ def load(data, name):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--release", type=Path, default=DATA)
+    parser.add_argument("--output", type=Path, help="Write diagnostics here instead of into the release")
     args = parser.parse_args()
     train = load(args.release, "train.jsonl")
     test = load(args.release, "test.jsonl")
@@ -46,7 +47,9 @@ def main():
         "matched_u_pairs": len(pairs),
         "interpretation": "AUC above 0.5 indicates residual text-only label signal; it is not evidence of video understanding.",
     }
-    (args.release / "text_only_diagnostic.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    output = args.output or (args.release / "text_only_diagnostic.json")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

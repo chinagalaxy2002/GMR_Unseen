@@ -4,7 +4,7 @@
 
 > **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
-第二阶段五组划分已冻结并通过发布校验。截至 2026-09-29 09:10（北京时间），A1、A2_alt、A3 的三个模型均已完成 100 epoch 训练和测试评测；C1 正在训练，C2_alt 在队列中。已评测动作组的数据和选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。
+第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/semantic_existence_multisplit_results.md)。
 
 清空对话上下文后，从[当前工作交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)恢复。深入阅读顺序：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
 
@@ -57,15 +57,17 @@ python scripts/validate_release.py
 
 The release contains **annotations, not videos or pretrained features**. Obtain Charades-STA/Charades videos and CLIP/SlowFast features under their source terms. The original GMR Soccer-GMR data in this upstream-derived repository is a separate benchmark and is not used for the experiments reported below.
 
-### Phase 2 action-split releases
+### Phase 2 multi-split releases
 
-| Group | Held-out actions | Training status | Train | Validation | Test | Test U+ / U− | Matched U pairs |
+| Group | Held-out semantics | Axis | Train | Validation | Test | Test U+ / U− | Matched U pairs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| [A1](data/release/semantic_existence_v2/A1/) | `put`, `take` | Three models completed; test evaluated | 8,608 | 1,759 | 5,170 | 465 / 1,119 | 312 |
-| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Three models completed; test evaluated | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
-| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Three models completed; test evaluated | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
+| [A1](data/release/semantic_existence_v2/A1/) | `put`, `take` | Action | 8,608 | 1,759 | 5,170 | 465 / 1,119 | 312 |
+| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Action | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
+| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Action | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
+| [C1](data/release/semantic_existence_v2/C1/) | `sit|bed`, `sit|chair`, `sit|couch` | Composition | 10,516 | 1,607 | 4,705 | 162 / 270 | 144 |
+| [C2_alt](data/release/semantic_existence_v2/C2_alt/) | `close|box`, `close|cabinet`, `open|box`, `open|cabinet` | Composition | 10,612 | 1,607 | 4,705 | 115 / 254 | 33 |
 
-All nine completed training jobs have exit code 0. Each action group uses the same 1,500-row reviewed S− training pool, while its S+ training rows differ according to the held-out actions. The newly published A2_alt and A3 packages contain `train.jsonl`, `val.jsonl`, `test.jsonl`, matched-pair files, inventories, statistics, review provenance and SHA-256 manifests. Their frozen specs are [`A2_alt.json`](data/release/semantic_existence_v2/selection/A2_alt.json) and [`A3.json`](data/release/semantic_existence_v2/selection/A3.json); both releases pass `scripts/validate_release.py` with no video overlap across train, validation and test. C1 training is in progress and C2_alt is queued; their data packages have passed local release checks but are not included in this GitHub update.
+All 15 training jobs completed with exit code 0; the three models were evaluated on all five test sets. A1–A3 use the same reviewed 1,500-row action-axis S− pool; C1/C2_alt use a separate shared 1,500-row composition-axis S− pool. The composition packages include their frozen specs and common negative pool. All five checked-in releases pass `scripts/validate_release.py`, with no video overlap across train, validation and test. The dataset owner attested review of the exact new-negative batch and parser sample as a whole; the packages do not contain per-query review records. Full construction provenance is in each release's manifest and the shared selection directory.
 
 #### A1 data and construction
 
@@ -266,7 +268,24 @@ Both groups completed test inference for all three best checkpoints. Each submis
 | A3 | QD-DETR-GMR | 0.733 | 0.487 | 30.21% | 31.31% | 0.453 | 44.27% | 33.33% |
 | A3 | FlashVTG-GMR | 0.742 | 0.614 | 23.44% | 43.77% | 0.516 | 46.88% | 34.38% |
 
-All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Same-query, cross-split comparisons are summarized in the [action-split result note](docs/semantic_existence_action_multisplit_results.md); they show that making a query's action seen can raise scores for absent as well as present queries. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) are also published. All groups still use one seed; composition splits C1/C2_alt have not been evaluated, so no full action-plus-composition conclusion is reported.
+All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Action same-query comparisons are summarized in the [action-split report](docs/semantic_existence_action_multisplit_results.md).
+
+### Phase 2 composition-split test results
+
+| Group | Model | Seen AUROC | Unseen AUROC | U+ FRR | U− RR | PairAcc | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| C1 (144 pairs) | Moment-DETR-GMR | 0.761 | 0.562 | 3.70% | 7.78% | 0.629 | 48.77% | 47.53% |
+| C1 | QD-DETR-GMR | 0.780 | 0.562 | 3.09% | 5.56% | 0.635 | 42.59% | 41.98% |
+| C1 | FlashVTG-GMR | 0.753 | 0.548 | 3.70% | 3.70% | 0.556 | 51.23% | 48.77% |
+| C2_alt (33 pairs) | Moment-DETR-GMR | 0.676 | 0.469 | 98.26% | 96.85% | 0.727 | 35.65% | 0.00% |
+| C2_alt | QD-DETR-GMR | 0.698 | 0.545 | 47.83% | 53.94% | 0.530 | 38.26% | 24.35% |
+| C2_alt | FlashVTG-GMR | 0.691 | 0.547 | 61.74% | 64.57% | 0.545 | 42.61% | 15.65% |
+
+Seen AUROC exceeds unseen AUROC in four of six composition-split runs. C1 shows modest AUROC gaps (0.199–0.205) with small U+ gate losses. C2_alt shows severe false refusal for Moment-DETR and larger gate losses for QD-DETR and FlashVTG. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) include seen-validation thresholds and official full-test GMR scores.
+
+The held-out object distribution is intentionally narrow for composition tests: C1 U+ uses three objects, and C2_alt U+ uses two. In A2_alt, `glass` and `cup` account for 72% of U+ queries. The text-only diagnostic also has high matched-pair accuracy in C1 (0.625) and C2_alt (0.818), indicating that query wording retains label signal; paired score accuracy must be interpreted with this confound in mind. See the per-split query length and action/object summaries in [`test_query_distributions.json`](docs/semantic_existence_v2_metrics/test_query_distributions.json) and text-only metrics in [`text_only/`](docs/semantic_existence_v2_metrics/text_only/).
+
+The composition same-query comparison uses 801 directed comparisons, with 78–167 videos per split direction. For C2_alt→C1, the mean seen-minus-unseen existence score rises by 0.128–0.283 for present queries and 0.161–0.258 for absent queries across the models. For C1→C2_alt, present-query changes are near zero; absent-query changes range from −0.003 to +0.027. Video-cluster 95% intervals are in [`cross_status_composition/`](docs/semantic_existence_v2_metrics/cross_status_composition/); the [complete five-split report](docs/semantic_existence_multisplit_results.md) discusses both action and composition axes. These are paired associations across separately trained models, not isolated causal effects. All configurations use one training seed.
 
 ### Phase 1 A0 test results
 
