@@ -1,8 +1,10 @@
 # 阶段 2 当前工作交接（2026-09-29）
 
+> 跨阶段恢复请先读[项目总交接](PROJECT_HANDOFF.md)；本文件保留阶段 2 的运行和结果细节。
+
 ## 先看这里
 
-阶段 2 的五个冻结语义划分、15 次模型训练和 15 份测试评测均已完成。正式标注、选择记录、构建与评测脚本、结果报告和机器可读指标已推送到 GitHub 远端 `gmr-unseen/main`。仓库中的 [README](../README.md) 是总入口；[阶段 2 预定方案](20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)记录事前规则；[完整结果报告](semantic_existence_multisplit_results.md)和[指标目录](semantic_existence_v2_metrics/)记录正式结果。历史 A0/v1 与 E0–E7 的细节仍见[阶段 1 交接](20260928_1_CURRENT_WORK_HANDOFF.md)。
+阶段 2 的五个冻结语义划分、15 次模型训练和 15 份测试评测均已完成。正式标注、选择记录、构建与评测脚本、结果报告和机器可读指标已推送到 GitHub 远端 `gmr-unseen/main`。仓库中的 [README](../README.md) 是总入口；[阶段 2 预定方案](20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)记录事前规则；[完整结果报告](reports/semantic_existence_multisplit_results.md)和[指标目录](semantic_existence_v2_metrics/)记录正式结果。历史 A0/v1 与 E0–E7 的细节仍见[阶段 1 交接](20260928_1_CURRENT_WORK_HANDOFF.md)。
 
 恢复工作时先读本文件、结果报告和 README，再查看具体指标 JSON。当前没有待完成的阶段 2 训练或测试；不需要重启训练队列。工作区里另有未跟踪的 `Unseenarc_model/`，它与本次阶段 2 发布无关，未被修改或提交。
 
@@ -72,7 +74,7 @@ seen 验证视图：features/semantic_existence_v2/<split>/val_seen.jsonl
 
 15 次运行的 seen AUROC 均高于 unseen AUROC，差值范围 0.128–0.309。按组等权平均时，动作轴三模型的 AUROC 差分别为 0.2365、0.2649、0.2289；组合轴两组分别为 0.2031、0.1856、0.1744。A2_alt 的 U+ 错拒接近零，同时 U− 拒绝也低于 1%，说明它几乎全部接受未见查询。C2_alt 的 Moment 模型几乎同时拒绝全部 U+ 和 U−，硬拒绝把 U+ 定位从 35.65% 降到 0。各模型更精确的小数、官方评分及按测试视频聚类的 2,000 次 bootstrap 95% 区间在[指标目录](semantic_existence_v2_metrics/)；区间不反映训练种子变动。
 
-相同 `qid`、视频、句子、真值和正例时间窗的 U→S 对照已分轴完成。动作轴有 1,041 个互异测试 qid、2,082 个有向比较；组合轴有 801 个有向比较。C2_alt→C1 的同一样本里，三模型对真实存在查询的 seen−unseen 分数平均增加 0.128–0.283，对不存在查询也增加 0.161–0.258；C1→C2_alt 的分数变化接近零。对照固定了测试内容，但训练 S+ 分布和模型校准也随划分变化，不能单独解释为纯粹的语义暴露因果效应。动作轴详见[动作组报告](semantic_existence_action_multisplit_results.md)，组合轴详见[完整报告](semantic_existence_multisplit_results.md)。
+相同 `qid`、视频、句子、真值和正例时间窗的 U→S 对照已分轴完成。动作轴有 1,041 个互异测试 qid、2,082 个有向比较；组合轴有 801 个有向比较。C2_alt→C1 的同一样本里，三模型对真实存在查询的 seen−unseen 分数平均增加 0.128–0.283，对不存在查询也增加 0.161–0.258；C1→C2_alt 的分数变化接近零。对照固定了测试内容，但训练 S+ 分布和模型校准也随划分变化，不能单独解释为纯粹的语义暴露因果效应。动作轴详见[动作组报告](reports/semantic_existence_action_multisplit_results.md)，组合轴详见[完整报告](reports/semantic_existence_multisplit_results.md)。
 
 text-only 对照已对五组重跑。C1 和 C2_alt 的 text-only matched PairAcc 分别为 0.625 和 0.818，说明配对排名仍可能受到查询措辞的影响；具体全量/seen/unseen AUROC 在 [`text_only/`](semantic_existence_v2_metrics/text_only/)。C1 U+ 仅涉及三个物体，C2_alt 仅两个；A2_alt 的 U+ 中 `glass` 与 `cup` 占 72%。按四象限的查询长度、动作及物体分布在 [`test_query_distributions.json`](semantic_existence_v2_metrics/test_query_distributions.json)。
 
@@ -80,7 +82,7 @@ text-only 对照已对五组重跑。C1 和 C2_alt 的 text-only matched PairAcc
 
 可支持的阶段 2 结论是：在同一个 Charades-STA 视频域的多个预先冻结、分别训练的动作和组合保留划分上，三种 GMR 模型的未见语义存在区分能力稳定低于已见语义；具体错误方向、配对准确率和定位 gate 损失随划分明显变化。不能写成“所有开放视频环境普遍失败”，也不能把组合组 text-only 配对结果忽略。每个配置只有一个训练种子，组合轴仅有两组且对象集中，审核来源为整批 attestation。
 
-阶段 2 已无待跑的计划内训练或测试。若继续论文工作，应从[完整结果报告](semantic_existence_multisplit_results.md)和逐组指标 JSON 选取逐组表、等权轴均值、配对数及视频聚类区间，保持动作轴与组合轴分开；再决定是否需要额外种子、视频域或更细粒度负例审核来增强结论。任何新实验都应作为新协议和新版本记录，不改写这些冻结发布包。
+阶段 2 已无待跑的计划内训练或测试。若继续论文工作，应从[完整结果报告](reports/semantic_existence_multisplit_results.md)和逐组指标 JSON 选取逐组表、等权轴均值、配对数及视频聚类区间，保持动作轴与组合轴分开；再决定是否需要额外种子、视频域或更细粒度负例审核来增强结论。任何新实验都应作为新协议和新版本记录，不改写这些冻结发布包。
 
 ## 恢复时的只读检查
 

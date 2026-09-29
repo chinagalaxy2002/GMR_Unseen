@@ -4,9 +4,9 @@
 
 > **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
-第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/semantic_existence_multisplit_results.md)。
+第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/reports/semantic_existence_multisplit_results.md)。
 
-清空对话上下文后，先读[阶段 2 当前交接](docs/20260929_PHASE2_CURRENT_WORK_HANDOFF.md)和[五组完整结果](docs/semantic_existence_multisplit_results.md)。阶段 1 历史见[旧交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)；其深入阅读顺序为：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
+清空对话上下文后，只需从[项目总交接](docs/PROJECT_HANDOFF.md)恢复；它汇总研究问题、当前状态、关键结果、数据和代码入口，并标明其余文档的用途。
 
 ## Research question and protocol
 
@@ -135,9 +135,9 @@ The same feature preparation, training and test commands apply to A2_alt, A3, C1
 
 发布统计中的 U+ 为 **881**；复核报告曾记录 **884**，其中 3 条 `dress|front` 解析错误在打包前被隔离。负例的元数据过滤只能发现与“缺席”相冲突的正证据，不能替代视频复核。需要逐条复核记录或更强的缺席证明时，应重新构建和审查数据，不能把本版的全局 attestation 解释成双人逐条标注。
 
-Construction details and limitations are in [`docs/semantic_existence_dataset.md`](docs/semantic_existence_dataset.md). Source scripts are [`scripts/build_semantic_existence.py`](scripts/build_semantic_existence.py), `validate_semantic_existence.py`, `review_semantic_existence.py`, `package_semantic_existence.py`, `audit_text_only.py`, and `validate_release.py`. The released JSONL files are ready to use without rebuilding the raw dataset.
+Construction details and limitations are in [the dataset construction report](docs/reports/semantic_existence_dataset.md). Source scripts are [`scripts/build_semantic_existence.py`](scripts/build_semantic_existence.py), `validate_semantic_existence.py`, `review_semantic_existence.py`, `package_semantic_existence.py`, `audit_text_only.py`, and `validate_release.py`. The released JSONL files are ready to use without rebuilding the raw dataset.
 
-To **rebuild** the dataset, supply the original Charades-STA positive JSONL files, Charades annotation CSVs and videos, VerbNet, spaCy `en_core_web_sm`, NLTK WordNet, and Action Genome annotations at the paths described in [`docs/semantic_existence_dataset.md`](docs/semantic_existence_dataset.md). Install builder dependencies with `pip install -r requirements-dataset.txt`, then run:
+To **rebuild** the dataset, supply the original Charades-STA positive JSONL files, Charades annotation CSVs and videos, VerbNet, spaCy `en_core_web_sm`, NLTK WordNet, and Action Genome annotations at the paths described in [the dataset construction report](docs/reports/semantic_existence_dataset.md). Install builder dependencies with `pip install -r requirements-dataset.txt`, then run:
 
 ```bash
 python -m spacy download en_core_web_sm
@@ -217,7 +217,7 @@ bash scripts/finalize_semantic_localization_controls.sh
 
 ### 复现 E6 semantic-seen reference
 
-E6 需要构建期中间文件 `data/processed/semantic_existence/removed_train_holdouts.jsonl`，其中有 2,679 条从正式训练中移除的原始正例；该文件不属于发布包，需要按[数据构建说明](docs/semantic_existence_dataset.md)在本地重新生成。下例合并训练标注，并链接这些正例原有的 CLIP 文本特征。`OLD_TEXT_DIR` 中的文件名应为 `<qid>.npz`，与 `prepare_charades_semantic_existence.py --old-text` 使用的格式相同。
+E6 需要构建期中间文件 `data/processed/semantic_existence/removed_train_holdouts.jsonl`，其中有 2,679 条从正式训练中移除的原始正例；该文件不属于发布包，需要按[数据构建说明](docs/reports/semantic_existence_dataset.md)在本地重新生成。下例合并训练标注，并链接这些正例原有的 CLIP 文本特征。`OLD_TEXT_DIR` 中的文件名应为 `<qid>.npz`，与 `prepare_charades_semantic_existence.py --old-text` 使用的格式相同。
 
 ```bash
 export HOLDOUTS=data/processed/semantic_existence/removed_train_holdouts.jsonl
@@ -272,7 +272,7 @@ All three A1 training jobs completed with exit code 0. The best checkpoint for e
 | QD-DETR-GMR | 0.783 | 0.506 | 16.13% | 18.23% | 0.572 | 24.52% | 20.65% |
 | FlashVTG-GMR | 0.816 | 0.506 | 19.14% | 20.82% | 0.556 | 29.46% | 23.66% |
 
-On this held-out `put/take` action split, seen AUROC exceeds unseen AUROC by 0.277–0.309. Matched-pair score ordering is 0.556–0.572. At the seen-calibrated threshold, U− rejection is only 18.23–25.47%, while gating removes 3.87–5.81 percentage points of U+ R@1@0.5. A1 uses one training seed. Full A1 metric definitions, run settings and provenance are in the [A1 result note](docs/semantic_existence_A1_results.md).
+On this held-out `put/take` action split, seen AUROC exceeds unseen AUROC by 0.277–0.309. Matched-pair score ordering is 0.556–0.572. At the seen-calibrated threshold, U− rejection is only 18.23–25.47%, while gating removes 3.87–5.81 percentage points of U+ R@1@0.5. A1 uses one training seed. Full definitions, run settings and five-split comparisons are in the [phase 2 result report](docs/reports/semantic_existence_multisplit_results.md).
 
 ### Phase 2 A2_alt and A3 test results
 
@@ -287,7 +287,7 @@ Both groups completed test inference for all three best checkpoints. Each submis
 | A3 | QD-DETR-GMR | 0.733 | 0.487 | 30.21% | 31.31% | 0.453 | 44.27% | 33.33% |
 | A3 | FlashVTG-GMR | 0.742 | 0.614 | 23.44% | 43.77% | 0.516 | 46.88% | 34.38% |
 
-All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Action same-query comparisons are summarized in the [action-split report](docs/semantic_existence_action_multisplit_results.md).
+All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Action same-query comparisons are summarized in the [action-split report](docs/reports/semantic_existence_action_multisplit_results.md).
 
 ### Phase 2 composition-split test results
 
@@ -300,11 +300,11 @@ All nine action-split models have lower unseen than seen AUROC. A2_alt's U− re
 | C2_alt | QD-DETR-GMR | 0.698 | 0.545 | 47.83% | 53.94% | 0.530 | 38.26% | 24.35% |
 | C2_alt | FlashVTG-GMR | 0.691 | 0.547 | 61.74% | 64.57% | 0.545 | 42.61% | 15.65% |
 
-Seen AUROC exceeds unseen AUROC in four of six composition-split runs. C1 shows modest AUROC gaps (0.199–0.205) with small U+ gate losses. C2_alt shows severe false refusal for Moment-DETR and larger gate losses for QD-DETR and FlashVTG. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) include seen-validation thresholds and official full-test GMR scores.
+Seen AUROC exceeds unseen AUROC in all six composition-split runs. C1 shows modest AUROC gaps (0.199–0.218) with small U+ gate losses. C2_alt shows severe false refusal for Moment-DETR and larger gate losses for QD-DETR and FlashVTG. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) include seen-validation thresholds and official full-test GMR scores.
 
 The held-out object distribution is intentionally narrow for composition tests: C1 U+ uses three objects, and C2_alt U+ uses two. In A2_alt, `glass` and `cup` account for 72% of U+ queries. The text-only diagnostic also has high matched-pair accuracy in C1 (0.625) and C2_alt (0.818), indicating that query wording retains label signal; paired score accuracy must be interpreted with this confound in mind. See the per-split query length and action/object summaries in [`test_query_distributions.json`](docs/semantic_existence_v2_metrics/test_query_distributions.json) and text-only metrics in [`text_only/`](docs/semantic_existence_v2_metrics/text_only/).
 
-The composition same-query comparison uses 801 directed comparisons, with 78–167 videos per split direction. For C2_alt→C1, the mean seen-minus-unseen existence score rises by 0.128–0.283 for present queries and 0.161–0.258 for absent queries across the models. For C1→C2_alt, present-query changes are near zero; absent-query changes range from −0.003 to +0.027. Video-cluster 95% intervals are in [`cross_status_composition/`](docs/semantic_existence_v2_metrics/cross_status_composition/); the [complete five-split report](docs/semantic_existence_multisplit_results.md) discusses both action and composition axes. These are paired associations across separately trained models, not isolated causal effects. All configurations use one training seed.
+The composition same-query comparison uses 801 directed comparisons, with 78–167 videos per split direction. For C2_alt→C1, the mean seen-minus-unseen existence score rises by 0.128–0.283 for present queries and 0.161–0.258 for absent queries across the models. For C1→C2_alt, present-query changes are near zero; absent-query changes range from −0.003 to +0.027. Video-cluster 95% intervals are in [`cross_status_composition/`](docs/semantic_existence_v2_metrics/cross_status_composition/); the [complete five-split report](docs/reports/semantic_existence_multisplit_results.md) discusses both action and composition axes. These are paired associations across separately trained models, not isolated causal effects. All configurations use one training seed.
 
 ### Phase 1 A0 test results
 
@@ -314,9 +314,9 @@ The composition same-query comparison uses 801 directed comparisons, with 78–1
 | QD-DETR-GMR | 0.871 | 0.585 | 63.8% | 80.7% | 48.4% |
 | FlashVTG-GMR | 0.857 | 0.559 | 46.4% | 51.5% | 50.7% |
 
-Existence discrimination drops sharply on held-out semantics for all three baselines. QD-DETR and FlashVTG frequently reject present U+ events; Moment-DETR accepts many absent U− events. The failure modes differ, so a single “over-refusal” explanation does not fit all models. Longer training with a different seed did not remove the observed gap, but changing the seed and epoch limit together does not isolate the effect of training duration. The best checkpoint was at epoch 11, 66, and 60 for Moment-DETR, QD-DETR, and FlashVTG respectively. Full raw-versus-gated localization, official GMR metrics, hashes, and the original shorter runs are in [`docs/semantic_existence_100ep_results.md`](docs/semantic_existence_100ep_results.md) and the [handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md).
+Existence discrimination drops sharply on held-out semantics for all three baselines. QD-DETR and FlashVTG frequently reject present U+ events; Moment-DETR accepts many absent U− events. The failure modes differ, so a single “over-refusal” explanation does not fit all models. Longer training with a different seed did not remove the observed gap, but changing the seed and epoch limit together does not isolate the effect of training duration. The best checkpoint was at epoch 11, 66, and 60 for Moment-DETR, QD-DETR, and FlashVTG respectively. Full raw-versus-gated localization, official GMR metrics, hashes, and the original shorter runs are in [the v1 100-epoch result report](docs/reports/semantic_existence_100ep_results.md) and the [handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md).
 
-定位-only 对照和 E6 的重点结果如下；所有 R@1 使用 IoU 0.5，百分比取自固定 seed 3407 的测试集，完整区间与 checkpoint 核查见[定位对照报告](docs/semantic_existence_localization_controls.md)和[E6 报告](docs/semantic_existence_semantic_seen_reference_results.md)。
+定位-only 对照和 E6 的重点结果如下；所有 R@1 使用 IoU 0.5，百分比取自固定 seed 3407 的测试集，完整区间与 checkpoint 核查见[定位对照报告](docs/reports/semantic_existence_localization_controls.md)和[E6 报告](docs/reports/semantic_existence_semantic_seen_reference_results.md)。
 
 | Backbone | 定位-only U+ R@1 | 严格 GMR raw U+ R@1 | 严格 GMR 硬拒绝后 U+ R@1 | E6 U+ FRR | E6 U− RR | E6 matched PairAcc |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

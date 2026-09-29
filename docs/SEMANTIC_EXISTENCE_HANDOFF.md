@@ -1,12 +1,12 @@
 # Semantic Existence v1 主实验交接
 
-> **历史交接（首轮与 seed 3407 严格 GMR）。** E0–E7 的最新完成状态、定位对照、semantic-seen reference 与清空上下文后的恢复入口，请先读 [`CURRENT_WORK_HANDOFF.md`](CURRENT_WORK_HANDOFF.md)。下文保留早期运行细节，不代表当前待办。
+> **历史交接（首轮与 seed 3407 严格 GMR）。** 当前项目状态与清空上下文后的恢复入口见[项目总交接](PROJECT_HANDOFF.md)。下文保留早期运行细节，不代表当前待办。
 
 更新时间：2026-09-27（Asia/Shanghai）。这是清空会话上下文后的恢复入口。项目根目录为 `/home/guoxiangyu/paper/Openword`，下文的相对路径均以 `generalized-moment-retrieval/` 为起点。数据构建口径另见 [`data/release/semantic_existence_v1/HANDOFF.md`](../../data/release/semantic_existence_v1/HANDOFF.md)，原实验方案见同目录的 `plan.md`。
 
 ## 1. 本轮目标、完成状态
 
-研究问题：模型只在 seen semantics 上学习时刻定位与 existence/rejection，能否在 downstream-training-unseen semantics 中区分 **U+（存在）** 与 **U−（缺席）**。首轮已完成方案中的 E2–E5：Moment-DETR-GMR、FlashVTG-GMR 的单种子训练、同 checkpoint 的 raw/拒绝后定位、四象限和 535 对 matched-U 诊断；另补充 QD-DETR-GMR。**首轮三组及第二轮新种子 3407、强制 100 epoch 的训练与完整测试均已完成。第二轮的 checkpoint、脚本、逐项指标和解读见 [`semantic_existence_100ep_results.md`](semantic_existence_100ep_results.md)。**尚未运行 E0/E1 定位-only 对照、semantic-seen oracle。
+研究问题：模型只在 seen semantics 上学习时刻定位与 existence/rejection，能否在 downstream-training-unseen semantics 中区分 **U+（存在）** 与 **U−（缺席）**。首轮已完成方案中的 E2–E5：Moment-DETR-GMR、FlashVTG-GMR 的单种子训练、同 checkpoint 的 raw/拒绝后定位、四象限和 535 对 matched-U 诊断；另补充 QD-DETR-GMR。**首轮三组及第二轮新种子 3407、强制 100 epoch 的训练与完整测试均已完成。第二轮的 checkpoint、脚本、逐项指标和解读见 [`semantic_existence_100ep_results.md`](reports/semantic_existence_100ep_results.md)。**尚未运行 E0/E1 定位-only 对照、semantic-seen oracle。
 
 实验协议固定为：
 
@@ -122,7 +122,7 @@ done
 
 新种子测试已在训练、按 seen 验证集选模之后完成，没有用 test 调参。Moment/QD 的 checkpoint 在各自日志目录内 `best.ckpt`；Flash 的最佳 checkpoint 位于 `results/semantic_existence/seed3407_100ep/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-<时间戳>/model_best.ckpt`。完整路径、哈希和验证结果见第二轮结果报告。
 
-新 seed 最佳 checkpoint 已完成完整 test，沿用首轮推理与诊断脚本，结果保存到 `seed3407_100ep` 下各自独立的 `test/` 目录。三模型 seen existence AUROC 为 0.857–0.871，而 unseen 为 0.559–0.585；535 对 matched-U 的 PairAcc 为 48.4%–55.7%。Flash/QD 在 U+ 上较常误拒绝，Moment 在 U− 上较常误接受。详细四象限、raw/硬拒绝和官方 GMR 指标见 [`semantic_existence_100ep_results.md`](semantic_existence_100ep_results.md)。
+新 seed 最佳 checkpoint 已完成完整 test，沿用首轮推理与诊断脚本，结果保存到 `seed3407_100ep` 下各自独立的 `test/` 目录。三模型 seen existence AUROC 为 0.857–0.871，而 unseen 为 0.559–0.585；535 对 matched-U 的 PairAcc 为 48.4%–55.7%。Flash/QD 在 U+ 上较常误拒绝，Moment 在 U− 上较常误接受。详细四象限、raw/硬拒绝和官方 GMR 指标见 [`semantic_existence_100ep_results.md`](reports/semantic_existence_100ep_results.md)。
 
 第二轮使用过的测试推理命令（只读最佳 checkpoint，不启动新训练）：
 

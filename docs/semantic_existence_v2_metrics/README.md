@@ -9,4 +9,4 @@ This directory contains machine-readable outputs for all five phase-2 splits, ea
 
 `bootstrap/<split>/<model>.json` gives 2,000-resample, test-video cluster percentile intervals for the core diagnostics. `text_only/<split>.json` records the text-only control. `test_query_distributions.json` summarizes query lengths and action/object distributions by quadrant.
 
-The [five-split result report](../semantic_existence_multisplit_results.md) explains the metrics and their limits. Released ground truth is under [`data/release/semantic_existence_v2/`](../../data/release/semantic_existence_v2/). Checkpoints, query-level predictions and media are not included.
+The [five-split result report](../reports/semantic_existence_multisplit_results.md) explains the metrics and their limits. Released ground truth is under [`data/release/semantic_existence_v2/`](../../data/release/semantic_existence_v2/). Checkpoints, query-level predictions and media are not included.

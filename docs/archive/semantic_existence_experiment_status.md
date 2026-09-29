@@ -1,30 +1,32 @@
 # Semantic Existence v1：主要实验方案与进度
 
+> 历史进度快照；当前项目状态和恢复入口见[项目总交接](../PROJECT_HANDOFF.md)。
+
 ## 2026-09-28 12:29 CST 完成状态
 
-E0/E1 与补充的 QD-DETR 定位-only 对照均完成，结果见 [`semantic_existence_localization_controls.md`](semantic_existence_localization_controls.md)。E2–E5 的三个 GMR backbone 训练、raw/拒绝后诊断早已完成；E7 text-only 诊断及 matched-U 不确定性分析完成。E6 的 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 三组 semantic-seen reference 也完成 100 epoch、完整 test 和官方评分，结果见 [`semantic_existence_semantic_seen_reference_results.md`](semantic_existence_semantic_seen_reference_results.md)。因此当前方案的已安排实验**全部完成**；没有启动新增多种子实验。
+E0/E1 与补充的 QD-DETR 定位-only 对照均完成，结果见 [`semantic_existence_localization_controls.md`](../reports/semantic_existence_localization_controls.md)。E2–E5 的三个 GMR backbone 训练、raw/拒绝后诊断早已完成；E7 text-only 诊断及 matched-U 不确定性分析完成。E6 的 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 三组 semantic-seen reference 也完成 100 epoch、完整 test 和官方评分，结果见 [`semantic_existence_semantic_seen_reference_results.md`](../reports/semantic_existence_semantic_seen_reference_results.md)。因此当前方案的已安排实验**全部完成**；没有启动新增多种子实验。
 
 E6 把 held-out 正例加回后，U+ FRR 降到 2.50%–3.63%，但 U− 拒绝率也降到 2.64%–4.33%。QD matched-U PairAcc 从 48.41% 提高到 70.37%，其 seen 阈值下的 U− 拒绝仍只有 4.33%。这一参考实验不能作为严格 unseen baseline。
 
 ## 2026-09-28 01:31 CST 状态
 
-三组定位-only 对照（Moment-DETR、QD-DETR、FlashVTG）均完成 100 epoch 训练、测试与自动评分，四个 `exit_code` 均为 `0`。主结果和按视频聚类的定位损失区间见 [`semantic_existence_localization_controls.md`](semantic_existence_localization_controls.md)。其中 test U+ 的 plain → GMR raw → seen 阈值硬拒绝 R@1@IoU 0.5 分别为 Moment 35.07% → 32.92% → 24.40%、QD 34.85% → 30.65% → 11.80%、Flash 44.27% → 37.34% → 20.32%。
+三组定位-only 对照（Moment-DETR、QD-DETR、FlashVTG）均完成 100 epoch 训练、测试与自动评分，四个 `exit_code` 均为 `0`。主结果和按视频聚类的定位损失区间见 [`semantic_existence_localization_controls.md`](../reports/semantic_existence_localization_controls.md)。其中 test U+ 的 plain → GMR raw → seen 阈值硬拒绝 R@1@IoU 0.5 分别为 Moment 35.07% → 32.92% → 24.40%、QD 34.85% → 30.65% → 11.80%、Flash 44.27% → 37.34% → 20.32%。
 
-按用户“训练完成即可继续”的最新指示，取消原定 02:54:44 CST 的 E6 启动队列，并于 **01:31:20 CST** 并行启动三组单种子 semantic-seen reference。Moment/QD 共用 GPU 0，Flash 使用 GPU 1。三个训练进程均已进入运行；完成后将由 [`finalize_semantic_seen_references.sh`](../scripts/finalize_semantic_seen_references.sh) 自动执行完整 test 推理和评分。E6 仍属于**运行中**，结果不能提前引用。实际启动时间记在 `results/semantic_existence/semantic_seen_reference_seed3407_100ep/schedule_metadata.txt`。
+按用户“训练完成即可继续”的最新指示，取消原定 02:54:44 CST 的 E6 启动队列，并于 **01:31:20 CST** 并行启动三组单种子 semantic-seen reference。Moment/QD 共用 GPU 0，Flash 使用 GPU 1。三个训练进程均已进入运行；完成后将由 [`finalize_semantic_seen_references.sh`](../../scripts/finalize_semantic_seen_references.sh) 自动执行完整 test 推理和评分。E6 仍属于**运行中**，结果不能提前引用。实际启动时间记在 `results/semantic_existence/semantic_seen_reference_seed3407_100ep/schedule_metadata.txt`。
 
 ## 2026-09-27 20:26 CST 后续实验更新
 
 > 2026-09-27 21:57 CST 状态：Moment-DETR 定位-only 对照训练与测试结束，`exit_code=0`；QD-DETR 与 FlashVTG 定位-only 对照仍在运行。E6 三 backbone 定时任务尚未启动。Moment-DETR 定位-only 在 test S+/U+ 的 R@1@IoU 0.5 分别为 34.93%/35.07%；同 seed GMR checkpoint 的原始窗口分别为 31.58%/32.92%。完整对照见 `results/semantic_existence/localization_only_seed3407_100ep/moment/localization_comparison.json`。
 
-已启动单种子（3407）的三个定位-only 对照：Moment-DETR、QD-DETR、FlashVTG。每个模型仅用 6,851 条 S+ 训练、只用 694 条 val S+ 选模，最终仅在 2,090 条 test S+ 与 881 条 test U+ 上计算定位指标。训练上限为 100 epoch，不早停，采用与 seed 3407 GMR 主实验相同的视频/文本特征和相应 backbone 配置；Moment/QD 顺序使用 GPU 0，Flash 使用 GPU 1。入口为 [`run_semantic_localization_controls.sh`](../scripts/run_semantic_localization_controls.sh)，结果目录为 `results/semantic_existence/localization_only_seed3407_100ep/`。训练完成后由 [`watch_semantic_localization_controls.sh`](../scripts/watch_semantic_localization_controls.sh) 自动调用 [`finalize_semantic_localization_controls.sh`](../scripts/finalize_semantic_localization_controls.sh) 评分。当前属于**运行中**，不可作为已完成结果引用；没有启动额外种子。
+已启动单种子（3407）的三个定位-only 对照：Moment-DETR、QD-DETR、FlashVTG。每个模型仅用 6,851 条 S+ 训练、只用 694 条 val S+ 选模，最终仅在 2,090 条 test S+ 与 881 条 test U+ 上计算定位指标。训练上限为 100 epoch，不早停，采用与 seed 3407 GMR 主实验相同的视频/文本特征和相应 backbone 配置；Moment/QD 顺序使用 GPU 0，Flash 使用 GPU 1。入口为 [`run_semantic_localization_controls.sh`](../../scripts/run_semantic_localization_controls.sh)，结果目录为 `results/semantic_existence/localization_only_seed3407_100ep/`。训练完成后由 [`watch_semantic_localization_controls.sh`](../../scripts/watch_semantic_localization_controls.sh) 自动调用 [`finalize_semantic_localization_controls.sh`](../../scripts/finalize_semantic_localization_controls.sh) 评分。当前属于**运行中**，不可作为已完成结果引用；没有启动额外种子。
 
-E6 semantic-seen reference 已在 2026-09-27 21:57 CST 定时：**2026-09-28 02:54:44 CST** 同时启动 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR，单种子 3407、100 epoch，不早停。它们把 `removed_train_holdouts.jsonl` 的 2,679 条原训练正例加回原有 8,317 条训练样本，共 10,996 条；validation 仍只用 862 条 seen 样本，test 仍是原 4,510 条。训练沿用 [`run_semantic_existence_100ep_tmux.sh`](../scripts/run_semantic_existence_100ep_tmux.sh) 的三模型并行配置，由 [`schedule_semantic_seen_references.sh`](../scripts/schedule_semantic_seen_references.sh) 定时启动，完成后由 [`finalize_semantic_seen_references.sh`](../scripts/finalize_semantic_seen_references.sh) 自动推理与评分。定时元数据和结果目录为 `results/semantic_existence/semantic_seen_reference_seed3407_100ep/`；原先单独为 FlashVTG 设置的“定位结束即启动”队列已取消。E6 **有意让 held-out 语义进入训练**，只能作泄漏语义参考，不能算严格 unseen baseline。与严格 GMR 相比，它同时增加了训练正例数量，因此结果不是单独识别语义新颖性效应的因果估计。
+E6 semantic-seen reference 已在 2026-09-27 21:57 CST 定时：**2026-09-28 02:54:44 CST** 同时启动 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR，单种子 3407、100 epoch，不早停。它们把 `removed_train_holdouts.jsonl` 的 2,679 条原训练正例加回原有 8,317 条训练样本，共 10,996 条；validation 仍只用 862 条 seen 样本，test 仍是原 4,510 条。训练沿用 [`run_semantic_existence_100ep_tmux.sh`](../../scripts/run_semantic_existence_100ep_tmux.sh) 的三模型并行配置，由 [`schedule_semantic_seen_references.sh`](../../scripts/schedule_semantic_seen_references.sh) 定时启动，完成后由 [`finalize_semantic_seen_references.sh`](../../scripts/finalize_semantic_seen_references.sh) 自动推理与评分。定时元数据和结果目录为 `results/semantic_existence/semantic_seen_reference_seed3407_100ep/`；原先单独为 FlashVTG 设置的“定位结束即启动”队列已取消。E6 **有意让 held-out 语义进入训练**，只能作泄漏语义参考，不能算严格 unseen baseline。与严格 GMR 相比，它同时增加了训练正例数量，因此结果不是单独识别语义新颖性效应的因果估计。
 
 启动时曾生成一个误含 300 条 U+ 的 val 视图，但在首次验证前即停止，未产生可用 checkpoint；该未完成启动的日志留在 `localization_only_seed3407_100ep_aborted_val_leak/`，用于审计。之后已改为仅 694 条 S+ 的 val 视图并重新从头训练。
 
 对已完成的 seed 3407 GMR checkpoint 另做了 matched-U 不确定性分析，输出为 `results/semantic_existence/seed3407_100ep/matched_pair_uncertainty.json`。535 对上的 PairAcc（95% 配对 bootstrap 区间）分别为 Moment 55.70%（51.50%–59.81%）、QD 48.41%（44.39%–52.43%）、Flash 50.75%（46.82%–54.58%）。Moment 的非平局配对符号检验双侧 p=0.0093，QD p=0.4730，Flash p=0.7426。Flash/QD 的预测分数经过输出精度舍入，分别有 81/38 个平局；因此符号检验剔除平局，PairAcc 则将平局计为 0.5。
 
-> 进度快照：2026-09-27 15:40 CST。Moment-DETR-GMR、FlashVTG-GMR 与补充的 QD-DETR-GMR 均已完成单种子训练和完整测试。原始方案见 [`data/release/semantic_existence_v1/plan.md`](../../data/release/semantic_existence_v1/plan.md)。
+> 进度快照：2026-09-27 15:40 CST。Moment-DETR-GMR、FlashVTG-GMR 与补充的 QD-DETR-GMR 均已完成单种子训练和完整测试。原始方案见 [`data/release/semantic_existence_v1/plan.md`](../../../data/release/semantic_existence_v1/plan.md)。
 
 ## 研究问题与实验协议
 
@@ -45,11 +47,11 @@ E6 semantic-seen reference 已在 2026-09-27 21:57 CST 定时：**2026-09-28 02:
 
 | 实验 | 状态 | 当前产物 |
 | --- | --- | --- |
-| E2 Moment-DETR-GMR | **完成**。训练到第 12 个 epoch，依据 seen 验证 mAP 连续 8 个 epoch 未提升而早停；最佳 seen 验证 mAP 为 25.66% | [`best.ckpt`](../results/semantic_existence/moment_detr_gmr/best.ckpt)、[`val.log`](../results/semantic_existence/moment_detr_gmr/val.log) |
-| E4 Moment-DETR-GMR raw / gated 与四象限测试 | **完成**。完整 test、535 对配对诊断及官方 GMR 指标均已生成 | [`diagnostics.json`](../results/semantic_existence/moment_detr_gmr/diagnostics.json)、[`official_test_metrics.json`](../results/semantic_existence/moment_detr_gmr/official_test_metrics.json) |
-| E3 FlashVTG-GMR | **完成**。单种子训练至第 30 个 epoch；最佳 checkpoint 来自第 21 个 epoch（零起始序号 20），依据 seen 验证 R@1@0.5 与 R@1@0.7 的平均值选定 | [`flash_training_resume_fixed.log`](../results/semantic_existence/flash_training_resume_fixed.log)、`results/semantic_existence/flash_vtg_gmr/charadesSTA-video_tef-seen_only_seed2024_resume_fixed-2026-09-27-14-10-34/model_best.ckpt` |
+| E2 Moment-DETR-GMR | **完成**。训练到第 12 个 epoch，依据 seen 验证 mAP 连续 8 个 epoch 未提升而早停；最佳 seen 验证 mAP 为 25.66% | [`best.ckpt`](../../results/semantic_existence/moment_detr_gmr/best.ckpt)、[`val.log`](../../results/semantic_existence/moment_detr_gmr/val.log) |
+| E4 Moment-DETR-GMR raw / gated 与四象限测试 | **完成**。完整 test、535 对配对诊断及官方 GMR 指标均已生成 | [`diagnostics.json`](../../results/semantic_existence/moment_detr_gmr/diagnostics.json)、[`official_test_metrics.json`](../../results/semantic_existence/moment_detr_gmr/official_test_metrics.json) |
+| E3 FlashVTG-GMR | **完成**。单种子训练至第 30 个 epoch；最佳 checkpoint 来自第 21 个 epoch（零起始序号 20），依据 seen 验证 R@1@0.5 与 R@1@0.7 的平均值选定 | [`flash_training_resume_fixed.log`](../../results/semantic_existence/flash_training_resume_fixed.log)、`results/semantic_existence/flash_vtg_gmr/charadesSTA-video_tef-seen_only_seed2024_resume_fixed-2026-09-27-14-10-34/model_best.ckpt` |
 | E5 FlashVTG-GMR raw / gated 与四象限测试 | **完成**。完整 test、535 对配对诊断及官方 GMR 指标均已生成 | `results/semantic_existence/flash_vtg_gmr/charadesSTA-video_tef-seen_only_seed2024_resume_fixed-2026-09-27-14-10-34/diagnostics.json`、同目录 `official_test_metrics.json` |
-| 补充 QD-DETR-GMR | **完成**。训练 30 个 epoch；最佳 checkpoint 来自第 27 个 epoch（零起始序号 26），依据 seen 验证 mAP 选定；完整测试已运行 | [`diagnostics.json`](../results/semantic_existence/qd_detr_gmr/diagnostics.json)、[`official_test_metrics.json`](../results/semantic_existence/qd_detr_gmr/official_test_metrics.json) |
+| 补充 QD-DETR-GMR | **完成**。训练 30 个 epoch；最佳 checkpoint 来自第 27 个 epoch（零起始序号 26），依据 seen 验证 mAP 选定；完整测试已运行 | [`diagnostics.json`](../../results/semantic_existence/qd_detr_gmr/diagnostics.json)、[`official_test_metrics.json`](../../results/semantic_existence/qd_detr_gmr/official_test_metrics.json) |
 
 FlashVTG 首个 epoch 后遇到当前环境的 AdamW `foreach` 兼容错误；已关闭该优化路径，并从首个 epoch 的完整 checkpoint（模型、优化器、调度器）以**同一种子**继续训练。这是一次训练续跑，不是额外种子。此前一次初始化重试在训练前结束，也未产生独立实验结果。
 
@@ -84,4 +86,4 @@ QD-DETR 的训练与测试口径已核对：`best.ckpt` 为零起始第 26 个 e
 
 FlashVTG 和 QD-DETR 都出现明显的 U+ 额外错误拒绝；Moment-DETR 的主要问题则是 U− 误接受。三者共同说明 seen 上学到的 existence 判断不能稳定迁移到未见语义，但不应把所有模型的错误都概括为“过度拒绝”。当前三组训练均结束，因而无需开启 `tmux` 续训；后续可补定位-only 对照 E0/E1，本轮不做多种子。
 
-复现入口：[`prepare_charades_semantic_existence.py`](../scripts/prepare_charades_semantic_existence.py) 准备 seen 验证视图与文本特征；[`analyze_semantic_existence.py`](../scripts/analyze_semantic_existence.py) 计算四象限和 matched-U 指标。原始发布数据及统计见 [`HANDOFF.md`](../../data/release/semantic_existence_v1/HANDOFF.md)。
+复现入口：[`prepare_charades_semantic_existence.py`](../../scripts/prepare_charades_semantic_existence.py) 准备 seen 验证视图与文本特征；[`analyze_semantic_existence.py`](../../scripts/analyze_semantic_existence.py) 计算四象限和 matched-U 指标。原始发布数据及统计见 [`HANDOFF.md`](../../../data/release/semantic_existence_v1/HANDOFF.md)。

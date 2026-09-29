@@ -1,6 +1,8 @@
 # 第二阶段实验方案：多语义划分重复验证
 
-制定于 2026-09-28。本文件记录第二阶段预先冻结的协议及构建过程。五组数据均已通过正式发布校验；截至 2026-09-29 15:06（北京时间），15 个模型训练和全部测试评测均已完成。五组标注、选择资料及完整结果见 [`data/release/semantic_existence_v2/`](../data/release/semantic_existence_v2/)、[多划分结果报告](semantic_existence_multisplit_results.md)和[机器可读指标](semantic_existence_v2_metrics/)。第一阶段的 `semantic_existence_v1` 保持原样，作为固定参照 A0；第二阶段检验存在判断退化能否在其他动作及动作–物体组合保留划分中重复出现。原始协议见 [v1 plan](../data/release/semantic_existence_v1/plan.md)，已完成结果及限制见[当前工作交接](20260928_1_CURRENT_WORK_HANDOFF.md)。
+> 本文件保留事前方案与执行记录；当前完成状态见[项目总交接](PROJECT_HANDOFF.md)。
+
+制定于 2026-09-28。本文件记录第二阶段预先冻结的协议及构建过程。五组数据均已通过正式发布校验；截至 2026-09-29 15:06（北京时间），15 个模型训练和全部测试评测均已完成。五组标注、选择资料及完整结果见 [`data/release/semantic_existence_v2/`](../data/release/semantic_existence_v2/)、[多划分结果报告](reports/semantic_existence_multisplit_results.md)和[机器可读指标](semantic_existence_v2_metrics/)。第一阶段的 `semantic_existence_v1` 保持原样，作为固定参照 A0；第二阶段检验存在判断退化能否在其他动作及动作–物体组合保留划分中重复出现。原始协议见 [v1 plan](../data/release/semantic_existence_v1/plan.md)，已完成结果及限制见[当前工作交接](20260928_1_CURRENT_WORK_HANDOFF.md)。
 
 ## 1. 研究问题与证据边界
 
@@ -127,4 +129,4 @@ bash scripts/finalize_semantic_multisplit_v2.sh
 
 ## 8. 正式发布和训练状态
 
-数据负责人对哈希绑定的当前批次作出全局人工核对确认，涵盖 4,491 条新负例与 156 条语义解析样本；没有逐 qid 决定表，发布元数据明确保留这一粒度。五组都通过正式质量门槛并打包，A1、A2_alt、A3、C1、C2_alt 的标注和选择资料均已纳入仓库。15 个模型以 seed 3407、强制 100 epoch 完成训练；各组测试预测均精确覆盖其 test qid，并已通过四象限诊断、官方评分、text-only 对照和查询分布检查。跨划分相同 qid 的 U→S 对照已按动作轴、组合轴分别完成。测试评测入口为 `scripts/finalize_semantic_multisplit_group.sh <组名>`，逐组结果及按视频 cluster bootstrap 区间见[多划分结果报告](semantic_existence_multisplit_results.md)和机器可读指标目录。
+数据负责人对哈希绑定的当前批次作出全局人工核对确认，涵盖 4,491 条新负例与 156 条语义解析样本；没有逐 qid 决定表，发布元数据明确保留这一粒度。五组都通过正式质量门槛并打包，A1、A2_alt、A3、C1、C2_alt 的标注和选择资料均已纳入仓库。15 个模型以 seed 3407、强制 100 epoch 完成训练；各组测试预测均精确覆盖其 test qid，并已通过四象限诊断、官方评分、text-only 对照和查询分布检查。跨划分相同 qid 的 U→S 对照已按动作轴、组合轴分别完成。测试评测入口为 `scripts/finalize_semantic_multisplit_group.sh <组名>`，逐组结果及按视频 cluster bootstrap 区间见[多划分结果报告](reports/semantic_existence_multisplit_results.md)和机器可读指标目录。

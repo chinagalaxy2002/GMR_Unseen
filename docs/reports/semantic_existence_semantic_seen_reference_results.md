@@ -1,6 +1,6 @@
 # Semantic Existence v1：E6 semantic-seen reference 结果
 
-2026-09-28，单种子 3407。Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的 100 epoch 训练、完整 test 推理、四象限诊断和官方评测均已完成，三个训练 `exit_code` 与总评分 `finalize_exit_code` 均为 `0`。机器可读比较见 [`strict_vs_reference.json`](../results/semantic_existence/semantic_seen_reference_seed3407_100ep/strict_vs_reference.json)。
+2026-09-28，单种子 3407。Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的 100 epoch 训练、完整 test 推理、四象限诊断和官方评测均已完成，三个训练 `exit_code` 与总评分 `finalize_exit_code` 均为 `0`。机器可读比较见 [`strict_vs_reference.json`](../../results/semantic_existence/semantic_seen_reference_seed3407_100ep/strict_vs_reference.json)。
 
 ## 实验口径
 
@@ -40,4 +40,4 @@ E6 表明“见过 held-out 正例”可以明显提高 U+ 接受率，也能提
 
 - 三组 test submission 各有 4,510 个互异 qid；`diagnostics.json` 四象限数量均为 S+ 2,090、S− 592、U+ 881、U− 947。训练集有 10,996 个互异 qid，验证/测试视频与其不重叠。
 - 最佳 checkpoint SHA-256：Moment `67adcb81a6ff0ae608786de17f2f2f15961177281230d17447fb7ff8f0ea375e`；QD `6d9cb9efd0b0372a489ea979c17002cbfcf6f6350a5f4c9aec187bb11cb9ab6d`；Flash `330d4fad1d99628299baf07fc8724bdfa34c29442dde656e17a9eed666d78ea0`。
-- 训练入口为 [`schedule_semantic_seen_references.sh`](../scripts/schedule_semantic_seen_references.sh)，推理、诊断及官方评分入口为 [`finalize_semantic_seen_references.sh`](../scripts/finalize_semantic_seen_references.sh)，比较脚本为 [`compare_semantic_seen_reference.py`](../scripts/compare_semantic_seen_reference.py)。
+- 训练入口为 [`schedule_semantic_seen_references.sh`](../../scripts/schedule_semantic_seen_references.sh)，推理、诊断及官方评分入口为 [`finalize_semantic_seen_references.sh`](../../scripts/finalize_semantic_seen_references.sh)，比较脚本为 [`compare_semantic_seen_reference.py`](../../scripts/compare_semantic_seen_reference.py)。

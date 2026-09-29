@@ -1,5 +1,7 @@
 # 工作交接：Semantic Existence v1
 
+> 本文件记录阶段 1 历史状态；当前唯一的上下文恢复入口是[项目总交接](PROJECT_HANDOFF.md)。
+
 更新于 2026-09-28（Asia/Shanghai）。清空对话上下文后，先读本文件，再按需打开下方详细报告。项目根目录：`/home/guoxiangyu/paper/Openword/generalized-moment-retrieval`。当前分支 `main`；编写本文件前 HEAD 为 `b3cf091628357402b70b3c5b273b868377d98015`，工作区原本干净。本轮新增本交接文件，并修改 README 和旧交接的入口提示，**这些文档改动尚未提交**。**E0–E7 及补充的 QD-DETR 实验均已完成，没有待续训练任务；本仓库尚未提出新模型。**用户已明确要求加入 QD-DETR，并且暂不做新的多种子实验。
 
 ## 1. 研究问题与不可破坏的协议
@@ -14,7 +16,7 @@
 
 正式数据在 [`data/release/semantic_existence_v1/`](../data/release/semantic_existence_v1/)，原方案在 [`plan.md`](../data/release/semantic_existence_v1/plan.md)。`matched_u_pairs.jsonl` 有 535 对同视频、同来源正例的 U+/U−。**不要用 val U+/U− 调参、选 checkpoint 或阈值；不要用完整原始 Charades-STA 任务微调 checkpoint 初始化严格主实验。**E6 故意加回 held-out 语义，只能称 semantic-seen/leakage reference。
 
-数据发布版的 U+ test 数为 **881**；复核报告的 884 包含打包前隔离的 3 条 `dress|front` 解析错误。负例复核只有数据集所有者对该批次的全局 attestation，没有逐条双人复核日志。数据集本身的限制见[构建说明](semantic_existence_dataset.md)。
+数据发布版的 U+ test 数为 **881**；复核报告的 884 包含打包前隔离的 3 条 `dress|front` 解析错误。负例复核只有数据集所有者对该批次的全局 attestation，没有逐条双人复核日志。数据集本身的限制见[构建说明](reports/semantic_existence_dataset.md)。
 
 ## 2. 已完成的实验
 
@@ -22,10 +24,10 @@
 
 | 实验 | 内容 | 状态与报告 |
 | --- | --- | --- |
-| E0/E1 + QD | 三个无 existence head 的 S+ 定位-only 对照 | 完成；[定位对照报告](semantic_existence_localization_controls.md) |
-| E2/E3 + QD | 三个严格 S+/S− GMR baseline | 完成；[100-epoch 报告](semantic_existence_100ep_results.md) |
+| E0/E1 + QD | 三个无 existence head 的 S+ 定位-only 对照 | 完成；[定位对照报告](reports/semantic_existence_localization_controls.md) |
+| E2/E3 + QD | 三个严格 S+/S− GMR baseline | 完成；[100-epoch 报告](reports/semantic_existence_100ep_results.md) |
 | E4/E5 + QD | 同一 GMR checkpoint 的 raw 与 seen 阈值硬拒绝定位 | 完成；见定位对照报告及 `diagnostics.json` |
-| E6 | 三个 semantic-seen reference：把 2,679 条 held-out 训练正例加回，共 10,996 条 | 完成；[E6 报告](semantic_existence_semantic_seen_reference_results.md) |
+| E6 | 三个 semantic-seen reference：把 2,679 条 held-out 训练正例加回，共 10,996 条 | 完成；[E6 报告](reports/semantic_existence_semantic_seen_reference_results.md) |
 | E7 | 字符 n-gram text-only、matched-U 不确定性分析 | 完成；结果在发布包和本地 `results/` |
 | 补充分组 | 未见动作 `open/close` 与 16 个未见动作–物体组合 | 已打包；[子集说明](../data/release/semantic_existence_v1/test_subgroups/README.md) |
 
@@ -93,10 +95,10 @@ git status --short
 
 ## 6. 接下来从哪里继续
 
-方案 E0–E7 的训练与测试已完成；本节原始交接时还没有新模型实验，第二阶段现状见下节。下一步若要写论文，先用[严格结果](semantic_existence_100ep_results.md)、[定位拆解](semantic_existence_localization_controls.md)、[E6 结果](semantic_existence_semantic_seen_reference_results.md)和[分组文件](../data/release/semantic_existence_v1/test_subgroups/)确定可支持的 claim。核心表应并列报告 U+ FRR、U− RR、unseen AUROC、matched-U PairAcc 及 raw→hard-gated U+ 定位，保留 seen-only 校准协议和单种子限制。任何新方法的目标是**降低 U+ 错误拒绝，同时保持 U− 拒绝**；仅提高 U+ 接受率可能重现 E6 的失败。
+方案 E0–E7 的训练与测试已完成；本节原始交接时还没有新模型实验，第二阶段现状见下节。下一步若要写论文，先用[严格结果](reports/semantic_existence_100ep_results.md)、[定位拆解](reports/semantic_existence_localization_controls.md)、[E6 结果](reports/semantic_existence_semantic_seen_reference_results.md)和[分组文件](../data/release/semantic_existence_v1/test_subgroups/)确定可支持的 claim。核心表应并列报告 U+ FRR、U− RR、unseen AUROC、matched-U PairAcc 及 raw→hard-gated U+ 定位，保留 seen-only 校准协议和单种子限制。任何新方法的目标是**降低 U+ 错误拒绝，同时保持 U− 拒绝**；仅提高 U+ 接受率可能重现 E6 的失败。
 
 ## 7. 第二阶段进度（2026-09-28 后续）
 
 用户已要求实施多语义划分重复实验，并加入同一样本 U→S 跨划分对照、共享已见负例训练池和组合级最低配对门槛。完整方案及当前数字见[第二阶段实施记录](20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。最终组为 A1、A2_alt、A3、C1、C2_alt；初选 A2 和 C2 因候选配对不足而留作失败记录。五组均已通过正式发布校验，全部标注和选择资料均已纳入仓库。
 
-数据负责人已对哈希绑定的 4,491 条新负例及 156 条解析抽样作整批人工确认；该口径不是逐条审核日志。另有 2,485 条与 v1 已发布负例完全一致，沿用原有批次确认来源。五组的 15 个模型均完成 seed 3407、100 epoch 训练和测试评测；预测精确覆盖 test qid。四象限指标、official GMR 评分、text-only 对照、查询分布和按视频 cluster bootstrap 区间均已生成；动作级与组合级同样本 U→S 对照也已完成。完整结果见 README 与[多划分结果报告](semantic_existence_multisplit_results.md)，机器可读输出见 [`semantic_existence_v2_metrics/`](semantic_existence_v2_metrics/)；本节之前的 E0–E7 记录仍指 v1。
+数据负责人已对哈希绑定的 4,491 条新负例及 156 条解析抽样作整批人工确认；该口径不是逐条审核日志。另有 2,485 条与 v1 已发布负例完全一致，沿用原有批次确认来源。五组的 15 个模型均完成 seed 3407、100 epoch 训练和测试评测；预测精确覆盖 test qid。四象限指标、official GMR 评分、text-only 对照、查询分布和按视频 cluster bootstrap 区间均已生成；动作级与组合级同样本 U→S 对照也已完成。完整结果见 README 与[多划分结果报告](reports/semantic_existence_multisplit_results.md)，机器可读输出见 [`semantic_existence_v2_metrics/`](semantic_existence_v2_metrics/)；本节之前的 E0–E7 记录仍指 v1。

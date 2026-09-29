@@ -1,6 +1,6 @@
 # Semantic Existence v1：新种子 100 轮实验结果
 
-2026-09-27，项目根目录 `/home/guoxiangyu/paper/Openword/generalized-moment-retrieval`。完整协议、首轮结果和入口见 [`SEMANTIC_EXISTENCE_HANDOFF.md`](SEMANTIC_EXISTENCE_HANDOFF.md)。本轮三个模型均从头用新种子 **3407** 训练整整 **100 epoch**，早停关闭；训练只用 S+/S−，checkpoint 与 existence 阈值只由 862 条 seen 验证样本确定。三个 `tmux` 任务的 `exit_code` 均为 `0`，Moment/QD 各有 100 条训练日志，Flash 有 100 条训练日志。正式 test 均完整覆盖 4,510 个 qid，最佳验证预测均完整覆盖 862 个 qid；所有 test 预测都含 existence 分数和 raw 窗口分数。
+2026-09-27，项目根目录 `/home/guoxiangyu/paper/Openword/generalized-moment-retrieval`。完整协议、首轮结果和入口见 [`SEMANTIC_EXISTENCE_HANDOFF.md`](../SEMANTIC_EXISTENCE_HANDOFF.md)。本轮三个模型均从头用新种子 **3407** 训练整整 **100 epoch**，早停关闭；训练只用 S+/S−，checkpoint 与 existence 阈值只由 862 条 seen 验证样本确定。三个 `tmux` 任务的 `exit_code` 均为 `0`，Moment/QD 各有 100 条训练日志，Flash 有 100 条训练日志。正式 test 均完整覆盖 4,510 个 qid，最佳验证预测均完整覆盖 862 个 qid；所有 test 预测都含 existence 分数和 raw 窗口分数。
 
 ## 训练收敛检查
 

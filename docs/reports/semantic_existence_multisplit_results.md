@@ -1,6 +1,6 @@
 # Phase 2: five independent semantic holdout splits
 
-All five frozen splits completed 100-epoch training for Moment-DETR-GMR, QD-DETR-GMR and FlashVTG-GMR with seed 3407 and early stopping disabled. Best checkpoints and existence thresholds used S+/S− validation only. Test submissions cover every test qid exactly once. The five annotation releases are checked in under [`data/release/semantic_existence_v2/`](../data/release/semantic_existence_v2/); checkpoints and query-level predictions remain local.
+All five frozen splits completed 100-epoch training for Moment-DETR-GMR, QD-DETR-GMR and FlashVTG-GMR with seed 3407 and early stopping disabled. Best checkpoints and existence thresholds used S+/S− validation only. Test submissions cover every test qid exactly once. The five annotation releases are checked in under [`data/release/semantic_existence_v2/`](../../data/release/semantic_existence_v2/); checkpoints and query-level predictions remain local.
 
 ## Test diagnostics
 
@@ -37,15 +37,15 @@ The following means weight each frozen group equally within its novelty axis; th
 | Composition | QD | 0.7388 | 0.5533 | 0.1856 | 0.5829 |
 | Composition | Flash | 0.7220 | 0.5476 | 0.1744 | 0.5505 |
 
-The [action-split report](semantic_existence_action_multisplit_results.md) gives the action-axis table and identical-query analysis. Exact point metrics and official full-test GMR outputs for all groups are in [`semantic_existence_v2_metrics/`](semantic_existence_v2_metrics/). Official full-test AUROC and fixed-threshold metrics use different definitions from the seen/unseen subgroup diagnostics.
+The [action-split report](semantic_existence_action_multisplit_results.md) gives the action-axis table and identical-query analysis. Exact point metrics and official full-test GMR outputs for all groups are in [`semantic_existence_v2_metrics/`](../semantic_existence_v2_metrics/). Official full-test AUROC and fixed-threshold metrics use different definitions from the seen/unseen subgroup diagnostics.
 
 ## Video-cluster uncertainty
 
-For each model and split, 2,000 percentile bootstrap replicates resampled test videos with replacement using seed 3407. [`bootstrap/`](semantic_existence_v2_metrics/bootstrap/) stores 95% intervals for seen and unseen AUROC, U+ FRR, U− RR, matched-pair accuracy, and raw/gated U+ R@1@0.5. These intervals describe test-video sampling uncertainty for a fixed trained model; they do not measure variability across training seeds.
+For each model and split, 2,000 percentile bootstrap replicates resampled test videos with replacement using seed 3407. [`bootstrap/`](../semantic_existence_v2_metrics/bootstrap/) stores 95% intervals for seen and unseen AUROC, U+ FRR, U− RR, matched-pair accuracy, and raw/gated U+ R@1@0.5. These intervals describe test-video sampling uncertainty for a fixed trained model; they do not measure variability across training seeds.
 
 ## Same-query unseen-to-seen comparison
 
-We matched the same qid, video, text, label and temporal annotation when a query is unseen in one split and seen in another. For composition splits, the same test items yield 801 directed comparisons: C1→C2_alt has 162 present and 270 absent queries; C2_alt→C1 has 115 present and 254 absent queries. Mean score changes below are *seen-model score minus unseen-model score*; the corresponding video-cluster 95% intervals are in [`cross_status_composition/`](semantic_existence_v2_metrics/cross_status_composition/).
+We matched the same qid, video, text, label and temporal annotation when a query is unseen in one split and seen in another. For composition splits, the same test items yield 801 directed comparisons: C1→C2_alt has 162 present and 270 absent queries; C2_alt→C1 has 115 present and 254 absent queries. Mean score changes below are *seen-model score minus unseen-model score*; the corresponding video-cluster 95% intervals are in [`cross_status_composition/`](../semantic_existence_v2_metrics/cross_status_composition/).
 
 | Direction | Label | Qids | Moment | QD | Flash |
 | --- | --- | ---: | ---: | ---: | ---: |
@@ -68,7 +68,7 @@ The character 2–4 gram TF-IDF plus class-balanced logistic-regression diagnost
 | C1 | 0.7221 | 0.7840 | 0.5967 | 0.6250 |
 | C2_alt | 0.7310 | 0.7147 | 0.5885 | 0.8182 |
 
-The composition U+ samples have three distinct objects in C1 and two in C2_alt; object concentration is part of the composition holdout design. A2_alt U+ is also concentrated: 72% use `glass` or `cup`. Query word counts and top action/object frequencies by test quadrant are in [`test_query_distributions.json`](semantic_existence_v2_metrics/test_query_distributions.json); exact text-only results are under [`text_only/`](semantic_existence_v2_metrics/text_only/).
+The composition U+ samples have three distinct objects in C1 and two in C2_alt; object concentration is part of the composition holdout design. A2_alt U+ is also concentrated: 72% use `glass` or `cup`. Query word counts and top action/object frequencies by test quadrant are in [`test_query_distributions.json`](../semantic_existence_v2_metrics/test_query_distributions.json); exact text-only results are under [`text_only/`](../semantic_existence_v2_metrics/text_only/).
 
 ## Limits
 

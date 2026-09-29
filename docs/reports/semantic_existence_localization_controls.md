@@ -8,7 +8,7 @@
 
 对照中的 **GMR raw** 是已完成的同种子 GMR checkpoint 输出的 `pred_relevant_windows_pre_exist`；**GMR hard-gated** 是当 `pred_exist_score` 低于 seen validation 校准阈值时将查询视为空集。这里的硬拒绝是诊断指标，不等于官方 GMR 的软分数 gate。所有 R@1 均在同一批 test 查询上计算，IoU 阈值为 0.5。
 
-完整机器可读结果为 [`localization_decomposition.json`](../results/semantic_existence/localization_only_seed3407_100ep/localization_decomposition.json)。单模型原始评分分别见 `results/semantic_existence/localization_only_seed3407_100ep/{moment,qd,flash}/localization_comparison.json`；脚本为 [`analyze_localization_decomposition.py`](../scripts/analyze_localization_decomposition.py)。
+完整机器可读结果为 [`localization_decomposition.json`](../../results/semantic_existence/localization_only_seed3407_100ep/localization_decomposition.json)。单模型原始评分分别见 `results/semantic_existence/localization_only_seed3407_100ep/{moment,qd,flash}/localization_comparison.json`；脚本为 [`analyze_localization_decomposition.py`](../../scripts/analyze_localization_decomposition.py)。
 
 ## U+ 结果
 
@@ -30,9 +30,9 @@ QD-DETR 和 FlashVTG 的 U+ 原始定位仍能命中约 31% 和 37%，但硬拒�
 | QD-DETR | 35.33% | 32.15% | 7.48% | 77.94% |
 | FlashVTG | 43.55% | 37.76% | 14.58% | 56.07% |
 
-Matched-U 的 U+ 是 535 个同视频 U+/U− 配对中的真实存在查询。QD-DETR、FlashVTG 的错误拒绝在这个核心子集上更重。配对分数排序和不确定性另见 [`matched_pair_uncertainty.json`](../results/semantic_existence/seed3407_100ep/matched_pair_uncertainty.json)。
+Matched-U 的 U+ 是 535 个同视频 U+/U− 配对中的真实存在查询。QD-DETR、FlashVTG 的错误拒绝在这个核心子集上更重。配对分数排序和不确定性另见 [`matched_pair_uncertainty.json`](../../results/semantic_existence/seed3407_100ep/matched_pair_uncertainty.json)。
 
-复算发布版字符 n-gram text-only 模型后，其 535 对 PairAcc 为 54.21%，按 325 个视频聚类的 95% bootstrap 区间为 **49.25%–59.28%**，双侧符号检验 p=0.0570；区间包含 50%。这不能证明配对子集完全没有文本线索，但比完整 test 的文本-only AUROC 78.85% 更适合研究视觉存在判断。可复算输出见 [`text_only_pair_uncertainty.json`](../results/semantic_existence/seed3407_100ep/text_only_pair_uncertainty.json)。
+复算发布版字符 n-gram text-only 模型后，其 535 对 PairAcc 为 54.21%，按 325 个视频聚类的 95% bootstrap 区间为 **49.25%–59.28%**，双侧符号检验 p=0.0570；区间包含 50%。这不能证明配对子集完全没有文本线索，但比完整 test 的文本-only AUROC 78.85% 更适合研究视觉存在判断。可复算输出见 [`text_only_pair_uncertainty.json`](../../results/semantic_existence/seed3407_100ep/text_only_pair_uncertainty.json)。
 
 ## 核查
 
