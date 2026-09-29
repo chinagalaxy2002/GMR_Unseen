@@ -1,6 +1,8 @@
 # GMR Unseen: Semantic Novelty × Event Existence
 
-本项目研究广义视频时刻检索中的一个开放语义问题：查询描述的事件在下游训练中未见过时，模型能否判断它在视频中**真的不存在**，而不是仅仅因为语义陌生就拒绝查询？代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
+**本项目研究：如何让视频检索模型将“事件是否发生”的判断泛化到未见语义，使其既能找出陌生但真实发生的事件，也能拒绝语义合理却没有发生的事件？** 例如，用户搜索“把杯子放进柜子”，即使模型在下游训练中没有见过这个动作组合，只要视频里发生了，就应该找到它；如果没有发生，即使杯子、柜子和相关动作都很熟悉，也应该拒绝返回片段。语义是否熟悉与事件是否发生是两个不同的问题。当前实验发现，模型在未见语义上既可能接受不存在的事件，也可能拒绝真实发生、甚至已经定位正确的事件，说明定位能力与存在判断能力未能同步泛化。因此，核心科学问题是：**未见语义下，事件存在判断与定位能力为何出现分离，以及如何使二者共同泛化。** 模型需要从有限的已见语义中学到能够迁移的视频—事件对应关系，并据此同时完成存在判断与时间定位；语义熟悉度是否干扰这一过程，仍是待验证的机制假设。
+
+代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
 
 > **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
