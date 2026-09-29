@@ -26,6 +26,17 @@ AUROC and PairAcc are unit fractions. FRR, RR and R@1@0.5 are percentages. PairA
 
 Seen AUROC exceeds unseen AUROC in all 15 runs. The seen–unseen gap ranges from 0.128 to 0.309. A2_alt has near-zero U− rejection across all models, paired with near-zero U+ refusal; this is broad acceptance rather than good unseen existence discrimination. C2_alt Moment-DETR rejects almost all U+ and U− at its seen threshold. C1's raw localization is relatively strong and incurs little gate loss; other groups show larger losses, especially C2_alt.
 
+The following means weight each frozen group equally within its novelty axis; they do not pool queries or treat groups as independent video domains.
+
+| Axis | Model | Mean seen AUROC | Mean unseen AUROC | Mean gap | Mean PairAcc |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Action (3 groups) | Moment | 0.7741 | 0.5376 | 0.2365 | 0.5495 |
+| Action | QD | 0.7534 | 0.4885 | 0.2649 | 0.4938 |
+| Action | Flash | 0.7770 | 0.5481 | 0.2289 | 0.5260 |
+| Composition (2 groups) | Moment | 0.7185 | 0.5154 | 0.2031 | 0.6779 |
+| Composition | QD | 0.7388 | 0.5533 | 0.1856 | 0.5829 |
+| Composition | Flash | 0.7220 | 0.5476 | 0.1744 | 0.5505 |
+
 The [action-split report](semantic_existence_action_multisplit_results.md) gives the action-axis table and identical-query analysis. Exact point metrics and official full-test GMR outputs for all groups are in [`semantic_existence_v2_metrics/`](semantic_existence_v2_metrics/). Official full-test AUROC and fixed-threshold metrics use different definitions from the seen/unseen subgroup diagnostics.
 
 ## Video-cluster uncertainty
@@ -57,7 +68,7 @@ The character 2–4 gram TF-IDF plus class-balanced logistic-regression diagnost
 | C1 | 0.7221 | 0.7840 | 0.5967 | 0.6250 |
 | C2_alt | 0.7310 | 0.7147 | 0.5885 | 0.8182 |
 
-The composition U+ samples have three distinct objects in C1 and two in C2_alt; object concentration is part of the composition holdout design. A2_alt U+ is also concentrated: two thirds use `glass` or `cup`. Query word counts and top action/object frequencies by test quadrant are in [`test_query_distributions.json`](semantic_existence_v2_metrics/test_query_distributions.json); exact text-only results are under [`text_only/`](semantic_existence_v2_metrics/text_only/).
+The composition U+ samples have three distinct objects in C1 and two in C2_alt; object concentration is part of the composition holdout design. A2_alt U+ is also concentrated: 72% use `glass` or `cup`. Query word counts and top action/object frequencies by test quadrant are in [`test_query_distributions.json`](semantic_existence_v2_metrics/test_query_distributions.json); exact text-only results are under [`text_only/`](semantic_existence_v2_metrics/text_only/).
 
 ## Limits
 

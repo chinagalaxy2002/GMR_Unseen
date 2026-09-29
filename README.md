@@ -6,7 +6,7 @@
 
 第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/semantic_existence_multisplit_results.md)。
 
-清空对话上下文后，从[当前工作交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)恢复。深入阅读顺序：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
+清空对话上下文后，先读[阶段 2 当前交接](docs/20260929_PHASE2_CURRENT_WORK_HANDOFF.md)和[五组完整结果](docs/semantic_existence_multisplit_results.md)。阶段 1 历史见[旧交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)；其深入阅读顺序为：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
 
 ## Research question and protocol
 
