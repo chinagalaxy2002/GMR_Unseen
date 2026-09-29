@@ -1,0 +1,71 @@
+{
+  "split_counts": {
+    "train": {
+      "S+": 8823,
+      "S-": 1500
+    },
+    "val": {
+      "S+": 940,
+      "U+": 55,
+      "S-": 589,
+      "U-": 102
+    },
+    "test": {
+      "S+": 2798,
+      "U+": 168,
+      "S-": 1667,
+      "U-": 312
+    }
+  },
+  "matched_u_pairs_reviewed": 79,
+  "shared_seen_train_negatives": 1500,
+  "quarantined_parser_error_qids": {
+    "train": [
+      "train1131",
+      "train1681",
+      "train2877",
+      "train4190",
+      "train4336",
+      "train5276",
+      "train5874",
+      "train11938"
+    ],
+    "val": [],
+    "test": [
+      "test1288",
+      "test1974",
+      "test2357"
+    ]
+  },
+  "quality_gates": {
+    "id": "A2_alt",
+    "axis": "action",
+    "status": "reviewed",
+    "measures": {
+      "u_positive": 168,
+      "u_negative": 312,
+      "u_positive_videos": 119,
+      "matched_pairs": 79,
+      "matched_pair_coverage": 0.4702,
+      "largest_semantic_share": 0.6607,
+      "per_semantic_u_positive": {
+        "drink": 111,
+        "pour": 57
+      },
+      "parser_qc": {
+        "source": "dataset_owner_global_attestation",
+        "sample_count": 156
+      }
+    },
+    "gates": {
+      "u_positive": true,
+      "u_negative": true,
+      "u_positive_videos": true,
+      "matched_pairs": true,
+      "matched_pair_coverage": true,
+      "largest_semantic_share": true,
+      "parser_qc": true
+    },
+    "passes_all_gates": true
+  }
+}

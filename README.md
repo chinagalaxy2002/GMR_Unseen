@@ -4,7 +4,7 @@
 
 > **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
-第二阶段五组划分已冻结并通过发布校验。A1 的三个模型已完成 100 epoch 训练，其余组的训练队列仍在运行。A1 数据和选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。
+第二阶段五组划分已冻结并通过发布校验。截至 2026-09-29 上午，A1、A2_alt、A3 的三个模型均已完成 100 epoch 训练；C1 正在训练，C2_alt 在队列中。已完成动作组的数据和选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。目前只有 A1 完成测试评测，A2_alt/A3 的训练完成不等于已得出测试结论。
 
 清空对话上下文后，从[当前工作交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)恢复。深入阅读顺序：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
 
@@ -57,7 +57,17 @@ python scripts/validate_release.py
 
 The release contains **annotations, not videos or pretrained features**. Obtain Charades-STA/Charades videos and CLIP/SlowFast features under their source terms. The original GMR Soccer-GMR data in this upstream-derived repository is a separate benchmark and is not used for the experiments reported below.
 
-### Phase 2 A1 release
+### Phase 2 action-split releases
+
+| Group | Held-out actions | Training status | Train | Validation | Test | Test U+ / U− | Matched U pairs |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| [A1](data/release/semantic_existence_v2/A1/) | `put`, `take` | Three models completed; test evaluated | 8,608 | 1,759 | 5,170 | 465 / 1,119 | 312 |
+| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Three models completed; test pending | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
+| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Three models completed; test pending | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
+
+All nine completed training jobs have exit code 0. Each action group uses the same 1,500-row reviewed S− training pool, while its S+ training rows differ according to the held-out actions. The newly published A2_alt and A3 packages contain `train.jsonl`, `val.jsonl`, `test.jsonl`, matched-pair files, inventories, statistics, review provenance and SHA-256 manifests. Their frozen specs are [`A2_alt.json`](data/release/semantic_existence_v2/selection/A2_alt.json) and [`A3.json`](data/release/semantic_existence_v2/selection/A3.json); both releases pass `scripts/validate_release.py` with no video overlap across train, validation and test. C1 training is in progress and C2_alt is queued; their data packages have passed local release checks but are not included in this GitHub update.
+
+#### A1 data and construction
 
 [`data/release/semantic_existence_v2/A1/`](data/release/semantic_existence_v2/A1/) holds out the complete `put` and `take` action classes from downstream training. The published files contain annotations and provenance, without videos, features, or checkpoints. Each test query is assigned by its semantic status under A1; the two actions have 226 and 239 U+ test examples respectively.
 

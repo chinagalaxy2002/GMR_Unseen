@@ -1,0 +1,3 @@
+# A2_alt semantic existence v2
+
+Held semantics: `{"axis": "action", "fallback_for": "A2", "fallback_reason": "first cohort failed candidate matched-pair gate before model evaluation", "held_actions": ["drink", "pour"], "held_compositions": [], "id": "A2_alt", "projected_test_positives": 168, "schema_version": 1, "selection_family": "consumption", "shared_object_proxy": 40}`. The dataset owner globally attested video review of the exact new-negative batch and parser QC sample; no per-qid review log is available. Exact reused v1 rows retain their original batch-attestation provenance. The attestation and review templates are under ../selection/. See `review_report.json`, `statistics.json`, and `manifest.json` for provenance.
