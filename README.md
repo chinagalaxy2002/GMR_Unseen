@@ -4,7 +4,7 @@
 
 > **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
-第二阶段五组划分已冻结并通过发布校验。截至 2026-09-29 上午，A1、A2_alt、A3 的三个模型均已完成 100 epoch 训练；C1 正在训练，C2_alt 在队列中。已完成动作组的数据和选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。目前只有 A1 完成测试评测，A2_alt/A3 的训练完成不等于已得出测试结论。
+第二阶段五组划分已冻结并通过发布校验。截至 2026-09-29 09:10（北京时间），A1、A2_alt、A3 的三个模型均已完成 100 epoch 训练和测试评测；C1 正在训练，C2_alt 在队列中。已评测动作组的数据和选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)。
 
 清空对话上下文后，从[当前工作交接](docs/20260928_1_CURRENT_WORK_HANDOFF.md)恢复。深入阅读顺序：[数据集构建与限制](docs/semantic_existence_dataset.md) → [E0–E7 实验方案](data/release/semantic_existence_v1/plan.md) → [严格 GMR 结果](docs/semantic_existence_100ep_results.md) → [定位对照](docs/semantic_existence_localization_controls.md) → [semantic-seen reference](docs/semantic_existence_semantic_seen_reference_results.md)。
 
@@ -62,8 +62,8 @@ The release contains **annotations, not videos or pretrained features**. Obtain 
 | Group | Held-out actions | Training status | Train | Validation | Test | Test U+ / U− | Matched U pairs |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | [A1](data/release/semantic_existence_v2/A1/) | `put`, `take` | Three models completed; test evaluated | 8,608 | 1,759 | 5,170 | 465 / 1,119 | 312 |
-| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Three models completed; test pending | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
-| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Three models completed; test pending | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
+| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Three models completed; test evaluated | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
+| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Three models completed; test evaluated | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
 
 All nine completed training jobs have exit code 0. Each action group uses the same 1,500-row reviewed S− training pool, while its S+ training rows differ according to the held-out actions. The newly published A2_alt and A3 packages contain `train.jsonl`, `val.jsonl`, `test.jsonl`, matched-pair files, inventories, statistics, review provenance and SHA-256 manifests. Their frozen specs are [`A2_alt.json`](data/release/semantic_existence_v2/selection/A2_alt.json) and [`A3.json`](data/release/semantic_existence_v2/selection/A3.json); both releases pass `scripts/validate_release.py` with no video overlap across train, validation and test. C1 training is in progress and C2_alt is queued; their data packages have passed local release checks but are not included in this GitHub update.
 
@@ -251,7 +251,22 @@ All three A1 training jobs completed with exit code 0. The best checkpoint for e
 | QD-DETR-GMR | 0.783 | 0.506 | 16.13% | 18.23% | 0.572 | 24.52% | 20.65% |
 | FlashVTG-GMR | 0.816 | 0.506 | 19.14% | 20.82% | 0.556 | 29.46% | 23.66% |
 
-On this held-out `put/take` action split, seen AUROC exceeds unseen AUROC by 0.277–0.309. Matched-pair score ordering is 0.556–0.572. At the seen-calibrated threshold, U− rejection is only 18.23–25.47%, while gating removes 3.87–5.81 percentage points of U+ R@1@0.5. This is one action split and one training seed; the other frozen splits and identical-query unseen→seen comparisons remain necessary for the multi-split claim. Full A1 metric definitions, run settings and provenance are in the [A1 result note](docs/semantic_existence_A1_results.md).
+On this held-out `put/take` action split, seen AUROC exceeds unseen AUROC by 0.277–0.309. Matched-pair score ordering is 0.556–0.572. At the seen-calibrated threshold, U− rejection is only 18.23–25.47%, while gating removes 3.87–5.81 percentage points of U+ R@1@0.5. A1 uses one training seed. Full A1 metric definitions, run settings and provenance are in the [A1 result note](docs/semantic_existence_A1_results.md).
+
+### Phase 2 A2_alt and A3 test results
+
+Both groups completed test inference for all three best checkpoints. Each submission covers every test qid exactly once: 4,945 in A2_alt and 5,293 in A3. The existence threshold in each row comes only from that model's seen validation predictions. AUROC and PairAcc are unit fractions; FRR, RR and R@1@0.5 are percentages.
+
+| Group | Model | Seen AUROC | Unseen AUROC | U+ FRR | U− RR | PairAcc | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A2_alt (79 pairs) | Moment-DETR-GMR | 0.769 | 0.551 | 0.00% | 0.64% | 0.620 | 26.79% | 26.79% |
+| A2_alt | QD-DETR-GMR | 0.744 | 0.473 | 0.60% | 0.32% | 0.456 | 31.55% | 31.55% |
+| A2_alt | FlashVTG-GMR | 0.773 | 0.524 | 0.00% | 0.96% | 0.506 | 42.86% | 42.86% |
+| A3 (129 pairs) | Moment-DETR-GMR | 0.749 | 0.564 | 29.17% | 33.00% | 0.469 | 39.58% | 28.12% |
+| A3 | QD-DETR-GMR | 0.733 | 0.487 | 30.21% | 31.31% | 0.453 | 44.27% | 33.33% |
+| A3 | FlashVTG-GMR | 0.742 | 0.614 | 23.44% | 43.77% | 0.516 | 46.88% | 34.38% |
+
+All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Same-query, cross-split comparisons are summarized in the [action-split result note](docs/semantic_existence_action_multisplit_results.md); they show that making a query's action seen can raise scores for absent as well as present queries. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) are also published. All groups still use one seed; composition splits C1/C2_alt have not been evaluated, so no full action-plus-composition conclusion is reported.
 
 ### Phase 1 A0 test results
 

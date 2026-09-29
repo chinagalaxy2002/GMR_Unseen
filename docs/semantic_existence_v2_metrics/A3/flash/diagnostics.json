@@ -1,0 +1,38 @@
+{
+  "threshold_source": "val_seen balanced accuracy",
+  "threshold": 0.998,
+  "quadrants": {
+    "S+": {
+      "n": 2784,
+      "mean_exist_score": 0.9113178879310346,
+      "false_refusal": 0.2223419540229885,
+      "raw_R1_iou05": 0.5326867816091954,
+      "gated_R1_iou05": 0.41271551724137934
+    },
+    "S-": {
+      "n": 1723,
+      "mean_exist_score": 0.5595159605339525,
+      "rejection_rate": 0.6250725478816018
+    },
+    "U+": {
+      "n": 192,
+      "mean_exist_score": 0.9145833333333333,
+      "false_refusal": 0.234375,
+      "raw_R1_iou05": 0.46875,
+      "gated_R1_iou05": 0.34375
+    },
+    "U-": {
+      "n": 594,
+      "mean_exist_score": 0.8382760942760943,
+      "rejection_rate": 0.4377104377104377
+    }
+  },
+  "AUROC": {
+    "seen": 0.7422221582911388,
+    "unseen": 0.6138774901795736
+  },
+  "AUROC_gap": 0.1283446681115652,
+  "over_refusal_gap": 0.012033045977011492,
+  "matched_pair_accuracy": 0.5155038759689923,
+  "matched_pair_n": 129
+}
