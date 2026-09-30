@@ -1,0 +1,171 @@
+{
+  "method": "Exact query string equality; training S+/S- only; no semantic paraphrase matching",
+  "scope": "Counts audit existing labels, not independent video verification or method performance",
+  "splits": {
+    "A1": {
+      "train_sha256": "0cd951d33e1429d1cecf4ce0a661fc290dc4997b995abba362f76545bb486a14",
+      "train_rows": 8608,
+      "negative_rows": 1500,
+      "same_video_source_pairs": 1499,
+      "pairs_with_positive_query_absent_in_other_video": 712,
+      "distinct_reference_source_texts": 153,
+      "pairs_with_both_queries_absent_in_reference": 51,
+      "pairs_with_reversed_labels_in_other_video": 433,
+      "distinct_crossed_query_pairs": 75,
+      "distinct_crossed_video_query_quartets": 969,
+      "conflicting_video_query_cells": 0,
+      "example_qids": [
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_1373a69ed2b0ccd9",
+          "positive_b_qid": "train6986"
+        },
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_9bd64cd8fb2951d3",
+          "positive_b_qid": "train511"
+        },
+        {
+          "positive_a_qid": "train11024",
+          "negative_a_qid": "neg_016794ce831a0291",
+          "negative_b_qid": "neg_18d210cdc329d363",
+          "positive_b_qid": "train4125"
+        }
+      ]
+    },
+    "A2_alt": {
+      "train_sha256": "d00938614ba3e0583dbb32d129804adc8938f5c1f89a66316b4b754d539f71a3",
+      "train_rows": 10323,
+      "negative_rows": 1500,
+      "same_video_source_pairs": 1499,
+      "pairs_with_positive_query_absent_in_other_video": 712,
+      "distinct_reference_source_texts": 153,
+      "pairs_with_both_queries_absent_in_reference": 51,
+      "pairs_with_reversed_labels_in_other_video": 433,
+      "distinct_crossed_query_pairs": 75,
+      "distinct_crossed_video_query_quartets": 969,
+      "conflicting_video_query_cells": 0,
+      "example_qids": [
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_1373a69ed2b0ccd9",
+          "positive_b_qid": "train6986"
+        },
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_9bd64cd8fb2951d3",
+          "positive_b_qid": "train511"
+        },
+        {
+          "positive_a_qid": "train11024",
+          "negative_a_qid": "neg_016794ce831a0291",
+          "negative_b_qid": "neg_18d210cdc329d363",
+          "positive_b_qid": "train4125"
+        }
+      ]
+    },
+    "A3": {
+      "train_sha256": "53a1976cad3aedead9019daa3b25967c44f6e7f993b502e4521eb30dff0e6ffe",
+      "train_rows": 10352,
+      "negative_rows": 1500,
+      "same_video_source_pairs": 1499,
+      "pairs_with_positive_query_absent_in_other_video": 712,
+      "distinct_reference_source_texts": 153,
+      "pairs_with_both_queries_absent_in_reference": 51,
+      "pairs_with_reversed_labels_in_other_video": 433,
+      "distinct_crossed_query_pairs": 75,
+      "distinct_crossed_video_query_quartets": 969,
+      "conflicting_video_query_cells": 0,
+      "example_qids": [
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_1373a69ed2b0ccd9",
+          "positive_b_qid": "train6986"
+        },
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_9bd64cd8fb2951d3",
+          "positive_b_qid": "train511"
+        },
+        {
+          "positive_a_qid": "train11024",
+          "negative_a_qid": "neg_016794ce831a0291",
+          "negative_b_qid": "neg_18d210cdc329d363",
+          "positive_b_qid": "train4125"
+        }
+      ]
+    },
+    "C1": {
+      "train_sha256": "0fa9cc62f1964069e9ec35808533c89845049dc93e0d7ecd16c6eb0576be0638",
+      "train_rows": 10516,
+      "negative_rows": 1500,
+      "same_video_source_pairs": 1499,
+      "pairs_with_positive_query_absent_in_other_video": 433,
+      "distinct_reference_source_texts": 113,
+      "pairs_with_both_queries_absent_in_reference": 29,
+      "pairs_with_reversed_labels_in_other_video": 317,
+      "distinct_crossed_query_pairs": 49,
+      "distinct_crossed_video_query_quartets": 765,
+      "conflicting_video_query_cells": 0,
+      "example_qids": [
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_1373a69ed2b0ccd9",
+          "positive_b_qid": "train6986"
+        },
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_9bd64cd8fb2951d3",
+          "positive_b_qid": "train511"
+        },
+        {
+          "positive_a_qid": "train10445",
+          "negative_a_qid": "neg_0182642363344e95",
+          "negative_b_qid": "neg_3381f73246bd2e6a",
+          "positive_b_qid": "train9709"
+        }
+      ]
+    },
+    "C2_alt": {
+      "train_sha256": "bb731690357dbb9af7b0641ec7649ba42b4fe3f3aad9798281cfb482caccbf3e",
+      "train_rows": 10612,
+      "negative_rows": 1500,
+      "same_video_source_pairs": 1499,
+      "pairs_with_positive_query_absent_in_other_video": 433,
+      "distinct_reference_source_texts": 113,
+      "pairs_with_both_queries_absent_in_reference": 29,
+      "pairs_with_reversed_labels_in_other_video": 317,
+      "distinct_crossed_query_pairs": 49,
+      "distinct_crossed_video_query_quartets": 765,
+      "conflicting_video_query_cells": 0,
+      "example_qids": [
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_1373a69ed2b0ccd9",
+          "positive_b_qid": "train6986"
+        },
+        {
+          "positive_a_qid": "train2829",
+          "negative_a_qid": "neg_00a6e28e6b0f8c47",
+          "negative_b_qid": "neg_9bd64cd8fb2951d3",
+          "positive_b_qid": "train511"
+        },
+        {
+          "positive_a_qid": "train10445",
+          "negative_a_qid": "neg_0182642363344e95",
+          "negative_b_qid": "neg_3381f73246bd2e6a",
+          "positive_b_qid": "train9709"
+        }
+      ]
+    }
+  }
+}

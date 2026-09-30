@@ -1,0 +1,1138 @@
+{
+  "captured_at": "2026-09-30T10:56:52+08:00",
+  "training_status": {
+    "state": "training",
+    "pid": 79891,
+    "start_utc": "2026-09-30T01:57:55Z",
+    "preflight_wall_seconds": 4.877548969350755
+  },
+  "completed_epochs": 76,
+  "completed_epoch_updates": 35948,
+  "completed_epoch_row_exposures": 574484,
+  "completed_epoch_ledger_valid": true,
+  "watcher": {
+    "state": "waiting_for_stage",
+    "pid": 79894,
+    "completed": [
+      "1",
+      "10",
+      "30"
+    ],
+    "failures": [],
+    "stage": "100"
+  },
+  "queue_state": "waiting_initial_diagnostic",
+  "queue_pid": 80542,
+  "registered_task_states": {
+    "pending": 104,
+    "waiting_training": 100,
+    "skipped": 2
+  },
+  "metrics": {
+    "1": {
+      "source": "runs/qd_throw_strict_diagnostic_20260930/diagnostic_1/metrics.json",
+      "sha256": "05d0d054a5b000a4008ba21adfc4050225c0b449103b0e4ef0ba6328c1ab8459",
+      "metrics": {
+        "original_head": {
+          "seen": {
+            "auroc": 0.8044885090848752,
+            "threshold": 2.08148455619812,
+            "positive_frr": 0.3145275035260931,
+            "negative_rr": 0.8235294117647058,
+            "pairacc_all_same_video_pairs_ties_half": 0.7256317689530686,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.3872397527651269,
+            "threshold": 2.08148455619812,
+            "positive_frr": 0.22413793103448276,
+            "negative_rr": 0.14150943396226415,
+            "pairacc_all_same_video_pairs_ties_half": 0.49230769230769234,
+            "pair_count": 65
+          }
+        },
+        "raw_joint": {
+          "seen": {
+            "auroc": 0.8056352301146129,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.2454160789844852,
+            "negative_rr": 0.7121848739495799,
+            "pairacc_all_same_video_pairs_ties_half": 0.740072202166065,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4884718607677293,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.01293103448275862,
+            "negative_rr": 0.018867924528301886,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "raw_video": {
+          "seen": {
+            "auroc": 0.524719690414953,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.5133991537376587,
+            "negative_rr": 0.5840336134453782,
+            "pairacc_all_same_video_pairs_ties_half": 0.49232851985559567,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5326427293428757,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.4892241379310345,
+            "negative_rr": 0.5377358490566038,
+            "pairacc_all_same_video_pairs_ties_half": 0.5,
+            "pair_count": 65
+          }
+        },
+        "raw_text": {
+          "seen": {
+            "auroc": 0.8375863744651599,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.3215796897038082,
+            "negative_rr": 0.8403361344537815,
+            "pairacc_all_same_video_pairs_ties_half": 0.7463898916967509,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6378090435914118,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.13577586206896552,
+            "negative_rr": 0.22641509433962265,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "projection_joint": {
+          "seen": {
+            "auroc": 0.826978464164227,
+            "threshold": 1.0598958730697632,
+            "positive_frr": 0.22284908321579688,
+            "negative_rr": 0.7331932773109243,
+            "pairacc_all_same_video_pairs_ties_half": 0.7463898916967509,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5242761873780091,
+            "threshold": 1.0598958730697632,
+            "positive_frr": 0.1271551724137931,
+            "negative_rr": 0.12264150943396226,
+            "pairacc_all_same_video_pairs_ties_half": 0.8307692307692308,
+            "pair_count": 65
+          }
+        },
+        "projection_video": {
+          "seen": {
+            "auroc": 0.5489489872112456,
+            "threshold": 1.8856141567230225,
+            "positive_frr": 0.767277856135402,
+            "negative_rr": 0.8529411764705882,
+            "pairacc_all_same_video_pairs_ties_half": 0.5302346570397112,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5438963890696161,
+            "threshold": 1.8856141567230225,
+            "positive_frr": 0.7349137931034483,
+            "negative_rr": 0.8018867924528302,
+            "pairacc_all_same_video_pairs_ties_half": 0.5846153846153846,
+            "pair_count": 65
+          }
+        },
+        "projection_text": {
+          "seen": {
+            "auroc": 0.8322172310391011,
+            "threshold": 1.0908257961273193,
+            "positive_frr": 0.23554301833568406,
+            "negative_rr": 0.7584033613445378,
+            "pairacc_all_same_video_pairs_ties_half": 0.7382671480144405,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5920014638906962,
+            "threshold": 1.0908257961273193,
+            "positive_frr": 0.31896551724137934,
+            "negative_rr": 0.4716981132075472,
+            "pairacc_all_same_video_pairs_ties_half": 0.8615384615384616,
+            "pair_count": 65
+          }
+        },
+        "decoder_max": {
+          "seen": {
+            "auroc": 0.8138548790461178,
+            "threshold": 1.6756417751312256,
+            "positive_frr": 0.33991537376586745,
+            "negative_rr": 0.842436974789916,
+            "pairacc_all_same_video_pairs_ties_half": 0.7283393501805054,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4154399804814574,
+            "threshold": 1.6756417751312256,
+            "positive_frr": 0.20905172413793102,
+            "negative_rr": 0.1320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.5230769230769231,
+            "pair_count": 65
+          }
+        },
+        "decoder_mean": {
+          "seen": {
+            "auroc": 0.8133867087032275,
+            "threshold": 1.691406488418579,
+            "positive_frr": 0.3441466854724965,
+            "negative_rr": 0.8466386554621849,
+            "pairacc_all_same_video_pairs_ties_half": 0.7319494584837545,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4162532530904358,
+            "threshold": 1.691406488418579,
+            "positive_frr": 0.20905172413793102,
+            "negative_rr": 0.1320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.5384615384615384,
+            "pair_count": 65
+          }
+        },
+        "scalar_calibration": {
+          "seen": {
+            "auroc": 0.8044885090848752,
+            "threshold": 2.0850093364715576,
+            "positive_frr": 0.3145275035260931,
+            "negative_rr": 0.8235294117647058,
+            "pairacc_all_same_video_pairs_ties_half": 0.7256317689530686,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.3872397527651269,
+            "threshold": 2.0850093364715576,
+            "positive_frr": 0.22413793103448276,
+            "negative_rr": 0.14150943396226415,
+            "pairacc_all_same_video_pairs_ties_half": 0.49230769230769234,
+            "pair_count": 65
+          }
+        }
+      },
+      "gate": {
+        "raw_joint": {
+          "gain": 0.1012321080026024,
+          "seen_loss": -0.001146721029737674,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "raw_video": {
+          "gain": 0.1454029765777488,
+          "seen_loss": 0.2797688186699222,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "raw_text": {
+          "gain": 0.2505692908262849,
+          "seen_loss": -0.0330978653802847,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "projection_joint": {
+          "gain": 0.13703643461288217,
+          "seen_loss": -0.02248995507935181,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "projection_video": {
+          "gain": 0.15665663630448923,
+          "seen_loss": 0.2555395218736296,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "projection_text": {
+          "gain": 0.2047617111255693,
+          "seen_loss": -0.02772872195422582,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "decoder_max": {
+          "gain": 0.028200227716330517,
+          "seen_loss": -0.009366369961242516,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "decoder_mean": {
+          "gain": 0.029013500325308916,
+          "seen_loss": -0.008898199618352254,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        }
+      },
+      "pseudo_video_bootstrap": {
+        "auroc_ci95": {
+          "original_head": [
+            0.32591108332899427,
+            0.4455606911340909
+          ],
+          "raw_joint": [
+            0.42227582527143687,
+            0.5526866183977308
+          ],
+          "raw_video": [
+            0.46705141392564725,
+            0.5998161583930415
+          ],
+          "raw_text": [
+            0.582536529518086,
+            0.6871405014201276
+          ],
+          "projection_joint": [
+            0.4570994108553895,
+            0.590656306403071
+          ],
+          "projection_video": [
+            0.47916089638338344,
+            0.6097237906531477
+          ],
+          "projection_text": [
+            0.5300704367299072,
+            0.6517721528650111
+          ],
+          "decoder_max": [
+            0.35224952465738496,
+            0.4738325301179047
+          ],
+          "decoder_mean": [
+            0.3542204528288848,
+            0.4736113093481183
+          ],
+          "scalar_calibration": [
+            0.32591108332899427,
+            0.4455606911340909
+          ]
+        },
+        "paired_gain_over_head_ci95": {
+          "raw_joint": [
+            0.042342642618077866,
+            0.1579407835356365
+          ],
+          "raw_video": [
+            0.05670573488212427,
+            0.22866930514368725
+          ],
+          "raw_text": [
+            0.1983371298383852,
+            0.3025576530747224
+          ],
+          "projection_joint": [
+            0.08657647122289383,
+            0.18605181427018838
+          ],
+          "projection_video": [
+            0.0811272708155356,
+            0.23929240506741248
+          ],
+          "projection_text": [
+            0.15858850740591876,
+            0.25412150859961713
+          ],
+          "decoder_max": [
+            0.005452355954362081,
+            0.052008911485441955
+          ],
+          "decoder_mean": [
+            0.008167750299636109,
+            0.05159180232289606
+          ],
+          "scalar_calibration": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_minus_unimodal_ci95": {
+          "raw_joint_minus_raw_video": [
+            -0.13117531266354326,
+            0.048166091457290366
+          ],
+          "raw_joint_minus_raw_text": [
+            -0.200353864078385,
+            -0.09897145968574537
+          ],
+          "projection_joint_minus_projection_video": [
+            -0.09376513937441237,
+            0.05609524805244431
+          ],
+          "projection_joint_minus_projection_text": [
+            -0.11552347823753793,
+            -0.023280142038163622
+          ]
+        },
+        "unit": "video",
+        "resamples": 1000
+      },
+      "localization": {
+        "seen": {
+          "positive_rows": 709,
+          "diagnostic_hard_threshold": 2.08148455619812,
+          "raw_R1@0.5": 0.0846262341325811,
+          "raw_R1@0.7": 0.014104372355430184,
+          "hard_R1@0.5": 0.06488011283497884,
+          "hard_R1@0.7": 0.009873060648801129,
+          "raw_correct_positive_false_reject_0.5": 0.23333333333333334,
+          "raw_correct_positive_false_reject_0.7": 0.3,
+          "raw_miou": 0.14365175858487914,
+          "hard_miou": 0.10553815270136993,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        },
+        "pseudo": {
+          "positive_rows": 464,
+          "diagnostic_hard_threshold": 2.08148455619812,
+          "raw_R1@0.5": 0.05818965517241379,
+          "raw_R1@0.7": 0.01293103448275862,
+          "hard_R1@0.5": 0.04310344827586207,
+          "hard_R1@0.7": 0.010775862068965518,
+          "raw_correct_positive_false_reject_0.5": 0.25925925925925924,
+          "raw_correct_positive_false_reject_0.7": 0.16666666666666666,
+          "raw_miou": 0.10538512608882496,
+          "hard_miou": 0.08325544104210955,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        }
+      }
+    },
+    "10": {
+      "source": "runs/qd_throw_strict_diagnostic_20260930/diagnostic_10/metrics.json",
+      "sha256": "c9bf169e1780760505b1a1a45caf58830b6238cba75a0efef3c932483bcaf43a",
+      "metrics": {
+        "original_head": {
+          "seen": {
+            "auroc": 0.8405168837633784,
+            "threshold": 1.7643499374389648,
+            "positive_frr": 0.35966149506346967,
+            "negative_rr": 0.9012605042016807,
+            "pairacc_all_same_video_pairs_ties_half": 0.7572202166064982,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.585983246584255,
+            "threshold": 1.7643499374389648,
+            "positive_frr": 0.10991379310344827,
+            "negative_rr": 0.11320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.9230769230769231,
+            "pair_count": 65
+          }
+        },
+        "raw_joint": {
+          "seen": {
+            "auroc": 0.8056352301146129,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.2454160789844852,
+            "negative_rr": 0.7121848739495799,
+            "pairacc_all_same_video_pairs_ties_half": 0.740072202166065,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4884718607677293,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.01293103448275862,
+            "negative_rr": 0.018867924528301886,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "raw_video": {
+          "seen": {
+            "auroc": 0.524719690414953,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.5133991537376587,
+            "negative_rr": 0.5840336134453782,
+            "pairacc_all_same_video_pairs_ties_half": 0.49232851985559567,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5326427293428757,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.4892241379310345,
+            "negative_rr": 0.5377358490566038,
+            "pairacc_all_same_video_pairs_ties_half": 0.5,
+            "pair_count": 65
+          }
+        },
+        "raw_text": {
+          "seen": {
+            "auroc": 0.8375863744651599,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.3215796897038082,
+            "negative_rr": 0.8403361344537815,
+            "pairacc_all_same_video_pairs_ties_half": 0.7463898916967509,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6378090435914118,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.13577586206896552,
+            "negative_rr": 0.22641509433962265,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "projection_joint": {
+          "seen": {
+            "auroc": 0.8343328868924156,
+            "threshold": 1.320709228515625,
+            "positive_frr": 0.24118476727785615,
+            "negative_rr": 0.7752100840336135,
+            "pairacc_all_same_video_pairs_ties_half": 0.7933212996389891,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5889923552374756,
+            "threshold": 1.320709228515625,
+            "positive_frr": 0.09267241379310345,
+            "negative_rr": 0.09433962264150944,
+            "pairacc_all_same_video_pairs_ties_half": 0.7538461538461538,
+            "pair_count": 65
+          }
+        },
+        "projection_video": {
+          "seen": {
+            "auroc": 0.5356683576110275,
+            "threshold": 1.5057677030563354,
+            "positive_frr": 0.38787023977433005,
+            "negative_rr": 0.45588235294117646,
+            "pairacc_all_same_video_pairs_ties_half": 0.4778880866425993,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4842530091086532,
+            "threshold": 1.5057677030563354,
+            "positive_frr": 0.4827586206896552,
+            "negative_rr": 0.4339622641509434,
+            "pairacc_all_same_video_pairs_ties_half": 0.4846153846153846,
+            "pair_count": 65
+          }
+        },
+        "projection_text": {
+          "seen": {
+            "auroc": 0.8431836768557917,
+            "threshold": 1.5664591789245605,
+            "positive_frr": 0.3328631875881523,
+            "negative_rr": 0.8802521008403361,
+            "pairacc_all_same_video_pairs_ties_half": 0.7518050541516246,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6948194534808068,
+            "threshold": 1.5664591789245605,
+            "positive_frr": 0.14655172413793102,
+            "negative_rr": 0.29245283018867924,
+            "pairacc_all_same_video_pairs_ties_half": 0.9230769230769231,
+            "pair_count": 65
+          }
+        },
+        "decoder_max": {
+          "seen": {
+            "auroc": 0.8431688613386116,
+            "threshold": 1.7275665998458862,
+            "positive_frr": 0.33709449929478136,
+            "negative_rr": 0.8886554621848739,
+            "pairacc_all_same_video_pairs_ties_half": 0.7572202166064982,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5393420624593364,
+            "threshold": 1.7275665998458862,
+            "positive_frr": 0.07974137931034483,
+            "negative_rr": 0.0660377358490566,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "decoder_mean": {
+          "seen": {
+            "auroc": 0.8392960851477402,
+            "threshold": 1.784420132637024,
+            "positive_frr": 0.3385049365303244,
+            "negative_rr": 0.8865546218487395,
+            "pairacc_all_same_video_pairs_ties_half": 0.7518050541516246,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5619917046193884,
+            "threshold": 1.784420132637024,
+            "positive_frr": 0.08620689655172414,
+            "negative_rr": 0.08490566037735849,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "scalar_calibration": {
+          "seen": {
+            "auroc": 0.8405168837633784,
+            "threshold": 1.406508445739746,
+            "positive_frr": 0.35966149506346967,
+            "negative_rr": 0.9012605042016807,
+            "pairacc_all_same_video_pairs_ties_half": 0.7572202166064982,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.585983246584255,
+            "threshold": 1.406508445739746,
+            "positive_frr": 0.10991379310344827,
+            "negative_rr": 0.11320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.9230769230769231,
+            "pair_count": 65
+          }
+        }
+      },
+      "gate": {
+        "raw_joint": {
+          "gain": -0.09751138581652574,
+          "seen_loss": 0.0348816536487655,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "raw_video": {
+          "gain": -0.05334051724137934,
+          "seen_loss": 0.3157971933484254,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "raw_text": {
+          "gain": 0.051825797007156726,
+          "seen_loss": 0.0029305092982184755,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "projection_joint": {
+          "gain": 0.0030091086532205713,
+          "seen_loss": 0.006183996870962827,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "projection_video": {
+          "gain": -0.10173023747560184,
+          "seen_loss": 0.3048485261523509,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "projection_text": {
+          "gain": 0.10883620689655171,
+          "seen_loss": -0.0026667930924132444,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "decoder_max": {
+          "gain": -0.04664118412491869,
+          "seen_loss": -0.0026519775752331665,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "decoder_mean": {
+          "gain": -0.023991541964866636,
+          "seen_loss": 0.0012207986156381745,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        }
+      },
+      "pseudo_video_bootstrap": {
+        "auroc_ci95": {
+          "original_head": [
+            0.5245587739338035,
+            0.6470203642500101
+          ],
+          "raw_joint": [
+            0.42227582527143687,
+            0.5526866183977308
+          ],
+          "raw_video": [
+            0.46705141392564725,
+            0.5998161583930415
+          ],
+          "raw_text": [
+            0.582536529518086,
+            0.6871405014201276
+          ],
+          "projection_joint": [
+            0.5296591772937332,
+            0.6460894129810517
+          ],
+          "projection_video": [
+            0.42083262835401986,
+            0.5471986901241963
+          ],
+          "projection_text": [
+            0.6425448361162647,
+            0.7471574951743561
+          ],
+          "decoder_max": [
+            0.46463788937831235,
+            0.6064495100433259
+          ],
+          "decoder_mean": [
+            0.4952677702449817,
+            0.6246143441109898
+          ],
+          "scalar_calibration": [
+            0.5245587739338035,
+            0.6470203642500101
+          ]
+        },
+        "paired_gain_over_head_ci95": {
+          "raw_joint": [
+            -0.14815741403235166,
+            -0.046291676032208885
+          ],
+          "raw_video": [
+            -0.14348468682699078,
+            0.03570620160421649
+          ],
+          "raw_text": [
+            0.008870272816480914,
+            0.09572427166188024
+          ],
+          "projection_joint": [
+            -0.048508858361658705,
+            0.0583919070156634
+          ],
+          "projection_video": [
+            -0.190211128685627,
+            -0.01465900329029665
+          ],
+          "projection_text": [
+            0.06986155567490158,
+            0.14817565716242828
+          ],
+          "decoder_max": [
+            -0.08773009665617884,
+            -0.007962965680703524
+          ],
+          "decoder_mean": [
+            -0.057468505224809785,
+            0.005409107894263456
+          ],
+          "scalar_calibration": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_minus_unimodal_ci95": {
+          "raw_joint_minus_raw_video": [
+            -0.13117531266354326,
+            0.048166091457290366
+          ],
+          "raw_joint_minus_raw_text": [
+            -0.200353864078385,
+            -0.09897145968574537
+          ],
+          "projection_joint_minus_projection_video": [
+            0.023308587418365036,
+            0.18473517054838415
+          ],
+          "projection_joint_minus_projection_text": [
+            -0.1558567787737487,
+            -0.057712407993837374
+          ]
+        },
+        "unit": "video",
+        "resamples": 1000
+      },
+      "localization": {
+        "seen": {
+          "positive_rows": 709,
+          "diagnostic_hard_threshold": 1.7643499374389648,
+          "raw_R1@0.5": 0.3342736248236953,
+          "raw_R1@0.7": 0.20874471086036672,
+          "hard_R1@0.5": 0.231311706629055,
+          "hard_R1@0.7": 0.15091678420310295,
+          "raw_correct_positive_false_reject_0.5": 0.3080168776371308,
+          "raw_correct_positive_false_reject_0.7": 0.27702702702702703,
+          "raw_miou": 0.3202955223405471,
+          "hard_miou": 0.2209615210097771,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        },
+        "pseudo": {
+          "positive_rows": 464,
+          "diagnostic_hard_threshold": 1.7643499374389648,
+          "raw_R1@0.5": 0.27586206896551724,
+          "raw_R1@0.7": 0.09482758620689655,
+          "hard_R1@0.5": 0.2435344827586207,
+          "hard_R1@0.7": 0.07758620689655173,
+          "raw_correct_positive_false_reject_0.5": 0.1171875,
+          "raw_correct_positive_false_reject_0.7": 0.18181818181818182,
+          "raw_miou": 0.2664277967369199,
+          "hard_miou": 0.2316508485497295,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        }
+      }
+    },
+    "30": {
+      "source": "runs/qd_throw_strict_diagnostic_20260930/diagnostic_30/metrics.json",
+      "sha256": "778ec3b3c8d1c40d0585a74b437cd895d4526f5f57a6440ffdb62e4cbd0d84f6",
+      "metrics": {
+        "original_head": {
+          "seen": {
+            "auroc": 0.8457467613279444,
+            "threshold": 1.2755473852157593,
+            "positive_frr": 0.23695345557122707,
+            "negative_rr": 0.7773109243697479,
+            "pairacc_all_same_video_pairs_ties_half": 0.7779783393501805,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5191525699414443,
+            "threshold": 1.2755473852157593,
+            "positive_frr": 0.08836206896551724,
+            "negative_rr": 0.11320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.9692307692307692,
+            "pair_count": 65
+          }
+        },
+        "raw_joint": {
+          "seen": {
+            "auroc": 0.8056352301146129,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.2454160789844852,
+            "negative_rr": 0.7121848739495799,
+            "pairacc_all_same_video_pairs_ties_half": 0.740072202166065,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.4884718607677293,
+            "threshold": 1.1270431280136108,
+            "positive_frr": 0.01293103448275862,
+            "negative_rr": 0.018867924528301886,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "raw_video": {
+          "seen": {
+            "auroc": 0.524719690414953,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.5133991537376587,
+            "negative_rr": 0.5840336134453782,
+            "pairacc_all_same_video_pairs_ties_half": 0.49232851985559567,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5326427293428757,
+            "threshold": 1.576024055480957,
+            "positive_frr": 0.4892241379310345,
+            "negative_rr": 0.5377358490566038,
+            "pairacc_all_same_video_pairs_ties_half": 0.5,
+            "pair_count": 65
+          }
+        },
+        "raw_text": {
+          "seen": {
+            "auroc": 0.8375863744651599,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.3215796897038082,
+            "negative_rr": 0.8403361344537815,
+            "pairacc_all_same_video_pairs_ties_half": 0.7463898916967509,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6378090435914118,
+            "threshold": 1.389135718345642,
+            "positive_frr": 0.13577586206896552,
+            "negative_rr": 0.22641509433962265,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "projection_joint": {
+          "seen": {
+            "auroc": 0.7839749439973451,
+            "threshold": 1.6531494855880737,
+            "positive_frr": 0.3215796897038082,
+            "negative_rr": 0.7710084033613446,
+            "pairacc_all_same_video_pairs_ties_half": 0.7689530685920578,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6131872153545869,
+            "threshold": 1.6531494855880737,
+            "positive_frr": 0.23922413793103448,
+            "negative_rr": 0.3867924528301887,
+            "pairacc_all_same_video_pairs_ties_half": 0.9846153846153847,
+            "pair_count": 65
+          }
+        },
+        "projection_video": {
+          "seen": {
+            "auroc": 0.505237285323156,
+            "threshold": 1.4515272378921509,
+            "positive_frr": 0.306064880112835,
+            "negative_rr": 0.3487394957983193,
+            "pairacc_all_same_video_pairs_ties_half": 0.45081227436823107,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.512636223162004,
+            "threshold": 1.4515272378921509,
+            "positive_frr": 0.4051724137931034,
+            "negative_rr": 0.4716981132075472,
+            "pairacc_all_same_video_pairs_ties_half": 0.4076923076923077,
+            "pair_count": 65
+          }
+        },
+        "projection_text": {
+          "seen": {
+            "auroc": 0.847657963044174,
+            "threshold": 1.5448706150054932,
+            "positive_frr": 0.3300423131170663,
+            "negative_rr": 0.8760504201680672,
+            "pairacc_all_same_video_pairs_ties_half": 0.7635379061371841,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.6954090761223162,
+            "threshold": 1.5448706150054932,
+            "positive_frr": 0.03017241379310345,
+            "negative_rr": 0.08490566037735849,
+            "pairacc_all_same_video_pairs_ties_half": 0.9538461538461539,
+            "pair_count": 65
+          }
+        },
+        "decoder_max": {
+          "seen": {
+            "auroc": 0.8383478920482156,
+            "threshold": 1.937195062637329,
+            "positive_frr": 0.23695345557122707,
+            "negative_rr": 0.7815126050420168,
+            "pairacc_all_same_video_pairs_ties_half": 0.76985559566787,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5382238126219909,
+            "threshold": 1.937195062637329,
+            "positive_frr": 0.07758620689655173,
+            "negative_rr": 0.12264150943396226,
+            "pairacc_all_same_video_pairs_ties_half": 0.8923076923076924,
+            "pair_count": 65
+          }
+        },
+        "decoder_mean": {
+          "seen": {
+            "auroc": 0.8379982458427659,
+            "threshold": 1.7194082736968994,
+            "positive_frr": 0.18758815232722145,
+            "negative_rr": 0.7205882352941176,
+            "pairacc_all_same_video_pairs_ties_half": 0.7815884476534296,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.47814329863370203,
+            "threshold": 1.7194082736968994,
+            "positive_frr": 0.05387931034482758,
+            "negative_rr": 0.11320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.7384615384615385,
+            "pair_count": 65
+          }
+        },
+        "scalar_calibration": {
+          "seen": {
+            "auroc": 0.8457467613279444,
+            "threshold": 1.2347887754440308,
+            "positive_frr": 0.23695345557122707,
+            "negative_rr": 0.7773109243697479,
+            "pairacc_all_same_video_pairs_ties_half": 0.7779783393501805,
+            "pair_count": 1108
+          },
+          "pseudo": {
+            "auroc": 0.5191525699414443,
+            "threshold": 1.2347887754440308,
+            "positive_frr": 0.08836206896551724,
+            "negative_rr": 0.11320754716981132,
+            "pairacc_all_same_video_pairs_ties_half": 0.9692307692307692,
+            "pair_count": 65
+          }
+        }
+      },
+      "gate": {
+        "raw_joint": {
+          "gain": -0.030680709173715015,
+          "seen_loss": 0.04011153121333144,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "raw_video": {
+          "gain": 0.01349015940143139,
+          "seen_loss": 0.3210270709129913,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "raw_text": {
+          "gain": 0.11865647364996745,
+          "seen_loss": 0.008160386862784419,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "projection_joint": {
+          "gain": 0.09403464541314255,
+          "seen_loss": 0.06177181733059922,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false,
+          "joint_over_unimodal_gate_pass": false
+        },
+        "projection_video": {
+          "gain": -0.006516346779440352,
+          "seen_loss": 0.3405094760047883,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "projection_text": {
+          "gain": 0.17625650618087185,
+          "seen_loss": -0.0019112017162296047,
+          "readout_gain_gate_pass": true,
+          "causal_mechanism_proven": false
+        },
+        "decoder_max": {
+          "gain": 0.019071242680546607,
+          "seen_loss": 0.00739886927972877,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        },
+        "decoder_mean": {
+          "gain": -0.04100927130774229,
+          "seen_loss": 0.007748515485178409,
+          "readout_gain_gate_pass": false,
+          "causal_mechanism_proven": false
+        }
+      },
+      "pseudo_video_bootstrap": {
+        "auroc_ci95": {
+          "original_head": [
+            0.44384786119594954,
+            0.586445687327027
+          ],
+          "raw_joint": [
+            0.42227582527143687,
+            0.5526866183977308
+          ],
+          "raw_video": [
+            0.46705141392564725,
+            0.5998161583930415
+          ],
+          "raw_text": [
+            0.582536529518086,
+            0.6871405014201276
+          ],
+          "projection_joint": [
+            0.5486504391290933,
+            0.6728598563943325
+          ],
+          "projection_video": [
+            0.4470298679646435,
+            0.5740042678698426
+          ],
+          "projection_text": [
+            0.635514344141198,
+            0.7502165418054013
+          ],
+          "decoder_max": [
+            0.4761372945615669,
+            0.5980674547959907
+          ],
+          "decoder_mean": [
+            0.41416873095247264,
+            0.5443571573057575
+          ],
+          "scalar_calibration": [
+            0.44384786119594954,
+            0.586445687327027
+          ]
+        },
+        "paired_gain_over_head_ci95": {
+          "raw_joint": [
+            -0.08712757267126686,
+            0.022490311226660044
+          ],
+          "raw_video": [
+            -0.08582782612094964,
+            0.11039447090015701
+          ],
+          "raw_text": [
+            0.06639411258296418,
+            0.17397708170148934
+          ],
+          "projection_joint": [
+            0.03343824082264482,
+            0.15384860348690052
+          ],
+          "projection_video": [
+            -0.09456029754199823,
+            0.07464013753659278
+          ],
+          "projection_text": [
+            0.1271311243929271,
+            0.2299762460354051
+          ],
+          "decoder_max": [
+            -0.041976257459729646,
+            0.07668148395479799
+          ],
+          "decoder_mean": [
+            -0.1004387376348532,
+            0.020447843728604278
+          ],
+          "scalar_calibration": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint_minus_unimodal_ci95": {
+          "raw_joint_minus_raw_video": [
+            -0.13117531266354326,
+            0.048166091457290366
+          ],
+          "raw_joint_minus_raw_text": [
+            -0.200353864078385,
+            -0.09897145968574537
+          ],
+          "projection_joint_minus_projection_video": [
+            0.015450039378476103,
+            0.1901719011696077
+          ],
+          "projection_joint_minus_projection_text": [
+            -0.138778069008591,
+            -0.02332269792911395
+          ]
+        },
+        "unit": "video",
+        "resamples": 1000
+      },
+      "localization": {
+        "seen": {
+          "positive_rows": 709,
+          "diagnostic_hard_threshold": 1.2755473852157593,
+          "raw_R1@0.5": 0.37940761636107195,
+          "raw_R1@0.7": 0.19887165021156558,
+          "hard_R1@0.5": 0.3004231311706629,
+          "hard_R1@0.7": 0.15796897038081806,
+          "raw_correct_positive_false_reject_0.5": 0.20817843866171004,
+          "raw_correct_positive_false_reject_0.7": 0.20567375886524822,
+          "raw_miou": 0.35265739266575996,
+          "hard_miou": 0.2757818563440153,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        },
+        "pseudo": {
+          "positive_rows": 464,
+          "diagnostic_hard_threshold": 1.2755473852157593,
+          "raw_R1@0.5": 0.28663793103448276,
+          "raw_R1@0.7": 0.11206896551724138,
+          "hard_R1@0.5": 0.25646551724137934,
+          "hard_R1@0.7": 0.09482758620689655,
+          "raw_correct_positive_false_reject_0.5": 0.10526315789473684,
+          "raw_correct_positive_false_reject_0.7": 0.15384615384615385,
+          "raw_miou": 0.30139931806239934,
+          "hard_miou": 0.2682455501841142,
+          "scope": "training-side pseudo-unseen or seen only; not real U or positive-only VTG"
+        }
+      }
+    }
+  },
+  "scope": "status snapshot; no new training or model selection; seed 3407 only"
+}

@@ -1,0 +1,228 @@
+{
+  "commit": "bc88348e0e6b7b629a77d884fe66efe8c87b2774",
+  "dirty_paths_before_work": [
+    "docs/PROJECT_HANDOFF.md",
+    "Unseenarc_model/",
+    "docs/correspondence_generalization/",
+    "experiments/",
+    "scripts/audit_witness_training_pairs.py"
+  ],
+  "python": "3.13.5",
+  "torch": "2.10.0+cu128",
+  "numpy": "2.4.2",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "training_exposures": 0,
+  "training_updates": 0,
+  "splits": {
+    "A1": {
+      "train_sha256": "0cd951d33e1429d1cecf4ce0a661fc290dc4997b995abba362f76545bb486a14",
+      "train_rows": 8608,
+      "train_positive": 7108,
+      "train_negative": 1500,
+      "unique_train_videos": 3718,
+      "validation_log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/stage0/A1_validate.log",
+      "missing_assets": {
+        "vid_clip": [],
+        "vid_slowfast": [],
+        "clip_text": []
+      },
+      "baselines": {
+        "moment": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A1/moment/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "c112e65584eccfd997cf96c08f84dd53b8145485af97af0cb61cba4fa5780ec5"
+          ]
+        },
+        "qd": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A1/qd/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "7783a7f219ea8eacd8114eb8542dcec9b3dd9aad176c8e0a5661dbde839ffac8"
+          ]
+        },
+        "flash": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A1/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-2026-09-28-19-04-42/model_best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "73a0861f08216f11c2f335c51194919913d49bcbc41930e251a0568b035cadd3"
+          ]
+        }
+      }
+    },
+    "A2_alt": {
+      "train_sha256": "d00938614ba3e0583dbb32d129804adc8938f5c1f89a66316b4b754d539f71a3",
+      "train_rows": 10323,
+      "train_positive": 8823,
+      "train_negative": 1500,
+      "unique_train_videos": 4275,
+      "validation_log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/stage0/A2_alt_validate.log",
+      "missing_assets": {
+        "vid_clip": [],
+        "vid_slowfast": [],
+        "clip_text": []
+      },
+      "baselines": {
+        "moment": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A2_alt/moment/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "e1f2749f8b5904da4beeb76a6761e374a18cc17510e955fba84a90b55f56f1f2"
+          ]
+        },
+        "qd": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A2_alt/qd/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "50aa3d393800dedc09b34f49debc3ef53999e4f2ac521508c6686fcf67ad56a5"
+          ]
+        },
+        "flash": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A2_alt/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-2026-09-28-22-28-30/model_best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "d1e7cd2db4c81bc4f2be80f63ac3c5f8c90f64afc2db33804f90e38f15691b68"
+          ]
+        }
+      }
+    },
+    "A3": {
+      "train_sha256": "53a1976cad3aedead9019daa3b25967c44f6e7f993b502e4521eb30dff0e6ffe",
+      "train_rows": 10352,
+      "train_positive": 8852,
+      "train_negative": 1500,
+      "unique_train_videos": 4315,
+      "validation_log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/stage0/A3_validate.log",
+      "missing_assets": {
+        "vid_clip": [],
+        "vid_slowfast": [],
+        "clip_text": []
+      },
+      "baselines": {
+        "moment": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A3/moment/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "ce0ae14f36a09f7dde7be7c5bccdec7fc8ec370f0f7d04ca3a61ab38458cecf2"
+          ]
+        },
+        "qd": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A3/qd/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "3fe953b9faf372ec85b0a1f04fa065d826f1d0e4ef2c69614d3ec6a8c1d5e14d"
+          ]
+        },
+        "flash": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/A3/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-2026-09-29-02-38-11/model_best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "4892a5a6d985a9144a6cefe688bb85f18694e2ebc403e449d3d55720b5416fc2"
+          ]
+        }
+      }
+    },
+    "C1": {
+      "train_sha256": "0fa9cc62f1964069e9ec35808533c89845049dc93e0d7ecd16c6eb0576be0638",
+      "train_rows": 10516,
+      "train_positive": 9016,
+      "train_negative": 1500,
+      "unique_train_videos": 4379,
+      "validation_log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/stage0/C1_validate.log",
+      "missing_assets": {
+        "vid_clip": [],
+        "vid_slowfast": [],
+        "clip_text": []
+      },
+      "baselines": {
+        "moment": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C1/moment/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "1aa8edf5aebb577eca6c7a03aed8ab417bf79af08315dec3b6531d457c77d7a4"
+          ]
+        },
+        "qd": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C1/qd/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "f2e1bfc6b67f19219661a8d4a8122cacc9df3199f23607a1a7ed42cc69390520"
+          ]
+        },
+        "flash": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C1/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-2026-09-29-06-51-36/model_best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "67c5da20e7c1789461d266daa0c65e130b6bcb0c2a31bdc543df3944e0ce74f1"
+          ]
+        }
+      }
+    },
+    "C2_alt": {
+      "train_sha256": "bb731690357dbb9af7b0641ec7649ba42b4fe3f3aad9798281cfb482caccbf3e",
+      "train_rows": 10612,
+      "train_positive": 9112,
+      "train_negative": 1500,
+      "unique_train_videos": 4375,
+      "validation_log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/stage0/C2_alt_validate.log",
+      "missing_assets": {
+        "vid_clip": [],
+        "vid_slowfast": [],
+        "clip_text": []
+      },
+      "baselines": {
+        "moment": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C2_alt/moment/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "e74348408eec196d9c866dee7f924ed81053786d607c86ec64754780a4e21db4"
+          ]
+        },
+        "qd": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C2_alt/qd/best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "c420060bddc296b3319b7229fded2f97ecf29a6dfde3621e50c732fdfce0ff42"
+          ]
+        },
+        "flash": {
+          "diagnostics_present": true,
+          "checkpoint_paths": [
+            "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/results/semantic_existence/multi_split_v2/C2_alt/flash/charadesSTA-video_tef-seen_only_seed3407_100ep-2026-09-29-10-52-24/model_best.ckpt"
+          ],
+          "checkpoint_sha256": [
+            "79020f3776bd2d91a1b2e61f4698320e1484e24991e4fe2ac1d01ba7a674445d"
+          ]
+        }
+      }
+    }
+  }
+}

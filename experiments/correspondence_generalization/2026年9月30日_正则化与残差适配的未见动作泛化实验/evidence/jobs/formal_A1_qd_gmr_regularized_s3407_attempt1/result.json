@@ -1,0 +1,54 @@
+{
+  "state": "completed",
+  "args": {
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_regularized_s3407_attempt1",
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "regularized",
+    "seed": 3407,
+    "development": false,
+    "action": "train",
+    "smoke": false
+  },
+  "seen_selection": {
+    "source": "seen validation only",
+    "score_name": "MR-full-mAP",
+    "score": 26.14,
+    "epoch": 18
+  },
+  "wall_seconds": 5419.578007556032,
+  "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_regularized_s3407_attempt1",
+  "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+  "seen": {
+    "auroc": 0.8562550857022864,
+    "threshold": 0.7036,
+    "positive_frr": 0.22757697456492637,
+    "negative_rr": 0.8176470588235294,
+    "same_video_all_pairs_pairacc": 0.7902967121090617,
+    "same_video_pair_count": 1247,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.3253012048192771,
+      "R1@0.7": 0.19143239625167335
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.2744310575635877,
+      "R1@0.7": 0.16331994645247658
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.15637860082304528,
+      "0.7": 0.14685314685314685
+    },
+    "official_gated": {
+      "R1@0.5": 0.3360107095046854,
+      "R1@0.7": 0.18875502008032127
+    }
+  },
+  "forward_counts": {
+    "training": 53800,
+    "inference": 7900
+  },
+  "gpu_peak_bytes": 1258040320,
+  "accurate_total_flops": "unmeasured; do not infer from one batch"
+}

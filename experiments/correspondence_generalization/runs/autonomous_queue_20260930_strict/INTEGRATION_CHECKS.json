@@ -1,0 +1,128 @@
+{
+  "state": "passed",
+  "single_seed": 3407,
+  "task_counts_without_with_candidate": [
+    75,
+    100
+  ],
+  "paired_initialization_and_sample_order": true,
+  "actual_smoke_results": {
+    "queue_strict_verified_qd_gmr_baseline": {
+      "state": "completed_smoke",
+      "args": {
+        "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_qd_gmr_baseline",
+        "backbone": "qd",
+        "split": "A1",
+        "track": "gmr",
+        "method": "baseline",
+        "seed": 3407,
+        "development": true,
+        "action": "train",
+        "smoke": true
+      },
+      "seen_selection": {
+        "source": "seen validation only",
+        "score_name": "MR-full-mAP",
+        "score": 13.22,
+        "epoch": 0
+      },
+      "wall_seconds": 5.64397221012041,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_qd_gmr_baseline",
+      "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+      "forward_counts": {
+        "training": 3,
+        "inference": 1
+      },
+      "gpu_peak_bytes": 438506496,
+      "accurate_total_flops": "unmeasured; do not infer from one batch"
+    },
+    "queue_strict_verified_qd_gmr_regularized": {
+      "state": "completed_smoke",
+      "args": {
+        "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_qd_gmr_regularized",
+        "backbone": "qd",
+        "split": "A1",
+        "track": "gmr",
+        "method": "regularized",
+        "seed": 3407,
+        "development": true,
+        "action": "train",
+        "smoke": true
+      },
+      "seen_selection": {
+        "source": "seen validation only",
+        "score_name": "MR-full-mAP",
+        "score": 12.8,
+        "epoch": 0
+      },
+      "wall_seconds": 5.571495607029647,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_qd_gmr_regularized",
+      "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+      "forward_counts": {
+        "training": 3,
+        "inference": 1
+      },
+      "gpu_peak_bytes": 438506496,
+      "accurate_total_flops": "unmeasured; do not infer from one batch"
+    },
+    "queue_strict_verified_moment_vtg_adapter": {
+      "state": "completed_smoke",
+      "args": {
+        "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_moment_vtg_adapter",
+        "backbone": "moment",
+        "split": "A1",
+        "track": "vtg",
+        "method": "adapter",
+        "seed": 3407,
+        "development": true,
+        "action": "train",
+        "smoke": true
+      },
+      "seen_selection": {
+        "source": "seen validation only",
+        "score_name": "MR-full-mAP",
+        "score": 6.88,
+        "epoch": 0
+      },
+      "wall_seconds": 5.050915021914989,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_moment_vtg_adapter",
+      "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+      "forward_counts": {
+        "training": 3,
+        "inference": 1
+      },
+      "gpu_peak_bytes": 220856832,
+      "accurate_total_flops": "unmeasured; do not infer from one batch"
+    },
+    "queue_strict_verified_flash_gmr_window": {
+      "state": "completed_smoke",
+      "args": {
+        "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_flash_gmr_window",
+        "backbone": "flash",
+        "split": "A1",
+        "track": "gmr",
+        "method": "window",
+        "seed": 3407,
+        "development": true,
+        "action": "train",
+        "smoke": true
+      },
+      "seen_selection": {
+        "source": "seen validation only",
+        "score_name": "mean R1@.5/.7",
+        "score": 3.125,
+        "epoch": 0
+      },
+      "wall_seconds": 22.211739264894277,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/queue_strict_verified_flash_gmr_window",
+      "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+      "forward_counts": {
+        "training": 3,
+        "inference": 16
+      },
+      "gpu_peak_bytes": 310871040,
+      "accurate_total_flops": "unmeasured; do not infer from one batch"
+    }
+  },
+  "true_U_accessed": false
+}

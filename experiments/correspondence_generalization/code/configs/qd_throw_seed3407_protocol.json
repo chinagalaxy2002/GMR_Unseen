@@ -1,0 +1,52 @@
+{
+  "purpose": "training-internal mechanism diagnostic; not official full-S experiment",
+  "seed": 3407,
+  "epochs": 100,
+  "batch_size": 16,
+  "workers": 0,
+  "expected_updates": 47300,
+  "expected_row_exposures": 756700,
+  "early_stop": false,
+  "initialization": "from scratch; no old checkpoint or teacher",
+  "selection": "original seen-only MR-full-mAP; original fallback rule",
+  "official_gate": {
+    "threshold": 0.5,
+    "hard": false
+  },
+  "stages": [
+    0,
+    1,
+    10,
+    30,
+    100
+  ],
+  "probe": {
+    "dimensions": 256,
+    "fit_rows": "all 7567 development training rows",
+    "epochs": 100,
+    "batch_size": 256,
+    "optimizer": "AdamW lr=0.001 wd=0.0001",
+    "seed": 3407,
+    "views": [
+      "raw_joint",
+      "raw_video",
+      "raw_text",
+      "projection_joint",
+      "projection_video",
+      "projection_text",
+      "decoder_max",
+      "decoder_mean"
+    ],
+    "selection": "final fixed-budget probe; no pseudo-U checkpoint/threshold selection",
+    "standardization": "fit only train; deterministic signed random projection to 256 for raw inputs",
+    "calibration": "train fitted scalar affine logistic; seen threshold only",
+    "bootstrap": "1000 paired resamples of videos seed=3407"
+  },
+  "mechanism_gate": "candidate hypothesis support requires >=0.03 paired pseudo-U AUROC gain over original head, paired video 95% CI lower bound >0, seen AUROC loss <=0.01; joint readout must beat both unimodal controls by >=0.03 with paired CI lower bound >0. Failure/inconclusive forbids claiming representation bottleneck. A readout gain alone is associative, not causal.",
+  "limitations": [
+    "single held action; training video distribution shifts",
+    "workers=0 differs from historical config; all future paired comparisons must share it",
+    "no true U access in development",
+    "flops not yet measured; forward counts/wall/memory recorded"
+  ]
+}

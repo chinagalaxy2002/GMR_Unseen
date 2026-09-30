@@ -1,0 +1,43 @@
+{
+  "unit": "video",
+  "paired": true,
+  "resamples": 1000,
+  "seed": 3407,
+  "absolute_ci95": {
+    "seen_raw_R1@0.5": [
+      0.36830138714332455,
+      0.41783623120949936
+    ],
+    "seen_raw_R1@0.7": [
+      0.20999914911586837,
+      0.2541658684422629
+    ],
+    "unseen_raw_R1@0.5": [
+      0.14718453188602443,
+      0.2237106619641888
+    ],
+    "unseen_raw_R1@0.7": [
+      0.05416385135135136,
+      0.10613714462562965
+    ]
+  },
+  "gain_over_same_seed_baseline_ci95": {
+    "seen_raw_R1@0.5": [
+      -0.019393904498326283,
+      0.03466225377008827
+    ],
+    "seen_raw_R1@0.7": [
+      -0.006110913674851034,
+      0.043402432422034995
+    ],
+    "unseen_raw_R1@0.5": [
+      -0.07614371764237354,
+      0.024124575551782674
+    ],
+    "unseen_raw_R1@0.7": [
+      -0.03348214285714285,
+      0.034495963178148334
+    ]
+  },
+  "limitations": "All same-video pair metric differs from official matched_u_pairs PairAcc; both labeled separately. Seed variation is separate."
+}

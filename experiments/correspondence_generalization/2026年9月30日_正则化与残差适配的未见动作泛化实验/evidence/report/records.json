@@ -1,0 +1,758 @@
+[
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "baseline",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_baseline_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 39.06,
+          "MR-full-R1@0.7": 20.8,
+          "MR-full-mAP": 25.9,
+          "MR-full-mAP@0.5": 52.48,
+          "MR-full-mAP@0.75": 21.58
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 52.48,
+            "0.55": 46.62,
+            "0.6": 40.77,
+            "0.65": 33.87,
+            "0.7": 27.75,
+            "0.75": 21.58,
+            "0.8": 16.18,
+            "0.85": 11.12,
+            "0.9": 6.13,
+            "0.95": 2.54,
+            "average": 25.9
+          },
+          "MR-R1": {
+            "0.5": 39.06,
+            "0.55": 34.63,
+            "0.6": 30.23,
+            "0.65": 25.16,
+            "0.7": 20.8,
+            "0.75": 16.14,
+            "0.8": 12.19,
+            "0.85": 8.39,
+            "0.9": 4.66,
+            "0.95": 1.9
+          }
+        }
+      },
+      "test_data_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "0ca9871abf500aa22117745e3cc8ef447e37693a02ac2d73589ed8a9d987b5be",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 33.57505562668666,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_baseline_s3407_attempt1/test",
+      "quadrants": {
+        "seen": {
+          "auroc": 0.796574511308328,
+          "threshold": 0.9857,
+          "positive_frr": 0.18440036068530208,
+          "negative_rr": 0.6652046783625731,
+          "same_video_all_pairs_pairacc": 0.7794859476339179,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.4147880973850316,
+            "R1@0.7": 0.23624887285843102
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.3552750225428314,
+            "R1@0.7": 0.20108205590622183
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.14347826086956522,
+            "0.7": 0.14885496183206107
+          },
+          "official_gated": {
+            "R1@0.5": 0.4174932371505861,
+            "R1@0.7": 0.23309287646528404
+          }
+        },
+        "unseen": {
+          "auroc": 0.5309243083782563,
+          "threshold": 0.9857,
+          "positive_frr": 0.15053763440860216,
+          "negative_rr": 0.17068811438784628,
+          "same_video_all_pairs_pairacc": 0.6031746031746031,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.26021505376344084,
+            "R1@0.7": 0.09032258064516129
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.210752688172043,
+            "R1@0.7": 0.07956989247311828
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.19008264462809918,
+            "0.7": 0.11904761904761904
+          },
+          "official_gated": {
+            "R1@0.5": 0.2623655913978495,
+            "R1@0.7": 0.08817204301075268
+          }
+        }
+      },
+      "auroc_gap": 0.2656502029300717,
+      "official_gate_threshold": 0.5,
+      "diagnostic_threshold_source": "seen validation Youden J; frozen before test",
+      "monotone_calibration_control": {
+        "seen": {
+          "auroc": 0.796574511308328,
+          "threshold": 0.7214571327775205,
+          "positive_frr": 0.18440036068530208,
+          "negative_rr": 0.6652046783625731,
+          "same_video_all_pairs_pairacc": 0.7794859476339179,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.4147880973850316,
+            "R1@0.7": 0.23624887285843102
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.3552750225428314,
+            "R1@0.7": 0.20108205590622183
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.14347826086956522,
+            "0.7": 0.14885496183206107
+          },
+          "official_gated": {
+            "R1@0.5": 0.4174932371505861,
+            "R1@0.7": 0.23309287646528404
+          }
+        },
+        "unseen": {
+          "auroc": 0.5309243083782563,
+          "threshold": 0.7214571327775205,
+          "positive_frr": 0.15053763440860216,
+          "negative_rr": 0.17068811438784628,
+          "same_video_all_pairs_pairacc": 0.6031746031746031,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.26021505376344084,
+            "R1@0.7": 0.09032258064516129
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.210752688172043,
+            "R1@0.7": 0.07956989247311828
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.19008264462809918,
+            "0.7": 0.11904761904761904
+          },
+          "official_gated": {
+            "R1@0.5": 0.2623655913978495,
+            "R1@0.7": 0.08817204301075268
+          }
+        }
+      },
+      "monotone_calibration_fit": {
+        "positive_slope": 0.43689855809981865,
+        "bias": -0.8977310214439744,
+        "updates": 100,
+        "seen_rows": 1257,
+        "seen_row_exposures": 125700,
+        "per_seen_row_exposures": 100,
+        "training_row_exposures": 0,
+        "selection_source": "seen validation only",
+        "fit_forwards": 100,
+        "loss_final": 0.7169124390846636,
+        "parameters": 2,
+        "lr": 0.01,
+        "seed": "deterministic zero initialization; no random draws"
+      },
+      "matched_u_pairacc": 0.5817307692307693,
+      "matched_u_pairs_sha256": "4cb6f4985e93a307fa4ca0c79f6c1eb895783b6e522e00e41381a14c2174d470",
+      "inference_forwards": 324,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74277376
+    }
+  },
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "regularized",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_regularized_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 36.3,
+          "MR-full-R1@0.7": 19.23,
+          "MR-full-mAP": 25.4,
+          "MR-full-mAP@0.5": 51.64,
+          "MR-full-mAP@0.75": 21.65
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 51.64,
+            "0.55": 45.74,
+            "0.6": 40.2,
+            "0.65": 33.24,
+            "0.7": 27.7,
+            "0.75": 21.65,
+            "0.8": 15.45,
+            "0.85": 10.54,
+            "0.9": 5.46,
+            "0.95": 2.37,
+            "average": 25.4
+          },
+          "MR-R1": {
+            "0.5": 36.3,
+            "0.55": 31.68,
+            "0.6": 27.99,
+            "0.65": 22.81,
+            "0.7": 19.23,
+            "0.75": 15.21,
+            "0.8": 10.88,
+            "0.85": 7.57,
+            "0.9": 4.14,
+            "0.95": 1.94
+          }
+        }
+      },
+      "test_data_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "acb842c71906b3207d76693b7dde7edd5179a493f73756f637a1081c0899b116",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 20.166550452820957,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_regularized_s3407_attempt1/test",
+      "quadrants": {
+        "seen": {
+          "auroc": 0.831577859775679,
+          "threshold": 0.7036,
+          "positive_frr": 0.2822362488728584,
+          "negative_rr": 0.7989766081871345,
+          "same_video_all_pairs_pairacc": 0.8037472976219073,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.39359783588818753,
+            "R1@0.7": 0.21235347159603246
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.2939585211902615,
+            "R1@0.7": 0.1636609558160505
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.2531500572737686,
+            "0.7": 0.22929936305732485
+          },
+          "official_gated": {
+            "R1@0.5": 0.3954012623985573,
+            "R1@0.7": 0.21280432822362488
+          }
+        },
+        "unseen": {
+          "auroc": 0.49540776615065296,
+          "threshold": 0.7036,
+          "positive_frr": 0.12688172043010754,
+          "negative_rr": 0.14655942806076855,
+          "same_video_all_pairs_pairacc": 0.605006105006105,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.210752688172043,
+            "R1@0.7": 0.08172043010752689
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.1827956989247312,
+            "R1@0.7": 0.06881720430107527
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.1326530612244898,
+            "0.7": 0.15789473684210525
+          },
+          "official_gated": {
+            "R1@0.5": 0.2086021505376344,
+            "R1@0.7": 0.09462365591397849
+          }
+        }
+      },
+      "auroc_gap": 0.33617009362502603,
+      "official_gate_threshold": 0.5,
+      "diagnostic_threshold_source": "seen validation Youden J; frozen before test",
+      "monotone_calibration_control": {
+        "seen": {
+          "auroc": 0.831577859775679,
+          "threshold": 0.5376335235900033,
+          "positive_frr": 0.2822362488728584,
+          "negative_rr": 0.7989766081871345,
+          "same_video_all_pairs_pairacc": 0.8037472976219073,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.39359783588818753,
+            "R1@0.7": 0.21235347159603246
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.2939585211902615,
+            "R1@0.7": 0.1636609558160505
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.2531500572737686,
+            "0.7": 0.22929936305732485
+          },
+          "official_gated": {
+            "R1@0.5": 0.3954012623985573,
+            "R1@0.7": 0.21280432822362488
+          }
+        },
+        "unseen": {
+          "auroc": 0.49540776615065296,
+          "threshold": 0.5376335235900033,
+          "positive_frr": 0.12688172043010754,
+          "negative_rr": 0.14655942806076855,
+          "same_video_all_pairs_pairacc": 0.605006105006105,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.210752688172043,
+            "R1@0.7": 0.08172043010752689
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.1827956989247312,
+            "R1@0.7": 0.06881720430107527
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.1326530612244898,
+            "0.7": 0.15789473684210525
+          },
+          "official_gated": {
+            "R1@0.5": 0.2086021505376344,
+            "R1@0.7": 0.09462365591397849
+          }
+        }
+      },
+      "monotone_calibration_fit": {
+        "positive_slope": 0.6499683820697201,
+        "bias": -0.4110784144160257,
+        "updates": 100,
+        "seen_rows": 1257,
+        "seen_row_exposures": 125700,
+        "per_seen_row_exposures": 100,
+        "training_row_exposures": 0,
+        "selection_source": "seen validation only",
+        "fit_forwards": 100,
+        "loss_final": 0.4560788017495632,
+        "parameters": 2,
+        "lr": 0.01,
+        "seed": "deterministic zero initialization; no random draws"
+      },
+      "matched_u_pairacc": 0.6442307692307693,
+      "matched_u_pairs_sha256": "4cb6f4985e93a307fa4ca0c79f6c1eb895783b6e522e00e41381a14c2174d470",
+      "inference_forwards": 324,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74277376
+    }
+  },
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "adapter",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_adapter_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 36.94,
+          "MR-full-R1@0.7": 19.23,
+          "MR-full-mAP": 24.37,
+          "MR-full-mAP@0.5": 50.65,
+          "MR-full-mAP@0.75": 20.4
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 50.65,
+            "0.55": 44.53,
+            "0.6": 38.23,
+            "0.65": 31.58,
+            "0.7": 26.22,
+            "0.75": 20.4,
+            "0.8": 14.51,
+            "0.85": 10.05,
+            "0.9": 5.46,
+            "0.95": 2.1,
+            "average": 24.37
+          },
+          "MR-R1": {
+            "0.5": 36.94,
+            "0.55": 32.35,
+            "0.6": 27.8,
+            "0.65": 22.81,
+            "0.7": 19.23,
+            "0.75": 15.17,
+            "0.8": 10.96,
+            "0.85": 7.64,
+            "0.9": 4.29,
+            "0.95": 1.68
+          }
+        }
+      },
+      "test_data_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "97854c1c3a93082ea1c6f99988d7ddcb2d6bedc9fa2415aeae00f0c2ec6997e9",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 20.146214444190264,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_gmr_adapter_s3407_attempt1/test",
+      "quadrants": {
+        "seen": {
+          "auroc": 0.793304152890492,
+          "threshold": 0.9859,
+          "positive_frr": 0.24797114517583407,
+          "negative_rr": 0.7054093567251462,
+          "same_video_all_pairs_pairacc": 0.7886139803026664,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.3958521190261497,
+            "R1@0.7": 0.2146077547339946
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.3079350766456267,
+            "R1@0.7": 0.1654643823264202
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.22209567198177677,
+            "0.7": 0.22899159663865545
+          },
+          "official_gated": {
+            "R1@0.5": 0.40171325518485124,
+            "R1@0.7": 0.2146077547339946
+          }
+        },
+        "unseen": {
+          "auroc": 0.4771464537269259,
+          "threshold": 0.9859,
+          "positive_frr": 0.24301075268817204,
+          "negative_rr": 0.2126899016979446,
+          "same_video_all_pairs_pairacc": 0.5708180708180708,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.2129032258064516,
+            "R1@0.7": 0.08817204301075268
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.15053763440860216,
+            "R1@0.7": 0.06451612903225806
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.29292929292929293,
+            "0.7": 0.2682926829268293
+          },
+          "official_gated": {
+            "R1@0.5": 0.21505376344086022,
+            "R1@0.7": 0.08602150537634409
+          }
+        }
+      },
+      "auroc_gap": 0.3161576991635662,
+      "official_gate_threshold": 0.5,
+      "diagnostic_threshold_source": "seen validation Youden J; frozen before test",
+      "monotone_calibration_control": {
+        "seen": {
+          "auroc": 0.793304152890492,
+          "threshold": 0.7431884991416765,
+          "positive_frr": 0.24797114517583407,
+          "negative_rr": 0.7054093567251462,
+          "same_video_all_pairs_pairacc": 0.7886139803026664,
+          "same_video_pair_count": 4163,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.3958521190261497,
+            "R1@0.7": 0.2146077547339946
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.3079350766456267,
+            "R1@0.7": 0.1654643823264202
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.22209567198177677,
+            "0.7": 0.22899159663865545
+          },
+          "official_gated": {
+            "R1@0.5": 0.40171325518485124,
+            "R1@0.7": 0.2146077547339946
+          }
+        },
+        "unseen": {
+          "auroc": 0.4771464537269259,
+          "threshold": 0.7431884991416765,
+          "positive_frr": 0.24301075268817204,
+          "negative_rr": 0.2126899016979446,
+          "same_video_all_pairs_pairacc": 0.5708180708180708,
+          "same_video_pair_count": 819,
+          "ties": 0.5,
+          "raw": {
+            "R1@0.5": 0.2129032258064516,
+            "R1@0.7": 0.08817204301075268
+          },
+          "diagnostic_hard": {
+            "R1@0.5": 0.15053763440860216,
+            "R1@0.7": 0.06451612903225806
+          },
+          "raw_correct_positive_frr": {
+            "0.5": 0.29292929292929293,
+            "0.7": 0.2682926829268293
+          },
+          "official_gated": {
+            "R1@0.5": 0.21505376344086022,
+            "R1@0.7": 0.08602150537634409
+          }
+        }
+      },
+      "monotone_calibration_fit": {
+        "positive_slope": 0.44063049816424915,
+        "bias": -0.8089178670322289,
+        "updates": 100,
+        "seen_rows": 1257,
+        "seen_row_exposures": 125700,
+        "per_seen_row_exposures": 100,
+        "training_row_exposures": 0,
+        "selection_source": "seen validation only",
+        "fit_forwards": 100,
+        "loss_final": 0.6779293869928038,
+        "parameters": 2,
+        "lr": 0.01,
+        "seed": "deterministic zero initialization; no random draws"
+      },
+      "matched_u_pairacc": 0.5865384615384616,
+      "matched_u_pairs_sha256": "4cb6f4985e93a307fa4ca0c79f6c1eb895783b6e522e00e41381a14c2174d470",
+      "inference_forwards": 324,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74825216
+    }
+  },
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "vtg",
+    "method": "baseline",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_baseline_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 35.59,
+          "MR-full-R1@0.7": 19.01,
+          "MR-full-mAP": 23.42,
+          "MR-full-mAP@0.5": 48.07,
+          "MR-full-mAP@0.75": 20.15
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 48.07,
+            "0.55": 42.29,
+            "0.6": 36.61,
+            "0.65": 30.62,
+            "0.7": 25.3,
+            "0.75": 20.15,
+            "0.8": 14.44,
+            "0.85": 9.61,
+            "0.9": 4.86,
+            "0.95": 2.26,
+            "average": 23.42
+          },
+          "MR-R1": {
+            "0.5": 35.59,
+            "0.55": 31.2,
+            "0.6": 27.02,
+            "0.65": 22.47,
+            "0.7": 19.01,
+            "0.75": 15.21,
+            "0.8": 10.7,
+            "0.85": 7.31,
+            "0.9": 3.95,
+            "0.95": 2.05
+          }
+        }
+      },
+      "test_data_sha256": "6bf19a14733bbc304b172bb4609809366d2db3df2b3dd993fe02163b94c79008",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "510bcc3c2496fe7ad01dff10a84d7ebdf978dc33ac340a735aa150d1f0974c83",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 23.40056019835174,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_baseline_s3407_attempt1/test",
+      "positive_vtg": {
+        "S+": {
+          "n": 2218,
+          "R1@0.5": 0.3872858431018936,
+          "R1@0.7": 0.21235347159603246,
+          "miou": 0.3635225427887952
+        },
+        "U+": {
+          "n": 465,
+          "R1@0.5": 0.2064516129032258,
+          "R1@0.7": 0.08387096774193549,
+          "miou": 0.2310217002376771
+        }
+      },
+      "inference_forwards": 168,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74011648
+    }
+  },
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "vtg",
+    "method": "regularized",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_regularized_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 36.15,
+          "MR-full-R1@0.7": 20.31,
+          "MR-full-mAP": 25.95,
+          "MR-full-mAP@0.5": 52.03,
+          "MR-full-mAP@0.75": 22.27
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 52.03,
+            "0.55": 45.97,
+            "0.6": 40.68,
+            "0.65": 34.52,
+            "0.7": 28.76,
+            "0.75": 22.27,
+            "0.8": 15.62,
+            "0.85": 10.65,
+            "0.9": 6.13,
+            "0.95": 2.88,
+            "average": 25.95
+          },
+          "MR-R1": {
+            "0.5": 36.15,
+            "0.55": 31.64,
+            "0.6": 28.14,
+            "0.65": 24.0,
+            "0.7": 20.31,
+            "0.75": 16.03,
+            "0.8": 11.41,
+            "0.85": 8.01,
+            "0.9": 4.92,
+            "0.95": 2.35
+          }
+        }
+      },
+      "test_data_sha256": "6bf19a14733bbc304b172bb4609809366d2db3df2b3dd993fe02163b94c79008",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "b647227ab90c077bd4481346eba10cf7da58d42ef9c62f0f25062a8aa9f35047",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 27.707756564952433,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_regularized_s3407_attempt1/test",
+      "positive_vtg": {
+        "S+": {
+          "n": 2218,
+          "R1@0.5": 0.3981064021641118,
+          "R1@0.7": 0.22993688007213706,
+          "miou": 0.35185082867273976
+        },
+        "U+": {
+          "n": 465,
+          "R1@0.5": 0.1870967741935484,
+          "R1@0.7": 0.07526881720430108,
+          "miou": 0.21190390463524889
+        }
+      },
+      "inference_forwards": 168,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74011648
+    }
+  },
+  {
+    "backbone": "qd",
+    "split": "A1",
+    "track": "vtg",
+    "method": "adapter",
+    "seed": 3407,
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_adapter_s3407_attempt1",
+    "report": {
+      "official_metrics": {
+        "brief": {
+          "MR-full-R1@0.5": 40.48,
+          "MR-full-R1@0.7": 22.21,
+          "MR-full-mAP": 27.57,
+          "MR-full-mAP@0.5": 54.56,
+          "MR-full-mAP@0.75": 24.16
+        },
+        "full": {
+          "MR-mAP": {
+            "0.5": 54.56,
+            "0.55": 48.36,
+            "0.6": 42.34,
+            "0.65": 35.95,
+            "0.7": 30.38,
+            "0.75": 24.16,
+            "0.8": 18.15,
+            "0.85": 12.34,
+            "0.9": 6.29,
+            "0.95": 3.15,
+            "average": 27.57
+          },
+          "MR-R1": {
+            "0.5": 40.48,
+            "0.55": 35.18,
+            "0.6": 30.79,
+            "0.65": 26.2,
+            "0.7": 22.21,
+            "0.75": 17.59,
+            "0.8": 13.31,
+            "0.85": 9.13,
+            "0.9": 4.77,
+            "0.95": 2.57
+          }
+        }
+      },
+      "test_data_sha256": "6bf19a14733bbc304b172bb4609809366d2db3df2b3dd993fe02163b94c79008",
+      "source_test_sha256": "db7ceabde112d1ae279dc739d76db19e17fcd1141a31ea67a7ca23a9eaacc2e0",
+      "checkpoint_sha256": "230e340b00428afdddc3fa58197ea1f27e3eae5951e385f083f1fae1c8ba7650",
+      "seed": 3407,
+      "code_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+      "wall_seconds": 23.58263267017901,
+      "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/formal_A1_qd_vtg_adapter_s3407_attempt1/test",
+      "positive_vtg": {
+        "S+": {
+          "n": 2218,
+          "R1@0.5": 0.43462578899909826,
+          "R1@0.7": 0.24571686203787196,
+          "miou": 0.4051317832956659
+        },
+        "U+": {
+          "n": 465,
+          "R1@0.5": 0.2623655913978495,
+          "R1@0.7": 0.10967741935483871,
+          "miou": 0.2782102797782842
+        }
+      },
+      "inference_forwards": 168,
+      "training_updates": 0,
+      "training_row_exposures": 0,
+      "gpu_peak_bytes": 74559488
+    }
+  }
+]

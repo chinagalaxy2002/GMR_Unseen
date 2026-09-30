@@ -1,0 +1,70 @@
+{
+  "protocol_version": "20260930-autonomous-strict-v2",
+  "initial_diagnostic_run": "qd_throw_strict_diagnostic_20260930",
+  "splits": [
+    "A1"
+  ],
+  "gmr_backbones": [
+    "qd"
+  ],
+  "positive_vtg_backbones": [
+    "qd"
+  ],
+  "seeds": [
+    3407
+  ],
+  "epochs": 100,
+  "early_stop": false,
+  "development_controls": [
+    "baseline",
+    "regularized",
+    "adapter"
+  ],
+  "conditional_candidate": null,
+  "candidate_description": "Ordinary learned projection adapter plus S+ temporal-window mass loss, lambda=0.1. Existing selected windows only; outside frames are not newly labeled absent. Not claimed novel.",
+  "regularized_config": {
+    "weight_decay": 0.001,
+    "dropout": 0.2,
+    "input_dropout": "historical unchanged"
+  },
+  "adapter_config": {
+    "dimension": 256,
+    "bottleneck": 64,
+    "residual_up_zero_initialized": true
+  },
+  "diagnostic_gate": "On both final-epoch and seen-selected best diagnostic checkpoints, at least one joint probe passes the preregistered readout gain and joint-over-unimodal gates. This is association support only, not causal proof.",
+  "candidate_gate_failure": "Skip unsupported window candidate, finish simple controls and report negative or limited mechanism evidence.",
+  "development_selection": "Choose strongest simple control using pseudo dev AUROC among controls with seen AUROC loss <=0.01. Formal candidate enabled only with >=0.03 pseudo AUROC gain, seen loss <=0.01, and pseudo FRR/RR degradation <=0.03 relative to strongest simple control. No true U data or predictions read before selection.",
+  "formal_matrix": "Only A1/QD baseline, regularized, adapter on GMR and positive-only VTG: exactly six formal training tasks, seed 3407. Other tasks cancelled by explicit user instruction.",
+  "checkpoint_selection": {
+    "qd": "seen MR-full-mAP",
+    "moment": "seen MR-full-mAP",
+    "flash": "seen mean R1 IoU 0.5/0.7"
+  },
+  "batch_rule": "Keep existing training sampler; no paired initialization, batch-order, update or exposure budget verification. Existing records retained.",
+  "historical_flash_scheduler": "Preserve original StepLR.step(last batch loss) behavior; report explicitly rather than silently repairing it.",
+  "calibration_control": "Monotone sigmoid affine fit on seen validation only, 100 full-batch Adam updates, positive slope enforced; recorded separately as validation-fit exposures. Does not alter original official gate.",
+  "test_selection": "All model family/hyperparameter/seed/threshold selection frozen before any formal true U test prediction. Test outputs never feed scheduling or selection.",
+  "teacher_controls": "Skipped: CLIP projection provenance and same-information budget gate unverified; no new teacher information.",
+  "bootstrap": {
+    "unit": "video",
+    "paired": true,
+    "resamples": 1000,
+    "seed": 3407
+  },
+  "failure_policy": "One automatic retry in a new attempt directory; preserve failures; continue independent tasks. No model/evaluation result marked successful on missing artifacts or failed budget audit.",
+  "devices": [
+    0,
+    1
+  ],
+  "external_paths": "read-only",
+  "outputs": "experiment-local runs/autonomous_queue_20260930_strict/",
+  "single_seed_constraint": "User explicitly disabled all multi-seed runs; only 3407 is authorized.",
+  "development_view": "pseudo_unseen_a1_throw_strict",
+  "output_name": "autonomous_queue_20260930_strict",
+  "semantic_repair": "Extended throw/toss/hurl/fling/lob audit found 5 lexical queries (3 throw inflections and 2 toss inflections). Exclude all 5 extra videos and their 8 original rows. Strict dev train=7559, pseudo dev=570, seen val=1185. No added samples/windows/labels/teacher; official train unchanged.",
+  "budget_audit_enabled": false,
+  "concurrency_per_gpu": 2,
+  "scheduler": "code/six_task_queue.py",
+  "user_scope_override": "2026-09-30: only six tasks; cancel all others; no equal-budget audit; two concurrent training tasks per GPU."
+}

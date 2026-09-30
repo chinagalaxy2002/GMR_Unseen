@@ -371,3 +371,9 @@ The repository's [`LICENSE`](LICENSE) applies to its software; third-party datas
 可直接读取 [`test_subgroups/views/`](data/release/semantic_existence_v1/test_subgroups/views/) 中的 JSONL 子集；[`counts.csv`](data/release/semantic_existence_v1/test_subgroups/counts.csv) 给出各组数量，[`metrics.csv`](data/release/semantic_existence_v1/test_subgroups/metrics.csv) 给出 Moment-DETR、QD-DETR、FlashVTG 在 strict GMR、semantic-seen reference 和 localization-only 设置下的分组指标。指标定义及空值说明见[子集说明](data/release/semantic_existence_v1/test_subgroups/README.md)。
 
 535 个 matched-U pair 全部属于 `unseen_action`。按**正例 query 的动作**分组时，`open` 有 352 对，`close` 有 183 对；各模型的 PairAcc 见 [`matched_pair_metrics.csv`](data/release/semantic_existence_v1/test_subgroups/matched_pair_metrics.csv)。`unseen_composition` 没有 matched pair，故没有该组的 PairAcc。`dress|front` 在最终 test 中为零条；部分其他 held-out pair 缺少 U− 或样本很少，不能对这些 pair 的 AUROC 作稳定比较。
+
+## 2026-09-30：未见动作的定位与存在判断收益反转
+
+同一残差适配在正例VTG将未见R1@0.5从20.65%提高到26.24%，但在GMR中raw定位从26.02%下降到21.29%，AUROC从0.5309下降到0.4771。普通正则也未实现共同改善。机制尚未确定；下一阶段检查视觉利用、分数可比性和监督关系。
+
+[实验介绍、结果、日志与复现入口](experiments/correspondence_generalization/2026年9月30日_正则化与残差适配的未见动作泛化实验/INTRODUCTION.md)。六组已完成，下一阶段仅制定计划。
