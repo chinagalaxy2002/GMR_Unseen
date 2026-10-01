@@ -377,3 +377,9 @@ The repository's [`LICENSE`](LICENSE) applies to its software; third-party datas
 同一残差适配在正例VTG将未见R1@0.5从20.65%提高到26.24%，但在GMR中raw定位从26.02%下降到21.29%，AUROC从0.5309下降到0.4771。普通正则也未实现共同改善。机制尚未确定；下一阶段检查视觉利用、分数可比性和监督关系。
 
 [实验介绍、结果、日志与复现入口](experiments/correspondence_generalization/2026年9月30日_正则化与残差适配的未见动作泛化实验/INTRODUCTION.md)。六组已完成，下一阶段仅制定计划。
+
+## 2026-10-01：存在与定位共同泛化的全部机制诊断
+
+三族训练侧诊断、候选排序/几何、支持桥接、冻结时序表示及匹配容量读出已完成。候选一致性未支持共同作用路径；给定GT的局部证据与无GT的跨查询绝对支持仍有缺口，未启动新全模型训练。
+
+[完整实验记录、全部指标、冻结协议、逐轮账本、失败记录与源码](experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/EXPERIMENT_RECORD.md)。

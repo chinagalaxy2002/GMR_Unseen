@@ -1,0 +1,43 @@
+{
+  "seed": 3407,
+  "family": "sit",
+  "actions": [
+    "sit"
+  ],
+  "lexical_pattern": "\\b(?:sit|sits|sitting|sat|seat|seats|seated|seating)\\b",
+  "excluded_video_count": 465,
+  "source_train_sha256": "0cd951d33e1429d1cecf4ce0a661fc290dc4997b995abba362f76545bb486a14",
+  "source_seen_sha256": "da227548ea5eb9f35b54e785cb6158a3b739cd88e76d6cd1d713e211e9f7e7a4",
+  "derived": {
+    "train.jsonl": {
+      "sha256": "c5961e670d9fe9155cba6c98935b972de05f5ca54c86be908cb8ea3918377f7b",
+      "rows": 6978,
+      "labels": {
+        "1": 5920,
+        "0": 1058
+      },
+      "videos": 3253
+    },
+    "pseudo_unseen_dev.jsonl": {
+      "sha256": "f1ee87f31d4e0257a2e3eb0d794b1ab55aa8024c51aa2967508d15d35d95b43c",
+      "rows": 976,
+      "labels": {
+        "1": 625,
+        "0": 351
+      },
+      "videos": 452
+    },
+    "val_seen.jsonl": {
+      "sha256": "7af69ae2bdca9d5b9ce9367db036f9ce308f537727882cb616e586ed3d0837d5",
+      "rows": 1065,
+      "labels": {
+        "1": 676,
+        "0": 389
+      },
+      "videos": 370
+    }
+  },
+  "isolation": "annotated primary action and lexical family, not complete conceptual isolation",
+  "original_rows_unchanged": true,
+  "train_dev_video_overlap": 0
+}

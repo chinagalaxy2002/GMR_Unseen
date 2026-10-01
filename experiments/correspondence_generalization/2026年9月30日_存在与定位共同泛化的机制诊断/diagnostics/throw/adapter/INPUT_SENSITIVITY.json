@@ -1,0 +1,141 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "rows": 570,
+  "videos": 389,
+  "manifest_sha256": "668a2ad56821e1114127c00185a1db2000902aab41e6442feb0811145305b966",
+  "identity_max_abs_error": 0.0,
+  "summaries": {
+    "identity": {
+      "exist_abs_delta": {
+        "row_mean": 0.0,
+        "video_mean": 0.0,
+        "video_bootstrap_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "raw_top_slot_changed": {
+        "row_mean": 0.0,
+        "video_mean": 0.0,
+        "video_bootstrap_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "raw_top_endpoint_mean_abs_delta": {
+        "row_mean": 0.0,
+        "video_mean": 0.0,
+        "video_bootstrap_ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "zero_visual": {
+      "exist_abs_delta": {
+        "row_mean": 0.14367835941610108,
+        "video_mean": 0.14206183792252314,
+        "video_bootstrap_ci95": [
+          0.11717088411054583,
+          0.16927955170731027
+        ]
+      },
+      "raw_top_slot_changed": {
+        "row_mean": 0.21403508771929824,
+        "video_mean": 0.20629820051413883,
+        "video_bootstrap_ci95": [
+          0.1675074978577549,
+          0.24464974293059122
+        ]
+      },
+      "raw_top_endpoint_mean_abs_delta": {
+        "row_mean": 0.15097215907615527,
+        "video_mean": 0.14817493452811048,
+        "video_bootstrap_ci95": [
+          0.12812801500444795,
+          0.16657569894300586
+        ]
+      }
+    },
+    "shuffle_time": {
+      "exist_abs_delta": {
+        "row_mean": 0.0064503990244447135,
+        "video_mean": 0.006582053290439039,
+        "video_bootstrap_ci95": [
+          0.004407971243804197,
+          0.009033813597610492
+        ]
+      },
+      "raw_top_slot_changed": {
+        "row_mean": 0.03859649122807018,
+        "video_mean": 0.04048843187660668,
+        "video_bootstrap_ci95": [
+          0.023350471293916025,
+          0.0599882176520994
+        ]
+      },
+      "raw_top_endpoint_mean_abs_delta": {
+        "row_mean": 0.028939597236744146,
+        "video_mean": 0.030409618776416104,
+        "video_bootstrap_ci95": [
+          0.020103884589297325,
+          0.042619377944415754
+        ]
+      }
+    },
+    "zero_clip": {
+      "exist_abs_delta": {
+        "row_mean": 0.027248827753621235,
+        "video_mean": 0.028595733088413264,
+        "video_bootstrap_ci95": [
+          0.021381128748564404,
+          0.03649584346920916
+        ]
+      },
+      "raw_top_slot_changed": {
+        "row_mean": 0.11052631578947368,
+        "video_mean": 0.10711225364181662,
+        "video_bootstrap_ci95": [
+          0.0792523564695801,
+          0.1366805912596401
+        ]
+      },
+      "raw_top_endpoint_mean_abs_delta": {
+        "row_mean": 0.09064221714149441,
+        "video_mean": 0.08851110220000136,
+        "video_bootstrap_ci95": [
+          0.07122865212325488,
+          0.10648555491525033
+        ]
+      }
+    },
+    "zero_slowfast": {
+      "exist_abs_delta": {
+        "row_mean": 0.020577901471079442,
+        "video_mean": 0.020143193650061796,
+        "video_bootstrap_ci95": [
+          0.014823527080617401,
+          0.02572980384600142
+        ]
+      },
+      "raw_top_slot_changed": {
+        "row_mean": 0.17719298245614035,
+        "video_mean": 0.16473864610111397,
+        "video_bootstrap_ci95": [
+          0.13152313624678666,
+          0.20032133676092542
+        ]
+      },
+      "raw_top_endpoint_mean_abs_delta": {
+        "row_mean": 0.1356136528807774,
+        "video_mean": 0.1288279654831652,
+        "video_bootstrap_ci95": [
+          0.10913634161395439,
+          0.14961799216255603
+        ]
+      }
+    }
+  },
+  "limitations": "Sensitivity of frozen model, not necessity/causal proof. Zeroing is out of distribution; shuffle preserves positions. No perturbed-label AUROC, R1, FRR or RR computed. Raw top span before official temporal postprocessing; original official gate is a scalar per row and does not change exact-precision slot ranking."
+}

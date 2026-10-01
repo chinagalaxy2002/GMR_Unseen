@@ -1,0 +1,27 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "splits": {
+    "pseudo": {
+      "same_video_pairacc": 0.6943493150684932,
+      "same_video_pairs": 584,
+      "cross_video_pairacc": 0.6539140092599787,
+      "exact_query_cross_video_pairacc": 0.564066852367688,
+      "exact_query_cross_video_pairs": 359,
+      "exact_query_groups": 45,
+      "exact_query_feature_consistent_groups": 0,
+      "mixed_label_videos": 229
+    },
+    "seen": {
+      "same_video_pairacc": 0.753968253968254,
+      "same_video_pairs": 882,
+      "cross_video_pairacc": 0.8435146251936418,
+      "exact_query_cross_video_pairacc": 0.6573816155988857,
+      "exact_query_cross_video_pairs": 359,
+      "exact_query_groups": 45,
+      "exact_query_feature_consistent_groups": 0,
+      "mixed_label_videos": 185
+    }
+  },
+  "limitations": "Within/cross-video rank decomposition uses original queries and labels; differing compositions do not prove video bias. Identical string ranks before feature control are not a text tie control."
+}

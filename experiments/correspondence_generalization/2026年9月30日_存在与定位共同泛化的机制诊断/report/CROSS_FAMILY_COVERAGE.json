@@ -1,0 +1,92 @@
+{
+  "throw": {
+    "pseudo": {
+      "rows": 570,
+      "positive": 464,
+      "negative": 106,
+      "videos": 389,
+      "unique_query_strings": 459,
+      "mixed_label_videos": 32
+    },
+    "seen": {
+      "rows": 1185,
+      "positive": 709,
+      "negative": 476,
+      "videos": 376,
+      "unique_query_strings": 828,
+      "mixed_label_videos": 199
+    },
+    "same_query_control": {
+      "query_groups": 10,
+      "rows": 36,
+      "pairs": 37,
+      "pairacc": 0.25675675675675674,
+      "video_endpoint_bootstrap_ci95": [
+        0.02939762443438914,
+        0.5232696566998893
+      ]
+    }
+  },
+  "open_close": {
+    "pseudo": {
+      "rows": 2827,
+      "positive": 1888,
+      "negative": 939,
+      "videos": 1236,
+      "unique_query_strings": 1093,
+      "mixed_label_videos": 664
+    },
+    "seen": {
+      "rows": 722,
+      "positive": 516,
+      "negative": 206,
+      "videos": 299,
+      "unique_query_strings": 594,
+      "mixed_label_videos": 104
+    },
+    "same_query_control": {
+      "query_groups": 158,
+      "rows": 1598,
+      "pairs": 7367,
+      "pairacc": 0.5469662006244062,
+      "video_endpoint_bootstrap_ci95": [
+        0.5067282248928595,
+        0.5883323923471798
+      ]
+    }
+  },
+  "sit": {
+    "pseudo": {
+      "rows": 976,
+      "positive": 625,
+      "negative": 351,
+      "videos": 452,
+      "unique_query_strings": 576,
+      "mixed_label_videos": 229
+    },
+    "seen": {
+      "rows": 1065,
+      "positive": 676,
+      "negative": 389,
+      "videos": 370,
+      "unique_query_strings": 736,
+      "mixed_label_videos": 185
+    },
+    "same_query_control": {
+      "query_groups": 45,
+      "rows": 229,
+      "pairs": 359,
+      "pairacc": 0.5682451253481894,
+      "video_endpoint_bootstrap_ci95": [
+        0.46262892549261087,
+        0.6675488588125034
+      ]
+    }
+  },
+  "pseudo_video_overlap": {
+    "throw:open_close": 62,
+    "throw:sit": 24,
+    "open_close:sit": 81
+  },
+  "limitations": "Families share original videos and annotation construction; not independent domains or trials. Annotated action plus lexical isolation is not complete conceptual isolation."
+}

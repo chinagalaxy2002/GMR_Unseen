@@ -1,0 +1,121 @@
+{
+  "checked_at": "2026-09-30T23:56:57.701677+08:00",
+  "queue": {
+    "state": "running",
+    "pid": 167959,
+    "tasks": {
+      "open_close_baseline_train": {
+        "state": "running",
+        "pid": 167964,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/open_close_baseline_train.log"
+      },
+      "sit_baseline_train": {
+        "state": "running",
+        "pid": 167965,
+        "gpu": 1,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/sit_baseline_train.log"
+      },
+      "throw_baseline_D1_controlled": {
+        "state": "completed",
+        "pid": 168030,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_baseline_D1_controlled.log",
+        "returncode": 0
+      },
+      "throw_baseline_D2_best": {
+        "state": "completed",
+        "pid": 168291,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_baseline_D2_best.log",
+        "returncode": 0
+      },
+      "throw_baseline_D2_latest": {
+        "state": "completed",
+        "pid": 168413,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_baseline_D2_latest.log",
+        "returncode": 0
+      },
+      "throw_adapter_D1_controlled": {
+        "state": "completed",
+        "pid": 168541,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_adapter_D1_controlled.log",
+        "returncode": 0
+      },
+      "throw_adapter_D2_best": {
+        "state": "completed",
+        "pid": 168663,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_adapter_D2_best.log",
+        "returncode": 0
+      },
+      "throw_adapter_D2_latest": {
+        "state": "completed",
+        "pid": 168798,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_adapter_D2_latest.log",
+        "returncode": 0
+      }
+    },
+    "seed": 3407,
+    "conditional_interventions": "not_started; requires cross-family diagnostic decision"
+  },
+  "runs": {
+    "sit_qd_gmr_baseline_s3407_attempt1": {
+      "state": "training",
+      "pid": 167965,
+      "epoch": 36,
+      "best_epoch": 11
+    },
+    "open_close_qd_gmr_baseline_s3407_attempt1": {
+      "state": "training",
+      "pid": 167964,
+      "epoch": 51,
+      "best_epoch": 49
+    }
+  },
+  "supplemental_queue": {
+    "state": "running",
+    "pid": 176731,
+    "training_started": false,
+    "training_updates": 0,
+    "tasks": {
+      "throw_baseline_sensitivity": {
+        "state": "existing_completed",
+        "artifact": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/throw/baseline/INPUT_SENSITIVITY.json"
+      },
+      "throw_baseline_latest_decomposition": {
+        "state": "existing_completed",
+        "artifact": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/throw/baseline/LATEST_FAILURE_DECOMPOSITION.json"
+      },
+      "throw_baseline_gate_audit": {
+        "state": "completed",
+        "pid": 176739,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_baseline_gate_audit.log",
+        "returncode": 0
+      },
+      "throw_adapter_sensitivity": {
+        "state": "existing_completed",
+        "artifact": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/throw/adapter/INPUT_SENSITIVITY.json"
+      },
+      "throw_adapter_latest_decomposition": {
+        "state": "existing_completed",
+        "artifact": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/throw/adapter/LATEST_FAILURE_DECOMPOSITION.json"
+      },
+      "throw_adapter_gate_audit": {
+        "state": "completed",
+        "pid": 176743,
+        "gpu": 0,
+        "log": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/logs/throw_adapter_gate_audit.log",
+        "returncode": 0
+      }
+    },
+    "waiting_families": [
+      "open_close",
+      "sit"
+    ]
+  }
+}

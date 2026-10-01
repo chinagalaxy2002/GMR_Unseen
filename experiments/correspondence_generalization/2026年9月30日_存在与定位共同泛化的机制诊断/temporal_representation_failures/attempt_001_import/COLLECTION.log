@@ -1,0 +1,21 @@
+hashing 18074 input feature assets
+Traceback (most recent call last):
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/temporal_representation_collect.py", line 87, in <module>
+    try:main()
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/temporal_representation_collect.py", line 51, in main
+    ck=torch.load(run/'best.ckpt',map_location='cpu',weights_only=False);opt=ck['opt'];opt.device='cuda:0';opt.num_workers=0;ev,dsmod=w.modules('qd');model,criterion=build_model(opt);model.load_state_dict(ck['model']);model.to('cuda:0').eval();model.requires_grad_(False)
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/code/queue_worker.py", line 36, in modules
+    ev=importlib.import_module(f'vendor.{backbone}_evaluate')
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/code/vendor/qd_evaluate.py", line 24, in <module>
+    from training.qd_detr_gmr.standalone_eval.eval import eval_submission
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/training/qd_detr_gmr/standalone_eval/eval.py", line 7, in <module>
+    from standalone_eval.utils import compute_average_precision_detection, \
+ModuleNotFoundError: No module named 'standalone_eval'

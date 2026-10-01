@@ -1,0 +1,71 @@
+{
+  "ended_at": "2026-10-01T00:29:05.524257+08:00",
+  "state": "ended_by_user",
+  "processes_running": false,
+  "gpu_compute_processes": false,
+  "stage_tmux_running": false,
+  "training_restarted": false,
+  "conditional_interventions_started": false,
+  "formal_U_confirmation_started": false,
+  "runs": {
+    "open_close": {
+      "training": "completed_100_epochs",
+      "pseudo_evaluation": "completed",
+      "automatic_diagnostics": "completed",
+      "best_epoch_zero_based": 49
+    },
+    "sit": {
+      "training": "stopped_by_user",
+      "training_epochs_logged": 77,
+      "seen_evaluation_epochs_completed": 76,
+      "best_epoch_zero_based": 11,
+      "latest_epoch_zero_based": 76,
+      "pseudo_evaluation": "post_stop_saved_best_evaluation_completed",
+      "diagnostics": "best/latest completed without training"
+    }
+  },
+  "cross_family_summary": "completed for saved seen-selected models; sit training still stopped",
+  "checkpoint_integrity_record": "STOP_CHECKPOINT_CHECK.json",
+  "updated_at": "2026-10-01T01:57:22.358463+08:00",
+  "evaluation_closeout": "completed",
+  "new_training_epochs": 0,
+  "parameter_updates": 0,
+  "decision": "fixed candidate agreement bridge rejected; joint mechanism unresolved; no new training round",
+  "active_processes": false,
+  "readout_analysis": "completed",
+  "next_task": {
+    "state": "completed",
+    "name": "candidate_rank_confidence_geometry_diagnostic",
+    "plan": "plan/NEXT_TASK.md",
+    "training_updates_allowed": 0,
+    "entry_point": "code/candidate_geometry_analyze.py (already executed; no overwrite)",
+    "start_instruction": "no pending authorized task; do not rerun",
+    "result": "candidate_geometry_analysis/REPORT.md"
+  },
+  "handoff_revision_directory": "plan/handoff_revisions/20261001_011627",
+  "handoff_state": "authorized_followup_research_completed_training_entry_not_supported",
+  "runtime_checked_at": "2026-10-01T01:58:41.011752+08:00",
+  "active_experiment_processes": [],
+  "gpu_compute_process_snapshot": "",
+  "candidate_geometry_analysis": "completed",
+  "candidate_geometry_summary": {
+    "positive_queries": 4878,
+    "protected_files": 117,
+    "integrity": "passed",
+    "independent_validation": "passed",
+    "conclusion": "ranking and geometry coexist; joint existence/localization mechanism unresolved",
+    "bootstrap_original_video_union": 2302,
+    "new_forward_passes": 0
+  },
+  "support_bridge_analysis": "completed",
+  "support_bridge_summary": {
+    "rows": 7345,
+    "new_forward_passes": 0,
+    "training_updates": 0,
+    "protected_paths": 2219,
+    "primary": "foreground_agreement",
+    "new_training_round_entry_supported": false,
+    "report": "support_bridge_analysis/REPORT.md",
+    "independent_validation": "passed"
+  }
+}

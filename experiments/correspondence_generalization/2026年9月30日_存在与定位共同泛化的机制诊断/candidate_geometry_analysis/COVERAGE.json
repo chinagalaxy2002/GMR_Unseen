@@ -1,0 +1,142 @@
+{
+  "groups": {
+    "throw/seen": {
+      "all_queries": 1185,
+      "positive_queries": 709,
+      "all_videos": 376,
+      "positive_videos": 375,
+      "candidate_count_all_queries": {
+        "10": 1185
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 566,
+      "mixed_candidate_videos": 322,
+      "candidate_pairs": 8715,
+      "unavailable_spearman_queries": 5,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 5
+    },
+    "throw/pseudo": {
+      "all_queries": 570,
+      "positive_queries": 464,
+      "all_videos": 389,
+      "positive_videos": 324,
+      "candidate_count_all_queries": {
+        "10": 570
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 303,
+      "mixed_candidate_videos": 211,
+      "candidate_pairs": 4595,
+      "unavailable_spearman_queries": 3,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 3
+    },
+    "open_close/seen": {
+      "all_queries": 722,
+      "positive_queries": 516,
+      "all_videos": 299,
+      "positive_videos": 299,
+      "candidate_count_all_queries": {
+        "10": 722
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 411,
+      "mixed_candidate_videos": 237,
+      "candidate_pairs": 6378,
+      "unavailable_spearman_queries": 2,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 2
+    },
+    "open_close/pseudo": {
+      "all_queries": 2827,
+      "positive_queries": 1888,
+      "all_videos": 1236,
+      "positive_videos": 1236,
+      "candidate_count_all_queries": {
+        "10": 2827
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 1219,
+      "mixed_candidate_videos": 855,
+      "candidate_pairs": 17730,
+      "unavailable_spearman_queries": 19,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 19
+    },
+    "sit/seen": {
+      "all_queries": 1065,
+      "positive_queries": 676,
+      "all_videos": 370,
+      "positive_videos": 370,
+      "candidate_count_all_queries": {
+        "10": 1065
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 578,
+      "mixed_candidate_videos": 332,
+      "candidate_pairs": 9863,
+      "unavailable_spearman_queries": 0,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 0
+    },
+    "sit/pseudo": {
+      "all_queries": 976,
+      "positive_queries": 625,
+      "all_videos": 452,
+      "positive_videos": 452,
+      "candidate_count_all_queries": {
+        "10": 976
+      },
+      "fewer_than_10_queries": 0,
+      "qid_vid_exact_alignment": true,
+      "positive_gt_nonpositive_length_windows": 0,
+      "nonpositive_duration_queries": 0,
+      "mixed_candidate_queries": 512,
+      "mixed_candidate_videos": 376,
+      "candidate_pairs": 9317,
+      "unavailable_spearman_queries": 0,
+      "empty_candidate_queries": 0,
+      "GT_match_tied_candidates": 0,
+      "oracle_tied_queries": 0
+    }
+  },
+  "shared_video_union": 2302,
+  "video_intersections": {
+    "throw/seen & throw/pseudo": 0,
+    "throw/seen & open_close/seen": 285,
+    "throw/seen & open_close/pseudo": 0,
+    "throw/seen & sit/seen": 356,
+    "throw/seen & sit/pseudo": 0,
+    "throw/pseudo & open_close/seen": 0,
+    "throw/pseudo & open_close/pseudo": 49,
+    "throw/pseudo & sit/seen": 0,
+    "throw/pseudo & sit/pseudo": 20,
+    "open_close/seen & open_close/pseudo": 0,
+    "open_close/seen & sit/seen": 280,
+    "open_close/seen & sit/pseudo": 0,
+    "open_close/pseudo & sit/seen": 0,
+    "open_close/pseudo & sit/pseudo": 81,
+    "sit/seen & sit/pseudo": 0
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "state": "completed",
+  "seed": 3407,
+  "resamples": 1000,
+  "training_updates": 0,
+  "families": {
+    "throw": {
+      "point": 0.25675675675675674,
+      "pairs": 37,
+      "ci_level": 0.95,
+      "ci": [
+        0.023155187835420483,
+        0.5334615384615383
+      ],
+      "valid_resamples": 1000
+    },
+    "open_close": {
+      "point": 0.5469662006244062,
+      "pairs": 7367,
+      "ci_level": 0.95,
+      "ci": [
+        0.5046076749982316,
+        0.5864228339556408
+      ],
+      "valid_resamples": 1000
+    },
+    "sit": {
+      "point": 0.5682451253481894,
+      "pairs": 359,
+      "ci_level": 0.95,
+      "ci": [
+        0.45862296739680003,
+        0.6692106860959319
+      ],
+      "valid_resamples": 1000
+    }
+  },
+  "equal_family_mean": {
+    "point": 0.4573226942431174,
+    "ci_level": 0.95,
+    "ci": [
+      0.3705784975355669,
+      0.5577729153178806
+    ],
+    "valid_resamples": 1000
+  },
+  "bootstrap": "same original-video union multiplicities as baseline metric summary; pair receives product of endpoint weights; each family weighted equally",
+  "limitations": "Sparse same-query support only, not whole-family accuracy; pair combinations and shared videos correlated; replicates without a valid family pair denominator are unavailable, not replaced by .5. Individual CONTROLLED_QUERY intervals sample each family endpoint set and may differ from this joint-union summary."
+}

@@ -1,0 +1,582 @@
+{
+  "checkpoint": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/latest.ckpt",
+  "checkpoint_sha256": "605f493e00783844fee0840d2b0151859dd7f732a815726fd29583014349be87",
+  "checkpoint_epoch_zero_based": 99,
+  "executed_source_sha256": "0cefac0e2209e91c37897790ccc595c159083f570579c9996f2663d10a5af524",
+  "training_updates": 0,
+  "mode": "eval; local geometry only, not causal evidence",
+  "qids": [
+    [
+      "train5809",
+      "train1090",
+      "train9396",
+      "train8631",
+      "train3994",
+      "train1331",
+      "train2066",
+      "train3646",
+      "train8820",
+      "train1053",
+      "train3703",
+      "train5166",
+      "train5020",
+      "train5321",
+      "train3802",
+      "train3497"
+    ],
+    [
+      "train8913",
+      "train10559",
+      "train2459",
+      "train11118",
+      "train11785",
+      "train4761",
+      "train2780",
+      "train10189",
+      "train6074",
+      "train7542",
+      "train2134",
+      "train11582",
+      "train3615",
+      "train8041",
+      "train8752",
+      "train12083"
+    ],
+    [
+      "train1845",
+      "train4260",
+      "train10581",
+      "train7743",
+      "train2724",
+      "train12152",
+      "train11164",
+      "train4102",
+      "train7745",
+      "train6906",
+      "train1873",
+      "train6190",
+      "train3859",
+      "train1923",
+      "train721",
+      "train5386"
+    ],
+    [
+      "train11276",
+      "train6352",
+      "train7891",
+      "train8070",
+      "train9618",
+      "train10454",
+      "train6568",
+      "train3989",
+      "train10370",
+      "train2797",
+      "train2300",
+      "train11923",
+      "train7126",
+      "train5146",
+      "train4297",
+      "train10362"
+    ],
+    [
+      "train10531",
+      "train1081",
+      "train8749",
+      "train11773",
+      "train8280",
+      "train9489",
+      "train5728",
+      "train5838",
+      "train11788",
+      "train7160",
+      "train3363",
+      "train728",
+      "train8670",
+      "train3496",
+      "train10911",
+      "train431"
+    ],
+    [
+      "train9193",
+      "train3724",
+      "train6368",
+      "train5327",
+      "train9829",
+      "train9626",
+      "train1087",
+      "train8181",
+      "train11893",
+      "train2173",
+      "train5665",
+      "train3951",
+      "train7712",
+      "train8370",
+      "train10268",
+      "train12323"
+    ],
+    [
+      "train10334",
+      "train1240",
+      "train8422",
+      "train1614",
+      "train3861",
+      "train5072",
+      "train12397",
+      "train3518",
+      "train11230",
+      "train5606",
+      "train3624",
+      "train10655",
+      "train4301",
+      "train10881",
+      "train3168",
+      "train9486"
+    ],
+    [
+      "train9903",
+      "train9482",
+      "train5094",
+      "train10969",
+      "train4439",
+      "train9214",
+      "train5262",
+      "train6036",
+      "train9899",
+      "train7935",
+      "train7573",
+      "train9770",
+      "train11274",
+      "train4232",
+      "train9250",
+      "train8125"
+    ],
+    [
+      "train12144",
+      "train8872",
+      "train452",
+      "train9667",
+      "train6087",
+      "train8117",
+      "train3054",
+      "train4233",
+      "train191",
+      "train8748",
+      "train3419",
+      "train5867",
+      "train11713",
+      "train11912",
+      "train2862",
+      "train9654"
+    ],
+    [
+      "train8458",
+      "train6810",
+      "train2182",
+      "train1757",
+      "train807",
+      "train5744",
+      "train11744",
+      "train11847",
+      "train10231",
+      "train10376",
+      "train12023",
+      "train6081",
+      "train1111",
+      "train5842",
+      "train11853",
+      "train3524"
+    ],
+    [
+      "train1615",
+      "train7210",
+      "train11494",
+      "train6254",
+      "train11136",
+      "train3677",
+      "train6481",
+      "train6957",
+      "train8180",
+      "train2572",
+      "train9772",
+      "train1562",
+      "train4511",
+      "train8889",
+      "train1605",
+      "train4327"
+    ],
+    [
+      "train7965",
+      "train6134",
+      "train10594",
+      "train6246",
+      "train2922",
+      "train4685",
+      "train2071",
+      "train2807",
+      "train3905",
+      "train7575",
+      "train11419",
+      "train7932",
+      "train5328",
+      "train10569",
+      "train8773",
+      "train3344"
+    ],
+    [
+      "train6769",
+      "train9916",
+      "train12355",
+      "train7415",
+      "train4099",
+      "train9615",
+      "train4476",
+      "train1571",
+      "train9850",
+      "train5048",
+      "train1645",
+      "train4200",
+      "train49",
+      "train3762",
+      "train4934",
+      "train6588"
+    ],
+    [
+      "train8321",
+      "train12021",
+      "train7051",
+      "train6401",
+      "train10050",
+      "train6991",
+      "train7709",
+      "train4866",
+      "train2804",
+      "train10585",
+      "train3988",
+      "train9761",
+      "train12075",
+      "train1396",
+      "train10224",
+      "train10212"
+    ],
+    [
+      "train10499",
+      "train2407",
+      "train410",
+      "train86",
+      "train11037",
+      "train3774",
+      "train5925",
+      "train3206",
+      "train6361",
+      "train3757",
+      "train1048",
+      "train8515",
+      "train7638",
+      "train9845",
+      "train12088",
+      "train502"
+    ],
+    [
+      "train8968",
+      "train5376",
+      "train11985",
+      "train3681",
+      "train646",
+      "train7015",
+      "train572",
+      "train11185",
+      "train9436",
+      "train5025",
+      "train4216",
+      "train2384",
+      "train407",
+      "train8016",
+      "train10045",
+      "train961"
+    ]
+  ],
+  "loss_weights": {
+    "loss_span": 10,
+    "loss_giou": 1,
+    "loss_label": 4,
+    "loss_saliency": 0,
+    "loss_span_0": 10,
+    "loss_giou_0": 1,
+    "loss_label_0": 4,
+    "loss_exist": 1.0
+  },
+  "blocks": {
+    "interaction|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": -0.0008159161079674959,
+      "negative_fraction": 0.5,
+      "cosines": [
+        0.05367322638630867,
+        -0.07242552936077118,
+        0.04558701813220978,
+        -0.03415968641638756,
+        0.01548592746257782,
+        0.0249323733150959,
+        -0.015657098963856697,
+        0.059480223804712296,
+        0.05516782030463219,
+        -0.007067082449793816,
+        0.005435250233858824,
+        -0.03844951465725899,
+        -0.11343130469322205,
+        -0.010123958811163902,
+        0.0568598210811615,
+        -0.06712162494659424
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.004580750595778227,
+          "other_norm": 2.2034640312194824
+        },
+        {
+          "exist_norm": 0.03033412992954254,
+          "other_norm": 3.1337766647338867
+        },
+        {
+          "exist_norm": 0.0018363723065704107,
+          "other_norm": 2.373955249786377
+        },
+        {
+          "exist_norm": 0.002658919896930456,
+          "other_norm": 2.896261215209961
+        },
+        {
+          "exist_norm": 0.005906508304178715,
+          "other_norm": 2.9392168521881104
+        },
+        {
+          "exist_norm": 0.007695289328694344,
+          "other_norm": 3.7201650142669678
+        },
+        {
+          "exist_norm": 0.0016531557776033878,
+          "other_norm": 3.4364285469055176
+        },
+        {
+          "exist_norm": 0.01165342703461647,
+          "other_norm": 2.6528728008270264
+        },
+        {
+          "exist_norm": 0.36792701482772827,
+          "other_norm": 3.102617025375366
+        },
+        {
+          "exist_norm": 0.013585737906396389,
+          "other_norm": 2.9973697662353516
+        },
+        {
+          "exist_norm": 0.005336361937224865,
+          "other_norm": 3.113520383834839
+        },
+        {
+          "exist_norm": 0.014945453964173794,
+          "other_norm": 2.8065741062164307
+        },
+        {
+          "exist_norm": 0.019154131412506104,
+          "other_norm": 2.870319366455078
+        },
+        {
+          "exist_norm": 0.013132879510521889,
+          "other_norm": 2.4998912811279297
+        },
+        {
+          "exist_norm": 0.015471743419766426,
+          "other_norm": 2.742544651031494
+        },
+        {
+          "exist_norm": 0.0022347334306687117,
+          "other_norm": 2.5917470455169678
+        }
+      ]
+    },
+    "decoder|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": 0.0077070805709809065,
+      "negative_fraction": 0.4375,
+      "cosines": [
+        0.0706130787730217,
+        0.02373858354985714,
+        0.05756107717752457,
+        0.023143576458096504,
+        -0.005629108287394047,
+        0.005400998052209616,
+        -0.004997734911739826,
+        0.010013163089752197,
+        -0.0241593848913908,
+        -0.014121941290795803,
+        0.025785168632864952,
+        0.031200341880321503,
+        0.015912555158138275,
+        -0.00819351151585579,
+        -0.010839404538273811,
+        -0.021181337535381317
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.0022624842822551727,
+          "other_norm": 1.0607954263687134
+        },
+        {
+          "exist_norm": 0.009262153878808022,
+          "other_norm": 1.4672644138336182
+        },
+        {
+          "exist_norm": 0.0010893611470237374,
+          "other_norm": 0.9619343280792236
+        },
+        {
+          "exist_norm": 0.0013423659838736057,
+          "other_norm": 1.2291995286941528
+        },
+        {
+          "exist_norm": 0.0026354596484452486,
+          "other_norm": 1.1377530097961426
+        },
+        {
+          "exist_norm": 0.0030510113574564457,
+          "other_norm": 1.661562204360962
+        },
+        {
+          "exist_norm": 0.0009721483220346272,
+          "other_norm": 1.2765589952468872
+        },
+        {
+          "exist_norm": 0.00516491150483489,
+          "other_norm": 1.0481611490249634
+        },
+        {
+          "exist_norm": 0.14599454402923584,
+          "other_norm": 1.0884063243865967
+        },
+        {
+          "exist_norm": 0.004116647876799107,
+          "other_norm": 1.2555779218673706
+        },
+        {
+          "exist_norm": 0.002531577367335558,
+          "other_norm": 1.3578139543533325
+        },
+        {
+          "exist_norm": 0.005275161005556583,
+          "other_norm": 1.3780698776245117
+        },
+        {
+          "exist_norm": 0.0068400525487959385,
+          "other_norm": 1.2284024953842163
+        },
+        {
+          "exist_norm": 0.005211874842643738,
+          "other_norm": 1.43319833278656
+        },
+        {
+          "exist_norm": 0.006098118610680103,
+          "other_norm": 1.2459399700164795
+        },
+        {
+          "exist_norm": 0.0010842534247785807,
+          "other_norm": 1.2149386405944824
+        }
+      ]
+    },
+    "input_projection|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": 0.030808529816567898,
+      "negative_fraction": 0.3125,
+      "cosines": [
+        0.19344519078731537,
+        -0.13733038306236267,
+        0.22773604094982147,
+        0.11277098208665848,
+        0.038934774696826935,
+        -0.012152694165706635,
+        0.02214246243238449,
+        -0.004496521782130003,
+        0.03208091855049133,
+        0.02647186629474163,
+        0.029536141082644463,
+        0.06789323687553406,
+        -0.027431856840848923,
+        0.03984151780605316,
+        0.13539940118789673,
+        -0.09216383844614029
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.00486886128783226,
+          "other_norm": 6.82196569442749
+        },
+        {
+          "exist_norm": 0.06354984641075134,
+          "other_norm": 7.5077433586120605
+        },
+        {
+          "exist_norm": 0.0021615601144731045,
+          "other_norm": 6.5660014152526855
+        },
+        {
+          "exist_norm": 0.003814481431618333,
+          "other_norm": 8.297260284423828
+        },
+        {
+          "exist_norm": 0.008792915381491184,
+          "other_norm": 8.986259460449219
+        },
+        {
+          "exist_norm": 0.010482613928616047,
+          "other_norm": 9.502166748046875
+        },
+        {
+          "exist_norm": 0.0026336507871747017,
+          "other_norm": 9.41684341430664
+        },
+        {
+          "exist_norm": 0.013257415033876896,
+          "other_norm": 6.417232990264893
+        },
+        {
+          "exist_norm": 0.6401935815811157,
+          "other_norm": 7.838070869445801
+        },
+        {
+          "exist_norm": 0.039695557206869125,
+          "other_norm": 7.490605354309082
+        },
+        {
+          "exist_norm": 0.009494734928011894,
+          "other_norm": 7.791769981384277
+        },
+        {
+          "exist_norm": 0.03903047740459442,
+          "other_norm": 6.731849193572998
+        },
+        {
+          "exist_norm": 0.030898721888661385,
+          "other_norm": 7.503851890563965
+        },
+        {
+          "exist_norm": 0.01746072992682457,
+          "other_norm": 5.916468143463135
+        },
+        {
+          "exist_norm": 0.034187838435173035,
+          "other_norm": 7.392426490783691
+        },
+        {
+          "exist_norm": 0.0026743581984192133,
+          "other_norm": 9.653759002685547
+        }
+      ]
+    }
+  },
+  "state": "completed",
+  "interpretation": "cross-checkpoint and cross-family evidence required; duplicated best/latest epoch is not independent evidence"
+}

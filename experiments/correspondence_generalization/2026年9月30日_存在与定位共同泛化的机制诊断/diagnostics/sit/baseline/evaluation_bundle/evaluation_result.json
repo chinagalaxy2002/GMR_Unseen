@@ -1,0 +1,103 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "new_training_epochs": 0,
+  "source_training_state": "stopped_by_user",
+  "source_training_epochs_logged": 77,
+  "checkpoint_epoch_zero_based": 11,
+  "checkpoint_sha256": "67dadc67ff6018741578ed0a405d59c608b07d7161b9bbb7cbe76cc35557a6f3",
+  "source_sha256": "5ba46b82d2cc06a0f10d00635628857730662ea3503d18f720ba7ca05a0282a0",
+  "seen_selection": {
+    "source": "seen validation only",
+    "score_name": "MR-full-mAP",
+    "score": 25.25,
+    "epoch": 11
+  },
+  "seen": {
+    "auroc": 0.8432142802817116,
+    "threshold": 0.955,
+    "positive_frr": 0.3668639053254438,
+    "negative_rr": 0.9125964010282777,
+    "same_video_all_pairs_pairacc": 0.753968253968254,
+    "same_video_pair_count": 882,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.3254437869822485,
+      "R1@0.7": 0.1878698224852071
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.21153846153846154,
+      "R1@0.7": 0.11686390532544379
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.35,
+      "0.7": 0.3779527559055118
+    },
+    "official_gated": {
+      "R1@0.5": 0.3224852071005917,
+      "R1@0.7": 0.1849112426035503
+    }
+  },
+  "pseudo": {
+    "auroc": 0.6540216524216524,
+    "threshold": 0.955,
+    "positive_frr": 0.064,
+    "negative_rr": 0.23076923076923078,
+    "same_video_all_pairs_pairacc": 0.6943493150684932,
+    "same_video_pair_count": 584,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.3504,
+      "R1@0.7": 0.1664
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.3216,
+      "R1@0.7": 0.1552
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.0821917808219178,
+      "0.7": 0.0673076923076923
+    },
+    "official_gated": {
+      "R1@0.5": 0.3536,
+      "R1@0.7": 0.1776
+    }
+  },
+  "pseudo_official": {
+    "brief": {
+      "MR-full-R1@0.5": 35.36,
+      "MR-full-R1@0.7": 17.76,
+      "MR-full-mAP": 26.02,
+      "MR-full-mAP@0.5": 52.08,
+      "MR-full-mAP@0.75": 23.33
+    },
+    "full": {
+      "MR-mAP": {
+        "0.5": 52.08,
+        "0.55": 45.64,
+        "0.6": 40.27,
+        "0.65": 32.79,
+        "0.7": 28.62,
+        "0.75": 23.33,
+        "0.8": 17.4,
+        "0.85": 11.28,
+        "0.9": 5.99,
+        "0.95": 2.78,
+        "average": 26.02
+      },
+      "MR-R1": {
+        "0.5": 35.36,
+        "0.55": 30.4,
+        "0.6": 26.56,
+        "0.65": 20.64,
+        "0.7": 17.76,
+        "0.75": 14.24,
+        "0.8": 10.4,
+        "0.85": 6.4,
+        "0.9": 3.68,
+        "0.95": 1.92
+      }
+    }
+  },
+  "limitation": "Post-stop evaluation of saved seen-selected best; not completion of 100-epoch training; original run and checkpoints unchanged."
+}

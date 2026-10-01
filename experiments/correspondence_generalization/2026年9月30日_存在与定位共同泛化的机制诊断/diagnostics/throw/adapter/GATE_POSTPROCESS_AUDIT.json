@@ -1,0 +1,123 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "results": {
+    "pseudo": {
+      "rows": 570,
+      "positive": 464,
+      "all_ranked_coordinate_mismatches": 0,
+      "mismatch_qids": [],
+      "raw_to_gated_hit_changes": [
+        {
+          "qid": "train640",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train3916",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train5713",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train6642",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train6670",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train7712",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train12236",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        }
+      ],
+      "aligned_raw_R1_05_auxiliary": 0.23275862068965517,
+      "official_gated_R1_05": 0.23275862068965517,
+      "prediction_sha256": "b4964ae712a0d0909ac28eb6d9eae91612ccd94aa2cb4612b96e8b9b6f79f03f"
+    },
+    "seen": {
+      "rows": 1185,
+      "positive": 709,
+      "all_ranked_coordinate_mismatches": 0,
+      "mismatch_qids": [],
+      "raw_to_gated_hit_changes": [
+        {
+          "qid": "train3061",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train4947",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train5086",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train6920",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train7602",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train10626",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train11094",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train11672",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        }
+      ],
+      "aligned_raw_R1_05_auxiliary": 0.3441466854724965,
+      "official_gated_R1_05": 0.3441466854724965,
+      "prediction_sha256": "d2aa74f9f14537ba10e60e54a334bcb0eebce54edae722e9602d9173c27e158f"
+    }
+  },
+  "source_sha256": "e8f3da3638ebe09271ab1e32db99dd2ce36e12e5d52584165ea6d7310791f5f4",
+  "official_evaluator_sha256": "b71f952fa6cfbfbaae1ca0b6bd1f476159c17c2448b87d55f82300fa97a50537",
+  "official_postprocessor_sha256": "50e6501c642e77502f7a4d781e01e12bbd97521d3b0a8f47d793b3044be30046",
+  "gate_sha256": "0e1235c8425f9c61883e88a57a8a1feec2c9ceb15046aeecd83563deb3cefc67",
+  "interpretation": "Official soft gate is a per-row nonnegative scalar. Exact positive scalar scaling preserves within-row ranking. Saved gated coordinates alone receive clip_ts/round_multiple; frozen raw endpoint remains untouched. When aligned coordinates match, hit changes are explained by temporal postprocessing rather than gate veto or reranking. Aligned raw is auxiliary only, not a replacement co-primary endpoint."
+}

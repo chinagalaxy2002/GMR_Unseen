@@ -1,0 +1,115 @@
+{
+  "state": "completed",
+  "args": {
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_adapter_s3407_attempt1",
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "adapter",
+    "seed": 3407,
+    "development": true,
+    "action": "train",
+    "smoke": false
+  },
+  "seen_selection": {
+    "source": "seen validation only",
+    "score_name": "MR-full-mAP",
+    "score": 25.0,
+    "epoch": 13
+  },
+  "wall_seconds": 4696.821546841413,
+  "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_adapter_s3407_attempt1",
+  "code_sha256": "45354663c895242277eccb49e7e96f833f4cd1970d50b9d2e816dae2c76e3019",
+  "seen": {
+    "auroc": 0.8445837432293086,
+    "threshold": 0.8262,
+    "positive_frr": 0.3540197461212976,
+    "negative_rr": 0.8991596638655462,
+    "same_video_all_pairs_pairacc": 0.7450361010830325,
+    "same_video_pair_count": 1108,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.3441466854724965,
+      "R1@0.7": 0.19605077574047955
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.23413258110014104,
+      "R1@0.7": 0.14245416078984485
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.319672131147541,
+      "0.7": 0.2733812949640288
+    },
+    "official_gated": {
+      "R1@0.5": 0.3441466854724965,
+      "R1@0.7": 0.19605077574047955
+    }
+  },
+  "pseudo_official": {
+    "brief": {
+      "MR-full-R1@0.5": 23.28,
+      "MR-full-R1@0.7": 8.19,
+      "MR-full-mAP": 14.78,
+      "MR-full-mAP@0.5": 37.93,
+      "MR-full-mAP@0.75": 10.88
+    },
+    "full": {
+      "MR-mAP": {
+        "0.5": 37.93,
+        "0.55": 30.41,
+        "0.6": 23.4,
+        "0.65": 17.51,
+        "0.7": 13.89,
+        "0.75": 10.88,
+        "0.8": 7.0,
+        "0.85": 3.91,
+        "0.9": 2.22,
+        "0.95": 0.6,
+        "average": 14.78
+      },
+      "MR-R1": {
+        "0.5": 23.28,
+        "0.55": 18.75,
+        "0.6": 14.66,
+        "0.65": 10.56,
+        "0.7": 8.19,
+        "0.75": 6.68,
+        "0.8": 4.31,
+        "0.85": 2.37,
+        "0.9": 1.51,
+        "0.95": 0.43
+      }
+    }
+  },
+  "pseudo": {
+    "auroc": 0.600032530904359,
+    "threshold": 0.8262,
+    "positive_frr": 0.1206896551724138,
+    "negative_rr": 0.16037735849056603,
+    "same_video_all_pairs_pairacc": 0.9846153846153847,
+    "same_video_pair_count": 65,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.2349137931034483,
+      "R1@0.7": 0.07974137931034483
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.2025862068965517,
+      "R1@0.7": 0.07327586206896551
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.13761467889908258,
+      "0.7": 0.08108108108108109
+    },
+    "official_gated": {
+      "R1@0.5": 0.23275862068965517,
+      "R1@0.7": 0.08189655172413793
+    }
+  },
+  "forward_counts": {
+    "training": 47300,
+    "inference": 7536
+  },
+  "gpu_peak_bytes": 1299971584,
+  "accurate_total_flops": "unmeasured; do not infer from one batch"
+}

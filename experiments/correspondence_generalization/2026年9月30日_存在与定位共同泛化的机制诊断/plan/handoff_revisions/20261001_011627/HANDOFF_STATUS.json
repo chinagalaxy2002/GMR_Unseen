@@ -1,0 +1,35 @@
+{
+  "ended_at": "2026-10-01T00:29:05.524257+08:00",
+  "state": "ended_by_user",
+  "processes_running": false,
+  "gpu_compute_processes": false,
+  "stage_tmux_running": false,
+  "training_restarted": false,
+  "conditional_interventions_started": false,
+  "formal_U_confirmation_started": false,
+  "runs": {
+    "open_close": {
+      "training": "completed_100_epochs",
+      "pseudo_evaluation": "completed",
+      "automatic_diagnostics": "completed",
+      "best_epoch_zero_based": 49
+    },
+    "sit": {
+      "training": "stopped_by_user",
+      "training_epochs_logged": 77,
+      "seen_evaluation_epochs_completed": 76,
+      "best_epoch_zero_based": 11,
+      "latest_epoch_zero_based": 76,
+      "pseudo_evaluation": "post_stop_saved_best_evaluation_completed",
+      "diagnostics": "best/latest completed without training"
+    }
+  },
+  "cross_family_summary": "completed for saved seen-selected models; sit training still stopped",
+  "checkpoint_integrity_record": "STOP_CHECKPOINT_CHECK.json",
+  "updated_at": "2026-10-01T00:45:36.130365+08:00",
+  "evaluation_closeout": "completed",
+  "new_training_epochs": 0,
+  "parameter_updates": 0,
+  "decision": "no complex intervention or formal U confirmation",
+  "active_processes": false
+}

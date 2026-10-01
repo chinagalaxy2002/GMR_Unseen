@@ -1,0 +1,580 @@
+{
+  "checkpoint": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/latest.ckpt",
+  "checkpoint_sha256": "c2f475c2229f17927e869cea48379552973ef5e1510831655302d7adf50396c9",
+  "training_updates": 0,
+  "mode": "eval; local geometry only, not causal evidence",
+  "qids": [
+    [
+      "train10943",
+      "train1927",
+      "train6733",
+      "train1214",
+      "train10272",
+      "train8188",
+      "train3902",
+      "train8169",
+      "train7847",
+      "train4389",
+      "train9821",
+      "train10930",
+      "train8193",
+      "train11900",
+      "train7692",
+      "train3375"
+    ],
+    [
+      "train11235",
+      "train2648",
+      "train6552",
+      "train9774",
+      "train7587",
+      "train9744",
+      "train3797",
+      "train6960",
+      "train9018",
+      "train2139",
+      "train2990",
+      "train1412",
+      "train598",
+      "train4481",
+      "train4406",
+      "train11839"
+    ],
+    [
+      "train2195",
+      "train2067",
+      "train5592",
+      "train6447",
+      "train11550",
+      "train4668",
+      "train8694",
+      "train6039",
+      "train1825",
+      "train2402",
+      "train2620",
+      "train12049",
+      "train4621",
+      "train4110",
+      "train7121",
+      "train1999"
+    ],
+    [
+      "train768",
+      "train5303",
+      "train251",
+      "train9380",
+      "train6951",
+      "train1791",
+      "train2333",
+      "train10227",
+      "train12170",
+      "train6371",
+      "train6993",
+      "train11858",
+      "train4755",
+      "train8046",
+      "train2562",
+      "train2772"
+    ],
+    [
+      "train7780",
+      "train8849",
+      "train7819",
+      "train5536",
+      "train12139",
+      "train3821",
+      "train913",
+      "train9358",
+      "train4882",
+      "train1639",
+      "train1199",
+      "train8496",
+      "train5695",
+      "train7362",
+      "train4452",
+      "train9836"
+    ],
+    [
+      "train1823",
+      "train128",
+      "train11066",
+      "train2426",
+      "train4513",
+      "train10535",
+      "train7550",
+      "train8329",
+      "train5659",
+      "train6368",
+      "train4317",
+      "train9626",
+      "train8955",
+      "train10944",
+      "train3846",
+      "train8613"
+    ],
+    [
+      "train9779",
+      "train9204",
+      "train11510",
+      "train1390",
+      "train256",
+      "train490",
+      "train1209",
+      "train10294",
+      "train7952",
+      "train2763",
+      "train7063",
+      "train3461",
+      "train7946",
+      "train8748",
+      "train11756",
+      "train3175"
+    ],
+    [
+      "train11665",
+      "train3053",
+      "train3447",
+      "train8611",
+      "train2240",
+      "train10971",
+      "train4486",
+      "train4831",
+      "train10947",
+      "train7497",
+      "train9854",
+      "train10039",
+      "train1222",
+      "train8954",
+      "train3345",
+      "train12251"
+    ],
+    [
+      "train1187",
+      "train10581",
+      "train7598",
+      "train4900",
+      "train6300",
+      "train7023",
+      "train8743",
+      "train4760",
+      "train6762",
+      "train1735",
+      "train1499",
+      "train12101",
+      "train526",
+      "train6557",
+      "train2279",
+      "train6852"
+    ],
+    [
+      "train6124",
+      "train11078",
+      "train5797",
+      "train3363",
+      "train6579",
+      "train11079",
+      "train2838",
+      "train5468",
+      "train7708",
+      "train2879",
+      "train5254",
+      "train8621",
+      "train9102",
+      "train12033",
+      "train12292",
+      "train2593"
+    ],
+    [
+      "train11565",
+      "train6365",
+      "train12400",
+      "train8572",
+      "train8511",
+      "train7116",
+      "train11921",
+      "train2816",
+      "train11106",
+      "train11159",
+      "train6360",
+      "train11182",
+      "train10346",
+      "train11647",
+      "train1585",
+      "train3522"
+    ],
+    [
+      "train5584",
+      "train9281",
+      "train5623",
+      "train10490",
+      "train8941",
+      "train2833",
+      "train7240",
+      "train11111",
+      "train3591",
+      "train1196",
+      "train1084",
+      "train378",
+      "train1684",
+      "train307",
+      "train2404",
+      "train7906"
+    ],
+    [
+      "train2078",
+      "train5708",
+      "train6213",
+      "train10772",
+      "train1332",
+      "train12332",
+      "train11301",
+      "train1149",
+      "train6648",
+      "train9917",
+      "train7467",
+      "train1651",
+      "train7739",
+      "train2932",
+      "train9440",
+      "train10096"
+    ],
+    [
+      "train2904",
+      "train8002",
+      "train902",
+      "train9408",
+      "train1429",
+      "train10597",
+      "train9886",
+      "train4622",
+      "train12224",
+      "train4718",
+      "train11288",
+      "train10832",
+      "train4359",
+      "train11704",
+      "train2312",
+      "train3573"
+    ],
+    [
+      "train6463",
+      "train6015",
+      "train10250",
+      "train6203",
+      "train5413",
+      "train5380",
+      "train7591",
+      "train10604",
+      "train8644",
+      "train1695",
+      "train2922",
+      "train8334",
+      "train9407",
+      "train7683",
+      "train5641",
+      "train6187"
+    ],
+    [
+      "train3502",
+      "train9050",
+      "train10050",
+      "train519",
+      "train7232",
+      "train5890",
+      "train5811",
+      "train4545",
+      "train3021",
+      "train8201",
+      "train10343",
+      "train9812",
+      "train9940",
+      "train10172",
+      "train2558",
+      "train11753"
+    ]
+  ],
+  "loss_weights": {
+    "loss_span": 10,
+    "loss_giou": 1,
+    "loss_label": 4,
+    "loss_saliency": 0,
+    "loss_span_0": 10,
+    "loss_giou_0": 1,
+    "loss_label_0": 4,
+    "loss_exist": 1.0
+  },
+  "blocks": {
+    "interaction|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": 0.08697201684117317,
+      "negative_fraction": 0.0,
+      "cosines": [
+        0.09228385239839554,
+        0.10818701237440109,
+        0.0816601812839508,
+        0.04777095094323158,
+        0.023311354219913483,
+        0.15440645813941956,
+        0.07755105942487717,
+        0.20775726437568665,
+        0.09993182122707367,
+        0.00364778283983469,
+        0.024829592555761337,
+        0.03285784646868706,
+        0.17799192667007446,
+        0.05528495833277702,
+        0.13963529467582703,
+        0.16427962481975555
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.0009948520455509424,
+          "other_norm": 5.206857204437256
+        },
+        {
+          "exist_norm": 0.0342913381755352,
+          "other_norm": 2.846637487411499
+        },
+        {
+          "exist_norm": 0.193589985370636,
+          "other_norm": 4.54602575302124
+        },
+        {
+          "exist_norm": 0.0037829738575965166,
+          "other_norm": 4.394691467285156
+        },
+        {
+          "exist_norm": 0.0011250528041273355,
+          "other_norm": 4.3902153968811035
+        },
+        {
+          "exist_norm": 0.03355933725833893,
+          "other_norm": 5.1479902267456055
+        },
+        {
+          "exist_norm": 0.015142141841351986,
+          "other_norm": 3.662128448486328
+        },
+        {
+          "exist_norm": 0.003601264441385865,
+          "other_norm": 3.945169448852539
+        },
+        {
+          "exist_norm": 0.5163824558258057,
+          "other_norm": 4.094541549682617
+        },
+        {
+          "exist_norm": 0.0004919166094623506,
+          "other_norm": 5.733137607574463
+        },
+        {
+          "exist_norm": 0.038048889487981796,
+          "other_norm": 4.03436803817749
+        },
+        {
+          "exist_norm": 1.0863443613052368,
+          "other_norm": 5.451921463012695
+        },
+        {
+          "exist_norm": 0.001262677600607276,
+          "other_norm": 4.818717002868652
+        },
+        {
+          "exist_norm": 0.0009560472681187093,
+          "other_norm": 3.394439458847046
+        },
+        {
+          "exist_norm": 0.001022028154693544,
+          "other_norm": 3.3022267818450928
+        },
+        {
+          "exist_norm": 0.0008991324575617909,
+          "other_norm": 4.967593669891357
+        }
+      ]
+    },
+    "decoder|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": -0.022348107770085335,
+      "negative_fraction": 0.6875,
+      "cosines": [
+        -0.0299069806933403,
+        -0.008699396625161171,
+        0.011375650763511658,
+        -0.042377471923828125,
+        -0.03377358242869377,
+        -0.15393495559692383,
+        -0.053712207823991776,
+        -0.022698992863297462,
+        -0.08316057175397873,
+        -0.0032654840033501387,
+        0.04163914546370506,
+        0.003085305215790868,
+        0.008535990491509438,
+        0.009107105433940887,
+        -0.025306010618805885,
+        -0.021997222676873207
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.000489872763864696,
+          "other_norm": 1.5573921203613281
+        },
+        {
+          "exist_norm": 0.004748494829982519,
+          "other_norm": 0.929146945476532
+        },
+        {
+          "exist_norm": 0.03138153627514839,
+          "other_norm": 1.541693925857544
+        },
+        {
+          "exist_norm": 0.0014670573873445392,
+          "other_norm": 1.40533447265625
+        },
+        {
+          "exist_norm": 0.0005465236026793718,
+          "other_norm": 1.2819727659225464
+        },
+        {
+          "exist_norm": 0.004826808348298073,
+          "other_norm": 1.74418044090271
+        },
+        {
+          "exist_norm": 0.0025055143050849438,
+          "other_norm": 1.5074963569641113
+        },
+        {
+          "exist_norm": 0.0011293913703411818,
+          "other_norm": 1.1781768798828125
+        },
+        {
+          "exist_norm": 0.06316497176885605,
+          "other_norm": 1.0525909662246704
+        },
+        {
+          "exist_norm": 0.00027179307653568685,
+          "other_norm": 1.5077985525131226
+        },
+        {
+          "exist_norm": 0.00686122290790081,
+          "other_norm": 1.4529472589492798
+        },
+        {
+          "exist_norm": 0.1096109077334404,
+          "other_norm": 1.5941543579101562
+        },
+        {
+          "exist_norm": 0.0005361547810025513,
+          "other_norm": 1.7952500581741333
+        },
+        {
+          "exist_norm": 0.0004450137203093618,
+          "other_norm": 1.132023572921753
+        },
+        {
+          "exist_norm": 0.0005490267649292946,
+          "other_norm": 1.4899650812149048
+        },
+        {
+          "exist_norm": 0.0005096192471683025,
+          "other_norm": 1.946006417274475
+        }
+      ]
+    },
+    "input_projection|loc": {
+      "valid_batches": 16,
+      "invalid_batches": 0,
+      "median_cosine": -0.0011668763909256086,
+      "negative_fraction": 0.5,
+      "cosines": [
+        -0.027902772650122643,
+        0.003822793485596776,
+        -0.013997280970215797,
+        -0.015546785667538643,
+        -0.09725131094455719,
+        -0.0026977669913321733,
+        0.025910189375281334,
+        -0.030558248981833458,
+        0.0003640142094809562,
+        0.030522143468260765,
+        0.07253634929656982,
+        -0.03483681008219719,
+        0.09826711565256119,
+        -0.09185706079006195,
+        0.06511546671390533,
+        0.00433889776468277
+      ],
+      "gradient_norms": [
+        {
+          "exist_norm": 0.001603215467184782,
+          "other_norm": 9.026609420776367
+        },
+        {
+          "exist_norm": 0.07401183247566223,
+          "other_norm": 5.204413890838623
+        },
+        {
+          "exist_norm": 0.318111777305603,
+          "other_norm": 6.438023090362549
+        },
+        {
+          "exist_norm": 0.00657753786072135,
+          "other_norm": 10.241737365722656
+        },
+        {
+          "exist_norm": 0.0016019388567656279,
+          "other_norm": 7.113771915435791
+        },
+        {
+          "exist_norm": 0.06615269184112549,
+          "other_norm": 8.27379035949707
+        },
+        {
+          "exist_norm": 0.03907999396324158,
+          "other_norm": 7.1023969650268555
+        },
+        {
+          "exist_norm": 0.006082434207201004,
+          "other_norm": 6.3317389488220215
+        },
+        {
+          "exist_norm": 0.8231973052024841,
+          "other_norm": 6.9172139167785645
+        },
+        {
+          "exist_norm": 0.0006774942157790065,
+          "other_norm": 9.581883430480957
+        },
+        {
+          "exist_norm": 0.07132408767938614,
+          "other_norm": 6.653757095336914
+        },
+        {
+          "exist_norm": 3.459388017654419,
+          "other_norm": 9.234420776367188
+        },
+        {
+          "exist_norm": 0.0017955722287297249,
+          "other_norm": 6.670456409454346
+        },
+        {
+          "exist_norm": 0.0015103998593986034,
+          "other_norm": 5.30422306060791
+        },
+        {
+          "exist_norm": 0.0016332798404619098,
+          "other_norm": 6.57484245300293
+        },
+        {
+          "exist_norm": 0.0011115365196019411,
+          "other_norm": 8.998705863952637
+        }
+      ]
+    }
+  },
+  "state": "completed",
+  "checkpoint_comparison_note": "baseline best selected at epoch100, identical to final epoch; do not count best/latest as two stages"
+}

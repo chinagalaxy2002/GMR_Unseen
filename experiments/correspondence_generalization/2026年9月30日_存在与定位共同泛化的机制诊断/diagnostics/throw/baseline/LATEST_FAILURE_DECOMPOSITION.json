@@ -1,0 +1,64 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "checkpoint_epoch_zero_based": 99,
+  "checkpoint_sha256": "c2f475c2229f17927e869cea48379552973ef5e1510831655302d7adf50396c9",
+  "source_sha256": "a4a8dc5c9317945a71a184eab08e9a7962137004e736c19e12dcc34ba62741d0",
+  "same_model_tensors_as_best": true,
+  "predictions_reused_from_best": true,
+  "results": {
+    "pseudo": {
+      "AUROC": 0.5731030416395576,
+      "raw_R1_05": 0.2672413793103448,
+      "gated_R1_05": 0.26939655172413796,
+      "FRR": 0.08836206896551724,
+      "RR": 0.13207547169811318,
+      "counts": {
+        "positive": 464,
+        "raw_incorrect": 340,
+        "positive_rejected": 41,
+        "official_gated_correct": 125,
+        "raw_correct_gated_wrong": 6,
+        "raw_wrong_gated_correct": 7,
+        "official_empty": 0,
+        "raw_correct": 124,
+        "raw_correct_accepted": 109,
+        "raw_correct_rejected": 15,
+        "negative": 106,
+        "negative_accepted": 92
+      },
+      "raw_correct_rejected_over_raw_correct": 0.12096774193548387,
+      "raw_errors_over_hard_failures": 0.9577464788732394,
+      "threshold": 0.9973,
+      "threshold_source": "latest checkpoint seen validation only; Youden J, diagnostic only",
+      "source_prediction_sha256": "a5c4d5c0d3a5ee7bb4cb517a0af0c829868ddef9dd249964b7feb8230685501f"
+    },
+    "seen": {
+      "AUROC": 0.7996112408291949,
+      "raw_R1_05": 0.4400564174894217,
+      "gated_R1_05": 0.4414668547249647,
+      "FRR": 0.2073342736248237,
+      "RR": 0.703781512605042,
+      "counts": {
+        "positive": 709,
+        "raw_correct": 312,
+        "raw_correct_accepted": 255,
+        "positive_rejected": 147,
+        "official_gated_correct": 313,
+        "raw_correct_gated_wrong": 8,
+        "raw_wrong_gated_correct": 9,
+        "official_empty": 0,
+        "raw_incorrect": 397,
+        "raw_correct_rejected": 57,
+        "negative": 476,
+        "negative_accepted": 141
+      },
+      "raw_correct_rejected_over_raw_correct": 0.18269230769230768,
+      "raw_errors_over_hard_failures": 0.8744493392070485,
+      "threshold": 0.9973,
+      "threshold_source": "latest checkpoint seen validation only; Youden J, diagnostic only",
+      "source_prediction_sha256": "606dd34aa6a38cacb278b767183719efa483a0fba24aa782806cb34798461d1f"
+    }
+  },
+  "limitations": "Latest comparison is descriptive, not an alternative pseudo-based checkpoint selection or full training trajectory; unchanged official gate, diagnostic threshold fitted on latest seen only."
+}

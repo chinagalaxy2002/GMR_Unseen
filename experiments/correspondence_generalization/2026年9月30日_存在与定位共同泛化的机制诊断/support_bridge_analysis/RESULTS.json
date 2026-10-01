@@ -1,0 +1,3837 @@
+{
+  "state": "completed",
+  "groups": {
+    "throw/seen": {
+      "coverage": {
+        "rows": 1185,
+        "positive": 709,
+        "negative": 476,
+        "videos": 376,
+        "exact_query_label_mixed_groups": 52,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 199,
+        "same_video_pairs": 1108,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 566,
+        "mixed_candidate_videos": 322
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.7996112408291949,
+          "ci_level": 0.95,
+          "ci": [
+            0.7677436392167543,
+            0.8313873341993827
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.7085570283389737,
+          "ci_level": 0.95,
+          "ci": [
+            0.6605495474904112,
+            0.7573898579192236
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.7475509950101338,
+          "ci_level": 0.95,
+          "ci": [
+            0.7099485948498501,
+            0.7833467906911442
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.0520602458190611,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07731102616091541,
+            -0.025063350371385476
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.0520602458190611,
+          "ci_level": 0.975,
+          "ci": [
+            -0.08081877921919696,
+            -0.0202425330157395
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.4400564174894217,
+          "ci_level": 0.95,
+          "ci": [
+            0.3939371755623586,
+            0.481266347595433
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6840492519471557,
+          "ci_level": 0.95,
+          "ci": [
+            0.6547274460461149,
+            0.711457366639771
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.6868852007581371,
+          "ci_level": 0.95,
+          "ci": [
+            0.6339919922991012,
+            0.7391095408017564
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.5374328857071743,
+          "ci_level": 0.95,
+          "ci": [
+            0.5018218339002589,
+            0.5795891062863139
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.2621783551220206,
+          "ci_level": 0.95,
+          "ci": [
+            -0.3017451880336565,
+            -0.216297664843355
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.2621783551220206,
+          "ci_level": 0.975,
+          "ci": [
+            -0.3063938416075355,
+            -0.21113112966582503
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.1692524682651622,
+          "ci_level": 0.95,
+          "ci": [
+            0.13675293892442125,
+            0.2031261257204611
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.27080394922425954,
+          "ci_level": 0.95,
+          "ci": [
+            -0.32631177674729495,
+            -0.21560219572100728
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.27080394922425954,
+          "ci_level": 0.975,
+          "ci": [
+            -0.3332959545495177,
+            -0.20906072177298582
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.3212812950404454,
+          "ci_level": 0.95,
+          "ci": [
+            0.2872090431383152,
+            0.35430363913431717
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.541278387401862,
+          "ci_level": 0.95,
+          "ci": [
+            0.4882184889375766,
+            0.5966516033496733
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.6974138033210463,
+          "ci_level": 0.95,
+          "ci": [
+            0.6526302205680901,
+            0.7418452708943122
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": -0.10219743750814858,
+          "ci_level": 0.95,
+          "ci": [
+            -0.13382655423644993,
+            -0.07125400869431847
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": -0.10219743750814858,
+          "ci_level": 0.975,
+          "ci": [
+            -0.13951004608769932,
+            -0.06639283229381562
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.38787023977433005,
+          "ci_level": 0.95,
+          "ci": [
+            0.3429873541713407,
+            0.42667251461988304
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": -0.05218617771509165,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08286094961240308,
+            -0.021902486182806467
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": -0.05218617771509165,
+          "ci_level": 0.975,
+          "ci": [
+            -0.08780280914125879,
+            -0.01707092481616201
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6488965545673065,
+          "ci_level": 0.95,
+          "ci": [
+            0.6221422680448185,
+            0.6766697128025404
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.6597651427963704,
+          "ci_level": 0.95,
+          "ci": [
+            0.6057558737073439,
+            0.7092525460499599
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.7344229652368705,
+          "ci_level": 0.95,
+          "ci": [
+            0.6914195388666755,
+            0.7795557304380727
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": -0.06518827559232443,
+          "ci_level": 0.95,
+          "ci": [
+            -0.09216764085311167,
+            -0.03888667340814624
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": -0.06518827559232443,
+          "ci_level": 0.975,
+          "ci": [
+            -0.09644827545435586,
+            -0.03457733230048924
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.4400564174894217,
+          "ci_level": 0.95,
+          "ci": [
+            0.3939371755623586,
+            0.481266347595433
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6840492519471557,
+          "ci_level": 0.95,
+          "ci": [
+            0.6547274460461149,
+            0.711457366639771
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.6909953679964449,
+          "ci_level": 0.95,
+          "ci": [
+            0.6368729591213089,
+            0.7423996698572591
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": -0.05013719168908748,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08737170264168528,
+            -0.011611909183320297
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": 0.159980917613872,
+          "ci_level": 0.95,
+          "ci": [
+            0.11573121319805142,
+            0.20371376609470052
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": -0.03700916191582415,
+          "ci_level": 0.95,
+          "ci": [
+            -0.053917242014483474,
+            -0.019384921661719835
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": -0.05218617771509165,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08286094961240308,
+            -0.021902486182806467
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.21861777150916786,
+          "ci_level": 0.95,
+          "ci": [
+            0.1681051166489926,
+            0.2718118054049479
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": -0.05218617771509165,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08286094961240308,
+            -0.021902486182806467
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    },
+    "throw/pseudo": {
+      "coverage": {
+        "rows": 570,
+        "positive": 464,
+        "negative": 106,
+        "videos": 389,
+        "exact_query_label_mixed_groups": 10,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 32,
+        "same_video_pairs": 65,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 303,
+        "mixed_candidate_videos": 211
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.5731030416395576,
+          "ci_level": 0.95,
+          "ci": [
+            0.5106170800114871,
+            0.6386506780157777
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.7838541666666667,
+          "ci_level": 0.95,
+          "ci": [
+            0.6916666666666667,
+            0.8800430107526881
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.4963097755367599,
+          "ci_level": 0.95,
+          "ci": [
+            0.43045282490857,
+            0.5633966087054751
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.07679326610279769,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1498867245796973,
+            -0.003917991930817581
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.07679326610279769,
+          "ci_level": 0.975,
+          "ci": [
+            -0.16084678998499558,
+            0.007036274492837748
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.2672413793103448,
+          "ci_level": 0.95,
+          "ci": [
+            0.22273638385916233,
+            0.3140442506561268
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6645494809298126,
+          "ci_level": 0.95,
+          "ci": [
+            0.6264707923361791,
+            0.7019699141788982
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.6067708333333333,
+          "ci_level": 0.95,
+          "ci": [
+            0.47055192447349314,
+            0.7442621431219875
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.5684165582303188,
+          "ci_level": 0.95,
+          "ci": [
+            0.508021758943377,
+            0.629521213918449
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.0046864834092388286,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08429666309103499,
+            0.07390987000073312
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.0046864834092388286,
+          "ci_level": 0.975,
+          "ci": [
+            -0.08926607351757165,
+            0.08639761708669177
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.1336206896551724,
+          "ci_level": 0.95,
+          "ci": [
+            0.09588495022935065,
+            0.17533044733044734
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.1336206896551724,
+          "ci_level": 0.95,
+          "ci": [
+            -0.18679930208888673,
+            -0.08028157769732194
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.1336206896551724,
+          "ci_level": 0.975,
+          "ci": [
+            -0.19210689094239547,
+            -0.07173918185086375
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.3557780410742496,
+          "ci_level": 0.95,
+          "ci": [
+            0.309004844822558,
+            0.40613841775599135
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.765625,
+          "ci_level": 0.95,
+          "ci": [
+            0.625,
+            0.9038461538461539
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.5794364020819779,
+          "ci_level": 0.95,
+          "ci": [
+            0.5164505951611879,
+            0.6415674271220335
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": 0.006333360442420277,
+          "ci_level": 0.95,
+          "ci": [
+            -0.06435931952705985,
+            0.07937513962679359
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": 0.006333360442420277,
+          "ci_level": 0.975,
+          "ci": [
+            -0.07875124340659645,
+            0.08915652361384455
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.27586206896551724,
+          "ci_level": 0.95,
+          "ci": [
+            0.2281375671371893,
+            0.32302018868304877
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": 0.008620689655172431,
+          "ci_level": 0.95,
+          "ci": [
+            -0.021078892514271818,
+            0.04033195798949739
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": 0.008620689655172431,
+          "ci_level": 0.975,
+          "ci": [
+            -0.02513895138975328,
+            0.04680629363342717
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6597150756037012,
+          "ci_level": 0.95,
+          "ci": [
+            0.6260135673638993,
+            0.6927477669220332
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.6796875,
+          "ci_level": 0.95,
+          "ci": [
+            0.5165789473684211,
+            0.8181818181818182
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.5899886141834743,
+          "ci_level": 0.95,
+          "ci": [
+            0.5280446468797233,
+            0.6512140380721333
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": 0.01688557254391665,
+          "ci_level": 0.95,
+          "ci": [
+            -0.04565395191246987,
+            0.08353032113791453
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": 0.01688557254391665,
+          "ci_level": 0.975,
+          "ci": [
+            -0.06115622653012494,
+            0.09218989223945036
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.2672413793103448,
+          "ci_level": 0.95,
+          "ci": [
+            0.22273638385916233,
+            0.3140442506561268
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6645494809298126,
+          "ci_level": 0.95,
+          "ci": [
+            0.6264707923361791,
+            0.7019699141788982
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.8463541666666667,
+          "ci_level": 0.95,
+          "ci": [
+            0.7249884259259259,
+            0.9583587398373984
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": 0.08312662654521796,
+          "ci_level": 0.95,
+          "ci": [
+            -0.026039314753863008,
+            0.1876113655867453
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": 0.011019843851659106,
+          "ci_level": 0.95,
+          "ci": [
+            -0.037710732600355616,
+            0.05675895037976373
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": -0.010552212101496372,
+          "ci_level": 0.95,
+          "ci": [
+            -0.056281137623614017,
+            0.03307520027564829
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": 0.008620689655172431,
+          "ci_level": 0.95,
+          "ci": [
+            -0.021078892514271818,
+            0.04033195798949739
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.14224137931034483,
+          "ci_level": 0.95,
+          "ci": [
+            0.08963366625355401,
+            0.1965855307640297
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": 0.008620689655172431,
+          "ci_level": 0.95,
+          "ci": [
+            -0.021078892514271818,
+            0.04033195798949739
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    },
+    "open_close/seen": {
+      "coverage": {
+        "rows": 722,
+        "positive": 516,
+        "negative": 206,
+        "videos": 299,
+        "exact_query_label_mixed_groups": 9,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 104,
+        "same_video_pairs": 484,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 411,
+        "mixed_candidate_videos": 237
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.8560905396251975,
+          "ci_level": 0.95,
+          "ci": [
+            0.8207795379257624,
+            0.8885110179213362
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.7732371794871796,
+          "ci_level": 0.95,
+          "ci": [
+            0.7163931903646942,
+            0.8321480176863841
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.7290772935952434,
+          "ci_level": 0.95,
+          "ci": [
+            0.670993142306623,
+            0.7793483458331341
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.12701324602995412,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1759510026106264,
+            -0.08287734222595679
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.12701324602995412,
+          "ci_level": 0.975,
+          "ci": [
+            -0.18151663434621745,
+            -0.07738680268260033
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.32945736434108525,
+          "ci_level": 0.95,
+          "ci": [
+            0.2808284302349392,
+            0.3731163537549407
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6568899925769652,
+          "ci_level": 0.95,
+          "ci": [
+            0.6243663187104238,
+            0.6886496186912668
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.6596554487179487,
+          "ci_level": 0.95,
+          "ci": [
+            0.5858748525943396,
+            0.7336830406153639
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.6905339805825242,
+          "ci_level": 0.95,
+          "ci": [
+            0.636701348700356,
+            0.746089308127103
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.1655565590426733,
+          "ci_level": 0.95,
+          "ci": [
+            -0.21583935272945842,
+            -0.10926554458841445
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.1655565590426733,
+          "ci_level": 0.975,
+          "ci": [
+            -0.22390578674178901,
+            -0.09823988051648598
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.13565891472868216,
+          "ci_level": 0.95,
+          "ci": [
+            0.10311415601706733,
+            0.17195353691907245
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.19379844961240308,
+          "ci_level": 0.95,
+          "ci": [
+            -0.24892915910363198,
+            -0.1314276608574256
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.19379844961240308,
+          "ci_level": 0.975,
+          "ci": [
+            -0.25628989898989896,
+            -0.12611201863059587
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.3284764360502757,
+          "ci_level": 0.95,
+          "ci": [
+            0.2879641011899737,
+            0.36550356616607366
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.6890491452991452,
+          "ci_level": 0.95,
+          "ci": [
+            0.6184149220303784,
+            0.758969962935199
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.7344773086475502,
+          "ci_level": 0.95,
+          "ci": [
+            0.6857055114659761,
+            0.7880965878537892
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": -0.12161323097764731,
+          "ci_level": 0.95,
+          "ci": [
+            -0.16945199212442838,
+            -0.07310758109689526
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": -0.12161323097764731,
+          "ci_level": 0.975,
+          "ci": [
+            -0.17563030569004334,
+            -0.0641809281105239
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.26744186046511625,
+          "ci_level": 0.95,
+          "ci": [
+            0.2262162115451089,
+            0.3088882424498863
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": -0.06201550387596899,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1033831192532306,
+            -0.019401963646981536
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": -0.06201550387596899,
+          "ci_level": 0.975,
+          "ci": [
+            -0.10822131110812383,
+            -0.01201673164392441
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6193376894827317,
+          "ci_level": 0.95,
+          "ci": [
+            0.5894134869733451,
+            0.6485167730479393
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.650574252136752,
+          "ci_level": 0.95,
+          "ci": [
+            0.5672603202160494,
+            0.7263705788474809
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.7455219387371115,
+          "ci_level": 0.95,
+          "ci": [
+            0.6924072785982873,
+            0.7972266261906473
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": -0.11056860088808607,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1571428500312052,
+            -0.06118384026160519
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": -0.11056860088808607,
+          "ci_level": 0.975,
+          "ci": [
+            -0.1641491361458062,
+            -0.052369863488807046
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.32945736434108525,
+          "ci_level": 0.95,
+          "ci": [
+            0.2808284302349392,
+            0.3731163537549407
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6568899925769652,
+          "ci_level": 0.95,
+          "ci": [
+            0.6243663187104238,
+            0.6886496186912668
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.6638488247863248,
+          "ci_level": 0.95,
+          "ci": [
+            0.5840933248299318,
+            0.736408467615463
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": 0.005400015052306806,
+          "ci_level": 0.95,
+          "ci": [
+            -0.0556333008911541,
+            0.0762544969884216
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": 0.04394332806502599,
+          "ci_level": 0.95,
+          "ci": [
+            0.006179261405037138,
+            0.0821525784672446
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": -0.011044630089561247,
+          "ci_level": 0.95,
+          "ci": [
+            -0.04764186285345805,
+            0.030544306614279364
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": -0.06201550387596899,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1033831192532306,
+            -0.019401963646981536
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.1317829457364341,
+          "ci_level": 0.95,
+          "ci": [
+            0.07945667361341352,
+            0.18416463630852295
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": -0.06201550387596899,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1033831192532306,
+            -0.019401963646981536
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    },
+    "open_close/pseudo": {
+      "coverage": {
+        "rows": 2827,
+        "positive": 1888,
+        "negative": 939,
+        "videos": 1236,
+        "exact_query_label_mixed_groups": 158,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 664,
+        "same_video_pairs": 1659,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 1219,
+        "mixed_candidate_videos": 855
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.5346313130629411,
+          "ci_level": 0.95,
+          "ci": [
+            0.516922931873858,
+            0.553606866075728
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.583053045515395,
+          "ci_level": 0.95,
+          "ci": [
+            0.5554006877736167,
+            0.6117186622859776
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.4966781962419451,
+          "ci_level": 0.95,
+          "ci": [
+            0.47675092695159565,
+            0.5139808801492974
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.037953116820996,
+          "ci_level": 0.95,
+          "ci": [
+            -0.06802184939667054,
+            -0.01026166377694542
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.037953116820996,
+          "ci_level": 0.975,
+          "ci": [
+            -0.07185205429738534,
+            -0.007059563891465494
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.2632415254237288,
+          "ci_level": 0.95,
+          "ci": [
+            0.24085557222213066,
+            0.2851214022289457
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6983727606052169,
+          "ci_level": 0.95,
+          "ci": [
+            0.6829970333417545,
+            0.7160912757206248
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.46730881860776424,
+          "ci_level": 0.95,
+          "ci": [
+            0.43635996276009953,
+            0.4989155701504963
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.49984488095882745,
+          "ci_level": 0.95,
+          "ci": [
+            0.4818694056908833,
+            0.5194687889657524
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.03478643210411364,
+          "ci_level": 0.95,
+          "ci": [
+            -0.05836719234789164,
+            -0.010465920843553958
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.03478643210411364,
+          "ci_level": 0.975,
+          "ci": [
+            -0.06250446780902216,
+            -0.006401714843480812
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.07415254237288135,
+          "ci_level": 0.95,
+          "ci": [
+            0.06080980261324809,
+            0.08811391657100674
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.18908898305084745,
+          "ci_level": 0.95,
+          "ci": [
+            -0.21489380268274222,
+            -0.16343342036553526
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.18908898305084745,
+          "ci_level": 0.975,
+          "ci": [
+            -0.21918121921331543,
+            -0.15912651656019294
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.3017193253194715,
+          "ci_level": 0.95,
+          "ci": [
+            0.28195811026508594,
+            0.32126318426658534
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.44241967871485943,
+          "ci_level": 0.95,
+          "ci": [
+            0.411899962253228,
+            0.4748573992133726
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.4971988321510442,
+          "ci_level": 0.95,
+          "ci": [
+            0.4788715957205067,
+            0.5153299320624708
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": -0.03743248091189688,
+          "ci_level": 0.95,
+          "ci": [
+            -0.06259686167534965,
+            -0.012524792390904984
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": -0.03743248091189688,
+          "ci_level": 0.975,
+          "ci": [
+            -0.06592685907060325,
+            -0.00886832166118538
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.23358050847457626,
+          "ci_level": 0.95,
+          "ci": [
+            0.21339769813996617,
+            0.25562447535154686
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": -0.029661016949152547,
+          "ci_level": 0.95,
+          "ci": [
+            -0.04553362040287988,
+            -0.014440887529020598
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": -0.029661016949152547,
+          "ci_level": 0.975,
+          "ci": [
+            -0.04793390194997077,
+            -0.011694316618214077
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6798085607537362,
+          "ci_level": 0.95,
+          "ci": [
+            0.6635095411165457,
+            0.696725166372811
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.4044762382864793,
+          "ci_level": 0.95,
+          "ci": [
+            0.3757679757842742,
+            0.43499525410120843
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.4927110972726124,
+          "ci_level": 0.95,
+          "ci": [
+            0.4741556817470017,
+            0.5126335602962225
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": -0.041920215790328674,
+          "ci_level": 0.95,
+          "ci": [
+            -0.06783127087121416,
+            -0.016843117041029376
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": -0.041920215790328674,
+          "ci_level": 0.975,
+          "ci": [
+            -0.07134358317021627,
+            -0.010672064554077048
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.2632415254237288,
+          "ci_level": 0.95,
+          "ci": [
+            0.24085557222213066,
+            0.2851214022289457
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.6983727606052169,
+          "ci_level": 0.95,
+          "ci": [
+            0.6829970333417545,
+            0.7160912757206248
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.4010374832663988,
+          "ci_level": 0.95,
+          "ci": [
+            0.36864731521037103,
+            0.4337739534794813
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": 0.0005206359090991208,
+          "ci_level": 0.95,
+          "ci": [
+            -0.028319960607810994,
+            0.03263676656480808
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": -0.002646048807783241,
+          "ci_level": 0.95,
+          "ci": [
+            -0.018168067646556416,
+            0.01279936102936331
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": 0.004487734878431793,
+          "ci_level": 0.95,
+          "ci": [
+            -0.010668387285710828,
+            0.02077647965501477
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": -0.029661016949152547,
+          "ci_level": 0.95,
+          "ci": [
+            -0.04553362040287988,
+            -0.014440887529020598
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.1594279661016949,
+          "ci_level": 0.95,
+          "ci": [
+            0.13322040839966243,
+            0.1835315253890701
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": -0.029661016949152547,
+          "ci_level": 0.95,
+          "ci": [
+            -0.04553362040287988,
+            -0.014440887529020598
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    },
+    "sit/seen": {
+      "coverage": {
+        "rows": 1065,
+        "positive": 676,
+        "negative": 389,
+        "videos": 370,
+        "exact_query_label_mixed_groups": 45,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 185,
+        "same_video_pairs": 882,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 578,
+        "mixed_candidate_videos": 332
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.8432142802817115,
+          "ci_level": 0.95,
+          "ci": [
+            0.8194781163593341,
+            0.8653990985632741
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.7398978263978265,
+          "ci_level": 0.95,
+          "ci": [
+            0.6869053321947531,
+            0.7886593648243331
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.7758324333368826,
+          "ci_level": 0.95,
+          "ci": [
+            0.7429886998712516,
+            0.8068026232449598
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.06738184694482896,
+          "ci_level": 0.95,
+          "ci": [
+            -0.09125966148779542,
+            -0.044001575296742264
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.06738184694482896,
+          "ci_level": 0.975,
+          "ci": [
+            -0.09857735794963236,
+            -0.04109814267580286
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.3254437869822485,
+          "ci_level": 0.95,
+          "ci": [
+            0.28484738372093027,
+            0.3641752285728428
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5790010986405942,
+          "ci_level": 0.95,
+          "ci": [
+            0.5541740394479366,
+            0.6036952755393487
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.71342134992135,
+          "ci_level": 0.95,
+          "ci": [
+            0.6602274069349964,
+            0.7623539421669822
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.6656690649670677,
+          "ci_level": 0.95,
+          "ci": [
+            0.6335047683253354,
+            0.6969714365307006
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.17754521531464384,
+          "ci_level": 0.95,
+          "ci": [
+            -0.2146002758934031,
+            -0.1407403474620596
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.17754521531464384,
+          "ci_level": 0.975,
+          "ci": [
+            -0.21969258255084897,
+            -0.13683303818524983
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.22189349112426035,
+          "ci_level": 0.95,
+          "ci": [
+            0.18694621725834332,
+            0.2574317319149459
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.10355029585798817,
+          "ci_level": 0.95,
+          "ci": [
+            -0.15386056971514242,
+            -0.05443543607372195
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.10355029585798817,
+          "ci_level": 0.975,
+          "ci": [
+            -0.15988873038516405,
+            -0.04528159661244694
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.503867932045643,
+          "ci_level": 0.95,
+          "ci": [
+            0.4731585947854611,
+            0.5346041056848542
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.51992277992278,
+          "ci_level": 0.95,
+          "ci": [
+            0.4661859985646853,
+            0.5778188776228573
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.7374507537153374,
+          "ci_level": 0.95,
+          "ci": [
+            0.7024781712746322,
+            0.768730528868179
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": -0.10576352656637411,
+          "ci_level": 0.95,
+          "ci": [
+            -0.13653837747879807,
+            -0.07516660284112
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": -0.10576352656637411,
+          "ci_level": 0.975,
+          "ci": [
+            -0.1426265107387405,
+            -0.07223382237112698
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.28106508875739644,
+          "ci_level": 0.95,
+          "ci": [
+            0.241852245093674,
+            0.32030758714969243
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": -0.044378698224852076,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08937443942206079,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": -0.044378698224852076,
+          "ci_level": 0.975,
+          "ci": [
+            -0.09712658674189,
+            0.00749223968433525
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5597033789921592,
+          "ci_level": 0.95,
+          "ci": [
+            0.5379422493125503,
+            0.5813487568100804
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.6692541827541829,
+          "ci_level": 0.95,
+          "ci": [
+            0.6147112491132395,
+            0.7202147767884308
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.7880242162425275,
+          "ci_level": 0.95,
+          "ci": [
+            0.7591587202569041,
+            0.8130281195500422
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": -0.05519006403918403,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07712075783977537,
+            -0.03562513945794696
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": -0.05519006403918403,
+          "ci_level": 0.975,
+          "ci": [
+            -0.08214427903929875,
+            -0.03220185006311431
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.3254437869822485,
+          "ci_level": 0.95,
+          "ci": [
+            0.28484738372093027,
+            0.3641752285728428
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5790010986405942,
+          "ci_level": 0.95,
+          "ci": [
+            0.5541740394479366,
+            0.6036952755393487
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.7111247676247675,
+          "ci_level": 0.95,
+          "ci": [
+            0.659058222534332,
+            0.7581822978826829
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": -0.03838167962154515,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07121663600176384,
+            -0.007547831085881683
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": 0.07178168874826973,
+          "ci_level": 0.95,
+          "ci": [
+            0.03299293354005458,
+            0.10707004609939415
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": -0.05057346252719008,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07062635176621254,
+            -0.03138497096200201
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": -0.044378698224852076,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08937443942206079,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.05917159763313609,
+          "ci_level": 0.95,
+          "ci": [
+            0.02061443128237765,
+            0.09907201874460472
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": -0.044378698224852076,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08937443942206079,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    },
+    "sit/pseudo": {
+      "coverage": {
+        "rows": 976,
+        "positive": 625,
+        "negative": 351,
+        "videos": 452,
+        "exact_query_label_mixed_groups": 45,
+        "exact_feature_equal_groups": 0,
+        "exact_feature_equal_queries": 0,
+        "mixed_label_videos": 229,
+        "same_video_pairs": 584,
+        "feature_equal_query_groups_with_pairs": 0,
+        "feature_equal_cross_video_pairs": 0,
+        "mixed_candidate_queries": 512,
+        "mixed_candidate_videos": 376
+      },
+      "metrics": {
+        "original_exist/existence_AUROC": {
+          "point": 0.6540216524216524,
+          "ci_level": 0.95,
+          "ci": [
+            0.6105012453952513,
+            0.69742230902651
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/existence_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_video_PairAcc_video_equal": {
+          "point": 0.6814956331877731,
+          "ci_level": 0.95,
+          "ci": [
+            0.6243966001402516,
+            0.7351314375418022
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground/existence_AUROC": {
+          "point": 0.5181059829059829,
+          "ci_level": 0.95,
+          "ci": [
+            0.487276480439602,
+            0.5483517118003677
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original": {
+          "point": -0.13591566951566958,
+          "ci_level": 0.95,
+          "ci": [
+            -0.19616070158847237,
+            -0.07920020126883957
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/existence_delta_vs_original_975": {
+          "point": -0.13591566951566958,
+          "ci_level": 0.975,
+          "ci": [
+            -0.20188939763412642,
+            -0.07137685404842901
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_R1_05": {
+          "point": 0.3504,
+          "ci_level": 0.95,
+          "ci": [
+            0.30528855140186917,
+            0.3933373435270952
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5821257862630869,
+          "ci_level": 0.95,
+          "ci": [
+            0.5587555059987204,
+            0.604512429376912
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_video_PairAcc_video_equal": {
+          "point": 0.5681101407083937,
+          "ci_level": 0.95,
+          "ci": [
+            0.5095652147105248,
+            0.6237642132173384
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "agreement/existence_AUROC": {
+          "point": 0.5632729344729345,
+          "ci_level": 0.95,
+          "ci": [
+            0.5270381800447722,
+            0.5993447496538665
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original": {
+          "point": -0.09074871794871797,
+          "ci_level": 0.95,
+          "ci": [
+            -0.1429724659039495,
+            -0.042356847471594655
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/existence_delta_vs_original_975": {
+          "point": -0.09074871794871797,
+          "ci_level": 0.975,
+          "ci": [
+            -0.14875497921546624,
+            -0.03426004640691285
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_R1_05": {
+          "point": 0.2304,
+          "ci_level": 0.95,
+          "ci": [
+            0.19069395207033468,
+            0.2676332210776545
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original": {
+          "point": -0.12,
+          "ci_level": 0.95,
+          "ci": [
+            -0.17039611573847244,
+            -0.07395069331219996
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/raw_delta_vs_original_975": {
+          "point": -0.12,
+          "ci_level": 0.975,
+          "ci": [
+            -0.17710006857366775,
+            -0.06694683908045974
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5232014451761793,
+          "ci_level": 0.95,
+          "ci": [
+            0.48667527175453507,
+            0.5595835631604889
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_video_PairAcc_video_equal": {
+          "point": 0.5811499272197964,
+          "ci_level": 0.95,
+          "ci": [
+            0.5254399486485168,
+            0.6378226446003518
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "foreground_agreement/existence_AUROC": {
+          "point": 0.5177663817663818,
+          "ci_level": 0.95,
+          "ci": [
+            0.48701694786904587,
+            0.5490640141332761
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original": {
+          "point": -0.13625527065527065,
+          "ci_level": 0.95,
+          "ci": [
+            -0.19430156863045933,
+            -0.07970841079717718
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/existence_delta_vs_original_975": {
+          "point": -0.13625527065527065,
+          "ci_level": 0.975,
+          "ci": [
+            -0.1994069778477259,
+            -0.07324776957989612
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_R1_05": {
+          "point": 0.296,
+          "ci_level": 0.95,
+          "ci": [
+            0.25285212340677266,
+            0.3363004431681692
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original": {
+          "point": -0.054400000000000004,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08620970459395709,
+            -0.024758362908706505
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/raw_delta_vs_original_975": {
+          "point": -0.054400000000000004,
+          "ci_level": 0.975,
+          "ci": [
+            -0.09040349142342645,
+            -0.02125318066157763
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5712665695710909,
+          "ci_level": 0.95,
+          "ci": [
+            0.5471013868641154,
+            0.5931483458117546
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_video_PairAcc_video_equal": {
+          "point": 0.5126758854924792,
+          "ci_level": 0.95,
+          "ci": [
+            0.4542833841782137,
+            0.5711030899858823
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "scalar_geometry_control/existence_AUROC": {
+          "point": 0.5706393162393162,
+          "ci_level": 0.95,
+          "ci": [
+            0.5370633754130318,
+            0.6061018348802107
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original": {
+          "point": -0.08338233618233626,
+          "ci_level": 0.95,
+          "ci": [
+            -0.13486614982539047,
+            -0.03469160078074825
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/existence_delta_vs_original_975": {
+          "point": -0.08338233618233626,
+          "ci_level": 0.975,
+          "ci": [
+            -0.14425797253491832,
+            -0.027096370586697453
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_R1_05": {
+          "point": 0.3504,
+          "ci_level": 0.95,
+          "ci": [
+            0.30528855140186917,
+            0.3933373435270952
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original": {
+          "point": 0.0,
+          "ci_level": 0.95,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/raw_delta_vs_original_975": {
+          "point": 0.0,
+          "ci_level": 0.975,
+          "ci": [
+            0.0,
+            0.0
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+          "point": 0.5821257862630869,
+          "ci_level": 0.95,
+          "ci": [
+            0.5587555059987204,
+            0.604512429376912
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_video_PairAcc_video_equal": {
+          "point": 0.5742358078602622,
+          "ci_level": 0.95,
+          "ci": [
+            0.5188976224532834,
+            0.6266751896780162
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+          "point": null,
+          "ci_level": 0.95,
+          "ci": null,
+          "valid_resamples": 0,
+          "invalid_resamples": 1000
+        },
+        "primary_minus_foreground/existence_AUROC": {
+          "point": -0.00033960113960107563,
+          "ci_level": 0.95,
+          "ci": [
+            -0.041136358816092206,
+            0.04496035278583814
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/existence_AUROC": {
+          "point": -0.04550655270655268,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07005082747497555,
+            -0.019977276016036053
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/existence_AUROC": {
+          "point": -0.052872934472934396,
+          "ci_level": 0.95,
+          "ci": [
+            -0.07496915193770619,
+            -0.030502289500854766
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_foreground/raw_R1_05": {
+          "point": -0.054400000000000004,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08620970459395709,
+            -0.024758362908706505
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_agreement/raw_R1_05": {
+          "point": 0.06559999999999999,
+          "ci_level": 0.95,
+          "ci": [
+            0.028667656630970664,
+            0.10344964858335162
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        },
+        "primary_minus_scalar_geometry_control/raw_R1_05": {
+          "point": -0.054400000000000004,
+          "ci_level": 0.95,
+          "ci": [
+            -0.08620970459395709,
+            -0.024758362908706505
+          ],
+          "valid_resamples": 1000,
+          "invalid_resamples": 0
+        }
+      }
+    }
+  },
+  "equal_family": {
+    "seen": {
+      "original_exist/existence_AUROC": {
+        "point": 0.8329720202453679,
+        "ci_level": 0.95,
+        "ci": [
+          0.8120211579301535,
+          0.8531081756368719
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/existence_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/existence_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/same_video_PairAcc_video_equal": {
+        "point": 0.7405640114079933,
+        "ci_level": 0.95,
+        "ci": [
+          0.7037742340555132,
+          0.7780763592963552
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "foreground/existence_AUROC": {
+        "point": 0.7508202406474199,
+        "ci_level": 0.95,
+        "ci": [
+          0.721914098423139,
+          0.7783615278354634
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/existence_delta_vs_original": {
+        "point": -0.08215177959794806,
+        "ci_level": 0.95,
+        "ci": [
+          -0.10539415180157896,
+          -0.0605785725303794
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/existence_delta_vs_original_975": {
+        "point": -0.08215177959794806,
+        "ci_level": 0.975,
+        "ci": [
+          -0.10808923244985635,
+          -0.057040481598926676
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_R1_05": {
+        "point": 0.3649858562709185,
+        "ci_level": 0.95,
+        "ci": [
+          0.3322909219420016,
+          0.3951287942818565
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6399801143882384,
+        "ci_level": 0.95,
+        "ci": [
+          0.6179875176362042,
+          0.6603425157100722
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/same_video_PairAcc_video_equal": {
+        "point": 0.6866539997991453,
+        "ci_level": 0.95,
+        "ci": [
+          0.6449585486462991,
+          0.7262299684980862
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "agreement/existence_AUROC": {
+        "point": 0.6312119770855887,
+        "ci_level": 0.95,
+        "ci": [
+          0.6022738935444177,
+          0.6602135752372661
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/existence_delta_vs_original": {
+        "point": -0.20176004315977925,
+        "ci_level": 0.95,
+        "ci": [
+          -0.2307445218366669,
+          -0.16875863788963882
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/existence_delta_vs_original_975": {
+        "point": -0.20176004315977925,
+        "ci_level": 0.975,
+        "ci": [
+          -0.23555107686923055,
+          -0.16471043219392642
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_R1_05": {
+        "point": 0.1756016247060349,
+        "ci_level": 0.95,
+        "ci": [
+          0.15362242834486875,
+          0.1972133131449902
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_delta_vs_original": {
+        "point": -0.1893842315648836,
+        "ci_level": 0.95,
+        "ci": [
+          -0.22661332774665405,
+          -0.1499028811522894
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_delta_vs_original_975": {
+        "point": -0.1893842315648836,
+        "ci_level": 0.975,
+        "ci": [
+          -0.23245376280715688,
+          -0.144661478842969
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.38454188771212133,
+        "ci_level": 0.95,
+        "ci": [
+          0.362955059288947,
+          0.4045200323528588
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/same_video_PairAcc_video_equal": {
+        "point": 0.5834167708745958,
+        "ci_level": 0.95,
+        "ci": [
+          0.5431400139224217,
+          0.6200707471009692
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "foreground_agreement/existence_AUROC": {
+        "point": 0.7231139552279778,
+        "ci_level": 0.95,
+        "ci": [
+          0.6924745992260559,
+          0.7520812163622937
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/existence_delta_vs_original": {
+        "point": -0.10985806501739,
+        "ci_level": 0.95,
+        "ci": [
+          -0.1346775598351817,
+          -0.08365233758438165
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/existence_delta_vs_original_975": {
+        "point": -0.10985806501739,
+        "ci_level": 0.975,
+        "ci": [
+          -0.13836160919351628,
+          -0.07956039339323054
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_R1_05": {
+        "point": 0.31212572966561425,
+        "ci_level": 0.95,
+        "ci": [
+          0.28570869328856646,
+          0.33967390473718123
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_delta_vs_original": {
+        "point": -0.05286012660530424,
+        "ci_level": 0.95,
+        "ci": [
+          -0.07802749485413614,
+          -0.029039947729545598
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_delta_vs_original_975": {
+        "point": -0.05286012660530424,
+        "ci_level": 0.975,
+        "ci": [
+          -0.08097669178293636,
+          -0.024927943508430084
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6093125410140657,
+        "ci_level": 0.95,
+        "ci": [
+          0.5898662422710572,
+          0.6291164200296375
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/same_video_PairAcc_video_equal": {
+        "point": 0.6598645258957685,
+        "ci_level": 0.95,
+        "ci": [
+          0.6197555200236852,
+          0.6981900150955016
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "scalar_geometry_control/existence_AUROC": {
+        "point": 0.7559897067388365,
+        "ci_level": 0.95,
+        "ci": [
+          0.7275965605551908,
+          0.7858880309135058
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/existence_delta_vs_original": {
+        "point": -0.07698231350653151,
+        "ci_level": 0.95,
+        "ci": [
+          -0.0999108287529464,
+          -0.05207750816154651
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/existence_delta_vs_original_975": {
+        "point": -0.07698231350653151,
+        "ci_level": 0.975,
+        "ci": [
+          -0.10312934703983188,
+          -0.04978028666021588
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_R1_05": {
+        "point": 0.3649858562709185,
+        "ci_level": 0.95,
+        "ci": [
+          0.3322909219420016,
+          0.3951287942818565
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6399801143882384,
+        "ci_level": 0.95,
+        "ci": [
+          0.6179875176362042,
+          0.6603425157100722
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/same_video_PairAcc_video_equal": {
+        "point": 0.6886563201358458,
+        "ci_level": 0.95,
+        "ci": [
+          0.647297970673654,
+          0.7264402358992387
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "primary_minus_foreground/existence_AUROC": {
+        "point": -0.02770628541944194,
+        "ci_level": 0.95,
+        "ci": [
+          -0.056568459228719115,
+          0.0036902802221932423
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_agreement/existence_AUROC": {
+        "point": 0.09190197814238925,
+        "ci_level": 0.95,
+        "ci": [
+          0.06630364447008613,
+          0.11591245618326965
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_scalar_geometry_control/existence_AUROC": {
+        "point": -0.032875751510858496,
+        "ci_level": 0.95,
+        "ci": [
+          -0.04809912511923704,
+          -0.015420327407338322
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_foreground/raw_R1_05": {
+        "point": -0.05286012660530424,
+        "ci_level": 0.95,
+        "ci": [
+          -0.07802749485413614,
+          -0.029039947729545598
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_agreement/raw_R1_05": {
+        "point": 0.13652410495957934,
+        "ci_level": 0.95,
+        "ci": [
+          0.10650979413170791,
+          0.1686864194457744
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_scalar_geometry_control/raw_R1_05": {
+        "point": -0.05286012660530424,
+        "ci_level": 0.95,
+        "ci": [
+          -0.07802749485413614,
+          -0.029039947729545598
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      }
+    },
+    "pseudo": {
+      "original_exist/existence_AUROC": {
+        "point": 0.5872520023747171,
+        "ci_level": 0.95,
+        "ci": [
+          0.5609742036284696,
+          0.6158505942475064
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/existence_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/existence_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/same_video_PairAcc_video_equal": {
+        "point": 0.6828009484566117,
+        "ci_level": 0.95,
+        "ci": [
+          0.6450629240716023,
+          0.7208165084151411
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "original_exist/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "foreground/existence_AUROC": {
+        "point": 0.503697984894896,
+        "ci_level": 0.95,
+        "ci": [
+          0.47845578100699404,
+          0.5270062837316057
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/existence_delta_vs_original": {
+        "point": -0.0835540174798211,
+        "ci_level": 0.95,
+        "ci": [
+          -0.11916560693961828,
+          -0.055169521551661035
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/existence_delta_vs_original_975": {
+        "point": -0.0835540174798211,
+        "ci_level": 0.975,
+        "ci": [
+          -0.12322990025784385,
+          -0.04971634455142175
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_R1_05": {
+        "point": 0.29362763491135785,
+        "ci_level": 0.95,
+        "ci": [
+          0.2698045949695573,
+          0.3159019240577403
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/raw_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6483493425993722,
+        "ci_level": 0.95,
+        "ci": [
+          0.6318613275990719,
+          0.66350761268726
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/same_video_PairAcc_video_equal": {
+        "point": 0.5473965975498304,
+        "ci_level": 0.95,
+        "ci": [
+          0.4998934306374038,
+          0.5967372086373038
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "agreement/existence_AUROC": {
+        "point": 0.5438447912206935,
+        "ci_level": 0.95,
+        "ci": [
+          0.5191001511175976,
+          0.5702591073831217
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/existence_delta_vs_original": {
+        "point": -0.04340721115402348,
+        "ci_level": 0.95,
+        "ci": [
+          -0.0750288497138211,
+          -0.012276773276109808
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/existence_delta_vs_original_975": {
+        "point": -0.04340721115402348,
+        "ci_level": 0.975,
+        "ci": [
+          -0.07959520339880673,
+          -0.006882740642794414
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_R1_05": {
+        "point": 0.14605774400935126,
+        "ci_level": 0.95,
+        "ci": [
+          0.12692414410669717,
+          0.16526083963868865
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_delta_vs_original": {
+        "point": -0.14756989090200662,
+        "ci_level": 0.95,
+        "ci": [
+          -0.17382975259470151,
+          -0.12146350185240419
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/raw_delta_vs_original_975": {
+        "point": -0.14756989090200662,
+        "ci_level": 0.975,
+        "ci": [
+          -0.1773662267884369,
+          -0.11767388722142215
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.3935662705233001,
+        "ci_level": 0.95,
+        "ci": [
+          0.37086298289963293,
+          0.41465388535078285
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/same_video_PairAcc_video_equal": {
+        "point": 0.5963982019782187,
+        "ci_level": 0.95,
+        "ci": [
+          0.5436873472354079,
+          0.6531226440611103
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "agreement/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "foreground_agreement/existence_AUROC": {
+        "point": 0.5314672053331346,
+        "ci_level": 0.95,
+        "ci": [
+          0.5077588830180507,
+          0.5550916453885525
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/existence_delta_vs_original": {
+        "point": -0.05578479704158242,
+        "ci_level": 0.95,
+        "ci": [
+          -0.08853930387194833,
+          -0.024577221706351248
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/existence_delta_vs_original_975": {
+        "point": -0.05578479704158242,
+        "ci_level": 0.975,
+        "ci": [
+          -0.09342273833961522,
+          -0.021402624926484634
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_R1_05": {
+        "point": 0.26848085914669784,
+        "ci_level": 0.95,
+        "ci": [
+          0.24543182957460966,
+          0.29116288116439853
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_delta_vs_original": {
+        "point": -0.02514677576466004,
+        "ci_level": 0.95,
+        "ci": [
+          -0.04045784057232945,
+          -0.009829126115952385
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/raw_delta_vs_original_975": {
+        "point": -0.02514677576466004,
+        "ci_level": 0.975,
+        "ci": [
+          -0.04197633338143034,
+          -0.006916176881690898
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6369300686428429,
+        "ci_level": 0.95,
+        "ci": [
+          0.6212713658184291,
+          0.6513829708110662
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/same_video_PairAcc_video_equal": {
+        "point": 0.5322798745929861,
+        "ci_level": 0.95,
+        "ci": [
+          0.47723006686371994,
+          0.5848890735306599
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "foreground_agreement/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "scalar_geometry_control/existence_AUROC": {
+        "point": 0.551113009231801,
+        "ci_level": 0.95,
+        "ci": [
+          0.5271870512958752,
+          0.5768880571983137
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/existence_delta_vs_original": {
+        "point": -0.0361389931429161,
+        "ci_level": 0.95,
+        "ci": [
+          -0.06573717575990577,
+          -0.006980560257044699
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/existence_delta_vs_original_975": {
+        "point": -0.0361389931429161,
+        "ci_level": 0.975,
+        "ci": [
+          -0.06979288528910113,
+          -0.0034661509385951177
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_R1_05": {
+        "point": 0.29362763491135785,
+        "ci_level": 0.95,
+        "ci": [
+          0.2698045949695573,
+          0.3159019240577403
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_delta_vs_original": {
+        "point": 0.0,
+        "ci_level": 0.95,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/raw_delta_vs_original_975": {
+        "point": 0.0,
+        "ci_level": 0.975,
+        "ci": [
+          0.0,
+          0.0
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/mixed_candidate_PairAcc_video_equal": {
+        "point": 0.6483493425993722,
+        "ci_level": 0.95,
+        "ci": [
+          0.6318613275990719,
+          0.66350761268726
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/same_video_PairAcc_video_equal": {
+        "point": 0.6072091525977759,
+        "ci_level": 0.95,
+        "ci": [
+          0.5621658780101308,
+          0.6501568924423684
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "scalar_geometry_control/same_query_exact_feature_PairAcc_query_equal": {
+        "point": null,
+        "ci_level": 0.95,
+        "ci": null,
+        "valid_resamples": 0,
+        "invalid_resamples": 1000
+      },
+      "primary_minus_foreground/existence_AUROC": {
+        "point": 0.02776922043823867,
+        "ci_level": 0.95,
+        "ci": [
+          -0.010379208079719052,
+          0.06578850599109004
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_agreement/existence_AUROC": {
+        "point": -0.01237758588755894,
+        "ci_level": 0.95,
+        "ci": [
+          -0.03293992415042123,
+          0.007001301450953887
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_scalar_geometry_control/existence_AUROC": {
+        "point": -0.019645803898666325,
+        "ci_level": 0.95,
+        "ci": [
+          -0.03775423310246558,
+          -0.0020023378687333837
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_foreground/raw_R1_05": {
+        "point": -0.02514677576466004,
+        "ci_level": 0.95,
+        "ci": [
+          -0.04045784057232945,
+          -0.009829126115952385
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_agreement/raw_R1_05": {
+        "point": 0.12242311513734656,
+        "ci_level": 0.95,
+        "ci": [
+          0.09872304036616104,
+          0.14571948769552673
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      },
+      "primary_minus_scalar_geometry_control/raw_R1_05": {
+        "point": -0.02514677576466004,
+        "ci_level": 0.95,
+        "ci": [
+          -0.04045784057232945,
+          -0.009829126115952385
+        ],
+        "valid_resamples": 1000,
+        "invalid_resamples": 0
+      }
+    }
+  },
+  "entry_evidence_checks": {
+    "equal_pseudo_AUROC_lower975_positive": false,
+    "equal_pseudo_raw_lower975_positive": false,
+    "at_least_two_families_joint_positive": false,
+    "seen_AUROC_lower95_not_worse_than_minus_01": false,
+    "seen_raw_lower95_not_worse_than_minus_01": false,
+    "candidate_specific_stronger_than_geometry_only_raw": true,
+    "two_families_exact_text_visual_support": false
+  },
+  "entry_evidence_supported": false,
+  "entry_is_not_joint_success": true,
+  "training_updates": 0,
+  "new_forward_passes": 0,
+  "reproduction_checks": {
+    "throw/seen": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    },
+    "throw/pseudo": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    },
+    "open_close/seen": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    },
+    "open_close/pseudo": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    },
+    "sit/seen": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    },
+    "sit/pseudo": {
+      "original_AUROC_reproduced": true,
+      "original_raw_reproduced": true,
+      "scalar_control_rank_identical": true,
+      "weighted_AUC_sklearn_30_checks_passed": true
+    }
+  },
+  "video_union": 2302,
+  "primary": "foreground_agreement",
+  "limitations": {
+    "purpose": "bridge existing candidate diagnostic to existence and raw localization; original S+/S- only, no new absence, no fitting",
+    "p": "foreground value carried by original saved candidate window; preserve original list order for all exact ties",
+    "c": "candidate i mean temporal IoU with other 9 predicted candidates; diagonal excluded, not GT IoU",
+    "primary_hypothesis": "s_i=p_i*c_i; hypothesis that mutual candidate geometry support can rank localization and distinguish existence jointly",
+    "controls": {
+      "foreground": "s_i=p_i; original raw rank; max score tests original foreground existence evidence",
+      "agreement": "s_i=c_i; geometry alone to detect shape/length biases",
+      "scalar_geometry_control": "s_i=p_i*mean(c); identical per-query geometry summary but no candidate-specific weighting; all-zero ties keep original rank"
+    },
+    "existence_diagnostic": "max_i s_i, not installed as pred_exist_score; original threshold/gate unchanged; no threshold fitting or replacement",
+    "localization_diagnostic": "argmax s_i, exact ties select first original rank; saved coordinates unchanged; raw R1@.5 only; no new official gated candidate",
+    "pair_metrics": "mixed S+ candidate query PairAcc, then equal queries/video; same-video S+/S- pairs mean/video; feature-equal same-query cross-video PairAcc mean/query; endpoint bootstrap weights product; same video pairs excluded",
+    "feature_equal": "float32 last_hidden_state first32, normalize by norm+1e-5 exactly per vendor qd dataset; shape+values hashes identical; mask lengths implicit in shape; no canonical forward",
+    "bootstrap": "seed3407,1000 shared union original videos; global weighted AUC and original query-equal raw metrics; cluster query PairAcc->video; equal three families; zero denominator NA",
+    "uncertainty": "exploratory 95%; auxiliary97.5% paired deltas preserve major-endpoint standard but not confirmatory method test",
+    "entry_decision": "Require primary joint path: equal-family pseudo diagnostic AUROC and raw deltas lower97.5%>0, at least two families positive on both, seen primary AUROC/raw lower95%>=-.01, candidate-specific primary stronger than geometry-only raw at lower95%>0, feature-equal same-query support across at least two families with lower95%>.5. Necessary evidence only, not efficacy/gated/FRR/RR/VTG success. Failure means no new training round for this hypothesis; no posthoc formula/lambda sweep.",
+    "restrictions": "no old runs restart; training/update/forward0; U/test not read; no oracle used in actual scores; existing checkpoints/threshold/gate/outputs immutable"
+  }
+}

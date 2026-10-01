@@ -1,0 +1,96 @@
+{
+  "ended_at": "2026-10-01T00:29:05.524257+08:00",
+  "state": "ended_by_user",
+  "processes_running": false,
+  "gpu_compute_processes": false,
+  "stage_tmux_running": false,
+  "training_restarted": false,
+  "conditional_interventions_started": false,
+  "formal_U_confirmation_started": false,
+  "runs": {
+    "open_close": {
+      "training": "completed_100_epochs",
+      "pseudo_evaluation": "completed",
+      "automatic_diagnostics": "completed",
+      "best_epoch_zero_based": 49
+    },
+    "sit": {
+      "training": "stopped_by_user",
+      "training_epochs_logged": 77,
+      "seen_evaluation_epochs_completed": 76,
+      "best_epoch_zero_based": 11,
+      "latest_epoch_zero_based": 76,
+      "pseudo_evaluation": "post_stop_saved_best_evaluation_completed",
+      "diagnostics": "best/latest completed without training"
+    }
+  },
+  "cross_family_summary": "completed for saved seen-selected models; sit training still stopped",
+  "checkpoint_integrity_record": "STOP_CHECKPOINT_CHECK.json",
+  "updated_at": "2026-10-01T05:22:50.494368+08:00",
+  "evaluation_closeout": "completed",
+  "new_training_epochs": 0,
+  "parameter_updates": 0,
+  "decision": "relative position accessibility limited; transferable absolute visual support not established; readout versus representation unresolved",
+  "active_processes": false,
+  "readout_analysis": "completed",
+  "next_task": {
+    "state": "completed",
+    "name": "candidate_rank_confidence_geometry_diagnostic",
+    "plan": "plan/NEXT_TASK.md",
+    "training_updates_allowed": 0,
+    "entry_point": "code/candidate_geometry_analyze.py (already executed; no overwrite)",
+    "start_instruction": "no pending authorized task; do not rerun",
+    "result": "candidate_geometry_analysis/REPORT.md"
+  },
+  "handoff_revision_directory": "plan/handoff_revisions/20261001_011627",
+  "handoff_state": "temporal_representation_diagnostic_completed_no_full_model_training",
+  "runtime_checked_at": "2026-10-01T05:17:55.029123",
+  "active_experiment_processes": [],
+  "gpu_compute_process_snapshot": "",
+  "candidate_geometry_analysis": "completed",
+  "candidate_geometry_summary": {
+    "positive_queries": 4878,
+    "protected_files": 117,
+    "integrity": "passed",
+    "independent_validation": "passed",
+    "conclusion": "ranking and geometry coexist; joint existence/localization mechanism unresolved",
+    "bootstrap_original_video_union": 2302,
+    "new_forward_passes": 0
+  },
+  "support_bridge_analysis": "completed",
+  "support_bridge_summary": {
+    "rows": 7345,
+    "new_forward_passes": 0,
+    "training_updates": 0,
+    "protected_paths": 2219,
+    "primary": "foreground_agreement",
+    "new_training_round_entry_supported": false,
+    "report": "support_bridge_analysis/REPORT.md",
+    "independent_validation": "passed"
+  },
+  "original_model_parameter_updates": 0,
+  "diagnostic_probe_fits": 18,
+  "diagnostic_probe_parameters_fitted": 4626,
+  "temporal_representation_analysis": "completed",
+  "parameter_updates_scope": "original frozen model only; diagnostic probe fitting separately counted",
+  "temporal_representation_summary": {
+    "report": "temporal_representation_analysis/REPORT.md",
+    "new_frozen_forward_query_presentations": 28370,
+    "original_model_updates": 0,
+    "probe_fits": 18,
+    "probe_parameters": 4626,
+    "protected_paths": 18230,
+    "independent_validation": "passed",
+    "integrity": "passed",
+    "new_training_round_started": false,
+    "bootstrap_video_union": 2302,
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 3407
+  },
+  "latest_authorized_task": {
+    "state": "completed",
+    "name": "absolute_support_temporal_representation_diagnostic",
+    "result": "temporal_representation_analysis/REPORT.md",
+    "pending_action": null
+  }
+}

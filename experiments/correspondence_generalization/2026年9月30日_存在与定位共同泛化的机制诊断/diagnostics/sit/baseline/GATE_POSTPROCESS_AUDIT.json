@@ -1,0 +1,153 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "results": {
+    "pseudo": {
+      "rows": 976,
+      "positive": 625,
+      "all_ranked_coordinate_mismatches": 0,
+      "mismatch_qids": [],
+      "raw_to_gated_hit_changes": [
+        {
+          "qid": "train4486",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train4835",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train4836",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train7059",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train7509",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train8276",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train9107",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train9994",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train11083",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train11922",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        }
+      ],
+      "aligned_raw_R1_05_auxiliary": 0.3536,
+      "official_gated_R1_05": 0.3536,
+      "prediction_sha256": "7deaad795715181e45bf4fcb2ceab641bea0920d8f402184e805551c437a7861"
+    },
+    "seen": {
+      "rows": 1065,
+      "positive": 676,
+      "all_ranked_coordinate_mismatches": 0,
+      "mismatch_qids": [],
+      "raw_to_gated_hit_changes": [
+        {
+          "qid": "train665",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train3147",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train4208",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train4584",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train5086",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        },
+        {
+          "qid": "train7189",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train7602",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train7984",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train10114",
+          "raw_hit": true,
+          "gated_hit": false,
+          "aligned_raw_hit": false
+        },
+        {
+          "qid": "train11937",
+          "raw_hit": false,
+          "gated_hit": true,
+          "aligned_raw_hit": true
+        }
+      ],
+      "aligned_raw_R1_05_auxiliary": 0.3224852071005917,
+      "official_gated_R1_05": 0.3224852071005917,
+      "prediction_sha256": "e8ec2c706ec1bc9f407ac71759f99f95e861806fe59209a3569031ffca391364"
+    }
+  },
+  "source_sha256": "e8f3da3638ebe09271ab1e32db99dd2ce36e12e5d52584165ea6d7310791f5f4",
+  "official_evaluator_sha256": "b71f952fa6cfbfbaae1ca0b6bd1f476159c17c2448b87d55f82300fa97a50537",
+  "official_postprocessor_sha256": "50e6501c642e77502f7a4d781e01e12bbd97521d3b0a8f47d793b3044be30046",
+  "gate_sha256": "0e1235c8425f9c61883e88a57a8a1feec2c9ceb15046aeecd83563deb3cefc67",
+  "interpretation": "Official soft gate is a per-row nonnegative scalar. Exact positive scalar scaling preserves within-row ranking. Saved gated coordinates alone receive clip_ts/round_multiple; frozen raw endpoint remains untouched. When aligned coordinates match, hit changes are explained by temporal postprocessing rather than gate veto or reranking. Aligned raw is auxiliary only, not a replacement co-primary endpoint."
+}

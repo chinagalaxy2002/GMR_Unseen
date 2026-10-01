@@ -1,0 +1,117 @@
+{
+  "state": "completed",
+  "args": {
+    "run": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026\u5e749\u670830\u65e5_\u5b58\u5728\u4e0e\u5b9a\u4f4d\u5171\u540c\u6cdb\u5316\u7684\u673a\u5236\u8bca\u65ad/runs/open_close_qd_gmr_baseline_s3407_attempt1",
+    "backbone": "qd",
+    "split": "A1",
+    "track": "gmr",
+    "method": "baseline",
+    "seed": 3407,
+    "development": true,
+    "development_view": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026\u5e749\u670830\u65e5_\u5b58\u5728\u4e0e\u5b9a\u4f4d\u5171\u540c\u6cdb\u5316\u7684\u673a\u5236\u8bca\u65ad/views/open_close",
+    "action": "train",
+    "smoke": false,
+    "skip_budget_audit": true
+  },
+  "seen_selection": {
+    "source": "seen validation only",
+    "score_name": "MR-full-mAP",
+    "score": 27.18,
+    "epoch": 49
+  },
+  "wall_seconds": 2948.7968691801652,
+  "output": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026\u5e749\u670830\u65e5_\u5b58\u5728\u4e0e\u5b9a\u4f4d\u5171\u540c\u6cdb\u5316\u7684\u673a\u5236\u8bca\u65ad/runs/open_close_qd_gmr_baseline_s3407_attempt1",
+  "code_sha256": "42f08c1480836b42068fb1b92c911c8a855ce7303bd0fb5cf9ee7c8ce26cab64",
+  "seen": {
+    "auroc": 0.8560905396251977,
+    "threshold": 0.9977,
+    "positive_frr": 0.18992248062015504,
+    "negative_rr": 0.7961165048543689,
+    "same_video_all_pairs_pairacc": 0.7944214876033058,
+    "same_video_pair_count": 484,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.32945736434108525,
+      "R1@0.7": 0.20348837209302326
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.2693798449612403,
+      "R1@0.7": 0.15310077519379844
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.18235294117647058,
+      "0.7": 0.24761904761904763
+    },
+    "official_gated": {
+      "R1@0.5": 0.34108527131782945,
+      "R1@0.7": 0.20348837209302326
+    }
+  },
+  "pseudo_official": {
+    "brief": {
+      "MR-full-R1@0.5": 26.64,
+      "MR-full-R1@0.7": 12.13,
+      "MR-full-mAP": 18.04,
+      "MR-full-mAP@0.5": 40.87,
+      "MR-full-mAP@0.75": 13.3
+    },
+    "full": {
+      "MR-mAP": {
+        "0.5": 40.87,
+        "0.55": 33.74,
+        "0.6": 28.64,
+        "0.65": 22.62,
+        "0.7": 17.42,
+        "0.75": 13.3,
+        "0.8": 10.17,
+        "0.85": 7.28,
+        "0.9": 4.6,
+        "0.95": 1.79,
+        "average": 18.04
+      },
+      "MR-R1": {
+        "0.5": 26.64,
+        "0.55": 21.93,
+        "0.6": 19.01,
+        "0.65": 15.31,
+        "0.7": 12.13,
+        "0.75": 9.32,
+        "0.8": 7.42,
+        "0.85": 5.67,
+        "0.9": 3.81,
+        "0.95": 1.54
+      }
+    }
+  },
+  "pseudo": {
+    "auroc": 0.5346313130629411,
+    "threshold": 0.9977,
+    "positive_frr": 0.14565677966101695,
+    "negative_rr": 0.16826411075612355,
+    "same_video_all_pairs_pairacc": 0.5904159132007233,
+    "same_video_pair_count": 1659,
+    "ties": 0.5,
+    "raw": {
+      "R1@0.5": 0.2632415254237288,
+      "R1@0.7": 0.11970338983050847
+    },
+    "diagnostic_hard": {
+      "R1@0.5": 0.2298728813559322,
+      "R1@0.7": 0.10540254237288135
+    },
+    "raw_correct_positive_frr": {
+      "0.5": 0.1267605633802817,
+      "0.7": 0.11946902654867257
+    },
+    "official_gated": {
+      "R1@0.5": 0.2664194915254237,
+      "R1@0.7": 0.12129237288135593
+    }
+  },
+  "forward_counts": {
+    "training": 29000,
+    "inference": 4777
+  },
+  "gpu_peak_bytes": 1324692992,
+  "accurate_total_flops": "unmeasured; do not infer from one batch"
+}

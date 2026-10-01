@@ -1,0 +1,25 @@
+{
+  "requested_at": "2026-10-01T00:26:27.772438+08:00",
+  "reason": "User explicitly requested stopping training and ending this experiment; sit best epoch noted as 11",
+  "signals": [
+    {
+      "name": "scheduler",
+      "pid": 167959,
+      "action": "SIGTERM",
+      "command": "/home/guoxiangyu/miniconda3/envs/gmr/bin/python -u 2026年9月30日_存在与定位共同泛化的机制诊断/code/run_phase2.py "
+    },
+    {
+      "name": "followup",
+      "pid": 176731,
+      "action": "SIGTERM",
+      "command": "/home/guoxiangyu/miniconda3/envs/gmr/bin/python -u 2026年9月30日_存在与定位共同泛化的机制诊断/code/run_followup.py "
+    },
+    {
+      "name": "sit_training",
+      "pid": 167965,
+      "action": "SIGTERM",
+      "command": "/home/guoxiangyu/miniconda3/envs/gmr/bin/python -u /home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/development_worker.py /home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/sit_qd_gmr_baseline_s3407_attempt1 --backbone qd --split A1 --track gmr --method baseline --seed 3407 --development --development-view /home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/views/sit "
+    }
+  ],
+  "restart_authorized": false
+}

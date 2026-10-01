@@ -1,0 +1,30 @@
+bridge completed throw/seen
+bridge completed throw/pseudo
+bridge completed open_close/seen
+bridge completed open_close/pseudo
+bridge completed sit/seen
+bridge completed sit/pseudo
+Traceback (most recent call last):
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/support_bridge_analyze.py", line 148, in <module>
+    try:main()
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/support_bridge_analyze.py", line 141, in main
+    dump('RESULTS.json',{'state':'completed','groups':results,'equal_family':equal,'entry_evidence_checks':entry,'entry_evidence_supported':all(entry.values()),'entry_is_not_joint_success':True,'training_updates':0,'new_forward_passes':0,'reproduction_checks':checks,'video_union':len(vs),'primary':primary,'limitations':definitions})
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/code/support_bridge_analyze.py", line 17, in dump
+    def dump(n,x):(D/n).write_text(json.dumps(x,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/home/guoxiangyu/miniconda3/envs/gmr/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

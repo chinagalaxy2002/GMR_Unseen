@@ -1,0 +1,524 @@
+{
+  "state": "completed",
+  "training_updates": 0,
+  "true_U_access": false,
+  "seed": 3407,
+  "resamples": 1000,
+  "original_video_union": 2302,
+  "bootstrap": "sample union of original videos once per replicate; reuse common multiplicities across all families and splits; equal family means",
+  "intervals": "baseline absolute uncertainty only, not paired candidate gains or seed stability",
+  "source_sha256": "69a70d8f6f4794e6588d4de50d4310d2cbd04eacad25b3e4baf750224ea5aef1",
+  "families": {
+    "throw": {
+      "pseudo": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.5731030416395576,
+            "ci_level": 0.975,
+            "ci": [
+              0.5014817007096817,
+              0.6426058418525862
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.2672413793103448,
+            "ci_level": 0.975,
+            "ci": [
+              0.2154702328404326,
+              0.3193473625660518
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.26939655172413796,
+            "ci_level": 0.95,
+            "ci": [
+              0.2242085350939119,
+              0.3164726925442714
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.08836206896551724,
+            "ci_level": 0.95,
+            "ci": [
+              0.059319246208742196,
+              0.12025351695751459
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.1320754716981132,
+            "ci_level": 0.95,
+            "ci": [
+              0.05677387406171814,
+              0.22324617346938774
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.12096774193548387,
+            "ci_level": 0.95,
+            "ci": [
+              0.05981481481481483,
+              0.19205934793683138
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.9973,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/views/pseudo.jsonl": "396ff0195a7577b03404e1d25a2aa9ceedd36582e4e07860a407a670b65be61b",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/pseudo_predictions.jsonl": "a5c4d5c0d3a5ee7bb4cb517a0af0c829868ddef9dd249964b7feb8230685501f",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/threshold_frozen.json": "c628ee3e943be5f110ff9f86eb77176ae55f733d73493a98b4ce5710b278c85e"
+        },
+        "raw_correct_rejected_denominator": 124
+      },
+      "seen": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.7996112408291949,
+            "ci_level": 0.975,
+            "ci": [
+              0.7589208836216105,
+              0.8356382418764773
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.4400564174894217,
+            "ci_level": 0.975,
+            "ci": [
+              0.3880043354049719,
+              0.48991202013014334
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.4414668547249647,
+            "ci_level": 0.95,
+            "ci": [
+              0.3974242424242424,
+              0.48402960946141405
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.2073342736248237,
+            "ci_level": 0.95,
+            "ci": [
+              0.172505719097504,
+              0.24428801670593273
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.7037815126050421,
+            "ci_level": 0.95,
+            "ci": [
+              0.6525251185596013,
+              0.7465353342799899
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.18269230769230768,
+            "ci_level": 0.95,
+            "ci": [
+              0.13239077995175558,
+              0.23077586206896553
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.9973,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/views/val_seen.jsonl": "29166e4d694480fd41184bd4ff5802d1251103f4a042cdcbd9ac25ab7ddb6685",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/best_seen_predictions.jsonl": "606dd34aa6a38cacb278b767183719efa483a0fba24aa782806cb34798461d1f",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/runs/autonomous_queue_20260930_strict/jobs/dev_A1_qd_gmr_baseline_s3407_attempt1/threshold_frozen.json": "c628ee3e943be5f110ff9f86eb77176ae55f733d73493a98b4ce5710b278c85e"
+        },
+        "raw_correct_rejected_denominator": 312
+      }
+    },
+    "open_close": {
+      "pseudo": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.5346313130629411,
+            "ci_level": 0.975,
+            "ci": [
+              0.5135996390069768,
+              0.5573282193642973
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.2632415254237288,
+            "ci_level": 0.975,
+            "ci": [
+              0.23531583987240087,
+              0.2924013157894737
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.2664194915254237,
+            "ci_level": 0.95,
+            "ci": [
+              0.2432376533720898,
+              0.29118475682482015
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.14565677966101695,
+            "ci_level": 0.95,
+            "ci": [
+              0.1277669139278901,
+              0.16507083333333333
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.16826411075612355,
+            "ci_level": 0.95,
+            "ci": [
+              0.14148847343560592,
+              0.19486666236968817
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.1267605633802817,
+            "ci_level": 0.95,
+            "ci": [
+              0.09356585643498058,
+              0.15864016146050597
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.9977,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/views/pseudo.jsonl": "2866d727777b1c43a8f8eb6394c985b966c7300bb2693f950f4457f92c506a2e",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/pseudo_predictions.jsonl": "7c28e4de9e2164a344c83784e4534715c8a90921529612116e3226e36990fbbf",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/threshold_frozen.json": "1379fca89be53a0a8654ccc8a752ffb5c0a0d18ecb718a5ca32fe8757eefb5b3"
+        },
+        "raw_correct_rejected_denominator": 497
+      },
+      "seen": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.8560905396251975,
+            "ci_level": 0.975,
+            "ci": [
+              0.8094918427640889,
+              0.8922124864331086
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.32945736434108525,
+            "ci_level": 0.975,
+            "ci": [
+              0.2818796641791045,
+              0.38156638294862427
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.34108527131782945,
+            "ci_level": 0.95,
+            "ci": [
+              0.29803823529411766,
+              0.388548359772994
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.18992248062015504,
+            "ci_level": 0.95,
+            "ci": [
+              0.15176737483758604,
+              0.22874864224350744
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.7961165048543689,
+            "ci_level": 0.95,
+            "ci": [
+              0.7242979772225056,
+              0.8526628214371544
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.18235294117647058,
+            "ci_level": 0.95,
+            "ci": [
+              0.12039579834699861,
+              0.2431021009014248
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.9977,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/views/val_seen.jsonl": "4e8dcb029c0e7e8c9f550ea568077d49fc1842ba64493f090aca8f2ee55c2a56",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/best_seen_predictions.jsonl": "c847d74492c9ecf0d8022e233b8a1340ada6025e2535a0e0e7ba7be353400573",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/runs/open_close_qd_gmr_baseline_s3407_attempt1/threshold_frozen.json": "1379fca89be53a0a8654ccc8a752ffb5c0a0d18ecb718a5ca32fe8757eefb5b3"
+        },
+        "raw_correct_rejected_denominator": 170
+      }
+    },
+    "sit": {
+      "pseudo": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.6540216524216524,
+            "ci_level": 0.975,
+            "ci": [
+              0.6073986537625757,
+              0.6993250743427879
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.3504,
+            "ci_level": 0.975,
+            "ci": [
+              0.29718870538845166,
+              0.40527039531877257
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.3536,
+            "ci_level": 0.95,
+            "ci": [
+              0.305259374474525,
+              0.3981257520320212
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.064,
+            "ci_level": 0.95,
+            "ci": [
+              0.04454042485466822,
+              0.08591962522302472
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.23076923076923078,
+            "ci_level": 0.95,
+            "ci": [
+              0.18356164383561643,
+              0.2788250040732896
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.0821917808219178,
+            "ci_level": 0.95,
+            "ci": [
+              0.04625883529855519,
+              0.12684035476718403
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.955,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/views/pseudo.jsonl": "f1ee87f31d4e0257a2e3eb0d794b1ab55aa8024c51aa2967508d15d35d95b43c",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/pseudo_predictions.jsonl": "7deaad795715181e45bf4fcb2ceab641bea0920d8f402184e805551c437a7861",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/threshold_frozen.json": "badcb1c6921b4126f059d286f99cc1c3114e295a18ae5ee135c3da9a659d5b66"
+        },
+        "raw_correct_rejected_denominator": 219
+      },
+      "seen": {
+        "metrics": {
+          "AUROC": {
+            "point": 0.8432142802817115,
+            "ci_level": 0.975,
+            "ci": [
+              0.8166176245444142,
+              0.8691409545365121
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_R1_05": {
+            "point": 0.3254437869822485,
+            "ci_level": 0.975,
+            "ci": [
+              0.280035502751609,
+              0.36845463318511396
+            ],
+            "valid_resamples": 1000
+          },
+          "gated_R1_05": {
+            "point": 0.3224852071005917,
+            "ci_level": 0.95,
+            "ci": [
+              0.28074815593225844,
+              0.35901489875398856
+            ],
+            "valid_resamples": 1000
+          },
+          "FRR": {
+            "point": 0.3668639053254438,
+            "ci_level": 0.95,
+            "ci": [
+              0.31816620402498264,
+              0.4116113754232566
+            ],
+            "valid_resamples": 1000
+          },
+          "RR": {
+            "point": 0.9125964010282777,
+            "ci_level": 0.95,
+            "ci": [
+              0.8810710995085995,
+              0.9382438068254676
+            ],
+            "valid_resamples": 1000
+          },
+          "raw_correct_rejected_rate": {
+            "point": 0.35,
+            "ci_level": 0.95,
+            "ci": [
+              0.278937154530161,
+              0.42411052489177486
+            ],
+            "valid_resamples": 1000
+          }
+        },
+        "threshold": 0.955,
+        "source_hashes": {
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/views/val_seen.jsonl": "7af69ae2bdca9d5b9ce9367db036f9ce308f537727882cb616e586ed3d0837d5",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/best_seen_predictions.jsonl": "e8ec2c706ec1bc9f407ac71759f99f95e861806fe59209a3569031ffca391364",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/diagnostics/sit/baseline/evaluation_bundle/threshold_frozen.json": "badcb1c6921b4126f059d286f99cc1c3114e295a18ae5ee135c3da9a659d5b66"
+        },
+        "raw_correct_rejected_denominator": 220
+      }
+    }
+  },
+  "equal_family_mean": {
+    "pseudo": {
+      "AUROC": {
+        "point": 0.5872520023747171,
+        "ci_level": 0.975,
+        "ci": [
+          0.5572876304308823,
+          0.6145576836895199
+        ],
+        "valid_resamples": 1000
+      },
+      "raw_R1_05": {
+        "point": 0.29362763491135785,
+        "ci_level": 0.975,
+        "ci": [
+          0.2669078661192343,
+          0.3192471166072328
+        ],
+        "valid_resamples": 1000
+      },
+      "gated_R1_05": {
+        "point": 0.29647201441652055,
+        "ci_level": 0.95,
+        "ci": [
+          0.27316907179657124,
+          0.32047290598556566
+        ],
+        "valid_resamples": 1000
+      },
+      "FRR": {
+        "point": 0.09933961620884472,
+        "ci_level": 0.95,
+        "ci": [
+          0.08585090709500365,
+          0.11363597699227673
+        ],
+        "valid_resamples": 1000
+      },
+      "RR": {
+        "point": 0.1770362710744892,
+        "ci_level": 0.95,
+        "ci": [
+          0.14721402519652557,
+          0.21125314461025033
+        ],
+        "valid_resamples": 1000
+      },
+      "raw_correct_rejected_rate": {
+        "point": 0.10997336204589446,
+        "ci_level": 0.95,
+        "ci": [
+          0.08263200112853764,
+          0.1385865749682349
+        ],
+        "valid_resamples": 1000
+      }
+    },
+    "seen": {
+      "AUROC": {
+        "point": 0.8329720202453679,
+        "ci_level": 0.975,
+        "ci": [
+          0.8054962791657936,
+          0.856512982969963
+        ],
+        "valid_resamples": 1000
+      },
+      "raw_R1_05": {
+        "point": 0.3649858562709185,
+        "ci_level": 0.975,
+        "ci": [
+          0.32859277104133455,
+          0.4007940410343201
+        ],
+        "valid_resamples": 1000
+      },
+      "gated_R1_05": {
+        "point": 0.3683457777144619,
+        "ci_level": 0.95,
+        "ci": [
+          0.33585731757420884,
+          0.4002539550407898
+        ],
+        "valid_resamples": 1000
+      },
+      "FRR": {
+        "point": 0.2547068865234742,
+        "ci_level": 0.95,
+        "ci": [
+          0.22431897286649857,
+          0.2820221023463264
+        ],
+        "valid_resamples": 1000
+      },
+      "RR": {
+        "point": 0.8041648061625629,
+        "ci_level": 0.95,
+        "ci": [
+          0.7631524300797349,
+          0.8370285813665417
+        ],
+        "valid_resamples": 1000
+      },
+      "raw_correct_rejected_rate": {
+        "point": 0.23834841628959272,
+        "ci_level": 0.95,
+        "ci": [
+          0.19922023790582932,
+          0.28025786147228077
+        ],
+        "valid_resamples": 1000
+      }
+    }
+  },
+  "training_scope": "Saved seen-selected checkpoints; throw/open_close trained 100 epochs, sit stopped after 77 logged epochs. No new training; cross-family mean descriptive, not uniform completed-budget evidence."
+}

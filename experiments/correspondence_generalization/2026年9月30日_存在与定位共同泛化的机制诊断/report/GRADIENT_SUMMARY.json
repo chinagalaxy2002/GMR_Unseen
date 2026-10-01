@@ -1,0 +1,284 @@
+{
+  "throw/baseline": {
+    "best": {
+      "epoch_zero_based": 99,
+      "checkpoint_sha256": "bf7e1ac3fc68e9718797e9dcae12960b56f04e48d2f138cac381f13145b46d26",
+      "batches": 16,
+      "sample_qids_sha256": "0604caf94e1f9b3e9c92733bc12493fba3ba49f841026244fdc1537e3210f299",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08697201684117317,
+          "negative_fraction": 0.0
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.022348107770085335,
+          "negative_fraction": 0.6875
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.0011668763909256086,
+          "negative_fraction": 0.5
+        }
+      },
+      "qualifying_loc_blocks": [
+        "decoder|loc"
+      ],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "latest": {
+      "epoch_zero_based": 99,
+      "checkpoint_sha256": "c2f475c2229f17927e869cea48379552973ef5e1510831655302d7adf50396c9",
+      "batches": 16,
+      "sample_qids_sha256": "0604caf94e1f9b3e9c92733bc12493fba3ba49f841026244fdc1537e3210f299",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08697201684117317,
+          "negative_fraction": 0.0
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.022348107770085335,
+          "negative_fraction": 0.6875
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.0011668763909256086,
+          "negative_fraction": 0.5
+        }
+      },
+      "qualifying_loc_blocks": [
+        "decoder|loc"
+      ],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "distinct_epochs": false,
+    "distinct_weights": false,
+    "stable_within_family_loc_clue": false
+  },
+  "open_close/baseline": {
+    "best": {
+      "epoch_zero_based": 49,
+      "checkpoint_sha256": "7c0e74c81535fc3371772c9706331b09c2b43f0c16c0d0504ca3d2244ab415ea",
+      "batches": 16,
+      "sample_qids_sha256": "f83d64e8bac60be57db5813cf83acae4d86653d05e4427b2c37482ea1622f3f0",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.0033796851930674165,
+          "negative_fraction": 0.5625
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.015532387420535088,
+          "negative_fraction": 0.1875
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.014538254123181105,
+          "negative_fraction": 0.375
+        }
+      },
+      "qualifying_loc_blocks": [
+        "interaction|loc"
+      ],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "latest": {
+      "epoch_zero_based": 99,
+      "checkpoint_sha256": "605f493e00783844fee0840d2b0151859dd7f732a815726fd29583014349be87",
+      "batches": 16,
+      "sample_qids_sha256": "f83d64e8bac60be57db5813cf83acae4d86653d05e4427b2c37482ea1622f3f0",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.0008159161079674959,
+          "negative_fraction": 0.5
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.0077070805709809065,
+          "negative_fraction": 0.4375
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.030808529816567898,
+          "negative_fraction": 0.3125
+        }
+      },
+      "qualifying_loc_blocks": [],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "distinct_epochs": true,
+    "distinct_weights": true,
+    "stable_within_family_loc_clue": false
+  },
+  "sit/baseline": {
+    "best": {
+      "epoch_zero_based": 11,
+      "checkpoint_sha256": "67dadc67ff6018741578ed0a405d59c608b07d7161b9bbb7cbe76cc35557a6f3",
+      "batches": 16,
+      "sample_qids_sha256": "705ca16b2f0f5a79aaadc3e8779db01ae1dd40b618f01100c6e00c73c048f552",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08515522629022598,
+          "negative_fraction": 0.1875
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.01929923053830862,
+          "negative_fraction": 0.25
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08804232627153397,
+          "negative_fraction": 0.1875
+        }
+      },
+      "qualifying_loc_blocks": [],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "latest": {
+      "epoch_zero_based": 76,
+      "checkpoint_sha256": "52b5d61a01030b2acd2f14a48137caa9b39f0f652e1be00653c502519c64abf7",
+      "batches": 16,
+      "sample_qids_sha256": "705ca16b2f0f5a79aaadc3e8779db01ae1dd40b618f01100c6e00c73c048f552",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.042878592386841774,
+          "negative_fraction": 0.3125
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.0037718364037573338,
+          "negative_fraction": 0.4375
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.0309860622510314,
+          "negative_fraction": 0.3125
+        }
+      },
+      "qualifying_loc_blocks": [],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "distinct_epochs": true,
+    "distinct_weights": true,
+    "stable_within_family_loc_clue": false
+  },
+  "throw/adapter": {
+    "best": {
+      "epoch_zero_based": 13,
+      "checkpoint_sha256": "7343847dc15992410f7ffb8f43502e2c3ea5e26d527b9b78d5be1124ce3135a7",
+      "batches": 16,
+      "sample_qids_sha256": "0604caf94e1f9b3e9c92733bc12493fba3ba49f841026244fdc1537e3210f299",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.00017901614774018526,
+          "negative_fraction": 0.5
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.004373856354504824,
+          "negative_fraction": 0.625
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.09030795842409134,
+          "negative_fraction": 0.125
+        },
+        "adapter|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08352332189679146,
+          "negative_fraction": 0.1875
+        }
+      },
+      "qualifying_loc_blocks": [
+        "decoder|loc"
+      ],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "latest": {
+      "epoch_zero_based": 99,
+      "checkpoint_sha256": "52d5fb1db8de2848a1c694798c7ee99e15f305ff4794d5e94eebef3311e31432",
+      "batches": 16,
+      "sample_qids_sha256": "0604caf94e1f9b3e9c92733bc12493fba3ba49f841026244fdc1537e3210f299",
+      "blocks": {
+        "interaction|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.08276436850428581,
+          "negative_fraction": 0.1875
+        },
+        "decoder|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.16369756311178207,
+          "negative_fraction": 0.0625
+        },
+        "input_projection|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": -0.031288725323975086,
+          "negative_fraction": 0.6875
+        },
+        "adapter|loc": {
+          "valid_batches": 16,
+          "invalid_batches": 0,
+          "median_cosine": 0.0032256707781925797,
+          "negative_fraction": 0.5
+        }
+      },
+      "qualifying_loc_blocks": [
+        "input_projection|loc"
+      ],
+      "at_least_two_loc_blocks": false,
+      "saliency_loss_weight": 0,
+      "saliency_limit": "No active saliency objective when weight=0; missing saliency gradients do not indicate agreement."
+    },
+    "distinct_epochs": true,
+    "distinct_weights": true,
+    "stable_within_family_loc_clue": false
+  }
+}

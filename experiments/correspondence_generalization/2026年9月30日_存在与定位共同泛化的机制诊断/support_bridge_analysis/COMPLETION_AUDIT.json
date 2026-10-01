@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-01T01:58:41.011752+08:00",
+  "previous_goal_turn_classification": "progress: candidate diagnostics completed, then authorized support bridge changed authoritative state and evidence",
+  "objective": "Continue research according to plan and joint existence/localization target; conditionally create named experimental stage and code experiments only if sufficient discoveries",
+  "requirements": {
+    "research_after_analysis": {
+      "status": "proved",
+      "evidence": [
+        "REPORT.md",
+        "RESULTS.json",
+        "ROWS.jsonl",
+        "VALIDATION.json",
+        "IDEA_EVALUATION.md"
+      ]
+    },
+    "align_with_joint_AUROC_raw_gated_seen_rejection_VTG_goal": {
+      "status": "proved for this research scope; no efficacy claim",
+      "evidence": "FREEZE/REPORT retain full goal and leave gated/FRR/RR/VTG validation gaps explicit"
+    },
+    "determine_sufficient_discoveries": {
+      "status": "proved not triggered for evaluated concrete hypothesis",
+      "evidence": {
+        "equal_pseudo_AUROC_lower975_positive": false,
+        "equal_pseudo_raw_lower975_positive": false,
+        "at_least_two_families_joint_positive": false,
+        "seen_AUROC_lower95_not_worse_than_minus_01": false,
+        "seen_raw_lower95_not_worse_than_minus_01": false,
+        "candidate_specific_stronger_than_geometry_only_raw": true,
+        "two_families_exact_text_visual_support": false
+      },
+      "limitation": "does not prove no possible future mechanism"
+    },
+    "new_experiment_directory_code_training_if_sufficient": {
+      "status": "conditional branch not triggered by current evidence",
+      "new_stage_created": false,
+      "new_training_started": false,
+      "code_research_executed": [
+        "code/support_bridge_analyze.py",
+        "code/support_bridge_verify.py"
+      ]
+    },
+    "preserve_original_stop_frozen_assets": {
+      "status": "proved",
+      "protected_paths": 2219,
+      "all_unchanged": true
+    },
+    "complete_report_integrity_handoff": {
+      "status": "proved",
+      "evidence": [
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/README.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/DECISION.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/plan/progress.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/plan/HANDOFF.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/plan/RECOVERY_PROMPT.txt",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/plan/HANDOFF_STATUS.json",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/plan/EXPERIMENT_PLAN.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/support_bridge_analysis/REPORT.md",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/support_bridge_analysis/IDEA_EVALUATION.md"
+      ]
+    }
+  },
+  "pending_required_work_in_current_conditional_request": [],
+  "future_scientific_gap": "a different concrete shared-support mechanism and ordinary controls, not automatic revival of rejected formulas"
+}

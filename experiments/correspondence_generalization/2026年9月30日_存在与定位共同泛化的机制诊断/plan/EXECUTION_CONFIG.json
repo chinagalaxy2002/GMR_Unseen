@@ -1,0 +1,39 @@
+{
+  "seed": 3407,
+  "epochs": 100,
+  "families": [
+    "throw",
+    "open_close",
+    "sit"
+  ],
+  "new_baseline_trainings": [
+    "open_close",
+    "sit"
+  ],
+  "training_scope": "A1 QD GMR training-side semantic holdouts only",
+  "co_primary": [
+    "pseudo_AUROC",
+    "pseudo_raw_R1_05"
+  ],
+  "co_primary_ci_level": 0.975,
+  "key_final": "pseudo_official_gated_R1_05",
+  "seen_noninferiority_margin": 0.01,
+  "FRR_RR_margin": 0.03,
+  "raw_correct_rejected_margin": 0.05,
+  "bootstrap_resamples": 1000,
+  "concurrency_per_gpu": 2,
+  "execution_order": [
+    "D0",
+    "D3",
+    "D1",
+    "D2"
+  ],
+  "conditional_methods_not_started": true,
+  "source_worker_sha256": "2e05ada816c1ceef421147e3d1136789f9c05495c4288ec8775b961d4fb77c19",
+  "copied_worker_changes": [
+    "stage-only output root",
+    "explicit per-family development view",
+    "runtime HERE resolution; original worker unmodified"
+  ],
+  "family_selection": "throw plus open_close and sit, selected by original training support"
+}
