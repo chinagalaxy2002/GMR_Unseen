@@ -1,0 +1,9 @@
+Checking 18358 protected assets
+Traceback (most recent call last):
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/event_binding_generalization/code/freeze.py", line 73, in <module>
+    main()
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/event_binding_generalization/code/freeze.py", line 23, in main
+    assert all(x['source_split'] != 'test' and x['partition'] in ['S+', 'S-'] for x in rs)
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/event_binding_generalization/code/freeze.py", line 23, in <genexpr>
+    assert all(x['source_split'] != 'test' and x['partition'] in ['S+', 'S-'] for x in rs)
+KeyError: 'source_split'

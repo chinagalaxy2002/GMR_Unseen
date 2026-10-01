@@ -1,0 +1,149 @@
+{
+  "at": "2026-10-01T13:51:48.020467+08:00",
+  "rules": {
+    "throw": {
+      "action_median_positive": 0.335782453417778,
+      "object_median_positive": 6.546470880508423,
+      "action_quartiles_all_train": [
+        -0.5896200239658356,
+        0.03251760080456734,
+        1.1217325329780579
+      ],
+      "object_quartiles_all_train": [
+        -0.21868117153644562,
+        3.5303759574890137,
+        10.024595737457275
+      ],
+      "source": "S_train original event-supervised independent P branches; not human primitive labels"
+    },
+    "open_close": {
+      "action_median_positive": 1.101808488368988,
+      "object_median_positive": 8.072656154632568,
+      "action_quartiles_all_train": [
+        0.38681668043136597,
+        0.9911985993385315,
+        1.3608944416046143
+      ],
+      "object_quartiles_all_train": [
+        2.1670591831207275,
+        7.492921352386475,
+        10.170173645019531
+      ],
+      "source": "S_train original event-supervised independent P branches; not human primitive labels"
+    },
+    "sit": {
+      "action_median_positive": 0.9878746867179871,
+      "object_median_positive": 4.0920329093933105,
+      "action_quartiles_all_train": [
+        -1.5119137465953827,
+        0.2462780997157097,
+        2.6098089814186096
+      ],
+      "object_quartiles_all_train": [
+        0.21863935142755508,
+        2.5296454429626465,
+        8.274580478668213
+      ],
+      "source": "S_train original event-supervised independent P branches; not human primitive labels"
+    }
+  },
+  "matching": "both scores above S_train-positive medians, same S_train joint quartile bins, all opposite-label different-video pairs; no J sample selection",
+  "calibrations": {
+    "throw": {
+      "H": {
+        "threshold": -0.267142653465271,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8399598203174077,
+        "checkpoint_sha256": "1fd192726f332316e052934c69b7b7e98de51a5ddd0ecd5a8498669274a68d70"
+      },
+      "P": {
+        "threshold": -0.03442126139998436,
+        "selection_epoch": 6,
+        "seen_AUROC": 0.8779794005049129,
+        "checkpoint_sha256": "2096b1d602c3a77e81b083a5d50d29350157e3ff37f90f5c839e2c6e41ff3877"
+      },
+      "C": {
+        "threshold": 0.18708446621894836,
+        "selection_epoch": 6,
+        "seen_AUROC": 0.8754192791361961,
+        "checkpoint_sha256": "bafce006441fbc2e00aed554d10316908179c43aaf6c57f109dd685ec47aaf9b"
+      },
+      "J": {
+        "threshold": -0.24555359780788422,
+        "selection_epoch": 6,
+        "seen_AUROC": 0.8765334060281377,
+        "checkpoint_sha256": "31fa5f8afbb6cbc6fa2aaa2ed455f3041399ecb2bfff2a70eb24f5a726244b2e"
+      },
+      "T": {
+        "threshold": 0.17147982120513916,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.858938497825082,
+        "checkpoint_sha256": "4eb8b95e9bfdb9b3b9ba794338fadb8301dbb7464b2de8c9c85ae3a468ea139a"
+      }
+    },
+    "open_close": {
+      "H": {
+        "threshold": 1.3389681577682495,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8596936855573116,
+        "checkpoint_sha256": "9d22c78b8b6a705724ab58e1d49513bf7ddb0ddab34a2d66ebba3b11e9d7c7d9"
+      },
+      "P": {
+        "threshold": 1.5032024383544922,
+        "selection_epoch": 7,
+        "seen_AUROC": 0.893617821931211,
+        "checkpoint_sha256": "ba729646ced002cdb8a1d505c5d0d1f6090bf184058a9d0cc44101173b7e5732"
+      },
+      "C": {
+        "threshold": 0.32895395159721375,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.9031289982689847,
+        "checkpoint_sha256": "c2b008ce2aa0c44f55f504e95b6f33b440342190e4f504863cd73ef9b807846e"
+      },
+      "J": {
+        "threshold": 0.004602822009474039,
+        "selection_epoch": 7,
+        "seen_AUROC": 0.8942293218935802,
+        "checkpoint_sha256": "77515264aca7ac829585790d66cc7e2c2a9137ce0d7945ac63649b36da0354b9"
+      },
+      "T": {
+        "threshold": -0.20442868769168854,
+        "selection_epoch": 6,
+        "seen_AUROC": 0.8684616542485136,
+        "checkpoint_sha256": "a2b571118fd8bc0856ab77988068546f13351de2b6305c7a20e5b6f2fd74137a"
+      }
+    },
+    "sit": {
+      "H": {
+        "threshold": -0.2561177611351013,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8389969729696841,
+        "checkpoint_sha256": "89bd544a0511ff8536350fc46bf059685f217cc06356d5751e4c3ac58f822b0f"
+      },
+      "P": {
+        "threshold": -0.49657076597213745,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8657382759617286,
+        "checkpoint_sha256": "89315f50a2a0e15d099f1740e33aba41d46ab12dbf8ace05a0544343a03df0a0"
+      },
+      "C": {
+        "threshold": -0.2895629107952118,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8629736389771984,
+        "checkpoint_sha256": "06e5217d5eb7df40ddd804e36dfb7083c87ed3f8f5d29e105cb6769fde0a6a3a"
+      },
+      "J": {
+        "threshold": -0.607202410697937,
+        "selection_epoch": 4,
+        "seen_AUROC": 0.8595321032536773,
+        "checkpoint_sha256": "67fbabf2af9f096cb8e8eec31f725a18ac94155fbb08b476a3c357b3368a8c75"
+      },
+      "T": {
+        "threshold": -0.5509179830551147,
+        "selection_epoch": 8,
+        "seen_AUROC": 0.8492531297059673,
+        "checkpoint_sha256": "79a58659c4ffb9d5d271f6e806e0033bfc8aa97f7d74f28aa4f26d1446185ca1"
+      }
+    }
+  }
+}

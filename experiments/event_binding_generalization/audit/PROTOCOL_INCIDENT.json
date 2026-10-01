@@ -1,0 +1,20 @@
+{
+  "identified_at": "2026-10-01T13:53:40.676762+08:00",
+  "severity": "READ_BOUNDARY_VIOLATION",
+  "stage": "pre-fit source membership legality check",
+  "path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/release/semantic_existence_v2/A1/val.jsonl",
+  "incident": "freeze.py parsed full original val release including U rows, then filtered to S+/S- before row-membership checks. User prohibited reading official U/test. This violates the read boundary even though U rows were not used downstream.",
+  "affected_operation": "source-membership dictionary comprehension only",
+  "U_used_for_fit": false,
+  "U_features_loaded_for_inference": false,
+  "U_used_for_checkpoint_selection": false,
+  "U_used_for_threshold_calibration": false,
+  "U_metrics_computed": false,
+  "U_query_contents_exposed_to_model_or_report": false,
+  "test_release_read": false,
+  "pre_fit_definitions_changed_from_U_information": false,
+  "correction": "future freeze path now uses existing seen-only features/semantic_existence_v2/A1/val_seen.jsonl, with S-only assertion. Current freeze remains immutable. No rerun/reselection.",
+  "original_executed_freeze_source_hash": "b725043e712b627611ea46eb3a1d1ad990b59310da3ee78fa02eb38a6168aa1f",
+  "corrected_source_hash": "569534b3e1a9f48ef43ad696f9725e20728d23a3dc6776b71b96ecd23a213afd",
+  "decision_impact": "No pristine no-U-exposure claim; INCONCLUSIVE and no next-stage launch."
+}

@@ -1,0 +1,1728 @@
+{
+  "throw": {
+    "vocab_from_train_only": [
+      "awaken",
+      "close",
+      "cook",
+      "dress",
+      "drink",
+      "eat",
+      "enter",
+      "fix",
+      "grab",
+      "hold",
+      "laugh",
+      "lay",
+      "leave",
+      "lie",
+      "look",
+      "open",
+      "play",
+      "pour",
+      "read",
+      "run",
+      "sit",
+      "smile",
+      "sneeze",
+      "snuggle",
+      "stand",
+      "talk",
+      "tidy",
+      "turn",
+      "undress",
+      "walk",
+      "wash",
+      "watch",
+      "work"
+    ],
+    "class_counts": {
+      "play": 82,
+      "pour": 225,
+      "watch": 116,
+      "sneeze": 83,
+      "hold": 239,
+      "sit": 591,
+      "open": 1112,
+      "tidy": 53,
+      "cook": 119,
+      "run": 280,
+      "drink": 344,
+      "turn": 434,
+      "close": 676,
+      "snuggle": 62,
+      "awaken": 60,
+      "eat": 501,
+      "use": 5,
+      "lay": 24,
+      "walk": 236,
+      "wash": 128,
+      "lie": 38,
+      "undress": 52,
+      "place": 3,
+      "enter": 12,
+      "work": 39,
+      "look": 199,
+      "smile": 63,
+      "talk": 43,
+      "flip": 5,
+      "fix": 80,
+      "carry": 4,
+      "stand": 83,
+      "grasp": 3,
+      "read": 59,
+      "dress": 36,
+      "encounter": 2,
+      "switch": 3,
+      "cut": 2,
+      "laugh": 54,
+      "proceed": 3,
+      "make": 5,
+      "remove": 2,
+      "closse": 1,
+      "reach": 3,
+      "wrap": 2,
+      "pick_up": 8,
+      "wear": 4,
+      "move": 3,
+      "change": 1,
+      "sleep": 1,
+      "leave": 12,
+      "sweep": 1,
+      "stir": 1,
+      "grab": 10,
+      "stop": 1,
+      "bring": 1,
+      "isdrinke": 1,
+      "come": 3,
+      "serve": 1,
+      "dump": 1,
+      "see": 1,
+      "examine": 1,
+      "awake": 1,
+      "fall": 1,
+      "opend": 2,
+      "kick": 1,
+      "clean": 1,
+      "swing": 1,
+      "shin": 1,
+      "wake": 1,
+      "lift": 1,
+      "cover": 3,
+      "slide": 1,
+      "touch": 1,
+      "pull": 3,
+      "flick": 2,
+      "seat": 3,
+      "personlaye": 1,
+      "load": 1,
+      "tap": 1,
+      "lean": 1,
+      "wait": 1,
+      "shove": 1,
+      "reenter": 1,
+      "reclose": 1,
+      "push": 1,
+      "hit": 1,
+      "person": 1,
+      "replace": 1
+    },
+    "coverage": {
+      "train": {
+        "usable_positive_segments": 6252,
+        "in_train_vocab": 6145,
+        "out_of_vocab": 107,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "use": 5,
+          "place": 3,
+          "flip": 5,
+          "carry": 4,
+          "grasp": 3,
+          "encounter": 2,
+          "switch": 3,
+          "cut": 2,
+          "proceed": 3,
+          "make": 5,
+          "remove": 2,
+          "closse": 1,
+          "reach": 3,
+          "wrap": 2,
+          "pick_up": 8,
+          "wear": 4,
+          "move": 3,
+          "change": 1,
+          "sleep": 1,
+          "sweep": 1,
+          "stir": 1,
+          "stop": 1,
+          "bring": 1,
+          "isdrinke": 1,
+          "come": 3,
+          "serve": 1,
+          "dump": 1,
+          "see": 1,
+          "examine": 1,
+          "awake": 1,
+          "fall": 1,
+          "opend": 2,
+          "kick": 1,
+          "clean": 1,
+          "swing": 1,
+          "shin": 1,
+          "wake": 1,
+          "lift": 1,
+          "cover": 3,
+          "slide": 1,
+          "touch": 1,
+          "pull": 3,
+          "flick": 2,
+          "seat": 3,
+          "personlaye": 1,
+          "load": 1,
+          "tap": 1,
+          "lean": 1,
+          "wait": 1,
+          "shove": 1,
+          "reenter": 1,
+          "reclose": 1,
+          "push": 1,
+          "hit": 1,
+          "person": 1,
+          "replace": 1
+        }
+      },
+      "seen": {
+        "usable_positive_segments": 709,
+        "in_train_vocab": 707,
+        "out_of_vocab": 2,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "wrap": 2
+        }
+      },
+      "pseudo": {
+        "usable_positive_segments": 464,
+        "in_train_vocab": 0,
+        "out_of_vocab": 464,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "throw": 464
+        }
+      }
+    },
+    "probes": {
+      "motion_temporal": {
+        "parameters": 4257,
+        "seen_balanced_accuracy": 0.1938412969584946,
+        "selected_epoch": 20,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.18875286286077259
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.17620502701946825
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.17387391797109164
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.15237452086698067
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.15256920788929176
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.15399535101722261
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.1672405118175617
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.15241971716230177
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.1605094490678232
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.16844595700433113
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.17108410317188905
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.18139776611713093
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.17718519123792267
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.13302532453361374
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.15624154244023414
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.15500158872350023
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.15652015787364834
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.1302683541218446
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.14064778510399203
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.1938412969584946
+          }
+        ],
+        "seen_accuracy": 0.14427157001414428
+      },
+      "motion_mean": {
+        "parameters": 4257,
+        "seen_balanced_accuracy": 0.20992820216354624,
+        "selected_epoch": 2,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.12259390750177727
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.20992820216354624
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.20716981812532598
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.2052689197645754
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.17916206214268732
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.18513915483704757
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.18645306519994426
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.14591296249940017
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.15678289868192996
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.15018296981120313
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.15034941576912017
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.15950993782637646
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.12922342609249632
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.14592326668452707
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.14973837018129438
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.14423294930635386
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.16662660511032626
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.16856489737943847
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.12913037738289912
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.15552465789183056
+          }
+        ],
+        "seen_accuracy": 0.16407355021216408
+      },
+      "motion_static": {
+        "parameters": 4257,
+        "seen_balanced_accuracy": 0.206853137578195,
+        "selected_epoch": 2,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.15136950607788519
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.206853137578195
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.19536973987688055
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.18166193172060544
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.17633380057104214
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.18384756514462897
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.16341511902732317
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.15268780119274478
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.1510042744095975
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.16673004435263497
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.16438338469273253
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.1689128902748697
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.1621021133325138
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.16220281719382887
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.16221724720825886
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.1520704583560371
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.13786500541119537
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.1399147152472829
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.12405635744719937
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.15953551700730367
+          }
+        ],
+        "seen_accuracy": 0.1867043847241867
+      },
+      "appearance_mean": {
+        "parameters": 4257,
+        "seen_balanced_accuracy": 0.2244543628876496,
+        "selected_epoch": 8,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.1677444919248075
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.18484051649162003
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.2016498853318488
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.19260515430469488
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.1808244054254241
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.1823525955459442
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.19195823375739485
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.2244543628876496
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.19453481878079903
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.16944358793405034
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.1771392030427784
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.19079792361800751
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.19038575705358887
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.1820976553232121
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.16604154281973119
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.1763000628043572
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.17732572079096598
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.17047198514466066
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.14922774635398228
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.19756665853390112
+          }
+        ],
+        "seen_accuracy": 0.1485148514851485
+      }
+    },
+    "paired_seen_balanced_temporal_minus_control_ci95": {
+      "motion_mean": [
+        -0.0957700720555756,
+        0.03316138530756765
+      ],
+      "motion_static": [
+        -0.11887305664640606,
+        0.035100806284389
+      ],
+      "appearance_mean": [
+        -0.13631541457310037,
+        0.028664360469367836
+      ]
+    },
+    "interpretation": "GT segment supervised readout of seen verbs only; SlowFast static retains clip-internal motion; success does not certify held-out verb readability or object-shortcut-free action understanding."
+  },
+  "open_close": {
+    "vocab_from_train_only": [
+      "awaken",
+      "cook",
+      "dress",
+      "drink",
+      "eat",
+      "fix",
+      "hold",
+      "laugh",
+      "lay",
+      "lie",
+      "look",
+      "play",
+      "pour",
+      "read",
+      "run",
+      "sit",
+      "smile",
+      "sneeze",
+      "snuggle",
+      "stand",
+      "talk",
+      "throw",
+      "tidy",
+      "turn",
+      "undress",
+      "walk",
+      "wash",
+      "watch",
+      "work"
+    ],
+    "class_counts": {
+      "play": 67,
+      "pour": 198,
+      "watch": 98,
+      "sneeze": 73,
+      "hold": 272,
+      "sit": 490,
+      "tidy": 53,
+      "cook": 82,
+      "run": 231,
+      "turn": 342,
+      "drink": 318,
+      "snuggle": 59,
+      "awaken": 62,
+      "lay": 21,
+      "eat": 442,
+      "walk": 175,
+      "throw": 390,
+      "lie": 35,
+      "place": 3,
+      "enter": 8,
+      "undress": 43,
+      "smile": 60,
+      "talk": 41,
+      "flip": 4,
+      "fix": 70,
+      "stand": 65,
+      "look": 163,
+      "work": 25,
+      "grasp": 3,
+      "wash": 99,
+      "read": 46,
+      "approach": 1,
+      "dress": 30,
+      "encounter": 2,
+      "switch": 2,
+      "cut": 2,
+      "laugh": 46,
+      "proceed": 3,
+      "remove": 1,
+      "reach": 1,
+      "wrap": 2,
+      "make": 3,
+      "bow": 1,
+      "pack": 1,
+      "pick_up": 7,
+      "change": 1,
+      "sleep": 1,
+      "use": 2,
+      "leave": 5,
+      "stop": 1,
+      "isdrinke": 1,
+      "grab": 4,
+      "come": 3,
+      "serve": 1,
+      "wear": 3,
+      "dump": 1,
+      "examine": 1,
+      "awake": 1,
+      "move": 2,
+      "kick": 1,
+      "clean": 1,
+      "shin": 1,
+      "wake": 1,
+      "lift": 1,
+      "cover": 3,
+      "touch": 1,
+      "personlaye": 1,
+      "lean": 1,
+      "wait": 1,
+      "shove": 1,
+      "flick": 1,
+      "reenter": 1,
+      "hit": 1,
+      "seat": 2,
+      "person": 1,
+      "toss": 1,
+      "pull": 1
+    },
+    "coverage": {
+      "train": {
+        "usable_positive_segments": 4188,
+        "in_train_vocab": 4096,
+        "out_of_vocab": 92,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "place": 3,
+          "enter": 8,
+          "flip": 4,
+          "grasp": 3,
+          "approach": 1,
+          "encounter": 2,
+          "switch": 2,
+          "cut": 2,
+          "proceed": 3,
+          "remove": 1,
+          "reach": 1,
+          "wrap": 2,
+          "make": 3,
+          "bow": 1,
+          "pack": 1,
+          "pick_up": 7,
+          "change": 1,
+          "sleep": 1,
+          "use": 2,
+          "leave": 5,
+          "stop": 1,
+          "isdrinke": 1,
+          "grab": 4,
+          "come": 3,
+          "serve": 1,
+          "wear": 3,
+          "dump": 1,
+          "examine": 1,
+          "awake": 1,
+          "move": 2,
+          "kick": 1,
+          "clean": 1,
+          "shin": 1,
+          "wake": 1,
+          "lift": 1,
+          "cover": 3,
+          "touch": 1,
+          "personlaye": 1,
+          "lean": 1,
+          "wait": 1,
+          "shove": 1,
+          "flick": 1,
+          "reenter": 1,
+          "hit": 1,
+          "seat": 2,
+          "person": 1,
+          "toss": 1,
+          "pull": 1
+        }
+      },
+      "seen": {
+        "usable_positive_segments": 516,
+        "in_train_vocab": 510,
+        "out_of_vocab": 6,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "grab": 1,
+          "enter": 2,
+          "wrap": 2,
+          "leave": 1
+        }
+      },
+      "pseudo": {
+        "usable_positive_segments": 1888,
+        "in_train_vocab": 0,
+        "out_of_vocab": 1888,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "open": 1188,
+          "close": 700
+        }
+      }
+    },
+    "probes": {
+      "motion_temporal": {
+        "parameters": 3741,
+        "seen_balanced_accuracy": 0.21736491738060731,
+        "selected_epoch": 2,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.19316734128971458
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.21736491738060731
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.20609824863625323
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.16587071377362775
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.16619580928735317
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.19522981920314544
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.20159703033442192
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.19332505729838353
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.15076673119827572
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.15905893912594266
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.18573293390881324
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.19852535695639056
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.1932003766580269
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.20564781318145098
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.18744514980725574
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.18946238075620955
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.18257142215908334
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.18348069939489076
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.18576193216723713
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.17898522417235022
+          }
+        ],
+        "seen_accuracy": 0.20980392156862746
+      },
+      "motion_mean": {
+        "parameters": 3741,
+        "seen_balanced_accuracy": 0.228469128156954,
+        "selected_epoch": 7,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.15600483311092875
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.1442803169207357
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.16615335911216592
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.21412655750765575
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.19397625040813446
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.22075320780307714
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.228469128156954
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.22821489848733273
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.20221943369514872
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.1843488868470549
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.19061097639051844
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.18952366326090525
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.19398318755182414
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.1885797928985445
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.17542582149800892
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.20026888146707564
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.1809143272451354
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.20122671748964158
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.1799614887238188
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.18263639889681577
+          }
+        ],
+        "seen_accuracy": 0.21764705882352942
+      },
+      "motion_static": {
+        "parameters": 3741,
+        "seen_balanced_accuracy": 0.21813630953240143,
+        "selected_epoch": 3,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.17198422931546342
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.2028597516790669
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.21813630953240143
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.21501610919699746
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.21144311865242155
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.19840180744388267
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.1978842175849194
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.2041739090777948
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.1804125037763887
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.19010971052691542
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.18087432821806984
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.1824660323659959
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.1688892992132567
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.17397572216719326
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.17778295370159294
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.17223243948501704
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.1789013984268078
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.1763298331440772
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.1707440921799728
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.17265980099223335
+          }
+        ],
+        "seen_accuracy": 0.2372549019607843
+      },
+      "appearance_mean": {
+        "parameters": 3741,
+        "seen_balanced_accuracy": 0.2513507201703476,
+        "selected_epoch": 12,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.20691315139715513
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.2360804843240956
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.2220877115335735
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.2240912683388643
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.21816210237997188
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.24371788381225895
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.24489718650161027
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.24678658598128458
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.2500427483955859
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.2441192395617675
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.24694782526891393
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.2513507201703476
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.2500630618538715
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.23413248923944968
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.24504481061082944
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.23085547670635312
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.2392217382216935
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.23400394448926837
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.24132303428094923
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.2340139098050747
+          }
+        ],
+        "seen_accuracy": 0.22745098039215686
+      }
+    },
+    "paired_seen_balanced_temporal_minus_control_ci95": {
+      "motion_mean": [
+        -0.0840065886142325,
+        0.05222723826174938
+      ],
+      "motion_static": [
+        -0.09093739729629849,
+        0.048752661703457066
+      ],
+      "appearance_mean": [
+        -0.14148302796494272,
+        0.04129549244057738
+      ]
+    },
+    "interpretation": "GT segment supervised readout of seen verbs only; SlowFast static retains clip-internal motion; success does not certify held-out verb readability or object-shortcut-free action understanding."
+  },
+  "sit": {
+    "vocab_from_train_only": [
+      "awaken",
+      "close",
+      "cook",
+      "dress",
+      "drink",
+      "eat",
+      "enter",
+      "fix",
+      "hold",
+      "laugh",
+      "lay",
+      "leave",
+      "lie",
+      "look",
+      "open",
+      "play",
+      "pour",
+      "read",
+      "run",
+      "smile",
+      "sneeze",
+      "snuggle",
+      "stand",
+      "talk",
+      "throw",
+      "tidy",
+      "turn",
+      "undress",
+      "walk",
+      "wash",
+      "watch",
+      "work"
+    ],
+    "class_counts": {
+      "play": 66,
+      "pour": 200,
+      "watch": 98,
+      "sneeze": 81,
+      "hold": 320,
+      "open": 1110,
+      "tidy": 54,
+      "cook": 112,
+      "run": 282,
+      "drink": 321,
+      "turn": 427,
+      "close": 638,
+      "snuggle": 53,
+      "awaken": 65,
+      "throw": 434,
+      "walk": 233,
+      "eat": 450,
+      "use": 5,
+      "lay": 25,
+      "wash": 128,
+      "lie": 36,
+      "undress": 49,
+      "place": 3,
+      "enter": 12,
+      "work": 31,
+      "look": 186,
+      "smile": 64,
+      "talk": 37,
+      "flip": 5,
+      "fix": 72,
+      "carry": 4,
+      "stand": 78,
+      "grasp": 4,
+      "read": 49,
+      "approach": 1,
+      "dress": 33,
+      "encounter": 2,
+      "switch": 3,
+      "cut": 2,
+      "laugh": 54,
+      "proceed": 2,
+      "remove": 2,
+      "closse": 1,
+      "reach": 2,
+      "wrap": 3,
+      "make": 4,
+      "pick_up": 9,
+      "wear": 4,
+      "bow": 1,
+      "pack": 1,
+      "move": 3,
+      "change": 1,
+      "sleep": 1,
+      "leave": 11,
+      "sweep": 1,
+      "stir": 1,
+      "grab": 7,
+      "stop": 1,
+      "bring": 1,
+      "isdrinke": 1,
+      "come": 2,
+      "serve": 1,
+      "dump": 1,
+      "see": 1,
+      "examine": 1,
+      "awake": 1,
+      "fall": 1,
+      "opend": 2,
+      "kick": 1,
+      "clean": 1,
+      "swing": 1,
+      "shin": 1,
+      "wake": 1,
+      "lift": 1,
+      "cover": 3,
+      "slide": 1,
+      "touch": 1,
+      "pull": 3,
+      "flick": 1,
+      "personlaye": 1,
+      "load": 1,
+      "tap": 1,
+      "lean": 1,
+      "wait": 1,
+      "shove": 1,
+      "reenter": 1,
+      "push": 1,
+      "person": 1,
+      "toss": 1,
+      "replace": 1
+    },
+    "coverage": {
+      "train": {
+        "usable_positive_segments": 5920,
+        "in_train_vocab": 5809,
+        "out_of_vocab": 111,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "use": 5,
+          "place": 3,
+          "flip": 5,
+          "carry": 4,
+          "grasp": 4,
+          "approach": 1,
+          "encounter": 2,
+          "switch": 3,
+          "cut": 2,
+          "proceed": 2,
+          "remove": 2,
+          "closse": 1,
+          "reach": 2,
+          "wrap": 3,
+          "make": 4,
+          "pick_up": 9,
+          "wear": 4,
+          "bow": 1,
+          "pack": 1,
+          "move": 3,
+          "change": 1,
+          "sleep": 1,
+          "sweep": 1,
+          "stir": 1,
+          "grab": 7,
+          "stop": 1,
+          "bring": 1,
+          "isdrinke": 1,
+          "come": 2,
+          "serve": 1,
+          "dump": 1,
+          "see": 1,
+          "examine": 1,
+          "awake": 1,
+          "fall": 1,
+          "opend": 2,
+          "kick": 1,
+          "clean": 1,
+          "swing": 1,
+          "shin": 1,
+          "wake": 1,
+          "lift": 1,
+          "cover": 3,
+          "slide": 1,
+          "touch": 1,
+          "pull": 3,
+          "flick": 1,
+          "personlaye": 1,
+          "load": 1,
+          "tap": 1,
+          "lean": 1,
+          "wait": 1,
+          "shove": 1,
+          "reenter": 1,
+          "push": 1,
+          "person": 1,
+          "toss": 1,
+          "replace": 1
+        }
+      },
+      "seen": {
+        "usable_positive_segments": 676,
+        "in_train_vocab": 673,
+        "out_of_vocab": 3,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "grab": 1,
+          "wrap": 2
+        }
+      },
+      "pseudo": {
+        "usable_positive_segments": 625,
+        "in_train_vocab": 0,
+        "out_of_vocab": 625,
+        "unusable_qids": [],
+        "out_of_vocab_classes": {
+          "sit": 625
+        }
+      }
+    },
+    "probes": {
+      "motion_temporal": {
+        "parameters": 4128,
+        "seen_balanced_accuracy": 0.21693718247932145,
+        "selected_epoch": 13,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.12169149488105939
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.18629246370362607
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.17583151506978656
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.17496638304499024
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.2081673415905477
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.17533144181718224
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.18725367431374623
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.18525879741561854
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.17931918483459292
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.20543879035931556
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.20364442437438168
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.21095838137451228
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.21693718247932145
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.21223739116636164
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.20052116089895103
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.20710305947315802
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.20426309846345053
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.20227385938268042
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.2032324569558353
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.20691126082033529
+          }
+        ],
+        "seen_accuracy": 0.16344725111441308
+      },
+      "motion_mean": {
+        "parameters": 4128,
+        "seen_balanced_accuracy": 0.237974653535721,
+        "selected_epoch": 9,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.18592950060258964
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.22873236605409
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.22977054283796142
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.21873325477969907
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.2124885068805394
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.2172679186452453
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.21136555265852802
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.19150851004309477
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.237974653535721
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.19530511092028774
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.19451300821333062
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.19078582713504189
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.18010979377602768
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.19263656960732795
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.18015380501379952
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.19067756465968477
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.183606937593232
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.17975825338270565
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.18601630801584923
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.1825256401549018
+          }
+        ],
+        "seen_accuracy": 0.19316493313521546
+      },
+      "motion_static": {
+        "parameters": 4128,
+        "seen_balanced_accuracy": 0.22813779381713722,
+        "selected_epoch": 4,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.16888366824517018
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.1813630953447941
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.1958752767559834
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.22813779381713722
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.19831889029418961
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.18852323179309816
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.18689325106566287
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.1654847714492832
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.1733480283819374
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.1783657215266826
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.16047862096277282
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.18984614593328733
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.16546636606081205
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.17738647061933038
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.17078120032785218
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.17441848344976624
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.17551148962507165
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.1567822551645925
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.16346399858564514
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.13964338415920108
+          }
+        ],
+        "seen_accuracy": 0.18573551263001487
+      },
+      "appearance_mean": {
+        "parameters": 4128,
+        "seen_balanced_accuracy": 0.25289834802821043,
+        "selected_epoch": 5,
+        "history": [
+          {
+            "epoch": 1,
+            "seen_balanced_accuracy": 0.18168592764692834
+          },
+          {
+            "epoch": 2,
+            "seen_balanced_accuracy": 0.2148243807108299
+          },
+          {
+            "epoch": 3,
+            "seen_balanced_accuracy": 0.20644440228694758
+          },
+          {
+            "epoch": 4,
+            "seen_balanced_accuracy": 0.25222095420108315
+          },
+          {
+            "epoch": 5,
+            "seen_balanced_accuracy": 0.25289834802821043
+          },
+          {
+            "epoch": 6,
+            "seen_balanced_accuracy": 0.21990438081059338
+          },
+          {
+            "epoch": 7,
+            "seen_balanced_accuracy": 0.2383260607173739
+          },
+          {
+            "epoch": 8,
+            "seen_balanced_accuracy": 0.2425287102537458
+          },
+          {
+            "epoch": 9,
+            "seen_balanced_accuracy": 0.23041008060095747
+          },
+          {
+            "epoch": 10,
+            "seen_balanced_accuracy": 0.23681219009305
+          },
+          {
+            "epoch": 11,
+            "seen_balanced_accuracy": 0.2205224707613009
+          },
+          {
+            "epoch": 12,
+            "seen_balanced_accuracy": 0.22910977001265873
+          },
+          {
+            "epoch": 13,
+            "seen_balanced_accuracy": 0.23427353628317377
+          },
+          {
+            "epoch": 14,
+            "seen_balanced_accuracy": 0.20043532536975434
+          },
+          {
+            "epoch": 15,
+            "seen_balanced_accuracy": 0.22490981700513996
+          },
+          {
+            "epoch": 16,
+            "seen_balanced_accuracy": 0.21245813588702206
+          },
+          {
+            "epoch": 17,
+            "seen_balanced_accuracy": 0.2120334102430424
+          },
+          {
+            "epoch": 18,
+            "seen_balanced_accuracy": 0.2010475677159223
+          },
+          {
+            "epoch": 19,
+            "seen_balanced_accuracy": 0.21641517923067533
+          },
+          {
+            "epoch": 20,
+            "seen_balanced_accuracy": 0.19745224627931796
+          }
+        ],
+        "seen_accuracy": 0.15601783060921248
+      }
+    },
+    "paired_seen_balanced_temporal_minus_control_ci95": {
+      "motion_mean": [
+        -0.10347654038249686,
+        0.03090781133933478
+      ],
+      "motion_static": [
+        -0.08980136085357718,
+        0.03363189850292393
+      ],
+      "appearance_mean": [
+        -0.13834037393970322,
+        0.02018691545897499
+      ]
+    },
+    "interpretation": "GT segment supervised readout of seen verbs only; SlowFast static retains clip-internal motion; success does not certify held-out verb readability or object-shortcut-free action understanding."
+  }
+}

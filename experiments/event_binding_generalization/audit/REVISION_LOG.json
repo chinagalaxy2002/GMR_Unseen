@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-01T13:49:03.631877+08:00",
+  "revisions": [
+    {
+      "stage": "source legality before any fit",
+      "failure": "negative rows lack source_split; initial freeze failed with KeyError",
+      "preserved_log": "runs/minimal_validation/freeze_failure_001.log",
+      "correction": "explicit byte-equivalent membership in original A1 train or seen S rows, original view hashes retained; no semantic/view changes"
+    },
+    {
+      "stage": "before token audit and event fits",
+      "correction": "negative rows often lack character spans; fixed unique graph lexical/regular+irregular inflection reconstruction with ambiguity fallback",
+      "record": "EVENT_CODE_FREEZE.json",
+      "action_probe_fit_definition_changed": false
+    }
+  ],
+  "protected_release_source_hashes": {
+    "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/release/semantic_existence_v2/A1/train.jsonl": "0cd951d33e1429d1cecf4ce0a661fc290dc4997b995abba362f76545bb486a14",
+    "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/release/semantic_existence_v2/A1/val.jsonl": "37e4d3991cddfbdb3a1f387aa5f7b196023382548ca4a9853438feedaf0b9057"
+  },
+  "later_user_resource_instruction": "2 GPUs, <=2 experiments/GPU, <=4 total; no variants or multiseed",
+  "next_stage_authorization": "conditional user intent; no next stage launched, prerequisite outcome pending"
+}

@@ -1,0 +1,132 @@
+{
+  "created": "2026-10-01T13:34:20.373092+08:00",
+  "token_coverage": {
+    "total": 9860,
+    "length_match": 9860,
+    "offset_clean_unchanged": 9839,
+    "eot_loaded": 9860,
+    "action_span_valid": 9836,
+    "object_span_valid": 9818,
+    "positive_symlink": 7851,
+    "negative_symlink": 544
+  },
+  "unique_videos": 4107,
+  "clip_minus_slowfast_bin_histogram": {
+    "-1": 1908,
+    "0": 2199
+  },
+  "source_sha256": {
+    "/home/guoxiangyu/paper/新建文件夹/MomentofUntruth/UniVTG-NA/run_on_video/clip/simple_tokenizer.py": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "/home/guoxiangyu/paper/新建文件夹/MomentofUntruth/UniVTG-NA/run_on_video/clip/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a"
+  },
+  "stream_order": "CLIP512 | SlowFast2304 | TEF2 original; new semantic heads exclude TEF",
+  "token_interpretation": "BPE lengths/spans audited with original tokenizer; cached positive old encoder token IDs/weights not embedded, so length agreement is necessary, not proof of exact encoder provenance. Role vectors remain contextual.",
+  "temporal_alignment": {
+    "status": "UNVERIFIED_ASSUMPTION",
+    "timestamps_present": false,
+    "extraction_manifest_available": false,
+    "reason": "Caches store features only, no extraction command/stride/start-center provenance tied by hash to these arrays. Available run_on_video scripts default clip_len=2 and are not linked to Charades archives.",
+    "preserved_behavior": "original min_len truncation and clip_length=1; no invented interpolation or resampling",
+    "consequence": "subsequent B results conditional on original index alignment; cannot PASS for joint temporal mechanism"
+  },
+  "coverage": {
+    "throw": {
+      "train": {
+        "rows": 7559,
+        "action_span_valid": 7537,
+        "object_span_valid": 7533,
+        "negative_video_primitive_witnesses": 20,
+        "negative_overlapping_witness_windows": 12,
+        "mixed_label_same_query_groups": 203,
+        "mixed_label_same_query_rows": 1747,
+        "already_identical_actual_text_groups": 0
+      },
+      "seen": {
+        "rows": 1185,
+        "action_span_valid": 1184,
+        "object_span_valid": 1178,
+        "negative_video_primitive_witnesses": 10,
+        "negative_overlapping_witness_windows": 5,
+        "mixed_label_same_query_groups": 52,
+        "mixed_label_same_query_rows": 225,
+        "already_identical_actual_text_groups": 0
+      },
+      "pseudo": {
+        "rows": 570,
+        "action_span_valid": 569,
+        "object_span_valid": 563,
+        "negative_video_primitive_witnesses": 0,
+        "negative_overlapping_witness_windows": 0,
+        "mixed_label_same_query_groups": 10,
+        "mixed_label_same_query_rows": 36,
+        "already_identical_actual_text_groups": 0
+      }
+    },
+    "open_close": {
+      "train": {
+        "rows": 4625,
+        "action_span_valid": 4616,
+        "object_span_valid": 4609,
+        "negative_video_primitive_witnesses": 4,
+        "negative_overlapping_witness_windows": 3,
+        "mixed_label_same_query_groups": 59,
+        "mixed_label_same_query_rows": 245,
+        "already_identical_actual_text_groups": 0
+      },
+      "seen": {
+        "rows": 722,
+        "action_span_valid": 721,
+        "object_span_valid": 721,
+        "negative_video_primitive_witnesses": 1,
+        "negative_overlapping_witness_windows": 1,
+        "mixed_label_same_query_groups": 9,
+        "mixed_label_same_query_rows": 21,
+        "already_identical_actual_text_groups": 0
+      },
+      "pseudo": {
+        "rows": 2827,
+        "action_span_valid": 2817,
+        "object_span_valid": 2813,
+        "negative_video_primitive_witnesses": 18,
+        "negative_overlapping_witness_windows": 10,
+        "mixed_label_same_query_groups": 158,
+        "mixed_label_same_query_rows": 1598,
+        "already_identical_actual_text_groups": 0
+      }
+    },
+    "sit": {
+      "train": {
+        "rows": 6978,
+        "action_span_valid": 6956,
+        "object_span_valid": 6945,
+        "negative_video_primitive_witnesses": 20,
+        "negative_overlapping_witness_windows": 12,
+        "mixed_label_same_query_groups": 177,
+        "mixed_label_same_query_rows": 1559,
+        "already_identical_actual_text_groups": 0
+      },
+      "seen": {
+        "rows": 1065,
+        "action_span_valid": 1064,
+        "object_span_valid": 1058,
+        "negative_video_primitive_witnesses": 10,
+        "negative_overlapping_witness_windows": 5,
+        "mixed_label_same_query_groups": 45,
+        "mixed_label_same_query_rows": 209,
+        "already_identical_actual_text_groups": 0
+      },
+      "pseudo": {
+        "rows": 976,
+        "action_span_valid": 975,
+        "object_span_valid": 975,
+        "negative_video_primitive_witnesses": 0,
+        "negative_overlapping_witness_windows": 0,
+        "mixed_label_same_query_groups": 45,
+        "mixed_label_same_query_rows": 229,
+        "already_identical_actual_text_groups": 0
+      }
+    }
+  },
+  "roles": "one primary action/object from original graph; no comprehensive multi-role parse, no identity evidence",
+  "primitive_labels": "S- only event absence. Positive event witnesses provide canonical video-level/overlapping-window entailments, not exhaustive human primitive or binding labels."
+}

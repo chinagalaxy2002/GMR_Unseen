@@ -1,6 +1,16 @@
+更新 2026-10-01T13:56:45.080110+08:00：**A/A1/B 已完成，结论 INCONCLUSIVE；本阶段停止，未启动 R/共享 map 完整训练。**
+
+本轮结果见 [REPORT.md](report/REPORT.md)、[DECISION.md](report/DECISION.md)、[STATUS.json](STATUS.json)。新增代码与全部产物仅位于本目录；旧队列和原代码/数据均只读。下方方案/历史状态保留为执行前记录，当前状态以上述报告为准。
+
+---
+
 # 交接：事件绑定证据与存在定位共同泛化
 
 更新：2026-10-01。状态：方案完成，执行未开始。
+
+**最新用户限定：只开始 A/A1/B 最小验证，不开始完整模型训练。** 清空上下文后使用 [RECOVERY_PROMPT.md](RECOVERY_PROMPT.md)，执行范围见 [MINIMAL_VALIDATION_SCOPE.md](MINIMAL_VALIDATION_SCOPE.md)。这些要求优先于本文件下方历史交接及完整方案的 R/C/D 描述。本次保存指令，尚未开始执行验证。
+
+执行顺序：最少量输入来源检查 → SlowFast 动作可读性 → token/span 与双流时间对应完整审计 → H/P/C/J/T → 冻结原候选的局部 map 定位读取 → STOP/INCONCLUSIVE/PASS_FOR_NEXT_STAGE_PROPOSAL。J 通过也只提出后续阶段，不自动拟合 R 或训练 shared-map 完整模型。
 
 本轮已按用户八篇重点清单做全文/可得源码核验，并检查一个原train样本特征metadata。研究核验已完成；新增模型前向、probe拟合和训练仍未执行。详见[综述与清单更正](research/LITERATURE_REVIEW.md)、[工程源码审计](research/PROJECT_SOURCE_AUDIT.md)。原方案已单独上传GitHub快照，修订版本同步状态见本地上传记录。
 
@@ -12,9 +22,10 @@
 
 ## 阅读顺序
 
-1. [README](README.md)及[完整方案](EXPERIMENT_PLAN.md)。
-2. [候选框架](METHOD_SPEC.md)。
-3. [原项目总方向](../correspondence_generalization/plan/EXPERIMENT_PLAN.md)及[第二阶段决策](../correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/DECISION.md)。
+1. [当前范围](MINIMAL_VALIDATION_SCOPE.md)、[恢复指令](RECOVERY_PROMPT.md)及[README](README.md)。
+2. [完整方案](EXPERIMENT_PLAN.md)，其中 R/C/D 仅是后续候选，不属于当前执行范围。
+3. [候选框架](METHOD_SPEC.md)。
+4. [原项目总方向](../correspondence_generalization/plan/EXPERIMENT_PLAN.md)及[第二阶段决策](../correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/DECISION.md)。
 
 ## 若后续进入实施
 
