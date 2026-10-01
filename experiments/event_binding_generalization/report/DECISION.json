@@ -1,38 +1,208 @@
 {
-  "decision": "INCONCLUSIVE",
-  "at": "2026-10-01T13:56:45.079338+08:00",
-  "scientific_question": "primitive 已相关时，J 是否提供跨未见语义的额外视觉证据？",
-  "reasons": [
-    "来源成员检查误读取含真实 U 行的 val 发布文件（只用 S 行核对，U 未进入训练/前向/选点/指标）；违反不读取边界，不能认证完全未接触 U。",
-    "原双流真实时间来源未核实；仅沿用 min_len 与 clip_length=1 索引假设。",
-    "至少一族 primitive 高支持匹配缺少预定的20个正/负独立视频覆盖。",
-    "至少一族相同实际文本跨视频控制覆盖不足；配对数不能替代独立视频数。",
-    "J 相对 H/P/C/T 的 pseudo AUROC 未全部取得正向且 paired 区间支持的增量。",
-    "primitive 条件与实际文本控制未同时支持 J 的额外视觉证据。",
-    "冻结候选上的无 GT map 未取得 paired 区间支持的 raw R1@.5 增益。",
-    "原 seen/拒绝护栏未全部满足；不以更有利 pseudo 阈值修复结论。"
-  ],
-  "guardrails": {
+  "stage_status": "INCONCLUSIVE",
+  "family_auroc": {
     "throw": {
-      "seen_AUROC_noninferior_point": true,
-      "seen_raw_noninferior_point": false,
-      "pseudo_FRR_noninferior_point": true,
-      "pseudo_RR_noninferior_point": true
+      "baseline": {
+        "estimate": 0.5731030416395576,
+        "ci95": [
+          0.5081094947657225,
+          0.6324251750142961
+        ],
+        "valid_bootstrap": 1000
+      },
+      "H": {
+        "estimate": 0.6027366623292127,
+        "ci95": [
+          0.5314273442443367,
+          0.6701532440233038
+        ],
+        "valid_bootstrap": 1000
+      },
+      "P": {
+        "estimate": 0.5720762849707222,
+        "ci95": [
+          0.4934925948183224,
+          0.650343987310853
+        ],
+        "valid_bootstrap": 1000
+      },
+      "C": {
+        "estimate": 0.5862068965517241,
+        "ci95": [
+          0.509051371849344,
+          0.6618240872784096
+        ],
+        "valid_bootstrap": 1000
+      },
+      "J": {
+        "estimate": 0.5973283994795056,
+        "ci95": [
+          0.51936907979673,
+          0.6747306012442731
+        ],
+        "valid_bootstrap": 1000
+      },
+      "T": {
+        "estimate": 0.6027163305139883,
+        "ci95": [
+          0.5275040282151746,
+          0.6736459346249205
+        ],
+        "valid_bootstrap": 1000
+      }
     },
     "open_close": {
-      "seen_AUROC_noninferior_point": true,
-      "seen_raw_noninferior_point": false,
-      "pseudo_FRR_noninferior_point": true,
-      "pseudo_RR_noninferior_point": false
+      "baseline": {
+        "estimate": 0.5346313130629411,
+        "ci95": [
+          0.5157634206234314,
+          0.5547455215439048
+        ],
+        "valid_bootstrap": 1000
+      },
+      "H": {
+        "estimate": 0.5033872357899677,
+        "ci95": [
+          0.4844218108148729,
+          0.5214153589853986
+        ],
+        "valid_bootstrap": 1000
+      },
+      "P": {
+        "estimate": 0.523957148787928,
+        "ci95": [
+          0.5034509664262026,
+          0.5430600050153112
+        ],
+        "valid_bootstrap": 1000
+      },
+      "C": {
+        "estimate": 0.4258666359813,
+        "ci95": [
+          0.4063070138562173,
+          0.446346896229053
+        ],
+        "valid_bootstrap": 1000
+      },
+      "J": {
+        "estimate": 0.566227369542066,
+        "ci95": [
+          0.5454639686070856,
+          0.5854795879466165
+        ],
+        "valid_bootstrap": 1000
+      },
+      "T": {
+        "estimate": 0.5788049854695764,
+        "ci95": [
+          0.5571415166902387,
+          0.5994025913675892
+        ],
+        "valid_bootstrap": 1000
+      }
     },
     "sit": {
-      "seen_AUROC_noninferior_point": true,
-      "seen_raw_noninferior_point": false,
-      "pseudo_FRR_noninferior_point": false,
-      "pseudo_RR_noninferior_point": true
+      "baseline": {
+        "estimate": 0.6540216524216524,
+        "ci95": [
+          0.6119778828817803,
+          0.6931954428588613
+        ],
+        "valid_bootstrap": 1000
+      },
+      "H": {
+        "estimate": 0.6863361823361823,
+        "ci95": [
+          0.6491235517415928,
+          0.7228563804221493
+        ],
+        "valid_bootstrap": 1000
+      },
+      "P": {
+        "estimate": 0.7270928774928775,
+        "ci95": [
+          0.6944455497277863,
+          0.7584849104130954
+        ],
+        "valid_bootstrap": 1000
+      },
+      "C": {
+        "estimate": 0.7143065527065527,
+        "ci95": [
+          0.6804797392314803,
+          0.7447423811736893
+        ],
+        "valid_bootstrap": 1000
+      },
+      "J": {
+        "estimate": 0.6620307692307692,
+        "ci95": [
+          0.6259205961889771,
+          0.6986376312450309
+        ],
+        "valid_bootstrap": 1000
+      },
+      "T": {
+        "estimate": 0.6763304843304844,
+        "ci95": [
+          0.6402973777065009,
+          0.7098389273804605
+        ],
+        "valid_bootstrap": 1000
+      }
     }
   },
-  "pseudo_J_minus_controls": {
+  "equal_family_pseudo_auroc": {
+    "baseline": {
+      "estimate": 0.5872520023747171,
+      "ci95": [
+        0.560499708831879,
+        0.6119285869896038
+      ],
+      "valid_bootstrap": 1000
+    },
+    "H": {
+      "estimate": 0.597486693485121,
+      "ci95": [
+        0.5696519177310287,
+        0.624160050801558
+      ],
+      "valid_bootstrap": 1000
+    },
+    "P": {
+      "estimate": 0.6077087704171759,
+      "ci95": [
+        0.5770887678958163,
+        0.6379031507922538
+      ],
+      "valid_bootstrap": 1000
+    },
+    "C": {
+      "estimate": 0.5754600284131923,
+      "ci95": [
+        0.546651849821736,
+        0.6032726501892215
+      ],
+      "valid_bootstrap": 1000
+    },
+    "J": {
+      "estimate": 0.6085288460841135,
+      "ci95": [
+        0.5758586833344974,
+        0.6394965441354443
+      ],
+      "valid_bootstrap": 1000
+    },
+    "T": {
+      "estimate": 0.6192839334380164,
+      "ci95": [
+        0.590184747063349,
+        0.6484417490503593
+      ],
+      "valid_bootstrap": 1000
+    }
+  },
+  "equal_family_paired_auroc_differences": {
     "H": {
       "estimate": 0.01104215259899255,
       "ci95": [
@@ -66,16 +236,365 @@
       "valid_bootstrap": 1000
     }
   },
-  "pseudo_raw_J_minus_baseline": {
-    "estimate": -0.11698040132476134,
-    "ci95": [
-      -0.1444339759918562,
-      -0.08979243289384616
-    ],
-    "valid_bootstrap": 1000
+  "equal_family_pseudo_raw_R1_at_0_5": {
+    "baseline": {
+      "estimate": 0.29362763491135785,
+      "ci95": [
+        0.2702729276560718,
+        0.31587730326254454
+      ],
+      "valid_bootstrap": 1000
+    },
+    "H": {
+      "estimate": 0.20978917786869278,
+      "ci95": [
+        0.18925142810147286,
+        0.2307065598404083
+      ],
+      "valid_bootstrap": 1000
+    },
+    "P": {
+      "estimate": 0.19028980128579778,
+      "ci95": [
+        0.16787931895990402,
+        0.2116589765212707
+      ],
+      "valid_bootstrap": 1000
+    },
+    "C": {
+      "estimate": 0.19101186440677967,
+      "ci95": [
+        0.16875445174260562,
+        0.21142890009526588
+      ],
+      "valid_bootstrap": 1000
+    },
+    "J": {
+      "estimate": 0.1766472335865965,
+      "ci95": [
+        0.1577856030590804,
+        0.19692496276533236
+      ],
+      "valid_bootstrap": 1000
+    }
+  },
+  "paired_raw_R1_differences": {
+    "baseline": {
+      "estimate": -0.11698040132476134,
+      "ci95": [
+        -0.1444339759918562,
+        -0.08979243289384616
+      ],
+      "valid_bootstrap": 1000
+    },
+    "H": {
+      "estimate": -0.03314194428209627,
+      "ci95": [
+        -0.05408429634330258,
+        -0.008959846640331299
+      ],
+      "valid_bootstrap": 1000
+    },
+    "P": {
+      "estimate": -0.013642567699201275,
+      "ci95": [
+        -0.03330144730506541,
+        0.0065688909963897615
+      ],
+      "valid_bootstrap": 1000
+    },
+    "C": {
+      "estimate": -0.01436463082018316,
+      "ci95": [
+        -0.03539334682077081,
+        0.005921115115196565
+      ],
+      "valid_bootstrap": 1000
+    }
+  },
+  "equal_family_pseudo_primitive_matched_pair_accuracy": {
+    "baseline": {
+      "estimate": 0.4696344417076735,
+      "ci95": [
+        0.4113113989838652,
+        0.5318470179198888
+      ],
+      "valid_bootstrap": 653
+    },
+    "H": {
+      "estimate": 0.5983544901874301,
+      "ci95": [
+        0.5346948930279405,
+        0.6571138076150906
+      ],
+      "valid_bootstrap": 653
+    },
+    "P": {
+      "estimate": 0.6434395426028123,
+      "ci95": [
+        0.5919738505992297,
+        0.6948881014399604
+      ],
+      "valid_bootstrap": 653
+    },
+    "C": {
+      "estimate": 0.6081088174701849,
+      "ci95": [
+        0.5441048775900873,
+        0.6722369882657194
+      ],
+      "valid_bootstrap": 653
+    },
+    "J": {
+      "estimate": 0.6401461404322021,
+      "ci95": [
+        0.5858025154362348,
+        0.6840327837827203
+      ],
+      "valid_bootstrap": 653
+    },
+    "T": {
+      "estimate": 0.7026719072774998,
+      "ci95": [
+        0.6562162667990844,
+        0.7492582982016985
+      ],
+      "valid_bootstrap": 653
+    }
+  },
+  "equal_family_pseudo_actual_text_pair_accuracy": {
+    "H": {
+      "estimate": 0.5011240529237861,
+      "ci95": [
+        0.3886395941163513,
+        0.6080773182016114
+      ],
+      "valid_bootstrap": 1000
+    },
+    "P": {
+      "estimate": 0.4560729036625273,
+      "ci95": [
+        0.3631111670005035,
+        0.5752660693794802
+      ],
+      "valid_bootstrap": 1000
+    },
+    "C": {
+      "estimate": 0.47368113188437433,
+      "ci95": [
+        0.3657975087454373,
+        0.6108343346104853
+      ],
+      "valid_bootstrap": 1000
+    },
+    "J": {
+      "estimate": 0.4537550830331291,
+      "ci95": [
+        0.34474652362056657,
+        0.5631098306677932
+      ],
+      "valid_bootstrap": 1000
+    },
+    "T": {
+      "estimate": 0.5,
+      "ci95": [
+        0.5,
+        0.5
+      ],
+      "valid_bootstrap": 1000
+    }
+  },
+  "coverage": {
+    "throw": {
+      "seen": {
+        "rows": 1185,
+        "positive": 709,
+        "negative": 476,
+        "primitive_high_positive": 236,
+        "primitive_high_negative": 16,
+        "primitive_high_positive_videos": 163,
+        "primitive_high_negative_videos": 16,
+        "annotated_video_primitive_negative": 10,
+        "annotated_video_primitive_negative_videos": 6,
+        "primitive_matching": {
+          "eligible_pairs": 1157,
+          "mixed_groups": 2,
+          "rows": 167,
+          "positive_videos": 115,
+          "negative_videos": 16
+        }
+      },
+      "pseudo": {
+        "rows": 570,
+        "positive": 464,
+        "negative": 106,
+        "primitive_high_positive": 229,
+        "primitive_high_negative": 36,
+        "primitive_high_positive_videos": 167,
+        "primitive_high_negative_videos": 34,
+        "annotated_video_primitive_negative": 0,
+        "annotated_video_primitive_negative_videos": 0,
+        "primitive_matching": {
+          "eligible_pairs": 2183,
+          "mixed_groups": 4,
+          "rows": 265,
+          "positive_videos": 167,
+          "negative_videos": 34
+        },
+        "actual_text": {
+          "eligible_pairs": 37,
+          "mixed_groups": 10,
+          "rows": 36,
+          "positive_videos": 15,
+          "negative_videos": 20
+        },
+        "actual_text_primitive_matching": {
+          "eligible_pairs": 6,
+          "mixed_groups": 3,
+          "rows": 9,
+          "positive_videos": 3,
+          "negative_videos": 5
+        }
+      }
+    },
+    "open_close": {
+      "seen": {
+        "rows": 722,
+        "positive": 516,
+        "negative": 206,
+        "primitive_high_positive": 157,
+        "primitive_high_negative": 11,
+        "primitive_high_positive_videos": 117,
+        "primitive_high_negative_videos": 11,
+        "annotated_video_primitive_negative": 1,
+        "annotated_video_primitive_negative_videos": 1,
+        "primitive_matching": {
+          "eligible_pairs": 464,
+          "mixed_groups": 3,
+          "rows": 141,
+          "positive_videos": 102,
+          "negative_videos": 11
+        }
+      },
+      "pseudo": {
+        "rows": 2827,
+        "positive": 1888,
+        "negative": 939,
+        "primitive_high_positive": 205,
+        "primitive_high_negative": 68,
+        "primitive_high_positive_videos": 148,
+        "primitive_high_negative_videos": 60,
+        "annotated_video_primitive_negative": 18,
+        "annotated_video_primitive_negative_videos": 17,
+        "primitive_matching": {
+          "eligible_pairs": 4266,
+          "mixed_groups": 4,
+          "rows": 273,
+          "positive_videos": 148,
+          "negative_videos": 60
+        },
+        "actual_text": {
+          "eligible_pairs": 7367,
+          "mixed_groups": 158,
+          "rows": 1598,
+          "positive_videos": 768,
+          "negative_videos": 469
+        },
+        "actual_text_primitive_matching": {
+          "eligible_pairs": 37,
+          "mixed_groups": 13,
+          "rows": 45,
+          "positive_videos": 27,
+          "negative_videos": 17
+        }
+      }
+    },
+    "sit": {
+      "seen": {
+        "rows": 1065,
+        "positive": 676,
+        "negative": 389,
+        "primitive_high_positive": 241,
+        "primitive_high_negative": 14,
+        "primitive_high_positive_videos": 172,
+        "primitive_high_negative_videos": 14,
+        "annotated_video_primitive_negative": 10,
+        "annotated_video_primitive_negative_videos": 6,
+        "primitive_matching": {
+          "eligible_pairs": 1078,
+          "mixed_groups": 3,
+          "rows": 226,
+          "positive_videos": 155,
+          "negative_videos": 14
+        }
+      },
+      "pseudo": {
+        "rows": 976,
+        "positive": 625,
+        "negative": 351,
+        "primitive_high_positive": 128,
+        "primitive_high_negative": 2,
+        "primitive_high_positive_videos": 109,
+        "primitive_high_negative_videos": 1,
+        "annotated_video_primitive_negative": 0,
+        "annotated_video_primitive_negative_videos": 0,
+        "primitive_matching": {
+          "eligible_pairs": 66,
+          "mixed_groups": 1,
+          "rows": 35,
+          "positive_videos": 30,
+          "negative_videos": 1
+        },
+        "actual_text": {
+          "eligible_pairs": 359,
+          "mixed_groups": 45,
+          "rows": 229,
+          "positive_videos": 116,
+          "negative_videos": 75
+        },
+        "actual_text_primitive_matching": {
+          "eligible_pairs": 0,
+          "mixed_groups": 0,
+          "rows": 0,
+          "positive_videos": 0,
+          "negative_videos": 0
+        }
+      }
+    }
+  },
+  "execution": {
+    "action_probe_fits": 12,
+    "event_module_fits": 15,
+    "evaluated_rows": 7345,
+    "bootstrap_repeats": 1000,
+    "bootstrap_video_union": 2302,
+    "original_full_model_added_epochs": 0,
+    "R_fit_count": 0,
+    "shared_map_full_model_fit_count": 0,
+    "official_U_or_test_model_evaluations": 0,
+    "original_sit_resume_count": 0,
+    "max_processes_per_gpu": 2,
+    "gpu_count": 2
+  },
+  "input_audit": {
+    "unique_text_caches": 9860,
+    "token_length_matches": 9860,
+    "valid_action_spans": 9836,
+    "valid_entity_spans": 9818,
+    "videos": 4107,
+    "clip_minus_slowfast_bin_counts": {
+      "0": 2199,
+      "-1": 1908
+    },
+    "timestamps_present": false,
+    "matching_feature_extraction_manifest_found": false
+  },
+  "protocol_event": {
+    "val_file_contained_U_rows": true,
+    "U_rows_used_for_source_membership_check_only": true,
+    "U_rows_used_for_fitting_forward_checkpoint_selection_or_metrics": false,
+    "test_release_read": false
   },
   "next_stage_started": false,
-  "R_started": false,
-  "full_model_training_started": false,
-  "training_authorization_note": "用户追加条件性继续训练意向；本轮未达到通过门槛，因此不触发下一阶段。所有拟合每GPU<=2，总<=4，不增加变体或多seed。"
+  "details": "report/REPORT.md"
 }

@@ -9,6 +9,7 @@ import argparse, re, subprocess, shutil, urllib.request, urllib.error, platform
 PREFIX='experiments/event_binding_generalization'
 REPOSITORY='chinagalaxy2002/GMR_Unseen'
 REMOTE='https://github.com/'+REPOSITORY+'.git'
+ALLOWED_CLEANUP={PREFIX+'/publication/UPLOAD_FAILURE_001.json'}
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--token-file',type=Path,required=True)
@@ -16,8 +17,8 @@ def main():
     match=re.search(r'(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+',raw);token=match.group(0) if match else raw
     if not token or '\n' in token or '\r' in token:raise RuntimeError('Invalid credential file')
     publication=BASE/'publication';publication.mkdir(exist_ok=True)
-    workspace=publication/'.local/git_upload'
-    if workspace.exists():raise RuntimeError('Publication workspace already exists; inspect prior state rather than overwrite.')
+    workspace=publication/'.local'/('git_upload_'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+    if workspace.exists():raise RuntimeError('Timestamped publication workspace already exists; inspect prior state rather than overwrite.')
     workspace.mkdir(parents=True)
     def api(path):
         # curl uses the working machine's network route; credentials enter stdin,
@@ -63,12 +64,12 @@ def main():
     dump('publication/PUBLICATION_PLAN.json',{'created_at':now(),'repository':REPOSITORY,'branch':'main','parent_sha':parent,
                                              'scope':PREFIX+' only','decision':'INCONCLUSIVE','include':'plans, code, audit, reports, individual predictions, maps, traces, small heads and execution/failure logs',
                                              'exclude':['cache/','**/.local/','Python bytecode','credentials','original external datasets/features/backbones/checkpoints','other local uncommitted changes'],
-                                             'isolated_git_worktree':True,'local_receipt':'publication/UPLOAD_RECEIPT.json (not included in the commit it describes)'})
+                                             'isolated_git_worktree':True,'local_receipt':'The publishing process reports its verified commit after upload.'})
     def selected(p):
         rel=p.relative_to(BASE)
         if any(part in ['cache','.local','__pycache__'] for part in rel.parts):return False
         if p.suffix in ['.pyc','.pyo','.tmp','.temp']:return False
-        if p.name in ['UPLOAD_STATUS.json','UPLOAD_RECEIPT.json','upload.log','UPLOAD_MANIFEST.json']:return False
+        if p.name in ['UPLOAD_STATUS.json','UPLOAD_RECEIPT.json','upload.log','UPLOAD_MANIFEST.json'] or p.name.startswith('UPLOAD_FAILURE_'):return False
         return p.is_file()
     files=sorted(p for p in BASE.rglob('*') if selected(p))
     # Selection walks directories but copies only a concrete allowlisted snapshot.
@@ -92,7 +93,11 @@ def main():
     git(['add','--force','--',PREFIX])
     staged=git(['diff','--cached','--name-only']).splitlines()
     if not staged:raise RuntimeError('No new publication changes')
-    if not all(p.startswith(PREFIX+'/') and p in expected for p in staged):raise RuntimeError('Unexpected staged path')
+    unexpected=[p for p in staged if not p.startswith(PREFIX+'/') or (p not in expected and p not in ALLOWED_CLEANUP)]
+    if unexpected:raise RuntimeError('Unexpected staged path: '+', '.join(unexpected))
+    states={line.split('\t',1)[1]:line.split('\t',1)[0] for line in git(['diff','--cached','--name-status']).splitlines()}
+    if any(states.get(p)!='D' for p in ALLOWED_CLEANUP.intersection(staged)):
+        raise RuntimeError('Publication cleanup path was not a deletion')
     print('Snapshot:',len(files),'files,',sum(p.stat().st_size for p in files),'bytes;',len(staged),'changed paths',flush=True)
     git(['commit','-m','Publish A/A1/B event-binding validation: controls, localization and inconclusive decision'])
     commit=git(['rev-parse','HEAD'])
@@ -110,7 +115,7 @@ def main():
     if any(remote_blobs.get(p)!=h for p,h in expected.items()):raise RuntimeError('Remote file verification failed')
     diff=api('/commits/'+commit)
     changed=[x['filename'] for x in diff.get('files',[])]
-    if not set(changed).issubset(expected):raise RuntimeError('Unexpected remote changed path')
+    if not set(changed).issubset(set(expected)|ALLOWED_CLEANUP):raise RuntimeError('Unexpected remote changed path')
     if sha(original_index)!=index_before or git(['rev-parse','HEAD'],cwd=REPO)!=original_head:raise RuntimeError('Original local Git state unexpectedly changed')
     receipt={'state':'uploaded_and_verified','at':now(),'repository':REPOSITORY,'branch':'main','parent_sha':parent,'commit_sha':commit,
              'commit_url':'https://github.com/'+REPOSITORY+'/commit/'+commit,'directory_url':'https://github.com/'+REPOSITORY+'/tree/main/'+PREFIX,

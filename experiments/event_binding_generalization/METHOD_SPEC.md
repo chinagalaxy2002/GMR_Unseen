@@ -103,4 +103,4 @@ J、P、b_S 和Δ在同一时间索引/同一候选窗的有效支持集上比�
 7. motion可读性/静态捷径控制、单对非退化、visual直接路径、多对pair保真及同支撑null。
 8. import/loader的副作用隔离：原dataset会把missing_features日志写到原data_path旁，须新wrapper接管或传入本目录的字节相同视图副本；pycache/临时文件/结果也在新目录。不能运行旧脚本让其隐式回写受保护目录。
 
-这些是可运行方案所需技术定义，不是新增用户确认流程。当前请求仅为方案建设，尚未开始实施或训练。
+这些是执行前记录的候选技术定义；A/A1/B 执行设置见 `EXECUTION_FREEZE.json` 与 `EVENT_CODE_FREEZE.json`，测量值见[实验报告](report/REPORT.md)。

@@ -1,6 +1,6 @@
 # A/A1/B 最小验证：当前执行范围
 
-本文件落实用户最新限定，优先于完整方案中的后续研究构想。当前状态：指令与范围已保存，尚未开始模型前向、probe 拟合或训练。清空上下文使用 [RECOVERY_PROMPT.md](RECOVERY_PROMPT.md)。
+本文件记录 A/A1/B 阶段的执行范围。阶段已完成，观测值见[实验报告](report/REPORT.md)，当前状态见[状态页](report/DECISION.md)；恢复入口见 [RECOVERY_PROMPT.md](RECOVERY_PROMPT.md)。
 
 ## 核心问题
 

@@ -1,10 +1,10 @@
 # 事件绑定证据与存在定位共同泛化：研究方案
 
-日期：2026-10-01。状态：planned；本文件定义研究设计，不构成已执行实验或已验证方法。
+日期：2026-10-01。本文记录执行前的研究设计。A/A1/B 阶段之后的当前状态和测量值见[实验报告](report/REPORT.md)。
 
-**当前执行范围收窄：** 最新用户要求只开始 A/A1/B 的最小验证，先 SlowFast 动作可读性，再完整核验 token/span 与双流时间对应，然后只拟合 H/P/C/J/T。B 允许冻结候选上的 map 定位读取诊断，不训练完整定位/存在模型。以下 R/C/D 仍保留为研究构想，不因 J 成立自动执行。精确范围见 [MINIMAL_VALIDATION_SCOPE.md](MINIMAL_VALIDATION_SCOPE.md)，清空上下文使用 [RECOVERY_PROMPT.md](RECOVERY_PROMPT.md)。当前仅保存该指令，未启动模型验证。
+**阶段记录：** 本方案覆盖的 A/A1/B 已执行结束；本段描述执行前冻结的范围。逐项观测值见[实验报告](report/REPORT.md)。精确执行边界见 [MINIMAL_VALIDATION_SCOPE.md](MINIMAL_VALIDATION_SCOPE.md)，当前状态见 [RECOVERY_PROMPT.md](RECOVERY_PROMPT.md)。
 
-修订依据：本轮已完成[八篇论文全文/源码核验](research/LITERATURE_REVIEW.md)与[工程输入核验](research/PROJECT_SOURCE_AUDIT.md)。只读检查和论文研究已执行，新增模型前向、读出器拟合和方法训练仍未执行。
+修订依据：执行前已完成[八篇论文全文/源码核验](research/LITERATURE_REVIEW.md)与[工程输入核验](research/PROJECT_SOURCE_AUDIT.md)。本轮实验执行状态见[实验报告](report/REPORT.md)。
 
 ## 1. 目标与定位
 
@@ -167,6 +167,6 @@ R 的 J 与 primitive/null 必须在同一时间索引或候选窗上比较，�
 
 ## 10. 交付与实际状态
 
-当前已交付 README、研究方案、候选框架和交接，并同步原 plan。尚无本阶段实验结果、执行代码、probe 或方法 checkpoint。未来产物使用独立 `audit/`、`diagnostics/`、`runs/`、`report/`，保留失败与定义修订；不复制旧成绩当新结果。
+本方案版本保存于实验运行之前。A/A1/B 实际文件和观测值见[实验目录索引](ARTIFACT_INDEX.md)与[实验报告](report/REPORT.md)。
 
 本轮新增研究产物为论文专题笔记、综述、源码审计及一个train输入metadata检查。GitHub上传辅助脚本只在本目录本地缓存，不是训练代码。原dataset可回写data_path旁缺特征日志；未来wrapper必须接管日志、pycache、临时目录和所有第三方副作用，只读引用不等于无副作用。
