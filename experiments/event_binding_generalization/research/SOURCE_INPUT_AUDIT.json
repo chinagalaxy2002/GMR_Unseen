@@ -1,0 +1,48 @@
+{
+  "scope": "One existing train row; file metadata inspection only, no forward or fitting.",
+  "video_streams": [
+    {
+      "path": "/home/guoxiangyu/paper/新建文件夹/charades/vid_clip/Y6R7T.npz",
+      "keys": [
+        "features"
+      ],
+      "shape": [
+        29,
+        512
+      ]
+    },
+    {
+      "path": "/home/guoxiangyu/paper/新建文件夹/charades/vid_slowfast/Y6R7T.npz",
+      "keys": [
+        "features"
+      ],
+      "shape": [
+        30,
+        2304
+      ]
+    }
+  ],
+  "text": {
+    "path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/features/semantic_existence_v2/A1/clip_text/qidtrain1.npz",
+    "keys": [
+      "last_hidden_state"
+    ],
+    "shapes": {
+      "last_hidden_state": [
+        10,
+        512
+      ]
+    },
+    "token_ids_stored": false
+  },
+  "config": {
+    "max_q_l": 32,
+    "max_v_l": 200,
+    "v_feat_dim": 2818,
+    "t_feat_dim": 512,
+    "clip_length": 1,
+    "v_feat_types": "slowfast_clip",
+    "mr_only": true,
+    "lw_saliency": 0
+  }
+}

@@ -2,11 +2,15 @@
 
 日期：2026-10-01。状态：planned；本文件定义研究设计，不构成已执行实验或已验证方法。
 
+修订依据：本轮已完成[八篇论文全文/源码核验](research/LITERATURE_REVIEW.md)与[工程输入核验](research/PROJECT_SOURCE_AUDIT.md)。只读检查和论文研究已执行，新增模型前向、读出器拟合和方法训练仍未执行。
+
 ## 1. 目标与定位
 
 在冻结视觉/文本特征、严格 downstream S-only 训练下，检验动作—实体绑定证据是否能够迁移到未见动作或组合，并同时提高 GMR 的存在排序与时间定位。真实 U+ 应接受、真实 U− 应拒绝，不能用语义熟悉度或查询 OOD 检测替代事件存在判断。
 
 研究定位为已有绑定思想在严格未见语义存在判别中的机制验证及可能的方法扩展。不是首次建模动作—实体关系，也不是首次将局部相关性用于拒绝。先验证绑定，再验证相对于 primitive 的证据盈余，最后验证共同输出。
+
+IAE-VTG 已分别评估负查询拒绝及 Novel-C/Novel-W 组合泛化；不能只用 binding+两个输出+组合泛化界定差异。先审计其输入、训练与评价协议，实际差异必须由 primitive 条件视觉增量、受控 S-only→U+/U− 以及共同收益获得。论文没有公开足够实现细节时注明无法全面对齐，不因术语不同断言本项目首次。
 
 不继续以 local sigmoid → 统一 absolute scale → existence 为主线；跨查询可比较的最终决策仍需验证，但不预设绝对分数校准是核心机制。
 
@@ -32,6 +36,8 @@
 
 H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来额外视觉条件判别。H2：该额外响应在 held-out 语义上仍成立。H3：盈余可帮助排除 primitive 相关但事件不成立的假阳性。H4：同一证据场具有定位与存在共同作用路径。四项分别检验，任一不成立都允许缩小或改变机制。
 
+增加前置问题：动作理解是否已经存在于原冻结特征？RCORE 的 object-driven verb shortcut 与 Invert4TVG 的定位/动作理解分离提示，分解和交互不保证使用运动。该问题与绑定缺失独立，失败时先记录表示/读出/采样限制。
+
 “动作与实体同时出现”与“动作由查询指定实体实施/作用于指定对象”要区分。全局 clip 特征只能先检验时间层面的组合支持；无对象级证据时，不宣称验证了实体身份、施事/受事或物理因果绑定。
 
 ## 4. 协议与数据边界
@@ -51,11 +57,25 @@ H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来�
 
 先只读检查 CLIP/SlowFast 原特征的时间轴、维数、归一化、截断及双流对齐；核对文本 token 与原查询词的可映射性。CLIP 偏外观、SlowFast 偏运动只是归纳偏置，两者不保证语义纯净。
 
+本轮源码/一个 train 样本确认实际拼接为 `[CLIP 512 | SlowFast 2304 | TEF 2]`，由 `v_feat_dirs` 决定而非 `slowfast_clip` 字符串；原模型在拼接后统一投影。因此新分支须在统一投影前保留两流，TEF 单独控制，不将融合 hidden 的任意坐标当两种 primitive。样本两流长度29/30，min_len 截断只保证长度一致，不证明时间对应。此样本检查不是完整阶段 A 的覆盖审计。
+
 冻结 action/entity/角色提取规则，报告解析失败、多动词、多实体、无显式实体和歧义的覆盖，保留完整 query 基线。不能看 pseudo 结果后挑 token 或 noun–verb pair。若缓存 token 不能可靠对齐，优先选可验证的 span 映射；重新提取特征会改变协议，须先明确新范围，不能暗中引入更强模型。
+
+已检查的 text NPZ 只有 `last_hidden_state`，无 token IDs；原 loader 截前32 token。核对同 tokenizer 的 BPE、SOT/EOT、截断和正负缓存来源，在新目录保存 offset/mask；不把词位置当 token 位置。角色 token 带完整句子上下文，不能据 verb/noun mask 自称语义 disentanglement。
 
 统计原 S− 的组成：动作不匹配、实体不匹配、primitive-only 代理、可靠绑定负例、无法归类；证据不够时保留 unknown。若绑定硬负例或相同实际文本控制覆盖不足，结论记未决，不用自动生成负标签填满。
 
 产物建议：AUDIT_FREEZE.json、FEATURE_AUDIT.json、QUERY_DECOMPOSITION.jsonl、NEGATIVE_COVERAGE.json、AUDIT_REPORT.md。当前均未生成。
+
+阶段 A 还须审计负例语义轴和组成：现有 throw/open_close/sit 都是留动作族证据，不能单独支撑“组件已见而组合未见”的机制。可先从原 A1 S train 元数据审计可留出的 pair 及组件覆盖，只有明确新的训练侧组合视图定义后才比较；不自动启动 C1/C2 正式训练，不使用真实 U 选择 pair。
+
+### A1：动作可读性与静态捷径门槛
+
+在原 S+ GT 内做 motion-only segment→verb 小 probe，词表和样本只取原 S train；对照 appearance-only、时间均值、单位置/静态内容以及 masked-query text-only（不能把答案 verb 自身输入该控制）。同实体不同动作和不同实体同动作分层，报告 coverage；组件含 held-out verb 时不能把 U 类标签拟合到闭集分类头。可迁移 verb 的检索/相似性评价需先固定由 S 定义的 scorer，不能拿 GT verb 拟合测试类别。
+
+该 probe 是 annotation-derived 动作可读性诊断，不是 Invert4TVG 的完整生成式 VC/AR/VD 复现，也不是无 GT existence。motion-only 无明显信号不证明所有非线性读出都无信息；若静态/物体控制同样有效，暂不将后续 J 的增益归于运动绑定。
+
+clip 间 order 控制与 cross-stream alignment 控制分开：两流共同逆序/乱序检验时间次序；单流错位检验局部对应。SlowFast clip vectors 逆序保留 clip 内原运动方向，不等于像素视频倒放。持续实体、周期/方向无关动作分层，不为所有扰动赋 absent 标签，不把“分数下降”记作已验证反事实准确率。
 
 ### B：冻结骨干上的最小证据比较
 
@@ -70,11 +90,19 @@ H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来�
 | R | J 加 primitive-only 对照形成的盈余机制 | 盈余是否超越 J，而不是包装已有 joint 收益 |
 | T | 仅文本、相近读出容量 | 查询先验或语义熟悉度解释收益 |
 
+补充最低机制控制：motion-only、appearance-only，以及静态/时间均值的证据读出；同事件监督、相近容量与同一主聚合。H 本身提供 local holistic evidence map，再单列其 pooled scalar（CausalVTG-inspired）读出，区分局部证据流与绑定增量。前置动作 probe 与这些 event-existence 控制任务不同，不能以 probe 准确率代替 AUROC。
+
+J 的实施硬约束：单个 noun–verb 对也必须直接依赖 raw visual values/residual；多对在 pair-conditioned visual interaction 上聚合。公开 IAE 公式的 pair softmax+marginal-only 路径存在单对退化风险（本轮公式推导，非作者代码 bug 结论）。可设按公式构建的 IAE-inspired 结构控制，明确非官方复现；不以退化控制的失败全面否定论文。固定 query 换视频的 map 响应检查只是非退化检查，还需真实标签的视觉条件判别。
+
 先比较 H/P/C/J/T，J 获得支持后再执行 R；不因 J 失败转而扫残差系数。基线原存在头与原定位输出另保留为参照，不计作新拟合臂。
+
+实施分两轮：A/A1 确认可测性；B 先执行 H/P/C/J/T 与必要单流/静态控制。只有 J 的可迁移视觉增量成立才研究 R，不一次铺开多种 temporal 模块、全套 auxiliary 或多个 null。
 
 统一输入、原事件标签、时间监督可用性及聚合协议；记录各臂参数量、训练轮数、呈现条数和实际耗时。H 提供相近容量控制，避免把更大网络收益归于绑定；不宣称完成此前已排除的同预算成对核验。具体宽度、优化器、轮数上限、聚合及选择准则须在执行前一次冻结，当前不虚构硬件预算或可运行配置。
 
 使用原 S+ GT 的局部事件支持监督和原 S− 整段 event absence/MIL 监督，所有臂公平共享可用监督。GT 只用于训练和单列诊断，实际正负例均使用相同的无 GT map 聚合。窗口标签监督的是事件，不保证 primitive 分支学到了纯动作/纯实体。
+
+R 的 J 与 primitive/null 必须在同一时间索引或候选窗上比较，不先分别取各自最有利峰值再相减；null 的预测单位和拟合只由 S 决定。残差不是已验证概率、PMI 或因果证据，原 label 只确认 event，不为残差赋新的真值。
 
 主要报告 pseudo 无 GT 存在 AUROC、相同实际文本 PairAcc、视频/查询覆盖。局部定位先报告非 oracle 的选窗/候选排序作用；GT 条件 AUC、峰入 GT 仅辅助，不替代 R1。动作/实体干扰、时间错位敏感性只作为解释证据，与分布外扰动限制同报。
 
@@ -83,6 +111,8 @@ H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来�
 仅在 B 支持 joint 的视觉增量后，冻结具体 METHOD_SPEC 和普通控制，研究同一 map 对候选排序、边界表示与存在输出的作用。先采用原候选上的 map 窗内汇聚重排；它不能修复全部候选缺失。需要新边界回归时另立最小变体，不把 oracle 覆盖当预期收益。
 
 对照至少包括原模型、H 共享 map、J 共享 map，以及 B 支持后才加入的 R 共享 map；另做只接定位、只接存在两个作用路径消融。输入与原任务监督保持；不同时引入 ISA 匹配修改、额外教师、梯度协调和多个新损失，以免收益不可归因。
+
+增加 map bypass/primitive substitution：保持输出模块容量，对照移除 map、用 primitive map 替换，明确各任务的读取点。若采用可训练 shared map，detach 消融仅检验训练耦合；零填/遮挡属于分布外敏感性，不自动证明因果中介。需要辅助训练时仅选一个候选（原 S+ annotation-derived verb recognition），单独比较 J 与 J+aux，不一次加入 TORC/CPR/VC/AR/VD/MoE。
 
 同一 map 不要求两个任务使用同一个 scalar：定位保留时间结构，存在执行固定的全局聚合。所有正负 query 使用同一长度处理和有效时间 mask。不能仅给全 query 候选乘一个共同 scalar 后宣称 raw 排序改善。
 
@@ -110,12 +140,16 @@ H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来�
 | 定位有益、存在不益，或反之 | 限定单任务发现；不符合本研究共同目标 |
 | U+ 接受上升但 U− 拒绝明显恶化 | 判为共同目标失败，不通过 U 阈值挽救 |
 | 硬绑定负例覆盖不足 | 只能验证普通事件存在，绑定特异性保持未决 |
+| 单对 J 不依赖视觉、或只有 appearance/static 控制也达相同收益 | 修正实现或缩小为静态相关性发现，停止运动绑定解释 |
+| 只有动作留族，未验证组件已见的组合留出 | 限定未见动作结论，不称组合绑定泛化已成立 |
 
 ## 8. 最近邻与创新边界
 
-- Shiwen Zhao 等，2026，**IAE-VTG: Interaction-Aligned Action–Entity Video Temporal Grounding**：已将动作/实体对齐到运动/外观流，形成 binding score 并用于 proposal 和 matching。本方案与其在绑定对象、双流粒度上接近；潜在差别在严格 S-only→U+/U−、primitive-only 对照及定位/存在共同验证。[原文](https://arxiv.org/html/2609.09736v1)
+- Shiwen Zhao 等，2026，**IAE-VTG: Interaction-Aligned Action–Entity Video Temporal Grounding**：动作/实体对齐到运动/外观流，binding用于proposal/matching；Table VI 已做 NA-VMR 拒绝，Table IX 已做 Novel-C/Novel-W。本方案需验证 primitive 条件视觉增量及相同严格协议的差异，不能仅以共同输出区别。官方实现未取得，单对退化是公式推导。[原文](https://arxiv.org/html/2609.09736v1)
 - Jianfeng Dong 等，NeurIPS 2024，**Temporal Sentence Grounding with Relevance Feedback in Videos（RaTSG）**：已联合帧/视频相关性与拒绝定位。本方案不能以局部证据服务两个输出作首次贡献；差别应落在未见语义下的组合证据。[原文](https://proceedings.neurips.cc/paper_files/paper/2024/hash/4b96695d9885f038110b8b16ef50e882-Abstract-Conference.html)
 - Geo Ahn 等，2026，**EVIDENT: Routing MLLM Adaptation through Entity-Grounded Visual Evidence for Cross-Domain Video Temporal Grounding**：实体 slot、绑定蒸馏与 evidence gating 是近邻；其对象级 MLLM/视觉域迁移机制不同于本项目冻结 clip 特征及未见语义存在判别。[原文](https://arxiv.org/abs/2605.26104)
+
+用户另指定的 RCORE、Invert4TVG、ActPrompt、CausalVTG、HRVTG、EviDETR 已完成全文及可得源码核查，详见[八篇重点清单](research/LITERATURE_REVIEW.md)。RCORE官方TORC源码已核查，CPR不是primitive残差；ActPrompt需要encoder内部patch/prompt；Invert inversion不是时间倒放；CausalVTG提供pooled relevance普通控制；EviDETR服务MR/HD，不能替代existence验证；HRVTG已公开PDF和代码，但TTA不满足主轨固定推理。EVIDENT作者官网列NeurIPS2026，空间dense tokens+DINOv2教师不直接适配原pooled输入。
 
 以上原始来源于 2026-10-01 本轮核查。尚不声称穷尽文献或通过新颖性审查。旧报告引用的 Learning to Refuse 官方页本轮访问失败，不据其未获取全文新增技术判断。
 
@@ -130,3 +164,5 @@ H1：当前 holistic 表示更容易对单个相关概念响应，joint 带来�
 ## 10. 交付与实际状态
 
 当前已交付 README、研究方案、候选框架和交接，并同步原 plan。尚无本阶段实验结果、执行代码、probe 或方法 checkpoint。未来产物使用独立 `audit/`、`diagnostics/`、`runs/`、`report/`，保留失败与定义修订；不复制旧成绩当新结果。
+
+本轮新增研究产物为论文专题笔记、综述、源码审计及一个train输入metadata检查。GitHub上传辅助脚本只在本目录本地缓存，不是训练代码。原dataset可回写data_path旁缺特征日志；未来wrapper必须接管日志、pycache、临时目录和所有第三方副作用，只读引用不等于无副作用。
