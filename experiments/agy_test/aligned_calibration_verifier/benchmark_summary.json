@@ -1,0 +1,298 @@
+{
+  "model_name": "Aligned_Calibration_Verifier",
+  "macro_summary": {
+    "Seen_AUROC": 0.7561068325314007,
+    "Unseen_AUROC": 0.518820915235326,
+    "Gap": 0.23728591729607462,
+    "Matched_PairAcc": 0.5331440094429497,
+    "U_pos_FRR": 23.952101591506686,
+    "U_neg_RR": 26.5828284069402,
+    "delta_seen": 0.005017247094015809,
+    "delta_unseen": 0.016094295677118543,
+    "gap_reduction": 0.011077048583102734,
+    "baseline_macro_fresh": {
+      "Seen_AUROC": 0.7510895854373848,
+      "Unseen_AUROC": 0.5027266195582075,
+      "Gap": 0.24836296587917736,
+      "Matched_PairAcc": 0.5180926443621469
+    },
+    "p0_detector_adapter_macro": {
+      "Seen_AUROC": 0.753451670824151,
+      "Unseen_AUROC": 0.5078393510614733,
+      "Gap": 0.2456123197626776,
+      "Matched_PairAcc": 0.526117416093866,
+      "delta_unseen": 0.005112731503265866
+    },
+    "visual_permutation_control": {
+      "Unseen_AUROC": 0.5094304783660146,
+      "Matched_PairAcc": 0.5418739831456935
+    },
+    "text_only_control": {
+      "Unseen_AUROC": 0.5077890201232279,
+      "Matched_PairAcc": 0.526117416093866
+    }
+  },
+  "bootstrap_95ci": {
+    "delta_seen": [
+      0.002470509760147511,
+      0.007464506676657793
+    ],
+    "delta_unseen": [
+      0.006614998745858312,
+      0.026565500249290545
+    ],
+    "gap_reduction": [
+      0.0014280554595390569,
+      0.021484181299667487
+    ]
+  },
+  "splits": {
+    "A1": {
+      "split": "A1",
+      "best_epoch": 6,
+      "threshold": 3.2529806424905603,
+      "Seen_AUROC": 0.7882250947853553,
+      "Unseen_AUROC": 0.509546734315393,
+      "Gap": 0.2786783604699623,
+      "Matched_PairAcc": 0.5769230769230769,
+      "U_pos_FRR": 14.623655913978496,
+      "U_neg_RR": 17.336907953529938,
+      "delta_seen": 0.0021891923602211927,
+      "delta_unseen": 0.0023215812889773035,
+      "gap_reduction": 0.00013238892875611086,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7860359024251341,
+        "Unseen_AUROC": 0.5072251530264157,
+        "Gap": 0.2788107493987184,
+        "Matched_PairAcc": 0.6025641025641025
+      },
+      "p0_detector_adapter": {
+        "Seen_AUROC": 0.7868697235273335,
+        "Unseen_AUROC": 0.5013866067052956,
+        "Gap": 0.285483116822038,
+        "Matched_PairAcc": 0.5961538461538461,
+        "delta_unseen": -0.0058385463211201305
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5017133193039099,
+        "Matched_PairAcc": 0.5801282051282052
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.502266808882739,
+        "Matched_PairAcc": 0.5961538461538461
+      }
+    },
+    "A2_alt": {
+      "split": "A2_alt",
+      "best_epoch": 19,
+      "threshold": 6.315195400554973,
+      "Seen_AUROC": 0.7621254876973139,
+      "Unseen_AUROC": 0.4356303418803419,
+      "Gap": 0.32649514581697203,
+      "Matched_PairAcc": 0.3670886075949367,
+      "U_pos_FRR": 2.976190476190476,
+      "U_neg_RR": 1.282051282051282,
+      "delta_seen": 0.008059574646900547,
+      "delta_unseen": 0.018276862026862017,
+      "gap_reduction": 0.01021728737996147,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7540659130504134,
+        "Unseen_AUROC": 0.41735347985347987,
+        "Gap": 0.3367124331969335,
+        "Matched_PairAcc": 0.34177215189873417
+      },
+      "p0_detector_adapter": {
+        "Seen_AUROC": 0.7590221055145654,
+        "Unseen_AUROC": 0.4299068986568987,
+        "Gap": 0.3291152068576667,
+        "Matched_PairAcc": 0.379746835443038,
+        "delta_unseen": 0.012553418803418814
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.42937271062271065,
+        "Matched_PairAcc": 0.4936708860759494
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.4301930708180708,
+        "Matched_PairAcc": 0.379746835443038
+      }
+    },
+    "A3": {
+      "split": "A3",
+      "best_epoch": 4,
+      "threshold": 8.01890403300792,
+      "Seen_AUROC": 0.7469467348449976,
+      "Unseen_AUROC": 0.49472152076318743,
+      "Gap": 0.2522252140818102,
+      "Matched_PairAcc": 0.4496124031007752,
+      "U_pos_FRR": 42.1875,
+      "U_neg_RR": 38.38383838383838,
+      "delta_seen": 0.0067800998659114375,
+      "delta_unseen": 0.013573232323232265,
+      "gap_reduction": 0.006793132457320827,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7401666349790862,
+        "Unseen_AUROC": 0.48114828843995516,
+        "Gap": 0.25901834653913103,
+        "Matched_PairAcc": 0.4573643410852713
+      },
+      "p0_detector_adapter": {
+        "Seen_AUROC": 0.7433122527534839,
+        "Unseen_AUROC": 0.4966242283950617,
+        "Gap": 0.2466880243584222,
+        "Matched_PairAcc": 0.4728682170542636,
+        "delta_unseen": 0.015475939955106544
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.49474782547699214,
+        "Matched_PairAcc": 0.46511627906976744
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.4963699494949495,
+        "Matched_PairAcc": 0.4728682170542636
+      }
+    },
+    "C1": {
+      "split": "C1",
+      "best_epoch": 29,
+      "threshold": 2.9785091447400616,
+      "Seen_AUROC": 0.7825541492576095,
+      "Unseen_AUROC": 0.6071330589849108,
+      "Gap": 0.1754210902726987,
+      "Matched_PairAcc": 0.7569444444444444,
+      "U_pos_FRR": 4.320987654320987,
+      "U_neg_RR": 7.4074074074074066,
+      "delta_seen": 0.0025571257034520123,
+      "delta_unseen": 0.041678097850937346,
+      "gap_reduction": 0.03912097214748533,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7799970235541575,
+        "Unseen_AUROC": 0.5654549611339734,
+        "Gap": 0.21454206242018403,
+        "Matched_PairAcc": 0.6736111111111112
+      },
+      "p0_detector_adapter": {
+        "Seen_AUROC": 0.7803513854288917,
+        "Unseen_AUROC": 0.5692043895747599,
+        "Gap": 0.21114699585413177,
+        "Matched_PairAcc": 0.6666666666666666,
+        "delta_unseen": 0.0037494284407865175
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5809556470050297,
+        "Matched_PairAcc": 0.625
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.5693415637860082,
+        "Matched_PairAcc": 0.6666666666666666
+      }
+    },
+    "C2_alt": {
+      "split": "C2_alt",
+      "best_epoch": 30,
+      "threshold": 6.182710696269084,
+      "Seen_AUROC": 0.7006826960717268,
+      "Unseen_AUROC": 0.5470729202327971,
+      "Gap": 0.15360977583892976,
+      "Matched_PairAcc": 0.5151515151515151,
+      "U_pos_FRR": 55.65217391304348,
+      "U_neg_RR": 68.50393700787401,
+      "delta_seen": 0.005500242893593854,
+      "delta_unseen": 0.004621704895583778,
+      "gap_reduction": -0.000878537998010076,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.695182453178133,
+        "Unseen_AUROC": 0.5424512153372133,
+        "Gap": 0.1527312378409197,
+        "Matched_PairAcc": 0.5151515151515151
+      },
+      "p0_detector_adapter": {
+        "Seen_AUROC": 0.6977028868964802,
+        "Unseen_AUROC": 0.5420746319753509,
+        "Gap": 0.1556282549211293,
+        "Matched_PairAcc": 0.5151515151515151,
+        "delta_unseen": -0.0003765833618624148
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.540362889421431,
+        "Matched_PairAcc": 0.5454545454545454
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.5407737076343718,
+        "Matched_PairAcc": 0.5151515151515151
+      }
+    }
+  },
+  "per_split_bootstrap": {
+    "A1": {
+      "delta_seen": [
+        -0.001537216795874763,
+        0.005836697469820948
+      ],
+      "delta_unseen": [
+        -0.00722764463060255,
+        0.011401922088077077
+      ],
+      "gap_reduction": [
+        -0.00997874776961725,
+        0.010034595464565546
+      ]
+    },
+    "A2_alt": {
+      "delta_seen": [
+        0.0031568917498827676,
+        0.012808936404342289
+      ],
+      "delta_unseen": [
+        -0.012871378308618982,
+        0.0516235408975394
+      ],
+      "gap_reduction": [
+        -0.021241370837117104,
+        0.04380272243604527
+      ]
+    },
+    "A3": {
+      "delta_seen": [
+        0.00305041224818334,
+        0.010971046293801407
+      ],
+      "delta_unseen": [
+        -0.002830472742720709,
+        0.030588803432504013
+      ],
+      "gap_reduction": [
+        -0.010079236049727,
+        0.024384938932203747
+      ]
+    },
+    "C1": {
+      "delta_seen": [
+        0.0005031604661881433,
+        0.0047111712461544745
+      ],
+      "delta_unseen": [
+        0.028788567157816185,
+        0.05697816905119816
+      ],
+      "gap_reduction": [
+        0.026245248464530614,
+        0.05483858010816507
+      ]
+    },
+    "C2_alt": {
+      "delta_seen": [
+        -0.0023998108529884794,
+        0.01322951097995499
+      ],
+      "delta_unseen": [
+        -0.021163901903665624,
+        0.029524757759609773
+      ],
+      "gap_reduction": [
+        -0.028371450565397867,
+        0.025777458409912257
+      ]
+    }
+  }
+}

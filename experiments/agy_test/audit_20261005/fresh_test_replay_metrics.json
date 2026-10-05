@@ -1,0 +1,477 @@
+{
+  "protocol": "canonical QD checkpoints, official eval_bsz=16, fresh features; final scalar checkpoint/scaler/threshold frozen",
+  "splits": {
+    "A1": {
+      "baseline_logit": {
+        "Seen_AUROC": 0.7861911315710377,
+        "Unseen_AUROC": 0.5080419345229515,
+        "Gap": 0.27814919704808616,
+        "Matched_PairAcc": 0.6089743589743589,
+        "matched_pair_n": 312
+      },
+      "final_logit": {
+        "Seen_AUROC": 0.7432063354584235,
+        "Unseen_AUROC": 0.5054339992504828,
+        "Gap": 0.2377723362079407,
+        "Matched_PairAcc": 0.48717948717948717,
+        "matched_pair_n": 312,
+        "Threshold": 3.6132607412290527,
+        "U_pos_FRR": 21.72043010752688,
+        "U_neg_RR": 25.647899910634496,
+        "Seen_RejF1": 0.6177215189873417,
+        "Seen_BalancedAccuracy": 0.6897269285326331,
+        "Unseen_RejF1": 0.38088918380889186,
+        "Unseen_BalancedAccuracy": 0.5196373490155382
+      },
+      "baseline_rounded_probability": {
+        "Seen_AUROC": 0.7827446160863535,
+        "Unseen_AUROC": 0.5058212497717816,
+        "Gap": 0.27692336631457193,
+        "Matched_PairAcc": 0.5721153846153846,
+        "matched_pair_n": 312,
+        "Threshold": 0.9964,
+        "U_pos_FRR": 16.129032258064516,
+        "U_neg_RR": 18.230563002680967,
+        "Seen_RejF1": 0.6687653025533403,
+        "Seen_BalancedAccuracy": 0.7288110567973887,
+        "Unseen_RejF1": 0.2918454935622318,
+        "Unseen_BalancedAccuracy": 0.5105076537230823
+      },
+      "published_probability_max_abs_error": 0.0,
+      "final_vs_cached_score_max_abs_error": 5.861399173736572,
+      "final_vs_cached_score_diff_gt_001_n": 898,
+      "signals": {
+        "orig_logits": {
+          "Seen_AUROC": 0.7861911315710377,
+          "Unseen_AUROC": 0.5080419345229515,
+          "Gap": 0.27814919704808616,
+          "Matched_PairAcc": 0.6089743589743589,
+          "matched_pair_n": 312
+        },
+        "cos_disp": {
+          "Seen_AUROC": 0.714038581199015,
+          "Unseen_AUROC": 0.50684078526334,
+          "Gap": 0.207197795935675,
+          "Matched_PairAcc": 0.4583333333333333,
+          "matched_pair_n": 312
+        },
+        "slot_max_dev": {
+          "Seen_AUROC": 0.7168501732238622,
+          "Unseen_AUROC": 0.5028510478826141,
+          "Gap": 0.2139991253412481,
+          "Matched_PairAcc": 0.4551282051282051,
+          "matched_pair_n": 312
+        },
+        "fg_max": {
+          "Seen_AUROC": 0.7221979985656959,
+          "Unseen_AUROC": 0.4821845541814408,
+          "Gap": 0.2400134443842551,
+          "Matched_PairAcc": 0.5192307692307693,
+          "matched_pair_n": 312
+        }
+      },
+      "U_pos_raw_R1_iou05": 0.24516129032258063,
+      "U_pos_final_gated_R1_iou05": 0.1978494623655914
+    },
+    "A2_alt": {
+      "baseline_logit": {
+        "Seen_AUROC": 0.7541583177288774,
+        "Unseen_AUROC": 0.4168574481074481,
+        "Gap": 0.3373008696214293,
+        "Matched_PairAcc": 0.34177215189873417,
+        "matched_pair_n": 79
+      },
+      "final_logit": {
+        "Seen_AUROC": 0.7270352934416691,
+        "Unseen_AUROC": 0.45970695970695974,
+        "Gap": 0.2673283337347093,
+        "Matched_PairAcc": 0.5316455696202531,
+        "matched_pair_n": 79,
+        "Threshold": 2.4901583853426645,
+        "U_pos_FRR": 0.0,
+        "U_neg_RR": 0.3205128205128205,
+        "Seen_RejF1": 0.5886214442013129,
+        "Seen_BalancedAccuracy": 0.6941602387170887,
+        "Unseen_RejF1": 0.006389776357827476,
+        "Unseen_BalancedAccuracy": 0.5016025641025641
+      },
+      "baseline_rounded_probability": {
+        "Seen_AUROC": 0.7441703582085584,
+        "Unseen_AUROC": 0.47274687118437114,
+        "Gap": 0.2714234870241872,
+        "Matched_PairAcc": 0.45569620253164556,
+        "matched_pair_n": 79,
+        "Threshold": 0.9919,
+        "U_pos_FRR": 0.5952380952380952,
+        "U_neg_RR": 0.3205128205128205,
+        "Seen_RejF1": 0.6182421227197347,
+        "Seen_BalancedAccuracy": 0.7052052777435935,
+        "Unseen_RejF1": 0.006369426751592357,
+        "Unseen_BalancedAccuracy": 0.49862637362637363
+      },
+      "published_probability_max_abs_error": 0.0,
+      "final_vs_cached_score_max_abs_error": 2.7727675437927246,
+      "final_vs_cached_score_diff_gt_001_n": 829,
+      "signals": {
+        "orig_logits": {
+          "Seen_AUROC": 0.7541583177288774,
+          "Unseen_AUROC": 0.4168574481074481,
+          "Gap": 0.3373008696214293,
+          "Matched_PairAcc": 0.34177215189873417,
+          "matched_pair_n": 79
+        },
+        "cos_disp": {
+          "Seen_AUROC": 0.7110517496214839,
+          "Unseen_AUROC": 0.4859394078144078,
+          "Gap": 0.22511234180707607,
+          "Matched_PairAcc": 0.569620253164557,
+          "matched_pair_n": 79
+        },
+        "slot_max_dev": {
+          "Seen_AUROC": 0.7127489084027367,
+          "Unseen_AUROC": 0.486893315018315,
+          "Gap": 0.22585559338442174,
+          "Matched_PairAcc": 0.5569620253164557,
+          "matched_pair_n": 79
+        },
+        "fg_max": {
+          "Seen_AUROC": 0.7148619954350802,
+          "Unseen_AUROC": 0.49378052503052505,
+          "Gap": 0.22108147040455517,
+          "Matched_PairAcc": 0.4177215189873418,
+          "matched_pair_n": 79
+        }
+      },
+      "U_pos_raw_R1_iou05": 0.31547619047619047,
+      "U_pos_final_gated_R1_iou05": 0.31547619047619047
+    },
+    "A3": {
+      "baseline_logit": {
+        "Seen_AUROC": 0.7404939343299911,
+        "Unseen_AUROC": 0.4826125841750842,
+        "Gap": 0.25788135015490693,
+        "Matched_PairAcc": 0.4573643410852713,
+        "matched_pair_n": 129
+      },
+      "final_logit": {
+        "Seen_AUROC": 0.6927055189758573,
+        "Unseen_AUROC": 0.5544770622895623,
+        "Gap": 0.13822845668629502,
+        "Matched_PairAcc": 0.4108527131782946,
+        "matched_pair_n": 129,
+        "Threshold": 2.948383746323762,
+        "U_pos_FRR": 10.9375,
+        "U_neg_RR": 15.993265993265993,
+        "Seen_RejF1": 0.546242774566474,
+        "Seen_BalancedAccuracy": 0.6674810583318324,
+        "Unseen_RejF1": 0.2676056338028169,
+        "Unseen_BalancedAccuracy": 0.52527882996633
+      },
+      "baseline_rounded_probability": {
+        "Seen_AUROC": 0.7334029000807198,
+        "Unseen_AUROC": 0.4870186237373737,
+        "Gap": 0.24638427634334614,
+        "Matched_PairAcc": 0.45348837209302323,
+        "matched_pair_n": 129,
+        "Threshold": 0.9997,
+        "U_pos_FRR": 30.208333333333332,
+        "U_neg_RR": 31.313131313131315,
+        "Seen_RejF1": 0.6121247792819305,
+        "Seen_BalancedAccuracy": 0.6877546472338409,
+        "Unseen_RejF1": 0.4439140811455847,
+        "Unseen_BalancedAccuracy": 0.5055239898989898
+      },
+      "published_probability_max_abs_error": 0.0,
+      "final_vs_cached_score_max_abs_error": 5.391946077346802,
+      "final_vs_cached_score_diff_gt_001_n": 1009,
+      "signals": {
+        "orig_logits": {
+          "Seen_AUROC": 0.7404939343299911,
+          "Unseen_AUROC": 0.4826125841750842,
+          "Gap": 0.25788135015490693,
+          "Matched_PairAcc": 0.4573643410852713,
+          "matched_pair_n": 129
+        },
+        "cos_disp": {
+          "Seen_AUROC": 0.6651264834790962,
+          "Unseen_AUROC": 0.5672348484848485,
+          "Gap": 0.09789163499424769,
+          "Matched_PairAcc": 0.4573643410852713,
+          "matched_pair_n": 129
+        },
+        "slot_max_dev": {
+          "Seen_AUROC": 0.6664783131867033,
+          "Unseen_AUROC": 0.5677434062850729,
+          "Gap": 0.09873490690163034,
+          "Matched_PairAcc": 0.4496124031007752,
+          "matched_pair_n": 129
+        },
+        "fg_max": {
+          "Seen_AUROC": 0.6981946626440118,
+          "Unseen_AUROC": 0.541912177328844,
+          "Gap": 0.15628248531516775,
+          "Matched_PairAcc": 0.4418604651162791,
+          "matched_pair_n": 129
+        }
+      },
+      "U_pos_raw_R1_iou05": 0.4427083333333333,
+      "U_pos_final_gated_R1_iou05": 0.4114583333333333
+    },
+    "C1": {
+      "baseline_logit": {
+        "Seen_AUROC": 0.779942730079506,
+        "Unseen_AUROC": 0.5655921353452218,
+        "Gap": 0.2143505947342842,
+        "Matched_PairAcc": 0.6666666666666666,
+        "matched_pair_n": 144
+      },
+      "final_logit": {
+        "Seen_AUROC": 0.750628374254616,
+        "Unseen_AUROC": 0.5600594421582077,
+        "Gap": 0.19056893209640835,
+        "Matched_PairAcc": 0.6736111111111112,
+        "matched_pair_n": 144,
+        "Threshold": 2.813310677105481,
+        "U_pos_FRR": 0.6172839506172839,
+        "U_neg_RR": 3.3333333333333335,
+        "Seen_RejF1": 0.6140005622715772,
+        "Seen_BalancedAccuracy": 0.69339311432703,
+        "Unseen_RejF1": 0.06428571428571428,
+        "Unseen_BalancedAccuracy": 0.5135802469135803
+      },
+      "baseline_rounded_probability": {
+        "Seen_AUROC": 0.7798211757154982,
+        "Unseen_AUROC": 0.5618427069044353,
+        "Gap": 0.21797846881106298,
+        "Matched_PairAcc": 0.6354166666666666,
+        "matched_pair_n": 144,
+        "Threshold": 0.9868,
+        "U_pos_FRR": 3.0864197530864197,
+        "U_neg_RR": 5.555555555555555,
+        "Seen_RejF1": 0.6246719160104987,
+        "Seen_BalancedAccuracy": 0.6989475306891442,
+        "Unseen_RejF1": 0.10344827586206896,
+        "Unseen_BalancedAccuracy": 0.5123456790123456
+      },
+      "published_probability_max_abs_error": 0.0,
+      "final_vs_cached_score_max_abs_error": 1.9433197975158691,
+      "final_vs_cached_score_diff_gt_001_n": 726,
+      "signals": {
+        "orig_logits": {
+          "Seen_AUROC": 0.779942730079506,
+          "Unseen_AUROC": 0.5655921353452218,
+          "Gap": 0.2143505947342842,
+          "Matched_PairAcc": 0.6666666666666666,
+          "matched_pair_n": 144
+        },
+        "cos_disp": {
+          "Seen_AUROC": 0.6790981756907755,
+          "Unseen_AUROC": 0.5289208962048468,
+          "Gap": 0.15017727948592863,
+          "Matched_PairAcc": 0.5,
+          "matched_pair_n": 144
+        },
+        "slot_max_dev": {
+          "Seen_AUROC": 0.6747886311403132,
+          "Unseen_AUROC": 0.5271604938271606,
+          "Gap": 0.1476281373131526,
+          "Matched_PairAcc": 0.5486111111111112,
+          "matched_pair_n": 144
+        },
+        "fg_max": {
+          "Seen_AUROC": 0.6732998022651044,
+          "Unseen_AUROC": 0.5295610425240055,
+          "Gap": 0.14373875974109895,
+          "Matched_PairAcc": 0.5416666666666666,
+          "matched_pair_n": 144
+        }
+      },
+      "U_pos_raw_R1_iou05": 0.42592592592592593,
+      "U_pos_final_gated_R1_iou05": 0.41975308641975306
+    },
+    "C2_alt": {
+      "baseline_logit": {
+        "Seen_AUROC": 0.6953477623132903,
+        "Unseen_AUROC": 0.5435809654228004,
+        "Gap": 0.15176679689048989,
+        "Matched_PairAcc": 0.5151515151515151,
+        "matched_pair_n": 33
+      },
+      "final_logit": {
+        "Seen_AUROC": 0.6786946945436194,
+        "Unseen_AUROC": 0.5150975693255735,
+        "Gap": 0.16359712521804592,
+        "Matched_PairAcc": 0.6363636363636364,
+        "matched_pair_n": 33,
+        "Threshold": 3.2686643209065998,
+        "U_pos_FRR": 34.78260869565217,
+        "U_neg_RR": 36.22047244094488,
+        "Seen_RejF1": 0.5259938837920489,
+        "Seen_BalancedAccuracy": 0.6539223778103732,
+        "Unseen_RejF1": 0.47668393782383417,
+        "Unseen_BalancedAccuracy": 0.5071893187264636
+      },
+      "baseline_rounded_probability": {
+        "Seen_AUROC": 0.6978687855791951,
+        "Unseen_AUROC": 0.5447107155083877,
+        "Gap": 0.1531580700708074,
+        "Matched_PairAcc": 0.5303030303030303,
+        "matched_pair_n": 33,
+        "Threshold": 0.9974,
+        "U_pos_FRR": 47.82608695652174,
+        "U_neg_RR": 53.937007874015755,
+        "Seen_RejF1": 0.5481128867732064,
+        "Seen_BalancedAccuracy": 0.6571528626071208,
+        "Unseen_RejF1": 0.6143497757847534,
+        "Unseen_BalancedAccuracy": 0.5305546045874701
+      },
+      "published_probability_max_abs_error": 0.0,
+      "final_vs_cached_score_max_abs_error": 4.751772046089172,
+      "final_vs_cached_score_diff_gt_001_n": 898,
+      "signals": {
+        "orig_logits": {
+          "Seen_AUROC": 0.6953477623132903,
+          "Unseen_AUROC": 0.5435809654228004,
+          "Gap": 0.15176679689048989,
+          "Matched_PairAcc": 0.5151515151515151,
+          "matched_pair_n": 33
+        },
+        "cos_disp": {
+          "Seen_AUROC": 0.6646524970876351,
+          "Unseen_AUROC": 0.4932557343375556,
+          "Gap": 0.17139676275007948,
+          "Matched_PairAcc": 0.696969696969697,
+          "matched_pair_n": 33
+        },
+        "slot_max_dev": {
+          "Seen_AUROC": 0.6633097435703944,
+          "Unseen_AUROC": 0.49893871961656966,
+          "Gap": 0.16437102395382475,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        },
+        "fg_max": {
+          "Seen_AUROC": 0.6532875530003254,
+          "Unseen_AUROC": 0.5158849709003765,
+          "Gap": 0.13740258209994882,
+          "Matched_PairAcc": 0.6363636363636364,
+          "matched_pair_n": 33
+        }
+      },
+      "U_pos_raw_R1_iou05": 0.3826086956521739,
+      "U_pos_final_gated_R1_iou05": 0.28695652173913044
+    }
+  },
+  "macro_means": {
+    "baseline_logit": {
+      "Seen_AUROC": 0.7512267752045404,
+      "Unseen_AUROC": 0.5033370135147013,
+      "Gap": 0.24788976168983928,
+      "Matched_PairAcc": 0.5179858067553093
+    },
+    "final_logit": {
+      "Seen_AUROC": 0.7184540433348371,
+      "Unseen_AUROC": 0.5189550065461572,
+      "Gap": 0.19949903678867986,
+      "Matched_PairAcc": 0.5479305034905565
+    },
+    "baseline_rounded_probability": {
+      "Seen_AUROC": 0.7476015671340651,
+      "Unseen_AUROC": 0.5144280334212699,
+      "Gap": 0.23317353371279514,
+      "Matched_PairAcc": 0.5294039312419501
+    }
+  },
+  "paired_video_bootstrap": {
+    "repeats": 2000,
+    "seed": 20261005,
+    "video_clusters": 1217,
+    "note": "joint shared-video paired resampling; frozen model; exploratory results; no training-seed or selection uncertainty",
+    "per_split": {
+      "A1": {
+        "delta_seen_final_minus_baseline": [
+          -0.05784148277202852,
+          -0.029657640835850745
+        ],
+        "delta_unseen_final_minus_baseline": [
+          -0.0378838406638191,
+          0.0320389559689659
+        ],
+        "gap_reduction_baseline_minus_final": [
+          0.001670079480897463,
+          0.0777422816831072
+        ]
+      },
+      "A2_alt": {
+        "delta_seen_final_minus_baseline": [
+          -0.040980621172059396,
+          -0.013549651644728329
+        ],
+        "delta_unseen_final_minus_baseline": [
+          -0.029134755222997948,
+          0.11710204818261721
+        ],
+        "gap_reduction_baseline_minus_final": [
+          -0.004252745818417724,
+          0.14574030627875356
+        ]
+      },
+      "A3": {
+        "delta_seen_final_minus_baseline": [
+          -0.06249132585708416,
+          -0.031905179983488983
+        ],
+        "delta_unseen_final_minus_baseline": [
+          0.020737987476142153,
+          0.12032625039823443
+        ],
+        "gap_reduction_baseline_minus_final": [
+          0.06626025590715484,
+          0.17034378890420337
+        ]
+      },
+      "C1": {
+        "delta_seen_final_minus_baseline": [
+          -0.03645014231617307,
+          -0.02242573920706486
+        ],
+        "delta_unseen_final_minus_baseline": [
+          -0.03213933967215667,
+          0.02366504019891098
+        ],
+        "gap_reduction_baseline_minus_final": [
+          -0.0033851601050940705,
+          0.053263419132278174
+        ]
+      },
+      "C2_alt": {
+        "delta_seen_final_minus_baseline": [
+          -0.037309973653795,
+          0.0025591330884699504
+        ],
+        "delta_unseen_final_minus_baseline": [
+          -0.07111078719177756,
+          0.016361855363201488
+        ],
+        "gap_reduction_baseline_minus_final": [
+          -0.059306539302546354,
+          0.04046525922031476
+        ]
+      }
+    },
+    "macro": {
+      "delta_seen_final_minus_baseline": [
+        -0.040715909152368876,
+        -0.024959542675437856
+      ],
+      "delta_unseen_final_minus_baseline": [
+        -0.006452109522561311,
+        0.038663128731956355
+      ],
+      "gap_reduction_baseline_minus_final": [
+        0.02592547607694888,
+        0.0721708262694404
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "split": "A2_alt",
+  "backbone": "qd",
+  "method": "QSW_QD_DETR",
+  "train_mode": "adapter_and_decoder",
+  "best_epoch": 4,
+  "seen_threshold": 5.34954814462213,
+  "Seen_AUROC": 0.7685998627316404,
+  "Unseen_AUROC": 0.47393925518925517,
+  "Seen_Unseen_Gap": 0.2946606075423852,
+  "Matched_PairAcc": 0.4936708860759494,
+  "Same_Query_PairAcc": 0.5,
+  "U_pos_FRR": 0.0,
+  "U_neg_RR": 0.3205128205128194,
+  "Raw_R1@0.5": 34.523809523809526,
+  "Gated_R1@0.5": 34.523809523809526,
+  "Shuffled_Video_U_AUROC": 0.48179945054945056,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.5541125026419067,
+      "exist_loss": 0.05303627489662323,
+      "seen_auc": 0.760013365603439,
+      "is_best": true
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5291796336786666,
+      "exist_loss": 0.028739712063919454,
+      "seen_auc": 0.7580663222916592,
+      "is_best": false
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5194148111730906,
+      "exist_loss": 0.025853189013879632,
+      "seen_auc": 0.7657118086912545,
+      "is_best": true
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5186283296614239,
+      "exist_loss": 0.025302324160495947,
+      "seen_auc": 0.7685998627316404,
+      "is_best": true
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5211788700091949,
+      "exist_loss": 0.025725443930013376,
+      "seen_auc": 0.7680796878950981,
+      "is_best": false
+    }
+  ],
+  "timestamp_utc": "2026-10-05T12:30:20.791476+00:00"
+}

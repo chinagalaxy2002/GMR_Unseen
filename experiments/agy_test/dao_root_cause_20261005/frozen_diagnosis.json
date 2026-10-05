@@ -1,0 +1,1202 @@
+{
+  "A1": {
+    "prediction_max_abs_error": 9.5367431640625e-07,
+    "pair_n": 312,
+    "pair_same_video_fraction": 1.0,
+    "pair_identical_query_fraction": 0.0,
+    "exact_query_cross_video_pair_n": 34,
+    "exact_query_groups": 21,
+    "weights": {
+      "alpha_action": 0.9919767379760742,
+      "alpha_object": 0.9700807332992554,
+      "w_base": 0.9935775995254517,
+      "w_fg": 0.4878121018409729
+    },
+    "metrics": {
+      "baseline": {
+        "Seen_AUROC": 0.7860359024251341,
+        "Unseen_AUROC": 0.5072251530264157,
+        "Matched_PairAcc": 0.6025641025641025,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "full": {
+        "Seen_AUROC": 0.7923749202431989,
+        "Unseen_AUROC": 0.5016402894289256,
+        "Matched_PairAcc": 0.5737179487179487,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      "detector_only": {
+        "Seen_AUROC": 0.7880571770574617,
+        "Unseen_AUROC": 0.5039061373922569,
+        "Matched_PairAcc": 0.5833333333333334,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      "detector_plus_action": {
+        "Seen_AUROC": 0.7898975158063478,
+        "Unseen_AUROC": 0.5033930064285509,
+        "Matched_PairAcc": 0.5705128205128205,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      "detector_plus_object": {
+        "Seen_AUROC": 0.7905368885092201,
+        "Unseen_AUROC": 0.5024916640241383,
+        "Matched_PairAcc": 0.5705128205128205,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      "action_evidence": {
+        "Seen_AUROC": 0.5215534515579601,
+        "Unseen_AUROC": 0.5033699443627664,
+        "Matched_PairAcc": 0.483974358974359,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      "object_evidence": {
+        "Seen_AUROC": 0.6730699513285769,
+        "Unseen_AUROC": 0.5003468919061759,
+        "Matched_PairAcc": 0.5032051282051282,
+        "Exact_query_cross_video_PairAcc": 0.5294117647058824
+      },
+      "action_raw": {
+        "Seen_AUROC": 0.5115143114021905,
+        "Unseen_AUROC": 0.5145242968472233,
+        "Matched_PairAcc": 0.483974358974359,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      "object_raw": {
+        "Seen_AUROC": 0.6241070204441069,
+        "Unseen_AUROC": 0.5038600132606879,
+        "Matched_PairAcc": 0.6089743589743589,
+        "Exact_query_cross_video_PairAcc": 0.5294117647058824
+      },
+      "negative_text_prior": {
+        "Seen_AUROC": 0.6777487423473019,
+        "Unseen_AUROC": 0.46965128234694953,
+        "Matched_PairAcc": 0.44871794871794873,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "new_branch_residual": {
+        "Seen_AUROC": 0.5846420699328725,
+        "Unseen_AUROC": 0.5012097975342809,
+        "Matched_PairAcc": 0.4967948717948718,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      "q_act_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5292308675958004,
+        "Unseen_AUROC": 0.531590225527785,
+        "Matched_PairAcc": 0.42628205128205127,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      "q_act_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5307503664857967,
+        "Unseen_AUROC": 0.5320774116674835,
+        "Matched_PairAcc": 0.4342948717948718,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "q_obj_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5323710444581546,
+        "Unseen_AUROC": 0.520827928161665,
+        "Matched_PairAcc": 0.3717948717948718,
+        "Exact_query_cross_video_PairAcc": 0.6764705882352942
+      },
+      "q_obj_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5351704422613492,
+        "Unseen_AUROC": 0.5213122315431404,
+        "Matched_PairAcc": 0.3557692307692308,
+        "Exact_query_cross_video_PairAcc": 0.6176470588235294
+      },
+      "q_sent_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5060364692916541,
+        "Unseen_AUROC": 0.5284249569988565,
+        "Matched_PairAcc": 0.38461538461538464,
+        "Exact_query_cross_video_PairAcc": 0.5588235294117647
+      },
+      "q_sent_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5079924883594619,
+        "Unseen_AUROC": 0.5295261706400685,
+        "Matched_PairAcc": 0.36217948717948717,
+        "Exact_query_cross_video_PairAcc": 0.5294117647058824
+      },
+      "new_streams_zero_detector_retained": {
+        "Seen_AUROC": 0.7919800911204974,
+        "Unseen_AUROC": 0.499585843735286,
+        "Matched_PairAcc": 0.5512820512820513,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      "all_visual_zero_frozen": {
+        "Seen_AUROC": 0.6909372874250549,
+        "Unseen_AUROC": 0.4460088212401626,
+        "Matched_PairAcc": 0.42628205128205127,
+        "Exact_query_cross_video_PairAcc": 0.5
+      }
+    },
+    "new_stream_different_video_controls": [
+      {
+        "Seen_AUROC": 0.790155571902404,
+        "Unseen_AUROC": 0.5005198573995598,
+        "Matched_PairAcc": 0.5801282051282052,
+        "Exact_query_cross_video_PairAcc": 0.47058823529411764
+      },
+      {
+        "Seen_AUROC": 0.7919388944257246,
+        "Unseen_AUROC": 0.5059432865365582,
+        "Matched_PairAcc": 0.6057692307692307,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      {
+        "Seen_AUROC": 0.7906842078897274,
+        "Unseen_AUROC": 0.5015345882940798,
+        "Matched_PairAcc": 0.5769230769230769,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      {
+        "Seen_AUROC": 0.7903704538623384,
+        "Unseen_AUROC": 0.5010733469783889,
+        "Matched_PairAcc": 0.5769230769230769,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      },
+      {
+        "Seen_AUROC": 0.7906990386998455,
+        "Unseen_AUROC": 0.4993975035313788,
+        "Matched_PairAcc": 0.5897435897435898,
+        "Exact_query_cross_video_PairAcc": 0.4411764705882353
+      }
+    ],
+    "matched_pair_video_cluster_95ci": {
+      "baseline": [
+        0.5419155777868518,
+        0.660318957771788
+      ],
+      "full": [
+        0.5095482058788622,
+        0.63125
+      ],
+      "detector_only": [
+        0.5230188397129186,
+        0.6395141565002096
+      ],
+      "detector_plus_action": [
+        0.5077601246105918,
+        0.6262171121816378
+      ],
+      "detector_plus_object": [
+        0.5097386887306242,
+        0.6289308176100629
+      ],
+      "action_evidence": [
+        0.4235640262246105,
+        0.540984852259704
+      ],
+      "object_evidence": [
+        0.4444444444444444,
+        0.5605250284527683
+      ],
+      "action_raw": [
+        0.4243396132376396,
+        0.5414079087048832
+      ],
+      "object_raw": [
+        0.5537974683544303,
+        0.6666666666666666
+      ],
+      "negative_text_prior": [
+        0.3838588580851283,
+        0.5079377757492773
+      ],
+      "new_branch_residual": [
+        0.43215348974763407,
+        0.5538524590163935
+      ],
+      "q_act_v_clip_cand_unprojected_cosine": [
+        0.3685855263157895,
+        0.484488961318492
+      ],
+      "q_act_v_clip_glob_unprojected_cosine": [
+        0.3726012901650353,
+        0.4938650306748466
+      ],
+      "q_obj_v_clip_cand_unprojected_cosine": [
+        0.31033937145351376,
+        0.43236267894305347
+      ],
+      "q_obj_v_clip_glob_unprojected_cosine": [
+        0.29545454545454547,
+        0.41589285714285706
+      ],
+      "q_sent_v_clip_cand_unprojected_cosine": [
+        0.32704252770290504,
+        0.4426751592356688
+      ],
+      "q_sent_v_clip_glob_unprojected_cosine": [
+        0.3050247079964061,
+        0.41667345276872964
+      ],
+      "new_streams_zero_detector_retained": [
+        0.48756768593725114,
+        0.6089807692307692
+      ],
+      "all_visual_zero_frozen": [
+        0.36049576221990015,
+        0.4857209612817089
+      ]
+    }
+  },
+  "A2_alt": {
+    "prediction_max_abs_error": 1.9073486328125e-06,
+    "pair_n": 79,
+    "pair_same_video_fraction": 1.0,
+    "pair_identical_query_fraction": 0.0,
+    "exact_query_cross_video_pair_n": 53,
+    "exact_query_groups": 9,
+    "weights": {
+      "alpha_action": 0.9771058559417725,
+      "alpha_object": 0.9562749266624451,
+      "w_base": 0.9944689273834229,
+      "w_fg": 0.4804491102695465
+    },
+    "metrics": {
+      "baseline": {
+        "Seen_AUROC": 0.7540659130504134,
+        "Unseen_AUROC": 0.41735347985347987,
+        "Matched_PairAcc": 0.34177215189873417,
+        "Exact_query_cross_video_PairAcc": 0.6226415094339622
+      },
+      "full": {
+        "Seen_AUROC": 0.7620465899672103,
+        "Unseen_AUROC": 0.4323679792429792,
+        "Matched_PairAcc": 0.4050632911392405,
+        "Exact_query_cross_video_PairAcc": 0.5660377358490566
+      },
+      "detector_only": {
+        "Seen_AUROC": 0.7592323207981706,
+        "Unseen_AUROC": 0.4328067765567766,
+        "Matched_PairAcc": 0.3670886075949367,
+        "Exact_query_cross_video_PairAcc": 0.6415094339622641
+      },
+      "detector_plus_action": {
+        "Seen_AUROC": 0.7600839017328771,
+        "Unseen_AUROC": 0.42983058608058605,
+        "Matched_PairAcc": 0.4050632911392405,
+        "Exact_query_cross_video_PairAcc": 0.5471698113207547
+      },
+      "detector_plus_object": {
+        "Seen_AUROC": 0.7611381940909888,
+        "Unseen_AUROC": 0.43547771672771673,
+        "Matched_PairAcc": 0.3924050632911392,
+        "Exact_query_cross_video_PairAcc": 0.6415094339622641
+      },
+      "action_evidence": {
+        "Seen_AUROC": 0.5153547203354183,
+        "Unseen_AUROC": 0.4878663003663004,
+        "Matched_PairAcc": 0.44936708860759494,
+        "Exact_query_cross_video_PairAcc": 0.41509433962264153
+      },
+      "object_evidence": {
+        "Seen_AUROC": 0.6568922098353738,
+        "Unseen_AUROC": 0.5486301892551892,
+        "Matched_PairAcc": 0.379746835443038,
+        "Exact_query_cross_video_PairAcc": 0.3584905660377358
+      },
+      "action_raw": {
+        "Seen_AUROC": 0.5074763103133484,
+        "Unseen_AUROC": 0.4770680708180708,
+        "Matched_PairAcc": 0.43670886075949367,
+        "Exact_query_cross_video_PairAcc": 0.41509433962264153
+      },
+      "object_raw": {
+        "Seen_AUROC": 0.6242075387638698,
+        "Unseen_AUROC": 0.5358859890109889,
+        "Matched_PairAcc": 0.4050632911392405,
+        "Exact_query_cross_video_PairAcc": 0.3584905660377358
+      },
+      "negative_text_prior": {
+        "Seen_AUROC": 0.6615090134224765,
+        "Unseen_AUROC": 0.5941792582417582,
+        "Matched_PairAcc": 0.5063291139240507,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "new_branch_residual": {
+        "Seen_AUROC": 0.5661198353610193,
+        "Unseen_AUROC": 0.49671855921855923,
+        "Matched_PairAcc": 0.4810126582278481,
+        "Exact_query_cross_video_PairAcc": 0.41509433962264153
+      },
+      "q_act_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5273148015143219,
+        "Unseen_AUROC": 0.38089514652014655,
+        "Matched_PairAcc": 0.41139240506329117,
+        "Exact_query_cross_video_PairAcc": 0.4528301886792453
+      },
+      "q_act_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5250385591216281,
+        "Unseen_AUROC": 0.38057081807081805,
+        "Matched_PairAcc": 0.3227848101265823,
+        "Exact_query_cross_video_PairAcc": 0.4528301886792453
+      },
+      "q_obj_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5400403836316368,
+        "Unseen_AUROC": 0.370764652014652,
+        "Matched_PairAcc": 0.4936708860759494,
+        "Exact_query_cross_video_PairAcc": 0.39622641509433965
+      },
+      "q_obj_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5418215856471308,
+        "Unseen_AUROC": 0.3625610500610501,
+        "Matched_PairAcc": 0.4936708860759494,
+        "Exact_query_cross_video_PairAcc": 0.4339622641509434
+      },
+      "q_sent_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5081897130223705,
+        "Unseen_AUROC": 0.42649191086691085,
+        "Matched_PairAcc": 0.5189873417721519,
+        "Exact_query_cross_video_PairAcc": 0.4339622641509434
+      },
+      "q_sent_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5094370689836301,
+        "Unseen_AUROC": 0.41884157509157505,
+        "Matched_PairAcc": 0.5189873417721519,
+        "Exact_query_cross_video_PairAcc": 0.4716981132075472
+      },
+      "new_streams_zero_detector_retained": {
+        "Seen_AUROC": 0.761066157033068,
+        "Unseen_AUROC": 0.43795787545787546,
+        "Matched_PairAcc": 0.3924050632911392,
+        "Exact_query_cross_video_PairAcc": 0.6415094339622641
+      },
+      "all_visual_zero_frozen": {
+        "Seen_AUROC": 0.6178084611812449,
+        "Unseen_AUROC": 0.6064465048840049,
+        "Matched_PairAcc": 0.5569620253164557,
+        "Exact_query_cross_video_PairAcc": 0.5
+      }
+    },
+    "new_stream_different_video_controls": [
+      {
+        "Seen_AUROC": 0.761328792140071,
+        "Unseen_AUROC": 0.4311660561660562,
+        "Matched_PairAcc": 0.35443037974683544,
+        "Exact_query_cross_video_PairAcc": 0.5283018867924528
+      },
+      {
+        "Seen_AUROC": 0.7605687582998053,
+        "Unseen_AUROC": 0.4245268620268621,
+        "Matched_PairAcc": 0.3924050632911392,
+        "Exact_query_cross_video_PairAcc": 0.5849056603773585
+      },
+      {
+        "Seen_AUROC": 0.7605578241035138,
+        "Unseen_AUROC": 0.442002442002442,
+        "Matched_PairAcc": 0.3924050632911392,
+        "Exact_query_cross_video_PairAcc": 0.5471698113207547
+      },
+      {
+        "Seen_AUROC": 0.7614214112145404,
+        "Unseen_AUROC": 0.43219627594627597,
+        "Matched_PairAcc": 0.3924050632911392,
+        "Exact_query_cross_video_PairAcc": 0.6037735849056604
+      },
+      {
+        "Seen_AUROC": 0.7616626067209716,
+        "Unseen_AUROC": 0.42525183150183155,
+        "Matched_PairAcc": 0.34177215189873417,
+        "Exact_query_cross_video_PairAcc": 0.6037735849056604
+      }
+    ],
+    "matched_pair_video_cluster_95ci": {
+      "baseline": [
+        0.21518987341772153,
+        0.46057565789473653
+      ],
+      "full": [
+        0.2875,
+        0.5194935064935063
+      ],
+      "detector_only": [
+        0.24691358024691357,
+        0.4810126582278481
+      ],
+      "detector_plus_action": [
+        0.29727227227227226,
+        0.513543322734499
+      ],
+      "detector_plus_object": [
+        0.2682926829268293,
+        0.5064935064935064
+      ],
+      "action_evidence": [
+        0.34414569805194806,
+        0.5547966087537588
+      ],
+      "object_evidence": [
+        0.2625,
+        0.5061767463666198
+      ],
+      "action_raw": [
+        0.3223684210526316,
+        0.5513157894736841
+      ],
+      "object_raw": [
+        0.28374047124047125,
+        0.524390243902439
+      ],
+      "negative_text_prior": [
+        0.3918918918918919,
+        0.6219512195121951
+      ],
+      "new_branch_residual": [
+        0.36585365853658536,
+        0.5949367088607594
+      ],
+      "q_act_v_clip_cand_unprojected_cosine": [
+        0.28287365047233465,
+        0.5405544242873009
+      ],
+      "q_act_v_clip_glob_unprojected_cosine": [
+        0.2,
+        0.4470588235294118
+      ],
+      "q_obj_v_clip_cand_unprojected_cosine": [
+        0.3875,
+        0.6052631578947368
+      ],
+      "q_obj_v_clip_glob_unprojected_cosine": [
+        0.38747916666666665,
+        0.6075949367088608
+      ],
+      "q_sent_v_clip_cand_unprojected_cosine": [
+        0.4050632911392405,
+        0.6420218163368845
+      ],
+      "q_sent_v_clip_glob_unprojected_cosine": [
+        0.4025974025974026,
+        0.6455889163322012
+      ],
+      "new_streams_zero_detector_retained": [
+        0.2682926829268293,
+        0.5064935064935064
+      ],
+      "all_visual_zero_frozen": [
+        0.44871794871794873,
+        0.6625037650602409
+      ]
+    }
+  },
+  "A3": {
+    "prediction_max_abs_error": 9.5367431640625e-07,
+    "pair_n": 129,
+    "pair_same_video_fraction": 1.0,
+    "pair_identical_query_fraction": 0.0,
+    "exact_query_cross_video_pair_n": 12,
+    "exact_query_groups": 4,
+    "weights": {
+      "alpha_action": 0.9631662368774414,
+      "alpha_object": 1.0004161596298218,
+      "w_base": 0.9902749061584473,
+      "w_fg": 0.4808153212070465
+    },
+    "metrics": {
+      "baseline": {
+        "Seen_AUROC": 0.7401666349790862,
+        "Unseen_AUROC": 0.48114828843995516,
+        "Matched_PairAcc": 0.4573643410852713,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      "full": {
+        "Seen_AUROC": 0.7441453025663605,
+        "Unseen_AUROC": 0.4790263748597082,
+        "Matched_PairAcc": 0.4806201550387597,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "detector_only": {
+        "Seen_AUROC": 0.7400619825751662,
+        "Unseen_AUROC": 0.4933712121212121,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "detector_plus_action": {
+        "Seen_AUROC": 0.7416111300124748,
+        "Unseen_AUROC": 0.49462507014590346,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "detector_plus_object": {
+        "Seen_AUROC": 0.742608037971728,
+        "Unseen_AUROC": 0.47758838383838387,
+        "Matched_PairAcc": 0.4806201550387597,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "action_evidence": {
+        "Seen_AUROC": 0.5144398427962456,
+        "Unseen_AUROC": 0.5068523779461279,
+        "Matched_PairAcc": 0.5038759689922481,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "object_evidence": {
+        "Seen_AUROC": 0.6462717476868066,
+        "Unseen_AUROC": 0.2890975729517396,
+        "Matched_PairAcc": 0.5658914728682171,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      "action_raw": {
+        "Seen_AUROC": 0.5096087376001495,
+        "Unseen_AUROC": 0.5326309974747474,
+        "Matched_PairAcc": 0.5426356589147286,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "object_raw": {
+        "Seen_AUROC": 0.6189689361645353,
+        "Unseen_AUROC": 0.31068497474747475,
+        "Matched_PairAcc": 0.5426356589147286,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      "negative_text_prior": {
+        "Seen_AUROC": 0.6495888327963123,
+        "Unseen_AUROC": 0.2651383627946128,
+        "Matched_PairAcc": 0.5503875968992248,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "new_branch_residual": {
+        "Seen_AUROC": 0.5677952657087011,
+        "Unseen_AUROC": 0.3880208333333333,
+        "Matched_PairAcc": 0.5426356589147286,
+        "Exact_query_cross_video_PairAcc": 0.25
+      },
+      "q_act_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5108987556787479,
+        "Unseen_AUROC": 0.40984059343434337,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "q_act_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.507415206536314,
+        "Unseen_AUROC": 0.3983410493827161,
+        "Matched_PairAcc": 0.4496124031007752,
+        "Exact_query_cross_video_PairAcc": 0.25
+      },
+      "q_obj_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5363698374260346,
+        "Unseen_AUROC": 0.5331088664421998,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "q_obj_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.534378523158618,
+        "Unseen_AUROC": 0.5351430976430976,
+        "Matched_PairAcc": 0.4108527131782946,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      "q_sent_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.4982380037491411,
+        "Unseen_AUROC": 0.6325845258136925,
+        "Matched_PairAcc": 0.49612403100775193,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      "q_sent_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.49506403392905984,
+        "Unseen_AUROC": 0.6219048120089787,
+        "Matched_PairAcc": 0.4186046511627907,
+        "Exact_query_cross_video_PairAcc": 0.25
+      },
+      "new_streams_zero_detector_retained": {
+        "Seen_AUROC": 0.7434949775184956,
+        "Unseen_AUROC": 0.4773604096520763,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "all_visual_zero_frozen": {
+        "Seen_AUROC": 0.6573458274127592,
+        "Unseen_AUROC": 0.27268781565656564,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.5
+      }
+    },
+    "new_stream_different_video_controls": [
+      {
+        "Seen_AUROC": 0.7437127253987632,
+        "Unseen_AUROC": 0.47770237093153756,
+        "Matched_PairAcc": 0.4728682170542636,
+        "Exact_query_cross_video_PairAcc": 0.25
+      },
+      {
+        "Seen_AUROC": 0.7431048241839614,
+        "Unseen_AUROC": 0.4796401515151515,
+        "Matched_PairAcc": 0.49612403100775193,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      {
+        "Seen_AUROC": 0.743412839974383,
+        "Unseen_AUROC": 0.4795437008978676,
+        "Matched_PairAcc": 0.4883720930232558,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      {
+        "Seen_AUROC": 0.7434558892202187,
+        "Unseen_AUROC": 0.475554152637486,
+        "Matched_PairAcc": 0.4806201550387597,
+        "Exact_query_cross_video_PairAcc": 0.4166666666666667
+      },
+      {
+        "Seen_AUROC": 0.7438632414059947,
+        "Unseen_AUROC": 0.48022762345679004,
+        "Matched_PairAcc": 0.4806201550387597,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      }
+    ],
+    "matched_pair_video_cluster_95ci": {
+      "baseline": [
+        0.3636195286195286,
+        0.5603513584117031
+      ],
+      "full": [
+        0.3868354503132364,
+        0.5793737060041408
+      ],
+      "detector_only": [
+        0.3816793893129771,
+        0.5702479338842975
+      ],
+      "detector_plus_action": [
+        0.37777777777777777,
+        0.5714285714285714
+      ],
+      "detector_plus_object": [
+        0.3880597014925373,
+        0.5789694825298539
+      ],
+      "action_evidence": [
+        0.41935483870967744,
+        0.5886749761829151
+      ],
+      "object_evidence": [
+        0.46153846153846156,
+        0.6594202898550725
+      ],
+      "action_raw": [
+        0.4496009065825779,
+        0.6319458333333333
+      ],
+      "object_raw": [
+        0.44066101694915255,
+        0.6391066953097028
+      ],
+      "negative_text_prior": [
+        0.46268402883541476,
+        0.6371176307007785
+      ],
+      "new_branch_residual": [
+        0.45376509978991597,
+        0.6335877862595419
+      ],
+      "q_act_v_clip_cand_unprojected_cosine": [
+        0.3812775153011919,
+        0.5703968253968253
+      ],
+      "q_act_v_clip_glob_unprojected_cosine": [
+        0.34964892830746486,
+        0.5555779569892472
+      ],
+      "q_obj_v_clip_cand_unprojected_cosine": [
+        0.3812863994518671,
+        0.5661764705882353
+      ],
+      "q_obj_v_clip_glob_unprojected_cosine": [
+        0.32558139534883723,
+        0.5
+      ],
+      "q_sent_v_clip_cand_unprojected_cosine": [
+        0.40476190476190477,
+        0.5905601288475303
+      ],
+      "q_sent_v_clip_glob_unprojected_cosine": [
+        0.3359375,
+        0.5042154927840133
+      ],
+      "new_streams_zero_detector_retained": [
+        0.3816793893129771,
+        0.5702479338842975
+      ],
+      "all_visual_zero_frozen": [
+        0.38708322038492815,
+        0.5581624244643837
+      ]
+    }
+  },
+  "C1": {
+    "prediction_max_abs_error": 9.5367431640625e-07,
+    "pair_n": 144,
+    "pair_same_video_fraction": 1.0,
+    "pair_identical_query_fraction": 0.0,
+    "exact_query_cross_video_pair_n": 93,
+    "exact_query_groups": 23,
+    "weights": {
+      "alpha_action": 0.9752130508422852,
+      "alpha_object": 0.9665007591247559,
+      "w_base": 0.9928655624389648,
+      "w_fg": 0.4876777231693268
+    },
+    "metrics": {
+      "baseline": {
+        "Seen_AUROC": 0.7799970235541575,
+        "Unseen_AUROC": 0.5654549611339734,
+        "Matched_PairAcc": 0.6736111111111112,
+        "Exact_query_cross_video_PairAcc": 0.4731182795698925
+      },
+      "full": {
+        "Seen_AUROC": 0.7912609804916759,
+        "Unseen_AUROC": 0.5659122085048011,
+        "Matched_PairAcc": 0.6388888888888888,
+        "Exact_query_cross_video_PairAcc": 0.5053763440860215
+      },
+      "detector_only": {
+        "Seen_AUROC": 0.7809413422025602,
+        "Unseen_AUROC": 0.5693187014174669,
+        "Matched_PairAcc": 0.6666666666666666,
+        "Exact_query_cross_video_PairAcc": 0.4731182795698925
+      },
+      "detector_plus_action": {
+        "Seen_AUROC": 0.7811444579693367,
+        "Unseen_AUROC": 0.5673525377229081,
+        "Matched_PairAcc": 0.6527777777777778,
+        "Exact_query_cross_video_PairAcc": 0.4946236559139785
+      },
+      "detector_plus_object": {
+        "Seen_AUROC": 0.7907742782724787,
+        "Unseen_AUROC": 0.567283950617284,
+        "Matched_PairAcc": 0.6458333333333334,
+        "Exact_query_cross_video_PairAcc": 0.4731182795698925
+      },
+      "action_evidence": {
+        "Seen_AUROC": 0.541377444842435,
+        "Unseen_AUROC": 0.4984110653863741,
+        "Matched_PairAcc": 0.5520833333333334,
+        "Exact_query_cross_video_PairAcc": 0.43010752688172044
+      },
+      "object_evidence": {
+        "Seen_AUROC": 0.6328915201833568,
+        "Unseen_AUROC": 0.46689529035208044,
+        "Matched_PairAcc": 0.5,
+        "Exact_query_cross_video_PairAcc": 0.46236559139784944
+      },
+      "action_raw": {
+        "Seen_AUROC": 0.4796203140974461,
+        "Unseen_AUROC": 0.4965820759030636,
+        "Matched_PairAcc": 0.4409722222222222,
+        "Exact_query_cross_video_PairAcc": 0.43010752688172044
+      },
+      "object_raw": {
+        "Seen_AUROC": 0.5501625653278963,
+        "Unseen_AUROC": 0.48198445358939185,
+        "Matched_PairAcc": 0.5138888888888888,
+        "Exact_query_cross_video_PairAcc": 0.46236559139784944
+      },
+      "negative_text_prior": {
+        "Seen_AUROC": 0.6770725927994249,
+        "Unseen_AUROC": 0.47065614997713767,
+        "Matched_PairAcc": 0.5,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "new_branch_residual": {
+        "Seen_AUROC": 0.6291106098659969,
+        "Unseen_AUROC": 0.48719707361682674,
+        "Matched_PairAcc": 0.5277777777777778,
+        "Exact_query_cross_video_PairAcc": 0.44086021505376344
+      },
+      "q_act_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5663388698134583,
+        "Unseen_AUROC": 0.5161751257430269,
+        "Matched_PairAcc": 0.3645833333333333,
+        "Exact_query_cross_video_PairAcc": 0.46236559139784944
+      },
+      "q_act_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.565743580644958,
+        "Unseen_AUROC": 0.5146547782350253,
+        "Matched_PairAcc": 0.4027777777777778,
+        "Exact_query_cross_video_PairAcc": 0.4731182795698925
+      },
+      "q_obj_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5759851720642621,
+        "Unseen_AUROC": 0.47759487882944673,
+        "Matched_PairAcc": 0.4027777777777778,
+        "Exact_query_cross_video_PairAcc": 0.5591397849462365
+      },
+      "q_obj_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5809280596917973,
+        "Unseen_AUROC": 0.46232281664380426,
+        "Matched_PairAcc": 0.3958333333333333,
+        "Exact_query_cross_video_PairAcc": 0.6236559139784946
+      },
+      "q_sent_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.5451627180282936,
+        "Unseen_AUROC": 0.48763145861911295,
+        "Matched_PairAcc": 0.4027777777777778,
+        "Exact_query_cross_video_PairAcc": 0.45161290322580644
+      },
+      "q_sent_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5506240598624339,
+        "Unseen_AUROC": 0.47917238225880204,
+        "Matched_PairAcc": 0.3958333333333333,
+        "Exact_query_cross_video_PairAcc": 0.5053763440860215
+      },
+      "new_streams_zero_detector_retained": {
+        "Seen_AUROC": 0.7931404072883171,
+        "Unseen_AUROC": 0.5675125743026977,
+        "Matched_PairAcc": 0.6527777777777778,
+        "Exact_query_cross_video_PairAcc": 0.4731182795698925
+      },
+      "all_visual_zero_frozen": {
+        "Seen_AUROC": 0.6820181466243759,
+        "Unseen_AUROC": 0.4705189757658894,
+        "Matched_PairAcc": 0.5,
+        "Exact_query_cross_video_PairAcc": 0.5
+      }
+    },
+    "new_stream_different_video_controls": [
+      {
+        "Seen_AUROC": 0.7928293105261959,
+        "Unseen_AUROC": 0.5684956561499771,
+        "Matched_PairAcc": 0.6458333333333334,
+        "Exact_query_cross_video_PairAcc": 0.46236559139784944
+      },
+      {
+        "Seen_AUROC": 0.7913341797298221,
+        "Unseen_AUROC": 0.5692272519433014,
+        "Matched_PairAcc": 0.6597222222222222,
+        "Exact_query_cross_video_PairAcc": 0.5053763440860215
+      },
+      {
+        "Seen_AUROC": 0.7914546433767051,
+        "Unseen_AUROC": 0.5763831732967536,
+        "Matched_PairAcc": 0.6805555555555556,
+        "Exact_query_cross_video_PairAcc": 0.5053763440860215
+      },
+      {
+        "Seen_AUROC": 0.7921837271791681,
+        "Unseen_AUROC": 0.5683127572016461,
+        "Matched_PairAcc": 0.6527777777777778,
+        "Exact_query_cross_video_PairAcc": 0.45161290322580644
+      },
+      {
+        "Seen_AUROC": 0.7918458472520957,
+        "Unseen_AUROC": 0.5721764974851395,
+        "Matched_PairAcc": 0.6527777777777778,
+        "Exact_query_cross_video_PairAcc": 0.45161290322580644
+      }
+    ],
+    "matched_pair_video_cluster_95ci": {
+      "baseline": [
+        0.574468085106383,
+        0.7549738341129069
+      ],
+      "full": [
+        0.5413330623856939,
+        0.7248452122128745
+      ],
+      "detector_only": [
+        0.5693430656934306,
+        0.7517253607238933
+      ],
+      "detector_plus_action": [
+        0.5547445255474452,
+        0.7400314685314684
+      ],
+      "detector_plus_object": [
+        0.5454545454545454,
+        0.7333333333333333
+      ],
+      "action_evidence": [
+        0.48299028515515796,
+        0.6241385096042583
+      ],
+      "object_evidence": [
+        0.4068965517241379,
+        0.5960512009488979
+      ],
+      "action_raw": [
+        0.3618139097744361,
+        0.5178669186652763
+      ],
+      "object_raw": [
+        0.42141917293233083,
+        0.609271523178808
+      ],
+      "negative_text_prior": [
+        0.4068965517241379,
+        0.5960512009488979
+      ],
+      "new_branch_residual": [
+        0.4347751124437781,
+        0.6217987804878049
+      ],
+      "q_act_v_clip_cand_unprojected_cosine": [
+        0.2830799949290061,
+        0.4512321278385197
+      ],
+      "q_act_v_clip_glob_unprojected_cosine": [
+        0.3273348233178164,
+        0.476027397260274
+      ],
+      "q_obj_v_clip_cand_unprojected_cosine": [
+        0.3188241106719367,
+        0.4867180451127817
+      ],
+      "q_obj_v_clip_glob_unprojected_cosine": [
+        0.3103448275862069,
+        0.48226950354609927
+      ],
+      "q_sent_v_clip_cand_unprojected_cosine": [
+        0.3181742925948224,
+        0.4857142857142857
+      ],
+      "q_sent_v_clip_glob_unprojected_cosine": [
+        0.3107991612301957,
+        0.4812167279512649
+      ],
+      "new_streams_zero_detector_retained": [
+        0.5547056996428017,
+        0.7368607689436355
+      ],
+      "all_visual_zero_frozen": [
+        0.4068965517241379,
+        0.5960512009488979
+      ]
+    }
+  },
+  "C2_alt": {
+    "prediction_max_abs_error": 1.9073486328125e-06,
+    "pair_n": 33,
+    "pair_same_video_fraction": 1.0,
+    "pair_identical_query_fraction": 0.0,
+    "exact_query_cross_video_pair_n": 498,
+    "exact_query_groups": 27,
+    "weights": {
+      "alpha_action": 0.9819955825805664,
+      "alpha_object": 0.9912009239196777,
+      "w_base": 0.9905074238777161,
+      "w_fg": 0.4848857820034027
+    },
+    "metrics": {
+      "baseline": {
+        "Seen_AUROC": 0.695182453178133,
+        "Unseen_AUROC": 0.5424512153372133,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5562248995983936
+      },
+      "full": {
+        "Seen_AUROC": 0.7037872535101661,
+        "Unseen_AUROC": 0.5306059568640877,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5281124497991968
+      },
+      "detector_only": {
+        "Seen_AUROC": 0.6981587250680338,
+        "Unseen_AUROC": 0.542416980486135,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.572289156626506
+      },
+      "detector_plus_action": {
+        "Seen_AUROC": 0.6994040853287553,
+        "Unseen_AUROC": 0.5347826086956522,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5281124497991968
+      },
+      "detector_plus_object": {
+        "Seen_AUROC": 0.7023879034273937,
+        "Unseen_AUROC": 0.5395754878466279,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.572289156626506
+      },
+      "action_evidence": {
+        "Seen_AUROC": 0.5572436529309946,
+        "Unseen_AUROC": 0.422115713796645,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.4397590361445783
+      },
+      "object_evidence": {
+        "Seen_AUROC": 0.6007121734496078,
+        "Unseen_AUROC": 0.4308456008216365,
+        "Matched_PairAcc": 0.696969696969697,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "action_raw": {
+        "Seen_AUROC": 0.5208178675357383,
+        "Unseen_AUROC": 0.4248887367339952,
+        "Matched_PairAcc": 0.6060606060606061,
+        "Exact_query_cross_video_PairAcc": 0.4397590361445783
+      },
+      "object_raw": {
+        "Seen_AUROC": 0.5781225975937028,
+        "Unseen_AUROC": 0.39582334816843545,
+        "Matched_PairAcc": 0.8484848484848485,
+        "Exact_query_cross_video_PairAcc": 0.3333333333333333
+      },
+      "negative_text_prior": {
+        "Seen_AUROC": 0.6415851518910327,
+        "Unseen_AUROC": 0.4199931530297843,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "new_branch_residual": {
+        "Seen_AUROC": 0.5726861437458437,
+        "Unseen_AUROC": 0.4000000000000001,
+        "Matched_PairAcc": 0.48484848484848486,
+        "Exact_query_cross_video_PairAcc": 0.4457831325301205
+      },
+      "q_act_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.49941257481358503,
+        "Unseen_AUROC": 0.5126668948990072,
+        "Matched_PairAcc": 0.6363636363636364,
+        "Exact_query_cross_video_PairAcc": 0.4919678714859438
+      },
+      "q_act_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.49494722370264166,
+        "Unseen_AUROC": 0.5335843889079083,
+        "Matched_PairAcc": 0.6363636363636364,
+        "Exact_query_cross_video_PairAcc": 0.5
+      },
+      "q_obj_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.526119550811925,
+        "Unseen_AUROC": 0.5551865799383773,
+        "Matched_PairAcc": 0.36363636363636365,
+        "Exact_query_cross_video_PairAcc": 0.3253012048192771
+      },
+      "q_obj_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.5242513925113311,
+        "Unseen_AUROC": 0.5817528243752139,
+        "Matched_PairAcc": 0.3333333333333333,
+        "Exact_query_cross_video_PairAcc": 0.42168674698795183
+      },
+      "q_sent_v_clip_cand_unprojected_cosine": {
+        "Seen_AUROC": 0.49895579336593926,
+        "Unseen_AUROC": 0.46028757274905857,
+        "Matched_PairAcc": 0.5454545454545454,
+        "Exact_query_cross_video_PairAcc": 0.41365461847389556
+      },
+      "q_sent_v_clip_glob_unprojected_cosine": {
+        "Seen_AUROC": 0.49597173944827777,
+        "Unseen_AUROC": 0.5060595686408764,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5200803212851406
+      },
+      "new_streams_zero_detector_retained": {
+        "Seen_AUROC": 0.7042423842246507,
+        "Unseen_AUROC": 0.5419376925710373,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Exact_query_cross_video_PairAcc": 0.5742971887550201
+      },
+      "all_visual_zero_frozen": {
+        "Seen_AUROC": 0.6516367019294713,
+        "Unseen_AUROC": 0.47925368024649095,
+        "Matched_PairAcc": 0.8484848484848485,
+        "Exact_query_cross_video_PairAcc": 0.5
+      }
+    },
+    "new_stream_different_video_controls": [
+      {
+        "Seen_AUROC": 0.7025355261358223,
+        "Unseen_AUROC": 0.5387538514207464,
+        "Matched_PairAcc": 0.5454545454545454,
+        "Exact_query_cross_video_PairAcc": 0.5642570281124498
+      },
+      {
+        "Seen_AUROC": 0.70258717050187,
+        "Unseen_AUROC": 0.5404655939746662,
+        "Matched_PairAcc": 0.5757575757575758,
+        "Exact_query_cross_video_PairAcc": 0.5843373493975904
+      },
+      {
+        "Seen_AUROC": 0.703535634612573,
+        "Unseen_AUROC": 0.5383087983567272,
+        "Matched_PairAcc": 0.5454545454545454,
+        "Exact_query_cross_video_PairAcc": 0.5803212851405622
+      },
+      {
+        "Seen_AUROC": 0.7027123904031091,
+        "Unseen_AUROC": 0.5374871619308457,
+        "Matched_PairAcc": 0.5454545454545454,
+        "Exact_query_cross_video_PairAcc": 0.5742971887550201
+      },
+      {
+        "Seen_AUROC": 0.7036745320171487,
+        "Unseen_AUROC": 0.5376583361862377,
+        "Matched_PairAcc": 0.48484848484848486,
+        "Exact_query_cross_video_PairAcc": 0.570281124497992
+      }
+    ],
+    "matched_pair_video_cluster_95ci": {
+      "baseline": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "full": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "detector_only": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "detector_plus_action": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "detector_plus_object": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "action_evidence": [
+        0.34372767857142855,
+        0.6857142857142857
+      ],
+      "object_evidence": [
+        0.5161290322580645,
+        0.8484848484848485
+      ],
+      "action_raw": [
+        0.4192876344086022,
+        0.78125
+      ],
+      "object_raw": [
+        0.7,
+        0.9696969696969697
+      ],
+      "negative_text_prior": [
+        0.3570852534562212,
+        0.6764705882352942
+      ],
+      "new_branch_residual": [
+        0.3,
+        0.6666666666666666
+      ],
+      "q_act_v_clip_cand_unprojected_cosine": [
+        0.46875,
+        0.7878787878787878
+      ],
+      "q_act_v_clip_glob_unprojected_cosine": [
+        0.4666666666666667,
+        0.8
+      ],
+      "q_obj_v_clip_cand_unprojected_cosine": [
+        0.20588235294117646,
+        0.5359577922077908
+      ],
+      "q_obj_v_clip_glob_unprojected_cosine": [
+        0.17647058823529413,
+        0.5
+      ],
+      "q_sent_v_clip_cand_unprojected_cosine": [
+        0.375,
+        0.7179687499999999
+      ],
+      "q_sent_v_clip_glob_unprojected_cosine": [
+        0.35294117647058826,
+        0.6857589285714283
+      ],
+      "new_streams_zero_detector_retained": [
+        0.3333333333333333,
+        0.7058823529411765
+      ],
+      "all_visual_zero_frozen": [
+        0.7,
+        0.9696969696969697
+      ]
+    }
+  }
+}

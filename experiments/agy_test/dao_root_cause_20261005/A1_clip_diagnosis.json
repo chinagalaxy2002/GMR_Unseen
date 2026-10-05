@@ -1,0 +1,353 @@
+{
+  "split": "A1",
+  "scope": "diagnostic only; no weights trained and no sign selected on Unseen",
+  "CLIP_checkpoint": "/home/guoxiangyu/Beyond_Caption-Based_Queries_for_Video_Moment_Retrieval/experiments_and_data/evaluations/flash_vtg_subset_consistency_eval/models/ViT-B-32.pt",
+  "image_checkpoint_identity": "cached image encoder weight identity is not independently proven",
+  "unique_texts": 9099,
+  "subsets": {
+    "train": {
+      "metrics": {
+        "cached_mean_hidden_candidate": {
+          "Seen_AUROC": 0.5072825923841681,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_mean_hidden_candidate": {
+          "Seen_AUROC": 0.5073074470080661,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_mean_hidden_projected_candidate": {
+          "Seen_AUROC": 0.5421760457700244,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_hidden_candidate": {
+          "Seen_AUROC": 0.4699544175576815,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_candidate": {
+          "Seen_AUROC": 0.5434059275933221,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_global": {
+          "Seen_AUROC": 0.49509472894391293,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "query_only_fixed_train_video_reference": {
+          "Seen_AUROC": 0.39461203338960793,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_action_phrase_projected_candidate": {
+          "Seen_AUROC": 0.5116025604952167,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_object_phrase_projected_candidate": {
+          "Seen_AUROC": 0.5415028606265241,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_perframe_normalized_candidate": {
+          "Seen_AUROC": 0.5434581691990246,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_perframe_normalized_global": {
+          "Seen_AUROC": 0.49528460889139,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_max_frame": {
+          "Seen_AUROC": 0.5276216469705496,
+          "Unseen_AUROC": null,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        }
+      },
+      "video_length_counts": {
+        "streams_unequal": 4023,
+        "length_gt200": 0
+      },
+      "positive_proposal_R1_IoU05": 0.778137310073157,
+      "cached_vs_fresh_mean_hidden_max_abs": 0.00830078125,
+      "oracle_scope": "GT pooled features are diagnostic only and never used for fitting or reported method scores"
+    },
+    "val": {
+      "metrics": {
+        "cached_mean_hidden_candidate": {
+          "Seen_AUROC": 0.486809985038192,
+          "Unseen_AUROC": 0.5720520013935493,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_mean_hidden_candidate": {
+          "Seen_AUROC": 0.4868703572459774,
+          "Unseen_AUROC": 0.5718869758145846,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_mean_hidden_projected_candidate": {
+          "Seen_AUROC": 0.5158188308790719,
+          "Unseen_AUROC": 0.5517538551808863,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_hidden_candidate": {
+          "Seen_AUROC": 0.46335144499566894,
+          "Unseen_AUROC": 0.5619854410767002,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_candidate": {
+          "Seen_AUROC": 0.5270257500590597,
+          "Unseen_AUROC": 0.47969268569961676,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_global": {
+          "Seen_AUROC": 0.5037719505472872,
+          "Unseen_AUROC": 0.4876689220162458,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "query_only_fixed_train_video_reference": {
+          "Seen_AUROC": 0.41514292463973546,
+          "Unseen_AUROC": 0.4463208463978583,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_action_phrase_projected_candidate": {
+          "Seen_AUROC": 0.4950507914008977,
+          "Unseen_AUROC": 0.5024478794213103,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_object_phrase_projected_candidate": {
+          "Seen_AUROC": 0.5084849200724467,
+          "Unseen_AUROC": 0.5214533252654161,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_perframe_normalized_candidate": {
+          "Seen_AUROC": 0.5269732524870725,
+          "Unseen_AUROC": 0.4788858939802336,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_perframe_normalized_global": {
+          "Seen_AUROC": 0.5040816862220123,
+          "Unseen_AUROC": 0.4879439646478537,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        },
+        "fresh_EOT_projected_max_frame": {
+          "Seen_AUROC": 0.5185027692469224,
+          "Unseen_AUROC": 0.5175385518088638,
+          "Matched_PairAcc": null,
+          "Exact_query_cross_video_PairAcc": null
+        }
+      },
+      "video_length_counts": {
+        "streams_unequal": 865,
+        "length_gt200": 0
+      },
+      "positive_proposal_R1_IoU05": 0.3598233995584989,
+      "cached_vs_fresh_mean_hidden_max_abs": 0.01001739501953125,
+      "oracle_scope": "GT pooled features are diagnostic only and never used for fitting or reported method scores"
+    },
+    "test": {
+      "metrics": {
+        "cached_mean_hidden_candidate": {
+          "Seen_AUROC": 0.5060364692916541,
+          "Unseen_AUROC": 0.5284249569988565,
+          "Matched_PairAcc": 0.38461538461538464,
+          "Exact_query_cross_video_PairAcc": 0.5588235294117647
+        },
+        "fresh_mean_hidden_candidate": {
+          "Seen_AUROC": 0.5060783251335432,
+          "Unseen_AUROC": 0.528417269643595,
+          "Matched_PairAcc": 0.38782051282051283,
+          "Exact_query_cross_video_PairAcc": 0.5588235294117647
+        },
+        "fresh_mean_hidden_projected_candidate": {
+          "Seen_AUROC": 0.5276335893460733,
+          "Unseen_AUROC": 0.5770474790279339,
+          "Matched_PairAcc": 0.5576923076923077,
+          "Exact_query_cross_video_PairAcc": 0.4411764705882353
+        },
+        "fresh_EOT_hidden_candidate": {
+          "Seen_AUROC": 0.4781776164185637,
+          "Unseen_AUROC": 0.55315421795574,
+          "Matched_PairAcc": 0.42628205128205127,
+          "Exact_query_cross_video_PairAcc": 0.5294117647058824
+        },
+        "fresh_EOT_projected_candidate": {
+          "Seen_AUROC": 0.5295589580729702,
+          "Unseen_AUROC": 0.5073077920954769,
+          "Matched_PairAcc": 0.6314102564102564,
+          "Exact_query_cross_video_PairAcc": 0.4117647058823529
+        },
+        "fresh_EOT_projected_global": {
+          "Seen_AUROC": 0.5098245877693934,
+          "Unseen_AUROC": 0.5170592022447077,
+          "Matched_PairAcc": 0.6378205128205128,
+          "Exact_query_cross_video_PairAcc": 0.4411764705882353
+        },
+        "query_only_fixed_train_video_reference": {
+          "Seen_AUROC": 0.4259950814442177,
+          "Unseen_AUROC": 0.4448057501417356,
+          "Matched_PairAcc": 0.5673076923076923,
+          "Exact_query_cross_video_PairAcc": 0.5
+        },
+        "fresh_action_phrase_projected_candidate": {
+          "Seen_AUROC": 0.5082235194237472,
+          "Unseen_AUROC": 0.5096630055637233,
+          "Matched_PairAcc": 0.5657051282051282,
+          "Exact_query_cross_video_PairAcc": 0.35294117647058826
+        },
+        "fresh_object_phrase_projected_candidate": {
+          "Seen_AUROC": 0.5447084658219037,
+          "Unseen_AUROC": 0.5507874734546013,
+          "Matched_PairAcc": 0.5336538461538461,
+          "Exact_query_cross_video_PairAcc": 0.47058823529411764
+        },
+        "fresh_EOT_projected_perframe_normalized_candidate": {
+          "Seen_AUROC": 0.5295905971345557,
+          "Unseen_AUROC": 0.5072059346382619,
+          "Matched_PairAcc": 0.6314102564102564,
+          "Exact_query_cross_video_PairAcc": 0.4117647058823529
+        },
+        "fresh_EOT_projected_perframe_normalized_global": {
+          "Seen_AUROC": 0.5098962700182978,
+          "Unseen_AUROC": 0.5170169217907694,
+          "Matched_PairAcc": 0.6378205128205128,
+          "Exact_query_cross_video_PairAcc": 0.47058823529411764
+        },
+        "fresh_EOT_projected_max_frame": {
+          "Seen_AUROC": 0.5304707233216797,
+          "Unseen_AUROC": 0.5129051476452671,
+          "Matched_PairAcc": 0.6538461538461539,
+          "Exact_query_cross_video_PairAcc": 0.4411764705882353
+        },
+        "same_positive_window_oracle_pair": {
+          "Matched_PairAcc": 0.6442307692307693
+        },
+        "same_positive_predicted_window_pair": {
+          "Matched_PairAcc": 0.6442307692307693
+        },
+        "same_global_video_pair": {
+          "Matched_PairAcc": 0.6378205128205128
+        }
+      },
+      "video_length_counts": {
+        "streams_unequal": 2482,
+        "length_gt200": 0
+      },
+      "positive_proposal_R1_IoU05": 0.37048080506895265,
+      "cached_vs_fresh_mean_hidden_max_abs": 0.008371353149414062,
+      "oracle_scope": "GT pooled features are diagnostic only and never used for fitting or reported method scores"
+    }
+  },
+  "test_projected_wrong_video_controls": [
+    {
+      "Seen_AUROC": 0.46253803278861416,
+      "Unseen_AUROC": 0.44948350581836705,
+      "Matched_PairAcc": 0.5224358974358975,
+      "Exact_query_cross_video_PairAcc": 0.6470588235294118
+    },
+    {
+      "Seen_AUROC": 0.4551600343283818,
+      "Unseen_AUROC": 0.46247897988795683,
+      "Matched_PairAcc": 0.5096153846153846,
+      "Exact_query_cross_video_PairAcc": 0.5
+    },
+    {
+      "Seen_AUROC": 0.4565678077821545,
+      "Unseen_AUROC": 0.4698146386462567,
+      "Matched_PairAcc": 0.5737179487179487,
+      "Exact_query_cross_video_PairAcc": 0.29411764705882354
+    },
+    {
+      "Seen_AUROC": 0.4740205403424401,
+      "Unseen_AUROC": 0.45637521981031454,
+      "Matched_PairAcc": 0.5,
+      "Exact_query_cross_video_PairAcc": 0.47058823529411764
+    },
+    {
+      "Seen_AUROC": 0.45474592515252665,
+      "Unseen_AUROC": 0.47186524066226565,
+      "Matched_PairAcc": 0.5576923076923077,
+      "Exact_query_cross_video_PairAcc": 0.6176470588235294
+    }
+  ],
+  "test_pair_video_cluster_95ci": {
+    "cached_mean_hidden_candidate": [
+      0.32704252770290504,
+      0.4426751592356688
+    ],
+    "fresh_mean_hidden_candidate": [
+      0.3279742765273312,
+      0.446314528723988
+    ],
+    "fresh_mean_hidden_projected_candidate": [
+      0.5,
+      0.61198738170347
+    ],
+    "fresh_EOT_hidden_candidate": [
+      0.369281045751634,
+      0.485446081283881
+    ],
+    "fresh_EOT_projected_candidate": [
+      0.5755604258933447,
+      0.6859892289165839
+    ],
+    "fresh_EOT_projected_global": [
+      0.5835929406738932,
+      0.6948051948051948
+    ],
+    "query_only_fixed_train_video_reference": [
+      0.5124024989166547,
+      0.6250201612903225
+    ],
+    "fresh_action_phrase_projected_candidate": [
+      0.5111093585699263,
+      0.6182974500525763
+    ],
+    "fresh_object_phrase_projected_candidate": [
+      0.49330991070121505,
+      0.5746093527231251
+    ],
+    "fresh_EOT_projected_perframe_normalized_candidate": [
+      0.5755604258933447,
+      0.6859892289165839
+    ],
+    "fresh_EOT_projected_perframe_normalized_global": [
+      0.5835929406738932,
+      0.6948051948051948
+    ],
+    "fresh_EOT_projected_max_frame": [
+      0.5974678047319557,
+      0.7116668882599859
+    ],
+    "fresh_EOT_projected_wrong_video_candidate": [
+      0.46666134185303515,
+      0.573340490797546
+    ]
+  }
+}

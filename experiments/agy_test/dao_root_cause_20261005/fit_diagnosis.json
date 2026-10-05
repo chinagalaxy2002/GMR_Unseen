@@ -1,0 +1,932 @@
+{
+  "A1": {
+    "train": {
+      "n": 8608,
+      "pair_counts": {
+        "object_counterfactual": 1023,
+        "action_counterfactual": 449,
+        "composition_counterfactual": 27
+      },
+      "negatives_source_absent": 1,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.9996688238604389,
+          "Seen_AUROC": 0.9996688238604389,
+          "std": 7.5965070724487305,
+          "action_cf_pairs": 0.9955456570155902,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 0.9955456570155902,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "full": {
+          "all_AUROC": 0.9998315513036953,
+          "Seen_AUROC": 0.9998315513036953,
+          "std": 6.749532699584961,
+          "action_cf_pairs": 0.9955456570155902,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 0.9955456570155902,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "detector_only": {
+          "all_AUROC": 0.9997328831363721,
+          "Seen_AUROC": 0.9997328831363721,
+          "std": 6.6773362159729,
+          "action_cf_pairs": 0.9955456570155902,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 0.9955456570155902,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "action_raw": {
+          "all_AUROC": 0.6719381917088726,
+          "Seen_AUROC": 0.6719381917088726,
+          "std": 0.47628721594810486,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.5630498533724341,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.5630498533724341
+        },
+        "action_evidence": {
+          "all_AUROC": 0.6690103170136935,
+          "Seen_AUROC": 0.6690103170136935,
+          "std": 0.4949395954608917,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.5659824046920822,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.5659824046920822
+        },
+        "object_raw": {
+          "all_AUROC": 0.6367738698180454,
+          "Seen_AUROC": 0.6367738698180454,
+          "std": 0.014111841097474098,
+          "action_cf_pairs": 0.6280623608017817,
+          "object_cf_pairs": 0.8093841642228738,
+          "Seen_action_cf_pairs": 0.6280623608017817,
+          "Seen_object_cf_pairs": 0.8093841642228738
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6861684486963047,
+          "Seen_AUROC": 0.6861684486963047,
+          "std": 0.2956264913082123,
+          "action_cf_pairs": 0.5879732739420935,
+          "object_cf_pairs": 0.7536656891495601,
+          "Seen_action_cf_pairs": 0.5879732739420935,
+          "Seen_object_cf_pairs": 0.7536656891495601
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.5271140030013131,
+          "Seen_AUROC": 0.5271140030013131,
+          "std": 0.14685772359371185,
+          "action_cf_pairs": 0.6391982182628062,
+          "object_cf_pairs": 0.5542521994134897,
+          "Seen_action_cf_pairs": 0.6391982182628062,
+          "Seen_object_cf_pairs": 0.5542521994134897
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6848707559557305,
+          "Seen_AUROC": 0.6848707559557305,
+          "std": 0.2856188118457794,
+          "action_cf_pairs": 0.5835189309576837,
+          "object_cf_pairs": 0.7546432062561095,
+          "Seen_action_cf_pairs": 0.5835189309576837,
+          "Seen_object_cf_pairs": 0.7546432062561095
+        }
+      }
+    },
+    "val": {
+      "n": 1759,
+      "pair_counts": {
+        "action_counterfactual": 461,
+        "object_counterfactual": 368,
+        "composition_counterfactual": 24
+      },
+      "negatives_source_absent": 0,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.6872458974816839,
+          "Seen_AUROC": 0.8118775756621256,
+          "std": 7.235404014587402,
+          "action_cf_pairs": 0.561822125813449,
+          "object_cf_pairs": 0.7581521739130435,
+          "Seen_action_cf_pairs": 0.49101796407185627,
+          "Seen_object_cf_pairs": 0.7566765578635015
+        },
+        "full": {
+          "all_AUROC": 0.691469401592613,
+          "Seen_AUROC": 0.8146100742840643,
+          "std": 6.510271072387695,
+          "action_cf_pairs": 0.5639913232104121,
+          "object_cf_pairs": 0.7744565217391305,
+          "Seen_action_cf_pairs": 0.5089820359281437,
+          "Seen_object_cf_pairs": 0.7774480712166172
+        },
+        "detector_only": {
+          "all_AUROC": 0.6878967622389748,
+          "Seen_AUROC": 0.8112187311336849,
+          "std": 6.451807022094727,
+          "action_cf_pairs": 0.5704989154013015,
+          "object_cf_pairs": 0.7690217391304348,
+          "Seen_action_cf_pairs": 0.49700598802395207,
+          "Seen_object_cf_pairs": 0.7685459940652819
+        },
+        "action_raw": {
+          "all_AUROC": 0.516041293034065,
+          "Seen_AUROC": 0.5251568364963121,
+          "std": 0.3933877646923065,
+          "action_cf_pairs": 0.4772234273318872,
+          "object_cf_pairs": 0.5366847826086957,
+          "Seen_action_cf_pairs": 0.5269461077844312,
+          "Seen_object_cf_pairs": 0.526706231454006
+        },
+        "action_evidence": {
+          "all_AUROC": 0.5346938088916149,
+          "Seen_AUROC": 0.5413339633041971,
+          "std": 0.40179815888404846,
+          "action_cf_pairs": 0.5422993492407809,
+          "object_cf_pairs": 0.5366847826086957,
+          "Seen_action_cf_pairs": 0.6467065868263473,
+          "Seen_object_cf_pairs": 0.526706231454006
+        },
+        "object_raw": {
+          "all_AUROC": 0.5953659205660323,
+          "Seen_AUROC": 0.6205331128435311,
+          "std": 0.014158754609525204,
+          "action_cf_pairs": 0.5900216919739696,
+          "object_cf_pairs": 0.8097826086956522,
+          "Seen_action_cf_pairs": 0.592814371257485,
+          "Seen_object_cf_pairs": 0.7952522255192879
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6194019808027245,
+          "Seen_AUROC": 0.6713783237525265,
+          "std": 0.3053600788116455,
+          "action_cf_pairs": 0.5032537960954447,
+          "object_cf_pairs": 0.7255434782608695,
+          "Seen_action_cf_pairs": 0.5568862275449101,
+          "Seen_object_cf_pairs": 0.744807121661721
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.5775208393179248,
+          "Seen_AUROC": 0.5537063285823031,
+          "std": 0.1209881454706192,
+          "action_cf_pairs": 0.6182212581344902,
+          "object_cf_pairs": 0.5828804347826086,
+          "Seen_action_cf_pairs": 0.6946107784431138,
+          "Seen_object_cf_pairs": 0.5623145400593472
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6186974164680429,
+          "Seen_AUROC": 0.6696262172874504,
+          "std": 0.2951618731021881,
+          "action_cf_pairs": 0.5010845986984815,
+          "object_cf_pairs": 0.7228260869565217,
+          "Seen_action_cf_pairs": 0.562874251497006,
+          "Seen_object_cf_pairs": 0.7418397626112759
+        }
+      }
+    }
+  },
+  "A2_alt": {
+    "train": {
+      "n": 10323,
+      "pair_counts": {
+        "object_counterfactual": 1023,
+        "action_counterfactual": 449,
+        "composition_counterfactual": 27
+      },
+      "negatives_source_absent": 1,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.9999554195473951,
+          "Seen_AUROC": 0.9999554195473951,
+          "std": 9.41201114654541,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "full": {
+          "all_AUROC": 0.9999768030526276,
+          "Seen_AUROC": 0.9999768030526276,
+          "std": 8.012090682983398,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "detector_only": {
+          "all_AUROC": 0.9999743095696852,
+          "Seen_AUROC": 0.9999743095696852,
+          "std": 7.926377773284912,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "action_raw": {
+          "all_AUROC": 0.6495286183837697,
+          "Seen_AUROC": 0.6495286183837697,
+          "std": 0.5069007873535156,
+          "action_cf_pairs": 0.9888641425389755,
+          "object_cf_pairs": 0.5772238514173998,
+          "Seen_action_cf_pairs": 0.9888641425389755,
+          "Seen_object_cf_pairs": 0.5772238514173998
+        },
+        "action_evidence": {
+          "all_AUROC": 0.6508083040537989,
+          "Seen_AUROC": 0.6508083040537989,
+          "std": 0.51308274269104,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.5772238514173998,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.5772238514173998
+        },
+        "object_raw": {
+          "all_AUROC": 0.6330762023499188,
+          "Seen_AUROC": 0.6330762023499188,
+          "std": 0.017575884237885475,
+          "action_cf_pairs": 0.5679287305122495,
+          "object_cf_pairs": 0.8162267839687195,
+          "Seen_action_cf_pairs": 0.5679287305122495,
+          "Seen_object_cf_pairs": 0.8162267839687195
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6773921946427897,
+          "Seen_AUROC": 0.6773921946427897,
+          "std": 0.2989360988140106,
+          "action_cf_pairs": 0.5924276169265034,
+          "object_cf_pairs": 0.7605083088954057,
+          "Seen_action_cf_pairs": 0.5924276169265034,
+          "Seen_object_cf_pairs": 0.7605083088954057
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.489279874570252,
+          "Seen_AUROC": 0.489279874570252,
+          "std": 0.15018509328365326,
+          "action_cf_pairs": 0.5723830734966593,
+          "object_cf_pairs": 0.5513196480938416,
+          "Seen_action_cf_pairs": 0.5723830734966593,
+          "Seen_object_cf_pairs": 0.5513196480938416
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.676208734746307,
+          "Seen_AUROC": 0.676208734746307,
+          "std": 0.2861332595348358,
+          "action_cf_pairs": 0.5991091314031181,
+          "object_cf_pairs": 0.7546432062561095,
+          "Seen_action_cf_pairs": 0.5991091314031181,
+          "Seen_object_cf_pairs": 0.7546432062561095
+        }
+      }
+    },
+    "val": {
+      "n": 1686,
+      "pair_counts": {
+        "object_counterfactual": 380,
+        "action_counterfactual": 279,
+        "composition_counterfactual": 32
+      },
+      "negatives_source_absent": 0,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.713269676893876,
+          "Seen_AUROC": 0.7757360112704548,
+          "std": 9.997694969177246,
+          "action_cf_pairs": 0.5806451612903226,
+          "object_cf_pairs": 0.7973684210526316,
+          "Seen_action_cf_pairs": 0.651685393258427,
+          "Seen_object_cf_pairs": 0.7973684210526316
+        },
+        "full": {
+          "all_AUROC": 0.7318706411943946,
+          "Seen_AUROC": 0.7888216595022216,
+          "std": 8.57765007019043,
+          "action_cf_pairs": 0.5913978494623656,
+          "object_cf_pairs": 0.7921052631578948,
+          "Seen_action_cf_pairs": 0.651685393258427,
+          "Seen_object_cf_pairs": 0.7921052631578948
+        },
+        "detector_only": {
+          "all_AUROC": 0.7284177762910065,
+          "Seen_AUROC": 0.7861051909113898,
+          "std": 8.505396842956543,
+          "action_cf_pairs": 0.5949820788530465,
+          "object_cf_pairs": 0.7868421052631579,
+          "Seen_action_cf_pairs": 0.6460674157303371,
+          "Seen_object_cf_pairs": 0.7868421052631579
+        },
+        "action_raw": {
+          "all_AUROC": 0.5058047109643732,
+          "Seen_AUROC": 0.5128409131958243,
+          "std": 0.47373512387275696,
+          "action_cf_pairs": 0.5089605734767025,
+          "object_cf_pairs": 0.5434210526315789,
+          "Seen_action_cf_pairs": 0.5617977528089888,
+          "Seen_object_cf_pairs": 0.5434210526315789
+        },
+        "action_evidence": {
+          "all_AUROC": 0.5179595517384316,
+          "Seen_AUROC": 0.5256466062204241,
+          "std": 0.4714263081550598,
+          "action_cf_pairs": 0.5734767025089605,
+          "object_cf_pairs": 0.5434210526315789,
+          "Seen_action_cf_pairs": 0.6292134831460674,
+          "Seen_object_cf_pairs": 0.5434210526315789
+        },
+        "object_raw": {
+          "all_AUROC": 0.6143103360507312,
+          "Seen_AUROC": 0.6237149152909729,
+          "std": 0.018234549090266228,
+          "action_cf_pairs": 0.5412186379928315,
+          "object_cf_pairs": 0.7894736842105263,
+          "Seen_action_cf_pairs": 0.550561797752809,
+          "Seen_object_cf_pairs": 0.7894736842105263
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6476347002741639,
+          "Seen_AUROC": 0.6621247697142651,
+          "std": 0.3185074031352997,
+          "action_cf_pairs": 0.5698924731182796,
+          "object_cf_pairs": 0.7210526315789474,
+          "Seen_action_cf_pairs": 0.6235955056179775,
+          "Seen_object_cf_pairs": 0.7210526315789474
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.5290642794289828,
+          "Seen_AUROC": 0.5248744716974316,
+          "std": 0.13406330347061157,
+          "action_cf_pairs": 0.5519713261648745,
+          "object_cf_pairs": 0.5710526315789474,
+          "Seen_action_cf_pairs": 0.5561797752808989,
+          "Seen_object_cf_pairs": 0.5710526315789474
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6469329280265291,
+          "Seen_AUROC": 0.6619757612975472,
+          "std": 0.3051457107067108,
+          "action_cf_pairs": 0.5878136200716846,
+          "object_cf_pairs": 0.7157894736842105,
+          "Seen_action_cf_pairs": 0.651685393258427,
+          "Seen_object_cf_pairs": 0.7157894736842105
+        }
+      }
+    }
+  },
+  "A3": {
+    "train": {
+      "n": 10352,
+      "pair_counts": {
+        "object_counterfactual": 1023,
+        "action_counterfactual": 449,
+        "composition_counterfactual": 27
+      },
+      "negatives_source_absent": 1,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.9999268715167947,
+          "Seen_AUROC": 0.9999268715167947,
+          "std": 9.267203330993652,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "full": {
+          "all_AUROC": 0.9999752221720138,
+          "Seen_AUROC": 0.9999752221720138,
+          "std": 8.490930557250977,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "detector_only": {
+          "all_AUROC": 0.99995398403374,
+          "Seen_AUROC": 0.99995398403374,
+          "std": 8.418893814086914,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "action_raw": {
+          "all_AUROC": 0.6622257493598434,
+          "Seen_AUROC": 0.6622257493598434,
+          "std": 0.5187639594078064,
+          "action_cf_pairs": 0.9866369710467706,
+          "object_cf_pairs": 0.6114369501466276,
+          "Seen_action_cf_pairs": 0.9866369710467706,
+          "Seen_object_cf_pairs": 0.6114369501466276
+        },
+        "action_evidence": {
+          "all_AUROC": 0.6612350504594064,
+          "Seen_AUROC": 0.6612350504594064,
+          "std": 0.5242834687232971,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.6143695014662757,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.6143695014662757
+        },
+        "object_raw": {
+          "all_AUROC": 0.6264958954661847,
+          "Seen_AUROC": 0.6264958954661847,
+          "std": 0.015975404530763626,
+          "action_cf_pairs": 0.5590200445434298,
+          "object_cf_pairs": 0.8132942326490714,
+          "Seen_action_cf_pairs": 0.5590200445434298,
+          "Seen_object_cf_pairs": 0.8132942326490714
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6790394637746648,
+          "Seen_AUROC": 0.6790394637746648,
+          "std": 0.2899550199508667,
+          "action_cf_pairs": 0.5946547884187082,
+          "object_cf_pairs": 0.7556207233626588,
+          "Seen_action_cf_pairs": 0.5946547884187082,
+          "Seen_object_cf_pairs": 0.7556207233626588
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.4639632098207561,
+          "Seen_AUROC": 0.4639632098207561,
+          "std": 0.14957094192504883,
+          "action_cf_pairs": 0.5278396436525612,
+          "object_cf_pairs": 0.552297165200391,
+          "Seen_action_cf_pairs": 0.5278396436525612,
+          "Seen_object_cf_pairs": 0.552297165200391
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6779392604307878,
+          "Seen_AUROC": 0.6779392604307878,
+          "std": 0.2785298228263855,
+          "action_cf_pairs": 0.6035634743875279,
+          "object_cf_pairs": 0.7526881720430108,
+          "Seen_action_cf_pairs": 0.6035634743875279,
+          "Seen_object_cf_pairs": 0.7526881720430108
+        }
+      }
+    },
+    "val": {
+      "n": 1774,
+      "pair_counts": {
+        "action_counterfactual": 366,
+        "object_counterfactual": 380,
+        "composition_counterfactual": 32
+      },
+      "negatives_source_absent": 0,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.7395765581606633,
+          "Seen_AUROC": 0.7717937015061616,
+          "std": 9.409786224365234,
+          "action_cf_pairs": 0.5382513661202186,
+          "object_cf_pairs": 0.7605263157894737,
+          "Seen_action_cf_pairs": 0.6119402985074627,
+          "Seen_object_cf_pairs": 0.7612732095490716
+        },
+        "full": {
+          "all_AUROC": 0.7392345732544574,
+          "Seen_AUROC": 0.7762529050399493,
+          "std": 8.434582710266113,
+          "action_cf_pairs": 0.5519125683060109,
+          "object_cf_pairs": 0.7710526315789473,
+          "Seen_action_cf_pairs": 0.6169154228855721,
+          "Seen_object_cf_pairs": 0.7718832891246684
+        },
+        "detector_only": {
+          "all_AUROC": 0.7399288671395091,
+          "Seen_AUROC": 0.7712428587166937,
+          "std": 8.378619194030762,
+          "action_cf_pairs": 0.546448087431694,
+          "object_cf_pairs": 0.7578947368421053,
+          "Seen_action_cf_pairs": 0.6119402985074627,
+          "Seen_object_cf_pairs": 0.7586206896551724
+        },
+        "action_raw": {
+          "all_AUROC": 0.5100517752242906,
+          "Seen_AUROC": 0.5233303780180503,
+          "std": 0.4743761420249939,
+          "action_cf_pairs": 0.5109289617486339,
+          "object_cf_pairs": 0.5092105263157894,
+          "Seen_action_cf_pairs": 0.5373134328358209,
+          "Seen_object_cf_pairs": 0.513262599469496
+        },
+        "action_evidence": {
+          "all_AUROC": 0.5098246456262066,
+          "Seen_AUROC": 0.5333224913482708,
+          "std": 0.47754645347595215,
+          "action_cf_pairs": 0.5163934426229508,
+          "object_cf_pairs": 0.5118421052631579,
+          "Seen_action_cf_pairs": 0.5970149253731343,
+          "Seen_object_cf_pairs": 0.5159151193633952
+        },
+        "object_raw": {
+          "all_AUROC": 0.5580264502741041,
+          "Seen_AUROC": 0.6144537650541837,
+          "std": 0.017855020239949226,
+          "action_cf_pairs": 0.6065573770491803,
+          "object_cf_pairs": 0.8105263157894737,
+          "Seen_action_cf_pairs": 0.572139303482587,
+          "Seen_object_cf_pairs": 0.8143236074270557
+        },
+        "object_evidence": {
+          "all_AUROC": 0.5875120017344442,
+          "Seen_AUROC": 0.6490974047435433,
+          "std": 0.3237711787223816,
+          "action_cf_pairs": 0.6120218579234973,
+          "object_cf_pairs": 0.7210526315789474,
+          "Seen_action_cf_pairs": 0.5870646766169154,
+          "Seen_object_cf_pairs": 0.7214854111405835
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.44979468000536854,
+          "Seen_AUROC": 0.5066380927899051,
+          "std": 0.1338258981704712,
+          "action_cf_pairs": 0.3907103825136612,
+          "object_cf_pairs": 0.5736842105263158,
+          "Seen_action_cf_pairs": 0.5621890547263682,
+          "Seen_object_cf_pairs": 0.5702917771883289
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.5875081302072042,
+          "Seen_AUROC": 0.6489714978202363,
+          "std": 0.31031981110572815,
+          "action_cf_pairs": 0.6147540983606558,
+          "object_cf_pairs": 0.7131578947368421,
+          "Seen_action_cf_pairs": 0.6069651741293532,
+          "Seen_object_cf_pairs": 0.713527851458886
+        }
+      }
+    }
+  },
+  "C1": {
+    "train": {
+      "n": 10516,
+      "pair_counts": {
+        "object_counterfactual": 584,
+        "action_counterfactual": 795,
+        "composition_counterfactual": 120
+      },
+      "negatives_source_absent": 1,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.9644559301981662,
+          "Seen_AUROC": 0.9644559301981662,
+          "std": 3.8674492835998535,
+          "action_cf_pairs": 0.8176100628930818,
+          "object_cf_pairs": 0.9623287671232876,
+          "Seen_action_cf_pairs": 0.8176100628930818,
+          "Seen_object_cf_pairs": 0.9623287671232876
+        },
+        "full": {
+          "all_AUROC": 0.9792658237207926,
+          "Seen_AUROC": 0.9792658237207926,
+          "std": 4.087508678436279,
+          "action_cf_pairs": 0.9345911949685535,
+          "object_cf_pairs": 0.9606164383561644,
+          "Seen_action_cf_pairs": 0.9345911949685535,
+          "Seen_object_cf_pairs": 0.9606164383561644
+        },
+        "detector_only": {
+          "all_AUROC": 0.9657962141378289,
+          "Seen_AUROC": 0.9657962141378289,
+          "std": 4.035433769226074,
+          "action_cf_pairs": 0.8226415094339623,
+          "object_cf_pairs": 0.9623287671232876,
+          "Seen_action_cf_pairs": 0.8226415094339623,
+          "Seen_object_cf_pairs": 0.9623287671232876
+        },
+        "action_raw": {
+          "all_AUROC": 0.7444395888790298,
+          "Seen_AUROC": 0.7444395888790298,
+          "std": 0.41280487179756165,
+          "action_cf_pairs": 0.9974842767295597,
+          "object_cf_pairs": 0.5736301369863014,
+          "Seen_action_cf_pairs": 0.9974842767295597,
+          "Seen_object_cf_pairs": 0.5736301369863014
+        },
+        "action_evidence": {
+          "all_AUROC": 0.7670578970718723,
+          "Seen_AUROC": 0.7670578970718723,
+          "std": 0.4358576238155365,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.5804794520547946,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.5804794520547946
+        },
+        "object_raw": {
+          "all_AUROC": 0.5122349157054126,
+          "Seen_AUROC": 0.5122349157054126,
+          "std": 0.008724041283130646,
+          "action_cf_pairs": 0.5308176100628931,
+          "object_cf_pairs": 0.8698630136986302,
+          "Seen_action_cf_pairs": 0.5308176100628931,
+          "Seen_object_cf_pairs": 0.8698630136986302
+        },
+        "object_evidence": {
+          "all_AUROC": 0.5656803090801538,
+          "Seen_AUROC": 0.5656803090801538,
+          "std": 0.3857209086418152,
+          "action_cf_pairs": 0.5509433962264151,
+          "object_cf_pairs": 0.875,
+          "Seen_action_cf_pairs": 0.5509433962264151,
+          "Seen_object_cf_pairs": 0.875
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.6243632800946466,
+          "Seen_AUROC": 0.6243632800946466,
+          "std": 0.176665797829628,
+          "action_cf_pairs": 0.6566037735849056,
+          "object_cf_pairs": 0.6087328767123288,
+          "Seen_action_cf_pairs": 0.6566037735849056,
+          "Seen_object_cf_pairs": 0.6087328767123288
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.5664261682934043,
+          "Seen_AUROC": 0.5664261682934043,
+          "std": 0.37970712780952454,
+          "action_cf_pairs": 0.5534591194968553,
+          "object_cf_pairs": 0.875,
+          "Seen_action_cf_pairs": 0.5534591194968553,
+          "Seen_object_cf_pairs": 0.875
+        }
+      }
+    },
+    "val": {
+      "n": 1607,
+      "pair_counts": {
+        "object_counterfactual": 380,
+        "action_counterfactual": 201,
+        "composition_counterfactual": 32
+      },
+      "negatives_source_absent": 0,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.7107670492777218,
+          "Seen_AUROC": 0.7896727649234726,
+          "std": 3.8943045139312744,
+          "action_cf_pairs": 0.6616915422885572,
+          "object_cf_pairs": 0.65,
+          "Seen_action_cf_pairs": 0.6616915422885572,
+          "Seen_object_cf_pairs": 0.6525096525096525
+        },
+        "full": {
+          "all_AUROC": 0.7314211533474911,
+          "Seen_AUROC": 0.8053769591102278,
+          "std": 4.100095272064209,
+          "action_cf_pairs": 0.7213930348258707,
+          "object_cf_pairs": 0.6657894736842105,
+          "Seen_action_cf_pairs": 0.7213930348258707,
+          "Seen_object_cf_pairs": 0.6718146718146718
+        },
+        "detector_only": {
+          "all_AUROC": 0.71609920534627,
+          "Seen_AUROC": 0.7913824199864731,
+          "std": 4.033677577972412,
+          "action_cf_pairs": 0.6865671641791045,
+          "object_cf_pairs": 0.6526315789473685,
+          "Seen_action_cf_pairs": 0.6865671641791045,
+          "Seen_object_cf_pairs": 0.6486486486486487
+        },
+        "action_raw": {
+          "all_AUROC": 0.5097477195965352,
+          "Seen_AUROC": 0.5002943362196375,
+          "std": 0.33202823996543884,
+          "action_cf_pairs": 0.5323383084577115,
+          "object_cf_pairs": 0.4855263157894737,
+          "Seen_action_cf_pairs": 0.5323383084577115,
+          "Seen_object_cf_pairs": 0.4942084942084942
+        },
+        "action_evidence": {
+          "all_AUROC": 0.5657706434364753,
+          "Seen_AUROC": 0.5626977897646145,
+          "std": 0.35285791754722595,
+          "action_cf_pairs": 0.6616915422885572,
+          "object_cf_pairs": 0.5302631578947369,
+          "Seen_action_cf_pairs": 0.6616915422885572,
+          "Seen_object_cf_pairs": 0.5057915057915058
+        },
+        "object_raw": {
+          "all_AUROC": 0.5913326615484096,
+          "Seen_AUROC": 0.5593765917118261,
+          "std": 0.009103172458708286,
+          "action_cf_pairs": 0.5920398009950248,
+          "object_cf_pairs": 0.7394736842105263,
+          "Seen_action_cf_pairs": 0.5920398009950248,
+          "Seen_object_cf_pairs": 0.8455598455598455
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6415458493210486,
+          "Seen_AUROC": 0.6391855445428813,
+          "std": 0.41469869017601013,
+          "action_cf_pairs": 0.5970149253731343,
+          "object_cf_pairs": 0.7052631578947368,
+          "Seen_action_cf_pairs": 0.5970149253731343,
+          "Seen_object_cf_pairs": 0.7915057915057915
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.6708579371826391,
+          "Seen_AUROC": 0.6818642963903108,
+          "std": 0.1562570184469223,
+          "action_cf_pairs": 0.6616915422885572,
+          "object_cf_pairs": 0.6289473684210526,
+          "Seen_action_cf_pairs": 0.6616915422885572,
+          "Seen_object_cf_pairs": 0.5521235521235521
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6402066559224844,
+          "Seen_AUROC": 0.6390039328328921,
+          "std": 0.4086305499076843,
+          "action_cf_pairs": 0.6019900497512438,
+          "object_cf_pairs": 0.7052631578947368,
+          "Seen_action_cf_pairs": 0.6019900497512438,
+          "Seen_object_cf_pairs": 0.7915057915057915
+        }
+      }
+    }
+  },
+  "C2_alt": {
+    "train": {
+      "n": 10612,
+      "pair_counts": {
+        "object_counterfactual": 584,
+        "action_counterfactual": 795,
+        "composition_counterfactual": 120
+      },
+      "negatives_source_absent": 1,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.9997245390693591,
+          "Seen_AUROC": 0.9997245390693591,
+          "std": 7.421191215515137,
+          "action_cf_pairs": 0.9987421383647799,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 0.9987421383647799,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "full": {
+          "all_AUROC": 0.9998719637108574,
+          "Seen_AUROC": 0.9998719637108574,
+          "std": 7.157583713531494,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "detector_only": {
+          "all_AUROC": 0.9998345771144279,
+          "Seen_AUROC": 0.9998345771144279,
+          "std": 7.068527698516846,
+          "action_cf_pairs": 0.9987421383647799,
+          "object_cf_pairs": 1.0,
+          "Seen_action_cf_pairs": 0.9987421383647799,
+          "Seen_object_cf_pairs": 1.0
+        },
+        "action_raw": {
+          "all_AUROC": 0.7638034460052677,
+          "Seen_AUROC": 0.7638034460052677,
+          "std": 0.5342767238616943,
+          "action_cf_pairs": 0.9974842767295597,
+          "object_cf_pairs": 0.6232876712328768,
+          "Seen_action_cf_pairs": 0.9974842767295597,
+          "Seen_object_cf_pairs": 0.6232876712328768
+        },
+        "action_evidence": {
+          "all_AUROC": 0.7848799019607844,
+          "Seen_AUROC": 0.7848799019607844,
+          "std": 0.5532239675521851,
+          "action_cf_pairs": 1.0,
+          "object_cf_pairs": 0.6232876712328768,
+          "Seen_action_cf_pairs": 1.0,
+          "Seen_object_cf_pairs": 0.6232876712328768
+        },
+        "object_raw": {
+          "all_AUROC": 0.5125886742756804,
+          "Seen_AUROC": 0.5125886742756804,
+          "std": 0.018229112029075623,
+          "action_cf_pairs": 0.5459119496855346,
+          "object_cf_pairs": 0.8784246575342466,
+          "Seen_action_cf_pairs": 0.5459119496855346,
+          "Seen_object_cf_pairs": 0.8784246575342466
+        },
+        "object_evidence": {
+          "all_AUROC": 0.5721810067310507,
+          "Seen_AUROC": 0.5721810067310507,
+          "std": 0.38906383514404297,
+          "action_cf_pairs": 0.5522012578616352,
+          "object_cf_pairs": 0.875,
+          "Seen_action_cf_pairs": 0.5522012578616352,
+          "Seen_object_cf_pairs": 0.875
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.6468057140766754,
+          "Seen_AUROC": 0.6468057140766754,
+          "std": 0.16611605882644653,
+          "action_cf_pairs": 0.6616352201257861,
+          "object_cf_pairs": 0.615582191780822,
+          "Seen_action_cf_pairs": 0.6616352201257861,
+          "Seen_object_cf_pairs": 0.615582191780822
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.5736901155984782,
+          "Seen_AUROC": 0.5736901155984782,
+          "std": 0.37616977095603943,
+          "action_cf_pairs": 0.5459119496855346,
+          "object_cf_pairs": 0.875,
+          "Seen_action_cf_pairs": 0.5459119496855346,
+          "Seen_object_cf_pairs": 0.875
+        }
+      }
+    },
+    "val": {
+      "n": 1607,
+      "pair_counts": {
+        "object_counterfactual": 380,
+        "action_counterfactual": 201,
+        "composition_counterfactual": 32
+      },
+      "negatives_source_absent": 0,
+      "metrics": {
+        "baseline": {
+          "all_AUROC": 0.6807714147856141,
+          "Seen_AUROC": 0.6863381937675233,
+          "std": 7.1085734367370605,
+          "action_cf_pairs": 0.6218905472636815,
+          "object_cf_pairs": 0.6736842105263158,
+          "Seen_action_cf_pairs": 0.6310160427807486,
+          "Seen_object_cf_pairs": 0.7384615384615385
+        },
+        "full": {
+          "all_AUROC": 0.6951661026517999,
+          "Seen_AUROC": 0.6979690687461687,
+          "std": 6.810073375701904,
+          "action_cf_pairs": 0.6368159203980099,
+          "object_cf_pairs": 0.6842105263157895,
+          "Seen_action_cf_pairs": 0.6417112299465241,
+          "Seen_object_cf_pairs": 0.7307692307692307
+        },
+        "detector_only": {
+          "all_AUROC": 0.6855488559415219,
+          "Seen_AUROC": 0.6908683462129815,
+          "std": 6.760154724121094,
+          "action_cf_pairs": 0.6318407960199005,
+          "object_cf_pairs": 0.6578947368421053,
+          "Seen_action_cf_pairs": 0.6363636363636364,
+          "Seen_object_cf_pairs": 0.7115384615384616
+        },
+        "action_raw": {
+          "all_AUROC": 0.5066015998109374,
+          "Seen_AUROC": 0.5088422385464924,
+          "std": 0.42631542682647705,
+          "action_cf_pairs": 0.5124378109452736,
+          "object_cf_pairs": 0.5039473684210526,
+          "Seen_action_cf_pairs": 0.49732620320855614,
+          "Seen_object_cf_pairs": 0.49423076923076925
+        },
+        "action_evidence": {
+          "all_AUROC": 0.5491226313837347,
+          "Seen_AUROC": 0.5531971339851876,
+          "std": 0.4416469931602478,
+          "action_cf_pairs": 0.6417910447761194,
+          "object_cf_pairs": 0.5223684210526316,
+          "Seen_action_cf_pairs": 0.6310160427807486,
+          "Seen_object_cf_pairs": 0.5211538461538462
+        },
+        "object_raw": {
+          "all_AUROC": 0.5941210066270379,
+          "Seen_AUROC": 0.5892353609148737,
+          "std": 0.018920086324214935,
+          "action_cf_pairs": 0.5920398009950248,
+          "object_cf_pairs": 0.7289473684210527,
+          "Seen_action_cf_pairs": 0.5935828877005348,
+          "Seen_object_cf_pairs": 0.7192307692307692
+        },
+        "object_evidence": {
+          "all_AUROC": 0.6441684363932371,
+          "Seen_AUROC": 0.6051190320668066,
+          "std": 0.4328579008579254,
+          "action_cf_pairs": 0.6069651741293532,
+          "object_cf_pairs": 0.7052631578947368,
+          "Seen_action_cf_pairs": 0.6256684491978609,
+          "Seen_object_cf_pairs": 0.7307692307692307
+        },
+        "negative_action_prior": {
+          "all_AUROC": 0.6662446128647906,
+          "Seen_AUROC": 0.6556712323260745,
+          "std": 0.14800915122032166,
+          "action_cf_pairs": 0.6218905472636815,
+          "object_cf_pairs": 0.6342105263157894,
+          "Seen_action_cf_pairs": 0.6149732620320856,
+          "Seen_object_cf_pairs": 0.6846153846153846
+        },
+        "negative_object_prior": {
+          "all_AUROC": 0.6425682972221584,
+          "Seen_AUROC": 0.6030780516726795,
+          "std": 0.41992905735969543,
+          "action_cf_pairs": 0.6069651741293532,
+          "object_cf_pairs": 0.7052631578947368,
+          "Seen_action_cf_pairs": 0.6256684491978609,
+          "Seen_object_cf_pairs": 0.7307692307692307
+        }
+      }
+    }
+  }
+}

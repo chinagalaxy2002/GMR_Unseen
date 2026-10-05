@@ -1,0 +1,1229 @@
+{
+  "scope": "frozen checkpoints; no retraining; interventions are feature-level diagnostic controls",
+  "splits": {
+    "A1": {
+      "checks": {
+        "prediction_max_abs_error": 9.5367431640625e-07,
+        "checkpoint_parameter_count": 3646730,
+        "val_seen_auc": 0.869950389794472,
+        "stored_val_seen_auc": 0.869950389794472,
+        "threshold_replayed": 5.247078401071055,
+        "threshold_stored": 5.247078401071055,
+        "metric_max_abs_error": 0.0,
+        "prediction_unique_complete": true,
+        "metadata_equal": true,
+        "train_seen_only": true,
+        "video_overlap": {
+          "train_test": 0
+        },
+        "train_val_video_overlap": 0,
+        "val_test_video_overlap": 0,
+        "source_pair_n": {
+          "action_counterfactual": 449,
+          "object_counterfactual": 1023
+        },
+        "hq_spans_max_abs_error": 0.0,
+        "center_greater_than_width_fraction": 0.5750483558994197
+      },
+      "metrics": {
+        "baseline": {
+          "Seen_AUROC": 0.7860359024251341,
+          "Unseen_AUROC": 0.5072251530264157,
+          "Gap": 0.2788107493987184,
+          "Matched_PairAcc": 0.6025641025641025,
+          "matched_pair_n": 312
+        },
+        "full": {
+          "Seen_AUROC": 0.8521847760745416,
+          "Unseen_AUROC": 0.6484553220521395,
+          "Gap": 0.20372945402240206,
+          "Matched_PairAcc": 0.9487179487179487,
+          "matched_pair_n": 312,
+          "Seen_RejF1": 0.7222222222222222,
+          "Unseen_RejF1": 0.45838668373879643,
+          "U_pos_FRR": 18.27956989247312,
+          "U_neg_RR": 31.99285075960679
+        },
+        "detector_only": {
+          "Seen_AUROC": 0.7881105679738872,
+          "Unseen_AUROC": 0.5049189464479613,
+          "Gap": 0.2831916215259259,
+          "Matched_PairAcc": 0.5865384615384616,
+          "matched_pair_n": 312
+        },
+        "detector_plus_action": {
+          "Seen_AUROC": 0.8192872378571918,
+          "Unseen_AUROC": 0.5505914458954327,
+          "Gap": 0.2686957919617591,
+          "Matched_PairAcc": 0.8685897435897436,
+          "matched_pair_n": 312
+        },
+        "detector_plus_object": {
+          "Seen_AUROC": 0.8253540279161987,
+          "Unseen_AUROC": 0.6055425831435518,
+          "Gap": 0.2198114447726469,
+          "Matched_PairAcc": 0.9294871794871795,
+          "matched_pair_n": 312
+        },
+        "action_evidence_only": {
+          "Seen_AUROC": 0.9820613112281755,
+          "Unseen_AUROC": 0.9444050467487292,
+          "Gap": 0.037656264479446366,
+          "Matched_PairAcc": 0.9967948717948718,
+          "matched_pair_n": 312
+        },
+        "object_evidence_only": {
+          "Seen_AUROC": 0.998067051081265,
+          "Unseen_AUROC": 0.9987046806384349,
+          "Gap": -0.0006376295571698387,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 312
+        },
+        "negative_text_prior": {
+          "Seen_AUROC": 0.9994222575525077,
+          "Unseen_AUROC": 0.9999192827697541,
+          "Gap": -0.0004970252172463718,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 312
+        },
+        "local_video_permuted_0": {
+          "Seen_AUROC": 0.8517884638708283,
+          "Unseen_AUROC": 0.6491625587361988,
+          "Gap": 0.20262590513462952,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        },
+        "zero_visual_frozen_model": {
+          "Seen_AUROC": 0.9994324743328112,
+          "Unseen_AUROC": 0.9999404229967233,
+          "Gap": -0.0005079486639120168,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 312
+        }
+      },
+      "exact_query_U_cross_video": {
+        "baseline": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.4507936507936508,
+          "weighted": 0.5
+        },
+        "full": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.626984126984127,
+          "weighted": 0.6470588235294118
+        },
+        "detector_only": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.4349206349206349,
+          "weighted": 0.4411764705882353
+        },
+        "detector_plus_action": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.44444444444444436,
+          "weighted": 0.47058823529411764
+        },
+        "detector_plus_object": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.5555555555555556,
+          "weighted": 0.5882352941176471
+        },
+        "action_evidence_only": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "object_evidence_only": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "negative_text_prior": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "local_video_permuted_0": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 0.626984126984127,
+          "weighted": 0.6470588235294118
+        },
+        "zero_visual_frozen_model": {
+          "query_groups": 21,
+          "pair_n": 34,
+          "macro": 1.0,
+          "weighted": 1.0
+        }
+      },
+      "local_stream_video_permutations": [
+        {
+          "Seen_AUROC": 0.8517884638708283,
+          "Unseen_AUROC": 0.6491625587361988,
+          "Gap": 0.20262590513462952,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        },
+        {
+          "Seen_AUROC": 0.8523312715211533,
+          "Unseen_AUROC": 0.6475213083878655,
+          "Gap": 0.2048099631332878,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        },
+        {
+          "Seen_AUROC": 0.8515106333612813,
+          "Unseen_AUROC": 0.6497890781900122,
+          "Gap": 0.2017215551712691,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        },
+        {
+          "Seen_AUROC": 0.8516823411850938,
+          "Unseen_AUROC": 0.6501868988247955,
+          "Gap": 0.20149544236029826,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        },
+        {
+          "Seen_AUROC": 0.8514954729776049,
+          "Unseen_AUROC": 0.6488435334928458,
+          "Gap": 0.202651939484759,
+          "Matched_PairAcc": 0.9519230769230769,
+          "matched_pair_n": 312
+        }
+      ],
+      "alpha_action": 0.9942789077758789,
+      "alpha_object": 0.9988276958465576,
+      "detector_weights": {
+        "w_base": 0.9923003911972046,
+        "w_fg": 0.4866214096546173,
+        "bias": -0.0026911108288913965
+      },
+      "U_pos_raw_R1_iou05": 0.24516129032258063,
+      "U_pos_gated_R1_iou05": 0.2064516129032258
+    },
+    "A2_alt": {
+      "checks": {
+        "prediction_max_abs_error": 1.9073486328125e-06,
+        "checkpoint_parameter_count": 3646730,
+        "val_seen_auc": 0.8478380233356211,
+        "stored_val_seen_auc": 0.8478380233356211,
+        "threshold_replayed": 9.477034774986473,
+        "threshold_stored": 9.477034774986473,
+        "metric_max_abs_error": 0.0,
+        "prediction_unique_complete": true,
+        "metadata_equal": true,
+        "train_seen_only": true,
+        "video_overlap": {
+          "train_test": 0
+        },
+        "train_val_video_overlap": 0,
+        "val_test_video_overlap": 0,
+        "source_pair_n": {
+          "action_counterfactual": 449,
+          "object_counterfactual": 1023
+        },
+        "hq_spans_max_abs_error": 0.0,
+        "center_greater_than_width_fraction": 0.662891809908999
+      },
+      "metrics": {
+        "baseline": {
+          "Seen_AUROC": 0.7540659130504134,
+          "Unseen_AUROC": 0.41735347985347987,
+          "Gap": 0.3367124331969335,
+          "Matched_PairAcc": 0.34177215189873417,
+          "matched_pair_n": 79
+        },
+        "full": {
+          "Seen_AUROC": 0.8262648399555258,
+          "Unseen_AUROC": 0.6158997252747253,
+          "Gap": 0.21036511468080055,
+          "Matched_PairAcc": 0.7848101265822784,
+          "matched_pair_n": 79,
+          "Seen_RejF1": 0.6863738738738738,
+          "Unseen_RejF1": 0.20994475138121546,
+          "U_pos_FRR": 7.142857142857142,
+          "U_neg_RR": 12.179487179487179
+        },
+        "detector_only": {
+          "Seen_AUROC": 0.7593162568344086,
+          "Unseen_AUROC": 0.43086080586080583,
+          "Gap": 0.3284554509736028,
+          "Matched_PairAcc": 0.3670886075949367,
+          "matched_pair_n": 79
+        },
+        "detector_plus_action": {
+          "Seen_AUROC": 0.7891007931365835,
+          "Unseen_AUROC": 0.5059333028083028,
+          "Gap": 0.2831674903282807,
+          "Matched_PairAcc": 0.6075949367088608,
+          "matched_pair_n": 79
+        },
+        "detector_plus_object": {
+          "Seen_AUROC": 0.799912354912863,
+          "Unseen_AUROC": 0.5457303113553114,
+          "Gap": 0.2541820435575517,
+          "Matched_PairAcc": 0.7088607594936709,
+          "matched_pair_n": 79
+        },
+        "action_evidence_only": {
+          "Seen_AUROC": 0.9766117541323759,
+          "Unseen_AUROC": 0.9868742368742369,
+          "Gap": -0.010262482741861034,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 79
+        },
+        "object_evidence_only": {
+          "Seen_AUROC": 0.9984657821830916,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0015342178169084342,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 79
+        },
+        "negative_text_prior": {
+          "Seen_AUROC": 0.9995896460450582,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.00041035395494182225,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 79
+        },
+        "local_video_permuted_0": {
+          "Seen_AUROC": 0.8257631533021488,
+          "Unseen_AUROC": 0.6190094627594628,
+          "Gap": 0.206753690542686,
+          "Matched_PairAcc": 0.7974683544303798,
+          "matched_pair_n": 79
+        },
+        "zero_visual_frozen_model": {
+          "Seen_AUROC": 0.9996158023577557,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0003841976422442883,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 79
+        }
+      },
+      "exact_query_U_cross_video": {
+        "baseline": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.5538073038073038,
+          "weighted": 0.6226415094339622
+        },
+        "full": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.6421263921263921,
+          "weighted": 0.7547169811320755
+        },
+        "detector_only": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.5501165501165501,
+          "weighted": 0.6415094339622641
+        },
+        "detector_plus_action": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.632025382025382,
+          "weighted": 0.7169811320754716
+        },
+        "detector_plus_object": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.632025382025382,
+          "weighted": 0.7169811320754716
+        },
+        "action_evidence_only": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.9351851851851851,
+          "weighted": 0.9622641509433962
+        },
+        "object_evidence_only": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "negative_text_prior": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "local_video_permuted_0": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 0.6800051800051801,
+          "weighted": 0.8113207547169812
+        },
+        "zero_visual_frozen_model": {
+          "query_groups": 9,
+          "pair_n": 53,
+          "macro": 1.0,
+          "weighted": 1.0
+        }
+      },
+      "local_stream_video_permutations": [
+        {
+          "Seen_AUROC": 0.8257631533021488,
+          "Unseen_AUROC": 0.6190094627594628,
+          "Gap": 0.206753690542686,
+          "Matched_PairAcc": 0.7974683544303798,
+          "matched_pair_n": 79
+        },
+        {
+          "Seen_AUROC": 0.825911193744096,
+          "Unseen_AUROC": 0.6164148351648351,
+          "Gap": 0.20949635857926097,
+          "Matched_PairAcc": 0.7848101265822784,
+          "matched_pair_n": 79
+        },
+        {
+          "Seen_AUROC": 0.8261634306448217,
+          "Unseen_AUROC": 0.6191620879120879,
+          "Gap": 0.20700134273273374,
+          "Matched_PairAcc": 0.7721518987341772,
+          "matched_pair_n": 79
+        },
+        {
+          "Seen_AUROC": 0.8264845958613852,
+          "Unseen_AUROC": 0.6170253357753357,
+          "Gap": 0.20945926008604954,
+          "Matched_PairAcc": 0.7721518987341772,
+          "matched_pair_n": 79
+        },
+        {
+          "Seen_AUROC": 0.8261252681558042,
+          "Unseen_AUROC": 0.6153655372405372,
+          "Gap": 0.210759730915267,
+          "Matched_PairAcc": 0.810126582278481,
+          "matched_pair_n": 79
+        }
+      ],
+      "alpha_action": 0.9946050643920898,
+      "alpha_object": 0.9992395043373108,
+      "detector_weights": {
+        "w_base": 0.993028461933136,
+        "w_fg": 0.4822213053703308,
+        "bias": 0.009274180047214031
+      },
+      "U_pos_raw_R1_iou05": 0.31547619047619047,
+      "U_pos_gated_R1_iou05": 0.30357142857142855
+    },
+    "A3": {
+      "checks": {
+        "prediction_max_abs_error": 9.5367431640625e-07,
+        "checkpoint_parameter_count": 3646730,
+        "val_seen_auc": 0.8463131130311916,
+        "stored_val_seen_auc": 0.8463131130311916,
+        "threshold_replayed": 6.996917839164848,
+        "threshold_stored": 6.996917839164848,
+        "metric_max_abs_error": 0.0,
+        "prediction_unique_complete": true,
+        "metadata_equal": true,
+        "train_seen_only": true,
+        "video_overlap": {
+          "train_test": 0
+        },
+        "train_val_video_overlap": 0,
+        "val_test_video_overlap": 0,
+        "source_pair_n": {
+          "action_counterfactual": 449,
+          "object_counterfactual": 1023
+        },
+        "hq_spans_max_abs_error": 0.0,
+        "center_greater_than_width_fraction": 0.642168902323824
+      },
+      "metrics": {
+        "baseline": {
+          "Seen_AUROC": 0.7401666349790862,
+          "Unseen_AUROC": 0.48114828843995516,
+          "Gap": 0.25901834653913103,
+          "Matched_PairAcc": 0.4573643410852713,
+          "matched_pair_n": 129
+        },
+        "full": {
+          "Seen_AUROC": 0.8255883257950247,
+          "Unseen_AUROC": 0.6335402637485971,
+          "Gap": 0.19204806204642766,
+          "Matched_PairAcc": 0.7829457364341085,
+          "matched_pair_n": 129,
+          "Seen_RejF1": 0.6801948051948052,
+          "Unseen_RejF1": 0.714828897338403,
+          "U_pos_FRR": 42.70833333333333,
+          "U_neg_RR": 63.2996632996633
+        },
+        "detector_only": {
+          "Seen_AUROC": 0.740202700448963,
+          "Unseen_AUROC": 0.4950634820426487,
+          "Gap": 0.24513921840631425,
+          "Matched_PairAcc": 0.4806201550387597,
+          "matched_pair_n": 129
+        },
+        "detector_plus_action": {
+          "Seen_AUROC": 0.7792638975056871,
+          "Unseen_AUROC": 0.562587682379349,
+          "Gap": 0.21667621512633817,
+          "Matched_PairAcc": 0.6124031007751938,
+          "matched_pair_n": 129
+        },
+        "detector_plus_object": {
+          "Seen_AUROC": 0.7917175335721576,
+          "Unseen_AUROC": 0.5681642817059483,
+          "Gap": 0.22355325186620922,
+          "Matched_PairAcc": 0.6434108527131783,
+          "matched_pair_n": 129
+        },
+        "action_evidence_only": {
+          "Seen_AUROC": 0.9892841775571878,
+          "Unseen_AUROC": 0.9978079405162739,
+          "Gap": -0.008523762959086079,
+          "Matched_PairAcc": 0.9922480620155039,
+          "matched_pair_n": 129
+        },
+        "object_evidence_only": {
+          "Seen_AUROC": 0.9985725995823911,
+          "Unseen_AUROC": 0.9910213243546577,
+          "Gap": 0.007551275227733356,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 129
+        },
+        "negative_text_prior": {
+          "Seen_AUROC": 0.9996001527674931,
+          "Unseen_AUROC": 0.9999912317620651,
+          "Gap": -0.000391078994571914,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 129
+        },
+        "local_video_permuted_0": {
+          "Seen_AUROC": 0.8253926758327162,
+          "Unseen_AUROC": 0.6329834806397305,
+          "Gap": 0.19240919519298572,
+          "Matched_PairAcc": 0.7829457364341085,
+          "matched_pair_n": 129
+        },
+        "zero_visual_frozen_model": {
+          "Seen_AUROC": 0.9995993188837966,
+          "Unseen_AUROC": 0.9999912317620652,
+          "Gap": -0.00039191287826856325,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 129
+        }
+      },
+      "exact_query_U_cross_video": {
+        "baseline": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.20833333333333334,
+          "weighted": 0.4166666666666667
+        },
+        "full": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.3125,
+          "weighted": 0.5833333333333334
+        },
+        "detector_only": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.16666666666666666,
+          "weighted": 0.3333333333333333
+        },
+        "detector_plus_action": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.20833333333333334,
+          "weighted": 0.4166666666666667
+        },
+        "detector_plus_object": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.27083333333333337,
+          "weighted": 0.5
+        },
+        "action_evidence_only": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "object_evidence_only": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "negative_text_prior": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "local_video_permuted_0": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 0.3125,
+          "weighted": 0.5833333333333334
+        },
+        "zero_visual_frozen_model": {
+          "query_groups": 4,
+          "pair_n": 12,
+          "macro": 1.0,
+          "weighted": 1.0
+        }
+      },
+      "local_stream_video_permutations": [
+        {
+          "Seen_AUROC": 0.8253926758327162,
+          "Unseen_AUROC": 0.6329834806397305,
+          "Gap": 0.19240919519298572,
+          "Matched_PairAcc": 0.7829457364341085,
+          "matched_pair_n": 129
+        },
+        {
+          "Seen_AUROC": 0.825328258317156,
+          "Unseen_AUROC": 0.6326809764309764,
+          "Gap": 0.19264728188617952,
+          "Matched_PairAcc": 0.7984496124031008,
+          "matched_pair_n": 129
+        },
+        {
+          "Seen_AUROC": 0.8254274904770482,
+          "Unseen_AUROC": 0.6321811868686869,
+          "Gap": 0.19324630360836137,
+          "Matched_PairAcc": 0.7829457364341085,
+          "matched_pair_n": 129
+        },
+        {
+          "Seen_AUROC": 0.825350147764191,
+          "Unseen_AUROC": 0.6341715768799102,
+          "Gap": 0.1911785708842808,
+          "Matched_PairAcc": 0.7984496124031008,
+          "matched_pair_n": 129
+        },
+        {
+          "Seen_AUROC": 0.8252075536520771,
+          "Unseen_AUROC": 0.6307431958473625,
+          "Gap": 0.1944643578047146,
+          "Matched_PairAcc": 0.7984496124031008,
+          "matched_pair_n": 129
+        }
+      ],
+      "alpha_action": 0.9912443161010742,
+      "alpha_object": 0.9965014457702637,
+      "detector_weights": {
+        "w_base": 0.9881303906440735,
+        "w_fg": 0.4817237854003906,
+        "bias": -0.003526918822899461
+      },
+      "U_pos_raw_R1_iou05": 0.4427083333333333,
+      "U_pos_gated_R1_iou05": 0.3020833333333333
+    },
+    "C1": {
+      "checks": {
+        "prediction_max_abs_error": 9.5367431640625e-07,
+        "checkpoint_parameter_count": 3646730,
+        "val_seen_auc": 0.9293613947779327,
+        "stored_val_seen_auc": 0.9293613947779327,
+        "threshold_replayed": 1.1223814952838884,
+        "threshold_stored": 1.1223814952838884,
+        "metric_max_abs_error": 0.0,
+        "prediction_unique_complete": true,
+        "metadata_equal": true,
+        "train_seen_only": true,
+        "video_overlap": {
+          "train_test": 0
+        },
+        "train_val_video_overlap": 0,
+        "val_test_video_overlap": 0,
+        "source_pair_n": {
+          "action_counterfactual": 795,
+          "object_counterfactual": 584
+        },
+        "hq_spans_max_abs_error": 0.0,
+        "center_greater_than_width_fraction": 0.37173219978746014
+      },
+      "metrics": {
+        "baseline": {
+          "Seen_AUROC": 0.7799970235541575,
+          "Unseen_AUROC": 0.5654549611339734,
+          "Gap": 0.21454206242018403,
+          "Matched_PairAcc": 0.6736111111111112,
+          "matched_pair_n": 144
+        },
+        "full": {
+          "Seen_AUROC": 0.9161323364663576,
+          "Unseen_AUROC": 0.8820530406950161,
+          "Gap": 0.0340792957713415,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144,
+          "Seen_RejF1": 0.8074324324324325,
+          "Unseen_RejF1": 0.05734767025089606,
+          "U_pos_FRR": 0.6172839506172839,
+          "U_neg_RR": 2.9629629629629632
+        },
+        "detector_only": {
+          "Seen_AUROC": 0.7810344167305342,
+          "Unseen_AUROC": 0.5716735253772292,
+          "Gap": 0.20936089135330505,
+          "Matched_PairAcc": 0.6666666666666666,
+          "matched_pair_n": 144
+        },
+        "detector_plus_action": {
+          "Seen_AUROC": 0.8670381891574962,
+          "Unseen_AUROC": 0.7338591678097851,
+          "Gap": 0.1331790213477111,
+          "Matched_PairAcc": 0.875,
+          "matched_pair_n": 144
+        },
+        "detector_plus_object": {
+          "Seen_AUROC": 0.858850054511618,
+          "Unseen_AUROC": 0.7744855967078188,
+          "Gap": 0.0843644578037992,
+          "Matched_PairAcc": 0.9375,
+          "matched_pair_n": 144
+        },
+        "action_evidence_only": {
+          "Seen_AUROC": 0.9946726951814057,
+          "Unseen_AUROC": 0.9914951989026063,
+          "Gap": 0.0031774962787993744,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144
+        },
+        "object_evidence_only": {
+          "Seen_AUROC": 0.9988894075854771,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0011105924145229373,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144
+        },
+        "negative_text_prior": {
+          "Seen_AUROC": 0.9996235814011885,
+          "Unseen_AUROC": 0.9999771376314587,
+          "Gap": -0.0003535562302702244,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144
+        },
+        "local_video_permuted_0": {
+          "Seen_AUROC": 0.9157181063405567,
+          "Unseen_AUROC": 0.8776177411979882,
+          "Gap": 0.03810036514256854,
+          "Matched_PairAcc": 0.9930555555555556,
+          "matched_pair_n": 144
+        },
+        "zero_visual_frozen_model": {
+          "Seen_AUROC": 0.9996720577178417,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0003279422821582667,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144
+        }
+      },
+      "exact_query_U_cross_video": {
+        "baseline": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.46328502415458933,
+          "weighted": 0.4731182795698925
+        },
+        "full": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.872705314009662,
+          "weighted": 0.9032258064516129
+        },
+        "detector_only": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.4570048309178744,
+          "weighted": 0.4731182795698925
+        },
+        "detector_plus_action": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.643478260869565,
+          "weighted": 0.6774193548387096
+        },
+        "detector_plus_object": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.7079710144927537,
+          "weighted": 0.7634408602150538
+        },
+        "action_evidence_only": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "object_evidence_only": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "negative_text_prior": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "local_video_permuted_0": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 0.7857487922705314,
+          "weighted": 0.8602150537634409
+        },
+        "zero_visual_frozen_model": {
+          "query_groups": 23,
+          "pair_n": 93,
+          "macro": 1.0,
+          "weighted": 1.0
+        }
+      },
+      "local_stream_video_permutations": [
+        {
+          "Seen_AUROC": 0.9157181063405567,
+          "Unseen_AUROC": 0.8776177411979882,
+          "Gap": 0.03810036514256854,
+          "Matched_PairAcc": 0.9930555555555556,
+          "matched_pair_n": 144
+        },
+        {
+          "Seen_AUROC": 0.9149841749064286,
+          "Unseen_AUROC": 0.8771833561957019,
+          "Gap": 0.037800818710726714,
+          "Matched_PairAcc": 0.9930555555555556,
+          "matched_pair_n": 144
+        },
+        {
+          "Seen_AUROC": 0.9158657167247655,
+          "Unseen_AUROC": 0.878029263831733,
+          "Gap": 0.0378364528930325,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 144
+        },
+        {
+          "Seen_AUROC": 0.916240438652494,
+          "Unseen_AUROC": 0.8772748056698674,
+          "Gap": 0.038965632982626675,
+          "Matched_PairAcc": 0.9791666666666666,
+          "matched_pair_n": 144
+        },
+        {
+          "Seen_AUROC": 0.9155823726539281,
+          "Unseen_AUROC": 0.8741655235482396,
+          "Gap": 0.041416849105688436,
+          "Matched_PairAcc": 0.9930555555555556,
+          "matched_pair_n": 144
+        }
+      ],
+      "alpha_action": 0.9950884580612183,
+      "alpha_object": 0.9983453154563904,
+      "detector_weights": {
+        "w_base": 0.9912083148956299,
+        "w_fg": 0.4866922199726105,
+        "bias": -0.0030616007279604673
+      },
+      "U_pos_raw_R1_iou05": 0.41975308641975306,
+      "U_pos_gated_R1_iou05": 0.41975308641975306
+    },
+    "C2_alt": {
+      "checks": {
+        "prediction_max_abs_error": 9.5367431640625e-07,
+        "checkpoint_parameter_count": 3646730,
+        "val_seen_auc": 0.7954316608214168,
+        "stored_val_seen_auc": 0.7954316608214168,
+        "threshold_replayed": 8.841997430131242,
+        "threshold_stored": 8.841997430131242,
+        "metric_max_abs_error": 0.0,
+        "prediction_unique_complete": true,
+        "metadata_equal": true,
+        "train_seen_only": true,
+        "video_overlap": {
+          "train_test": 0
+        },
+        "train_val_video_overlap": 0,
+        "val_test_video_overlap": 0,
+        "source_pair_n": {
+          "action_counterfactual": 795,
+          "object_counterfactual": 584
+        },
+        "hq_spans_max_abs_error": 0.0,
+        "center_greater_than_width_fraction": 0.5982996811902231
+      },
+      "metrics": {
+        "baseline": {
+          "Seen_AUROC": 0.695182453178133,
+          "Unseen_AUROC": 0.5424512153372133,
+          "Gap": 0.1527312378409197,
+          "Matched_PairAcc": 0.5151515151515151,
+          "matched_pair_n": 33
+        },
+        "full": {
+          "Seen_AUROC": 0.7942856334334778,
+          "Unseen_AUROC": 0.6614515576857241,
+          "Gap": 0.13283407574775374,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33,
+          "Seen_RejF1": 0.6443381180223285,
+          "Unseen_RejF1": 0.8475177304964538,
+          "U_pos_FRR": 61.73913043478261,
+          "U_neg_RR": 94.09448818897637
+        },
+        "detector_only": {
+          "Seen_AUROC": 0.6983950157291288,
+          "Unseen_AUROC": 0.5437521396781924,
+          "Gap": 0.1546428760509364,
+          "Matched_PairAcc": 0.5151515151515151,
+          "matched_pair_n": 33
+        },
+        "detector_plus_action": {
+          "Seen_AUROC": 0.7527880883095077,
+          "Unseen_AUROC": 0.6163300239643957,
+          "Gap": 0.13645806434511198,
+          "Matched_PairAcc": 0.6363636363636364,
+          "matched_pair_n": 33
+        },
+        "detector_plus_object": {
+          "Seen_AUROC": 0.7453885590042777,
+          "Unseen_AUROC": 0.5969188634029443,
+          "Gap": 0.14846969560133338,
+          "Matched_PairAcc": 0.5757575757575758,
+          "matched_pair_n": 33
+        },
+        "action_evidence_only": {
+          "Seen_AUROC": 0.9921408594188477,
+          "Unseen_AUROC": 0.9999315302978432,
+          "Gap": -0.0077906708789955426,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 33
+        },
+        "object_evidence_only": {
+          "Seen_AUROC": 0.998645927169653,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0013540728303470528,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 33
+        },
+        "negative_text_prior": {
+          "Seen_AUROC": 0.999614671716338,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0003853282836620009,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 33
+        },
+        "local_video_permuted_0": {
+          "Seen_AUROC": 0.79357345998387,
+          "Unseen_AUROC": 0.6577199589181788,
+          "Gap": 0.13585350106569116,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        },
+        "zero_visual_frozen_model": {
+          "Seen_AUROC": 0.9996686742726162,
+          "Unseen_AUROC": 1.0,
+          "Gap": -0.0003313257273838133,
+          "Matched_PairAcc": 1.0,
+          "matched_pair_n": 33
+        }
+      },
+      "exact_query_U_cross_video": {
+        "baseline": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.48055971234983585,
+          "weighted": 0.5562248995983936
+        },
+        "full": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.5969021490626429,
+          "weighted": 0.6987951807228916
+        },
+        "detector_only": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.485132186058112,
+          "weighted": 0.5783132530120482
+        },
+        "detector_plus_action": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.5477532526915243,
+          "weighted": 0.6506024096385542
+        },
+        "detector_plus_object": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.5468359001538013,
+          "weighted": 0.642570281124498
+        },
+        "action_evidence_only": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "object_evidence_only": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "negative_text_prior": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 1.0,
+          "weighted": 1.0
+        },
+        "local_video_permuted_0": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 0.6021519204389575,
+          "weighted": 0.6907630522088354
+        },
+        "zero_visual_frozen_model": {
+          "query_groups": 27,
+          "pair_n": 498,
+          "macro": 1.0,
+          "weighted": 1.0
+        }
+      },
+      "local_stream_video_permutations": [
+        {
+          "Seen_AUROC": 0.79357345998387,
+          "Unseen_AUROC": 0.6577199589181788,
+          "Gap": 0.13585350106569116,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        },
+        {
+          "Seen_AUROC": 0.7937274498059209,
+          "Unseen_AUROC": 0.6598425196850394,
+          "Gap": 0.13388493012088154,
+          "Matched_PairAcc": 0.696969696969697,
+          "matched_pair_n": 33
+        },
+        {
+          "Seen_AUROC": 0.7939083229965995,
+          "Unseen_AUROC": 0.6589866484080795,
+          "Gap": 0.13492167458852,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        },
+        {
+          "Seen_AUROC": 0.7928069302494494,
+          "Unseen_AUROC": 0.6610749743238618,
+          "Gap": 0.13173195592558762,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        },
+        {
+          "Seen_AUROC": 0.7934139284147773,
+          "Unseen_AUROC": 0.6611434440260184,
+          "Gap": 0.13227048438875888,
+          "Matched_PairAcc": 0.7272727272727273,
+          "matched_pair_n": 33
+        }
+      ],
+      "alpha_action": 0.9948304295539856,
+      "alpha_object": 0.9998912811279297,
+      "detector_weights": {
+        "w_base": 0.9880916476249695,
+        "w_fg": 0.4842732846736908,
+        "bias": -0.0032198349945247173
+      },
+      "U_pos_raw_R1_iou05": 0.3826086956521739,
+      "U_pos_gated_R1_iou05": 0.1826086956521739
+    }
+  },
+  "sha256": {
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A1/verifier_checkpoint.pt": "e973cdec1a545543e269de30088ce106d848214de084d14e86795b1a33b0667d",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A1/test.npz": "2ae4dad1df1659a313814432137ce59dec5bad42185b38c6e1da72e2c9e1fbf3",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A1/val.npz": "c77907a27009bccc34a682ccb55587663a2ded1dff19ec89dfcac2db5029c40d",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A1/train.npz": "f5f33ef48dbeb008538f8e66c4c48f8ee95f562e714d5ac20280074bc9bd6b1a",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A1/predictions.jsonl": "5d90c784c6dae7cc4da21bc9e3b8cfa1557acecbd27056547732a1fe469b680c",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A2_alt/verifier_checkpoint.pt": "220f2aae93d692e741fc9d0e51155ae2972af98f17e9b824a949dcf99e18b51d",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A2_alt/test.npz": "4efd163b49e295878048f663da9db57c0ac4c286e2c549e65c9deca8c2ae04db",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A2_alt/val.npz": "e41d61a3abc488a3970a3a7e8dd0b9c71dffcbbb3f87d20ce3b34c20de351b73",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A2_alt/train.npz": "588ece0d6729cf8568d7ca77d8df3f1adc808caaa1ed6593721e6965a7ebf5bc",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A2_alt/predictions.jsonl": "d588363d3397c8cfc38ab590c015cdd263a25aebd6aa5c8ef415314dcc87816c",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A3/verifier_checkpoint.pt": "038a5a200d3c5d79b79ebf55976079f88d2d842340550946d65a5964a3e332cf",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A3/test.npz": "42f0b790fc8f0e566ef58c460e8f236d19bb0afa1b49c622bc7003cd1ab3cdce",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A3/val.npz": "b57b780ec0eaa685a349966390fd4b17568f4ef899637934460529d6cb0c44f6",
+    "experiments/agy_test/decomposed_action_object_verifier/features/A3/train.npz": "4563ebbcb8c4fbee7ffe67175693feb3a9248457433e2948765bb315061f5fc4",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/A3/predictions.jsonl": "bb5be6e80d987633f4c6fd263ba8bbe2bfa3e51edd62b37168671d8b8124f981",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/C1/verifier_checkpoint.pt": "425eaaae6f2d11074de99ffda64770b24886798e6eb46bf731f050677c185b22",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C1/test.npz": "d6f153f29766c1cfbd4f38e50908fa17a0f80c6a3ffff01efb4435c085eb3e56",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C1/val.npz": "f4cf6ce26a37e8c9060feb6888a0ba145c3d85e6cf7e43f98584636a2c586943",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C1/train.npz": "87ad6fcddba25d0fd36822cf15499832dc1cf382fc54a61214f883b40d529a22",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/C1/predictions.jsonl": "a140469e173a1031ad39183af9a845d081ec032bb5ccd44ac329a3811ae5475e",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/C2_alt/verifier_checkpoint.pt": "d6cd6eb593d3bb31cfcd1a777cc1db42c6da9e8f12be7ea9ccfbc0bf25ce2d8e",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C2_alt/test.npz": "62524b8919ba7fea32a05ce16b0fd02d26c975461604d4c341e8f02b78d8227f",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C2_alt/val.npz": "c0f8bac7b6c3517d87dc80a4f798aab1d785ae09999522db72526e4f28413339",
+    "experiments/agy_test/decomposed_action_object_verifier/features/C2_alt/train.npz": "053d25f3cf5f39798eba8410a85de39764ef7d53748acac106258dea298699be",
+    "experiments/agy_test/decomposed_action_object_verifier/runs/C2_alt/predictions.jsonl": "5cc30cc9ce4647a9240ac76a8f9f3a690cf96e65a8672f23032d5c3f0106c82b"
+  },
+  "bootstrap": {
+    "repeats": 2000,
+    "video_clusters": 1217,
+    "macro": {
+      "delta_seen": [
+        0.08797374229100431,
+        0.09571666074090436
+      ],
+      "delta_unseen": [
+        0.17442240978707138,
+        0.19733235776896071
+      ],
+      "gap_reduction": [
+        0.08175450191130665,
+        0.10634377750138893
+      ]
+    },
+    "per_split": {
+      "A1": {
+        "delta_seen": [
+          0.05952573243027095,
+          0.07305449102511354
+        ],
+        "delta_unseen": [
+          0.1273928766209664,
+          0.15683364143178594
+        ],
+        "gap_reduction": [
+          0.06031358958266072,
+          0.09250340947662478
+        ]
+      },
+      "A2_alt": {
+        "delta_seen": [
+          0.06533763650841905,
+          0.07939024228087052
+        ],
+        "delta_unseen": [
+          0.17161486672125095,
+          0.2272499482362255
+        ],
+        "gap_reduction": [
+          0.0997091197935107,
+          0.15558495742310335
+        ]
+      },
+      "A3": {
+        "delta_seen": [
+          0.07816990323366173,
+          0.09329068224196886
+        ],
+        "delta_unseen": [
+          0.1316907011305094,
+          0.1759465575117073
+        ],
+        "gap_reduction": [
+          0.04437450778768391,
+          0.09130932701272612
+        ]
+      },
+      "C1": {
+        "delta_seen": [
+          0.12770516728056036,
+          0.14531334772385926
+        ],
+        "delta_unseen": [
+          0.28488762110939125,
+          0.34876340902284286
+        ],
+        "gap_reduction": [
+          0.14896870645236038,
+          0.2130458349116124
+        ]
+      },
+      "C2_alt": {
+        "delta_seen": [
+          0.0893926036167838,
+          0.10900943252741561
+        ],
+        "delta_unseen": [
+          0.09514736749743768,
+          0.14275620908714137
+        ],
+        "gap_reduction": [
+          -0.006093842963895105,
+          0.04680230412208369
+        ]
+      }
+    }
+  },
+  "macro_metrics": {
+    "baseline": {
+      "Seen_AUROC": 0.7510895854373848,
+      "Unseen_AUROC": 0.5027266195582075,
+      "Gap": 0.24836296587917736,
+      "Matched_PairAcc": 0.5180926443621469
+    },
+    "full": {
+      "Seen_AUROC": 0.8428911823449855,
+      "Unseen_AUROC": 0.6882799818912405,
+      "Gap": 0.1546112004537451,
+      "Matched_PairAcc": 0.8487493078014126
+    },
+    "detector_only": {
+      "Seen_AUROC": 0.7534117915433843,
+      "Unseen_AUROC": 0.5092537798813674,
+      "Gap": 0.24415801166201687,
+      "Matched_PairAcc": 0.523213081198068
+    },
+    "detector_plus_action": {
+      "Seen_AUROC": 0.8014956411932932,
+      "Unseen_AUROC": 0.5938603245714531,
+      "Gap": 0.20763531662184018,
+      "Matched_PairAcc": 0.7199902834874868
+    },
+    "detector_plus_object": {
+      "Seen_AUROC": 0.8042445059834229,
+      "Unseen_AUROC": 0.6181683272631149,
+      "Gap": 0.18607617872030807,
+      "Matched_PairAcc": 0.7590032734903208
+    },
+    "action_evidence_only": {
+      "Seen_AUROC": 0.9869541595035984,
+      "Unseen_AUROC": 0.9841027906679379,
+      "Gap": 0.002851368835660617,
+      "Matched_PairAcc": 0.9978085867620752
+    },
+    "object_evidence_only": {
+      "Seen_AUROC": 0.9985281535203756,
+      "Unseen_AUROC": 0.9979452009986186,
+      "Gap": 0.0005829525217570186,
+      "Matched_PairAcc": 1.0
+    },
+    "negative_text_prior": {
+      "Seen_AUROC": 0.999570061896517,
+      "Unseen_AUROC": 0.9999775304326555,
+      "Gap": -0.00040746853613846665,
+      "Matched_PairAcc": 1.0
+    },
+    "local_video_permuted_0": {
+      "Seen_AUROC": 0.8424471718660239,
+      "Unseen_AUROC": 0.6872986404503119,
+      "Gap": 0.1551485314157122,
+      "Matched_PairAcc": 0.8505330901231696
+    },
+    "zero_visual_frozen_model": {
+      "Seen_AUROC": 0.9995976655129644,
+      "Unseen_AUROC": 0.9999863309517577,
+      "Gap": -0.00038866543879338965,
+      "Matched_PairAcc": 1.0
+    }
+  }
+}

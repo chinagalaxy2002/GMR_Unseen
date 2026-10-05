@@ -383,3 +383,48 @@ The repository's [`LICENSE`](LICENSE) applies to its software; third-party datas
 三族训练侧诊断、候选排序/几何、支持桥接、冻结时序表示及匹配容量读出已完成。候选一致性未支持共同作用路径；给定GT的局部证据与无GT的跨查询绝对支持仍有缺口，未启动新全模型训练。
 
 [完整实验记录、全部指标、冻结协议、逐轮账本、失败记录与源码](experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/EXPERIMENT_RECORD.md)。
+
+
+## 2026-10-06：AC-Verifier 对齐校准、独立审计与 backbone 范围
+
+本次更新发布 `experiments/agy_test/` 的实验代码、报告和小型指标文件。当前推荐入口是 [AC-Verifier 复现说明](experiments/agy_test/aligned_calibration_verifier/README.md)，结论以 [独立审计报告](experiments/agy_test/ac_audit_20261006/AC_AUDIT_REPORT.md) 为准；[实验索引](experiments/agy_test/README.md)区分当前结果与历史实验。
+
+### 方法与五划分结果
+
+AC-Verifier 在冻结的 QD-DETR-GMR 检测器输出上训练轻量适配器，加入 CLIP ViT-B/32 的整句 EOT 投影与候选/全局视频相似度，并减去固定训练视频参考相似度。训练仅使用 S+/S−，检查点与判定阈值仅由 Seen validation 选择；当前实验为 seed 3407。参考是单位化的训练视频平均向量，不具有自动成立的“无偏”保证。
+
+| 设置 | Mean Seen AUROC | Mean Unseen AUROC | Seen−Unseen Gap | Mean matched PairAcc |
+| --- | ---: | ---: | ---: | ---: |
+| HQ 缓存完整 logit 基线 | 0.7511 | 0.5027 | 0.2484 | 0.5181 |
+| P0：独立 Detector Adapter | 0.7535 | 0.5078 | 0.2456 | 0.5261 |
+| P1：AC-Verifier | 0.7561 | 0.5188 | 0.2373 | 0.5331 |
+
+五划分等权宏平均 Unseen AUROC 增益 **+1.61 pp**，Gap 缩小 **1.11 pp**。共享视频成对聚类 bootstrap（2,000 次）95% 区间分别为 **[+0.66, +2.66] pp**、**[+0.14, +2.15] pp**；Seen AUROC 同时提高约 0.50 pp。原始汇总见 [benchmark_summary.json](experiments/agy_test/aligned_calibration_verifier/benchmark_summary.json)，独立统计见 [bootstrap.json](experiments/agy_test/ac_audit_20261006/bootstrap.json)。
+
+这支持当前五组、固定训练结果下的平均 AUROC 改善。收益主要集中于 C1；动作三划分及去掉 C1 的 AUROC/Gap 改善区间仍跨零。A2_alt、A3 的 Unseen AUROC 仍低于 0.5，多种子、新语义留出及完整 GMR 拒绝/定位改善尚待确认。固定查询的视频置换支持新增 CLIP 分支的视频对应贡献；将新增相似度置零仍保留检测器视觉输入，不能称为纯文本控制。
+
+### 是否只有一个 backbone，是否支持迁移？
+
+| 范围 | 当前状态 |
+| --- | --- |
+| 仓库 GMR 基线 | 已包含 Moment-DETR、QD-DETR、FlashVTG 三类模型与既有基线实验 |
+| 本次 AC-Verifier 检测器 backbone | **仅验证 QD-DETR-GMR**；当前 `h_pool` 输入固定为 512 维（256 维 slot 的 max/mean 拼接） |
+| 本次新增视觉/文本编码器 | CLIP ViT-B/32；当前 P1 不使用 SlowFast，动作/物体短语也不参与 P1 打分 |
+| AC 迁移至 Moment-DETR / FlashVTG | 方法可适配，但尚未提供经过验证的统一多 backbone 接口或迁移结果 |
+
+迁移需为目标检测器导出同一查询顺序的原始存在性 logit、前景分数、slot 表示与候选边界；适配 slot 维度、前景分数定义及时间坐标后，按同一 Seen-only 协议重新训练 P0/P1。应同时报告至少三个配对种子、逐 backbone 的 Unseen AUROC/Gap、拒绝阈值指标与定位结果。更换 CLIP 编码器也需重新提取一致的文本/视频投影，并重新计算训练参考，现有 512 维缓存不可直接复用。
+
+### 代码、历史记录与复现资源
+
+- 当前实现：[model.py](experiments/agy_test/aligned_calibration_verifier/model.py)、[特征提取](experiments/agy_test/aligned_calibration_verifier/extract_aligned_features.py)、[训练评估](experiments/agy_test/aligned_calibration_verifier/train_and_eval.py)。
+- 独立复查：[audit_ac.py](experiments/agy_test/ac_audit_20261006/audit_ac.py)、[根因分析](experiments/agy_test/dao_root_cause_20261005/ROOT_CAUSE_REPORT.md)、[DAO 标签泄漏审计](experiments/agy_test/dao_audit_20261005/DAO_AUDIT_REPORT.md)。旧 DAO 的 0.6883 Unseen AUROC 已因输入标签泄漏失效，不能用作有效方法收益。
+- GitHub 包含代码、文档、指标 JSON 与原始产物清单；HQ/CLIP 特征、模型权重、检查点、逐查询预测和大缓存保留本地。复跑需要这些输入，详细格式与环境变量见 [AC README](experiments/agy_test/aligned_calibration_verifier/README.md)。当前训练脚本保存 P1 checkpoint，不保存独立 P0 checkpoint 或逐查询预测；审计目录记录了补充复验产物。
+
+准备好本地资源后，在仓库根目录执行：
+
+```bash
+python experiments/agy_test/aligned_calibration_verifier/extract_aligned_features.py
+python experiments/agy_test/aligned_calibration_verifier/train_and_eval.py
+```
+
+本次发布在独立临时副本中完成，原实验工作区及训练产物保持原状。未重新训练或执行模型评测。

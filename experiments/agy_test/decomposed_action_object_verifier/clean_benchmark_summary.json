@@ -1,0 +1,313 @@
+{
+  "model_name": "Decomposed_Action_Object_Verifier_Gated",
+  "macro_summary": {
+    "Seen_AUROC": 0.7587230093557222,
+    "Unseen_AUROC": 0.5019107539639819,
+    "Gap": 0.2568122553917404,
+    "Matched_PairAcc": 0.5226883597872706,
+    "U_pos_FRR": 24.410789730156257,
+    "U_neg_RR": 27.026066795144924,
+    "Action_CF_AUROC": NaN,
+    "delta_seen": 0.007633423918337523,
+    "delta_unseen": -0.0008158655942255844,
+    "gap_reduction": -0.008449289512563107,
+    "baseline_macro_fresh": {
+      "Seen_AUROC": 0.7510895854373848,
+      "Unseen_AUROC": 0.5027266195582075,
+      "Gap": 0.24836296587917736,
+      "Matched_PairAcc": 0.5180926443621469,
+      "Action_CF_AUROC": NaN
+    },
+    "visual_permutation_control": {
+      "Unseen_AUROC": 0.5027938465024405,
+      "Matched_PairAcc": 0.4807233358013458
+    },
+    "text_only_control": {
+      "Unseen_AUROC": 0.5048708791437946,
+      "Matched_PairAcc": 0.5168969249113494
+    }
+  },
+  "bootstrap_95ci": {
+    "delta_seen": [
+      0.005196506006691808,
+      0.009898387653807244
+    ],
+    "delta_unseen": [
+      -0.009179931115062656,
+      0.007719164043160697
+    ],
+    "gap_reduction": [
+      -0.0172517378030951,
+      0.0003470609564589321
+    ]
+  },
+  "splits": {
+    "A1": {
+      "split": "A1",
+      "best_epoch": 37,
+      "best_val_seen_auc": 0.8146100742840643,
+      "threshold": 4.27083962290614,
+      "Seen_AUROC": 0.7923749202431989,
+      "Unseen_AUROC": 0.5016412503483333,
+      "Gap": 0.2907336698948656,
+      "Matched_PairAcc": 0.5737179487179487,
+      "U_pos_FRR": 12.258064516129032,
+      "U_neg_RR": 15.728328865058089,
+      "Action_CF_AUROC": 0.4697563913800027,
+      "Object_CF_AUROC": 0.7396754281162883,
+      "delta_seen": 0.006339017818064785,
+      "delta_unseen": -0.0055839026780823975,
+      "gap_reduction": -0.011922920496147182,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7860359024251341,
+        "Unseen_AUROC": 0.5072251530264157,
+        "Gap": 0.2788107493987184,
+        "Matched_PairAcc": 0.6025641025641025,
+        "Action_CF_AUROC": 0.47665417391692316,
+        "Object_CF_AUROC": 0.7435682994822781
+      },
+      "baseline_official_published": {
+        "Seen": 0.7827,
+        "Unseen": 0.5058,
+        "Gap": 0.2769,
+        "PairAcc": 0.5721
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5057607118490972,
+        "Matched_PairAcc": 0.5416666666666666
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.499585843735286,
+        "Matched_PairAcc": 0.5512820512820513
+      }
+    },
+    "A2_alt": {
+      "split": "A2_alt",
+      "best_epoch": 40,
+      "best_val_seen_auc": 0.7888216595022216,
+      "threshold": 9.413844958201304,
+      "Seen_AUROC": 0.7620465899672103,
+      "Unseen_AUROC": 0.4323679792429792,
+      "Gap": 0.3296786107242311,
+      "Matched_PairAcc": 0.4050632911392405,
+      "U_pos_FRR": 5.357142857142857,
+      "U_neg_RR": 3.205128205128205,
+      "Action_CF_AUROC": 0.43095632292652164,
+      "Object_CF_AUROC": NaN,
+      "delta_seen": 0.007980676916796936,
+      "delta_unseen": 0.015014499389499336,
+      "gap_reduction": 0.0070338224727024,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7540659130504134,
+        "Unseen_AUROC": 0.41735347985347987,
+        "Gap": 0.3367124331969335,
+        "Matched_PairAcc": 0.34177215189873417,
+        "Action_CF_AUROC": 0.419228949858089,
+        "Object_CF_AUROC": NaN
+      },
+      "baseline_official_published": {
+        "Seen": 0.7442,
+        "Unseen": 0.4727,
+        "Gap": 0.2714,
+        "PairAcc": 0.4557
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.43811050061050055,
+        "Matched_PairAcc": 0.3670886075949367
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.43795787545787546,
+        "Matched_PairAcc": 0.3924050632911392
+      }
+    },
+    "A3": {
+      "split": "A3",
+      "best_epoch": 39,
+      "best_val_seen_auc": 0.7762529050399493,
+      "threshold": 6.640385346608359,
+      "Seen_AUROC": 0.7441453025663605,
+      "Unseen_AUROC": 0.4790263748597082,
+      "Gap": 0.26511892770665224,
+      "Matched_PairAcc": 0.4806201550387597,
+      "U_pos_FRR": 32.29166666666667,
+      "U_neg_RR": 30.303030303030305,
+      "Action_CF_AUROC": 0.470596340388007,
+      "Object_CF_AUROC": 0.8137254901960784,
+      "delta_seen": 0.003978667587274276,
+      "delta_unseen": -0.002121913580246937,
+      "gap_reduction": -0.006100581167521213,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7401666349790862,
+        "Unseen_AUROC": 0.48114828843995516,
+        "Gap": 0.25901834653913103,
+        "Matched_PairAcc": 0.4573643410852713,
+        "Action_CF_AUROC": 0.4718272339800118,
+        "Object_CF_AUROC": 0.7971813725490196
+      },
+      "baseline_official_published": {
+        "Seen": 0.7334,
+        "Unseen": 0.487,
+        "Gap": 0.2464,
+        "PairAcc": 0.4535
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5064095819304153,
+        "Matched_PairAcc": 0.49612403100775193
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.4773604096520763,
+        "Matched_PairAcc": 0.4728682170542636
+      }
+    },
+    "C1": {
+      "split": "C1",
+      "best_epoch": 32,
+      "best_val_seen_auc": 0.8053769591102278,
+      "threshold": 2.746372188533748,
+      "Seen_AUROC": 0.7912609804916759,
+      "Unseen_AUROC": 0.5659122085048011,
+      "Gap": 0.22534877198687486,
+      "Matched_PairAcc": 0.6388888888888888,
+      "U_pos_FRR": 4.320987654320987,
+      "U_neg_RR": 5.185185185185185,
+      "Action_CF_AUROC": NaN,
+      "Object_CF_AUROC": 0.5623757340361585,
+      "delta_seen": 0.011263956937518471,
+      "delta_unseen": 0.00045724737082764033,
+      "gap_reduction": -0.01080670956669083,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.7799970235541575,
+        "Unseen_AUROC": 0.5654549611339734,
+        "Gap": 0.21454206242018403,
+        "Matched_PairAcc": 0.6736111111111112,
+        "Action_CF_AUROC": NaN,
+        "Object_CF_AUROC": 0.5619595875525963
+      },
+      "baseline_official_published": {
+        "Seen": 0.7798,
+        "Unseen": 0.5618,
+        "Gap": 0.218,
+        "PairAcc": 0.6354
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5534522176497485,
+        "Matched_PairAcc": 0.5138888888888888
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.5675125743026977,
+        "Matched_PairAcc": 0.6527777777777778
+      }
+    },
+    "C2_alt": {
+      "split": "C2_alt",
+      "best_epoch": 35,
+      "best_val_seen_auc": 0.6979690687461687,
+      "threshold": 8.171669248823408,
+      "Seen_AUROC": 0.7037872535101661,
+      "Unseen_AUROC": 0.5306059568640877,
+      "Gap": 0.1731812966460784,
+      "Matched_PairAcc": 0.5151515151515151,
+      "U_pos_FRR": 67.82608695652173,
+      "U_neg_RR": 80.70866141732283,
+      "Action_CF_AUROC": 0.6152832674571804,
+      "Object_CF_AUROC": 0.5219376613063331,
+      "delta_seen": 0.008604800332033147,
+      "delta_unseen": -0.011845258473125564,
+      "gap_reduction": -0.02045005880515871,
+      "baseline_fresh": {
+        "Seen_AUROC": 0.695182453178133,
+        "Unseen_AUROC": 0.5424512153372133,
+        "Gap": 0.1527312378409197,
+        "Matched_PairAcc": 0.5151515151515151,
+        "Action_CF_AUROC": 0.5942028985507246,
+        "Object_CF_AUROC": 0.538495135993647
+      },
+      "baseline_official_published": {
+        "Seen": 0.6979,
+        "Unseen": 0.5447,
+        "Gap": 0.1532,
+        "PairAcc": 0.5303
+      },
+      "visual_permutation_control": {
+        "Unseen_AUROC": 0.5102362204724409,
+        "Matched_PairAcc": 0.48484848484848486
+      },
+      "text_only_control": {
+        "Unseen_AUROC": 0.5419376925710373,
+        "Matched_PairAcc": 0.5151515151515151
+      }
+    }
+  },
+  "per_split_bootstrap": {
+    "A1": {
+      "delta_seen": [
+        0.0020455884831853594,
+        0.010568595072969957
+      ],
+      "delta_unseen": [
+        -0.016499628729433866,
+        0.004887456677991295
+      ],
+      "gap_reduction": [
+        -0.02307902887303609,
+        -0.0007041863986497419
+      ]
+    },
+    "A2_alt": {
+      "delta_seen": [
+        0.0046104714600316175,
+        0.011266257375194755
+      ],
+      "delta_unseen": [
+        -0.009979026725994431,
+        0.04153991865901851
+      ],
+      "gap_reduction": [
+        -0.018222719560567584,
+        0.033342518180696445
+      ]
+    },
+    "A3": {
+      "delta_seen": [
+        0.00017919017556438657,
+        0.007941086272098448
+      ],
+      "delta_unseen": [
+        -0.015441979836975714,
+        0.011613554631132764
+      ],
+      "gap_reduction": [
+        -0.020267102565969353,
+        0.008310454729747735
+      ]
+    },
+    "C1": {
+      "delta_seen": [
+        0.008061751453703025,
+        0.014476784156249669
+      ],
+      "delta_unseen": [
+        -0.01299178618600141,
+        0.014938439676156013
+      ],
+      "gap_reduction": [
+        -0.024750736161185134,
+        0.0040176278316331636
+      ]
+    },
+    "C2_alt": {
+      "delta_seen": [
+        0.0017554579222947813,
+        0.015703337885069377
+      ],
+      "delta_unseen": [
+        -0.03641494657567093,
+        0.010584028941862908
+      ],
+      "gap_reduction": [
+        -0.04670500321350845,
+        0.002685809189474462
+      ]
+    }
+  }
+}

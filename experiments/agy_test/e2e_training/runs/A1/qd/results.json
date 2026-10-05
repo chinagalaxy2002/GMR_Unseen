@@ -1,0 +1,56 @@
+{
+  "split": "A1",
+  "backbone": "qd",
+  "method": "QSW_QD_DETR",
+  "train_mode": "adapter_only",
+  "best_epoch": 4,
+  "seen_threshold": 5.308357806773754,
+  "Seen_AUROC": 0.8116045882877917,
+  "Unseen_AUROC": 0.5221578406219071,
+  "Seen_Unseen_Gap": 0.28944674766588463,
+  "Matched_PairAcc": 0.6089743589743589,
+  "Same_Query_PairAcc": 0.5,
+  "U_pos_FRR": 14.838709677419354,
+  "U_neg_RR": 18.230563002680967,
+  "Raw_R1@0.5": 24.516129032258064,
+  "Gated_R1@0.5": 20.64516129032258,
+  "Shuffled_Video_U_AUROC": 0.5109208490683886,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.06506265443793002,
+      "exist_loss": 0.06506265443793002,
+      "seen_auc": 0.8030855447935532,
+      "is_best": true
+    },
+    {
+      "epoch": 2,
+      "loss": 0.042163377392519484,
+      "exist_loss": 0.042163377392519484,
+      "seen_auc": 0.809901042076804,
+      "is_best": true
+    },
+    {
+      "epoch": 3,
+      "loss": 0.03851384119663845,
+      "exist_loss": 0.03851384119663845,
+      "seen_auc": 0.8084993569047432,
+      "is_best": false
+    },
+    {
+      "epoch": 4,
+      "loss": 0.03777004757244313,
+      "exist_loss": 0.03777004757244313,
+      "seen_auc": 0.8116045882877917,
+      "is_best": true
+    },
+    {
+      "epoch": 5,
+      "loss": 0.037586220952969554,
+      "exist_loss": 0.037586220952969554,
+      "seen_auc": 0.8095007480904008,
+      "is_best": false
+    }
+  ],
+  "timestamp_utc": "2026-10-05T12:23:04.432754+00:00"
+}
