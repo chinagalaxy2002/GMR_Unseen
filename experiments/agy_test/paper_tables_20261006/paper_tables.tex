@@ -1,0 +1,157 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{AUROC degradation reduction on five semantic splits. Verifier metrics average three seeds; confidence intervals use 2,000 paired video-cluster resamples. Scores in percent; absolute reductions in percentage points.}
+\label{tab:degradation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Model & Seen base & Seen verified & Unseen base & Unseen verified & Gap base & Gap verified & Gap reduction (pp) & Relative reduction (\%) & 95\% CI (pp) \\
+\midrule
+FlashVTG & 77.25 & 77.77 & 57.15 & 58.84 & 20.10 & 18.94 & 1.17 & 5.81 & [0.22, 2.24] \\
+Moment-DETR & 75.18 & 75.84 & 52.87 & 55.26 & 22.31 & 20.58 & 1.73 & 7.76 & [0.64, 2.84] \\
+QD-DETR & 74.76 & 75.57 & 51.44 & 54.11 & 23.32 & 21.46 & 1.86 & 7.98 & [0.59, 3.32] \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on All queries of Charades-STA semantic splits. Thresholds selected only on Seen validation. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Seen-val-All}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 71.17 & 56.10 & 37.56 & 28.45 & 50.20 & --- & 42.21 & 27.80 \\
+FlashVTG + Verifier & 71.78 & 58.78 & 37.56 & 28.45 & 50.20 & --- & 43.59 & 29.83 \\
+Moment-DETR & 68.97 & 58.21 & 22.88 & 17.20 & 30.66 & --- & 38.13 & 28.67 \\
+Moment-DETR + Verifier & 69.69 & 58.65 & 22.88 & 17.20 & 30.66 & --- & 38.65 & 29.00 \\
+QD-DETR & 68.70 & 54.32 & 25.09 & 18.29 & 34.48 & --- & 37.05 & 25.73 \\
+QD-DETR + Verifier & 69.64 & 57.65 & 25.09 & 18.29 & 34.48 & --- & 39.15 & 28.55 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on Seen queries of Charades-STA semantic splits. Thresholds selected only on Seen validation. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Seen-val-Seen}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 77.25 & 61.44 & 38.41 & 29.28 & 51.12 & --- & 45.69 & 29.93 \\
+FlashVTG + Verifier & 77.77 & 63.57 & 38.41 & 29.28 & 51.12 & --- & 46.81 & 31.71 \\
+Moment-DETR & 75.18 & 62.06 & 23.19 & 17.46 & 31.04 & --- & 40.20 & 29.97 \\
+Moment-DETR + Verifier & 75.84 & 62.63 & 23.19 & 17.46 & 31.04 & --- & 40.84 & 30.37 \\
+QD-DETR & 74.76 & 60.47 & 25.33 & 18.58 & 34.66 & --- & 40.37 & 28.09 \\
+QD-DETR + Verifier & 75.57 & 61.94 & 25.33 & 18.58 & 34.66 & --- & 41.62 & 30.07 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on Unseen queries of Charades-STA semantic splits. Thresholds selected only on Seen validation. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Seen-val-Unseen}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 57.15 & 26.89 & 31.06 & 21.88 & 42.78 & --- & 24.07 & 16.93 \\
+FlashVTG + Verifier & 58.84 & 31.49 & 31.06 & 21.88 & 42.78 & --- & 27.87 & 21.38 \\
+Moment-DETR & 52.87 & 35.26 & 20.91 & 16.10 & 27.44 & --- & 30.26 & 25.14 \\
+Moment-DETR + Verifier & 55.26 & 35.53 & 20.91 & 16.10 & 27.44 & --- & 30.01 & 24.78 \\
+QD-DETR & 51.44 & 21.55 & 24.02 & 17.03 & 33.73 & --- & 19.52 & 13.18 \\
+QD-DETR + Verifier & 54.11 & 34.02 & 24.02 & 17.03 & 33.73 & --- & 27.25 & 21.43 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on All queries of Charades-STA semantic splits. Fixed threshold $\tau=0.4$. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Fixed-04-All}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 71.17 & 45.84 & 37.56 & 28.45 & 50.20 & --- & 38.29 & 21.85 \\
+FlashVTG + Verifier & 71.78 & 60.32 & 37.56 & 28.45 & 50.20 & --- & 44.35 & 32.19 \\
+Moment-DETR & 68.97 & 41.70 & 22.88 & 17.20 & 30.66 & --- & 30.88 & 18.56 \\
+Moment-DETR + Verifier & 69.69 & 59.43 & 22.88 & 17.20 & 30.66 & --- & 39.16 & 29.65 \\
+QD-DETR & 68.70 & 44.21 & 25.09 & 18.29 & 34.48 & --- & 32.72 & 19.66 \\
+QD-DETR + Verifier & 69.64 & 58.50 & 25.09 & 18.29 & 34.48 & --- & 39.60 & 29.82 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on Seen queries of Charades-STA semantic splits. Fixed threshold $\tau=0.4$. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Fixed-04-Seen}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 77.25 & 53.18 & 38.41 & 29.28 & 51.12 & --- & 42.25 & 24.22 \\
+FlashVTG + Verifier & 77.77 & 63.48 & 38.41 & 29.28 & 51.12 & --- & 46.74 & 33.45 \\
+Moment-DETR & 75.18 & 48.89 & 23.19 & 17.46 & 31.04 & --- & 34.09 & 20.78 \\
+Moment-DETR + Verifier & 75.84 & 62.58 & 23.19 & 17.46 & 31.04 & --- & 40.93 & 30.66 \\
+QD-DETR & 74.76 & 51.71 & 25.33 & 18.58 & 34.66 & --- & 36.14 & 21.94 \\
+QD-DETR + Verifier & 75.57 & 61.39 & 25.33 & 18.58 & 34.66 & --- & 41.33 & 30.71 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{Table-2-style evaluation on Unseen queries of Charades-STA semantic splits. Fixed threshold $\tau=0.4$. Five-split macro averages; verifier metrics average three seeds. All values in percent. Multi-moment recall is unavailable for single-moment ground truth.}
+\label{tab:Fixed-04-Unseen}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+FlashVTG & 57.15 & 14.34 & 31.06 & 21.88 & 42.78 & --- & 18.12 & 10.37 \\
+FlashVTG + Verifier & 58.84 & 38.66 & 31.06 & 21.88 & 42.78 & --- & 33.21 & 27.17 \\
+Moment-DETR & 52.87 & 10.37 & 20.91 & 16.10 & 27.44 & --- & 14.35 & 7.57 \\
+Moment-DETR + Verifier & 55.26 & 38.57 & 20.91 & 16.10 & 27.44 & --- & 32.22 & 27.11 \\
+QD-DETR & 51.44 & 10.82 & 24.02 & 17.03 & 33.73 & --- & 14.82 & 7.99 \\
+QD-DETR + Verifier & 54.11 & 38.51 & 24.02 & 17.03 & 33.73 & --- & 31.05 & 25.66 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+\begin{table*}[t]
+\centering
+\small
+\caption{FlashVTG verifier ablations on Unseen queries, seed 3407, Seen-validation thresholds. The kinetic-only variant retains CLIP action endpoint evidence.}
+\label{tab:ablation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & AUROC & Rej-F1 & mAP & mR@1 & mR@5 & mR+@5 & G-mIoU@1 & G-mIoU@3 \\
+\midrule
+fixed\_prior & 57.49 & 33.21 & 31.06 & 21.88 & 42.78 & --- & 28.89 & 22.59 \\
+none & 58.90 & 31.37 & 31.06 & 21.88 & 42.78 & --- & 27.47 & 20.90 \\
+unsigned & 58.78 & 31.79 & 31.06 & 21.88 & 42.78 & --- & 28.48 & 22.10 \\
+no\_direction & 58.75 & 30.72 & 31.06 & 21.88 & 42.78 & --- & 27.48 & 20.90 \\
+visual\_only & 59.12 & 31.51 & 31.06 & 21.88 & 42.78 & --- & 27.78 & 21.18 \\
+kinetic\_only & 56.65 & 34.99 & 31.06 & 21.88 & 42.78 & --- & 31.14 & 24.97 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

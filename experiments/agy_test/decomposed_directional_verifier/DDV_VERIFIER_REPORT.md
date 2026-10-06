@@ -1,6 +1,3 @@
-> **历史原始报告，部分结论已被独立审计修正。**
-> 正式引用请使用 [DDV 独立审计](../ddv_audit_20261006/DDV_AUDIT_REPORT.md) 和 [修正指标](benchmark_audited.json)。本报告中的 DDV G-mIoU、Release QD PairAcc、`p < 0.0001`、严格超过 0.60、查询语义路由及完整端到端成本描述不能直接引用。下文原文保留用于追溯。
-
 # Decomposed Directional Verifier (DDV): Research & Benchmark Report
 
 **Date**: 2026-10-06  

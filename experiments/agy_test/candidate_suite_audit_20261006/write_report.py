@@ -1,0 +1,83 @@
+"""Report the review of the posted candidate suite; do not modify its artifacts."""
+from pathlib import Path
+import json
+import numpy as np
+P=Path(__file__).resolve().parent
+
+def main():
+    d=json.loads((P/'audit_metrics.json').read_text())
+    op=json.loads((P/'operational_definitions.json').read_text())
+    ms=json.loads((P/'source_snapshot/multi_seed_transfer_summary.json').read_text())
+    abl=json.loads((P/'source_snapshot/ablation_summary.json').read_text())
+    bbs=['flash','moment','qd']
+    lines=['# 目标候选实验独立审计：2026-10-06','',
+           '## 结论与证据边界','',
+           '**缓存连接、目标局部特征抽查、概率基线、未训练先验与 JSON 的三种子均值/标准差算术均能核对。训练后的矩阵只有汇总 JSON，缺少对应检查点和逐查询预测，因此不能独立认证全部训练结果或计算其配对视频区间。**','',
+           '**按已给 JSON，目标自身候选 A 在 Moment/QD 目标上的 AUROC 点估计均高于共享 Flash 候选 B，三个种子的差值也均为正；Flash 目标完全相同。这个趋势成立，但不是已证实的显著优势，更不能据此推出物理因果机理或所有审计要求已完成。**','',
+           '审计范围：45 份缓存的 qid/视频/标签连接；确认 train/val 均只有 S+/S−；90 行局部 CLIP/SlowFast/端点特征从原始视频特征及预测候选重算；Flash 未训练初始化冻结推理；从每折指标重算 3-seed 汇总。未重新训练，未写入原实验。','',
+           '### 检查期间发生的版本更新','',
+           '首次读取时，02_ablation_and_a3_diagnosis.py 在 rank 后于模型内执行 abs，无权重/预测保存，runs 为空。检查期间约 15:40 后，脚本被外部更新，新增 raw 差分先取 abs 再做 CDF，以及保存 verifier.pt / predictions.npz 的代码。随后缓存也被重写，runs 开始出现新消融预测；报告与 ablation_summary.json 仍是旧版数值（JSON 时间 14:57）。这个修复方向正确，但新版本的部分产物不能用于认证旧结果。source_snapshot 保存本轮所见脚本与旧 JSON，version_change_observation.json 记录原目录并发改写的文件。审计数值针对读取时的旧版；当前目录继续运行时，不能直接假定旧输入哈希仍有效。','',
+           '## 1. 数值核对与基线变化','',
+           '| Flash 设置 | Seen AUROC | Unseen AUROC | PairAcc |', '|---|---:|---:|---:|']
+    for label,v in [('此前 raw-logit 基线',d['old_flash_raw_macro']),('本轮概率基线',d['baseline_macro']['flash']),('未训练初始化独立重放',d['fixed_prior_macro'])]:
+        lines.append(f"| {label} | {v['seen']:.4f} | {v['unseen']:.4f} | {v['pair_acc']:.4f} |")
+    full=abl['macro_flash_ablation']['Full Trained Verifier']
+    lines.append(f"| 完整训练（仅有汇总声明） | {full['macro_seen']:.4f} | {full['macro_unseen']:.4f} | {full['macro_pair_acc']:.4f} |")
+    lines += ['', '本轮 extractor 读取 pred_exist_score 并转换为 float32；之前的 Flash 基线使用 pred_exist_logit。有限精度 sigmoid 饱和和输出舍入使许多原本不同的 logit 并列，AUROC 与 PairAcc 不再相同。数学上严格单调 sigmoid 不改变排序，但存储的概率不满足严格单调条件。此变化应披露，不能把 .5479 称为与原 .5714 等价的原始基线。','',
+              f"若 Full 的声明数值最终可复验，它相对旧 raw-logit 基线的 Unseen 提升是 {(full['macro_unseen']-d['old_flash_raw_macro']['unseen'])*100:.2f} pp，而不是 4.46 pp；Seen 同时变化 {(full['macro_seen']-d['old_flash_raw_macro']['seen'])*100:+.2f} pp，PairAcc 变化 {(full['macro_pair_acc']-d['old_flash_raw_macro']['pair_acc'])*100:+.2f} pp。相对本轮概率基线的 4.46 pp 算术正确，但包含恢复排序信息的效果。", '',
+              '固定先验 .5656 已由缓存和模型重放复现。Full−Fixed=2.70 pp 的减法成立，但它同时包含 rank loss、BCE 与完整优化的贡献。没有“仅 BCE”“无同视频反事实对”等对照，不能将 2.70 pp 单独归因于反事实成对监督，也不能仅靠点差宣称显著。','',
+              '## 2. A/B 三种子矩阵与控制变量','',
+              '| 来源→目标 | A 均值 | B 均值 | A−B | 三个种子的 A−B (pp) |', '|---|---:|---:|---:|---|']
+    for src in bbs:
+        for tgt in bbs:
+            v=d['A_minus_B'][src][tgt]
+            aa=d['matrix_means']['target_specific'][src][tgt]['mean'];bb=d['matrix_means']['shared'][src][tgt]['mean']
+            dif=', '.join(f'{x*100:+.3f}' for x in v['seed_differences'])
+            lines.append(f"| {src}→{tgt} | {aa:.4f} | {bb:.4f} | {v['mean']*100:+.3f} pp | {dif} |")
+    lines += ['', '3-seed 的均值与每折 JSON 的重算一致，表中 ± 是 np.std(ddof=0) 的总体标准差，不是置信区间。样本标准差 ddof=1 会大约增大 22.5%；只有三个种子，不能从宏平均波动小推断统计显著或逐划分稳定。新代码没有执行 2,000 次配对视频 Bootstrap（该声明只在 03 脚本 docstring）。缺少逐查询预测也使独立重算不可行。','',
+              '### A 是目标局部证据，B 不是上一轮原协议的完整复刻','',
+              '各骨干缓存确实分别从其预测窗口提取局部证据；90 行抽查与原始 CLIP/SlowFast 特征及候选坐标相符。没有在这些特征提取代码中看到 GT 窗口入模，标签与样本连接检查通过。抽查并非全量视频重提取。','',
+              '03 中训练两个 regime 时，所有来源都用自身候选数据训练；shared 仅在验证/测试时换成 Flash 的多模态缓存。因此 A/B 实际比较“各来源自身候选训练后，目标自身候选评估”与“同样训练后，改成共享 Flash 特征评估”。上一轮三来源训练时就共享同一候选，本轮 B 并非该训练协议的严格复刻。','',
+              '而且替换的 mm 包含局部特征、fg、窗口宽度和相应 CDF 归一化，不是只改变候选窗口；A 相对 B 的差异可能来自训练与测试分布一致性等多个因素。它不能独立证实“与自身前景空间更一致”这一原因。','',
+              '阈值由各目标的 Seen val 标签标定，本轮验证缓存均为 Seen，符合“目标 Seen 校准”的设定。这个操作点不是源阈值未经目标标签适配的直接迁移，正式报告应区分两种协议。','',
+              '## 3. 方向性与模态消融问题','',
+              '### 3.1 旧版 unsigned 消融没有作用','',
+              '旧版先 CDF 后 abs。CDF 特征全部位于 [0,1]，abs 恒等。独立对缓存推理确认相同权重的 Full 与 unsigned 输出完全相同；旧 JSON 中所有 Flash 折的 Full/Unsigned 指标也逐项相同。它没有测试“保留符号与去符号”这一假设。新脚本已改为 raw abs 后分别重建 CDF，但仍需重训与保存新结果。','',
+              'NoDirection 掉 .59 pp 只能初步支持两个端点通道的作用，不能证明符号的必要性或动作因果机制。三种子仅用于完整迁移矩阵，方向消融是单种子且没有对应区间；绝对值对照和时间反转对照仍缺有效结果。','',
+              '### 3.2 CLIP-only / SlowFast-only 名称与实际通路不一致','',
+              'Visual-only 仅将 sf_vel/sf_disp 清零，仍保留 CLIP 带符号动作和物体端点差分，不是纯静态 CLIP。Kinetic-only 清零大多数 CLIP 相似度，但保留 CLIP 的 d_act，并保留检测器分数、fg 和窗口几何，不是纯 SlowFast。比较的还是融合网络的最终分数，而不是单独视觉/速度特征的标签相关性。','',
+              '因此“静态 CLIP 严重负相关”“SlowFast 速度具有确定性正增益”“彻底查明本质物理差异”都超出证据。当前只支持：A3 上某些移除通道后的网络点估计更好；对 Moment/QD，名为 Kinetic-only 的混合通路点估计高于概率基线。需要真正独立输入通道的消融、配对区间与时间干预。','',
+              '## 4. 实际拒绝指标的定义与取行错误','',
+              '原报告的 FRR 列标为“已见正例”，但生成器读取的是 macro_op.frr，03 汇总该字段时来源是 unseen_frr。Seen FRR 另外保存为 seen_frr。','',
+              '原 unseen_f1 将“事件存在”作为正类，是接受/存在 F1，不是拒绝负例 F1。依据现有 RR、U+ FRR 和已核对的 U+/U−样本数，可重建负类 F1；这是汇总内部的一致性检查，不能替代逐查询预测认证。','',
+              '操作表只取 Flash 来源的验证器作用于各目标，不是各目标的对角线自验证，也不是三来源平均。应在表标题披露。','',
+              '| 来源→目标 | 机制 | U− RR | U+ FRR（原表数值） | S+ FRR（正确已见列） | 存在 F1（原表数值） | 拒绝 F1（重建） |', '|---|---|---:|---:|---:|---:|---:|']
+    for tgt in bbs:
+        for regime,label in [('target_specific','A'),('shared','B')]:
+            v=op[regime][tgt]
+            lines.append(f"| flash→{tgt} | {label} | {v['unseen_rr']*100:.2f}% | {v['unseen_frr']*100:.2f}% | {v['seen_frr']*100:.2f}% | {v['unseen_f1']:.4f} | {v['rejection_f1_reconstructed']:.4f} |")
+    lines += ['', '各行阈值在 Seen val 上选择并用于 test；没有用全测试均值方差做校准。但实际 tau 应逐折逐种子列出；此处 Youden J 用 100 个网格搜索，是近似最优而非遍历全部决策边界。没有同协议 detector-only 的 RR/FRR/F1 对照，无法量化验证器在实际操作点上相对基线的净贡献；G-mIoU 尚缺。','',
+              '## 5. 相对目标基线是否缓解了宏平均 AUROC 退化','',
+              '以下是现有 JSON 的跨 3 种子宏平均点估计，只做算术复核，尚无对应训练产物认证。','',
+              '| A 自验证目标 | 基线 Seen | 基线 U | 自验证 Seen | 自验证 U | 基线 Gap | 自验证 Gap |', '|---|---:|---:|---:|---:|---:|---:|']
+    for tgt in bbs:
+        selected=ms['target_specific']['raw_runs']
+        base=d['baseline_macro'][tgt]
+        seen=np.mean([r['transfer_results'][tgt][tgt]['seen'] for r in selected]);unseen=np.mean([r['transfer_results'][tgt][tgt]['unseen'] for r in selected])
+        lines.append(f"| {tgt} | {base['seen']:.4f} | {base['unseen']:.4f} | {seen:.4f} | {unseen:.4f} | {base['gap']:.4f} | {seen-unseen:.4f} |")
+    lines += ['', '相对本轮概率基线，三种自验证的宏平均 Unseen 提高、Gap 点估计缩小，趋势符合初始目标。这个积极趋势不应被审计问题全部否定；但在补齐权重/预测、保留 raw-logit 强基线和有效统计区间之前，不应表述为已获独立验证或显著缓解。','',
+              '## 6. 下一轮最小整改','',
+              '1. 冻结代码版本；保存所有种子/来源/划分/消融的 state_dict、配置、最佳 epoch、Seen 选模日志、CDF 参考、阈值、val/test 逐查询分数与标识；用预测自动生成报告。',
+              '2. 保留 Flash 原始 logit 基线与足够精度的分数接口，分开报告概率饱和引起的退化；不要将不同基线的增益混用。',
+              '3. 对 abs(raw_delta) 重新训练；使 SlowFast-only 不读取任何 CLIP 通道、CLIP-only 定义清楚是否包含时间差分；补充 BCE-only/无同视频对来识别反事实监督的独立贡献。',
+              '4. 真正复刻 shared 训练与评测，再与 target-specific 形成控制变量明确的矩阵；单独控制候选、fg/宽度与归一化；源阈值直接迁移和目标 Seen 校准分开。',
+              '5. 从保存的预测计算配对视频增益、Gap、A−B 区间；覆盖多个种子的消融，补实际拒绝基线与官方 G-mIoU；冻结协议后保留独立测试。','',
+              '## 7. 本审计产物','',
+              '- audit_suite.py：连接/特征/基线/先验/汇总算术核对。',
+              '- audit_metrics.json：45 缓存检查、90 行原始特征抽查、A−B 种子差值及可复验指标。',
+              '- operational_definitions.json：存在 F1 与拒绝 F1 的定义核对。',
+              '- source_snapshot/：检查期间所见源码与旧结果 JSON；input_manifest.json：主要输入 SHA256。',
+              '- 本报告未声称重放旧版训练后模型；首次检查时没有它的对应产物，随后新版本开始产生文件。应按版本冻结后另行复验。']
+    (P/'INDEPENDENT_CANDIDATE_AUDIT.md').write_text('\n'.join(lines)+'\n')
+
+if __name__=='__main__':main()

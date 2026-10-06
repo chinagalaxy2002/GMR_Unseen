@@ -4,11 +4,31 @@
 
 代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
 
-> **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库提供 benchmark、适配代码和诊断实验；新增 DDV 验证器的探索结果与限制见下方最新实验入口。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
+> **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库提供 benchmark、适配代码和诊断实验；新增 DDV 验证器的探索结果与限制见下方最新实验入口。基础 E0–E7 和早期 DDV 每个配置运行一个种子；最新独立候选实验补充了三个训练种子。Bootstrap 区间反映测试视频抽样，仍不代表全部训练种子的总体分布。
 
 第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/reports/semantic_existence_multisplit_results.md)。
 
 清空对话上下文后，只需从[项目总交接](docs/PROJECT_HANDOFF.md)恢复；它汇总研究问题、当前状态、关键结果、数据和代码入口，并标明其余文档的用途。
+
+<a id="candidate-verifier-results"></a>
+
+## 2026-10-06：最新独立候选验证器、消融与 3-seed 迁移
+
+[模型与复现入口](experiments/agy_test/independent_candidate_transfer_suite/README.md) · [完整独立审计](experiments/agy_test/candidate_suite_final_audit_20261006/FINAL_INDEPENDENT_AUDIT.md) · [GMR 论文表格与 LaTeX](experiments/agy_test/paper_tables_20261006/PAPER_TABLES.md)
+
+**本分支发布最新消融与跨骨干实验的全部 125 个轻量验证器检查点、72 份逐查询预测、45 份训练/验证/测试特征缓存。** 另包含早期 DDV/SDCV 和单种子迁移代码、权重与历史审计，均与最新主结果分别记录。数据生成管线沿用下文已有发布协议。
+
+验证器对检测器存在性分数加入候选局部 CLIP 对齐、SlowFast 时序证据与有符号端点变化，经软路由和有界残差门控融合。以下为机制 A（目标自身候选）自验证；五划分等权，三个固定 seeds 的指标均值。AUROC 与 Gap 使用百分数，差值单位 pp。
+
+| 骨干 | Seen AUROC，基线→验证器 | Unseen AUROC，基线→验证器 | Gap，基线→验证器 | Gap 缩小 pp | 相对缩小 | 缩小量 95% CI，pp |
+|---|---:|---:|---:|---:|---:|---|
+| FlashVTG | 77.25 → 77.77 | 57.15 → 58.84 | 20.10 → 18.94 | 1.17 | 5.81% | [0.22, 2.24] |
+| Moment-DETR | 75.18 → 75.84 | 52.87 → 55.26 | 22.31 → 20.58 | 1.73 | 7.76% | [0.64, 2.84] |
+| QD-DETR | 74.76 → 75.57 | 51.44 → 54.11 | 23.32 → 21.46 | 1.86 | 7.98% | [0.59, 3.32] |
+
+三骨干的平均 AUROC 退化差距均显著缩小，Seen AUROC 同时提高。95% 区间来自 2,000 次配对视频聚类 bootstrap，条件是这三个固定训练 seeds。**A3 仍有局部退化，方向独立贡献与 A 优于 B 尚不显著；Moment-DETR 的 Unseen G-mIoU 在 Seen 标定阈值下略降。** 本结果不支持所有指标、所有划分全面改善。详细 AUROC、Rej-F1、mAP、mR、G-mIoU 与固定阈值对照见论文表格。
+
+以下 DDV 和页末 AC 节为历史实验，数值与模型设置不同，不应混作本轮主结果。
 
 <a id="ddv-results"></a>
 

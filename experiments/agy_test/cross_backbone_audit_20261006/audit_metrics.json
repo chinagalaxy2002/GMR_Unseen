@@ -1,0 +1,1107 @@
+{
+  "protocol": "Frozen 15 checkpoints, 45 source-target evaluations; Seen-training empirical CDF; 2000 shared-video bootstrap, seed3407; no retraining or original writes.",
+  "subsets": {
+    "A1/train": {
+      "n": 8608,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A1/train.npz"
+    },
+    "A1/val": {
+      "n": 1257,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A1/val.npz"
+    },
+    "A1/test": {
+      "n": 5170,
+      "partitions": [
+        "S+",
+        "S-",
+        "U+",
+        "U-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A1/test.npz"
+    },
+    "A2_alt/train": {
+      "n": 10323,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A2_alt/train.npz"
+    },
+    "A2_alt/val": {
+      "n": 1529,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A2_alt/val.npz"
+    },
+    "A2_alt/test": {
+      "n": 4945,
+      "partitions": [
+        "S+",
+        "S-",
+        "U+",
+        "U-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A2_alt/test.npz"
+    },
+    "A3/train": {
+      "n": 10352,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A3/train.npz"
+    },
+    "A3/val": {
+      "n": 1548,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A3/val.npz"
+    },
+    "A3/test": {
+      "n": 5293,
+      "partitions": [
+        "S+",
+        "S-",
+        "U+",
+        "U-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/A3/test.npz"
+    },
+    "C1/train": {
+      "n": 10516,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C1/train.npz"
+    },
+    "C1/val": {
+      "n": 1451,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C1/val.npz"
+    },
+    "C1/test": {
+      "n": 4705,
+      "partitions": [
+        "S+",
+        "S-",
+        "U+",
+        "U-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C1/test.npz"
+    },
+    "C2_alt/train": {
+      "n": 10612,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C2_alt/train.npz"
+    },
+    "C2_alt/val": {
+      "n": 1476,
+      "partitions": [
+        "S+",
+        "S-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C2_alt/val.npz"
+    },
+    "C2_alt/test": {
+      "n": 4705,
+      "partitions": [
+        "S+",
+        "S-",
+        "U+",
+        "U-"
+      ],
+      "cache_real_path": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/semantic_directional_calibrated_verifier/cache/C2_alt/test.npz"
+    }
+  },
+  "splits": {
+    "A1": {
+      "metrics": {
+        "flash_base": {
+          "seen": 0.8252713049530951,
+          "unseen": 0.47027203628431685,
+          "gap": 0.35499926866877823,
+          "pair_acc": 0.6394230769230769
+        },
+        "moment_base": {
+          "seen": 0.8043804610338591,
+          "unseen": 0.49726330152690085,
+          "gap": 0.3071171595069582,
+          "pair_acc": 0.5592948717948718
+        },
+        "qd_base": {
+          "seen": 0.7827493949029471,
+          "unseen": 0.505823171610597,
+          "gap": 0.27692622329235017,
+          "pair_acc": 0.5721153846153846
+        },
+        "flash_raw": {
+          "seen": 0.8252643839083734,
+          "unseen": 0.47028933283365526,
+          "gap": 0.35497505107471816,
+          "pair_acc": 0.6378205128205128
+        },
+        "moment_raw": {
+          "seen": 0.8043862285711272,
+          "unseen": 0.49726906704334706,
+          "gap": 0.3071171615277801,
+          "pair_acc": 0.5592948717948718
+        },
+        "qd_raw": {
+          "seen": 0.7827446160863535,
+          "unseen": 0.5058212497717816,
+          "gap": 0.27692336631457193,
+          "pair_acc": 0.5721153846153846
+        },
+        "flash_to_flash": {
+          "seen": 0.8254746518384931,
+          "unseen": 0.49328221242084436,
+          "gap": 0.33219243941764875,
+          "pair_acc": 0.6602564102564102
+        },
+        "flash_to_moment": {
+          "seen": 0.8096821460775474,
+          "unseen": 0.5083129137959199,
+          "gap": 0.3013692322816275,
+          "pair_acc": 0.5897435897435898
+        },
+        "flash_to_qd": {
+          "seen": 0.785206365779191,
+          "unseen": 0.520020755859206,
+          "gap": 0.26518560991998497,
+          "pair_acc": 0.5865384615384616
+        },
+        "moment_to_flash": {
+          "seen": 0.8247159735075591,
+          "unseen": 0.49393755945688833,
+          "gap": 0.33077841405067077,
+          "pair_acc": 0.6602564102564102
+        },
+        "moment_to_moment": {
+          "seen": 0.8091076993656368,
+          "unseen": 0.508628095361642,
+          "gap": 0.30047960400399476,
+          "pair_acc": 0.5897435897435898
+        },
+        "moment_to_qd": {
+          "seen": 0.7846886057192878,
+          "unseen": 0.5201687374479902,
+          "gap": 0.2645198682712976,
+          "pair_acc": 0.5833333333333334
+        },
+        "qd_to_flash": {
+          "seen": 0.8258388306202838,
+          "unseen": 0.4877665350207078,
+          "gap": 0.338072295599576,
+          "pair_acc": 0.6474358974358975
+        },
+        "qd_to_moment": {
+          "seen": 0.8104098444940123,
+          "unseen": 0.5044865327145013,
+          "gap": 0.30592331177951104,
+          "pair_acc": 0.5993589743589743
+        },
+        "qd_to_qd": {
+          "seen": 0.7855224268214871,
+          "unseen": 0.5162904667185564,
+          "gap": 0.2692319601029307,
+          "pair_acc": 0.5769230769230769
+        },
+        "ensemble_flash": {
+          "seen": 0.8255672620083422,
+          "unseen": 0.4915467919705574,
+          "gap": 0.3340204700377848,
+          "pair_acc": 0.6602564102564102
+        },
+        "ensemble_moment": {
+          "seen": 0.8098548426220347,
+          "unseen": 0.5071175300527545,
+          "gap": 0.30273731256928016,
+          "pair_acc": 0.5865384615384616
+        },
+        "ensemble_qd": {
+          "seen": 0.7852656890196636,
+          "unseen": 0.5188849491193174,
+          "gap": 0.2663807399003463,
+          "pair_acc": 0.5833333333333334
+        }
+      },
+      "max_summary_error": 0.0,
+      "replay_max_errors": {
+        "flash_to_flash": 1.1920928955078125e-07,
+        "flash_to_moment": 1.1920928955078125e-07,
+        "flash_to_qd": 1.1920928955078125e-07,
+        "moment_to_flash": 1.1920928955078125e-07,
+        "moment_to_moment": 1.1920928955078125e-07,
+        "moment_to_qd": 1.1920928955078125e-07,
+        "qd_to_flash": 1.1920928955078125e-07,
+        "qd_to_moment": 1.1920928955078125e-07,
+        "qd_to_qd": 1.1920928955078125e-07
+      },
+      "seen_val_auc_replay": {
+        "flash": 0.8479250334672022,
+        "moment": 0.8263826548022154,
+        "qd": 0.8059768485707536
+      },
+      "model_diagnostics": {
+        "flash": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.16958671808242798,
+            0.8304135799407959
+          ]
+        },
+        "moment": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.16001270711421967,
+            0.8399879932403564
+          ]
+        },
+        "qd": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.23529618978500366,
+            0.7647047638893127
+          ]
+        }
+      },
+      "untrained_initialization_diagnostic": {
+        "flash": {
+          "seen": 0.8128167201894126,
+          "unseen": 0.49066274611548333,
+          "gap": 0.3221539740739293,
+          "pair_acc": 0.6121794871794872
+        },
+        "moment": {
+          "seen": 0.7971679084998339,
+          "unseen": 0.5074346334572919,
+          "gap": 0.289733275042542,
+          "pair_acc": 0.6057692307692307
+        },
+        "qd": {
+          "seen": 0.775787153486361,
+          "unseen": 0.5179326779862973,
+          "gap": 0.2578544755000637,
+          "pair_acc": 0.5961538461538461
+        }
+      }
+    },
+    "A2_alt": {
+      "metrics": {
+        "flash_base": {
+          "seen": 0.775643155857749,
+          "unseen": 0.5557940323565324,
+          "gap": 0.21984912350121666,
+          "pair_acc": 0.620253164556962
+        },
+        "moment_base": {
+          "seen": 0.769049728295942,
+          "unseen": 0.5510817307692307,
+          "gap": 0.21796799752671125,
+          "pair_acc": 0.620253164556962
+        },
+        "qd_base": {
+          "seen": 0.7441800060288156,
+          "unseen": 0.47274687118437114,
+          "gap": 0.2714331348444445,
+          "pair_acc": 0.45569620253164556
+        },
+        "flash_raw": {
+          "seen": 0.7756450854218006,
+          "unseen": 0.5557654151404151,
+          "gap": 0.21987967028138544,
+          "pair_acc": 0.620253164556962
+        },
+        "moment_raw": {
+          "seen": 0.7690488707119191,
+          "unseen": 0.5510817307692307,
+          "gap": 0.21796713994268835,
+          "pair_acc": 0.620253164556962
+        },
+        "qd_raw": {
+          "seen": 0.7441703582085584,
+          "unseen": 0.47274687118437114,
+          "gap": 0.2714234870241872,
+          "pair_acc": 0.45569620253164556
+        },
+        "flash_to_flash": {
+          "seen": 0.7785756644239415,
+          "unseen": 0.5768467643467644,
+          "gap": 0.20172890007717714,
+          "pair_acc": 0.6582278481012658
+        },
+        "flash_to_moment": {
+          "seen": 0.7768079693568077,
+          "unseen": 0.5643696581196581,
+          "gap": 0.21243831123714962,
+          "pair_acc": 0.6582278481012658
+        },
+        "flash_to_qd": {
+          "seen": 0.747688382266363,
+          "unseen": 0.514175061050061,
+          "gap": 0.23351332121630197,
+          "pair_acc": 0.5443037974683544
+        },
+        "moment_to_flash": {
+          "seen": 0.7803099137141836,
+          "unseen": 0.5782394688644689,
+          "gap": 0.2020704448497147,
+          "pair_acc": 0.6329113924050633
+        },
+        "moment_to_moment": {
+          "seen": 0.7788595247355103,
+          "unseen": 0.5686622405372406,
+          "gap": 0.21019728419826977,
+          "pair_acc": 0.6455696202531646
+        },
+        "moment_to_qd": {
+          "seen": 0.7486002084786759,
+          "unseen": 0.5178189865689866,
+          "gap": 0.2307812219096893,
+          "pair_acc": 0.5063291139240507
+        },
+        "qd_to_flash": {
+          "seen": 0.77935606588475,
+          "unseen": 0.5774191086691087,
+          "gap": 0.2019369572156413,
+          "pair_acc": 0.6708860759493671
+        },
+        "qd_to_moment": {
+          "seen": 0.7771801608227318,
+          "unseen": 0.565285409035409,
+          "gap": 0.21189475178732275,
+          "pair_acc": 0.6708860759493671
+        },
+        "qd_to_qd": {
+          "seen": 0.7489900876150717,
+          "unseen": 0.5151098901098901,
+          "gap": 0.23388019750518163,
+          "pair_acc": 0.5316455696202531
+        },
+        "ensemble_flash": {
+          "seen": 0.779665653717005,
+          "unseen": 0.5779342185592186,
+          "gap": 0.20173143515778647,
+          "pair_acc": 0.6708860759493671
+        },
+        "ensemble_moment": {
+          "seen": 0.7778608681408821,
+          "unseen": 0.5663537851037851,
+          "gap": 0.21150708303709698,
+          "pair_acc": 0.6582278481012658
+        },
+        "ensemble_qd": {
+          "seen": 0.7485484318432953,
+          "unseen": 0.515892094017094,
+          "gap": 0.23265633782620132,
+          "pair_acc": 0.5316455696202531
+        }
+      },
+      "max_summary_error": 0.0,
+      "replay_max_errors": {
+        "flash_to_flash": 1.1920928955078125e-07,
+        "flash_to_moment": 1.7881393432617188e-07,
+        "flash_to_qd": 1.1920928955078125e-07,
+        "moment_to_flash": 1.1920928955078125e-07,
+        "moment_to_moment": 1.1920928955078125e-07,
+        "moment_to_qd": 1.1920928955078125e-07,
+        "qd_to_flash": 1.1920928955078125e-07,
+        "qd_to_moment": 1.1920928955078125e-07,
+        "qd_to_qd": 1.1920928955078125e-07
+      },
+      "seen_val_auc_replay": {
+        "flash": 0.8177545786222592,
+        "moment": 0.8197576129754722,
+        "qd": 0.7637954701441318
+      },
+      "model_diagnostics": {
+        "flash": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.18531857430934906,
+            0.8146809935569763
+          ]
+        },
+        "moment": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.18682105839252472,
+            0.8131799697875977
+          ]
+        },
+        "qd": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.18961946666240692,
+            0.8103805184364319
+          ]
+        }
+      },
+      "untrained_initialization_diagnostic": {
+        "flash": {
+          "seen": 0.7648412419017269,
+          "unseen": 0.5564331501831502,
+          "gap": 0.20840809171857666,
+          "pair_acc": 0.620253164556962
+        },
+        "moment": {
+          "seen": 0.7638184657564557,
+          "unseen": 0.5466842185592186,
+          "gap": 0.21713424719723717,
+          "pair_acc": 0.6582278481012658
+        },
+        "qd": {
+          "seen": 0.7369616141103444,
+          "unseen": 0.498015873015873,
+          "gap": 0.23894574109447142,
+          "pair_acc": 0.5316455696202531
+        }
+      }
+    },
+    "A3": {
+      "metrics": {
+        "flash_base": {
+          "seen": 0.7549820381451758,
+          "unseen": 0.6280294262065095,
+          "gap": 0.12695261193866636,
+          "pair_acc": 0.5581395348837209
+        },
+        "moment_base": {
+          "seen": 0.7488053573691971,
+          "unseen": 0.5643237934904601,
+          "gap": 0.18448156387873693,
+          "pair_acc": 0.4689922480620155
+        },
+        "qd_base": {
+          "seen": 0.733404255141727,
+          "unseen": 0.48700108726150393,
+          "gap": 0.2464031678802231,
+          "pair_acc": 0.45348837209302323
+        },
+        "flash_raw": {
+          "seen": 0.7549866245055069,
+          "unseen": 0.6280250420875421,
+          "gap": 0.12696158241796485,
+          "pair_acc": 0.5581395348837209
+        },
+        "moment_raw": {
+          "seen": 0.7488016048925624,
+          "unseen": 0.5643194093714927,
+          "gap": 0.1844821955210697,
+          "pair_acc": 0.4689922480620155
+        },
+        "qd_raw": {
+          "seen": 0.7334029000807198,
+          "unseen": 0.4870186237373737,
+          "gap": 0.24638427634334614,
+          "pair_acc": 0.45348837209302323
+        },
+        "flash_to_flash": {
+          "seen": 0.7566842032408057,
+          "unseen": 0.5919875841750841,
+          "gap": 0.16469661906572153,
+          "pair_acc": 0.6046511627906976
+        },
+        "flash_to_moment": {
+          "seen": 0.7509558391871969,
+          "unseen": 0.5474186307519642,
+          "gap": 0.2035372084352327,
+          "pair_acc": 0.4806201550387597
+        },
+        "flash_to_qd": {
+          "seen": 0.7403573858746774,
+          "unseen": 0.4616038860830528,
+          "gap": 0.27875349979162456,
+          "pair_acc": 0.5038759689922481
+        },
+        "moment_to_flash": {
+          "seen": 0.7566676298023363,
+          "unseen": 0.5917596099887767,
+          "gap": 0.16490801981355951,
+          "pair_acc": 0.5968992248062015
+        },
+        "moment_to_moment": {
+          "seen": 0.7510458986264268,
+          "unseen": 0.5474186307519641,
+          "gap": 0.20362726787446273,
+          "pair_acc": 0.49612403100775193
+        },
+        "moment_to_qd": {
+          "seen": 0.7403650992988706,
+          "unseen": 0.4615600448933782,
+          "gap": 0.2788050544054924,
+          "pair_acc": 0.5116279069767442
+        },
+        "qd_to_flash": {
+          "seen": 0.7574524185962734,
+          "unseen": 0.5911370650953984,
+          "gap": 0.166315353500875,
+          "pair_acc": 0.5891472868217055
+        },
+        "qd_to_moment": {
+          "seen": 0.7520091385314307,
+          "unseen": 0.5474098625140291,
+          "gap": 0.20459927601740158,
+          "pair_acc": 0.5038759689922481
+        },
+        "qd_to_qd": {
+          "seen": 0.7413035311639016,
+          "unseen": 0.4600694444444444,
+          "gap": 0.28123408671945715,
+          "pair_acc": 0.5271317829457365
+        },
+        "ensemble_flash": {
+          "seen": 0.7569631373373092,
+          "unseen": 0.591452721661055,
+          "gap": 0.16551041567625424,
+          "pair_acc": 0.5813953488372093
+        },
+        "ensemble_moment": {
+          "seen": 0.7513769504539662,
+          "unseen": 0.5473134118967452,
+          "gap": 0.20406353855722104,
+          "pair_acc": 0.49612403100775193
+        },
+        "ensemble_qd": {
+          "seen": 0.7406940664171686,
+          "unseen": 0.4607621352413019,
+          "gap": 0.27993193117586673,
+          "pair_acc": 0.5116279069767442
+        }
+      },
+      "max_summary_error": 0.0,
+      "replay_max_errors": {
+        "flash_to_flash": 1.1920928955078125e-07,
+        "flash_to_moment": 1.1920928955078125e-07,
+        "flash_to_qd": 1.1920928955078125e-07,
+        "moment_to_flash": 1.1920928955078125e-07,
+        "moment_to_moment": 1.1920928955078125e-07,
+        "moment_to_qd": 1.1920928955078125e-07,
+        "qd_to_flash": 1.1920928955078125e-07,
+        "qd_to_moment": 1.7881393432617188e-07,
+        "qd_to_qd": 1.7881393432617188e-07
+      },
+      "seen_val_auc_replay": {
+        "flash": 0.7902513067215061,
+        "moment": 0.7901149075545904,
+        "qd": 0.7615829997674219
+      },
+      "model_diagnostics": {
+        "flash": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.2604181468486786,
+            0.7395833730697632
+          ]
+        },
+        "moment": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.25746601819992065,
+            0.7425345778465271
+          ]
+        },
+        "qd": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.2415628433227539,
+            0.75843745470047
+          ]
+        }
+      },
+      "untrained_initialization_diagnostic": {
+        "flash": {
+          "seen": 0.7432493987698547,
+          "unseen": 0.6118476430976431,
+          "gap": 0.13140175567221168,
+          "pair_acc": 0.6046511627906976
+        },
+        "moment": {
+          "seen": 0.7390188983062154,
+          "unseen": 0.5672085437710437,
+          "gap": 0.17181035453517168,
+          "pair_acc": 0.5038759689922481
+        },
+        "qd": {
+          "seen": 0.7292262893509716,
+          "unseen": 0.49001297699214363,
+          "gap": 0.23921331235882792,
+          "pair_acc": 0.5503875968992248
+        }
+      }
+    },
+    "C1": {
+      "metrics": {
+        "flash_base": {
+          "seen": 0.7715955931150056,
+          "unseen": 0.6679240969364425,
+          "gap": 0.10367149617856308,
+          "pair_acc": 0.7083333333333334
+        },
+        "moment_base": {
+          "seen": 0.7609664335440598,
+          "unseen": 0.5620598994055784,
+          "gap": 0.19890653413848136,
+          "pair_acc": 0.6284722222222222
+        },
+        "qd_base": {
+          "seen": 0.7798237207221226,
+          "unseen": 0.5618427069044353,
+          "gap": 0.2179810138176873,
+          "pair_acc": 0.6354166666666666
+        },
+        "flash_raw": {
+          "seen": 0.7715997136019214,
+          "unseen": 0.6679012345679012,
+          "gap": 0.10369847903402019,
+          "pair_acc": 0.7083333333333334
+        },
+        "moment_raw": {
+          "seen": 0.76096570639931,
+          "unseen": 0.5620713305898491,
+          "gap": 0.1988943758094609,
+          "pair_acc": 0.6284722222222222
+        },
+        "qd_raw": {
+          "seen": 0.7798211757154982,
+          "unseen": 0.5618427069044353,
+          "gap": 0.21797846881106298,
+          "pair_acc": 0.6354166666666666
+        },
+        "flash_to_flash": {
+          "seen": 0.7736105112166926,
+          "unseen": 0.7323273891175125,
+          "gap": 0.04128312209918006,
+          "pair_acc": 0.8680555555555556
+        },
+        "flash_to_moment": {
+          "seen": 0.7662894966849471,
+          "unseen": 0.6523548239597623,
+          "gap": 0.11393467272518476,
+          "pair_acc": 0.7777777777777778
+        },
+        "flash_to_qd": {
+          "seen": 0.7833365570083908,
+          "unseen": 0.6744627343392775,
+          "gap": 0.10887382266911327,
+          "pair_acc": 0.8680555555555556
+        },
+        "moment_to_flash": {
+          "seen": 0.7754377047821402,
+          "unseen": 0.7273891175125743,
+          "gap": 0.04804858726956596,
+          "pair_acc": 0.875
+        },
+        "moment_to_moment": {
+          "seen": 0.7672724751958806,
+          "unseen": 0.64039780521262,
+          "gap": 0.12687466998326058,
+          "pair_acc": 0.7777777777777778
+        },
+        "moment_to_qd": {
+          "seen": 0.7846621418872703,
+          "unseen": 0.6621856424325561,
+          "gap": 0.12247649945471428,
+          "pair_acc": 0.8541666666666666
+        },
+        "qd_to_flash": {
+          "seen": 0.7754167387751876,
+          "unseen": 0.7284179240969364,
+          "gap": 0.04699881467825118,
+          "pair_acc": 0.8819444444444444
+        },
+        "qd_to_moment": {
+          "seen": 0.7672409655900563,
+          "unseen": 0.6455418381344307,
+          "gap": 0.12169912745562561,
+          "pair_acc": 0.7916666666666666
+        },
+        "qd_to_qd": {
+          "seen": 0.7849076744311181,
+          "unseen": 0.6670553269318702,
+          "gap": 0.11785234749924789,
+          "pair_acc": 0.8541666666666666
+        },
+        "ensemble_flash": {
+          "seen": 0.7752339830614055,
+          "unseen": 0.7301097393689986,
+          "gap": 0.04512424369240686,
+          "pair_acc": 0.8819444444444444
+        },
+        "ensemble_moment": {
+          "seen": 0.7672780499722958,
+          "unseen": 0.6474622770919067,
+          "gap": 0.11981577288038903,
+          "pair_acc": 0.7916666666666666
+        },
+        "ensemble_qd": {
+          "seen": 0.7846449327948584,
+          "unseen": 0.6677183356195701,
+          "gap": 0.1169265971752883,
+          "pair_acc": 0.8541666666666666
+        }
+      },
+      "max_summary_error": 0.0,
+      "replay_max_errors": {
+        "flash_to_flash": 1.1920928955078125e-07,
+        "flash_to_moment": 1.1920928955078125e-07,
+        "flash_to_qd": 1.1920928955078125e-07,
+        "moment_to_flash": 1.1920928955078125e-07,
+        "moment_to_moment": 1.1920928955078125e-07,
+        "moment_to_qd": 1.1920928955078125e-07,
+        "qd_to_flash": 1.1920928955078125e-07,
+        "qd_to_moment": 1.1920928955078125e-07,
+        "qd_to_qd": 1.1920928955078125e-07
+      },
+      "seen_val_auc_replay": {
+        "flash": 0.7692070039495328,
+        "moment": 0.7911674084217735,
+        "qd": 0.7967514466312071
+      },
+      "model_diagnostics": {
+        "flash": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.21043959259986877,
+            0.7895600199699402
+          ]
+        },
+        "moment": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.4897306263446808,
+            0.5102693438529968
+          ]
+        },
+        "qd": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.3839029371738434,
+            0.6160967946052551
+          ]
+        }
+      },
+      "untrained_initialization_diagnostic": {
+        "flash": {
+          "seen": 0.7627137623778215,
+          "unseen": 0.7027892089620483,
+          "gap": 0.059924553415773185,
+          "pair_acc": 0.8541666666666666
+        },
+        "moment": {
+          "seen": 0.7556670026075412,
+          "unseen": 0.6301097393689985,
+          "gap": 0.12555726323854266,
+          "pair_acc": 0.7916666666666666
+        },
+        "qd": {
+          "seen": 0.7741292078048809,
+          "unseen": 0.6469593049839965,
+          "gap": 0.12716990282088447,
+          "pair_acc": 0.8541666666666666
+        }
+      }
+    },
+    "C2_alt": {
+      "metrics": {
+        "flash_base": {
+          "seen": 0.7375414451933009,
+          "unseen": 0.5353132488873673,
+          "gap": 0.20222819630593358,
+          "pair_acc": 0.5454545454545454
+        },
+        "moment_base": {
+          "seen": 0.6759390313497808,
+          "unseen": 0.4687093461143444,
+          "gap": 0.20722968523543644,
+          "pair_acc": 0.7272727272727273
+        },
+        "qd_base": {
+          "seen": 0.6978668990270107,
+          "unseen": 0.5447791852105444,
+          "gap": 0.15308771381646635,
+          "pair_acc": 0.5303030303030303
+        },
+        "flash_raw": {
+          "seen": 0.7375331915274941,
+          "unseen": 0.535193426908593,
+          "gap": 0.20233976461890113,
+          "pair_acc": 0.5454545454545454
+        },
+        "moment_raw": {
+          "seen": 0.6759384418022233,
+          "unseen": 0.4686579938377269,
+          "gap": 0.2072804479644964,
+          "pair_acc": 0.7272727272727273
+        },
+        "qd_raw": {
+          "seen": 0.6978687855791951,
+          "unseen": 0.5447107155083877,
+          "gap": 0.1531580700708074,
+          "pair_acc": 0.5303030303030303
+        },
+        "flash_to_flash": {
+          "seen": 0.736819838982771,
+          "unseen": 0.5457035261896611,
+          "gap": 0.19111631279310992,
+          "pair_acc": 0.5757575757575758
+        },
+        "flash_to_moment": {
+          "seen": 0.686740721700538,
+          "unseen": 0.5346114344402603,
+          "gap": 0.15212928726027775,
+          "pair_acc": 0.696969696969697
+        },
+        "flash_to_qd": {
+          "seen": 0.7034901215411244,
+          "unseen": 0.5954125299554947,
+          "gap": 0.1080775915856298,
+          "pair_acc": 0.6363636363636364
+        },
+        "moment_to_flash": {
+          "seen": 0.733307786272503,
+          "unseen": 0.5540910647038686,
+          "gap": 0.17921672156863444,
+          "pair_acc": 0.5757575757575758
+        },
+        "moment_to_moment": {
+          "seen": 0.6840239686455027,
+          "unseen": 0.5423827456350565,
+          "gap": 0.14164122301044624,
+          "pair_acc": 0.696969696969697
+        },
+        "moment_to_qd": {
+          "seen": 0.7005221033170305,
+          "unseen": 0.60534063676823,
+          "gap": 0.09518146654880044,
+          "pair_acc": 0.6363636363636364
+        },
+        "qd_to_flash": {
+          "seen": 0.7364470091073306,
+          "unseen": 0.5375898664840808,
+          "gap": 0.19885714262324983,
+          "pair_acc": 0.5151515151515151
+        },
+        "qd_to_moment": {
+          "seen": 0.6871767510741555,
+          "unseen": 0.5331393358438892,
+          "gap": 0.15403741523026637,
+          "pair_acc": 0.6666666666666666
+        },
+        "qd_to_qd": {
+          "seen": 0.7031776613355846,
+          "unseen": 0.586237589866484,
+          "gap": 0.11694007146910057,
+          "pair_acc": 0.6363636363636364
+        },
+        "ensemble_flash": {
+          "seen": 0.7360470600442397,
+          "unseen": 0.5454981170831907,
+          "gap": 0.19054894296104896,
+          "pair_acc": 0.5757575757575758
+        },
+        "ensemble_moment": {
+          "seen": 0.686352445679088,
+          "unseen": 0.5374529270797672,
+          "gap": 0.14889951859932082,
+          "pair_acc": 0.7272727272727273
+        },
+        "ensemble_qd": {
+          "seen": 0.702856947464238,
+          "unseen": 0.5973981513180417,
+          "gap": 0.10545879614619624,
+          "pair_acc": 0.6363636363636364
+        }
+      },
+      "max_summary_error": 0.0,
+      "replay_max_errors": {
+        "flash_to_flash": 1.1920928955078125e-07,
+        "flash_to_moment": 1.1920928955078125e-07,
+        "flash_to_qd": 1.1920928955078125e-07,
+        "moment_to_flash": 1.1920928955078125e-07,
+        "moment_to_moment": 1.1920928955078125e-07,
+        "moment_to_qd": 1.1920928955078125e-07,
+        "qd_to_flash": 1.1920928955078125e-07,
+        "qd_to_moment": 1.1920928955078125e-07,
+        "qd_to_qd": 1.1920928955078125e-07
+      },
+      "seen_val_auc_replay": {
+        "flash": 0.694930208720644,
+        "moment": 0.6952980072554792,
+        "qd": 0.682527559767262
+      },
+      "model_diagnostics": {
+        "flash": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.2622354030609131,
+            0.737764835357666
+          ]
+        },
+        "moment": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.2654855251312256,
+            0.734514594078064
+          ]
+        },
+        "qd": {
+          "params": 572,
+          "mean_route_kinetic_composite": [
+            0.26123765110969543,
+            0.7387620210647583
+          ]
+        }
+      },
+      "untrained_initialization_diagnostic": {
+        "flash": {
+          "seen": 0.7242733236804747,
+          "unseen": 0.5244094488188976,
+          "gap": 0.19986387486157708,
+          "pair_acc": 0.5757575757575758
+        },
+        "moment": {
+          "seen": 0.6772854400618789,
+          "unseen": 0.5049982882574461,
+          "gap": 0.17228715180443277,
+          "pair_acc": 0.696969696969697
+        },
+        "qd": {
+          "seen": 0.693467341423498,
+          "unseen": 0.5775761725436495,
+          "gap": 0.11589116887984852,
+          "pair_acc": 0.6060606060606061
+        }
+      }
+    }
+  },
+  "macro": {
+    "flash_base": {
+      "seen": 0.7730067074528654,
+      "unseen": 0.5714665681342337,
+      "gap": 0.20154013931863163,
+      "pair_acc": 0.6143207310303278
+    },
+    "moment_base": {
+      "seen": 0.7518282023185678,
+      "unseen": 0.528687614261303,
+      "gap": 0.22314058805726483,
+      "pair_acc": 0.6008570467817597
+    },
+    "qd_base": {
+      "seen": 0.7476048551645246,
+      "unseen": 0.5144386044342903,
+      "gap": 0.23316625073023428,
+      "pair_acc": 0.5294039312419501
+    },
+    "flash_raw": {
+      "seen": 0.7730057997930192,
+      "unseen": 0.5714348903076213,
+      "gap": 0.20157090948539796,
+      "pair_acc": 0.6140002182098149
+    },
+    "moment_raw": {
+      "seen": 0.7518281704754284,
+      "unseen": 0.5286799063223293,
+      "gap": 0.22314826415309907,
+      "pair_acc": 0.6008570467817597
+    },
+    "qd_raw": {
+      "seen": 0.7476015671340651,
+      "unseen": 0.5144280334212699,
+      "gap": 0.23317353371279514,
+      "pair_acc": 0.5294039312419501
+    },
+    "flash_to_flash": {
+      "seen": 0.7742329739405408,
+      "unseen": 0.5880294952499734,
+      "gap": 0.18620347869056747,
+      "pair_acc": 0.673389710492301
+    },
+    "flash_to_moment": {
+      "seen": 0.7580952346014074,
+      "unseen": 0.5614134922135129,
+      "gap": 0.19668174238789446,
+      "pair_acc": 0.6406678135262179
+    },
+    "flash_to_qd": {
+      "seen": 0.7520157624939493,
+      "unseen": 0.5531349934574183,
+      "gap": 0.1988807690365309,
+      "pair_acc": 0.6278274839836512
+    },
+    "moment_to_flash": {
+      "seen": 0.7740878016157444,
+      "unseen": 0.5890833641053154,
+      "gap": 0.18500443751042908,
+      "pair_acc": 0.6681649206450502
+    },
+    "moment_to_moment": {
+      "seen": 0.7580619133137915,
+      "unseen": 0.5614979034997047,
+      "gap": 0.1965640098140868,
+      "pair_acc": 0.6412369431503961
+    },
+    "moment_to_qd": {
+      "seen": 0.751767631740227,
+      "unseen": 0.5534148096222282,
+      "gap": 0.19835282211799882,
+      "pair_acc": 0.6183641314528863
+    },
+    "qd_to_flash": {
+      "seen": 0.7749022125967651,
+      "unseen": 0.5844660998732465,
+      "gap": 0.19043611272351868,
+      "pair_acc": 0.6609130439605859
+    },
+    "qd_to_moment": {
+      "seen": 0.7588033721024774,
+      "unseen": 0.5591725956484519,
+      "gap": 0.19963077645402547,
+      "pair_acc": 0.6464908705267846
+    },
+    "qd_to_qd": {
+      "seen": 0.7527802762734326,
+      "unseen": 0.548952543614249,
+      "gap": 0.2038277326591836,
+      "pair_acc": 0.6252461465038739
+    },
+    "ensemble_flash": {
+      "seen": 0.7746954192336604,
+      "unseen": 0.5873083177286039,
+      "gap": 0.18738710150505627,
+      "pair_acc": 0.6740479710490013
+    },
+    "ensemble_moment": {
+      "seen": 0.7585446313736534,
+      "unseen": 0.5611399862449917,
+      "gap": 0.1974046451286616,
+      "pair_acc": 0.6519659469173746
+    },
+    "ensemble_qd": {
+      "seen": 0.7524020135078447,
+      "unseen": 0.5521311330630649,
+      "gap": 0.20027088044477978,
+      "pair_acc": 0.6234274225921267
+    }
+  }
+}

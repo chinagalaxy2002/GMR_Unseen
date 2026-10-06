@@ -37,3 +37,7 @@ DDV 的五划分 Mean Unseen AUROC 为 0.6134，Gap 为 0.1550。相对三骨干
 AC 复现见 [专用 README](aligned_calibration_verifier/README.md)。历史脚本部分依赖 `experiments/gmr_unseen_existence_20261005/cross_confirmation/` 的额外缓存/数据视图；其 `code/common.py` 作为直接源码依赖同时发布，不代表该独立实验全部产物已发布。未在本次上传过程中重新训练或运行模型测试。
 
 本次 DDV 发布的来源及实际发布哈希另见 [PUBLICATION_MANIFEST.json](decomposed_directional_verifier/PUBLICATION_MANIFEST.json)。上述 AC 发布清单是此前发布快照，不包含本次新增文件。
+
+## 最新发布：独立候选消融与迁移（2026-10-06）
+
+当前主结果见 [独立候选验证器](independent_candidate_transfer_suite/README.md)，包含 125 个权重、72 份预测、45 份紧凑特征；[独立审计](candidate_suite_final_audit_20261006/FINAL_INDEPENDENT_AUDIT.md)核对冻结产物，[论文表格](paper_tables_20261006/PAPER_TABLES.md)补齐 AUROC、Rej-F1、定位与 G-mIoU。历史 DDV/SDCV/单种子迁移保留原始代码、权重与审计，不能与最新 3-seed 表格混用。

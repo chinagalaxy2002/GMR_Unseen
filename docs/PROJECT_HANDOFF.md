@@ -75,3 +75,7 @@ cat results/semantic_existence/multi_split_v2/queue_status.txt
 最新入口为 [DDV 实验整理](reports/ddv_experiment_20261006.md)与[独立审计](../experiments/agy_test/ddv_audit_20261006/DDV_AUDIT_REPORT.md)。DDV 在五划分单种子上达到 Unseen 0.6134、Gap 0.1550；相对三骨干融合控制存在 Unseen 增益及 Seen 取舍。A1 Gap 扩大，阈值迁移与方向推理尚待解决。正式数字使用[修正汇总](../experiments/agy_test/decomposed_directional_verifier/benchmark_audited.json)，旧 DDV 原报告中有 G-mIoU、PairAcc 与表述问题。恢复上下文时先读此最新入口，再追溯旧阶段报告。
 
 本次代码、报告及指标发布到同一 GitHub main；检查点、特征和逐查询预测继续保留本地。当前下一步为容量/模态/gate 对照、Seen-only 运行点校准及新语义多种子验证。
+
+## 2026-10-06 独立发布分支补充
+
+分支 `experiments/independent-candidate-verifier-20261006` 发布最新消融/迁移代码、125 个检查点、72 份预测、45 份紧凑特征。优先阅读 [最新方法](../experiments/agy_test/independent_candidate_transfer_suite/README.md)、[冻结产物审计](../experiments/agy_test/candidate_suite_final_audit_20261006/FINAL_INDEPENDENT_AUDIT.md)、[论文表格](../experiments/agy_test/paper_tables_20261006/PAPER_TABLES.md)。三骨干 Gap 缩小约 5.81%/7.76%/7.98%，A3 和 Moment 的 Unseen G-mIoU 仍有局部限制；没有重新训练。
