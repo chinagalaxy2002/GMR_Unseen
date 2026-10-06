@@ -69,7 +69,7 @@ python experiments/agy_test/independent_candidate_transfer_suite/scripts/05_gene
 python experiments/agy_test/independent_candidate_transfer_suite/scripts/01_extract_target_candidate_features.py
 ```
 
-此步骤还需要外部原始特征：`features/charades_semantic_existence/{clip,slowfast}/`、`experiments/agy_test/aligned_calibration_verifier/aligned_features/`、`experiments/agy_test/cache/features/`，以及 train/val/test 的检测器输出。大型预训练特征与骨干权重没有打包；已发布的 45 份紧凑特征足以重新训练当前验证器。
+此步骤还需要外部原始特征：`features/charades_semantic_existence/{clip,slowfast}/`、`experiments/agy_test/aligned_calibration_verifier/aligned_features/`、`experiments/agy_test/cache/features/`，以及 train/val/test 的检测器输出。上述已提取特征另行保存在 [Google Drive 数据包](https://drive.google.com/drive/folders/17wf_qE7wdGpplPxaHuYA-JGdnb_1CHHs)，下载与恢复步骤见 [教程](../../../docs/datasets/GMR_DRIVE_ASSETS_20261006.md)。大型预训练编码器/骨干权重需按原模型来源准备；GitHub 的 45 份紧凑特征已足以重新训练当前验证器。
 
 ## 指标口径
 
