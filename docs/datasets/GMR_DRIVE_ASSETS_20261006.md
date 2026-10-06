@@ -33,3 +33,7 @@ python restore_bundle.py --repo-root /path/to/GMR_Unseen --verify-files
 ## Baseline 训练复现
 
 `09_baseline_training_text_and_views.tar.gz` 与 `11_baseline_checkpoints_and_configs.tar.gz` 已纳入恢复脚本和哈希清单。恢复后运行 `python reproduction/check_assets.py --raw-videos`，逐查询检查 train、Seen val、test 的文本特征及对应视频特征。三个 baseline 的 100 epoch 从头训练入口为 `reproduction/run_baselines.py --stage train-and-infer`；具体环境与命令见根 README。
+
+## 上传核验结果
+
+2026-10-06 上传完成。16 个归档及配套元数据已在远端逐项核对大小与 MD5；`rclone check` 返回 35 个匹配文件、0 个差异。根目录 34 个文件的核验信息、Drive 文件 ID 与字节数见 [上传回执](UPLOAD_RECEIPT_20261006.json)，同名原回执也保存在 Drive 文件夹中。Baseline train / Seen validation / test 的逐查询文本和视频特征路径已检查，无缺失；本次未重新执行模型训练。
