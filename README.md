@@ -4,11 +4,17 @@
 
 代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
 
-> **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库目前提供 benchmark、适配代码和诊断实验，尚未提出新模型。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
+> **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库提供 benchmark、适配代码和诊断实验；新增 DDV 验证器的探索结果与限制见下方最新实验入口。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
 
 第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/reports/semantic_existence_multisplit_results.md)。
 
 清空对话上下文后，只需从[项目总交接](docs/PROJECT_HANDOFF.md)恢复；它汇总研究问题、当前状态、关键结果、数据和代码入口，并标明其余文档的用途。
+
+## 2026-10-06：DDV 与独立审计
+
+[实验整理与后续计划](docs/reports/ddv_experiment_20261006.md) · [代码与复现资源](experiments/agy_test/decomposed_directional_verifier/README.md) · [完整审计](experiments/agy_test/ddv_audit_20261006/DDV_AUDIT_REPORT.md) · [修正指标](experiments/agy_test/decomposed_directional_verifier/benchmark_audited.json)
+
+五划分单种子 DDV 的 Seen / Unseen AUROC 为 **0.7684 / 0.6134**，Gap 为 **0.1550**。相对匹配三骨干融合控制，Unseen 增益 **6.11 pp，95% CI [4.22, 8.21] pp**，同时 Seen 降低 **0.94 pp**。主要增益来自组合语义，A1 Gap 仍扩大，运行点校准仍有明显局限。原报告的 G-mIoU、Release QD PairAcc 和过强表述已在独立审计中纠正；以修正指标为准。本次发布包含代码、报告及指标，检查点/特征/逐查询预测保留本地。
 
 ## Research question and protocol
 

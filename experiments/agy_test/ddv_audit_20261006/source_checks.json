@@ -1,0 +1,256 @@
+{
+  "detector_source_columns": {
+    "A1/flash": {
+      "max_error": 0.0,
+      "representation": "logit"
+    },
+    "A1/moment": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "A1/qd": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "A2_alt/flash": {
+      "max_error": 0.0,
+      "representation": "logit"
+    },
+    "A2_alt/moment": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "A2_alt/qd": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "A3/flash": {
+      "max_error": 0.0,
+      "representation": "logit"
+    },
+    "A3/moment": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "A3/qd": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "C1/flash": {
+      "max_error": 0.0,
+      "representation": "logit"
+    },
+    "C1/moment": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "C1/qd": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "C2_alt/flash": {
+      "max_error": 0.0,
+      "representation": "logit"
+    },
+    "C2_alt/moment": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    },
+    "C2_alt/qd": {
+      "max_error": 0.0,
+      "representation": "sigmoid probability"
+    }
+  },
+  "train_pair_source_fraction": {
+    "A1": {
+      "pairs": 3941,
+      "source_exact_pairs": 1499,
+      "source_exact_fraction": 0.3803603146409541
+    },
+    "A2_alt": {
+      "pairs": 4402,
+      "source_exact_pairs": 1499,
+      "source_exact_fraction": 0.3405270331667424
+    },
+    "A3": {
+      "pairs": 4372,
+      "source_exact_pairs": 1499,
+      "source_exact_fraction": 0.3428636779505947
+    },
+    "C1": {
+      "pairs": 4140,
+      "source_exact_pairs": 1499,
+      "source_exact_fraction": 0.3620772946859903
+    },
+    "C2_alt": {
+      "pairs": 4188,
+      "source_exact_pairs": 1499,
+      "source_exact_fraction": 0.35792741165234004
+    }
+  },
+  "feature_spot_checks": {
+    "A1/train": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A1/val": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A1/test": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A2_alt/train": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A2_alt/val": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A2_alt/test": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A3/train": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A3/val": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A3/test": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C1/train": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C1/val": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C1/test": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C2_alt/train": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C2_alt/val": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "C2_alt/test": {
+      "n": 6,
+      "max_abs_errors_peak_velocity_displacement": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "model_parameters": {
+    "A1": {
+      "parameter_count": 402,
+      "parameters_with_no_gradient": [
+        "w_obj",
+        "w_kin",
+        "w_vis"
+      ]
+    },
+    "A2_alt": {
+      "parameter_count": 401,
+      "parameters_with_no_gradient": [
+        "w_obj",
+        "w_kin",
+        "w_vis"
+      ]
+    },
+    "A3": {
+      "parameter_count": 400,
+      "parameters_with_no_gradient": [
+        "w_obj",
+        "w_kin",
+        "w_vis"
+      ]
+    },
+    "C1": {
+      "parameter_count": 401,
+      "parameters_with_no_gradient": [
+        "w_obj",
+        "w_kin",
+        "w_vis"
+      ]
+    },
+    "C2_alt": {
+      "parameter_count": 401,
+      "parameters_with_no_gradient": [
+        "w_obj",
+        "w_kin",
+        "w_vis"
+      ]
+    }
+  },
+  "note": "Training pairs contain all same-video positive-negative combinations; exact construction-source pairs are only a subset. Flash logit and Moment/QD probability units differ, but train/val/test are consistent per channel and train-only CDF normalizes them. Feature checks are 90 sampled rows, not a complete raw-video recomputation."
+}

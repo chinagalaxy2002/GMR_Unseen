@@ -69,3 +69,9 @@ cat results/semantic_existence/multi_split_v2/queue_status.txt
 ```
 
 下一步若写论文，应按动作轴、组合轴分别报告逐组结果、配对覆盖、同样本比较、text-only 对照与局限；如果要扩展结论，先另行设计多种子或新视频域实验，不改写现有冻结发布包。当前没有尚未完成的既定训练或测试。GitHub 发布目标为 [`chinagalaxy2002/GMR_Unseen`](https://github.com/chinagalaxy2002/GMR_Unseen) 的 `main`；`origin` 是上游 GMR 仓库，提交前须核对远端。
+
+## 2026-10-06：DDV 实验与独立审计补充
+
+最新入口为 [DDV 实验整理](reports/ddv_experiment_20261006.md)与[独立审计](../experiments/agy_test/ddv_audit_20261006/DDV_AUDIT_REPORT.md)。DDV 在五划分单种子上达到 Unseen 0.6134、Gap 0.1550；相对三骨干融合控制存在 Unseen 增益及 Seen 取舍。A1 Gap 扩大，阈值迁移与方向推理尚待解决。正式数字使用[修正汇总](../experiments/agy_test/decomposed_directional_verifier/benchmark_audited.json)，旧 DDV 原报告中有 G-mIoU、PairAcc 与表述问题。恢复上下文时先读此最新入口，再追溯旧阶段报告。
+
+本次代码、报告及指标发布到同一 GitHub main；检查点、特征和逐查询预测继续保留本地。当前下一步为容量/模态/gate 对照、Seen-only 运行点校准及新语义多种子验证。
