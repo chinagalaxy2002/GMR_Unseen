@@ -1,0 +1,645 @@
+{
+  "protocol": "Frozen replay; no retraining, no original outputs overwritten. Alternative ranking results are diagnostics on shared cached evidence; no new bootstrap CIs.",
+  "numpy_version": "1.24.4",
+  "macro": {
+    "moment": {
+      "baseline": {
+        "seen": 0.7518281704754284,
+        "unseen": 0.5286799063223293,
+        "gap": 0.22314826415309907,
+        "unseen_gain": 0.0,
+        "seen_change": 0.0,
+        "gap_reduction": 0.0
+      },
+      "original": {
+        "seen": 0.7187851179340286,
+        "unseen": 0.6136380303012905,
+        "gap": 0.10514708763273801,
+        "unseen_gain": 0.08495812397896119,
+        "seen_change": -0.03304305254139983,
+        "gap_reduction": 0.11800117652036106
+      },
+      "test_average_ties": {
+        "seen": 0.7178503436786494,
+        "unseen": 0.6134260803584098,
+        "gap": 0.10442426332023962,
+        "unseen_gain": 0.08474617403608053,
+        "seen_change": -0.033977826796778965,
+        "gap_reduction": 0.11872400083285946
+      },
+      "train_reference_cdf": {
+        "seen": 0.7180269487345791,
+        "unseen": 0.6121643344019917,
+        "gap": 0.10586261433258741,
+        "unseen_gain": 0.08348442807966239,
+        "seen_change": -0.03380122174084932,
+        "gap_reduction": 0.11728564982051166
+      },
+      "original_shuffled_order": {
+        "seen": 0.7177706617615398,
+        "unseen": 0.6126424414953512,
+        "gap": 0.10512822026618873,
+        "unseen_gain": 0.08396253517302188,
+        "seen_change": -0.034057508713888573,
+        "gap_reduction": 0.11802004388691034
+      }
+    },
+    "qd": {
+      "baseline": {
+        "seen": 0.7476015671340651,
+        "unseen": 0.5144280334212699,
+        "gap": 0.23317353371279514,
+        "unseen_gain": 0.0,
+        "seen_change": 0.0,
+        "gap_reduction": 0.0
+      },
+      "original": {
+        "seen": 0.7271429198867612,
+        "unseen": 0.6332038272678651,
+        "gap": 0.0939390926188961,
+        "unseen_gain": 0.1187757938465952,
+        "seen_change": -0.02045864724730395,
+        "gap_reduction": 0.13923444109389904
+      },
+      "test_average_ties": {
+        "seen": 0.715456353968285,
+        "unseen": 0.6089737541539119,
+        "gap": 0.10648259981437327,
+        "unseen_gain": 0.094545720732642,
+        "seen_change": -0.03214521316578012,
+        "gap_reduction": 0.12669093389842187
+      },
+      "train_reference_cdf": {
+        "seen": 0.7262286834339036,
+        "unseen": 0.6086438337652563,
+        "gap": 0.11758484966864716,
+        "unseen_gain": 0.09421580034398647,
+        "seen_change": -0.02137288370016155,
+        "gap_reduction": 0.11558868404414799
+      },
+      "original_shuffled_order": {
+        "seen": 0.7150973490567335,
+        "unseen": 0.6114403852067289,
+        "gap": 0.1036569638500047,
+        "unseen_gain": 0.09701235178545908,
+        "seen_change": -0.032504218077331615,
+        "gap_reduction": 0.12951656986279045
+      }
+    },
+    "flash": {
+      "baseline": {
+        "seen": 0.7730057997930192,
+        "unseen": 0.5714348903076213,
+        "gap": 0.20157090948539796,
+        "unseen_gain": 0.0,
+        "seen_change": 0.0,
+        "gap_reduction": 0.0
+      },
+      "original": {
+        "seen": 0.7278697174225222,
+        "unseen": 0.6231224932715091,
+        "gap": 0.10474722415101301,
+        "unseen_gain": 0.05168760296388786,
+        "seen_change": -0.045136082370497044,
+        "gap_reduction": 0.09682368533438496
+      },
+      "test_average_ties": {
+        "seen": 0.7278696702587175,
+        "unseen": 0.6231224932715091,
+        "gap": 0.10474717698720841,
+        "unseen_gain": 0.05168760296388786,
+        "seen_change": -0.04513612953430168,
+        "gap_reduction": 0.09682373249818955
+      },
+      "train_reference_cdf": {
+        "seen": 0.7210700360121478,
+        "unseen": 0.6200343847168106,
+        "gap": 0.1010356512953372,
+        "unseen_gain": 0.048599494409189314,
+        "seen_change": -0.05193576378087139,
+        "gap_reduction": 0.10053525819006076
+      },
+      "original_shuffled_order": {
+        "seen": 0.7278696702587175,
+        "unseen": 0.6231224932715091,
+        "gap": 0.1047471769872084,
+        "unseen_gain": 0.05168760296388786,
+        "seen_change": -0.04513612953430168,
+        "gap_reduction": 0.09682373249818957
+      }
+    }
+  },
+  "details": [
+    {
+      "split": "A1",
+      "backbone": "moment",
+      "replay_error": 0.0,
+      "max_order_change": 0.17589266224082534,
+      "detector_unique_fraction": 0.28588007736943905,
+      "metrics": {
+        "baseline": {
+          "seen": 0.8043862285711272,
+          "unseen": 0.49726906704334706,
+          "gap": 0.3071171615277801
+        },
+        "original": {
+          "seen": 0.7458363324527127,
+          "unseen": 0.5284364880317488,
+          "gap": 0.21739984442096394
+        },
+        "test_average_ties": {
+          "seen": 0.7475697245819689,
+          "unseen": 0.5325223173532436,
+          "gap": 0.21504740722872528
+        },
+        "train_reference_cdf": {
+          "seen": 0.7526166492651828,
+          "unseen": 0.5304044509786964,
+          "gap": 0.22221219828648642
+        },
+        "original_shuffled_order": {
+          "seen": 0.7477646673416334,
+          "unseen": 0.5321725426888446,
+          "gap": 0.21559212465278876
+        }
+      }
+    },
+    {
+      "split": "A1",
+      "backbone": "qd",
+      "replay_error": 0.0,
+      "max_order_change": 0.1529358177604558,
+      "detector_unique_fraction": 0.15203094777562862,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7827446160863535,
+          "unseen": 0.5058212497717816,
+          "gap": 0.27692336631457193
+        },
+        "original": {
+          "seen": 0.7337907484747336,
+          "unseen": 0.5427003757194884,
+          "gap": 0.1910903727552452
+        },
+        "test_average_ties": {
+          "seen": 0.7332184439909513,
+          "unseen": 0.5424889734497967,
+          "gap": 0.19072947054115452
+        },
+        "train_reference_cdf": {
+          "seen": 0.7451117649850505,
+          "unseen": 0.542194932111044,
+          "gap": 0.20291683287400653
+        },
+        "original_shuffled_order": {
+          "seen": 0.733508468722151,
+          "unseen": 0.5430674469332257,
+          "gap": 0.1904410217889253
+        }
+      }
+    },
+    {
+      "split": "A1",
+      "backbone": "flash",
+      "replay_error": 0.0,
+      "max_order_change": 0.0,
+      "detector_unique_fraction": 1.0,
+      "metrics": {
+        "baseline": {
+          "seen": 0.8252643839083734,
+          "unseen": 0.47028933283365526,
+          "gap": 0.35497505107471816
+        },
+        "original": {
+          "seen": 0.7614966792168278,
+          "unseen": 0.5300258487320668,
+          "gap": 0.23147083048476103
+        },
+        "test_average_ties": {
+          "seen": 0.7614966792168278,
+          "unseen": 0.5300258487320668,
+          "gap": 0.23147083048476103
+        },
+        "train_reference_cdf": {
+          "seen": 0.753816461803743,
+          "unseen": 0.5287670443079939,
+          "gap": 0.22504941749574903
+        },
+        "original_shuffled_order": {
+          "seen": 0.7614966792168278,
+          "unseen": 0.5300258487320668,
+          "gap": 0.23147083048476103
+        }
+      }
+    },
+    {
+      "split": "A2_alt",
+      "backbone": "moment",
+      "replay_error": 0.0,
+      "max_order_change": 0.05182220277677985,
+      "detector_unique_fraction": 0.41314459049544994,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7690488707119191,
+          "unseen": 0.5510817307692307,
+          "gap": 0.21796713994268835
+        },
+        "original": {
+          "seen": 0.7258212760592985,
+          "unseen": 0.5685477716727717,
+          "gap": 0.15727350438652676
+        },
+        "test_average_ties": {
+          "seen": 0.7258127002190699,
+          "unseen": 0.5675557081807082,
+          "gap": 0.15825699203836163
+        },
+        "train_reference_cdf": {
+          "seen": 0.7279560170882193,
+          "unseen": 0.5682902167277167,
+          "gap": 0.1596658003605026
+        },
+        "original_shuffled_order": {
+          "seen": 0.7257303721528746,
+          "unseen": 0.566601800976801,
+          "gap": 0.1591285711760736
+        }
+      }
+    },
+    {
+      "split": "A2_alt",
+      "backbone": "qd",
+      "replay_error": 0.0,
+      "max_order_change": 0.33194738806165425,
+      "detector_unique_fraction": 0.09989888776541962,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7441703582085584,
+          "unseen": 0.47274687118437114,
+          "gap": 0.2714234870241872
+        },
+        "original": {
+          "seen": 0.7420513752860578,
+          "unseen": 0.643543956043956,
+          "gap": 0.09850741924210182
+        },
+        "test_average_ties": {
+          "seen": 0.7129938558392681,
+          "unseen": 0.5502518315018314,
+          "gap": 0.16274202433743667
+        },
+        "train_reference_cdf": {
+          "seen": 0.7432664646484571,
+          "unseen": 0.5406078296703296,
+          "gap": 0.20265863497812753
+        },
+        "original_shuffled_order": {
+          "seen": 0.7123368392797494,
+          "unseen": 0.5653807997557997,
+          "gap": 0.14695603952394976
+        }
+      }
+    },
+    {
+      "split": "A2_alt",
+      "backbone": "flash",
+      "replay_error": 0.0,
+      "max_order_change": 0.00021375724457577128,
+      "detector_unique_fraction": 0.9997977755308393,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7756450854218006,
+          "unseen": 0.5557654151404151,
+          "gap": 0.21987967028138544
+        },
+        "original": {
+          "seen": 0.7281065230842323,
+          "unseen": 0.5734508547008548,
+          "gap": 0.15465566838337752
+        },
+        "test_average_ties": {
+          "seen": 0.7281065230842323,
+          "unseen": 0.5734508547008548,
+          "gap": 0.15465566838337752
+        },
+        "train_reference_cdf": {
+          "seen": 0.7287676131678597,
+          "unseen": 0.5735462454212454,
+          "gap": 0.15522136774661421
+        },
+        "original_shuffled_order": {
+          "seen": 0.7281065230842323,
+          "unseen": 0.5734508547008548,
+          "gap": 0.15465566838337752
+        }
+      }
+    },
+    {
+      "split": "A3",
+      "backbone": "moment",
+      "replay_error": 0.0,
+      "max_order_change": 0.22086034854871595,
+      "detector_unique_fraction": 0.24560740600793501,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7488016048925624,
+          "unseen": 0.5643194093714927,
+          "gap": 0.1844821955210697
+        },
+        "original": {
+          "seen": 0.7439808190072115,
+          "unseen": 0.6225799663299663,
+          "gap": 0.12140085267724521
+        },
+        "test_average_ties": {
+          "seen": 0.737662065296429,
+          "unseen": 0.6189411475869808,
+          "gap": 0.11872091770944815
+        },
+        "train_reference_cdf": {
+          "seen": 0.7279895355934918,
+          "unseen": 0.6187175575196409,
+          "gap": 0.10927197807385092
+        },
+        "original_shuffled_order": {
+          "seen": 0.7372113511584313,
+          "unseen": 0.6166351010101011,
+          "gap": 0.12057625014833018
+        }
+      }
+    },
+    {
+      "split": "A3",
+      "backbone": "qd",
+      "replay_error": 0.0,
+      "max_order_change": 0.34986069352836935,
+      "detector_unique_fraction": 0.12752692235027394,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7334029000807198,
+          "unseen": 0.4870186237373737,
+          "gap": 0.24638427634334614
+        },
+        "original": {
+          "seen": 0.753691394653805,
+          "unseen": 0.6180380190796857,
+          "gap": 0.13565337557411927
+        },
+        "test_average_ties": {
+          "seen": 0.7251633995103435,
+          "unseen": 0.5899796576879911,
+          "gap": 0.13518374182235238
+        },
+        "train_reference_cdf": {
+          "seen": 0.7273256599355573,
+          "unseen": 0.5883838383838383,
+          "gap": 0.13894182155171897
+        },
+        "original_shuffled_order": {
+          "seen": 0.7236146690148832,
+          "unseen": 0.5868230920314254,
+          "gap": 0.1367915769834579
+        }
+      }
+    },
+    {
+      "split": "A3",
+      "backbone": "flash",
+      "replay_error": 0.0,
+      "max_order_change": 0.0001614762839788897,
+      "detector_unique_fraction": 0.9998110712261478,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7549866245055069,
+          "unseen": 0.6280250420875421,
+          "gap": 0.12696158241796485
+        },
+        "original": {
+          "seen": 0.7393786148858247,
+          "unseen": 0.6375298120089787,
+          "gap": 0.10184880287684595
+        },
+        "test_average_ties": {
+          "seen": 0.7393786148858247,
+          "unseen": 0.6375298120089787,
+          "gap": 0.10184880287684595
+        },
+        "train_reference_cdf": {
+          "seen": 0.7211704516647655,
+          "unseen": 0.6323697039842874,
+          "gap": 0.08880074768047808
+        },
+        "original_shuffled_order": {
+          "seen": 0.7393786148858246,
+          "unseen": 0.6375298120089787,
+          "gap": 0.10184880287684583
+        }
+      }
+    },
+    {
+      "split": "C1",
+      "backbone": "moment",
+      "replay_error": 0.0,
+      "max_order_change": 0.05359431754940468,
+      "detector_unique_fraction": 0.4620616365568544,
+      "metrics": {
+        "baseline": {
+          "seen": 0.76096570639931,
+          "unseen": 0.5620713305898491,
+          "gap": 0.1988943758094609
+        },
+        "original": {
+          "seen": 0.7048473408074118,
+          "unseen": 0.7539323273891175,
+          "gap": -0.04908498658170568
+        },
+        "test_average_ties": {
+          "seen": 0.7047605682006028,
+          "unseen": 0.7532464563328761,
+          "gap": -0.04848588813227328
+        },
+        "train_reference_cdf": {
+          "seen": 0.7063261108469152,
+          "unseen": 0.7531321444901692,
+          "gap": -0.046806033643253975
+        },
+        "original_shuffled_order": {
+          "seen": 0.7047061535351596,
+          "unseen": 0.7530406950160037,
+          "gap": -0.04833454148084404
+        }
+      }
+    },
+    {
+      "split": "C1",
+      "backbone": "qd",
+      "replay_error": 0.0,
+      "max_order_change": 0.03910597024584661,
+      "detector_unique_fraction": 0.3934112646121148,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7798211757154982,
+          "unseen": 0.5618427069044353,
+          "gap": 0.21797846881106298
+        },
+        "original": {
+          "seen": 0.7173221149441334,
+          "unseen": 0.7399634202103337,
+          "gap": -0.02264130526620023
+        },
+        "test_average_ties": {
+          "seen": 0.7173944658467383,
+          "unseen": 0.7403749428440787,
+          "gap": -0.022980476997340404
+        },
+        "train_reference_cdf": {
+          "seen": 0.716236124260312,
+          "unseen": 0.7414266117969822,
+          "gap": -0.025190487536670192
+        },
+        "original_shuffled_order": {
+          "seen": 0.717414704708941,
+          "unseen": 0.739849108367627,
+          "gap": -0.022434403658685986
+        }
+      }
+    },
+    {
+      "split": "C1",
+      "backbone": "flash",
+      "replay_error": 0.0,
+      "max_order_change": 0.00013679667732635625,
+      "detector_unique_fraction": 0.999787460148778,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7715997136019214,
+          "unseen": 0.6679012345679012,
+          "gap": 0.10369847903402019
+        },
+        "original": {
+          "seen": 0.7105161612768274,
+          "unseen": 0.7514631915866484,
+          "gap": -0.04094703030982105
+        },
+        "test_average_ties": {
+          "seen": 0.7105161612768274,
+          "unseen": 0.7514631915866484,
+          "gap": -0.04094703030982105
+        },
+        "train_reference_cdf": {
+          "seen": 0.7089678277229269,
+          "unseen": 0.7519661636945588,
+          "gap": -0.04299833597163194
+        },
+        "original_shuffled_order": {
+          "seen": 0.7105161612768274,
+          "unseen": 0.7514631915866484,
+          "gap": -0.04094703030982105
+        }
+      }
+    },
+    {
+      "split": "C2_alt",
+      "backbone": "moment",
+      "replay_error": 0.0,
+      "max_order_change": 0.0022805628887212492,
+      "detector_unique_fraction": 0.5953241232731137,
+      "metrics": {
+        "baseline": {
+          "seen": 0.6759384418022233,
+          "unseen": 0.4686579938377269,
+          "gap": 0.2072804479644964
+        },
+        "original": {
+          "seen": 0.6734398213435082,
+          "unseen": 0.5946935980828484,
+          "gap": 0.07874622326065983
+        },
+        "test_average_ties": {
+          "seen": 0.6734466600951766,
+          "unseen": 0.5948647723382403,
+          "gap": 0.07858188775693631
+        },
+        "train_reference_cdf": {
+          "seen": 0.6752464308790862,
+          "unseen": 0.5902773022937351,
+          "gap": 0.0849691285853511
+        },
+        "original_shuffled_order": {
+          "seen": 0.6734407646196003,
+          "unseen": 0.5947620677850052,
+          "gap": 0.07867869683459516
+        }
+      }
+    },
+    {
+      "split": "C2_alt",
+      "backbone": "qd",
+      "replay_error": 0.0,
+      "max_order_change": 0.19699939029969127,
+      "detector_unique_fraction": 0.17534537725823593,
+      "metrics": {
+        "baseline": {
+          "seen": 0.6978687855791951,
+          "unseen": 0.5447107155083877,
+          "gap": 0.1531580700708074
+        },
+        "original": {
+          "seen": 0.6888589660750755,
+          "unseen": 0.621773365285861,
+          "gap": 0.06708560078921444
+        },
+        "test_average_ties": {
+          "seen": 0.6885116046541242,
+          "unseen": 0.621773365285861,
+          "gap": 0.06673823936826317
+        },
+        "train_reference_cdf": {
+          "seen": 0.6992034033401406,
+          "unseen": 0.6306059568640877,
+          "gap": 0.06859744647605293
+        },
+        "original_shuffled_order": {
+          "seen": 0.6886120635579431,
+          "unseen": 0.6220814789455666,
+          "gap": 0.06653058461237649
+        }
+      }
+    },
+    {
+      "split": "C2_alt",
+      "backbone": "flash",
+      "replay_error": 0.0,
+      "max_order_change": 0.0001806444275841701,
+      "detector_unique_fraction": 1.0,
+      "metrics": {
+        "baseline": {
+          "seen": 0.7375331915274941,
+          "unseen": 0.535193426908593,
+          "gap": 0.20233976461890113
+        },
+        "original": {
+          "seen": 0.6998506086488985,
+          "unseen": 0.6231427593289969,
+          "gap": 0.0767078493199016
+        },
+        "test_average_ties": {
+          "seen": 0.6998503728298755,
+          "unseen": 0.6231427593289969,
+          "gap": 0.07670761350087862
+        },
+        "train_reference_cdf": {
+          "seen": 0.6926278257014438,
+          "unseen": 0.6135227661759671,
+          "gap": 0.07910505952547664
+        },
+        "original_shuffled_order": {
+          "seen": 0.6998503728298755,
+          "unseen": 0.6231427593289969,
+          "gap": 0.07670761350087862
+        }
+      }
+    }
+  ],
+  "max_replay_error": 0.0
+}

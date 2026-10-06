@@ -1,0 +1,11 @@
+=== MECHANISM AND EVIDENCE ABLATION SUMMARY (Macro Across 5 Splits, Fixed Train CDF) ===
+Variant                | Moment Seen Moment Unseen | QD Seen  QD Unseen  | Flash Seen Flash Unseen
+---------------------------------------------------------------------------
+baseline_det           | 0.7518      0.5287        | 0.7476   0.5144     | 0.7730     0.5714
+evidence_only          | 0.5892      0.6127        | 0.5892   0.6127     | 0.5892     0.6127
+unweighted_prod        | 0.7302      0.6091        | 0.7341   0.6073     | 0.7364     0.6200
+min_fusion             | 0.7129      0.5950        | 0.7207   0.5929     | 0.7196     0.6059
+weighted_sum_0.5       | 0.7371      0.6155        | 0.7347   0.6080     | 0.7450     0.6255
+power_prod_0.65_0.85   | 0.7180      0.6122        | 0.7262   0.6086     | 0.7211     0.6200
+unrouted_wsum          | 0.6764      0.5345        | 0.6850   0.5177     | 0.6795     0.5470
+nodir_wsum             | 0.7354      0.6149        | 0.7329   0.6082     | 0.7436     0.6255

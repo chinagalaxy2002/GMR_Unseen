@@ -1,142 +1,120 @@
-# 复现 Unseen 拒绝识别退化的缓解
+# GMR Unseen：查询相关多模态证据校准
 
-本分支复现 Charades-STA 五个语义划分上的 **baseline → 独立候选验证器**。提供 baseline 从头训练、已发布权重推理、验证器训练，以及 AUROC、Rej-F1、G-mIoU 和定位指标的论文表格复算。
+本分支：`experiments/evidence-calibration-20261007`。研究目标是让 GMR 视频检索模型对下游训练未见的语义，既返回真实发生事件的正确时间片段，也拒绝合理但不存在的事件。
 
-## 1. 复现目标
+## 1. 当前 idea 与研究状态
 
-以下为五划分等权宏平均。验证器使用目标骨干自身候选窗口；验证器指标先按种子 3407、42、2024 分别计算，再平均。AUROC 单位为 %，Gap 为百分点。
+**事件是否发生与语义是否熟悉是两个不同的问题。**定位能力与存在性头在未见语义下可能出现分离。我们用查询相关的视觉与时序证据校准已有骨干的存在性输出，检验能否缓解这种退化。语义熟悉度是否导致分离仍是机制假设。
 
-| 骨干 | Baseline Seen | Baseline Unseen | +Verifier Seen | +Verifier Unseen | Gap：Baseline → Verifier | 缩小量 | 相对缩小 |
+当前方法是外部证据校准，不改动 Decoder。查询关键词规则选择峰值帧匹配、物体匹配、全局场景、SlowFast 动态或端点方向证据；以 Seen 训练集参考 CDF 映射检测分数与证据，保留并列。对照两种融合：
+
+- 加权和：`s = 0.5 * CDF_train(det) + 0.5 * CDF_train(evidence)`。
+- 幂律：`s = CDF_train(det)**0.65 * CDF_train(evidence)**0.85`。
+
+仅用 Seen 验证集在 91 个百分位候选阈值上挑选 Balanced Accuracy 最优值，测试固定使用 `score >= tau` 接受。未见指下游任务训练未见，不指 CLIP/SlowFast 预训练未见。
+
+**阶段目标已获得支持：现有缓存上 Unseen AUROC 和 Rej-F1 改善。完整科学目标尚未达成：仍需证明真实未见事件的接受且正确定位、负例拒绝共同泛化，并解释存在判断与定位分离的机制。**
+
+## 2. 当前结果：冻结训练参考 CDF
+
+Charades-STA 派生 A1、A2_alt、A3、C1、C2_alt 五划分等权宏平均。AUROC 为 0–1；增益、Gap 缩小与 Seen 变化为百分点 pp。Gap = Seen − Unseen。以下为原测试集点估计，不是 Bootstrap 均值。
+
+| 骨干 | Baseline Seen | Baseline Unseen | 加权和 Seen | 加权和 Unseen | ΔUnseen pp | Gap 缩小 pp | ΔSeen pp |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| FlashVTG | 77.25 | 57.15 | 77.77 | 58.84 | 20.10 → 18.94 | 1.17 pp | 5.81% |
-| Moment-DETR | 75.18 | 52.87 | 75.84 | 55.26 | 22.31 → 20.58 | 1.73 pp | 7.76% |
-| QD-DETR | 74.76 | 51.44 | 75.57 | 54.11 | 23.32 → 21.46 | 1.86 pp | 7.98% |
+| Moment-DETR | 0.7518 | 0.5287 | 0.7371 | 0.6155 | +8.68 | 10.15 | -1.47 |
+| QD-DETR | 0.7476 | 0.5144 | 0.7347 | 0.6080 | +9.36 | 10.65 | -1.29 |
+| FlashVTG | 0.7730 | 0.5714 | 0.7450 | 0.6255 | +5.41 | 8.21 | -2.80 |
 
-Unseen 查询的操作指标如下。阈值仅在 Seen validation 上通过 Youden J 标定。
+### 固定 Seen 验证阈值：Unseen 查询
 
-| 模型 | AUROC | Rej-F1 | G-mIoU@1 | G-mIoU@3 |
-|---|---:|---:|---:|---:|
-| FlashVTG | 57.15 | 26.89 | 24.07 | 16.93 |
-| +Verifier | 58.84 | 31.49 | 27.87 | 21.38 |
-| Moment-DETR | 52.87 | 35.26 | 30.26 | 25.14 |
-| +Verifier | 55.26 | 35.53 | 30.01 | 24.78 |
-| QD-DETR | 51.44 | 21.55 | 19.52 | 13.18 |
-| +Verifier | 54.11 | 34.02 | 27.25 | 21.43 |
+以下 Rej-F1 的正类为负查询；U−正确拒绝率 = 正确拒绝的 U− / 全部 U−；U+误拒率 = 被拒绝的 U+ / 全部 U+。全部数值为 %。
 
-结果支持宏平均 AUROC 退化缓解。Moment-DETR 的 G-mIoU 略降，A3 也存在局部退化，因此不能声称所有划分、所有指标均改善。
+| 骨干 | 分支 | Unseen Rej-F1 ↑ | U−正确拒绝率 ↑ | U+误拒率 ↓ |
+|---|---|---:|---:|---:|
+| Moment-DETR | Baseline | 35.10 | 31.96 | 29.71 |
+| Moment-DETR | 加权和 | 46.76 | 38.73 | 28.15 |
+| Moment-DETR | 幂律乘积 | 62.25 | 56.09 | 42.41 |
+| QD-DETR | Baseline | 28.51 | 21.47 | 18.76 |
+| QD-DETR | 加权和 | 44.78 | 36.93 | 27.79 |
+| QD-DETR | 幂律乘积 | 58.25 | 49.47 | 35.55 |
+| FlashVTG | Baseline | 33.42 | 27.04 | 21.85 |
+| FlashVTG | 加权和 | 48.15 | 40.90 | 28.01 |
+| FlashVTG | 幂律乘积 | 57.95 | 49.13 | 35.41 |
 
-## 2. 获取代码、数据和特征
+加权和在 Moment-DETR 上同时提高负例拒绝并降低正例误拒；QD 与 Flash 仍增加正例误拒。幂律获得更高拒绝 F1，同时更激进地拒绝真实事件。不能称为所有骨干无代价提升。
+
+### 联合视频 Bootstrap
+
+[原始联合采样日志](experiments/agy_test/detr_decoder_gmr/logs/joint_bootstrap_cluster_2000.log)记录 2,000 次全局视频联合采样，跨五划分使用相同视频重复次数。固定模型、训练 CDF 与 Seen 阈值；区间仅反映测试视频抽样，不覆盖训练种子、超参数选择及负例标注不确定性。
+
+| 骨干 | 加权和 ΔUnseen AUROC 95% CI，pp | 加权和 ΔUnseen Rej-F1 95% CI，pp |
+|---|---|---|
+| Moment-DETR | [6.33, 11.22] | [8.89, 14.48] |
+| QD-DETR | [7.27, 11.54] | [13.54, 19.13] |
+| FlashVTG | [3.11, 7.80] | [12.17, 17.29] |
+
+加权和与幂律的 Unseen AUROC 差值区间包含零，含义是未检测到显著差异，不能证明等价。日志中的差值均值是 Bootstrap 均值，与主表点估计略有不同。
+
+### G-mIoU 的范围
+
+历史阈值日志中的 G-mIoU@1 是 **All 查询**，不是 Unseen；Baseline / 加权和 / 幂律分别为 Moment 37.99 / 37.74 / 39.74，QD 38.06 / 39.20 / 40.23，Flash 43.34 / 42.81 / 44.04（%）。它不能替代 U+ 接受且正确定位的直接评估。
+
+## 3. 证据边界与下一步
+
+- 多模态局部证据共享上游 HQ 候选窗口；检测分数各用单骨干输出。尚未证明各骨干仅用自身候选也获得这些收益。
+- 缓存检测分数存在概率量化/饱和；需要原始 logit 的公平对照。
+- 原幂律结构没有证明优于简单加权和；路由消融混杂权重及特征选择；“去方向”实际将方向权重转给峰值帧，不能解释成严格置零。
+- 现有测试语义已多次参与方法分析；需要冻结规则和参数后，用新动作/组合做独立评估。
+- 负例来自人工审查的构建流程，其缺席标注边界见数据说明。
+
+优先实验：①相同 Seen 正例保护预算下比较 U−拒绝；②统计全部 U+ 中“接受且定位 IoU≥δ”的比例及定位正确却被拒绝比例；③各骨干自身候选与原始 logit；④新语义冻结评估；⑤语义熟悉度的受控机制实验。
+
+## 4. 文件组织
+
+| 路径 | 用途 |
+|---|---|
+| [docs/current_idea/RESEARCH_QUESTION.md](docs/current_idea/RESEARCH_QUESTION.md) | 当前研究问题与结论边界 |
+| [experiments/agy_test/detr_decoder_gmr/](experiments/agy_test/detr_decoder_gmr/) | 方法 A/B、P1、联合 Bootstrap、阈值脚本和原始日志 |
+| [独立 idea 评估](experiments/agy_test/dec_gmr_scheme_a_audit_20261006/IDEA_EVALUATION_V2.md) | 研究贡献、机制和最小实验矩阵 |
+| [方案 A 审计](experiments/agy_test/dec_gmr_scheme_a_audit_20261006/SCHEME_A_INDEPENDENT_AUDIT.md) | 原排名、并列和训练 CDF 诊断 |
+| [交付审计](experiments/agy_test/delivery_audit_20261007/DELIVERY_AUDIT.md) | 定义核验、逐划分错误与分组复算 |
+| [audit.json](experiments/agy_test/delivery_audit_20261007/audit.json) | 点估计、阈值、混淆计数与逐划分数据 |
+| [SOURCE_ASSET_MANIFEST.json](docs/current_idea/SOURCE_ASSET_MANIFEST.json) | 新增源文件 SHA256 与大小 |
+| [历史独立候选方案复现](docs/reproduction/INDEPENDENT_CANDIDATE_REPRODUCTION.md) | 旧验证器及 baseline 从头训练指南 |
+
+**结果版本优先级：本 README 的范围说明与独立审计优先于历史报告。**原 `detr_decoder_gmr/benchmark_summary.json`、`runs/*/predictions.npz` 是旧测试集 ordinal ranking 的方案 A 产物，不代表修正训练 CDF 主结果。10 份 `.pt` 属于历史方案 B，当前免训练加权和/幂律不需要这些权重。
+
+原 `run_thresholded_gmr_eval.py` 仍输出 All Rej-F1 和整体拒绝比例；分组核验使用 `check_delivery.py`。交付文档若与此冲突，以源代码和审计为准。保留旧报告供追溯，不把未经支持的因果/Decoder 内生解释作为新结论。
+
+## 5. 获取与复算
 
 ```bash
-git clone --single-branch --branch experiments/independent-candidate-verifier-20261006 \
+git clone --single-branch --branch experiments/evidence-calibration-20261007 \
   https://github.com/chinagalaxy2002/GMR_Unseen.git
 cd GMR_Unseen
 ```
 
-数据包：[Google Drive](https://drive.google.com/drive/folders/17wf_qE7wdGpplPxaHuYA-JGdnb_1CHHs)。共 16 个归档，约 17.89 GB，含：
-
-- 五划分 train/val/test、Seen validation 视图及同视频反事实评测对；
-- 6,142 个原始 480p 视频及各自的 CLIP、SlowFast 特征；
-- baseline 使用的 CLIP token 文本特征，支持三个骨干从头训练；
-- 三骨干 × 五划分的 15 个最佳 baseline 检查点和配置；
-- 验证器的训练/验证/测试特征及原始定位候选。
-
-配置自己的 rclone `gdrive:` 后，从仓库根目录运行：
+数据、原始视频、特征、候选和 baseline 权重沿用已上传的 [Google Drive 包](https://drive.google.com/drive/folders/17wf_qE7wdGpplPxaHuYA-JGdnb_1CHHs)。该包支持 baseline 训练。若归档已放在本机指定位置，从仓库根目录执行：
 
 ```bash
-mkdir -p ../gmr_assets
-rclone copy gdrive:GMR_Unseen_Dataset_Features_20261006 ../gmr_assets \
-  --drive-root-folder-id 1ERbWP2hl4DYl6n3j3JrvzcbGuDfW80Rm \
-  --transfers 2 --checkers 2 --checksum --progress
-(cd ../gmr_assets && sha256sum -c SHA256SUMS)
-python ../gmr_assets/restore_bundle.py --repo-root "$PWD" --verify-files
-python reproduction/check_assets.py --raw-videos
+python /home/guoxiangyu/paper/Openword/repro/data/restore_bundle.py \
+  --repo-root "$PWD" --verify-files
+python reproduction/prepare_evidence_calibration.py
 ```
 
-恢复脚本校验归档及文件哈希，恢复仓库相对目录和文本特征别名。遇到已有文件内容不同会停止，建议使用干净 checkout。详情见 [数据说明](docs/datasets/GMR_DRIVE_ASSETS_20261006.md)。仓库中的验证器权重和预测无需另外下载。
+其他机器请将归档和 `restore_bundle.py` 下载至自选目录，替换上述路径。缓存来自 `07_verifier_experiment_feature_caches.tar.gz` 中 SDCV 的 15 个 NPZ；准备脚本创建相对路径链接，不绑定原机器。完整下载、依赖、baseline 训练与推理见[历史复现指南](docs/reproduction/INDEPENDENT_CANDIDATE_REPRODUCTION.md)的环境及 baseline 章节，数据说明见 [Drive 资产文档](docs/datasets/GMR_DRIVE_ASSETS_20261006.md)。
 
-## 3. 环境
-
-验证器和表格复算的原审计环境为 Python 3.8.20、PyTorch 2.0.1+cu118。可以建立独立环境：
+复算环境为 Python 3.8，依赖 numpy、scipy、scikit-learn；方案 B 另需 PyTorch。以下都是评估复算，不会训练骨干：
 
 ```bash
-conda create -n gmr-repro python=3.8 -y
-conda activate gmr-repro
-pip install torch==2.0.1 --index-url https://download.pytorch.org/whl/cu118
-pip install -r experiments/agy_test/independent_candidate_transfer_suite/publication/requirements-replay.txt
-pip install pandas==1.5.3 PyYAML easydict tqdm
+# P1：融合与证据消融
+python experiments/agy_test/detr_decoder_gmr/run_mechanism_ablations.py
+# Seen 阈值：All 指标（RR 是整体拒绝比例）
+python experiments/agy_test/detr_decoder_gmr/run_thresholded_gmr_eval.py
+# 单独分组：All / Seen / Unseen，保存 audit.json
+python experiments/agy_test/delivery_audit_20261007/check_delivery.py
+# 全局视频联合采样：2,000 次 AUROC 与 Unseen Rej-F1 差值区间
+python experiments/agy_test/detr_decoder_gmr/run_joint_bootstrap_cluster.py
 ```
 
-FlashVTG 使用独立环境，避免其 torchtext 依赖与上述环境冲突：
-
-```bash
-conda create -n gmr-flash python=3.10 -y
-conda run -n gmr-flash pip install -r requirements-flash-vtg.txt
-```
-
-训练和 baseline 推理需要 CUDA GPU。验证器检查点重放和论文表格复算可在 CPU 上执行。
-
-## 4. 复算当前论文表格
-
-```bash
-# 重放已发布检查点，核对逐查询预测
-python experiments/agy_test/independent_candidate_transfer_suite/verify_suite.py
-
-# 复算表格，输出到新目录
-python reproduction/recompute_tables.py
-```
-
-输出位于 `reproduction_outputs/paper_tables/`：`PAPER_TABLES.md`、`paper_tables.tex`、`paper_metrics.json`、逐 split/seed CSV 和输入哈希。包含 All / Seen / Unseen 的 AUROC、Rej-F1、mAP、mR@1、mR@5、G-mIoU@1/@3，以及固定阈值 0.4 的补充表。
-
-这是在本项目 Charades-STA 语义划分上的 **GMR Table-2-style 指标评估**。原论文 Soccer-GMR 数据表不属于本次复现。当前正查询均为单时刻，mR+@5 不适用，记为 `—`。
-
-## 5. Baseline 权重推理复现
-
-激活 `gmr-repro`，指定 Flash 环境解释器：
-
-```bash
-FLASH_PYTHON="$(conda run -n gmr-flash python -c 'import sys; print(sys.executable)' | tail -n 1)"
-python reproduction/run_baselines.py --stage infer --published-checkpoints \
-  --gpu 0 --flash-python "$FLASH_PYTHON"
-python reproduction/evaluate_baselines.py
-```
-
-该命令读取 Drive 的 15 个检查点，依次对 Seen validation 和完整 test 推理。新预测和日志写入 `reproduction_outputs/baseline_predictions/`；评估入口生成 `reproduction_outputs/baseline_metrics/BASELINE_TABLE.md` 和逐划分 JSON。检查点相对路径见 [索引](reproduction/baseline_checkpoint_index.json)。
-
-Flash AUROC 必须使用 `pred_exist_logit` 经 float32 sigmoid 转换后的连续分数。其 JSONL 中三位小数的 `pred_exist_score` 会引入 ties，不能用于复现本表的 57.15。Moment-DETR / QD-DETR 使用发布的 `pred_exist_score`。
-
-## 6. Baseline 从头训练复现
-
-数据包已包含训练所需的冻结视频特征和 token 文本特征，无需重新提取编码器特征。训练检测器参数：种子 3407、100 epochs、仅 Seen train、仅 Seen validation 选最佳检查点，关闭提前停止。
-
-```bash
-# 先查看完整原训练配方
-python reproduction/run_baselines.py --stage train --dry-run
-
-# 五划分、三个骨干从头训练，随后推理
-python reproduction/run_baselines.py --stage train-and-infer \
-  --gpu 0 --flash-python "$FLASH_PYTHON"
-python reproduction/evaluate_baselines.py
-```
-
-默认串行执行，可通过 `--splits A1 --models moment` 运行单项。训练写入 `reproduction_outputs/baselines/`；日志旁保存实际命令 JSON。重训时需提供新的 `--output`，脚本拒绝覆盖已有训练目录。这个步骤会重新训练三个定位模型，耗时明显长于验证器训练。
-
-## 7. 验证器重新训练
-
-```bash
-python reproduction/train_verifiers.py --gpu 0
-```
-
-该命令在提供的冻结 baseline 特征上，按原顺序执行五划分 × 三种子 × 三来源验证器训练：400 epochs、训练集 CDF 分位数变换、同视频/跨视频成对损失，仅 Seen validation AUROC 选模。输出为 `reproduction_outputs/verifiers/` 下的新检查点、逐查询预测及汇总。可用 `--splits A1 --seeds 3407` 运行单项。
-
-**当前论文表格以发布的 baseline 和验证器产物为输入。** 第 6 节重新训练的 baseline 预测与第 7 节冻结特征上的验证器是两组产物；如要用新 baseline 进行新的端到端实验，须先重新导出对应 train/val/test 候选和验证器特征，不能直接混用当前缓存来宣称新 baseline 的增益。新训练存在环境与随机性波动，不承诺逐位等同于冻结重放结果。
-
-## 8. 指标协议
-
-- `Gap = Seen AUROC − Unseen AUROC`；缩小量为 baseline Gap 减 verifier Gap，相对缩小量除以 baseline Gap。
-- Rej-F1 的正类为无对应时刻的负查询；Unseen 正查询应接受并定位。
-- 主表阈值来自 Seen validation 的 100 点 `[0.01, 0.99]` Youden J 网格，接受条件为 `score >= τ`；CDF 只拟合训练特征。
-- mAP/mR 在正查询的原始定位窗口上计算；验证器只改变拒绝分数，定位指标保持相同。G-mIoU 同时衡量空集拒绝和定位。
-- 五划分等权；三个种子平均各自指标，不平均分数冒充同一模型。
-
-完整冻结结果与 LaTeX：[论文表格](experiments/agy_test/paper_tables_20261006/PAPER_TABLES.md)。
+原始日志在 `experiments/agy_test/detr_decoder_gmr/logs/`。上述脚本使用恢复缓存和既有骨干输出；这不等于端到端训练重现。`evaluate_dec_gmr.py` 与 `train_and_evaluate.py` 是历史方案 A/B，并写入同名预测及汇总，运行会覆盖相应旧产物；主结果复算使用上列命令。
