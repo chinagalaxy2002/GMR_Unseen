@@ -11,6 +11,8 @@
 
 ## 目前结果支持什么
 
+**本次 DDV 达到了相对 QD-DETR 基线缓解宏平均 Seen→Unseen 退化的目标。** 相对 HQ QD，Unseen AUROC 提高 11.06 pp，Gap 缩小 9.34 pp（约 37.6%），Seen AUROC 同时提高 1.73 pp；Unseen 增益及 Gap 缩小的 Bootstrap 95% CI 均排除零。完整宏平均、逐划分 Gap 与统计支持见 [仓库 README 的 DDV 主表](../../../README.md#ddv-results)。
+
 | 方法 | Seen AUROC | Unseen AUROC | Gap | Matched PairAcc |
 |---|---:|---:|---:|---:|
 | HQ QD 原始 logit | 0.7511 | 0.5027 | 0.2484 | 0.5181 |

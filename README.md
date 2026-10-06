@@ -10,11 +10,55 @@
 
 清空对话上下文后，只需从[项目总交接](docs/PROJECT_HANDOFF.md)恢复；它汇总研究问题、当前状态、关键结果、数据和代码入口，并标明其余文档的用途。
 
-## 2026-10-06：DDV 与独立审计
+<a id="ddv-results"></a>
+
+## 2026-10-06：DDV 显著缓解未见语义退化
 
 [实验整理与后续计划](docs/reports/ddv_experiment_20261006.md) · [代码与复现资源](experiments/agy_test/decomposed_directional_verifier/README.md) · [完整审计](experiments/agy_test/ddv_audit_20261006/DDV_AUDIT_REPORT.md) · [修正指标](experiments/agy_test/decomposed_directional_verifier/benchmark_audited.json)
 
-五划分单种子 DDV 的 Seen / Unseen AUROC 为 **0.7684 / 0.6134**，Gap 为 **0.1550**。相对匹配三骨干融合控制，Unseen 增益 **6.11 pp，95% CI [4.22, 8.21] pp**，同时 Seen 降低 **0.94 pp**。主要增益来自组合语义，A1 Gap 仍扩大，运行点校准仍有明显局限。原报告的 G-mIoU、Release QD PairAcc 和过强表述已在独立审计中纠正；以修正指标为准。本次发布包含代码、报告及指标，检查点/特征/逐查询预测保留本地。
+**本次 DDV 已达到相对 QD-DETR 基线缓解宏平均 Seen→Unseen 退化的目标：Unseen AUROC 显著提高，Seen−Unseen Gap 显著缩小，Seen AUROC 同时提高。** 以下展示本次 DDV 的结果；页末 AC-Verifier 表格对应此前实验。
+
+### 五划分宏平均主结果
+
+五个划分等权平均，AUROC、Gap 与 PairAcc 均为 0–1 标度。Gap = Seen AUROC − Unseen AUROC，越小表示退化差距越小。
+
+| 设置 | Mean Seen AUROC | Mean Unseen AUROC | Seen−Unseen Gap | Mean Matched PairAcc |
+| --- | ---: | ---: | ---: | ---: |
+| Base1：HQ QD 原始 logit | 0.7511 | 0.5027 | 0.2484 | 0.5181 |
+| Base2：发布 QD 概率 | 0.7476 | 0.5144 | 0.2332 | 0.5294 |
+| **DDV（本次实验）** | **0.7684** | **0.6134** | **0.1550** | **0.6608** |
+
+相对 Base1，Seen AUROC **+1.73 pp**、Unseen AUROC **+11.06 pp**，Gap **缩小 9.34 pp（约 37.6%）**；相对 Base2，Unseen **+9.89 pp**，Gap **缩小 7.82 pp（约 33.5%）**。相对这两个 QD 基线，宏平均 Seen 的提高说明 Gap 缩小没有依赖降低 Seen 表现。
+
+### 五划分逐项结果与退化差距
+
+这里 Δ Unseen 和 Gap 缩小量均相对 Base1；正的 Gap 缩小量表示退化缓解，负值表示差距扩大。增益使用完整精度计算，再保留展示位数。
+
+| Split | Base1 Unseen | DDV Unseen | Δ Unseen，pp | Base1 Gap | DDV Gap | Gap 缩小，pp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| A1 | 0.5072 | 0.5153 | +0.80 | 0.2788 | 0.3087 | -2.99 |
+| A2_alt | 0.4174 | 0.5651 | +14.78 | 0.3367 | 0.2151 | +12.16 |
+| A3 | 0.4811 | 0.5818 | +10.07 | 0.2590 | 0.1448 | +11.42 |
+| C1 | 0.5655 | 0.7682 | +20.27 | 0.2145 | 0.0146 | +19.99 |
+| C2_alt | 0.5425 | 0.6364 | +9.39 | 0.1527 | 0.0918 | +6.10 |
+| **Macro** | **0.5027** | **0.6134** | **+11.06** | **0.2484** | **0.1550** | **+9.34** |
+
+全部五个划分的 Unseen AUROC 点估计都提高，四个划分的 Gap 缩小。A1 的 Seen 提升幅度更大，其 Gap 扩大；因此结论是宏平均退化显著缓解，逐划分改善仍不均衡。
+
+### Bootstrap 对退化缓解的统计支持
+
+2,000 次共享视频成对聚类 Bootstrap；区间排除零，支持 Unseen 增益和 Gap 缩小。表中增益为原测试集点估计，区间来自重采样。
+
+| 比较 | Δ Unseen，pp | 95% CI，pp | Gap 缩小，pp | 95% CI，pp |
+| --- | ---: | --- | ---: | --- |
+| DDV vs Base1 | +11.06 | [8.89, 13.47] | +9.34 | [7.01, 11.86] |
+| DDV vs Base2 | +9.89 | [7.74, 12.20] | +7.82 | [5.50, 10.16] |
+
+DDV 的 Unseen AUROC 95% CI 为 **[0.5926, 0.6346]**；输出中的 Bootstrap 均值 0.6137、Gap 均值 0.1547，与原测试集点估计 0.6134、0.1550 略有不同，这是重采样统计口径的正常差异。
+
+**进一步归因与适用范围：** DDV 使用三骨干；相对同三骨干的融合控制，Unseen 仍提高 **6.11 pp，CI [4.22, 8.21] pp**，但 Seen 降低 **0.94 pp**。该取舍需要明确报告。方向推理、多种子和新语义推广仍需补充实验；这些问题不改变本次相对 QD 基线的宏平均退化缓解结论。原 G-mIoU 和 Release QD PairAcc 的纠错见独立审计。
+
+本次发布包含代码、报告及指标，检查点/特征/逐查询预测保留本地。
 
 ## Research question and protocol
 
@@ -391,9 +435,9 @@ The repository's [`LICENSE`](LICENSE) applies to its software; third-party datas
 [完整实验记录、全部指标、冻结协议、逐轮账本、失败记录与源码](experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/EXPERIMENT_RECORD.md)。
 
 
-## 2026-10-06：AC-Verifier 对齐校准、独立审计与 backbone 范围
+## 2026-10-06：此前 AC-Verifier 实验、独立审计与 backbone 范围
 
-本次更新发布 `experiments/agy_test/` 的实验代码、报告和小型指标文件。当前推荐入口是 [AC-Verifier 复现说明](experiments/agy_test/aligned_calibration_verifier/README.md)，结论以 [独立审计报告](experiments/agy_test/ac_audit_20261006/AC_AUDIT_REPORT.md) 为准；[实验索引](experiments/agy_test/README.md)区分当前结果与历史实验。
+**本节表格为此前 AC-Verifier 实验，最新 DDV 主结果见页首 [DDV 退化缓解表格](#ddv-results)。** 本节记录 AC 的实验代码、报告和小型指标文件。AC 的复现入口是 [AC-Verifier 复现说明](experiments/agy_test/aligned_calibration_verifier/README.md)，结论以 [独立审计报告](experiments/agy_test/ac_audit_20261006/AC_AUDIT_REPORT.md) 为准；[实验索引](experiments/agy_test/README.md)区分当前结果与历史实验。
 
 ### 方法与五划分结果
 
