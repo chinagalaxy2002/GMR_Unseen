@@ -4,6 +4,30 @@
 
 本分支：`experiments/evidence-calibration-20261007`。研究目标是让 GMR 视频检索模型对下游训练未见的语义，既返回真实发生事件的正确时间片段，也拒绝合理但不存在的事件。
 
+## 先用几句话说明这次实验
+
+**我们想得到什么效果？** 模型遇到没在下游训练里见过的事件时，真实发生了就接受并找对时间，没有发生就拒绝。实验要看 Unseen AUROC、负例正确拒绝率、Rej-F1，以及真实事件“接受且定位正确”的比例，同时检查 Seen 性能和正例误拒有没有变差。
+
+**核心做法是什么？** 不只相信检索模型自己的存在性分数，再用视频里的画面匹配、物体和运动线索核验查询。用已见训练数据把两路分数换到可比较的尺度，再做加权相加或相乘；接受阈值只在已见验证集确定。
+
+**目前做到了哪一步？** 未见语义的 AUROC 和拒绝 F1 已改善，但部分骨干也更容易误拒真实事件。“接受且定位正确”是否同步提高还需要验证，所以目前是缓解退化的阶段成果。
+
+**怎么复现？** 在本分支仓库根目录、数据已按第 5 节恢复且 Python 环境准备好后运行：
+
+```bash
+python reproduction/prepare_evidence_calibration.py
+# 对比 baseline、加权和、幂律及消融的 Seen/Unseen AUROC
+python experiments/agy_test/detr_decoder_gmr/run_mechanism_ablations.py
+# 复算固定 Seen 阈值下的 All 拒绝与 G-mIoU 指标
+python experiments/agy_test/detr_decoder_gmr/run_thresholded_gmr_eval.py
+# 单独核对 Unseen 拒绝 F1、负例拒绝率和正例误拒率
+python experiments/agy_test/delivery_audit_20261007/check_delivery.py
+# 复算 2,000 次联合视频 Bootstrap 置信区间
+python experiments/agy_test/detr_decoder_gmr/run_joint_bootstrap_cluster.py
+```
+
+这些命令复算已有缓存上的结果，不会重新训练骨干。详细结果表和证据边界见下文；baseline 从头训练入口见第 5 节链接的历史复现指南。
+
 ## 1. 当前 idea 与研究状态
 
 **事件是否发生与语义是否熟悉是两个不同的问题。**定位能力与存在性头在未见语义下可能出现分离。我们用查询相关的视觉与时序证据校准已有骨干的存在性输出，检验能否缓解这种退化。语义熟悉度是否导致分离仍是机制假设。
