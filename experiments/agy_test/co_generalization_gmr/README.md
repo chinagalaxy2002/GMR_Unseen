@@ -13,3 +13,13 @@ python experiments/agy_test/co_generalization_gmr/run_bootstrap_significance.py
 ```
 
 结果：`benchmark_summary.json`、`bootstrap_significance_summary.json`；已有逐查询预测归档：`runs/{split}/predictions.npz`。当前评估脚本不会重新保存这些 NPZ。CoG 无新训练权重，使用已有骨干与特征。原始报告仅作归档，结论边界以根 README 为准。
+
+## 新增消融与核验
+
+四组消融、修正后的表格与复现命令见 [完整消融报告](MECHANISM_AND_ABLATION_STUDY.md) 和根 README。`ablation_results.json` 是原始完整归档；已核验版本为 [verified_ablation_results.json](../../../docs/cog/ablation_audit/verified_ablation_results.json)。固定规则变体的 1,800 个指标重放一致；逻辑回归 90 项指标中 49 项有差异，排除在已核验结论之外。
+
+```bash
+# 不覆盖原始 JSON；当前逻辑回归差异会导致 PARTIAL / exit 1
+python experiments/agy_test/co_generalization_gmr/verify_ablations.py
+python experiments/agy_test/co_generalization_gmr/render_ablation_report.py
+```

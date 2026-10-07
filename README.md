@@ -143,7 +143,7 @@ Baseline 在 Seen 验证集的 5%–95% 分位上取 91 个候选阈值，最大
 
 CoG 设置目标 `TPR_target = min(0.95, TPR₀ + 0.04)`，在其验证分数的 1%–99% 分位上取 197 个候选阈值，选择正例接受率**最接近目标**的阈值。0.04 和 0.95 是人为超参数；实现没有严格保证 TPR 不低于目标，也没有在满足 TPR 约束后最大化负例拒绝率。
 
-测试规则：`s >= τ` 返回 backbone 原片段，否则返回空片段。Baseline 与 CoG 的阈值政策不同，现有收益包含校准与阈值政策变化，不能全部归因于多模态算法。
+测试规则：`s >= τ` 返回 backbone 原片段，否则返回空片段。Baseline 与 CoG 的阈值政策不同，新增消融已给 Baseline 应用相同的 Seen-Val TPR 目标，见第 4 节；相同目标不保证相同测试集 TPR，也不证明 ROC 曲线处处优于基线。
 
 ## 3. 一条真实样本：所有数字逐步计算
 
@@ -232,14 +232,86 @@ s = 0.5 × 0.287059 + 0.5 × 0.331679 ≈ 0.309369
 
 “全部”是宏平均，不表示每个划分都改善。不能根据 Unseen 部分的收益宣称整体无代价提升。
 
+<!-- COG_ABLATIONS_START -->
+
+### 新增：四组消融与独立重放核验
+
+已重放四组消融；已核验的固定规则变体共 1800 个数值指标，最大误差 0 pp；15 份缓存与查询 QID、标签顺序一致。逻辑回归另有 90 项指标，其中 49 项未重放一致，最大差 2.083 pp，排除在已核验表格之外。这里只确认固定规则变体数值复算一致，不意味着数据构造或机制解释均已无误。
+
+[完整核验后报告](experiments/agy_test/co_generalization_gmr/MECHANISM_AND_ABLATION_STUDY.md) · [已核验逐划分 JSON](docs/cog/ablation_audit/verified_ablation_results.json) · [原始完整 JSON（含未通过项）](experiments/agy_test/co_generalization_gmr/ablation_results.json) · [重放日志](docs/cog/ablation_audit/replay.log) · [核验结果](docs/cog/ablation_audit/verification.json)
+
+**阈值与证据分开比较：** 下表来自实际 JSON，修正了原说明中的部分 FRR、Recall 和 Rej-F1。两种方法使用相同 Seen-Val TPR 目标，测试集 TPR 仍可能不同。
+
+| Backbone | 配置 | U−正确拒绝率 ↑ | U+误拒率 ↓ | U+门控 R@1≥0.5 ↑ | U+门控 G-mIoU ↑ | Unseen Rej-F1 ↑ | Unseen AUROC ↑ |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Moment-DETR | Baseline + BAcc | 31.96 | 29.71 | 24.28 | 23.82 | 35.10 | 52.87 |
+| Moment-DETR | Baseline + TPR target | 28.81 | 26.65 | 25.90 | 25.27 | 31.61 | 52.87 |
+| Moment-DETR | CoG + BAcc | 37.09 | 24.72 | 27.12 | 26.58 | 46.08 | 61.42 |
+| Moment-DETR | CoG + TPR target | 34.27 | 25.95 | 26.76 | 26.05 | 41.46 | 61.42 |
+| QD-DETR | Baseline + BAcc | 21.47 | 18.76 | 30.63 | 28.27 | 28.51 | 51.44 |
+| QD-DETR | Baseline + TPR target | 15.43 | 14.31 | 32.35 | 30.04 | 22.20 | 51.44 |
+| QD-DETR | CoG + BAcc | 33.56 | 28.05 | 28.35 | 26.04 | 41.48 | 60.01 |
+| QD-DETR | CoG + TPR target | 25.58 | 15.89 | 32.27 | 29.94 | 35.90 | 60.01 |
+| FlashVTG | Baseline + BAcc | 27.04 | 21.85 | 33.63 | 30.65 | 33.42 | 57.14 |
+| FlashVTG | Baseline + TPR target | 23.59 | 18.17 | 35.12 | 32.02 | 30.12 | 57.14 |
+| FlashVTG | CoG + BAcc | 41.66 | 28.51 | 31.23 | 28.35 | 50.23 | 62.50 |
+| FlashVTG | CoG + TPR target | 31.97 | 21.19 | 34.30 | 31.01 | 41.15 | 62.50 |
+
+相比平移基线，CoG 的 U−正确拒绝率提升 5.45 / 10.15 / 8.38 pp；但 QD 和 Flash 的 U+误拒率也更高。Moment 的 CoG+BAcc 在本表指标上优于 CoG+TPR target，保护阈值不是所有骨干的最优选项。新增对照尚未做配对 Bootstrap。
+
+**两路融合权重：Unseen AUROC，%。** 实际扫描 7 个离散权重；不能据此证明 50/50 最优，也未测该扫描的 Seen 保留。
+
+| 配置 | Moment-DETR | QD-DETR | FlashVTG |
+|---|---:|---:|---:|
+| w_det=0.0 | 61.34 | 61.34 | 61.34 |
+| w_det=0.2 | 61.88 | 61.50 | 62.17 |
+| w_det=0.4 | 61.87 | 60.78 | 62.47 |
+| w_det=0.5 | 61.42 | 60.01 | 62.50 |
+| w_det=0.6 | 60.46 | 59.11 | 62.22 |
+| w_det=0.8 | 57.28 | 56.84 | 60.51 |
+| w_det=1.0 | 52.87 | 51.44 | 57.15 |
+
+**证据通道：Unseen AUROC，%。** 分支内等权与经验权重相近，最大差约 0.201 pp。单通道使用全局 CDF，完整模型使用分支 CDF，尚未完全隔离通道贡献。
+
+| 配置 | Moment-DETR | QD-DETR | FlashVTG |
+|---|---:|---:|---:|
+| 经验权重 | 61.42 | 60.01 | 62.50 |
+| 分支内等权 | 61.21 | 59.81 | 62.32 |
+| 显著帧单通道 | 60.00 | 58.27 | 60.75 |
+| 物体匹配单通道 | 57.10 | 56.08 | 57.87 |
+| SlowFast 变化单通道 | 53.17 | 51.50 | 54.42 |
+
+**路由：Unseen AUROC，%。** 二分支保留多数收益；无路由对照同时改了证据组合和 CDF，交换路由也不证明物理因果。
+
+| 配置 | Moment-DETR | QD-DETR | FlashVTG |
+|---|---:|---:|---:|
+| 三分支 | 61.42 | 60.01 | 62.50 |
+| 统一证据 + 全局 CDF | 53.62 | 51.96 | 54.85 |
+| 交换运动/交互证据 | 52.55 | 51.08 | 53.49 |
+| 二分支 | 61.35 | 59.88 | 62.33 |
+
+当前能说的是经验校准在这组冻结划分上改善了 Unseen 排序，存在 Seen/All 代价。尚未证明帕累托最优；不能将词汇规则对当前数据集的适应排除。新动作/组合、同义改写、原生候选和严格留出审计仍需补充。
+
+```bash
+# 不覆盖归档结果：重放四组消融并核对 JSON
+# 当前返回 PARTIAL / exit 1，表示逻辑回归未通过；固定规则变体 PASS
+python experiments/agy_test/co_generalization_gmr/verify_ablations.py
+# 从核验后的 JSON 生成报告和本节
+python experiments/agy_test/co_generalization_gmr/render_ablation_report.py
+# 如需重新运行原实验（会覆盖 ablation_results.json）
+python experiments/agy_test/co_generalization_gmr/ablation_and_mechanism_study.py
+```
+
+<!-- COG_ABLATIONS_END -->
+
 ## 5. 已知问题与下一步
 
-1. **阈值公平性**：补充 Baseline 的相同正例保护规则，并做“全局/分流 CDF × 原阈值/保护阈值”四组对照，分开两类贡献。
+1. **阈值公平性**：已补 Baseline/CoG × BAcc/TPR target 对照；仍需固定证据组合的全局/分流 CDF 对照、严格守卫和配对区间，不能把相同 Seen TPR 目标称为相同 Unseen 灵敏度。
 2. **未见语义定义**：A3 训练 S+ 仍含 `person smiling walks to a desk.` 和 `a person holding a paper runs across a room.`，解析器分别将主动作记为 smile/hold。标注动作留出并不等于查询完全未出现 run/walk，需审计多动作查询。
 3. **关键词与小样本参考**：substring 路由会将 breakfast 的 fast、running shoes 的 run、walk-in closet 的 walk 当成运动信号；A3 运动流训练参考只有 11 条，不能忽略校准不稳定性。
 4. **候选依赖**：局部多模态证据继承共享 HQ 候选缓存，不是各 backbone 独立提取自身窗口证据；需补目标原生候选对照。
 5. **概率饱和**：当前检测器 CDF 仍使用缓存分数，未从机制上修复全部饱和问题；需原始 logit 对照。
-6. **机制与新语义**：分流、等权融合和 +4 pp TPR 目标都需要消融与敏感性分析；固定规则后用新动作/组合评估。Seen-only 阈值选择不等于排除了长期根据同一测试集反馈改超参数。
+6. **机制与新语义**：本次补充路由、分支权重及两路融合扫描；+4 pp TPR 目标仍缺敏感性分析，现有消融仍有混杂。固定规则后用新动作/组合及同义改写评估。Seen-only 阈值选择不等于排除了长期根据同一测试集反馈改超参数。
 7. **归档与复算一致性**：此前只读重建发现 A3 保存得分与当前脚本有最大约 3.68e-5 差异，接受决策一致；其他四划分重建得分一致。不得宣称所有预测逐位零误差重放。需补保存脚本版本和逐查询输出的可重建链路。
 
 当前可以说：**CoG 提出了清楚的免训练校准算法，在现有五划分上改善 Unseen 事件存在判断，Moment-DETR 上也有正例保护与有效定位共同改善的证据。完整的跨骨干共同泛化、机制解释与严格未见语义结论仍需补实验。**
@@ -249,6 +321,9 @@ s = 0.5 × 0.287059 + 0.5 × 0.331679 ≈ 0.309369
 | 文件 | 内容 |
 |---|---|
 | [evaluate_co_generalization.py](experiments/agy_test/co_generalization_gmr/evaluate_co_generalization.py) | 三 backbone、五划分、Baseline/CoG 评估 |
+| [消融脚本](experiments/agy_test/co_generalization_gmr/ablation_and_mechanism_study.py) | 阈值、融合权重、证据通道、路由四组对照 |
+| [消融报告](experiments/agy_test/co_generalization_gmr/MECHANISM_AND_ABLATION_STUDY.md) | 由已核验 JSON 生成的全部结果与解释边界 |
+| [核验脚本](experiments/agy_test/co_generalization_gmr/verify_ablations.py) | 重放四组消融，不覆盖归档 JSON |
 | [run_bootstrap_significance.py](experiments/agy_test/co_generalization_gmr/run_bootstrap_significance.py) | 2,000 次联合视频聚类 Bootstrap |
 | [benchmark_summary.json](experiments/agy_test/co_generalization_gmr/benchmark_summary.json) | 完整宏平均，包括 Seen/All 指标 |
 | [bootstrap_significance_summary.json](experiments/agy_test/co_generalization_gmr/bootstrap_significance_summary.json) | 全部六项差值区间，不只列显著结果 |
