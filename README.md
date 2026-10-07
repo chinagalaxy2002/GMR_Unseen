@@ -1,146 +1,262 @@
-# GMR 事件核验：缓解未见语义的拒绝退化
+# CoG：用视频证据核验事件是否发生
 
-**Idea（event-check）：给视频检索模型加一道“事件核验”，尝试让它找到没学过但真实发生的事件，并拒绝合理却没发生的事件。**
+**Idea：给已有 GMR 视频检索模型加一道免训练的事件核验，尝试少拒绝陌生但真实发生的事件、多拒绝合理却没有发生的事件，并保留正确的时间片段。**
 
-本分支：`experiments/evidence-calibration-20261007`。研究目标是让 GMR 视频检索模型对下游训练未见的语义，既返回真实发生事件的正确时间片段，也拒绝合理但不存在的事件。
+本分支为 [`cog`](https://github.com/chinagalaxy2002/GMR_Unseen/tree/cog)，方法名称是 **Co-Generalization Verifier（CoG-Verifier）**。主实验目录为 [`experiments/agy_test/co_generalization_gmr/`](experiments/agy_test/co_generalization_gmr/)。这是现有 CoG 实验的归档与解释，不是重新训练或重新跑出的结果。继承仓库中的其他验证器属于历史实验，本 README 的主表仅描述 CoG。
 
-## 先用几句话说明这次实验
-
-**我们想得到什么效果？** 模型遇到没在下游训练里见过的事件时，真实发生了就接受并找对时间，没有发生就拒绝。实验要看 Unseen AUROC、负例正确拒绝率、Rej-F1，以及真实事件“接受且定位正确”的比例，同时检查 Seen 性能和正例误拒有没有变差。
-
-**核心做法是什么？** 不只相信检索模型自己的存在性分数，再用视频里的画面匹配、物体和运动线索核验查询。用已见训练数据把两路分数换到可比较的尺度，再做加权相加或相乘；接受阈值只在已见验证集确定。
-
-**目前做到了哪一步？** 未见语义的 AUROC 和拒绝 F1 已改善，但部分骨干也更容易误拒真实事件。“接受且定位正确”是否同步提高还需要验证，所以目前是缓解退化的阶段成果。
-
-**怎么复现？** 在本分支仓库根目录、数据已按第 5 节恢复且 Python 环境准备好后运行：
+## 1. 最快怎么复现？
 
 ```bash
-python reproduction/prepare_evidence_calibration.py
-# 对比 baseline、加权和、幂律及消融的 Seen/Unseen AUROC
-python experiments/agy_test/detr_decoder_gmr/run_mechanism_ablations.py
-# 复算固定 Seen 阈值下的 All 拒绝与 G-mIoU 指标
-python experiments/agy_test/detr_decoder_gmr/run_thresholded_gmr_eval.py
-# 单独核对 Unseen 拒绝 F1、负例拒绝率和正例误拒率
-python experiments/agy_test/delivery_audit_20261007/check_delivery.py
-# 复算 2,000 次联合视频 Bootstrap 置信区间
-python experiments/agy_test/detr_decoder_gmr/run_joint_bootstrap_cluster.py
-```
-
-这些命令复算已有缓存上的结果，不会重新训练骨干。详细结果表和证据边界见下文；baseline 从头训练入口见第 5 节链接的历史复现指南。
-
-## 1. 当前 idea 与研究状态
-
-**事件是否发生与语义是否熟悉是两个不同的问题。**定位能力与存在性头在未见语义下可能出现分离。我们用查询相关的视觉与时序证据校准已有骨干的存在性输出，检验能否缓解这种退化。语义熟悉度是否导致分离仍是机制假设。
-
-当前方法是外部证据校准，不改动 Decoder。查询关键词规则选择峰值帧匹配、物体匹配、全局场景、SlowFast 动态或端点方向证据；以 Seen 训练集参考 CDF 映射检测分数与证据，保留并列。对照两种融合：
-
-- 加权和：`s = 0.5 * CDF_train(det) + 0.5 * CDF_train(evidence)`。
-- 幂律：`s = CDF_train(det)**0.65 * CDF_train(evidence)**0.85`。
-
-仅用 Seen 验证集在 91 个百分位候选阈值上挑选 Balanced Accuracy 最优值，测试固定使用 `score >= tau` 接受。未见指下游任务训练未见，不指 CLIP/SlowFast 预训练未见。
-
-**阶段目标已获得支持：现有缓存上 Unseen AUROC 和 Rej-F1 改善。完整科学目标尚未达成：仍需证明真实未见事件的接受且正确定位、负例拒绝共同泛化，并解释存在判断与定位分离的机制。**
-
-## 2. 当前结果：冻结训练参考 CDF
-
-Charades-STA 派生 A1、A2_alt、A3、C1、C2_alt 五划分等权宏平均。AUROC 为 0–1；增益、Gap 缩小与 Seen 变化为百分点 pp。Gap = Seen − Unseen。以下为原测试集点估计，不是 Bootstrap 均值。
-
-| 骨干 | Baseline Seen | Baseline Unseen | 加权和 Seen | 加权和 Unseen | ΔUnseen pp | Gap 缩小 pp | ΔSeen pp |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Moment-DETR | 0.7518 | 0.5287 | 0.7371 | 0.6155 | +8.68 | 10.15 | -1.47 |
-| QD-DETR | 0.7476 | 0.5144 | 0.7347 | 0.6080 | +9.36 | 10.65 | -1.29 |
-| FlashVTG | 0.7730 | 0.5714 | 0.7450 | 0.6255 | +5.41 | 8.21 | -2.80 |
-
-### 固定 Seen 验证阈值：Unseen 查询
-
-以下 Rej-F1 的正类为负查询；U−正确拒绝率 = 正确拒绝的 U− / 全部 U−；U+误拒率 = 被拒绝的 U+ / 全部 U+。全部数值为 %。
-
-| 骨干 | 分支 | Unseen Rej-F1 ↑ | U−正确拒绝率 ↑ | U+误拒率 ↓ |
-|---|---|---:|---:|---:|
-| Moment-DETR | Baseline | 35.10 | 31.96 | 29.71 |
-| Moment-DETR | 加权和 | 46.76 | 38.73 | 28.15 |
-| Moment-DETR | 幂律乘积 | 62.25 | 56.09 | 42.41 |
-| QD-DETR | Baseline | 28.51 | 21.47 | 18.76 |
-| QD-DETR | 加权和 | 44.78 | 36.93 | 27.79 |
-| QD-DETR | 幂律乘积 | 58.25 | 49.47 | 35.55 |
-| FlashVTG | Baseline | 33.42 | 27.04 | 21.85 |
-| FlashVTG | 加权和 | 48.15 | 40.90 | 28.01 |
-| FlashVTG | 幂律乘积 | 57.95 | 49.13 | 35.41 |
-
-加权和在 Moment-DETR 上同时提高负例拒绝并降低正例误拒；QD 与 Flash 仍增加正例误拒。幂律获得更高拒绝 F1，同时更激进地拒绝真实事件。不能称为所有骨干无代价提升。
-
-### 联合视频 Bootstrap
-
-[原始联合采样日志](experiments/agy_test/detr_decoder_gmr/logs/joint_bootstrap_cluster_2000.log)记录 2,000 次全局视频联合采样，跨五划分使用相同视频重复次数。固定模型、训练 CDF 与 Seen 阈值；区间仅反映测试视频抽样，不覆盖训练种子、超参数选择及负例标注不确定性。
-
-| 骨干 | 加权和 ΔUnseen AUROC 95% CI，pp | 加权和 ΔUnseen Rej-F1 95% CI，pp |
-|---|---|---|
-| Moment-DETR | [6.33, 11.22] | [8.89, 14.48] |
-| QD-DETR | [7.27, 11.54] | [13.54, 19.13] |
-| FlashVTG | [3.11, 7.80] | [12.17, 17.29] |
-
-加权和与幂律的 Unseen AUROC 差值区间包含零，含义是未检测到显著差异，不能证明等价。日志中的差值均值是 Bootstrap 均值，与主表点估计略有不同。
-
-### G-mIoU 的范围
-
-历史阈值日志中的 G-mIoU@1 是 **All 查询**，不是 Unseen；Baseline / 加权和 / 幂律分别为 Moment 37.99 / 37.74 / 39.74，QD 38.06 / 39.20 / 40.23，Flash 43.34 / 42.81 / 44.04（%）。它不能替代 U+ 接受且正确定位的直接评估。
-
-## 3. 证据边界与下一步
-
-- 多模态局部证据共享上游 HQ 候选窗口；检测分数各用单骨干输出。尚未证明各骨干仅用自身候选也获得这些收益。
-- 缓存检测分数存在概率量化/饱和；需要原始 logit 的公平对照。
-- 原幂律结构没有证明优于简单加权和；路由消融混杂权重及特征选择；“去方向”实际将方向权重转给峰值帧，不能解释成严格置零。
-- 现有测试语义已多次参与方法分析；需要冻结规则和参数后，用新动作/组合做独立评估。
-- 负例来自人工审查的构建流程，其缺席标注边界见数据说明。
-
-优先实验：①相同 Seen 正例保护预算下比较 U−拒绝；②统计全部 U+ 中“接受且定位 IoU≥δ”的比例及定位正确却被拒绝比例；③各骨干自身候选与原始 logit；④新语义冻结评估；⑤语义熟悉度的受控机制实验。
-
-## 4. 文件组织
-
-| 路径 | 用途 |
-|---|---|
-| [docs/current_idea/RESEARCH_QUESTION.md](docs/current_idea/RESEARCH_QUESTION.md) | 当前研究问题与结论边界 |
-| [experiments/agy_test/detr_decoder_gmr/](experiments/agy_test/detr_decoder_gmr/) | 方法 A/B、P1、联合 Bootstrap、阈值脚本和原始日志 |
-| [独立 idea 评估](experiments/agy_test/dec_gmr_scheme_a_audit_20261006/IDEA_EVALUATION_V2.md) | 研究贡献、机制和最小实验矩阵 |
-| [方案 A 审计](experiments/agy_test/dec_gmr_scheme_a_audit_20261006/SCHEME_A_INDEPENDENT_AUDIT.md) | 原排名、并列和训练 CDF 诊断 |
-| [交付审计](experiments/agy_test/delivery_audit_20261007/DELIVERY_AUDIT.md) | 定义核验、逐划分错误与分组复算 |
-| [audit.json](experiments/agy_test/delivery_audit_20261007/audit.json) | 点估计、阈值、混淆计数与逐划分数据 |
-| [SOURCE_ASSET_MANIFEST.json](docs/current_idea/SOURCE_ASSET_MANIFEST.json) | 新增源文件 SHA256 与大小 |
-| [历史独立候选方案复现](docs/reproduction/INDEPENDENT_CANDIDATE_REPRODUCTION.md) | 旧验证器及 baseline 从头训练指南 |
-
-**结果版本优先级：本 README 的范围说明与独立审计优先于历史报告。**原 `detr_decoder_gmr/benchmark_summary.json`、`runs/*/predictions.npz` 是旧测试集 ordinal ranking 的方案 A 产物，不代表修正训练 CDF 主结果。10 份 `.pt` 属于历史方案 B，当前免训练加权和/幂律不需要这些权重。
-
-原 `run_thresholded_gmr_eval.py` 仍输出 All Rej-F1 和整体拒绝比例；分组核验使用 `check_delivery.py`。交付文档若与此冲突，以源代码和审计为准。保留旧报告供追溯，不把未经支持的因果/Decoder 内生解释作为新结论。
-
-## 5. 获取与复算
-
-```bash
-git clone --single-branch --branch experiments/evidence-calibration-20261007 \
-  https://github.com/chinagalaxy2002/GMR_Unseen.git
+git clone --single-branch --branch cog https://github.com/chinagalaxy2002/GMR_Unseen.git
 cd GMR_Unseen
 ```
 
-数据、原始视频、特征、候选和 baseline 权重沿用已上传的 [Google Drive 包](https://drive.google.com/drive/folders/17wf_qE7wdGpplPxaHuYA-JGdnb_1CHHs)。该包支持 baseline 训练。若归档已放在本机指定位置，从仓库根目录执行：
+数据、原始视频、特征和 baseline 权重沿用 [Google Drive 数据包](https://drive.google.com/drive/folders/17wf_qE7wdGpplPxaHuYA-JGdnb_1CHHs)。将包中的归档和 `restore_bundle.py` 下载到自己的目录，恢复到本次克隆的仓库：
 
 ```bash
-python /home/guoxiangyu/paper/Openword/repro/data/restore_bundle.py \
-  --repo-root "$PWD" --verify-files
+# 替换为你下载数据包的实际路径
+python /path/to/gmr_assets/restore_bundle.py --repo-root "$PWD" --verify-files
+# 连接已恢复的 15 份 SDCV 特征缓存；不重新提取特征、不训练模型
 python reproduction/prepare_evidence_calibration.py
+# 复算三个 backbone 的 baseline 与 CoG 指标
+python experiments/agy_test/co_generalization_gmr/evaluate_co_generalization.py
+# 2,000 次联合视频聚类 Bootstrap，复算配对差值的区间
+python experiments/agy_test/co_generalization_gmr/run_bootstrap_significance.py
 ```
 
-其他机器请将归档和 `restore_bundle.py` 下载至自选目录，替换上述路径。缓存来自 `07_verifier_experiment_feature_caches.tar.gz` 中 SDCV 的 15 个 NPZ；准备脚本创建相对路径链接，不绑定原机器。完整下载、依赖、baseline 训练与推理见[历史复现指南](docs/reproduction/INDEPENDENT_CANDIDATE_REPRODUCTION.md)的环境及 baseline 章节，数据说明见 [Drive 资产文档](docs/datasets/GMR_DRIVE_ASSETS_20261006.md)。
-
-复算环境为 Python 3.8，依赖 numpy、scipy、scikit-learn；方案 B 另需 PyTorch。以下都是评估复算，不会训练骨干：
+若数据包在当前服务器 `/home/guoxiangyu/paper/Openword/repro/data/`，恢复命令可写成：
 
 ```bash
-# P1：融合与证据消融
-python experiments/agy_test/detr_decoder_gmr/run_mechanism_ablations.py
-# Seen 阈值：All 指标（RR 是整体拒绝比例）
-python experiments/agy_test/detr_decoder_gmr/run_thresholded_gmr_eval.py
-# 单独分组：All / Seen / Unseen，保存 audit.json
-python experiments/agy_test/delivery_audit_20261007/check_delivery.py
-# 全局视频联合采样：2,000 次 AUROC 与 Unseen Rej-F1 差值区间
-python experiments/agy_test/detr_decoder_gmr/run_joint_bootstrap_cluster.py
+python /home/guoxiangyu/paper/Openword/repro/data/restore_bundle.py --repo-root "$PWD" --verify-files
 ```
 
-原始日志在 `experiments/agy_test/detr_decoder_gmr/logs/`。上述脚本使用恢复缓存和既有骨干输出；这不等于端到端训练重现。`evaluate_dec_gmr.py` 与 `train_and_evaluate.py` 是历史方案 A/B，并写入同名预测及汇总，运行会覆盖相应旧产物；主结果复算使用上列命令。
+使用已有科研 Python 环境，评估所需依赖包括 `numpy`、`scipy`、`scikit-learn`。以上是**已有骨干与缓存的评估复算**，不等于从原始视频开始重训骨干。baseline 训练、推理和环境入口见[历史复现指南](docs/reproduction/INDEPENDENT_CANDIDATE_REPRODUCTION.md)的 baseline 章节；具体数据归档见[数据资产说明](docs/datasets/GMR_DRIVE_ASSETS_20261006.md)。该历史数据文档提到的旧分支名称不影响本分支的数据恢复。
+
+### 输入与输出
+
+| 路径 | 用途 |
+|---|---|
+| `data/release/semantic_existence_v2/{split}/{train,val,test}.jsonl` | 查询、划分、存在标签、真实时间窗口 |
+| `experiments/agy_test/detr_decoder_gmr/cache/{split}/{train,val,test}.npz` | 恢复并连接后的检测器及多模态特征 |
+| `results/semantic_existence/multi_split_v2/{split}/{moment,qd,flash}/test/` | 各 backbone 既有测试候选窗口 |
+| `experiments/agy_test/co_generalization_gmr/benchmark_summary.json` | 评估脚本写出的五划分宏平均指标 |
+| `experiments/agy_test/co_generalization_gmr/bootstrap_significance_summary.json` | Bootstrap 脚本写出的差值区间 |
+| `experiments/agy_test/co_generalization_gmr/runs/{split}/predictions.npz` | 本分支归档的逐查询得分、阈值和决策 |
+
+两条评估命令会覆盖对应汇总 JSON。原始评估脚本**不重新保存** `runs/*/predictions.npz`；本分支保存的是已有预测归档，不将其称为脚本自动新生成的产物。当前 CoG 源目录没有独立原始运行日志，本分支没有补造日志。需要留存复算日志时，可用 `set -o pipefail` 后将上述命令通过 `tee` 保存。
+
+## 2. 方法怎么做？为什么叫免训练？
+
+![CoG 方法概览](docs/cog/cog_verifier_overview.png)
+
+[PDF 矢量图](docs/cog/cog_verifier_overview.pdf) · [SVG 可编辑图](docs/cog/cog_verifier_overview.svg) · [绘图脚本](docs/cog/draw_figure.py)
+
+原 backbone 先输出候选窗口与存在分数。CoG 用已有 CLIP/SlowFast 特征核验查询，再决定是否返回**原候选窗口**，不修改时间边界、不访问 Decoder 内部状态。
+
+新增校准器没有需要梯度学习的参数：没有反向传播，也没有新的 CoG checkpoint。已有 backbone 和 CLIP/SlowFast 已经训练过；CoG 仍需训练参考分布，以及带标签的 Seen 验证集确定阈值。因此，“免训练”准确指**无需额外梯度训练的后处理校准**。
+
+### 2.1 数字从哪里来？
+
+| 类型 | 数字例子 | 来源 |
+|---|---|---|
+| 模型输出 | 检测器分数、CLIP/SlowFast 特征向量 | 已训练模型前向计算 |
+| 视频证据 | 全局匹配、物体匹配、运动变化、端点变化 | 特征上的数学运算 |
+| 固定权重 | 0.45 / 0.35 / 0.20；融合的 0.5 / 0.5 | 人为指定的超参数，不是训练学到的 |
+| 百分位数 | 0.331679 | 当前分数与训练参考分数比较 |
+| 拒绝阈值 | 0.387699 | Seen 验证集搜索得到 |
+
+### 2.2 CLIP 匹配分数怎么计算？
+
+CLIP 将完整查询、动作短语、物体短语和视频画面编码为向量。对齐文本使用投影后的 512 维表示。向量归一化后，内积就是余弦相似度。
+
+用训练集唯一视频的全局表示建立固定参考向量 `v_ref`，计算：
+
+```text
+参考中心化匹配 = cos(文本向量, 视频向量) - cos(文本向量, v_ref)
+```
+
+这表示当前视频比训练视频平均视觉参考更接近该查询多少，允许为负值。
+
+- **全局匹配**：全视频帧特征平均并归一化，与完整查询匹配，减去参考匹配。
+- **物体匹配**：候选窗口内帧特征平均并归一化，与查询解析出的物体短语匹配，减去参考匹配。
+- **显著帧匹配**：计算每帧与完整查询的中心化匹配，取最大值。当前实现是在**全视频**取最大值，不是只在候选窗口取最大值。
+
+“分数高”表示特征相似，并不直接证明事件发生。物体或背景吻合也可能得高分。
+
+### 2.3 SlowFast 与方向差值怎么计算？
+
+```text
+相邻特征变化 a_t = ||f_(t+1) - f_t||₂
+运动变化 m = 候选窗口内 mean(a_t) - 全视频 mean(a_t)
+动作状态差值 Δ = cos(v_end, q_action) - cos(v_start, q_action)
+```
+
+SlowFast 的变化幅度是运动强度代理，不是以米/秒测量的真实速度。动作差值保留符号，但不能直接等同于可靠的“放入/取出”方向识别，更不能据此宣称物理因果推断。
+
+### 2.4 查询选择哪条证据流？
+
+当前是固定关键词规则，按以下顺序判断：
+
+1. 包含 `run / walk / slow / fast`：运动流。
+2. 否则包含 `chair / couch / bed / sofa / box / cabinet / shelf / table / cup / book`：物体交互流。
+3. 否则：默认状态转换流。
+
+证据总分为：
+
+```text
+运动流：      e = 0.50 × 显著帧 + 0.35 × 运动变化 + 0.15 × 动作状态差值
+物体交互流：  e = 0.45 × 显著帧 + 0.35 × 物体匹配 + 0.20 × 全局匹配
+默认流：      e = 0.55 × 显著帧 + 0.30 × 全局匹配 + 0.15 × 动作状态差值
+```
+
+这些权重是当前实现中的经验设置，没有证明最优。权重和为 1 不意味着各特征具有相同尺度，也不意味着 `e` 是概率。
+
+缓存中相关列：`X[:,3]` 全局匹配、`X[:,5]` 显著帧、`X[:,6]` 物体匹配、`X[:,8]` SlowFast 运动变化、`X[:,12]` 带符号动作差值。检测器列为 Flash 0、Moment 1、QD 2。
+
+### 2.5 为什么转换成百分位数？
+
+不同检测器与视频证据的数值尺度不同，直接比较原始数字容易误判强弱。当前实现使用保留并列的经验 CDF：
+
+```text
+CDF_ref(s) = [参考中小于 s 的数量 + 0.5 × 等于 s 的数量] / 参考样本数
+```
+
+- 检测器用对应 backbone、对应划分的整体训练参考分布。
+- 视频证据用对应划分、对应证据流的训练参考分布。
+- 测试时参考分布冻结，不用测试标签拟合 CDF。
+
+CDF 表示“分数在参考样本中处于多高的位置”，**不是事件发生概率**。每条流的统计样本数和分布可靠性会影响校准效果。
+
+### 2.6 为什么最终两路各占一半？
+
+```text
+r_det = CDF_train(检测器分数)
+r_ev  = CDF_train,stream(视频证据总分)
+s     = 0.5 × r_det + 0.5 × r_ev
+```
+
+它是一种简单的等权融合，避免训练额外融合网络。没有理论保证 0.5/0.5 最优，也没有保证融合后就是校准概率，需要消融和权重敏感性实验验证。
+
+### 2.7 阈值怎么来？
+
+Baseline 在 Seen 验证集的 5%–95% 分位上取 91 个候选阈值，最大化 Balanced Accuracy。记录该阈值下正例接受率 `TPR₀`。
+
+CoG 设置目标 `TPR_target = min(0.95, TPR₀ + 0.04)`，在其验证分数的 1%–99% 分位上取 197 个候选阈值，选择正例接受率**最接近目标**的阈值。0.04 和 0.95 是人为超参数；实现没有严格保证 TPR 不低于目标，也没有在满足 TPR 约束后最大化负例拒绝率。
+
+测试规则：`s >= τ` 返回 backbone 原片段，否则返回空片段。Baseline 与 CoG 的阈值政策不同，现有收益包含校准与阈值政策变化，不能全部归因于多模态算法。
+
+## 3. 一条真实样本：所有数字逐步计算
+
+以下来自归档数据，不是虚构示例：A1、Moment-DETR，`qid=test550`，测试数组索引 400。
+
+> person open a cabinet door get a cup out.（打开柜门，取出一个杯子。）
+
+查询包含 cabinet/cup，进入物体交互流。
+
+| 视频证据 | 实际值（四舍五入） | 固定权重 |
+|---|---:|---:|
+| 显著帧匹配 | -0.005589634 | 0.45 |
+| 物体匹配 | -0.037178993 | 0.35 |
+| 全局匹配 | -0.013103336 | 0.20 |
+
+```text
+e = 0.45 × (-0.005589634)
+  + 0.35 × (-0.037178993)
+  + 0.20 × (-0.013103336)
+  ≈ -0.018148649
+```
+
+同一流的 A1 训练参考有 **2,620 条**，其中 **869 条**证据分数更低，没有并列，因此：
+
+```text
+r_ev = 869 / 2620 ≈ 0.331679
+```
+
+检测器原分数为 `0.973100`。整体训练参考有 **8,608 条**，其中 **2,471 条**检测器分数更低，没有并列，因此：
+
+```text
+r_det = 2471 / 8608 ≈ 0.287059
+s = 0.5 × 0.287059 + 0.5 × 0.331679 ≈ 0.309369
+```
+
+这说明 0.9731 虽然数值很高，相对于训练时经常接近饱和的检测器输出，百分位仍较低。
+
+该划分保存的 CoG 阈值为 `τ=0.387699`；`s < τ`，最终拒绝。这个例子展示**计算链条**，不用于证明该次拒绝正确；判断正确与否还需事件标注。前期讲解中的 0.30 / 0.40 / 0.20 / 0.95 / 0.72 等简化数值是教学假设，不是本实验数据。
+
+## 4. 当前实验结果
+
+五个划分等权宏平均，所有表中数值为 **%**；AUROC 也用百分制。增减以百分点 pp 表示。以下是保存的测试集点估计，不是 Bootstrap 均值。
+
+| Backbone | 方法 | Seen AUROC ↑ | Unseen AUROC ↑ | U−正确拒绝率 ↑ | U+误拒率 ↓ | U+门控 R@1≥0.5 ↑ | U+门控 R@1≥0.3 ↑ | U+门控 G-mIoU@1 ↑ | Unseen Rej-F1 ↑ |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Moment-DETR | Baseline | 75.18 | 52.87 | 31.96 | 29.71 | 24.28 | 36.13 | 23.82 | 35.10 |
+| Moment-DETR | CoG | 73.34 | 61.42 | 34.27 | 25.95 | 26.76 | 39.63 | 26.05 | 41.46 |
+| QD-DETR | Baseline | 74.76 | 51.44 | 21.47 | 18.76 | 30.63 | 42.33 | 28.27 | 28.51 |
+| QD-DETR | CoG | 73.00 | 60.01 | 25.58 | 15.89 | 32.27 | 45.24 | 29.94 | 35.90 |
+| FlashVTG | Baseline | 77.30 | 57.14 | 27.04 | 21.85 | 33.63 | 44.31 | 30.65 | 33.42 |
+| FlashVTG | CoG | 74.15 | 62.50 | 31.97 | 21.19 | 34.30 | 45.13 | 31.01 | 41.15 |
+
+### 指标具体是什么意思？
+
+- **U+**：未见语义、真实发生的事件；**U−**：未见语义、标注为不存在的事件。
+- **U−正确拒绝率**：正确拒绝的 U− / 全部 U−；不是整体拒绝比例。
+- **U+误拒率（FRR）**：被拒绝的 U+ / 全部 U+。
+- **Unseen Rej-F1**：只在 U+/U− 中计算，把“拒绝不存在的查询”作为正类；精确率为 TN/(TN+FN)，召回率为 TN/(TN+FP)。TN/FN/FP 按事件存在 y=1 的混淆矩阵命名。
+- **U+门控 R@1≥δ**：全部 U+ 中，接受且 top-1 门控片段的集合 IoU≥δ 的比例。被拒绝的真实事件记零。
+- **U+门控 G-mIoU@1**：只在 U+ 上计算门控 top-1 片段与真实窗口的集合 IoU 均值，拒绝记零；与 All 范围 G-mIoU 不同。
+- **AUROC**：事件存在分数对正负查询的排序能力，不依赖拒绝阈值，不代表概率校准质量。
+
+集合 IoU 与 top-1 清理使用仓库 `eval/metrics.py`。窗口未更新，因此 U+ 定位指标的改善表示更多已有正确片段被接受，不意味着原始定位边界变得更准确。
+
+### 配对联合视频 Bootstrap：95% 区间，pp
+
+固定种子 3407，2,000 次全局视频联合采样，跨划分共享同一视频抽样次数。CDF、阈值和模型保持固定。以下全部为 CoG 相对 Baseline 的差值；FRR 列使用“下降量”，正值表示改善。
+
+| Backbone | ΔUnseen AUROC | ΔU−正确拒绝率 | U+ FRR下降量 | ΔU+门控 R@1≥0.5 | ΔU+门控 G-mIoU | ΔUnseen Rej-F1 |
+|---|---|---|---|---|---|---|
+| Moment-DETR | [+6.23, +11.07] | [+0.41, +4.39] | [+1.30, +6.38] | [+0.81, +4.24] | [+0.96, +3.50] | [+4.12, +8.88] |
+| QD-DETR | [+6.55, +10.64] | [+1.88, +6.44] | [-0.32, +5.85] | [-0.27, +3.68] | [+0.28, +3.13] | [+4.84, +9.96] |
+| FlashVTG | [+3.00, +7.80] | [+2.41, +7.49] | [-2.63, +4.17] | [-1.73, +2.95] | [-1.40, +2.13] | [+5.06, +10.45] |
+
+在现有数据和协议下，三个 backbone 的 Unseen AUROC、负例拒绝与 Rej-F1 的改善区间均高于零。Moment 的正例误拒与门控定位指标也有区间支持；QD 的 FRR 与 R@1 区间跨零；Flash 的 FRR、R@1、U+ G-mIoU 区间跨零。不能写“三骨干三项目标均已显著达成”。这些是未经多重比较校正的名义 95% 区间，也不覆盖训练/超参数选择、负例标注和校准样本不确定性。
+
+源 JSON 的 `p_value` 是 Bootstrap 差值落在零另一侧的经验比例，不按严格零假设检验 p 值解释，尤其不能把有限抽样中的 0 写成真实 p=0。本 README 以区间陈述结果。
+
+### 代价：Seen 与 All 指标仍下降
+
+| Backbone | ΔSeen AUROC，pp | All Rej-F1，Baseline → CoG，% | All G-mIoU@1，Baseline → CoG，% |
+|---|---:|---|---|
+| Moment-DETR | -1.84 | 58.03 → 54.77 | 37.99 → 36.22 |
+| QD-DETR | -1.76 | 56.27 → 50.13 | 38.06 → 35.31 |
+| FlashVTG | -3.15 | 58.70 → 54.69 | 43.34 → 41.71 |
+
+“全部”是宏平均，不表示每个划分都改善。不能根据 Unseen 部分的收益宣称整体无代价提升。
+
+## 5. 已知问题与下一步
+
+1. **阈值公平性**：补充 Baseline 的相同正例保护规则，并做“全局/分流 CDF × 原阈值/保护阈值”四组对照，分开两类贡献。
+2. **未见语义定义**：A3 训练 S+ 仍含 `person smiling walks to a desk.` 和 `a person holding a paper runs across a room.`，解析器分别将主动作记为 smile/hold。标注动作留出并不等于查询完全未出现 run/walk，需审计多动作查询。
+3. **关键词与小样本参考**：substring 路由会将 breakfast 的 fast、running shoes 的 run、walk-in closet 的 walk 当成运动信号；A3 运动流训练参考只有 11 条，不能忽略校准不稳定性。
+4. **候选依赖**：局部多模态证据继承共享 HQ 候选缓存，不是各 backbone 独立提取自身窗口证据；需补目标原生候选对照。
+5. **概率饱和**：当前检测器 CDF 仍使用缓存分数，未从机制上修复全部饱和问题；需原始 logit 对照。
+6. **机制与新语义**：分流、等权融合和 +4 pp TPR 目标都需要消融与敏感性分析；固定规则后用新动作/组合评估。Seen-only 阈值选择不等于排除了长期根据同一测试集反馈改超参数。
+7. **归档与复算一致性**：此前只读重建发现 A3 保存得分与当前脚本有最大约 3.68e-5 差异，接受决策一致；其他四划分重建得分一致。不得宣称所有预测逐位零误差重放。需补保存脚本版本和逐查询输出的可重建链路。
+
+当前可以说：**CoG 提出了清楚的免训练校准算法，在现有五划分上改善 Unseen 事件存在判断，Moment-DETR 上也有正例保护与有效定位共同改善的证据。完整的跨骨干共同泛化、机制解释与严格未见语义结论仍需补实验。**
+
+## 6. 文件索引与来源
+
+| 文件 | 内容 |
+|---|---|
+| [evaluate_co_generalization.py](experiments/agy_test/co_generalization_gmr/evaluate_co_generalization.py) | 三 backbone、五划分、Baseline/CoG 评估 |
+| [run_bootstrap_significance.py](experiments/agy_test/co_generalization_gmr/run_bootstrap_significance.py) | 2,000 次联合视频聚类 Bootstrap |
+| [benchmark_summary.json](experiments/agy_test/co_generalization_gmr/benchmark_summary.json) | 完整宏平均，包括 Seen/All 指标 |
+| [bootstrap_significance_summary.json](experiments/agy_test/co_generalization_gmr/bootstrap_significance_summary.json) | 全部六项差值区间，不只列显著结果 |
+| [runs/](experiments/agy_test/co_generalization_gmr/runs/) | 五份原始逐查询预测 NPZ，无新 CoG 权重 |
+| [原始研究报告](experiments/agy_test/co_generalization_gmr/CO_GENERALIZATION_BENCHMARK_REPORT.md) | 原样归档；夸大或与实现不一致处以本 README 为准 |
+| [SOURCE_ASSET_MANIFEST.json](docs/cog/SOURCE_ASSET_MANIFEST.json) | 本次复制的 10 个原始 CoG 文件大小与 SHA256 |
+| [SDCV 特征组装](experiments/agy_test/semantic_directional_calibrated_verifier/prepare_data.py) | 14 列缓存及带符号端点差值来源 |
+| [CLIP 对齐特征](experiments/agy_test/aligned_calibration_verifier/extract_aligned_features.py) | 文本投影、候选物体/全局匹配、训练参考中心 |
+| [运动与显著帧提取](experiments/agy_test/multiscale_counterfactual_verifier/prepare_features.py) | SlowFast 变化与全视频峰值匹配来源 |
+
+这些特征源码用于追溯来源；从头提取还依赖上游导出和预训练资产，部分历史提取器含原服务器路径，主复算流程使用数据包的现有缓存。绘图脚本需要 matplotlib 和中文字体，默认原服务器 Noto CJK 字体路径；其他机器按安装位置修改。
