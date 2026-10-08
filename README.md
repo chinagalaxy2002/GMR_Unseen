@@ -1,53 +1,81 @@
-# DEC-Power-CDF：纯净方法与 baseline 复现
+# DEC-Power-CDF + Seen Guard
 
-本独立分支仅包含 DEC 幂律乘积门控、与它配对的 baseline 评测代码、冻结输入及完整结果。没有其他实验方法或训练工程。
+训练查询组合路由与 Seen 验证校准保护熟悉查询，未覆盖查询保留原 DEC。当前 **五划分 × 三骨干**恢复 Seen AUROC，同时完整保留 Unseen 增益，G-mIoU、Rej-F1、正例误拒率也未变差。没有新训练权重。
 
-- [算法介绍与评估边界](METHOD.md)
-- [完整两张表：15 组逐划分结果及五划分宏平均](results/FULL_RESULTS.md)
-- [逐项数值和阈值 CSV](results/metrics.csv)
-- [改善、掉点及 95% CI CSV](results/comparisons.csv)
-- [输入来源与 SHA256](data/SOURCE_MANIFEST.json)
-- [复现验证记录](VALIDATION.md)
+**这是阈值协议变体，包含验证校准与冻结文本解析器。测试集已在方法探索中反复使用，尚需独立数据确认。**
+
+![算法图](figures/algorithm_overview.svg)
+
+- [方法与边界](METHOD.md) / [算法伪代码](docs/ALGORITHM.md)
+- [完整结果](results/FULL_RESULTS.md) / [数值与阈值](results/metrics.csv) / [差值](results/comparisons.csv)
+- [复现验证](VALIDATION.md)
+- 算法图：[SVG](figures/algorithm_overview.svg) / [PDF](figures/algorithm_overview.pdf) / [PNG](figures/algorithm_overview.png) / [源码](figures/draw_algorithm.py)
 
 ## 五划分等权宏平均
 
-| Backbone | Baseline Seen → DEC | Baseline Unseen → DEC | Rej-F1 (%) | G-mIoU@1 (%) |
-|---|---:|---:|---:|---:|
-| Moment-DETR | 0.7518 → 0.7180 | 0.5287 → 0.6122 | 58.03 → 59.40 | 37.99 → 39.74 |
-| QD-DETR | 0.7476 → 0.7262 | 0.5144 → 0.6086 | 56.27 → 58.93 | 38.06 → 40.23 |
-| FlashVTG | 0.7730 → 0.7211 | 0.5714 → 0.6200 | 58.70 → 59.41 | 43.34 → 44.04 |
+| Backbone | Baseline Seen | 原 DEC Seen | 新版 Seen | 原 DEC → 新版 Unseen | G-mIoU 原 DEC → 新版 | Rej-F1 原 DEC → 新版 |
+|---|---:|---:|---:|---:|---:|---:|
+| Moment-DETR | 0.7518 | 0.7180 | **0.7622** | 0.6122 → 0.6122 | 39.74 → 40.75 | 59.40 → 62.07 |
+| QD-DETR | 0.7476 | 0.7262 | **0.7565** | 0.6086 → 0.6086 | 40.23 → 40.79 | 58.93 → 60.60 |
+| FlashVTG | 0.7730 | 0.7211 | **0.7772** | 0.6200 → 0.6200 | 44.04 → 45.30 | 59.41 → 61.88 |
 
-五划分为 A1、A2_alt、A3、C1、C2_alt。上述数字不是合并样本的 AUROC。Seen 下降与正例误拒率上升是实际代价；部分划分的定位/拒绝指标下降，详见完整表。
+不是合并样本 AUROC；逐设置六项检查均通过当前点估计。Seen 恢复后 Gap 增大，A1/A2_alt 的原 DEC Unseen<0.60 仍存在。
 
-## 复现
+## 直接复现
 
-Python 3.8+，CPU 即可，不需要 GPU，不运行训练或后台调度。数据约 9 MB，已包含于该分支，无需外部路径或 token。
+Python 3.8–3.11，CPU 即可。分支包含数据、文本解析缓存与冻结校准配置，无需原实验目录、GPU、权重下载或新训练。
 
 ```bash
 python -m pip install -r requirements.txt
-# 同时复现 baseline、DEC、全部结果表及 2000 次配对视频 bootstrap
-python evaluate.py --output reproduced_results --bootstrap 2000
-# 单独复现历史 baseline
-python reproduce_baseline.py --output baseline_results
-# 只复算点估计，跳过 bootstrap
-python evaluate.py --output reproduced_results --bootstrap 0
+python evaluate_seen_guard.py --output reproduced_seen_guard --bootstrap 2000
+python calibrate_seen_guard.py --output calibration/rebuilt_seen_guard.json
+python validate_release.py --reproduced reproduced_seen_guard --rebuilt calibration/rebuilt_seen_guard.json
 ```
 
-`reproduced_results/comparisons.csv` 给出 DEC 相对 baseline 的 ΔSeen、ΔUnseen、ΔRej-F1、ΔG-mIoU：负数直接标明掉点。`metrics.csv` 提供所有阈值和未四舍五入的逐划分指标。每次复算都会从原始定位窗口重新计算集合 IoU，并核对冻结缓存，防止定位指标只依赖预填汇总。
+评估生成三方法的 54 行逐设置/宏平均结果、路由审计及 2,000 次视频 bootstrap。校准脚本只用 train/Seen-val 重建 15 项策略与参数。
 
-此处“baseline 复现”指同协议下从真实历史缓存分数和定位提交重新评测，包括其未见概念表现偏低以及 DEC 带来的各项下降；不包含从原始视频重训 backbone。三个骨干的名称是 Moment-DETR、QD-DETR、FlashVTG；表中简写为 moment、qd、flash。
+原 DEC 独立复现仍可用：
+
+```bash
+python evaluate.py --output reproduced_dec --bootstrap 2000
+python reproduce_baseline.py --output reproduced_baseline
+```
+
+## 从文本重建解析缓存
+
+spaCy 解析环境与 NumPy 1.24.4 数值环境分开。解析器固定为 en_core_web_sm 3.8.0，不做任务微调。
+
+```bash
+python3.10 -m venv .venv-parser
+.venv-parser/bin/python -m pip install -r requirements-parser.txt
+.venv-parser/bin/python text_router.py --output calibration/reparsed_query_keys.json
+python evaluate_seen_guard.py --query-keys calibration/reparsed_query_keys.json --output reproduced_from_text --bootstrap 0
+```
+
+推理无需目标标签、分区或语义图。解析规则与基准构建一致，当前路由恰好对应 Seen/Unseen；这不等于通用 OOD 路由的独立验证。
 
 ## 文件
 
-| 路径 | 内容 |
-|---|---|
-| `dec.py` | 路由、训练 CDF、幂律乘积、历史验证阈值 |
-| `evaluate.py` | baseline/DEC 完整评测、原始窗口 IoU、配对视频 bootstrap、结果表 |
-| `reproduce_baseline.py` | baseline 独立入口 |
-| `data/<split>/{train,val,test}.npz` | 14 维历史标量特征、查询、qid、视频、标签、分区；val 只保留 Seen |
-| `data/<split>/windows.jsonl` | 真值和各 backbone 第一个合法预测窗口 |
-| `data/SOURCE_MANIFEST.json` | 原仓库输入路径、解析后的实际路径及内容哈希 |
-| `data/ASSET_MANIFEST.json` | 本分支冻结输入内容哈希 |
-| `results/` | 完整 Markdown 表、CSV、JSON 和 bootstrap 配置/区间 |
+无标签推理输入只需 X（14 维缓存）与 queries：
 
-该方法免训练，因而没有 DEC 权重文件。使用的是保留并列的训练 CDF 修正版；历史测试集重排名的 QD 0.6332 不能当成本版本结果。缓存的局部证据共享 HQ 候选，方法仍属于探索性验证，具体限制见算法说明。
+```bash
+python predict_seen_guard.py --split A1 --backbone qd --input data/A1/test.npz --parser-python .venv-parser/bin/python --output reproduced_predictions/A1_qd.npz
+```
+
+重新生成算法图：`python -m pip install -r figures/requirements.txt`，随后 `python figures/draw_algorithm.py`。
+
+| 文件 | 用途 |
+|---|---|
+| `dec.py` | 原 DEC 与 Seen-BA 阈值 |
+| `seen_guard.py` | 最终无目标标注打分，阈值零 |
+| `text_router.py` | 固定文本解析器 |
+| `calibrate_seen_guard.py` | train/Seen-val 校准 |
+| `evaluate_seen_guard.py` | 三方法全量评测与 bootstrap |
+| `validate_release.py` | 结果、六项保护、重建与资产校验 |
+| `calibration/seen_guard.json` | 15 项策略、阈值与训练组合表 |
+| `calibration/query_keys.json` | 从文本生成的可重建缓存 |
+| `data/<split>/val_quality.npz` | 原验证窗口 IoU，供校准 |
+| `results/dec_reference/` | 原 DEC 完整存档 |
+| `figures/` | SVG/PDF/PNG 算法图及源码 |
+
+原 DEC 基础提交：`06b0f59b83e0cd20de20b19041e4172be34582d2`。输入来源、资产哈希、新增校准数据来源见 `data/SOURCE_MANIFEST.json`、`data/ASSET_MANIFEST.json`、`data/SEEN_GUARD_SOURCE_MANIFEST.json`。
