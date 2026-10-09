@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "ontology_version": "v3-ontology-1.0.0",
+  "canonicalization": {
+    "sofa": "couch",
+    "couch": "couch",
+    "cabinet door access event": "cabinet_entry"
+  },
+  "action_senses": [
+    {
+      "family": "physical_take",
+      "examples": [
+        "take an object",
+        "remove an object",
+        "pick up an object"
+      ],
+      "distinctions": [
+        "take a drink/sip is drink",
+        "take off clothing is undress",
+        "take into is directed carrying/placing; preserve direction"
+      ]
+    },
+    {
+      "family": "physical_place",
+      "examples": [
+        "put/place/set an object onto a surface"
+      ],
+      "distinctions": [
+        "set the table is a different sense",
+        "put on clothing is dress",
+        "put into and take out preserve container direction"
+      ]
+    },
+    {
+      "family": "drink",
+      "examples": [
+        "drink",
+        "take a drink",
+        "take a sip"
+      ],
+      "distinctions": [
+        "drink a cup/glass of liquid remains drinking; container substitution alone is weak"
+      ]
+    },
+    {
+      "family": "photograph",
+      "examples": [
+        "take a picture",
+        "take a photo"
+      ],
+      "distinctions": [
+        "look through a picture/book is inspect/view, not photograph or physical take"
+      ]
+    },
+    {
+      "family": "run",
+      "examples": [
+        "person runs",
+        "run over to a place"
+      ],
+      "distinctions": [
+        "run water/device is not locomotion"
+      ]
+    },
+    {
+      "family": "walk",
+      "examples": [
+        "person walks",
+        "walk to a place"
+      ],
+      "distinctions": [
+        "preserve direction and destination where stated"
+      ]
+    },
+    {
+      "family": "close",
+      "examples": [
+        "shut",
+        "close"
+      ],
+      "distinctions": [
+        "same object and resulting closed state are equivalent"
+      ]
+    }
+  ],
+  "event_matching": "Full event list and roles; not surface-token matching.",
+  "query_filter": "Remove a whole train query if any event hits a group's held definition.",
+  "composition_anchor_roles": {
+    "C1_v3": "support_surface/location",
+    "C2_v3": "theme"
+  }
+}
