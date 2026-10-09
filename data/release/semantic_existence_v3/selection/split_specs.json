@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "release_version": "semantic_existence_v3",
+  "ontology_version": "v3-ontology-1.0.0",
+  "normalization_rule_version": "v3-event-normalization-1.1.0",
+  "seed": 3407,
+  "groups": {
+    "A1_v3": {
+      "axis": "action_family",
+      "held_action_families": [
+        "physical_place",
+        "physical_take"
+      ]
+    },
+    "A2_v3": {
+      "axis": "action_family",
+      "held_action_families": [
+        "drink",
+        "pour"
+      ]
+    },
+    "A3_v3": {
+      "axis": "action_family",
+      "held_action_families": [
+        "run",
+        "walk"
+      ]
+    },
+    "C1_v3": {
+      "axis": "action_object_composition",
+      "held_compositions": [
+        [
+          "sit",
+          "bed"
+        ],
+        [
+          "sit",
+          "chair"
+        ],
+        [
+          "sit",
+          "couch"
+        ]
+      ]
+    },
+    "C2_v3": {
+      "axis": "action_object_composition",
+      "held_compositions": [
+        [
+          "open",
+          "box"
+        ],
+        [
+          "open",
+          "cabinet"
+        ],
+        [
+          "close",
+          "box"
+        ],
+        [
+          "close",
+          "cabinet"
+        ]
+      ]
+    }
+  },
+  "object_aliases": {
+    "sofa": "couch",
+    "couch": "couch",
+    "cabinet door": "cabinet_entry"
+  },
+  "role_anchors": {
+    "C1_v3": "support_surface/location",
+    "C2_v3": "theme"
+  },
+  "train_policy": "S+ and S- only; remove a whole query if any event in it hits the group's held definition.",
+  "split_policy": "Use persisted shared video_splits.jsonl; every qid follows its video assignment."
+}
