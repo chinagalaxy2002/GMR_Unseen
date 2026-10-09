@@ -22,6 +22,36 @@ MACRO 为五组指标等权平均，不是合并重复样本后计算。AUROC �
 
 Moment 的平均差距为 18.46 pp，QD 为 24.18 pp，Flash 为 26.07 pp。A3 的 QD/Flash Unseen AUROC 为 0.4665/0.4660；其 95% CI 包含 0.5，不能仅凭点估计认定显著低于随机排序。C2 的 U+ 误拒率为 94.20%–97.10%，表明 Seen 验证阈值在该初始快照上拒绝了绝大多数 unseen 正例。
 
+### 2.1 宏平均 mAP 与定位差距
+
+mAP 在正例上使用原生 top-10 时间窗，按 tIoU 0.50–0.95（步长 0.05）平均，尚未施加 Seen 验证的存在拒绝阈值。Seen/Unseen 分别为 S+/U+；Gap 为 Seen−Unseen，负数表示 Unseen 更高。
+
+| Backbone Model | Seen mAP | Unseen mAP | mAP Gap (pp) | All mAP | mAP@0.50 | mAP@0.75 |
+|---|---:|---:|---:|---:|---:|---:|
+| Moment-DETR-GMR | 25.40% | 24.03% | +1.37 | 25.10% | 50.75% | 21.25% |
+| QD-DETR-GMR | 25.75% | 26.28% | -0.53 | 25.53% | 51.26% | 21.89% |
+| FlashVTG-GMR | 38.34% | 29.60% | +8.74 | 37.44% | 63.28% | 36.69% |
+
+### 2.2 宏平均拒绝与端到端定位
+
+| Backbone Model | Rej-F1 | RR | S+ FRR | U+ FRR | G-mIoU@1 |
+|---|---:|---:|---:|---:|---:|
+| Moment-DETR-GMR | 56.44% | 47.86% | 37.29% | 39.27% | 37.32% |
+| QD-DETR-GMR | 57.65% | 44.72% | 33.79% | 32.84% | 37.17% |
+| FlashVTG-GMR | 58.18% | 41.59% | 28.83% | 44.81% | 43.29% |
+
+### 2.3 宏平均 Seen → Unseen G-mIoU
+
+G-mIoU 使用同一批 Seen 验证阈值完成接受/拒绝，Seen/Unseen 分别包括 S+/S− 和 U+/U−。
+
+| Backbone Model | Seen G-mIoU@1 | Unseen G-mIoU@1 | G-mIoU Gap (pp) | All G-mIoU@1 |
+|---|---:|---:|---:|---:|
+| Moment-DETR-GMR | 38.21% | 30.95% | +7.26 | 37.32% |
+| QD-DETR-GMR | 38.34% | 29.00% | +9.34 | 37.17% |
+| FlashVTG-GMR | 44.57% | 32.81% | +11.75 | 43.29% |
+
+原生 mAP 的宏平均差距为 Moment +1.37 pp、QD −0.53 pp、Flash +8.74 pp；G-mIoU 差距分别为 +7.26 / +9.34 / +11.75 pp。mAP 和存在性 AUROC 测量不同环节，须分别报告实际退化或提升。
+
 ## 3. 各划分存在性排序与退化
 
 Gap=`100×(Seen AUROC−Unseen AUROC)`。CI 为绝对 Unseen AUROC 的 95% 区间，使用已有 500 次测试视频聚类 bootstrap，seed=3407。Net Gain、Seen Change、Gap Reduction 没有对照方法，记为 `—`。
@@ -71,6 +101,56 @@ Gap=`100×(Seen AUROC−Unseen AUROC)`。CI 为绝对 Unseen AUROC 的 95% 区�
 | Moment-DETR-GMR | MACRO / Baseline | 56.44% | 47.86% | 37.29% | 39.27% | 37.32% |
 | QD-DETR-GMR | MACRO / Baseline | 57.65% | 44.72% | 33.79% | 32.84% | 37.17% |
 | FlashVTG-GMR | MACRO / Baseline | 58.18% | 41.59% | 28.83% | 44.81% | 43.29% |
+
+### 4.1 各划分 mAP（正例定位）
+
+All mAP 在全部 S+/U+ 正例上计算；负例不进入 mAP。每个查询按原生置信度排序保留最多 10 个候选；使用 AP 的标准一对一匹配，不因候选时间超出 duration 而替换。若正例预测为空则 AP=0。mAP@0.50、mAP@0.75 为单一 tIoU 阈值；其余 mAP 为十个 tIoU 阈值平均。数值均为百分比。
+
+| Evaluation Variant | Seen mAP | Unseen mAP | mAP Gap (pp) | All mAP | mAP@0.50 | mAP@0.75 |
+|---|---:|---:|---:|---:|---:|---:|
+| A1_v3 / Moment-DETR-GMR | 24.93% | 15.73% | +9.20 | 23.28% | 48.29% | 19.07% |
+| A1_v3 / QD-DETR-GMR | 27.57% | 16.62% | +10.95 | 25.60% | 51.55% | 21.65% |
+| A1_v3 / FlashVTG-GMR | 40.58% | 23.34% | +17.24 | 37.49% | 62.89% | 37.06% |
+| A2_v3 / Moment-DETR-GMR | 23.93% | 21.68% | +2.26 | 23.79% | 49.08% | 19.93% |
+| A2_v3 / QD-DETR-GMR | 26.48% | 27.27% | -0.78 | 26.53% | 52.71% | 22.94% |
+| A2_v3 / FlashVTG-GMR | 37.67% | 30.02% | +7.66 | 37.18% | 62.80% | 36.50% |
+| A3_v3 / Moment-DETR-GMR | 25.65% | 28.18% | -2.53 | 25.82% | 51.88% | 21.75% |
+| A3_v3 / QD-DETR-GMR | 24.63% | 30.39% | -5.76 | 25.03% | 49.82% | 21.50% |
+| A3_v3 / FlashVTG-GMR | 37.81% | 33.95% | +3.87 | 37.55% | 63.68% | 36.49% |
+| C1_v3 / Moment-DETR-GMR | 27.54% | 33.78% | -6.24 | 27.85% | 53.29% | 25.06% |
+| C1_v3 / QD-DETR-GMR | 24.36% | 37.77% | -13.40 | 25.03% | 50.18% | 21.55% |
+| C1_v3 / FlashVTG-GMR | 37.49% | 33.28% | +4.21 | 37.28% | 63.50% | 36.39% |
+| C2_v3 / Moment-DETR-GMR | 24.95% | 20.77% | +4.18 | 24.79% | 51.20% | 20.46% |
+| C2_v3 / QD-DETR-GMR | 25.69% | 19.33% | +6.36 | 25.44% | 52.02% | 21.79% |
+| C2_v3 / FlashVTG-GMR | 38.14% | 27.42% | +10.72 | 37.71% | 63.51% | 37.00% |
+| MACRO / Moment-DETR-GMR | 25.40% | 24.03% | +1.37 | 25.10% | 50.75% | 21.25% |
+| MACRO / QD-DETR-GMR | 25.75% | 26.28% | -0.53 | 25.53% | 51.26% | 21.89% |
+| MACRO / FlashVTG-GMR | 38.34% | 29.60% | +8.74 | 37.44% | 63.28% | 36.69% |
+
+### 4.2 各划分 Seen / Unseen 端到端 G-mIoU
+
+| Evaluation Variant | Seen G-mIoU@1 | Unseen G-mIoU@1 | G-mIoU Gap (pp) | All G-mIoU@1 |
+|---|---:|---:|---:|---:|
+| A1_v3 / Moment-DETR-GMR | 38.94% | 25.70% | +13.24 | 36.33% |
+| A1_v3 / QD-DETR-GMR | 39.77% | 21.63% | +18.14 | 36.19% |
+| A1_v3 / FlashVTG-GMR | 46.66% | 29.27% | +17.39 | 43.23% |
+| A2_v3 / Moment-DETR-GMR | 37.35% | 29.95% | +7.41 | 36.78% |
+| A2_v3 / QD-DETR-GMR | 38.54% | 21.37% | +17.17 | 37.20% |
+| A2_v3 / FlashVTG-GMR | 44.57% | 21.35% | +23.22 | 42.76% |
+| A3_v3 / Moment-DETR-GMR | 39.58% | 31.07% | +8.51 | 38.94% |
+| A3_v3 / QD-DETR-GMR | 38.84% | 27.36% | +11.48 | 37.97% |
+| A3_v3 / FlashVTG-GMR | 44.78% | 28.85% | +15.93 | 43.57% |
+| C1_v3 / Moment-DETR-GMR | 36.71% | 29.11% | +7.60 | 36.05% |
+| C1_v3 / QD-DETR-GMR | 37.07% | 35.12% | +1.96 | 36.90% |
+| C1_v3 / FlashVTG-GMR | 42.21% | 45.29% | -3.09 | 42.47% |
+| C2_v3 / Moment-DETR-GMR | 38.48% | 38.92% | -0.44 | 38.50% |
+| C2_v3 / QD-DETR-GMR | 37.47% | 39.51% | -2.05 | 37.56% |
+| C2_v3 / FlashVTG-GMR | 44.63% | 39.31% | +5.32 | 44.39% |
+| MACRO / Moment-DETR-GMR | 38.21% | 30.95% | +7.26 | 37.32% |
+| MACRO / QD-DETR-GMR | 38.34% | 29.00% | +9.34 | 37.17% |
+| MACRO / FlashVTG-GMR | 44.57% | 32.81% | +11.75 | 43.29% |
+
+mAP 从已保存的固定模型原生预测补算，五个 QD 设置的 All mAP 与其已有 native test 指标一致到两位小数。G-mIoU 的全部测试均值与此前已发布值一致。mAP 和修正窗口 G-mIoU 的 CI 未另行计算；已有 500 次 CI 仅继续用于存在性 AUROC 及 Gap。
 
 ## 5. 实验数据规模与当前发布的区别
 
@@ -143,7 +223,7 @@ Seen AUROC 在 S+/S− 上计算，Unseen AUROC 在 U+/U− 上计算。`Rej-F1=
 
 G-mIoU@1：接受时保留一个原生定位窗口，拒绝时返回空集合；预测/GT 均空得 1，仅一方空得 0，单预测对非空 GT 得 `max_j IoU(pred,GT_j)/GT窗口数`，最终对全 Test 求均值。正确拒绝负例计入得分，因此它不是仅正例的平均时间 IoU。
 
-Bootstrap 按测试 vid 有放回重采样，保留每个被抽视频的全部查询。500 次抽样全部有效，取 2.5%/97.5% 分位；五组宏平均共享视频抽样。训练、阈值及模型不重新拟合，CI 不包含训练随机性。这里只整理已有结果，没有重新训练、重新校准或重新抽样。
+Bootstrap 按测试 vid 有放回重采样，保留每个被抽视频的全部查询。500 次抽样全部有效，取 2.5%/97.5% 分位；五组宏平均共享视频抽样。训练、阈值及模型不重新拟合，CI 不包含训练随机性。AUROC 与拒绝指标使用已有结果；mAP 使用同一批固定预测和 GT 补算，没有重新训练、重新校准或重新抽样。
 
 ```mermaid
 flowchart TD
@@ -165,7 +245,9 @@ flowchart TD
 | 对应已有 baseline 的数据快照 | `data/release/semantic_existence_v3_baseline_snapshot_20261009/` |
 | 所有 baseline 指标 | `docs/semantic_existence_v3_metrics/baseline_metrics.json`、`baseline_metrics.csv` |
 | 每组每模型指标 | `docs/semantic_existence_v3_metrics/<group>/<moment|qd|flash>/metrics.json` |
-| 置信区间 | `docs/semantic_existence_v3_metrics/baseline_bootstrap_ci.json` |
+| 置信区间（AUROC/Gap） | `docs/semantic_existence_v3_metrics/baseline_bootstrap_ci.json` |
+| mAP 与分区定位结果 | `docs/semantic_existence_v3_metrics/baseline_localization_metrics.json` |
+| 定位计算口径 | `docs/semantic_existence_v3_metrics/localization_protocol.json` |
 | 数据版本说明 | `docs/semantic_existence_v3_metrics/publication_info.json` |
 
 视频、特征、模型权重、token 和逐查询模型预测均未包含在本次上传中。当前审核版对应的重新训练结果尚不可用；旧实验数值保持其真实数据版本标记。
