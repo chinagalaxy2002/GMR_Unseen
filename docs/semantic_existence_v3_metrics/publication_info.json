@@ -1,0 +1,21 @@
+{
+  "publication_at": "2026-10-09T09:22:29.203846+00:00",
+  "current_data": "data/release/semantic_existence_v3",
+  "current_revision": "negative-full-audit-20261009-1",
+  "current_status": "negative_reaudit_applied_positive_reaudit_in_progress",
+  "baseline_data": "data/release/semantic_existence_v3_baseline_snapshot_20261009",
+  "baseline_training_seed": 3407,
+  "completed_training_jobs": 15,
+  "baseline_metric_rows": 18,
+  "bootstrap_draws": 500,
+  "baseline_results_apply_to_current_data": false,
+  "current_revision_retrained_results_available": false,
+  "backbones": [
+    "Moment-DETR-GMR",
+    "QD-DETR-GMR",
+    "FlashVTG-GMR"
+  ],
+  "evaluation_branch": "native baseline only",
+  "localization_policy": "first valid submitted native top-1 window; no duration-bound skipping",
+  "files": "annotations, baseline point metrics and compact confidence intervals; no methods, features, weights or query predictions"
+}
