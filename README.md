@@ -1,6 +1,17 @@
-# Semantic Existence v3：数据制作与泛化退化明白纸
+# Semantic Existence v3 未补充负样本版：数据制作与泛化退化明白纸
 
 更新：2026-10-10。本文对应本分支的干净数据集 [`semantic_existence_v3_release`](data/release/semantic_existence_v3_release/)，以及在该版本上重新训练的 **5 个划分 × 3 个 backbone，共 15 个 baseline**。训练、完整测试集推理和 bootstrap 均已完成，失败任务为 0；最终评估于 2026-10-10 04:23（北京时间）完成。本文数值来自干净发布版，早期 v3 快照及 v1/v2 的历史结果不混入本表。
+
+## 版本对照：未补充版与补充负样本版
+
+**本页以及提交 `4ea67e9` 的指标均属于未补充版 `semantic_existence_v3_release`。** 该版本有原始审核保留的负例，但没有追加跨视频伪负例。补充负样本的版本叫 `semantic_existence_v3_balanced`，是另一套独立数据和独立重新训练实验。
+
+| 版本 | 是否追加跨视频伪负例 | 每组 Test | 实验结果 |
+|---|---|---:|---|
+| `semantic_existence_v3_release` | 否；仅保留审核后的负例 | 4,611 | 15/15 完成；本页结果 |
+| `semantic_existence_v3_balanced` | 是；补齐完整 split 的正负 1:1 | 6,906 | 截至补充记录时 8/15 评估完成；不得引用本页数值作为该版本结果 |
+
+未补充版的独立明白纸见[该数据集 README](data/release/semantic_existence_v3_release/README.md)。两版本的生成流程差异、数据规模、实验归属与补充版阶段性结果见[版本对照与实验归属说明](docs/reports/SEMANTIC_EXISTENCE_V3_VERSION_GUIDE.md)。补充版数据当前保留在本地 `data/release/semantic_existence_v3_balanced/`，尚未随本分支发布。
 
 ## 1. 这套数据想测什么？
 
