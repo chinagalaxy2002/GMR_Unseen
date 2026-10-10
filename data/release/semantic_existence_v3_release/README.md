@@ -31,7 +31,7 @@
 
 [v1 在 main 的原始说明](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/README.md#how-the-v1-dataset-was-constructed) · [v1 构建代码](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/scripts/build_semantic_existence.py) · [v3 审核细节](../../../docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md) · [补充版完整规则](../../../docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)
 
-补充版在上述 v3 上另行“保留原句、换视频”增加伪负例，详见[首页](../../../README.md#2-数据怎样制作)。
+补充版参考 [Moment of Untruth §3.3](https://arxiv.org/html/2502.08544v2#S3.SS3)，将已有查询与其他视频重新配对；用 CLIP 筛选文本相关性较低的视频，再去重、排除语义冲突，追加伪负例至完整划分正负 1:1。具体说明见[首页](../../../README.md#2-数据怎样制作)。
 
 ## 3. 五组怎么划分，有多大？
 
