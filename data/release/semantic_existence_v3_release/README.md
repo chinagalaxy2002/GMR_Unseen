@@ -35,7 +35,7 @@
 
 ## 3. 五组怎么划分，有多大？
 
-| 划分 | 留出语义 | Train | Validation | Test | 验证+测试 U+ / U− | Test 匹配 U 对 |
+| 划分 | Unseen 的语义 | Train | Validation | Test | 验证+测试 U+ / U− | Test 匹配 U 对 |
 |---|---|---:|---:|---:|---:|---:|
 | A1_v3 | 物理放置 / 拿取：physical_place、physical_take | 9,819 | 1,514 | 4,611 | 792 / 239 | 128 |
 | A2_v3 | 饮用 / 倾倒：drink、pour | 10,809 | 1,514 | 4,611 | 292 / 119 | 90 |
