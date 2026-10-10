@@ -1,480 +1,216 @@
-# GMR Unseen: Semantic Novelty × Event Existence
+# Semantic Existence v3：数据制作与泛化退化明白纸
 
-**本项目研究：如何让视频检索模型将“事件是否发生”的判断泛化到未见语义，使其既能找出陌生但真实发生的事件，也能拒绝语义合理却没有发生的事件？** 例如，用户搜索“把杯子放进柜子”，即使模型在下游训练中没有见过这个动作组合，只要视频里发生了，就应该找到它；如果没有发生，即使杯子、柜子和相关动作都很熟悉，也应该拒绝返回片段。语义是否熟悉与事件是否发生是两个不同的问题。当前实验发现，模型在未见语义上既可能接受不存在的事件，也可能拒绝真实发生、甚至已经定位正确的事件，说明定位能力与存在判断能力未能同步泛化。因此，核心科学问题是：**未见语义下，事件存在判断与定位能力为何出现分离，以及如何使二者共同泛化。** 模型需要从有限的已见语义中学到能够迁移的视频—事件对应关系，并据此同时完成存在判断与时间定位；语义熟悉度是否干扰这一过程，仍是待验证的机制假设。
+更新：2026-10-10。本文对应本分支的干净数据集 [`semantic_existence_v3_release`](data/release/semantic_existence_v3_release/)，以及在该版本上重新训练的 **5 个划分 × 3 个 backbone，共 15 个 baseline**。训练、完整测试集推理和 bootstrap 均已完成，失败任务为 0；最终评估于 2026-10-10 04:23（北京时间）完成。本文数值来自干净发布版，早期 v3 快照及 v1/v2 的历史结果不混入本表。
 
-代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
+## 1. 这套数据想测什么？
 
-> **状态：E0–E7 已完成。** 数据集 v1、三个 GMR backbone、三个定位-only 对照和三个 semantic-seen reference 都已有训练与测试结果。本仓库提供 benchmark、适配代码和诊断实验；新增 DDV 验证器的探索结果与限制见下方最新实验入口。每个配置只运行一个种子；文中的 bootstrap 区间反映测试视频抽样，不代表跨训练种子的稳定性。
+**事件语义没有在下游训练中见过时，模型还能否判断它在视频中是否发生，并在发生时找出时间段？** 例如搜索“把杯子放进柜子”：发生了就定位，没有发生就返回空集合。语义陌生不等于事件缺席，语义熟悉也不等于事件发生。
 
-第二阶段五组划分的三模型训练和测试评测均已完成，发布数据通过 SHA-256 和视频切分校验。五组注释及选择记录见 [`data/release/semantic_existence_v2/`](data/release/semantic_existence_v2/)，完整划分方案见[第二阶段实验方案](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md)，逐组指标及跨划分对照见[多划分结果报告](docs/reports/semantic_existence_multisplit_results.md)。
+| 分区 | 下游训练是否见过对应语义 | 事件是否发生 | 期望输出 |
+|---|---|---|---|
+| S+ | 已见 | 存在 | 时间区间 |
+| S− | 已见 | 缺席 | 空集合 |
+| U+ | 未见 | 存在 | 时间区间 |
+| U− | 未见 | 缺席 | 空集合 |
 
-清空对话上下文后，只需从[项目总交接](docs/PROJECT_HANDOFF.md)恢复；它汇总研究问题、当前状态、关键结果、数据和代码入口，并标明其余文档的用途。
+这里的 unseen 指**任务训练中的语义留出**，不表示 CLIP 或 SlowFast 预训练从未接触过这些概念。模型输入为视频特征和完整自然语言查询，输出事件存在分数及候选时间区间。
 
-<a id="ddv-results"></a>
+## 2. 数据怎样制作？
 
-## 2026-10-06：DDV 显著缓解未见语义退化
-
-[实验整理与后续计划](docs/reports/ddv_experiment_20261006.md) · [代码与复现资源](experiments/agy_test/decomposed_directional_verifier/README.md) · [完整审计](experiments/agy_test/ddv_audit_20261006/DDV_AUDIT_REPORT.md) · [修正指标](experiments/agy_test/decomposed_directional_verifier/benchmark_audited.json)
-
-**本次 DDV 已达到相对 QD-DETR 基线缓解宏平均 Seen→Unseen 退化的目标：Unseen AUROC 显著提高，Seen−Unseen Gap 显著缩小，Seen AUROC 同时提高。** 以下展示本次 DDV 的结果；页末 AC-Verifier 表格对应此前实验。
-
-### 五划分宏平均主结果
-
-五个划分等权平均，AUROC、Gap 与 PairAcc 均为 0–1 标度。Gap = Seen AUROC − Unseen AUROC，越小表示退化差距越小。
-
-| 设置 | Mean Seen AUROC | Mean Unseen AUROC | Seen−Unseen Gap | Mean Matched PairAcc |
-| --- | ---: | ---: | ---: | ---: |
-| Base1：HQ QD 原始 logit | 0.7511 | 0.5027 | 0.2484 | 0.5181 |
-| Base2：发布 QD 概率 | 0.7476 | 0.5144 | 0.2332 | 0.5294 |
-| **DDV（本次实验）** | **0.7684** | **0.6134** | **0.1550** | **0.6608** |
-
-相对 Base1，Seen AUROC **+1.73 pp**、Unseen AUROC **+11.06 pp**，Gap **缩小 9.34 pp（约 37.6%）**；相对 Base2，Unseen **+9.89 pp**，Gap **缩小 7.82 pp（约 33.5%）**。相对这两个 QD 基线，宏平均 Seen 的提高说明 Gap 缩小没有依赖降低 Seen 表现。
-
-### 五划分逐项结果与退化差距
-
-这里 Δ Unseen 和 Gap 缩小量均相对 Base1；正的 Gap 缩小量表示退化缓解，负值表示差距扩大。增益使用完整精度计算，再保留展示位数。
-
-| Split | Base1 Unseen | DDV Unseen | Δ Unseen，pp | Base1 Gap | DDV Gap | Gap 缩小，pp |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| A1 | 0.5072 | 0.5153 | +0.80 | 0.2788 | 0.3087 | -2.99 |
-| A2_alt | 0.4174 | 0.5651 | +14.78 | 0.3367 | 0.2151 | +12.16 |
-| A3 | 0.4811 | 0.5818 | +10.07 | 0.2590 | 0.1448 | +11.42 |
-| C1 | 0.5655 | 0.7682 | +20.27 | 0.2145 | 0.0146 | +19.99 |
-| C2_alt | 0.5425 | 0.6364 | +9.39 | 0.1527 | 0.0918 | +6.10 |
-| **Macro** | **0.5027** | **0.6134** | **+11.06** | **0.2484** | **0.1550** | **+9.34** |
-
-全部五个划分的 Unseen AUROC 点估计都提高，四个划分的 Gap 缩小。A1 的 Seen 提升幅度更大，其 Gap 扩大；因此结论是宏平均退化显著缓解，逐划分改善仍不均衡。
-
-### Bootstrap 对退化缓解的统计支持
-
-2,000 次共享视频成对聚类 Bootstrap；区间排除零，支持 Unseen 增益和 Gap 缩小。表中增益为原测试集点估计，区间来自重采样。
-
-| 比较 | Δ Unseen，pp | 95% CI，pp | Gap 缩小，pp | 95% CI，pp |
-| --- | ---: | --- | ---: | --- |
-| DDV vs Base1 | +11.06 | [8.89, 13.47] | +9.34 | [7.01, 11.86] |
-| DDV vs Base2 | +9.89 | [7.74, 12.20] | +7.82 | [5.50, 10.16] |
-
-DDV 的 Unseen AUROC 95% CI 为 **[0.5926, 0.6346]**；输出中的 Bootstrap 均值 0.6137、Gap 均值 0.1547，与原测试集点估计 0.6134、0.1550 略有不同，这是重采样统计口径的正常差异。
-
-**进一步归因与适用范围：** DDV 使用三骨干；相对同三骨干的融合控制，Unseen 仍提高 **6.11 pp，CI [4.22, 8.21] pp**，但 Seen 降低 **0.94 pp**。该取舍需要明确报告。方向推理、多种子和新语义推广仍需补充实验；这些问题不改变本次相对 QD 基线的宏平均退化缓解结论。原 G-mIoU 和 Release QD PairAcc 的纠错见独立审计。
-
-本次发布包含代码、报告及指标，检查点/特征/逐查询预测保留本地。
-
-## Research question and protocol
-
-An event can be absent from a video, or present while its action or action–object composition was absent from **task-specific training**. Here, *unseen* means held out from downstream model training. It does **not** mean unseen by the pretrained CLIP or SlowFast feature extractors.
-
-| Partition | Semantics in downstream training? | Event in video? | Expected output |
-| --- | --- | --- | --- |
-| S+ | Seen | Present | Relevant time window(s) |
-| S− | Seen | Absent | Empty set |
-| U+ | Unseen | Present | Relevant time window(s) |
-| U− | Unseen | Absent | Empty set |
-
-Models train on **S+ and S− only**. Checkpoint selection and existence-threshold calibration use only S+/S− validation rows. The test set contains all four partitions. Held-out U+/U− validation rows must not be used to select models, thresholds, or hyperparameters. Training on the original, unfiltered Charades-STA training split would invalidate the downstream-unseen condition.
-
-The main diagnostic asks whether the existence score of a same-video U+ query exceeds that of its matched U− query. We also compare localization from the same checkpoint before and after applying the seen-validation existence threshold; this separates localization ability from erroneous refusal.
-
-### E0–E7 实验矩阵
-
-| 实验 | 模型／分析 | 训练数据 | 验证与测试 | 状态 |
-| --- | --- | --- | --- | --- |
-| E0 | Moment-DETR 定位-only | S+ | val S+ 选模；test S+/U+ 定位 | 完成 |
-| E1 | FlashVTG 定位-only；另补 QD-DETR | S+ | 同 E0 | 完成 |
-| E2 | Moment-DETR-GMR | S+、S− | val seen 选模与校准；test 四象限 | 完成 |
-| E3 | FlashVTG-GMR；另补 QD-DETR-GMR | S+、S− | 同 E2 | 完成 |
-| E4–E5 | E2/E3 checkpoint 的 raw 与硬拒绝定位；另补 QD-DETR | 沿用 GMR checkpoint | 同一 test 正例，比较关闭／启用 seen 阈值硬拒绝 | 完成 |
-| E6 | 三 backbone 的 semantic-seen reference | S+、S−，加回 2,679 条 held-out 训练正例 | val seen 选模与校准；同一 test | 完成；**仅作泄漏语义诊断** |
-| E7 | 字符 n-gram text-only 对照 | train 查询文本 | full test、unseen test、535 对 matched-U | 完成 |
-
-原方案将 E0/E1 和 E2/E3 分别列为两个主 backbone；本项目按同一协议增加了 QD-DETR。主实验的 *unseen* 只表示相应语义未出现在**下游任务训练**中，不意味着 CLIP/SlowFast 的基础预训练从未接触相关概念。E6 故意违反严格 unseen 条件，不能并入主表作为 zero-shot baseline。
-
-## Released dataset
-
-The versioned release is in [`data/release/semantic_existence_v1/`](data/release/semantic_existence_v1/). Its GMR-style JSONL files include `qid`, `vid`, `query`, `duration`, and `relevant_windows`, plus `exist_label`, `partition`, `semantic_status`, `novelty_type`, `construction_type`, `source_qid`, `semantic_graph`, and `verification_status`. Positive rows retain annotated temporal windows; negative rows have `relevant_windows: []`.
-
-| Split | S+ | S− | U+ | U− | Total |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Train | 6,851 | 1,466 | 0 | 0 | 8,317 |
-| Validation | 694 | 168 | 300 | 356 | 1,518 |
-| Test | 2,090 | 592 | 881 | 947 | 4,510 |
-
-`matched_u_pairs.jsonl` contains 535 same-video U+/U− pairs with the same source positive. `test_matched_u.jsonl` expands these pairs into 1,070 rows. `semantic_inventory.json`, `statistics.json`, `review_report.json`, `text_only_diagnostic.json`, and `manifest.json` record the holdouts, statistics, review provenance, language-only diagnostic, and SHA-256 checksums. [`plan.md`](data/release/semantic_existence_v1/plan.md) is the experiment plan; [`HANDOFF.md`](data/release/semantic_existence_v1/HANDOFF.md) describes the original construction workspace. Absolute paths in that historical handoff refer to the original machine; use repository-relative paths here.
-
-直接检查仓库内发布包，无须下载视频或训练特征：
-
-```bash
-python scripts/validate_release.py
+```mermaid
+flowchart TD
+    A[Charades-STA 正例与旧版反事实负查询] --> B[完整查询事件解析与语义归一化]
+    B --> C[逐 qid 语义审核与同视频正例冲突检查]
+    C --> D[剔除歧义、同义、蕴含、重合与构造错误样本]
+    D --> E[干净正负母池]
+    E --> F[固定视频级 Train / Val / Test]
+    F --> G[五组语义留出与共享 Seen 训练负例]
+    G --> H[发布标注、配对、统计与校验]
+    H --> I[S+ / S− 训练三个 backbone]
+    I --> J[仅 Seen validation 选择模型和阈值]
+    J --> K[完整测试集评估与视频级 bootstrap]
 ```
 
-The release contains **annotations, not videos or pretrained features**. Obtain Charades-STA/Charades videos and CLIP/SlowFast features under their source terms. The original GMR Soccer-GMR data in this upstream-derived repository is a separate benchmark and is not used for the experiments reported below.
-
-### Phase 2 multi-split releases
-
-| Group | Held-out semantics | Axis | Train | Validation | Test | Test U+ / U− | Matched U pairs |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| [A1](data/release/semantic_existence_v2/A1/) | `put`, `take` | Action | 8,608 | 1,759 | 5,170 | 465 / 1,119 | 312 |
-| [A2_alt](data/release/semantic_existence_v2/A2_alt/) | `drink`, `pour` | Action | 10,323 | 1,686 | 4,945 | 168 / 312 | 79 |
-| [A3](data/release/semantic_existence_v2/A3/) | `run`, `walk` | Action | 10,352 | 1,774 | 5,293 | 192 / 594 | 129 |
-| [C1](data/release/semantic_existence_v2/C1/) | `sit|bed`, `sit|chair`, `sit|couch` | Composition | 10,516 | 1,607 | 4,705 | 162 / 270 | 144 |
-| [C2_alt](data/release/semantic_existence_v2/C2_alt/) | `close|box`, `close|cabinet`, `open|box`, `open|cabinet` | Composition | 10,612 | 1,607 | 4,705 | 115 / 254 | 33 |
-
-All 15 training jobs completed with exit code 0; the three models were evaluated on all five test sets. A1–A3 use the same reviewed 1,500-row action-axis S− pool; C1/C2_alt use a separate shared 1,500-row composition-axis S− pool. The composition packages include their frozen specs and common negative pool. All five checked-in releases pass `scripts/validate_release.py`, with no video overlap across train, validation and test. The dataset owner attested review of the exact new-negative batch and parser sample as a whole; the packages do not contain per-query review records. Full construction provenance is in each release's manifest and the shared selection directory.
-
-#### Phase 2 data construction: all five groups
-
-1. **Select semantics before model testing.** [`profile_semantic_split_candidates.py`](scripts/profile_semantic_split_candidates.py) counts original train/test positives, videos and object diversity for 123 actions and 1,221 action–object compositions. [`select_semantic_split_specs.py`](scripts/select_semantic_split_specs.py) and the fallback-selection scripts use the frozen [`selection_rules.json`](data/release/semantic_existence_v2/selection/selection_rules.json) to choose disjoint action and composition groups. Initial A2 and C2 failed the candidate pair gate and were replaced by A2_alt and C2_alt before model evaluation. Candidate tables, failure records, final [`split_specs.json`](data/release/semantic_existence_v2/selection/split_specs.json) and the frozen selection hashes are published under [`selection/`](data/release/semantic_existence_v2/selection/).
-2. **Build each split from the same original positives.** [`build_semantic_existence.py`](scripts/build_semantic_existence.py) reads one frozen `--split-spec` per group, retains original positive queries and human time windows, keeps original test videos in test, and assigns validation by a deterministic video-ID hash. For A groups it removes training positives containing a held action; for C groups it removes held action–object pairs while checking that their component action and object remain in training. Each group gets its own seen inventory and S+/U+ labels.
-3. **Construct and review absent queries.** The builder edits an action or object edge in a same-video positive and can recombine a video action with another object. It reparses the query and discards candidates contradicted by same-video positives, Charades action annotations or Action Genome relationships. Those filters detect conflicts; absence depends on video review. The owner globally attested the exact batch of 4,491 new negative candidates and 156 parser-QC samples; 2,485 exact v1 negatives retain their earlier batch provenance. [`review_semantic_multisplit.py`](scripts/review_semantic_multisplit.py) records that distinction. The release does not contain per-qid review decisions. Known `dress|front` parser errors were quarantined before packaging.
-4. **Reuse negatives and enforce release gates.** [`audit_shared_seen_negatives.py`](scripts/audit_shared_seen_negatives.py) forms one reviewed 1,500-row S− training pool shared by all A groups and another shared by both C groups. Each group's test U+/U− pairs use the same video and source positive and the same novelty axis. Before training, [`audit_multisplit_feasibility.py`](scripts/audit_multisplit_feasibility.py) checks at least 80 U+, 40 U−, 50 U+ videos, 20 pairs and 15% pair coverage; it also limits the largest held-semantic share to 70% for actions or 65% for compositions and requires at least 90% parser-QC correctness. [`package_semantic_multisplit.py`](scripts/package_semantic_multisplit.py) writes the five releases and SHA-256 manifests; [`validate_release.py`](scripts/validate_release.py) checks their labels, pairs, video separation, held-out leakage and checksums.
-
-Every release contains `train.jsonl`, `val.jsonl`, `test.jsonl`, `matched_u_pairs.jsonl`, `test_matched_u.jsonl`, `semantic_inventory.json`, `statistics.json`, `review_report.json`, `split_spec_provenance.json` and `manifest.json`. The repository also publishes the frozen specs, candidate statistics, review attestation and both shared S− pools. Rebuilding from scratch additionally needs the original Charades-STA positives, Charades annotations/videos, Action Genome, VerbNet and parser dependencies; raw videos, pretrained feature tensors, checkpoints, per-query predictions and intermediate `work/` candidate files are not part of this release. The exact build protocol, dependency paths and selection rationale are in the [phase 2 plan](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md).
-
-To check the published annotation packages without rebuilding or downloading model features:
-
-```bash
-for split in A1 A2_alt A3 C1 C2_alt; do
-  python scripts/validate_release.py --release "data/release/semantic_existence_v2/$split"
-done
-```
-
-#### A1 data and construction
-
-[`data/release/semantic_existence_v2/A1/`](data/release/semantic_existence_v2/A1/) holds out the complete `put` and `take` action classes from downstream training. The published files contain annotations and provenance, without videos, features, or checkpoints. Each test query is assigned by its semantic status under A1; the two actions have 226 and 239 U+ test examples respectively.
-
-| A1 split | S+ | S− | U+ | U− | Total |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Train | 7,108 | 1,500 | 0 | 0 | 8,608 |
-| Validation | 747 | 510 | 159 | 343 | 1,759 |
-| Test | 2,218 | 1,368 | 465 | 1,119 | 5,170 |
-
-A1 has 312 same-video, same-source U+/U− pairs, covering 67.1% of its U+ test rows. The 1,500 training S− rows are the reviewed **shared action-axis pool** used by A1, A2_alt and A3. The exact frozen A1 spec, selection rules, candidate action table, common negative pool, owner attestation and review templates are in [`selection/`](data/release/semantic_existence_v2/selection/). The owner attested review of the exact new-negative batch and parser sample as a whole; this is **not a per-query review log**. The 8 train and 3 test `dress|front` parser errors were quarantined before packaging. `review_report.json` counts are from before that quarantine; `statistics.json` contains final released counts.
-
-The A1 construction pipeline starts from the original Charades-STA positives, uses the same video-level train/validation allocation as v1, and parses action–object events. [`profile_semantic_split_candidates.py`](scripts/profile_semantic_split_candidates.py) counts candidates; the frozen [`A1.json`](data/release/semantic_existence_v2/selection/A1.json) is passed as `--split-spec` to [`build_semantic_existence.py`](scripts/build_semantic_existence.py). It removes all training positives with `put` or `take` and labels test positives accordingly. The builder creates edited negative candidates and same-video pairs. [`review_semantic_multisplit.py`](scripts/review_semantic_multisplit.py) imports the owner's batch attestation, [`audit_multisplit_feasibility.py`](scripts/audit_multisplit_feasibility.py) checks the preset size, diversity and pair-coverage gates, and [`package_semantic_multisplit.py`](scripts/package_semantic_multisplit.py) packages the shared S− pool and final splits. The shared pool is reproduced and audited by [`audit_shared_seen_negatives.py`](scripts/audit_shared_seen_negatives.py). The other candidate splits, fallback selection, and parser QC are documented in the [phase 2 plan](docs/20260928_2_PHASE2_MULTI_SPLIT_EXPERIMENT_PLAN.md).
-
-```bash
-python scripts/validate_release.py --release data/release/semantic_existence_v2/A1
-```
-
-The A1 manifest records SHA-256 hashes of all packaged files and construction inputs. Paths in `manifest.json`, `review_report.json`, and `split_spec_provenance.json` refer to the original build machine; the published equivalents of the selection files are under `../selection/`.
-
-To retrain A1 after obtaining the same Charades video features and compatible CLIP text encoder, prepare its query features and seen-only validation view, then launch the 100-epoch models. The script uses the v1 model settings with the A1 release and a distinct A1 result directory:
-
-```bash
-python scripts/prepare_charades_semantic_existence.py \
-  --release data/release/semantic_existence_v2/A1 \
-  --old-text /path/to/original_charades_clip_text \
-  --clip-code /path/to/compatible_clip_implementation \
-  --clip-weights /path/to/clip_vit_b32_weights \
-  --output features/semantic_existence_v2/A1
-export MULTISPLIT_RELEASE_ROOT="$PWD/data/release/semantic_existence_v2"
-export VIDEO_ROOT=/path/to/charades/features
-export GMR_PYTHON=/path/to/gmr-env/bin/python
-export FLASH_PYTHON=/path/to/flash-env/bin/python
-bash scripts/run_semantic_multisplit_100ep.sh A1 launch
-# After all three exit_code files report 0:
-bash scripts/finalize_semantic_multisplit_group.sh A1
-```
-
-The same feature preparation, training and test commands apply to A2_alt, A3, C1 and C2_alt by replacing `A1` with the chosen split ID. Each group trains independently; [`queue_semantic_multisplit_training.sh`](scripts/queue_semantic_multisplit_training.sh) records the original order and two-GPU scheduling, while [`finalize_semantic_multisplit_group.sh`](scripts/finalize_semantic_multisplit_group.sh) runs the three test submissions and diagnostics for one completed group. The published [result JSON files](docs/semantic_existence_v2_metrics/) include the seen-validation threshold, official metrics, text-only control, video-cluster intervals and same-query cross-split summaries.
-
-### How the v1 dataset was constructed
-
-1. Preserve original Charades-STA positive queries and human temporal windows. Keep original test videos in test; allocate 10% of original training videos to validation by a deterministic SHA-256 bucket of video ID. Splits do not share videos.
-2. Build the downstream semantic inventory only from the remaining training videos. Hold out `open`, `close` (including normalized `shut`), and 16 selected action–object compositions. Remove training positives containing the held-out semantics. Label original positive queries as S+ or U+ according to this inventory.
-3. Form negative candidates by editing one semantic event edge in a real same-video positive query. Candidate actions/objects must occur in real positive text elsewhere; the edited query is reparsed. Reject candidates contradicted by other same-video positives, Charades action annotations, or available Action Genome relationships. These filters provide **positive conflict evidence only**; their silence does not establish absence.
-4. Review surviving negative candidates against the video. The v1 release records a **dataset-owner global attestation** for the reviewed batch, not a per-query or dual-review log. Confirmed negatives become S− or U−. Pair eligible U+ and U− queries by video and source positive. Quarantine three known parser errors before packaging.
-
-发布统计中的 U+ 为 **881**；复核报告曾记录 **884**，其中 3 条 `dress|front` 解析错误在打包前被隔离。负例的元数据过滤只能发现与“缺席”相冲突的正证据，不能替代视频复核。需要逐条复核记录或更强的缺席证明时，应重新构建和审查数据，不能把本版的全局 attestation 解释成双人逐条标注。
-
-Construction details and limitations are in [the dataset construction report](docs/reports/semantic_existence_dataset.md). Source scripts are [`scripts/build_semantic_existence.py`](scripts/build_semantic_existence.py), `validate_semantic_existence.py`, `review_semantic_existence.py`, `package_semantic_existence.py`, `audit_text_only.py`, and `validate_release.py`. The released JSONL files are ready to use without rebuilding the raw dataset.
-
-To **rebuild** the dataset, supply the original Charades-STA positive JSONL files, Charades annotation CSVs and videos, VerbNet, spaCy `en_core_web_sm`, NLTK WordNet, and Action Genome annotations at the paths described in [the dataset construction report](docs/reports/semantic_existence_dataset.md). Install builder dependencies with `pip install -r requirements-dataset.txt`, then run:
-
-```bash
-python -m spacy download en_core_web_sm
-python -m nltk.downloader wordnet
-python scripts/download_action_genome.py
-python scripts/build_semantic_existence.py
-python scripts/validate_semantic_existence.py
-python scripts/review_semantic_existence.py --reviews path/to/completed_reviews.csv
-python scripts/package_semantic_existence.py
-python scripts/audit_text_only.py
-python scripts/package_semantic_existence.py
-python scripts/validate_release.py
-```
-
-The review command requires actual review decisions for a new build. The historical `--user-attests-all-absent` route must only be used when the dataset owner has already verified **that exact candidate batch**. To validate the unchanged included release, run only `python scripts/validate_release.py`.
-
-## Code and environment
-
-| Path | Purpose |
-| --- | --- |
-| `models/moment_detr_gmr/`, `training/moment_detr_gmr/` | Moment-DETR with GMR existence branch |
-| `models/qd_detr_gmr/`, `training/qd_detr_gmr/` | QD-DETR adaptation with GMR existence branch |
-| `models/flash_vtg_gmr/`, `training/flash_vtg_gmr/` | FlashVTG with GMR existence branch |
-| `configs/` | Model, feature, and dataset configuration |
-| `scripts/prepare_charades_semantic_existence.py` | Seen-only validation view and query CLIP features |
-| `scripts/run_semantic_existence_100ep_tmux.sh` | Three 100-epoch runs with seed 3407 and no early stopping |
-| `scripts/analyze_semantic_existence.py`, `eval/` | Four-partition diagnostics and GMR metrics |
-| `scripts/run_semantic_localization_controls.sh`, `scripts/finalize_semantic_localization_controls.sh` | E0/E1 与 QD-DETR 的 S+ 定位训练、测试及评分 |
-| `scripts/schedule_semantic_seen_references.sh`, `scripts/finalize_semantic_seen_references.sh` | E6 三 backbone 训练与自动测试；`start` 立即运行 |
-| `scripts/analyze_localization_decomposition.py`, `scripts/compare_semantic_seen_reference.py` | raw／硬拒绝定位拆解和 E6 对比 |
-| `scripts/audit_text_only.py`, `scripts/analyze_text_only_pair_uncertainty.py` | E7 文本-only 诊断与配对不确定性分析 |
-| `docs/` | 数据构建、实验交接、完整结果与限制 |
-
-Install the base dependencies with `pip install -r requirements.txt`. FlashVTG also has [`requirements-flash-vtg.txt`](requirements-flash-vtg.txt); a CUDA-compatible PyTorch installation is needed for GPU training. The recorded runs used separate `gmr` and `univtg` Python environments. Precomputed **CLIP text** features and **CLIP + SlowFast video** features are required and are not committed. In the recorded setup, video feature files have approximately one-second temporal resolution, CLIP video dimension 512, SlowFast dimension 2304, and `max_v_l=200`.
-
-Prepare `features/charades_semantic_existence/val_seen.jsonl` and query features with:
-
-```bash
-python scripts/prepare_charades_semantic_existence.py \
-  --release data/release/semantic_existence_v1 \
-  --old-text /path/to/original_charades_clip_text \
-  --clip-code /path/to/compatible_clip_implementation \
-  --clip-weights /path/to/clip_vit_b32_weights \
-  --output features/charades_semantic_existence
-```
-
-`--old-text` must contain the original positive-query features. The script symlinks those features and encodes negative queries; it expects a compatible CLIP implementation whose text encoder returns `last_hidden_state`. Check that all 14,345 released queries have a text feature before training. Set `VIDEO_ROOT` to a directory containing `vid_clip/` and `vid_slowfast/` feature subdirectories.
-
-To reproduce the **three parallel, forced 100-epoch** runs on two GPUs:
-
-```bash
-export VIDEO_ROOT=/path/to/charades/features
-export GMR_PYTHON=/path/to/gmr-env/bin/python
-export FLASH_PYTHON=/path/to/flash-env/bin/python
-bash scripts/run_semantic_existence_100ep_tmux.sh launch
-```
-
-Moment-DETR and QD-DETR share GPU 0; FlashVTG uses GPU 1. Override `DATA_ROOT`, `FEATURE_ROOT`, `RUN_ROOT`, or `SEMANTIC_SEED` when needed. The script writes `exit_code` and `run_metadata.txt` under `results/semantic_existence/seed3407_100ep/{moment,qd,flash}/`. It is a training launcher, so check for existing results before rerunning. Model-specific inference and scoring commands are in the [experiment handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md). `results/` and `features/` are local artifacts excluded from Git.
-
-GitHub 发布的是标注、源代码和含数字的实验报告；模型 checkpoint、逐查询预测、原视频及特征文件不随仓库上传。报告里以 `results/` 开头的路径指本地复现产物，不是 GitHub 下载链接。
-
-### 复现 E0/E1 与 QD-DETR 定位对照
-
-在准备好上述特征后，设置 `VIDEO_ROOT`、`GMR_PYTHON` 和 `FLASH_PYTHON`，运行：
-
-```bash
-bash scripts/run_semantic_localization_controls.sh launch
-```
-
-该脚本从发布包生成仅含 S+ 的训练与验证视图，Moment-DETR 和 QD-DETR 在 GPU 0 顺序训练，FlashVTG 在 GPU 1 训练。三组 `exit_code` 均为 `0` 后执行：
-
-```bash
-bash scripts/finalize_semantic_localization_controls.sh
-```
-
-输出位于 `results/semantic_existence/localization_only_seed3407_100ep/`。代码默认的本机路径可通过 `VIDEO_ROOT`、`GMR_PYTHON`、`FLASH_PYTHON`、`FEATURE_ROOT` 和 `RUN_ROOT` 环境变量覆盖；公共复现时不要直接使用其他机器上的绝对路径。
-
-### 复现 E6 semantic-seen reference
-
-E6 需要构建期中间文件 `data/processed/semantic_existence/removed_train_holdouts.jsonl`，其中有 2,679 条从正式训练中移除的原始正例；该文件不属于发布包，需要按[数据构建说明](docs/reports/semantic_existence_dataset.md)在本地重新生成。下例合并训练标注，并链接这些正例原有的 CLIP 文本特征。`OLD_TEXT_DIR` 中的文件名应为 `<qid>.npz`，与 `prepare_charades_semantic_existence.py --old-text` 使用的格式相同。
-
-```bash
-export HOLDOUTS=data/processed/semantic_existence/removed_train_holdouts.jsonl
-export OLD_TEXT_DIR=/path/to/original_charades_clip_text
-python - <<'PY'
-import json, os
-from pathlib import Path
-
-release = Path('data/release/semantic_existence_v1/train.jsonl')
-holdouts = Path(os.environ['HOLDOUTS'])
-feature_root = Path('features/charades_semantic_existence')
-text_dir = feature_root / 'clip_text'
-old_text = Path(os.environ['OLD_TEXT_DIR'])
-text_dir.mkdir(parents=True, exist_ok=True)
-rows = [json.loads(line) for path in (release, holdouts) for line in path.open()]
-assert len(rows) == 10996 and len({str(row['qid']) for row in rows}) == 10996
-for row in (json.loads(line) for line in holdouts.open()):
-    source = (old_text / f"{row['qid']}.npz").resolve(strict=True)
-    target = text_dir / f"qid{row['qid']}.npz"
-    if not target.exists():
-        target.symlink_to(source)
-with (feature_root / 'train_semantic_seen_reference.jsonl').open('w') as out:
-    for row in rows:
-        out.write(json.dumps(row, ensure_ascii=False) + '\n')
-PY
-```
-
-训练脚本会检查合并文件必须有 10,996 个互异 qid、9,530 条正例及完整文本特征。
-
-```bash
-# 准备好合并文件与特征后，在两块 GPU 上启动三个单种子模型：
-bash scripts/schedule_semantic_seen_references.sh start
-```
-
-`start` 会立即并行训练三个模型，并启动完成后的测试、四象限诊断、官方 GMR 评分和严格训练对照。`schedule` 子命令用于定时启动，默认时间是历史实验日期；复现时应显式设置新的 `TARGET_UTC`。E6 的训练集包含 held-out 正例，故结果仅是 semantic-seen reference。
-
-### 评测文件与指标
-
-预测 JSONL 的 `pred_relevant_windows` 为模型输出窗口，`pred_exist_score` 为存在分数；GMR 预测还保留 `pred_relevant_windows_pre_exist` 供 raw 定位诊断。[`eval/eval_main.py`](eval/eval_main.py) 计算官方 AUROC、Rej-F1、mAP、mR、mIoU 和 G-mIoU；[`scripts/analyze_semantic_existence.py`](scripts/analyze_semantic_existence.py) 计算 seen/unseen AUROC、四象限 FRR/RR、raw 与 seen 阈值硬拒绝后的 R@1@IoU 0.5，以及 matched-U PairAcc。两套阈值和 gate 定义不同，报告时不能混用。阈值和 checkpoint 只由 seen validation 决定，test 仅用于最终报告。
-
-## Current results
-
-All numbers below use the new seed **3407**, 100 epochs without early stopping, best checkpoint selected on seen validation, and thresholds calibrated on seen validation. These are **test-set diagnostics**, not model-selection criteria.
-
-### Phase 2 A1 test results
-
-All three A1 training jobs completed with exit code 0. The best checkpoint for each model was selected using only A1 seen validation rows; the existence threshold was calibrated on those same seen rows. The table uses A1's 5,170-query test set and 312 matched pairs. AUROC and PairAcc are unit fractions; all other columns are percentages.
-
-| A1 model | Seen AUROC | Unseen AUROC | U+ false refusal | U− rejection | 312-pair accuracy | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Moment-DETR-GMR | 0.804 | 0.497 | 23.23% | 25.47% | 0.559 | 23.01% | 17.85% |
-| QD-DETR-GMR | 0.783 | 0.506 | 16.13% | 18.23% | 0.572 | 24.52% | 20.65% |
-| FlashVTG-GMR | 0.816 | 0.506 | 19.14% | 20.82% | 0.556 | 29.46% | 23.66% |
-
-On this held-out `put/take` action split, seen AUROC exceeds unseen AUROC by 0.277–0.309. Matched-pair score ordering is 0.556–0.572. At the seen-calibrated threshold, U− rejection is only 18.23–25.47%, while gating removes 3.87–5.81 percentage points of U+ R@1@0.5. A1 uses one training seed. Full definitions, run settings and five-split comparisons are in the [phase 2 result report](docs/reports/semantic_existence_multisplit_results.md).
-
-### Phase 2 A2_alt and A3 test results
-
-Both groups completed test inference for all three best checkpoints. Each submission covers every test qid exactly once: 4,945 in A2_alt and 5,293 in A3. The existence threshold in each row comes only from that model's seen validation predictions. AUROC and PairAcc are unit fractions; FRR, RR and R@1@0.5 are percentages.
-
-| Group | Model | Seen AUROC | Unseen AUROC | U+ FRR | U− RR | PairAcc | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| A2_alt (79 pairs) | Moment-DETR-GMR | 0.769 | 0.551 | 0.00% | 0.64% | 0.620 | 26.79% | 26.79% |
-| A2_alt | QD-DETR-GMR | 0.744 | 0.473 | 0.60% | 0.32% | 0.456 | 31.55% | 31.55% |
-| A2_alt | FlashVTG-GMR | 0.773 | 0.524 | 0.00% | 0.96% | 0.506 | 42.86% | 42.86% |
-| A3 (129 pairs) | Moment-DETR-GMR | 0.749 | 0.564 | 29.17% | 33.00% | 0.469 | 39.58% | 28.12% |
-| A3 | QD-DETR-GMR | 0.733 | 0.487 | 30.21% | 31.31% | 0.453 | 44.27% | 33.33% |
-| A3 | FlashVTG-GMR | 0.742 | 0.614 | 23.44% | 43.77% | 0.516 | 46.88% | 34.38% |
-
-All nine action-split models have lower unseen than seen AUROC. A2_alt's U− rejection is below 1% for every model, showing that its near-zero U+ refusal comes with almost universal acceptance of absent unseen queries. In A3, hard gating reduces U+ R@1@0.5 by 10.94–12.50 percentage points. Action same-query comparisons are summarized in the [action-split report](docs/reports/semantic_existence_action_multisplit_results.md).
-
-### Phase 2 composition-split test results
-
-| Group | Model | Seen AUROC | Unseen AUROC | U+ FRR | U− RR | PairAcc | U+ raw R@1@0.5 | U+ gated R@1@0.5 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| C1 (144 pairs) | Moment-DETR-GMR | 0.761 | 0.562 | 3.70% | 7.78% | 0.629 | 48.77% | 47.53% |
-| C1 | QD-DETR-GMR | 0.780 | 0.562 | 3.09% | 5.56% | 0.635 | 42.59% | 41.98% |
-| C1 | FlashVTG-GMR | 0.753 | 0.548 | 3.70% | 3.70% | 0.556 | 51.23% | 48.77% |
-| C2_alt (33 pairs) | Moment-DETR-GMR | 0.676 | 0.469 | 98.26% | 96.85% | 0.727 | 35.65% | 0.00% |
-| C2_alt | QD-DETR-GMR | 0.698 | 0.545 | 47.83% | 53.94% | 0.530 | 38.26% | 24.35% |
-| C2_alt | FlashVTG-GMR | 0.691 | 0.547 | 61.74% | 64.57% | 0.545 | 42.61% | 15.65% |
-
-Seen AUROC exceeds unseen AUROC in all six composition-split runs. C1 shows modest AUROC gaps (0.199–0.218) with small U+ gate losses. C2_alt shows severe false refusal for Moment-DETR and larger gate losses for QD-DETR and FlashVTG. The exact [metric JSON outputs](docs/semantic_existence_v2_metrics/) include seen-validation thresholds and official full-test GMR scores.
-
-The held-out object distribution is intentionally narrow for composition tests: C1 U+ uses three objects, and C2_alt U+ uses two. In A2_alt, `glass` and `cup` account for 72% of U+ queries. The text-only diagnostic also has high matched-pair accuracy in C1 (0.625) and C2_alt (0.818), indicating that query wording retains label signal; paired score accuracy must be interpreted with this confound in mind. See the per-split query length and action/object summaries in [`test_query_distributions.json`](docs/semantic_existence_v2_metrics/test_query_distributions.json) and text-only metrics in [`text_only/`](docs/semantic_existence_v2_metrics/text_only/).
-
-The composition same-query comparison uses 801 directed comparisons, with 78–167 videos per split direction. For C2_alt→C1, the mean seen-minus-unseen existence score rises by 0.128–0.283 for present queries and 0.161–0.258 for absent queries across the models. For C1→C2_alt, present-query changes are near zero; absent-query changes range from −0.003 to +0.027. Video-cluster 95% intervals are in [`cross_status_composition/`](docs/semantic_existence_v2_metrics/cross_status_composition/); the [complete five-split report](docs/reports/semantic_existence_multisplit_results.md) discusses both action and composition axes. These are paired associations across separately trained models, not isolated causal effects. All configurations use one training seed.
-
-### Phase 1 A0 test results
-
-| Baseline | Seen existence AUROC | Unseen existence AUROC | U+ false-refusal rate | U− rejection rate | 535-pair score-order accuracy |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Moment-DETR-GMR | 0.867 | 0.570 | 29.2% | 38.3% | 55.7% |
-| QD-DETR-GMR | 0.871 | 0.585 | 63.8% | 80.7% | 48.4% |
-| FlashVTG-GMR | 0.857 | 0.559 | 46.4% | 51.5% | 50.7% |
-
-Existence discrimination drops sharply on held-out semantics for all three baselines. QD-DETR and FlashVTG frequently reject present U+ events; Moment-DETR accepts many absent U− events. The failure modes differ, so a single “over-refusal” explanation does not fit all models. Longer training with a different seed did not remove the observed gap, but changing the seed and epoch limit together does not isolate the effect of training duration. The best checkpoint was at epoch 11, 66, and 60 for Moment-DETR, QD-DETR, and FlashVTG respectively. Full raw-versus-gated localization, official GMR metrics, hashes, and the original shorter runs are in [the v1 100-epoch result report](docs/reports/semantic_existence_100ep_results.md) and the [handoff](docs/SEMANTIC_EXISTENCE_HANDOFF.md).
-
-定位-only 对照和 E6 的重点结果如下；所有 R@1 使用 IoU 0.5，百分比取自固定 seed 3407 的测试集，完整区间与 checkpoint 核查见[定位对照报告](docs/reports/semantic_existence_localization_controls.md)和[E6 报告](docs/reports/semantic_existence_semantic_seen_reference_results.md)。
-
-| Backbone | 定位-only U+ R@1 | 严格 GMR raw U+ R@1 | 严格 GMR 硬拒绝后 U+ R@1 | E6 U+ FRR | E6 U− RR | E6 matched PairAcc |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Moment-DETR | 35.07% | 32.92% | 24.40% | 3.63% | 3.27% | 57.48% |
-| QD-DETR | 34.85% | 30.65% | 11.80% | 3.41% | 4.33% | 70.37% |
-| FlashVTG | 44.27% | 37.34% | 20.32% | 2.50% | 2.64% | 52.15% |
-
-E6 让模型几乎都接受 U+，同时也几乎都接受 U−。QD-DETR 在 matched-U 上的排序虽从 48.41% 升至 70.37%，seen 阈值下的 U− 拒绝率仍只有 4.33%。因此 E6 不能解释为开放语义存在判断已经解决；它还增加了训练正例，不能单独识别语义新颖性的因果效应。E7 的 text-only 模型在完整 test 上 AUROC 为 0.7885，在 unseen 上为 0.5678；535 对 matched-U 的 PairAcc 为 0.5421，按视频聚类的 95% 区间为 0.4925–0.5928。
-
-**Known limits:** each configuration has only one run per seed. Original human positives and minimally edited negatives can differ in textual style. The included text-only diagnostic reaches 0.789 overall AUROC and 0.568 unseen AUROC, so overall scores alone should not be interpreted as purely visual existence reasoning. The release review provenance is a global owner attestation, not per-query review records.
-
-## Upstream attribution
-
-This project extends the [Generalized Moment Retrieval repository](https://github.com/dymm9977/generalized-moment-retrieval) for semantic-novelty experiments. Its original benchmark, code, and paper remain attributable to the upstream authors. The upstream citation is:
-
-```bibtex
-@article{ding2026retrieving,
-  title={Retrieving Any Relevant Moments: Benchmark and Models for Generalized Moment Retrieval},
-  author={Ding, Yiming and Cao, Siyu and Jiao, Luyuan and Li, Yixuan and Wang, Zitong and Liu, Zhiyong and Zhang, Lu},
-  journal={arXiv preprint arXiv:2605.02623},
-  year={2026},
-  doi={10.48550/arXiv.2605.02623}
-}
-```
-
-The repository's [`LICENSE`](LICENSE) applies to its software; third-party dataset and model assets retain their own source terms. See the FlashVTG [third-party notices](models/flash_vtg_gmr/THIRD_PARTY_NOTICES.md).
-
-## Test 子集：未见动作与未见组合
-
-发布版 test 中的 U+/U− 样本按 `novelty_type` 分为互不重叠的 `unseen_action` 和 `unseen_composition`。前者再按 `semantic_graph.action` 分为 `open`、`close`；后者按 `semantic_graph.action|semantic_graph.object` 分为 16 个预留的动作–物体组合。拆分文件保留原始 JSONL 记录和顺序，不改变原始 [`test.jsonl`](data/release/semantic_existence_v1/test.jsonl)。
-
-| 子集 | U+ | U− | 合计 |
-| --- | ---: | ---: | ---: |
-| unseen_action | 675 | 882 | 1,557 |
-| └ open | 442 | 439 | 881 |
-| └ close | 233 | 443 | 676 |
-| unseen_composition | 206 | 65 | 271 |
-
-| Held-out pair | U+ | U− | Held-out pair | U+ | U− |
-| --- | ---: | ---: | --- | ---: | ---: |
-| `cook|food` | 5 | 0 | `dress|front` | 0 | 0 |
-| `drink|water` | 9 | 1 | `eat|food` | 56 | 0 |
-| `hold|pillow` | 10 | 0 | `put_down|book` | 15 | 4 |
-| `put_in|box` | 6 | 5 | `put_in|clothe` | 7 | 2 |
-| `put_on|shoe` | 40 | 22 | `put|picture` | 9 | 14 |
-| `put|towel` | 13 | 0 | `take_out|book` | 3 | 1 |
-| `take_out|towel` | 3 | 0 | `take|bag` | 8 | 0 |
-| `take|book` | 13 | 16 | `walk|room` | 9 | 0 |
-
-可直接读取 [`test_subgroups/views/`](data/release/semantic_existence_v1/test_subgroups/views/) 中的 JSONL 子集；[`counts.csv`](data/release/semantic_existence_v1/test_subgroups/counts.csv) 给出各组数量，[`metrics.csv`](data/release/semantic_existence_v1/test_subgroups/metrics.csv) 给出 Moment-DETR、QD-DETR、FlashVTG 在 strict GMR、semantic-seen reference 和 localization-only 设置下的分组指标。指标定义及空值说明见[子集说明](data/release/semantic_existence_v1/test_subgroups/README.md)。
-
-535 个 matched-U pair 全部属于 `unseen_action`。按**正例 query 的动作**分组时，`open` 有 352 对，`close` 有 183 对；各模型的 PairAcc 见 [`matched_pair_metrics.csv`](data/release/semantic_existence_v1/test_subgroups/matched_pair_metrics.csv)。`unseen_composition` 没有 matched pair，故没有该组的 PairAcc。`dress|front` 在最终 test 中为零条；部分其他 held-out pair 缺少 U− 或样本很少，不能对这些 pair 的 AUROC 作稳定比较。
-
-## 2026-09-30：未见动作的定位与存在判断收益反转
-
-同一残差适配在正例VTG将未见R1@0.5从20.65%提高到26.24%，但在GMR中raw定位从26.02%下降到21.29%，AUROC从0.5309下降到0.4771。普通正则也未实现共同改善。机制尚未确定；下一阶段检查视觉利用、分数可比性和监督关系。
-
-[实验介绍、结果、日志与复现入口](experiments/correspondence_generalization/2026年9月30日_正则化与残差适配的未见动作泛化实验/INTRODUCTION.md)。六组已完成，下一阶段仅制定计划。
-
-## 2026-10-01：存在与定位共同泛化的全部机制诊断
-
-三族训练侧诊断、候选排序/几何、支持桥接、冻结时序表示及匹配容量读出已完成。候选一致性未支持共同作用路径；给定GT的局部证据与无GT的跨查询绝对支持仍有缺口，未启动新全模型训练。
-
-[完整实验记录、全部指标、冻结协议、逐轮账本、失败记录与源码](experiments/correspondence_generalization/2026年9月30日_存在与定位共同泛化的机制诊断/EXPERIMENT_RECORD.md)。
-
-
-## 2026-10-06：此前 AC-Verifier 实验、独立审计与 backbone 范围
-
-**本节表格为此前 AC-Verifier 实验，最新 DDV 主结果见页首 [DDV 退化缓解表格](#ddv-results)。** 本节记录 AC 的实验代码、报告和小型指标文件。AC 的复现入口是 [AC-Verifier 复现说明](experiments/agy_test/aligned_calibration_verifier/README.md)，结论以 [独立审计报告](experiments/agy_test/ac_audit_20261006/AC_AUDIT_REPORT.md) 为准；[实验索引](experiments/agy_test/README.md)区分当前结果与历史实验。
-
-### 方法与五划分结果
-
-AC-Verifier 在冻结的 QD-DETR-GMR 检测器输出上训练轻量适配器，加入 CLIP ViT-B/32 的整句 EOT 投影与候选/全局视频相似度，并减去固定训练视频参考相似度。训练仅使用 S+/S−，检查点与判定阈值仅由 Seen validation 选择；当前实验为 seed 3407。参考是单位化的训练视频平均向量，不具有自动成立的“无偏”保证。
-
-| 设置 | Mean Seen AUROC | Mean Unseen AUROC | Seen−Unseen Gap | Mean matched PairAcc |
-| --- | ---: | ---: | ---: | ---: |
-| HQ 缓存完整 logit 基线 | 0.7511 | 0.5027 | 0.2484 | 0.5181 |
-| P0：独立 Detector Adapter | 0.7535 | 0.5078 | 0.2456 | 0.5261 |
-| P1：AC-Verifier | 0.7561 | 0.5188 | 0.2373 | 0.5331 |
-
-五划分等权宏平均 Unseen AUROC 增益 **+1.61 pp**，Gap 缩小 **1.11 pp**。共享视频成对聚类 bootstrap（2,000 次）95% 区间分别为 **[+0.66, +2.66] pp**、**[+0.14, +2.15] pp**；Seen AUROC 同时提高约 0.50 pp。原始汇总见 [benchmark_summary.json](experiments/agy_test/aligned_calibration_verifier/benchmark_summary.json)，独立统计见 [bootstrap.json](experiments/agy_test/ac_audit_20261006/bootstrap.json)。
-
-这支持当前五组、固定训练结果下的平均 AUROC 改善。收益主要集中于 C1；动作三划分及去掉 C1 的 AUROC/Gap 改善区间仍跨零。A2_alt、A3 的 Unseen AUROC 仍低于 0.5，多种子、新语义留出及完整 GMR 拒绝/定位改善尚待确认。固定查询的视频置换支持新增 CLIP 分支的视频对应贡献；将新增相似度置零仍保留检测器视觉输入，不能称为纯文本控制。
-
-### 是否只有一个 backbone，是否支持迁移？
-
-| 范围 | 当前状态 |
-| --- | --- |
-| 仓库 GMR 基线 | 已包含 Moment-DETR、QD-DETR、FlashVTG 三类模型与既有基线实验 |
-| 本次 AC-Verifier 检测器 backbone | **仅验证 QD-DETR-GMR**；当前 `h_pool` 输入固定为 512 维（256 维 slot 的 max/mean 拼接） |
-| 本次新增视觉/文本编码器 | CLIP ViT-B/32；当前 P1 不使用 SlowFast，动作/物体短语也不参与 P1 打分 |
-| AC 迁移至 Moment-DETR / FlashVTG | 方法可适配，但尚未提供经过验证的统一多 backbone 接口或迁移结果 |
-
-迁移需为目标检测器导出同一查询顺序的原始存在性 logit、前景分数、slot 表示与候选边界；适配 slot 维度、前景分数定义及时间坐标后，按同一 Seen-only 协议重新训练 P0/P1。应同时报告至少三个配对种子、逐 backbone 的 Unseen AUROC/Gap、拒绝阈值指标与定位结果。更换 CLIP 编码器也需重新提取一致的文本/视频投影，并重新计算训练参考，现有 512 维缓存不可直接复用。
-
-### 代码、历史记录与复现资源
-
-- 当前实现：[model.py](experiments/agy_test/aligned_calibration_verifier/model.py)、[特征提取](experiments/agy_test/aligned_calibration_verifier/extract_aligned_features.py)、[训练评估](experiments/agy_test/aligned_calibration_verifier/train_and_eval.py)。
-- 独立复查：[audit_ac.py](experiments/agy_test/ac_audit_20261006/audit_ac.py)、[根因分析](experiments/agy_test/dao_root_cause_20261005/ROOT_CAUSE_REPORT.md)、[DAO 标签泄漏审计](experiments/agy_test/dao_audit_20261005/DAO_AUDIT_REPORT.md)。旧 DAO 的 0.6883 Unseen AUROC 已因输入标签泄漏失效，不能用作有效方法收益。
-- GitHub 包含代码、文档、指标 JSON 与原始产物清单；HQ/CLIP 特征、模型权重、检查点、逐查询预测和大缓存保留本地。复跑需要这些输入，详细格式与环境变量见 [AC README](experiments/agy_test/aligned_calibration_verifier/README.md)。当前训练脚本保存 P1 checkpoint，不保存独立 P0 checkpoint 或逐查询预测；审计目录记录了补充复验产物。
-
-准备好本地资源后，在仓库根目录执行：
-
-```bash
-python experiments/agy_test/aligned_calibration_verifier/extract_aligned_features.py
-python experiments/agy_test/aligned_calibration_verifier/train_and_eval.py
-```
-
-本次发布在独立临时副本中完成，原实验工作区及训练产物保持原状。未重新训练或执行模型评测。
+1. **整理来源。** 正例来自 Charades-STA 原始标注，保留查询、视频和 GT 时间窗；负查询来自 v2 五划分的旧反事实候选，按 qid 去重审核。负例使用 `relevant_windows=[]`，其源事件时间窗只作追溯，不是负例的定位 GT。
+2. **解析完整事件。** 归一化动作词义、对象及 theme/source/goal/location 等角色；统一 sofa/couch，区分实体取放、穿脱衣和 “take a drink” 等不同词义。一次查询可以包含多个事件，按整句处理，不能只匹配单个动作词。
+3. **语义审核。** 对 18,661 个初始候选 qid 逐条检查完整查询、事件元数据及已有同视频原始正例文本；修正事件标注，排除同义、蕴含、语义重合、歧义和构造错误负例。无法可靠判断的样本隔离。全量复审修订了 4,405 条正例及 1,218 条负例的元数据，隔离 42 条正例；审核档案与干净发布分开保存。
+4. **冻结干净母池。** 最终保留 **15,034 个正例 qid、2,869 个负例 qid**；干净发布中隔离/排除样本均为 0。这里的“干净”表示通过当前文本语义审核规则，不是逐视频验证的缺席真值。
+5. **固定视频归属。** 沿用已保存的视频级分配，保留原始 test 视频；其余原始 train 视频按 seed 3407 补充分配。源正例及派生负例继承同一视频 split。各组共用视频分配，组内 Train/Val/Test 视频互斥。
+6. **施加语义留出。** 训练查询含任一已断言发生的 held 事件时整条移除；目的/意图事件和否定事件不当作已发生事件。训练仅含 S+/S−；验证和测试保留 S+/S−/U+/U−。动作轴三组共享合法 S− 训练交集，组合轴两组也共享合法 S− 训练交集。
+7. **校验与冻结实验输入。** 检查 qid、存在标签与空/非空时间窗、视频互斥、Seen-only 训练及 `val_seen` 一致性。实验复制独立标注快照并记录 SHA-256；文本特征仅在 qid 与查询文本完全一致时复用，同时检查视频特征覆盖。
+
+**负例依据与边界：** 本轮采用“Charades 短视频中，语义确实不同且未被同视频已有正例描述的新事件，通常可视为缺席”的构造假设。审核使用文本和已有标注，**没有逐条视频复核，也没有使用 baseline 预测筛样**。因此仍可能存在文本无法揭示的缺席标签噪声。详见[构造协议](data/release/semantic_existence_v3_release/construction_protocol.json)、[审核汇总](data/release/semantic_existence_v3_release/audit_summary.json)及[发布验收](data/release/semantic_existence_v3_release/validation_report.json)。
+
+## 3. 五组怎么划分，有多大？
+
+| 划分 | 留出语义 | Train | Validation | Test | 验证+测试 U+ / U− | Test 匹配 U 对 |
+|---|---|---:|---:|---:|---:|---:|
+| A1_v3 | 物理放置 / 拿取：physical_place、physical_take | 9,819 | 1,514 | 4,611 | 792 / 239 | 128 |
+| A2_v3 | 饮用 / 倾倒：drink、pour | 10,809 | 1,514 | 4,611 | 292 / 119 | 90 |
+| A3_v3 | 跑步 / 行走：run、walk | 10,765 | 1,514 | 4,611 | 303 / 152 | 100 |
+| C1_v3 | sit × {bed, chair, couch}；sofa 归一为 couch | 10,881 | 1,514 | 4,611 | 198 / 361 | 116 |
+| C2_v3 | {open, close} × {box, cabinet}，含明确箱/柜上下文的部件 | 10,939 | 1,514 | 4,611 | 176 / 120 | 32 |
+
+A1–A3 留出动作族，C1–C2 留出动作与对象的组合。动作轴每组 S− 训练样本为 1,018 条，组合轴每组为 839 条；同轴使用相同负例 qid 池。各组复用 qid，**不能把五组行数相加视作独立数据量**。
+
+普通实验读取 `splits/<group>/train.jsonl`、`val_seen.jsonl` 和 `test.jsonl`。`val_seen.jsonl` 是验证集的 S+/S− 子集；`matched_u_pairs.jsonl` 是配对索引，`test_matched_u.jsonl` 是展开后的测试配对样本。**下文结果来自完整 test，每组 4,611 条，不是 matched-U 子集。**
+
+## 4. Baseline 怎样训练和评估？
+
+| 项目 | 本次设置 |
+|---|---|
+| 模型 | Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR |
+| 特征 | 固定 CLIP 文本特征，CLIP + SlowFast 视频特征；每个模型保留自身原生定位输出 |
+| 训练 | 五组各自从头训练，仅 S+/S−；seed 3407；最多 100 epochs；连续 27 次验证无最佳更新时早停 |
+| 模型选择 | Moment/QD：Seen validation MR-full-mAP；Flash：Seen validation R1@0.5 与 R1@0.7 的均值 |
+| 拒绝阈值 | 完整 Seen validation 上，91 个分位数候选（5–95）最大化 Balanced Accuracy；并列取最早候选 |
+| 决策 | score ≥ threshold 为接受，否则拒绝；Seen/Unseen 共用同一冻结阈值 |
+| 存在分数 | Moment/QD：原生四位小数 sigmoid；Flash：原生六位小数 logit，避免三位小数概率饱和并列 |
+| 定位窗口 | 每个 backbone 自身原生提交中的第一个合法窗口；不因终点超过标注视频时长而跳到另一候选 |
+| 测试 | 全部 Seen 与 Unseen 测试样本；不使用 Unseen 验证或测试调参 |
+| 置信区间 | 2,000 次视频级聚类 bootstrap，seed 3407；同一视频内查询整体重采样，checkpoint 与阈值固定 |
+| 宏平均 | 五划分等权平均；使用共同视频抽样计算宏平均 CI，不能直接平均五个 CI 端点 |
+
+**三项指标分别衡量什么？**
+
+- **AUROC**：存在/缺席分数的排序能力，不依赖选定拒绝阈值；展示为 0–1。
+- **Actual Rejection F1（Rej-F1）**：把“拒绝”视为正决策，`2TN/(2TN+FP+FN)`。TN 是正确拒绝缺席，FP 是错误接受缺席，FN 是错误拒绝存在。Seen 在 S+/S− 上单独计算，Unseen 在 U+/U− 上单独计算。
+- **G-mIoU@1**：端到端存在判断与定位的共同结果。接受时取原生 top-1 与 GT 的集合 IoU（单个预测时为最大 IoU / GT 窗口数）；拒绝的负例得 1，拒绝的正例得 0，再在对应子集平均。
+
+退化差值统一为 **Gap = Seen − Unseen**，单位百分点（pp）；AUROC 差值乘 100，百分比指标直接相减。正值为下降，负值为 Unseen 更高，保留原符号。**本次只有 baseline，不定义相对方法的 Unseen Net Gain、Seen Change 和 Gap Reduction，因此原标准表中这些列为“—”。** 后续方法须与同划分、同 backbone baseline 成对比较，并报告三项指标各自的增益、Seen 变化、Gap 缩小及成对 bootstrap CI。
+
+## 5. 退化结果：先看五划分宏平均
+
+| Backbone | 指标 | Seen | Unseen | Gap（pp） | Gap 95% CI（pp） |
+|---|---|---:|---:|---:|---|
+| Moment-DETR-GMR | AUROC | 0.7238 | 0.5224 | +20.14 | [+17.55, +22.56] |
+| Moment-DETR-GMR | Rej-F1 | 50.51% | 22.25% | +28.27 | [+25.47, +31.15] |
+| Moment-DETR-GMR | G-mIoU@1 | 34.54% | 25.51% | +9.03 | [+7.19, +10.88] |
+| QD-DETR-GMR | AUROC | 0.7413 | 0.5337 | +20.76 | [+18.09, +23.36] |
+| QD-DETR-GMR | Rej-F1 | 51.30% | 30.61% | +20.68 | [+16.92, +24.74] |
+| QD-DETR-GMR | G-mIoU@1 | 34.86% | 28.02% | +6.84 | [+4.72, +8.97] |
+| FlashVTG-GMR | AUROC | 0.7543 | 0.5647 | +18.96 | [+16.42, +21.51] |
+| FlashVTG-GMR | Rej-F1 | 53.36% | 37.09% | +16.27 | [+13.25, +19.84] |
+| FlashVTG-GMR | G-mIoU@1 | 41.75% | 34.44% | +7.31 | [+5.04, +9.68] |
+
+**可以确认的结论：** 三个 backbone 的 AUROC、Rej-F1、G-mIoU@1 在五划分宏平均上均下降，九个 Gap 的 95% CI 都高于 0。Flash 的 Unseen 三项宏平均最高，AUROC 与 Rej-F1 的宏平均差距最小；QD 的 G-mIoU 差距最小，但其 Unseen G-mIoU 仍低于 Flash。差距小不能单独解释为性能好，需要同时看 Seen 和 Unseen 的绝对值。
+
+### 逐划分三项指标与退化区间
+
+以下 15 个设置全部完成；AUROC 为 0–1，Rej-F1/G-mIoU 为百分比。每张表的 CI 都对应 **Seen−Unseen Gap**。数值从未舍入结果计算后展示，不能用展示值相减代替原始精度。
+
+#### AUROC
+
+| 划分 | Backbone | Seen | Unseen | Gap（pp） | Gap 95% CI（pp） |
+|---|---|---:|---:|---:|---|
+| A1_v3 | Moment-DETR-GMR | 0.7499 | 0.6439 | +10.60 | [+5.56, +15.87] |
+| A1_v3 | QD-DETR-GMR | 0.7295 | 0.5586 | +17.09 | [+11.66, +22.49] |
+| A1_v3 | FlashVTG-GMR | 0.7530 | 0.6614 | +9.17 | [+3.69, +14.24] |
+| A2_v3 | Moment-DETR-GMR | 0.7545 | 0.5075 | +24.69 | [+19.40, +30.12] |
+| A2_v3 | QD-DETR-GMR | 0.7239 | 0.5105 | +21.34 | [+17.18, +25.57] |
+| A2_v3 | FlashVTG-GMR | 0.7707 | 0.5317 | +23.89 | [+18.49, +29.26] |
+| A3_v3 | Moment-DETR-GMR | 0.7571 | 0.4560 | +30.11 | [+23.78, +36.39] |
+| A3_v3 | QD-DETR-GMR | 0.7685 | 0.5029 | +26.56 | [+20.61, +32.57] |
+| A3_v3 | FlashVTG-GMR | 0.7720 | 0.4650 | +30.70 | [+24.89, +36.73] |
+| C1_v3 | Moment-DETR-GMR | 0.6815 | 0.5118 | +16.97 | [+12.48, +21.47] |
+| C1_v3 | QD-DETR-GMR | 0.7853 | 0.5775 | +20.78 | [+14.95, +26.51] |
+| C1_v3 | FlashVTG-GMR | 0.7895 | 0.6037 | +18.58 | [+13.49, +23.80] |
+| C2_v3 | Moment-DETR-GMR | 0.6760 | 0.4926 | +18.33 | [+10.02, +26.79] |
+| C2_v3 | QD-DETR-GMR | 0.6992 | 0.5189 | +18.03 | [+9.16, +26.95] |
+| C2_v3 | FlashVTG-GMR | 0.6862 | 0.5618 | +12.44 | [+3.37, +21.73] |
+
+#### Rej-F1
+
+| 划分 | Backbone | Seen | Unseen | Gap（pp） | Gap 95% CI（pp） |
+|---|---|---:|---:|---:|---|
+| A1_v3 | Moment-DETR-GMR | 56.38% | 37.36% | +19.02 | [+12.09, +26.34] |
+| A1_v3 | QD-DETR-GMR | 55.51% | 28.92% | +26.59 | [+19.16, +34.22] |
+| A1_v3 | FlashVTG-GMR | 57.69% | 44.11% | +13.58 | [+7.52, +19.45] |
+| A2_v3 | Moment-DETR-GMR | 54.03% | 2.15% | +51.88 | [+46.59, +55.69] |
+| A2_v3 | QD-DETR-GMR | 49.15% | 15.52% | +33.63 | [+24.87, +42.78] |
+| A2_v3 | FlashVTG-GMR | 55.61% | 2.15% | +53.46 | [+48.22, +57.35] |
+| A3_v3 | Moment-DETR-GMR | 54.39% | 14.86% | +39.53 | [+30.48, +48.28] |
+| A3_v3 | QD-DETR-GMR | 54.09% | 23.35% | +30.74 | [+22.00, +39.90] |
+| A3_v3 | FlashVTG-GMR | 56.32% | 26.04% | +30.28 | [+21.20, +39.37] |
+| C1_v3 | Moment-DETR-GMR | 42.70% | 0.75% | +41.95 | [+39.10, +44.65] |
+| C1_v3 | QD-DETR-GMR | 51.29% | 26.30% | +24.99 | [+16.88, +33.13] |
+| C1_v3 | FlashVTG-GMR | 51.02% | 52.86% | -1.83 | [-9.82, +7.92] |
+| C2_v3 | Moment-DETR-GMR | 45.07% | 56.11% | -11.04 | [-17.92, -3.56] |
+| C2_v3 | QD-DETR-GMR | 46.45% | 58.97% | -12.53 | [-19.16, -5.09] |
+| C2_v3 | FlashVTG-GMR | 46.14% | 60.26% | -14.13 | [-20.79, -6.89] |
+
+#### G-mIoU@1
+
+| 划分 | Backbone | Seen | Unseen | Gap（pp） | Gap 95% CI（pp） |
+|---|---|---:|---:|---:|---|
+| A1_v3 | Moment-DETR-GMR | 37.79% | 23.76% | +14.02 | [+11.18, +17.10] |
+| A1_v3 | QD-DETR-GMR | 39.43% | 22.81% | +16.63 | [+13.78, +19.50] |
+| A1_v3 | FlashVTG-GMR | 45.20% | 30.45% | +14.75 | [+11.56, +17.95] |
+| A2_v3 | Moment-DETR-GMR | 35.31% | 20.75% | +14.57 | [+10.64, +18.20] |
+| A2_v3 | QD-DETR-GMR | 33.70% | 25.64% | +8.06 | [+4.18, +11.97] |
+| A2_v3 | FlashVTG-GMR | 41.88% | 29.59% | +12.29 | [+8.19, +16.27] |
+| A3_v3 | Moment-DETR-GMR | 34.76% | 28.31% | +6.46 | [+2.57, +10.52] |
+| A3_v3 | QD-DETR-GMR | 34.38% | 25.57% | +8.80 | [+4.91, +12.95] |
+| A3_v3 | FlashVTG-GMR | 43.03% | 31.22% | +11.81 | [+7.55, +16.01] |
+| C1_v3 | Moment-DETR-GMR | 32.58% | 15.33% | +17.25 | [+14.38, +19.99] |
+| C1_v3 | QD-DETR-GMR | 33.89% | 24.40% | +9.49 | [+5.22, +13.65] |
+| C1_v3 | FlashVTG-GMR | 40.54% | 38.21% | +2.33 | [-3.87, +8.86] |
+| C2_v3 | Moment-DETR-GMR | 32.24% | 39.39% | -7.15 | [-13.43, -0.82] |
+| C2_v3 | QD-DETR-GMR | 32.91% | 41.69% | -8.78 | [-15.35, -1.98] |
+| C2_v3 | FlashVTG-GMR | 38.09% | 42.72% | -4.63 | [-11.11, +2.05] |
+
+### 整体拒绝与端到端定位
+
+| Backbone | Evaluation Branch | Actual Rej-F1 | Overall RR | S+ FRR | U+ FRR | Overall G-mIoU@1 |
+|---|---|---:|---:|---:|---:|---:|
+| Moment-DETR-GMR | A1_v3 / Baseline | 53.92% | 33.29% | 24.54% | 18.12% | 35.44% |
+| QD-DETR-GMR | A1_v3 / Baseline | 51.65% | 23.42% | 13.97% | 17.28% | 36.65% |
+| FlashVTG-GMR | A1_v3 / Baseline | 55.48% | 37.19% | 25.52% | 31.71% | 42.73% |
+| Moment-DETR-GMR | A2_v3 / Baseline | 52.36% | 37.43% | 30.06% | 0.00% | 34.32% |
+| QD-DETR-GMR | A2_v3 / Baseline | 47.92% | 43.59% | 38.27% | 6.73% | 33.15% |
+| FlashVTG-GMR | A2_v3 / Baseline | 53.87% | 37.04% | 28.98% | 0.00% | 41.04% |
+| Moment-DETR-GMR | A3_v3 / Baseline | 52.39% | 38.06% | 30.36% | 6.38% | 34.26% |
+| QD-DETR-GMR | A3_v3 / Baseline | 52.05% | 39.38% | 30.76% | 22.13% | 33.70% |
+| FlashVTG-GMR | A3_v3 / Baseline | 54.21% | 34.66% | 25.05% | 19.15% | 42.12% |
+| Moment-DETR-GMR | C1_v3 / Baseline | 38.59% | 34.01% | 31.41% | 1.41% | 31.06% |
+| QD-DETR-GMR | C1_v3 / Baseline | 48.53% | 39.15% | 32.20% | 14.08% | 33.06% |
+| FlashVTG-GMR | C1_v3 / Baseline | 51.27% | 42.23% | 33.40% | 31.69% | 40.33% |
+| Moment-DETR-GMR | C2_v3 / Baseline | 46.27% | 35.35% | 25.86% | 96.18% | 32.59% |
+| QD-DETR-GMR | C2_v3 / Baseline | 47.66% | 44.50% | 34.89% | 97.71% | 33.34% |
+| FlashVTG-GMR | C2_v3 / Baseline | 47.47% | 44.61% | 35.37% | 90.84% | 38.31% |
+| Moment-DETR-GMR | MACRO / Baseline | 48.70% | 35.63% | 28.45% | 24.42% | 33.53% |
+| QD-DETR-GMR | MACRO / Baseline | 49.56% | 38.01% | 30.02% | 31.59% | 33.98% |
+| FlashVTG-GMR | MACRO / Baseline | 52.46% | 39.15% | 29.66% | 34.68% | 40.91% |
+
+RR 是全部测试查询中被拒绝的比例；S+ FRR / U+ FRR 分别是已见/未见正例被错误拒绝的比例。Overall 指每组完整测试集；MACRO 是五组等权平均。
+
+### 为什么有些 Unseen 指标反而更高？
+
+**C2 的三个模型在 Rej-F1 和 G-mIoU 上都是负 Gap，但 AUROC 仍下降，且 U+ FRR 达 90.84%–97.71%。** 这说明“Unseen 的 Rej-F1/G-mIoU 更高”不能直接当作定位泛化更好：大量真实事件被拒绝，同时正确拒绝的负例会给 G-mIoU 贡献 1。C1 的 Flash Rej-F1 点估计略高于 Seen，但 Gap CI 跨 0。不能把所有负差值都改写为显著退化或显著改善。
+
+**解释边界：** Rej-F1 和 G-mIoU 都依赖正负样本构成；Seen 与 Unseen 比例不同。下表明确给出测试分区计数，当前差值衡量发布测试集上的表现，没有做类别比例控制。AUROC 虽不直接依赖类别先验，也仍受样本内容影响。单种子 bootstrap 衡量测试视频抽样的不确定性，**不代表跨训练种子的稳定性，也不能据此确认语义熟悉度是唯一因果机制**。
+
+| 划分 | S+ | S− | U+ | U− | 总测试行数 |
+|---|---:|---:|---:|---:|---:|
+| A1_v3 | 2857 | 983 | 596 | 175 | 4,611 |
+| A2_v3 | 3230 | 1066 | 223 | 92 | 4,611 |
+| A3_v3 | 3218 | 1036 | 235 | 122 | 4,611 |
+| C1_v3 | 3311 | 894 | 142 | 264 | 4,611 |
+| C2_v3 | 3322 | 1066 | 131 | 92 | 4,611 |
+
+## 6. 从哪里查数据和完整结果？
+
+| 内容 | 入口 |
+|---|---|
+| 干净数据、划分与字段说明 | [数据集 README](data/release/semantic_existence_v3_release/README.md) · [五组划分](data/release/semantic_existence_v3_release/splits/) |
+| 数据规模、语义规则与验收 | [release_info](data/release/semantic_existence_v3_release/release_info.json) · [semantic_rules](data/release/semantic_existence_v3_release/selection/semantic_rules.json) · [validation_report](data/release/semantic_existence_v3_release/validation_report.json) |
+| 原始要求的两张评估表 | [STANDARD_EVALUATION.md](docs/reports/semantic_existence_v3_clean_baselines_20261010/STANDARD_EVALUATION.md) |
+| 三项退化与 CI 汇总 | [GENERALIZATION_DROP_COMPARISON.md](docs/reports/semantic_existence_v3_clean_baselines_20261010/GENERALIZATION_DROP_COMPARISON.md) |
+| 未舍入指标 | [degradation_metrics.csv](docs/reports/semantic_existence_v3_clean_baselines_20261010/degradation_metrics.csv) · [degradation_metrics.json](docs/reports/semantic_existence_v3_clean_baselines_20261010/degradation_metrics.json) |
+| Bootstrap 区间与有效抽样数 | [AUROC 及整体指标](docs/reports/semantic_existence_v3_clean_baselines_20261010/bootstrap.json) · [退化指标](docs/reports/semantic_existence_v3_clean_baselines_20261010/degradation_bootstrap.json) |
+| 冻结训练/评估协议与完成状态 | [PROTOCOL.json](docs/reports/semantic_existence_v3_clean_baselines_20261010/PROTOCOL.json) · [FINAL_EVALUATION_STATUS.json](docs/reports/semantic_existence_v3_clean_baselines_20261010/FINAL_EVALUATION_STATUS.json) |
+| 实验数据与代码校验 | [数据快照 SHA-256](docs/reports/semantic_existence_v3_clean_baselines_20261010/DATASET_SNAPSHOT_SHA256.json) · [原生代码 SHA-256](docs/reports/semantic_existence_v3_clean_baselines_20261010/SOURCE_MANIFEST.json) · [历史评估算术一致性检查](docs/reports/semantic_existence_v3_clean_baselines_20261010/EVALUATOR_PARITY.json) |
+
+本分支提供数据标注、报告及轻量机器可读指标。视频、特征、checkpoint、逐查询预测和原始 bootstrap draws 保留在本地实验目录 `experiments/agy_test/v3_release_baselines_20261009/`，不打包进 Git；上述代码哈希用于标识本次实际运行快照，不应假设分支中任意后续代码修订都与该快照相同。
+
+核心输入字段为 `qid`、`vid`、`query`、`duration`、`relevant_windows`、`exist_label`、`partition`；其他事件元数据和审核来源见数据文件及交接说明。训练入口在 `training/`，配置在 `configs/`，数据构建与校验在 `scripts/`。基础代码来自 [Generalized Moment Retrieval](https://github.com/dymm9977/generalized-moment-retrieval)。本 README 聚焦干净 v3；同分支的其他数据版本须按各自目录文档独立引用。

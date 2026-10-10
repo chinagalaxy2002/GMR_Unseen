@@ -1,0 +1,25 @@
+{
+  "dataset": "data/release/semantic_existence_v3_release",
+  "seed": 3407,
+  "maximum_epochs": 100,
+  "max_es_cnt": 26,
+  "warm_start": false,
+  "training": "S+/S- only",
+  "checkpoint_selection": {
+    "moment": "Seen validation MR-full-mAP",
+    "qd": "Seen validation MR-full-mAP",
+    "flash": "Seen validation mean R1@0.5 and R1@0.7"
+  },
+  "threshold": "full Seen validation BA, 91 percentile candidates 5..95, first tie",
+  "bootstrap_draws": 2000,
+  "bootstrap_unit": "video",
+  "workers": 6,
+  "gpus": [
+    0,
+    1
+  ],
+  "variants": [
+    "Baseline"
+  ],
+  "score_readout": "Moment/QD native 4-decimal sigmoid; Flash native 6-decimal logit avoids 3-decimal probability saturation"
+}
