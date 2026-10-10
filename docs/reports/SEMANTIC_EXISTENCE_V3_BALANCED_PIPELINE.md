@@ -52,7 +52,7 @@
 
 [![Balanced v3 跨视频伪负例生成、筛选与校验流程](../../assets/semantic_existence_v3/balanced_pipeline.svg)](../../assets/semantic_existence_v3/balanced_pipeline.svg)
 
-新增样本在同组、同 split 内跨视频配对，经过每条查询的最低半区排名与标注冲突检查，再按名额补齐完整 split；全部新增标签保留未逐视频核验的伪负例身份。 点击图片可查看原尺寸 SVG。
+保留原始样本，追加跨视频伪负例；1:1 指完整 split，新增标签未逐视频核验。
 
 ### 第一步：只在当前组、当前 split 里找查询和视频
 

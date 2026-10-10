@@ -32,7 +32,11 @@
 
 [![未补充版 v3 数据制作与严格泛化评估流程](assets/semantic_existence_v3/clean_release_pipeline.svg)](assets/semantic_existence_v3/clean_release_pipeline.svg)
 
-原始候选经过语义审核形成母池，再构建视频互斥的五组划分；模型与拒绝阈值仅用 Seen validation 选择，最终报告完整测试集的三项退化指标。 点击图片可查看原尺寸 SVG。
+未补充版：先审核与划分，再用 Seen-only 训练评估。
+
+[![Balanced v3 简要管线](assets/semantic_existence_v3/balanced_pipeline.svg)](assets/semantic_existence_v3/balanced_pipeline.svg)
+
+补充版：保留原始样本，跨视频构造伪负例；详细规则见[生成说明](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)。
 
 1. **整理来源。** 正例来自 Charades-STA 原始标注，保留查询、视频和 GT 时间窗；负查询来自 v2 五划分的旧反事实候选，按 qid 去重审核。负例使用 `relevant_windows=[]`，其源事件时间窗只作追溯，不是负例的定位 GT。
 2. **解析完整事件。** 归一化动作词义、对象及 theme/source/goal/location 等角色；统一 sofa/couch，区分实体取放、穿脱衣和 “take a drink” 等不同词义。一次查询可以包含多个事件，按整句处理，不能只匹配单个动作词。
