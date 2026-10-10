@@ -50,16 +50,9 @@
 
 ## 3. 六步生成流程
 
-```mermaid
-flowchart TD
-    A[保留原始数据，计算每个 split 缺多少负例] --> B[从同组、同 split 的正例中借用查询]
-    B --> C[为每条查询给其他候选视频打分]
-    C --> D[按分数升序保留最低一半视频]
-    D --> E[排除重复配对与已有正例语义冲突]
-    E --> F[按 S/U 名额抽取合格配对]
-    F --> G[写入新 qid、目标视频、空窗口与伪负例标记]
-    G --> H[追加到原始行之后，并校验全部新增记录]
-```
+[![Balanced v3 跨视频伪负例生成、筛选与校验流程](../../assets/semantic_existence_v3/balanced_pipeline.svg)](../../assets/semantic_existence_v3/balanced_pipeline.svg)
+
+新增样本在同组、同 split 内跨视频配对，经过每条查询的最低半区排名与标注冲突检查，再按名额补齐完整 split；全部新增标签保留未逐视频核验的伪负例身份。 点击图片可查看原尺寸 SVG。
 
 ### 第一步：只在当前组、当前 split 里找查询和视频
 

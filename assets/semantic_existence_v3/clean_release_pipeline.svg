@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="700" viewBox="0 0 1280 700" role="img" aria-labelledby="title description">
+  <title id="title">未补充版 v3：从语义审核到泛化评估</title>
+  <desc id="description">未补充版三阶段流程：语义审核、划分与发布、Seen-only训练和泛化评估。每个阶段内部从上到下阅读。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#94A3B8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="700" rx="18" fill="#FFFFFF" />
+  <text x="36" y="50" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="30" font-weight="650" text-anchor="start">未补充版 v3：从语义审核到泛化评估</text>
+  <text x="36" y="86" fill="#64748B" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="19" font-weight="400" text-anchor="start">先完成数据制作，再冻结划分与输入，最后训练和评估；三个阶段从左到右阅读。</text>
+  <rect x="36" y="120" width="380" height="426" rx="16" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.2" />
+  <rect x="56" y="140" width="42" height="34" rx="9" fill="#1D4ED8" />
+  <text x="77" y="164" fill="#FFFFFF" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" font-weight="650" text-anchor="middle">01</text>
+  <text x="111" y="165" fill="#1D4ED8" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="24" font-weight="650" text-anchor="start">语义审核</text>
+  <text x="56" y="196" fill="#64748B" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">原始正例 + 旧版反事实候选</text>
+  <rect x="56" y="216" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="1" />
+  <rect x="56" y="231" width="4" height="54" rx="2" fill="#1D4ED8" />
+  <text x="72" y="245" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">整理原始查询</text>
+  <text x="72" y="269" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">保留视频、查询与正例 GT 时间窗</text>
+  <path d="M 226 303 L 226 317" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="56" y="320" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="1" />
+  <rect x="56" y="335" width="4" height="54" rx="2" fill="#1D4ED8" />
+  <text x="72" y="349" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">归一化完整事件</text>
+  <text x="72" y="373" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">区分动作词义、对象别名与语义角色</text>
+  <path d="M 226 407 L 226 421" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="56" y="424" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="1" />
+  <rect x="56" y="439" width="4" height="54" rx="2" fill="#1D4ED8" />
+  <text x="72" y="453" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">逐 qid 审核与冲突检查</text>
+  <text x="72" y="477" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">剔除重合、蕴含、歧义及构造错误</text>
+  <text x="72" y="498" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">形成 15,034 正例 / 2,869 负例母池</text>
+  <path d="M 421 158 L 443 158" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="450" y="120" width="380" height="426" rx="16" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.2" />
+  <rect x="470" y="140" width="42" height="34" rx="9" fill="#0F766E" />
+  <text x="491" y="164" fill="#FFFFFF" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" font-weight="650" text-anchor="middle">02</text>
+  <text x="525" y="165" fill="#0F766E" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="24" font-weight="650" text-anchor="start">划分与发布</text>
+  <text x="470" y="196" fill="#64748B" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">视频互斥 · 完整查询语义留出</text>
+  <rect x="470" y="216" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#99D9D0" stroke-width="1" />
+  <rect x="470" y="231" width="4" height="54" rx="2" fill="#0F766E" />
+  <text x="486" y="245" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">固定视频级划分</text>
+  <text x="486" y="269" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">Train / Val / Test 共用视频分配</text>
+  <path d="M 640 303 L 640 317" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="470" y="320" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#99D9D0" stroke-width="1" />
+  <rect x="470" y="335" width="4" height="54" rx="2" fill="#0F766E" />
+  <text x="486" y="349" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">构建五组语义留出</text>
+  <text x="486" y="373" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">A1–A3 动作；C1–C2 动作×对象</text>
+  <text x="486" y="394" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">训练仅 S+ / S−，同轴共享审核负例</text>
+  <path d="M 640 407 L 640 421" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="470" y="424" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#99D9D0" stroke-width="1" />
+  <rect x="470" y="439" width="4" height="54" rx="2" fill="#0F766E" />
+  <text x="486" y="453" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">发布并冻结输入</text>
+  <text x="486" y="477" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">保存标注、配对、统计与校验记录</text>
+  <text x="486" y="498" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">每组完整 Test：4,611 条</text>
+  <path d="M 835 158 L 857 158" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="864" y="120" width="380" height="426" rx="16" fill="#FFFBEB" stroke="#F4D79D" stroke-width="1.2" />
+  <rect x="884" y="140" width="42" height="34" rx="9" fill="#9A5809" />
+  <text x="905" y="164" fill="#FFFFFF" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" font-weight="650" text-anchor="middle">03</text>
+  <text x="939" y="165" fill="#9A5809" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="24" font-weight="650" text-anchor="start">训练与评估</text>
+  <text x="884" y="196" fill="#64748B" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">3 个 backbone × 5 个划分</text>
+  <rect x="884" y="216" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#F4D79D" stroke-width="1" />
+  <rect x="884" y="231" width="4" height="54" rx="2" fill="#9A5809" />
+  <text x="900" y="245" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">Seen-only 从头训练</text>
+  <text x="900" y="269" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">Moment-DETR / QD-DETR / FlashVTG</text>
+  <path d="M 1054 303 L 1054 317" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="884" y="320" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#F4D79D" stroke-width="1" />
+  <rect x="884" y="335" width="4" height="54" rx="2" fill="#9A5809" />
+  <text x="900" y="349" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">仅 Seen validation 选择</text>
+  <text x="900" y="373" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">冻结最佳 checkpoint 与拒绝阈值</text>
+  <path d="M 1054 407 L 1054 421" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="884" y="424" width="340" height="84" rx="10" fill="#FFFFFF" stroke="#F4D79D" stroke-width="1" />
+  <rect x="884" y="439" width="4" height="54" rx="2" fill="#9A5809" />
+  <text x="900" y="453" fill="#0F172A" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="21" font-weight="600" text-anchor="start">完整测试集与 Bootstrap</text>
+  <text x="900" y="477" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">汇总 AUROC / Rej-F1 / G-mIoU@1</text>
+  <text x="900" y="498" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="17" font-weight="400" text-anchor="start">Seen、Unseen、Gap 与 95% CI</text>
+  <rect x="36" y="568" width="1208" height="104" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+  <text x="56" y="600" fill="#334155" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="20" font-weight="650" text-anchor="start">数据与结论的边界</text>
+  <text x="56" y="627" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" font-weight="400" text-anchor="start">本版没有追加跨视频伪负例；文本语义审核通过，不等于逐视频确认事件缺席。</text>
+  <text x="56" y="652" fill="#475569" font-family="Noto Sans CJK SC, Microsoft YaHei, PingFang SC, Arial, sans-serif" font-size="18" font-weight="400" text-anchor="start">2,000 次视频级聚类 Bootstrap；模型和阈值固定，五划分等权计算宏平均。</text>
+</svg>

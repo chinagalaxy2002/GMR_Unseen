@@ -19,19 +19,9 @@
 
 ## 2. 数据怎样制作？
 
-```mermaid
-flowchart TD
-    A[Charades-STA 正例与旧版反事实负查询] --> B[完整查询事件解析与语义归一化]
-    B --> C[逐 qid 语义审核与同视频正例冲突检查]
-    C --> D[剔除歧义、同义、蕴含、重合与构造错误样本]
-    D --> E[干净正负母池]
-    E --> F[固定视频级 Train / Val / Test]
-    F --> G[五组语义留出与共享 Seen 训练负例]
-    G --> H[发布标注、配对、统计与校验]
-    H --> I[S+ / S− 训练三个 backbone]
-    I --> J[仅 Seen validation 选择模型和阈值]
-    J --> K[完整测试集评估与视频级 bootstrap]
-```
+[![未补充版 v3 数据制作与严格泛化评估流程](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)
+
+原始候选经过语义审核形成母池，再构建视频互斥的五组划分；模型与拒绝阈值仅用 Seen validation 选择，最终报告完整测试集的三项退化指标。 点击图片可查看原尺寸 SVG。
 
 1. **整理来源。** 正例来自 Charades-STA 原始标注，保留查询、视频和 GT 时间窗；负查询来自 v2 五划分的旧反事实候选，按 qid 去重审核。负例使用 `relevant_windows=[]`，其源事件时间窗只作追溯，不是负例的定位 GT。
 2. **解析完整事件。** 归一化动作词义、对象及 theme/source/goal/location 等角色；统一 sofa/couch，区分实体取放、穿脱衣和 “take a drink” 等不同词义。一次查询可以包含多个事件，按整句处理，不能只匹配单个动作词。
