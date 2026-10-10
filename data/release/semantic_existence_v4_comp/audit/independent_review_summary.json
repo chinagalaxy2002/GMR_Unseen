@@ -1,0 +1,120 @@
+{
+  "review_method": "independent full-event/text/split/conflict/score/exact-rank replay; no visual verification",
+  "snapshot_fingerprints": {
+    "CG01_open_theme_door": {
+      "sha256": "cf66e9c46a61a51950f05bb39c8150c8b62db8cb8e357e02f2af3342d69f386c",
+      "mtime_ns": 1791570423539793764,
+      "bytes": 512297
+    },
+    "CG02_close_theme_door": {
+      "sha256": "a8507318914eea75bb0ca9b52b85239636bb3e3e4f62cfa4310eaf3e4a51eced",
+      "mtime_ns": 1791570444914993914,
+      "bytes": 246824
+    },
+    "CG03_sit_support_surface_chair": {
+      "sha256": "e54ba44b8a4cd172ebc1e8e08436f158bae47aa6af09038edc4b421ec30a59f9",
+      "mtime_ns": 1791570463348166537,
+      "bytes": 204841
+    }
+  },
+  "total_candidates": 642,
+  "decision_counts": {
+    "accept_candidate": 638,
+    "quarantine": 4
+  },
+  "groups": [
+    {
+      "group_id": "CG01_open_theme_door",
+      "held_composition": "open|theme|door",
+      "candidate_rows": 346,
+      "eligible_source_qids": 173,
+      "expected_source_strategy_pairs": 346,
+      "decisions": {
+        "accept_candidate": 344,
+        "quarantine": 2
+      },
+      "distinct_source_qids": 173,
+      "distinct_target_videos": 344,
+      "score_mismatches": 0,
+      "overlap_mismatches": 0,
+      "rank_or_balance_mismatches": 0,
+      "quartile_pool_membership_failures": 0,
+      "target_annotation_conflicts": 0,
+      "target_asserted_conflicts": 0,
+      "strategy_usage": {
+        "conservative_in_domain_reassignment": {
+          "n": 173,
+          "distinct_target_videos": 173
+        },
+        "hard_in_domain_reassignment": {
+          "n": 173,
+          "distinct_target_videos": 173
+        }
+      },
+      "reason_counts": {
+        "query has attempt/purpose wording despite the structured asserted status": 2
+      }
+    },
+    {
+      "group_id": "CG02_close_theme_door",
+      "held_composition": "close|theme|door",
+      "candidate_rows": 164,
+      "eligible_source_qids": 82,
+      "expected_source_strategy_pairs": 164,
+      "decisions": {
+        "accept_candidate": 162,
+        "quarantine": 2
+      },
+      "distinct_source_qids": 82,
+      "distinct_target_videos": 164,
+      "score_mismatches": 0,
+      "overlap_mismatches": 0,
+      "rank_or_balance_mismatches": 0,
+      "quartile_pool_membership_failures": 0,
+      "target_annotation_conflicts": 0,
+      "target_asserted_conflicts": 0,
+      "strategy_usage": {
+        "conservative_in_domain_reassignment": {
+          "n": 82,
+          "distinct_target_videos": 82
+        },
+        "hard_in_domain_reassignment": {
+          "n": 82,
+          "distinct_target_videos": 82
+        }
+      },
+      "reason_counts": {
+        "query has attempt/purpose wording despite the structured asserted status": 2
+      }
+    },
+    {
+      "group_id": "CG03_sit_support_surface_chair",
+      "held_composition": "sit|support_surface|chair",
+      "candidate_rows": 132,
+      "eligible_source_qids": 66,
+      "expected_source_strategy_pairs": 132,
+      "decisions": {
+        "accept_candidate": 132
+      },
+      "distinct_source_qids": 66,
+      "distinct_target_videos": 132,
+      "score_mismatches": 0,
+      "overlap_mismatches": 0,
+      "rank_or_balance_mismatches": 0,
+      "quartile_pool_membership_failures": 0,
+      "target_annotation_conflicts": 0,
+      "target_asserted_conflicts": 0,
+      "strategy_usage": {
+        "conservative_in_domain_reassignment": {
+          "n": 66,
+          "distinct_target_videos": 66
+        },
+        "hard_in_domain_reassignment": {
+          "n": 66,
+          "distinct_target_videos": 66
+        }
+      },
+      "reason_counts": {}
+    }
+  ]
+}

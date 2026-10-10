@@ -1,0 +1,372 @@
+{
+  "review_id": "final_independent_train_leakage_audit_v4_20261010",
+  "created_utc": "2026-10-09T18:34:01.527817+00:00",
+  "method": "Read-only scan of refreshed train.jsonl and train_exclusions.jsonl. Query pattern scan checked active open/close plus door/resultative strings and direct sit/chair strings against complete event lists. No model outputs or video inspection used.",
+  "prior_four_qids": [
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train4363",
+      "present_in_train": false,
+      "exclusion": {
+        "exist_label": 1,
+        "matched_keys": [],
+        "qid": "train4363",
+        "reason": "held_query_semantics_not_resolved_in_event_graph",
+        "source_split": "train",
+        "vid": "BM5B8"
+      }
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train10901",
+      "present_in_train": false,
+      "exclusion": {
+        "exist_label": 1,
+        "matched_keys": [],
+        "qid": "train10901",
+        "reason": "held_query_semantics_not_resolved_in_event_graph",
+        "source_split": "train",
+        "vid": "A96EQ"
+      }
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train4478",
+      "present_in_train": false,
+      "exclusion": {
+        "exist_label": 1,
+        "matched_keys": [],
+        "qid": "train4478",
+        "reason": "ambiguous_cabinet_door_scope_quarantined",
+        "source_split": "train",
+        "vid": "JHTO5"
+      }
+    },
+    {
+      "group_id": "CG02_close_theme_door",
+      "qid": "train10123",
+      "present_in_train": false,
+      "exclusion": {
+        "exist_label": 1,
+        "matched_keys": [],
+        "qid": "train10123",
+        "reason": "held_query_semantics_not_resolved_in_event_graph",
+        "source_split": "train",
+        "vid": "NTW37"
+      }
+    }
+  ],
+  "mismatch_quarantine_counts": {
+    "CG01_open_theme_door": 6,
+    "CG02_close_theme_door": 1,
+    "CG03_sit_support_surface_chair": 0
+  },
+  "all_query_graph_mismatch_qids": [
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train10171",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "person closes the open door behind them.",
+      "events": [
+        {
+          "action_family": "close",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "aspect": "present",
+          "state_change": "door changes from open to closed"
+        }
+      ]
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train10901",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "the person pushes the door open.",
+      "events": [
+        {
+          "action_family": "push",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "aspect": "present",
+          "assertion": "asserted"
+        }
+      ]
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train11072",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "person they close a nearby open door.",
+      "events": [
+        {
+          "action_family": "close",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "assertion": "asserted",
+          "location": "nearby",
+          "state_change": "closed"
+        },
+        {
+          "action_family": "open_state",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "assertion": "background",
+          "state_change": "open"
+        }
+      ]
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train2971",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "a person sweeps dirt out of an open door.",
+      "events": [
+        {
+          "action_family": "sweep",
+          "anchor_object": "dirt",
+          "anchor_role": "theme",
+          "assertion": "asserted",
+          "goal": "outside",
+          "path": "through doorway"
+        },
+        {
+          "action_family": "open_state",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "assertion": "background",
+          "aspect": "state"
+        }
+      ]
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train4363",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "the person walks away opens a door removes hat.",
+      "events": [
+        {
+          "action_family": "walk",
+          "anchor_object": "person",
+          "anchor_role": "agent",
+          "aspect": "event",
+          "goal": "away",
+          "assertion": "asserted",
+          "agent": "person"
+        },
+        {
+          "action_family": "open_state",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "aspect": "event",
+          "assertion": "asserted"
+        },
+        {
+          "action_family": "undress",
+          "anchor_object": "hat",
+          "anchor_role": "theme",
+          "aspect": "event",
+          "assertion": "asserted"
+        }
+      ]
+    },
+    {
+      "group_id": "CG01_open_theme_door",
+      "qid": "train5708",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "the person sees the open refrigerator door.",
+      "events": [
+        {
+          "action_family": "see",
+          "anchor_object": "open refrigerator door",
+          "anchor_role": "theme",
+          "agent": "person",
+          "aspect": "present"
+        },
+        {
+          "action_family": "open_state",
+          "anchor_object": "refrigerator door",
+          "anchor_role": "theme",
+          "agent": "person",
+          "aspect": "state"
+        }
+      ]
+    },
+    {
+      "group_id": "CG02_close_theme_door",
+      "qid": "train10123",
+      "reason": "held_query_semantics_not_resolved_in_event_graph",
+      "query": "person attempt to start closing the door.",
+      "events": [
+        {
+          "action_family": "attempt_close",
+          "anchor_object": "door",
+          "anchor_role": "theme",
+          "assertion": "asserted"
+        }
+      ]
+    }
+  ],
+  "remaining_active_door_query_projection_mismatches": {
+    "CG01_open_theme_door": [
+      {
+        "qid": "train10308",
+        "exist_label": 1,
+        "query": "the person held the refrigerator door open.",
+        "events": [
+          {
+            "action_family": "hold",
+            "anchor_object": "refrigerator door",
+            "anchor_role": "theme",
+            "aspect": "event",
+            "assertion": "asserted",
+            "manner": "held open",
+            "state": "held open",
+            "temporal_relation": "open state of refrigerator door"
+          }
+        ]
+      },
+      {
+        "qid": "train10396",
+        "exist_label": 1,
+        "query": "person holding a door open.",
+        "events": [
+          {
+            "action_family": "hold",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "assertion": "asserted",
+            "state_change": "door is held open"
+          }
+        ]
+      },
+      {
+        "qid": "train11061",
+        "exist_label": 1,
+        "query": "person pulling the door closed behind them.",
+        "events": [
+          {
+            "action_family": "close",
+            "agent": "person",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "aspect": "progressive",
+            "location": "behind them",
+            "state_change": "door closed"
+          }
+        ]
+      },
+      {
+        "qid": "train11353",
+        "exist_label": 1,
+        "query": "person holding the door open.",
+        "events": [
+          {
+            "action_family": "hold",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "aspect": "state",
+            "state_change": "open"
+          },
+          {
+            "action_family": "open_state",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "aspect": "state",
+            "state_change": "open"
+          }
+        ]
+      },
+      {
+        "qid": "train1794",
+        "exist_label": 1,
+        "query": "person closes a door to the outside that is open.",
+        "events": [
+          {
+            "action_family": "close",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "aspect": "event",
+            "location": "to the outside",
+            "state_change": "closed"
+          }
+        ]
+      },
+      {
+        "qid": "train3155",
+        "exist_label": 1,
+        "query": "person leaves the door open.",
+        "events": [
+          {
+            "action_family": "leave",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "assertion": "asserted",
+            "state_change": "departed"
+          },
+          {
+            "action_family": "open_state",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "assertion": "background",
+            "state_change": "open"
+          }
+        ]
+      },
+      {
+        "qid": "train4142",
+        "exist_label": 1,
+        "query": "person the pull the door closed.",
+        "events": [
+          {
+            "action_family": "close",
+            "anchor_object": "door",
+            "anchor_role": "theme",
+            "aspect": "event",
+            "assertion": "asserted",
+            "goal": "closed"
+          }
+        ]
+      },
+      {
+        "qid": "train5706",
+        "exist_label": 1,
+        "query": "person leaving the fridge door open.",
+        "events": [
+          {
+            "action_family": "leave",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "assertion": "asserted",
+            "state_change": "departing"
+          },
+          {
+            "action_family": "open_state",
+            "anchor_context": "refrigerator_entry",
+            "anchor_object": "fridge door",
+            "anchor_role": "theme",
+            "assertion": "background",
+            "state_change": "open"
+          }
+        ]
+      }
+    ],
+    "CG02_close_theme_door": []
+  },
+  "chair_query_hits": [
+    {
+      "qid": "train4037",
+      "query": "a person is sitting on a pillow on a chair.",
+      "events": [
+        {
+          "action_family": "sit",
+          "anchor_object": "pillow",
+          "anchor_role": "support_surface",
+          "assertion": "asserted",
+          "support_base": "chair"
+        }
+      ],
+      "direct_target_event": false
+    }
+  ],
+  "decision": "Four prior qids are absent from train; train4478 is separately cabinet-scope quarantined. All six open and one close query/event-mismatch quarantine records are present. Remaining train active-door-query projection hits are close events or open-state/holding/leaving descriptions rather than an unrepresented asserted opening; the close fold has zero active close-door query/event mismatch hits. The only sit/chair query hit is sitting on a pillow on a chair, correctly represented as support_surface=pillow and not the target. No residual direct held composition exposure was found in train."
+}

@@ -1,0 +1,61 @@
+{
+  "assignment_source": "union of the five v3 split files, checked against clean masters",
+  "excluded_training_rows": 673,
+  "seed": 3407,
+  "selection_frozen_before_model_evaluation": true,
+  "source_release": "data/release/semantic_existence_v3_release",
+  "spec": {
+    "action_family": "close",
+    "axis": "action_role_filler_composition",
+    "filler": "door",
+    "held_compositions": [
+      "close|theme|door"
+    ],
+    "role": "theme",
+    "selection_counts": {
+      "action_family": "close",
+      "alternative_action_fillers_same_role": [
+        "blinds",
+        "book",
+        "box",
+        "cabinet",
+        "cabinet drawers",
+        "cabinets",
+        "garage window",
+        "laptop",
+        "laptop lid",
+        "laundry detergent cabinet",
+        "medicine cabinet",
+        "notebook",
+        "notebooks",
+        "pantry",
+        "refrigerator",
+        "window",
+        "window blinds",
+        "window shutters"
+      ],
+      "composition_key": "close|theme|door",
+      "eligibility": {
+        "action_constituent_at_least_20": true,
+        "exact_training_exposure_removed_by_builder": 453,
+        "filler_constituent_at_least_10": true,
+        "positive_videos_at_least_35": true,
+        "primary_composition_role": true,
+        "test_positive_at_least_50": true,
+        "two_alternative_fillers_same_role": true
+      },
+      "eligible_initial_thresholds": true,
+      "exact_training_positive_events": 453,
+      "filler": "door",
+      "inherited_test_negative_qids": 102,
+      "inherited_test_negative_videos": 73,
+      "role": "theme",
+      "test_positive_qids": 82,
+      "test_positive_videos": 66,
+      "training_positive_action_qids_outside_target": 240,
+      "training_positive_filler_qids_outside_target": 604,
+      "training_role_filler_other_action_qids": 560
+    },
+    "status": "selected"
+  }
+}

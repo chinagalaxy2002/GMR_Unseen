@@ -1,0 +1,14 @@
+{
+  "alias_rules": {
+    "cabinet door": "cabinet_entry",
+    "chair subtype fillers": "chair",
+    "ordinary door subtypes": "door",
+    "sit_down": "sit",
+    "sofa": "couch"
+  },
+  "composition_key": "canonical_action_family|explicit_semantic_role|canonical_filler",
+  "leakage_rule": "exclude whole train query if any event in events matches any held composition; quarantine rows with event lacking an explicit relation",
+  "ontology_version": "v3-ontology-1.0.0+v4-explicit-extension",
+  "role_direction": "source and goal remain separate; no relation inferred from surface tokens",
+  "schema_version": 1
+}

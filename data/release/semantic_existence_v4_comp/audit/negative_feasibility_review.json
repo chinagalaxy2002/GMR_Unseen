@@ -1,0 +1,60 @@
+{
+  "review_role": "independent_negative_and_candidate_feasibility_review",
+  "source_release": "data/release/semantic_existence_v3_release",
+  "source_release_modified": false,
+  "evidence_basis": "release metadata and text annotations only; no video or feature tensors inspected",
+  "negative_pool": {
+    "rows": 2869,
+    "unique_qids": 2869,
+    "unique_videos": 1858,
+    "split_counts": {"train": 1316, "val": 395, "test": 1158},
+    "verification_status_counts": {"llm_semantic_review_passed": 2869},
+    "construction_type_counts": {"legacy_adjudicated_negative": 2869},
+    "relevant_windows_empty": 2869,
+    "absence_evidence_counts": {"distinct_event_under_short_video_construction_assumption_no_original_gt_conflict": 2869},
+    "source_qid_resolves_to_v3_positive": 2866,
+    "source_video_matches_resolved_positive": 2866,
+    "source_query_matches_resolved_positive": 2866,
+    "source_windows_match_resolved_positive": 2866,
+    "source_qid_unresolved_in_clean_positive_pool": 3,
+    "source_qids_used_by_multiple_negatives": 308
+  },
+  "event_annotation_profile": {
+    "negative_event_records": 3138,
+    "negative_records_with_multiple_events": 265,
+    "negative_event_anchor_role_counts": {"theme": 2176, "support_surface": 704, "location": 77, "agent": 76, "goal": 65, "target": 30, "instrument": 7, "result": 2, "source": 1},
+    "negative_event_missing_anchor_role": 0,
+    "positive_event_records": 16659,
+    "positive_event_anchor_role_counts": {"theme": 12463, "agent": 2900, "support_surface": 790, "target": 135, "location": 129, "goal": 107, "source": 63, "instrument": 33, "stimulus": 10, "result": 1, "covering": 1, "experiencer": 1, "viewpoint": 1, "container": 1, "patient": 1, "null": 23}
+  },
+  "v3_test_negative_reference_counts": {
+    "A1_v3": {"S-": 983, "U-": 175, "U_negative_distinct_videos": 131},
+    "A2_v3": {"S-": 1066, "U-": 92, "U_negative_distinct_videos": 72},
+    "A3_v3": {"S-": 1036, "U-": 122, "U_negative_distinct_videos": 102},
+    "C1_v3": {"S-": 894, "U-": 264, "U_negative_distinct_videos": 92},
+    "C2_v3": {"S-": 1066, "U-": 92, "U_negative_distinct_videos": 74}
+  },
+  "interpretation": {
+    "inherited_negative_use": "Exact v3 negative rows can be reused as inherited v3 annotations after per-group semantic reclassification and leakage checks, while carrying their original provenance unchanged.",
+    "not_visual_verification": "The status llm_semantic_review_passed and absence_evidence string do not establish absence from video; construction_protocol.json explicitly says video_review_performed=false and the README says no per-video review was performed.",
+    "new_candidate_status": "New reassignment and counterfactual rows are candidates only; textual absence of matching positives is an open-world heuristic and cannot become an exist_label=0 gold annotation without video verification.",
+    "source_reference_edge_case": "Three source_qid values do not resolve to the clean v3 positive pool. Preserve the references and flag them; do not silently repair by guessing or discard provenance."
+  },
+  "candidate_method_assessment": {
+    "in_domain_reassignment": {
+      "feasible_as_candidate_sidecar": true,
+      "requirements": ["same frozen video split", "source query expresses intended held-out key", "source video differs from target", "target's full available annotation set has no direct equivalent positive", "record lexical similarity score and method as TF-IDF/token-overlap surrogate if CLIP unavailable", "retain open-world/no-video-evidence caveat"],
+      "cannot_establish_absence": true
+    },
+    "structure_preserving_counterfactual": {
+      "feasible_as_candidate_sidecar": true,
+      "requirements": ["start from a genuine positive query", "change one non-target role or event component only", "preserve the exact frozen action-role-filler key and direction", "reject if changed candidate key differs", "reject uncertain/unnatural/equivalent edits", "screen all same-video positive events and multi-event structures", "retain open-world/no-video-evidence caveat"],
+      "cannot_establish_absence": true
+    },
+    "existing_matched_u_pairs": {
+      "interpretation": "These are within-video minimal-edit source/candidate pairs, not Moment-of-Untruth-style cross-video reassignment. Keep these construction mechanisms labeled separately.",
+      "note": "The C1_v3 and C2_v3 files are legacy group-specific matched pair indexes; only reuse when the exact source/candidate rows still qualify for a newly frozen target key."
+    }
+  },
+  "independent_conclusion": "There is a substantial inherited negative pool and it can provide useful text-level U- coverage for composition groups where existing negatives express the held relation. However, under the available evidence, no new candidate can be called a visually confirmed absence. Reassignment and compositional counterfactual expansion are feasible only as separately labeled candidate sidecars pending video review."
+}

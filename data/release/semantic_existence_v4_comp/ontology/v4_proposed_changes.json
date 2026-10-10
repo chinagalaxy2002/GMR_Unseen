@@ -1,0 +1,24 @@
+{
+  "action_aliases": {
+    "sit_down": "sit"
+  },
+  "ambiguous_scope_policy": [
+    "cabinet/cupboard door rows are quarantined for generic-door folds when the source annotation does not resolve the relation"
+  ],
+  "object_aliases": {
+    "cabinet/cupboard door access events": "cabinet_entry",
+    "chair subtype descriptions": "chair",
+    "ordinary door subtype descriptions": "door"
+  },
+  "preserved_distinctions": [
+    "doorway is not door",
+    "cabinet_entry is not generic door",
+    "source and goal remain distinct"
+  ],
+  "query_relation_repair": [
+    "sit on/in chair maps to support_surface=chair only when a sit event is present and explicit phrase is present",
+    "direct open/close + door phrases recover theme=door when the event list anchors a different part/object"
+  ],
+  "reason": "Independent audit found sit_down leakage, chair subtype fragmentation, and door part/whole omissions in v3 event projections.",
+  "status": "explicit v4 normalization extensions; not a modification of frozen v3 rules"
+}

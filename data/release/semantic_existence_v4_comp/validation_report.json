@@ -1,0 +1,127 @@
+{
+  "assignment": {
+    "clean_master_videos": 6507,
+    "partition_counts": {
+      "test": 1302,
+      "train": 4707,
+      "val": 498
+    },
+    "per_group_video_counts": {
+      "A1_v3": 6033,
+      "A2_v3": 6310,
+      "A3_v3": 6346,
+      "C1_v3": 6442,
+      "C2_v3": 6431
+    },
+    "represented_videos": 6507,
+    "source_inventory_video_assignments": 6670,
+    "unrepresented_source_assignments": 163
+  },
+  "candidate_negative_rows_are_labels": false,
+  "errors": [],
+  "gates": {
+    "ambiguous_scope_quarantine": "PASS",
+    "candidate_not_promoted_to_gold": "PASS",
+    "cross_split_reassignment": "PASS",
+    "frozen_group_candidate_identity": "PASS",
+    "frozen_specification_integrity": "PASS",
+    "full_event_train_leakage": "PASS",
+    "independent_audit_completeness": "PASS",
+    "matched_pair_integrity": "PASS",
+    "negative_window_emptiness": "PASS",
+    "positive_timestamp_validity": "PASS",
+    "quadrant_assignment": "PASS",
+    "release_hashes": "PASS",
+    "source_and_candidate_provenance": "PASS",
+    "source_annotation_preservation": "PASS",
+    "source_input_hashes": "PASS",
+    "split_order_determinism": "PASS",
+    "train_qid_conservation": "PASS",
+    "v3_stage1_regression_hashes": "PASS",
+    "validation_view_conservation": "PASS",
+    "video_disjointness": "PASS"
+  },
+  "groups": {
+    "CG01_open_theme_door": {
+      "counts": {
+        "test": {
+          "S+": 3193,
+          "S-": 1076,
+          "U+": 173,
+          "U-": 53
+        },
+        "train": {
+          "S+": 9805,
+          "S-": 1203
+        },
+        "val": {
+          "S+": 1036,
+          "S-": 368,
+          "U+": 35,
+          "U-": 23
+        }
+      },
+      "errors": [],
+      "videos": {
+        "test": 1299,
+        "train": 4632,
+        "val": 496
+      }
+    },
+    "CG02_close_theme_door": {
+      "counts": {
+        "test": {
+          "S+": 3269,
+          "S-": 1031,
+          "U+": 82,
+          "U-": 102
+        },
+        "train": {
+          "S+": 9908,
+          "S-": 1195
+        },
+        "val": {
+          "S+": 1061,
+          "S-": 345,
+          "U+": 28,
+          "U-": 44
+        }
+      },
+      "errors": [],
+      "videos": {
+        "test": 1293,
+        "train": 4643,
+        "val": 495
+      }
+    },
+    "CG03_sit_support_surface_chair": {
+      "counts": {
+        "test": {
+          "S+": 3344,
+          "S-": 1096,
+          "U+": 66,
+          "U-": 42
+        },
+        "train": {
+          "S+": 10097,
+          "S-": 1241
+        },
+        "val": {
+          "S+": 1067,
+          "S-": 373,
+          "U+": 24,
+          "U-": 18
+        }
+      },
+      "errors": [],
+      "videos": {
+        "test": 1302,
+        "train": 4679,
+        "val": 497
+      }
+    }
+  },
+  "status": "PASS",
+  "v3_package_input_hashes_checked": 28,
+  "v3_regression_hashes_checked": 4
+}

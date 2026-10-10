@@ -1,0 +1,3425 @@
+{
+  "CG01_open_theme_door": {
+    "condition_qids": {
+      "test": {
+        "S+": 3193,
+        "S-": 1076,
+        "U+": 173,
+        "U-": 53
+      },
+      "train": {
+        "S+": 9805,
+        "S-": 1203,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 1036,
+        "S-": 368,
+        "U+": 35,
+        "U-": 23
+      }
+    },
+    "condition_videos": {
+      "test": {
+        "S+": 1274,
+        "S-": 575,
+        "U+": 126,
+        "U-": 37
+      },
+      "train": {
+        "S+": 4593,
+        "S-": 947,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 482,
+        "S-": 207,
+        "U+": 31,
+        "U-": 17
+      }
+    },
+    "counts": {
+      "test": {
+        "S+": 3193,
+        "S-": 1076,
+        "U+": 173,
+        "U-": 53
+      },
+      "train": {
+        "S+": 9805,
+        "S-": 1203
+      },
+      "val": {
+        "S+": 1036,
+        "S-": 368,
+        "U+": 35,
+        "U-": 23
+      }
+    },
+    "distributions": {
+      "test": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 18,
+        "original_annotation_rows": 4495,
+        "positive_negative_mean_word_length_difference": 0.022632409648509544,
+        "top_actions": [
+          [
+            "physical_place",
+            866
+          ],
+          [
+            "sit",
+            755
+          ],
+          [
+            "open",
+            665
+          ],
+          [
+            "physical_take",
+            652
+          ],
+          [
+            "close",
+            501
+          ],
+          [
+            "drink",
+            417
+          ],
+          [
+            "eat",
+            394
+          ],
+          [
+            "run",
+            334
+          ],
+          [
+            "throw",
+            278
+          ],
+          [
+            "hold",
+            250
+          ],
+          [
+            "pour",
+            242
+          ],
+          [
+            "walk",
+            211
+          ],
+          [
+            "undress",
+            188
+          ],
+          [
+            "look",
+            188
+          ],
+          [
+            "dress",
+            168
+          ],
+          [
+            "turn_on",
+            146
+          ],
+          [
+            "sneeze",
+            107
+          ],
+          [
+            "watch",
+            98
+          ],
+          [
+            "laugh",
+            92
+          ],
+          [
+            "turn_off",
+            88
+          ]
+        ],
+        "top_compositions": [
+          [
+            "close|theme|door",
+            252
+          ],
+          [
+            "open|theme|door",
+            226
+          ],
+          [
+            "sit|support_surface|couch",
+            161
+          ],
+          [
+            "run|agent|person",
+            150
+          ],
+          [
+            "sit|support_surface|bed",
+            139
+          ],
+          [
+            "sit|support_surface|chair",
+            131
+          ],
+          [
+            "sit|agent|person",
+            118
+          ],
+          [
+            "eat|theme|food",
+            100
+          ],
+          [
+            "turn_on|theme|light",
+            87
+          ],
+          [
+            "physical_take|agent|person",
+            86
+          ],
+          [
+            "eat|theme|sandwich",
+            74
+          ],
+          [
+            "open|theme|cabinet",
+            73
+          ],
+          [
+            "walk|agent|person",
+            71
+          ],
+          [
+            "sneeze|agent|person",
+            71
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            70
+          ],
+          [
+            "laugh|agent|person",
+            64
+          ],
+          [
+            "physical_place|agent|person",
+            63
+          ],
+          [
+            "turn_off|theme|light",
+            63
+          ],
+          [
+            "drink|source|cup",
+            62
+          ],
+          [
+            "drink|source|glass",
+            61
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            1318
+          ],
+          [
+            "door",
+            505
+          ],
+          [
+            "couch",
+            226
+          ],
+          [
+            "box",
+            211
+          ],
+          [
+            "chair",
+            208
+          ],
+          [
+            "bed",
+            192
+          ],
+          [
+            "book",
+            187
+          ],
+          [
+            "light",
+            172
+          ],
+          [
+            "food",
+            162
+          ],
+          [
+            "shoes",
+            152
+          ],
+          [
+            "glass",
+            147
+          ],
+          [
+            "cabinet",
+            136
+          ],
+          [
+            "cup",
+            134
+          ],
+          [
+            "bag",
+            131
+          ],
+          [
+            "laptop",
+            125
+          ],
+          [
+            "window",
+            122
+          ],
+          [
+            "closet",
+            121
+          ],
+          [
+            "blanket",
+            99
+          ],
+          [
+            "refrigerator",
+            99
+          ],
+          [
+            "sandwich",
+            96
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "4BEZX",
+            18
+          ],
+          [
+            "RBQ9Y",
+            17
+          ],
+          [
+            "QMHK8",
+            16
+          ],
+          [
+            "SJJLG",
+            16
+          ],
+          [
+            "E6DLK",
+            16
+          ],
+          [
+            "E002I",
+            16
+          ],
+          [
+            "AK2KG",
+            15
+          ],
+          [
+            "120YL",
+            14
+          ],
+          [
+            "9JZO2",
+            14
+          ],
+          [
+            "3W1GP",
+            14
+          ]
+        ]
+      },
+      "train": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 12,
+        "original_annotation_rows": 11008,
+        "positive_negative_mean_word_length_difference": 0.1431578286986932,
+        "top_actions": [
+          [
+            "physical_place",
+            2450
+          ],
+          [
+            "sit",
+            1750
+          ],
+          [
+            "physical_take",
+            1352
+          ],
+          [
+            "close",
+            1126
+          ],
+          [
+            "drink",
+            1076
+          ],
+          [
+            "open",
+            1041
+          ],
+          [
+            "eat",
+            1030
+          ],
+          [
+            "throw",
+            961
+          ],
+          [
+            "run",
+            713
+          ],
+          [
+            "hold",
+            619
+          ],
+          [
+            "pour",
+            575
+          ],
+          [
+            "look",
+            558
+          ],
+          [
+            "undress",
+            533
+          ],
+          [
+            "walk",
+            527
+          ],
+          [
+            "dress",
+            510
+          ],
+          [
+            "sneeze",
+            377
+          ],
+          [
+            "turn_on",
+            355
+          ],
+          [
+            "cook",
+            330
+          ],
+          [
+            "laugh",
+            300
+          ],
+          [
+            "turn_off",
+            293
+          ]
+        ],
+        "top_compositions": [
+          [
+            "close|theme|door",
+            550
+          ],
+          [
+            "sit|agent|person",
+            352
+          ],
+          [
+            "run|agent|person",
+            347
+          ],
+          [
+            "sit|support_surface|chair",
+            346
+          ],
+          [
+            "eat|theme|sandwich",
+            317
+          ],
+          [
+            "sit|support_surface|couch",
+            260
+          ],
+          [
+            "sneeze|agent|person",
+            251
+          ],
+          [
+            "walk|agent|person",
+            235
+          ],
+          [
+            "turn_on|theme|light",
+            232
+          ],
+          [
+            "eat|theme|food",
+            230
+          ],
+          [
+            "laugh|agent|person",
+            217
+          ],
+          [
+            "drink|source|glass",
+            212
+          ],
+          [
+            "open|theme|cabinet",
+            204
+          ],
+          [
+            "turn_off|theme|light",
+            203
+          ],
+          [
+            "physical_place|agent|person",
+            195
+          ],
+          [
+            "smile|agent|person",
+            194
+          ],
+          [
+            "sit|support_surface|bed",
+            193
+          ],
+          [
+            "physical_take|agent|person",
+            187
+          ],
+          [
+            "drink|theme|water",
+            173
+          ],
+          [
+            "physical_place|goal|shelf",
+            156
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            3962
+          ],
+          [
+            "chair",
+            616
+          ],
+          [
+            "door",
+            612
+          ],
+          [
+            "glass",
+            507
+          ],
+          [
+            "light",
+            492
+          ],
+          [
+            "book",
+            479
+          ],
+          [
+            "food",
+            435
+          ],
+          [
+            "couch",
+            429
+          ],
+          [
+            "sandwich",
+            405
+          ],
+          [
+            "laptop",
+            393
+          ],
+          [
+            "box",
+            390
+          ],
+          [
+            "shoes",
+            366
+          ],
+          [
+            "bed",
+            363
+          ],
+          [
+            "cabinet",
+            349
+          ],
+          [
+            "bag",
+            339
+          ],
+          [
+            "table",
+            312
+          ],
+          [
+            "window",
+            301
+          ],
+          [
+            "water",
+            297
+          ],
+          [
+            "clothes",
+            291
+          ],
+          [
+            "phone",
+            271
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "8F17S",
+            12
+          ],
+          [
+            "DUAOJ",
+            11
+          ],
+          [
+            "0IAGO",
+            11
+          ],
+          [
+            "B4MNI",
+            11
+          ],
+          [
+            "29T54",
+            11
+          ],
+          [
+            "KW0K8",
+            10
+          ],
+          [
+            "9335E",
+            10
+          ],
+          [
+            "8PL34",
+            10
+          ],
+          [
+            "MIV2M",
+            9
+          ],
+          [
+            "11DD3",
+            9
+          ]
+        ]
+      },
+      "val": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 12,
+        "original_annotation_rows": 1462,
+        "positive_negative_mean_word_length_difference": 0.05350546015507707,
+        "top_actions": [
+          [
+            "physical_place",
+            320
+          ],
+          [
+            "sit",
+            256
+          ],
+          [
+            "open",
+            222
+          ],
+          [
+            "physical_take",
+            201
+          ],
+          [
+            "close",
+            185
+          ],
+          [
+            "drink",
+            125
+          ],
+          [
+            "eat",
+            116
+          ],
+          [
+            "hold",
+            92
+          ],
+          [
+            "throw",
+            86
+          ],
+          [
+            "run",
+            79
+          ],
+          [
+            "pour",
+            77
+          ],
+          [
+            "look",
+            75
+          ],
+          [
+            "walk",
+            74
+          ],
+          [
+            "undress",
+            60
+          ],
+          [
+            "dress",
+            48
+          ],
+          [
+            "cook",
+            43
+          ],
+          [
+            "wash",
+            43
+          ],
+          [
+            "turn_on",
+            35
+          ],
+          [
+            "turn_off",
+            31
+          ],
+          [
+            "sneeze",
+            27
+          ]
+        ],
+        "top_compositions": [
+          [
+            "close|theme|door",
+            85
+          ],
+          [
+            "open|theme|door",
+            58
+          ],
+          [
+            "sit|support_surface|couch",
+            56
+          ],
+          [
+            "sit|support_surface|chair",
+            54
+          ],
+          [
+            "sit|support_surface|bed",
+            45
+          ],
+          [
+            "sit|agent|person",
+            42
+          ],
+          [
+            "run|agent|person",
+            36
+          ],
+          [
+            "walk|agent|person",
+            31
+          ],
+          [
+            "eat|theme|food",
+            29
+          ],
+          [
+            "open|theme|refrigerator",
+            28
+          ],
+          [
+            "eat|theme|sandwich",
+            28
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            27
+          ],
+          [
+            "drink|source|glass",
+            26
+          ],
+          [
+            "open|theme|cabinet",
+            26
+          ],
+          [
+            "undress|theme|clothing",
+            25
+          ],
+          [
+            "turn_on|theme|light",
+            25
+          ],
+          [
+            "physical_place|goal|shelf",
+            24
+          ],
+          [
+            "physical_place|agent|person",
+            24
+          ],
+          [
+            "turn_off|theme|light",
+            24
+          ],
+          [
+            "physical_place|goal|table",
+            22
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            408
+          ],
+          [
+            "door",
+            147
+          ],
+          [
+            "chair",
+            93
+          ],
+          [
+            "couch",
+            72
+          ],
+          [
+            "box",
+            70
+          ],
+          [
+            "book",
+            68
+          ],
+          [
+            "bed",
+            60
+          ],
+          [
+            "glass",
+            59
+          ],
+          [
+            "window",
+            55
+          ],
+          [
+            "food",
+            54
+          ],
+          [
+            "light",
+            54
+          ],
+          [
+            "cabinet",
+            51
+          ],
+          [
+            "cup",
+            44
+          ],
+          [
+            "laptop",
+            44
+          ],
+          [
+            "refrigerator",
+            43
+          ],
+          [
+            "shelf",
+            43
+          ],
+          [
+            "sandwich",
+            38
+          ],
+          [
+            "table",
+            38
+          ],
+          [
+            "bag",
+            36
+          ],
+          [
+            "phone",
+            36
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "469E8",
+            12
+          ],
+          [
+            "8ZO48",
+            11
+          ],
+          [
+            "V4HBP",
+            11
+          ],
+          [
+            "GV9M4",
+            10
+          ],
+          [
+            "NVBBD",
+            10
+          ],
+          [
+            "CZPU9",
+            10
+          ],
+          [
+            "G06QC",
+            9
+          ],
+          [
+            "1FPW9",
+            9
+          ],
+          [
+            "T8O8Y",
+            9
+          ],
+          [
+            "LOH86",
+            9
+          ]
+        ]
+      }
+    },
+    "group": "CG01_open_theme_door",
+    "held_compositions": [
+      "open|theme|door"
+    ],
+    "ineligible_inherited_negatives_excluded": 3,
+    "lexical_coverage": {
+      "test_U+": {
+        "n": 173,
+        "strict_lexical_seen_n": 163,
+        "strict_lexical_seen_pct": 94.21965317919076,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "sliding"
+            ],
+            "qid": "test1035"
+          },
+          {
+            "missing_content_lemmas": [
+              "kick"
+            ],
+            "qid": "test1790"
+          },
+          {
+            "missing_content_lemmas": [
+              "handle"
+            ],
+            "qid": "test2056"
+          },
+          {
+            "missing_content_lemmas": [
+              "persin"
+            ],
+            "qid": "test2363"
+          },
+          {
+            "missing_content_lemmas": [
+              "lead"
+            ],
+            "qid": "test2760"
+          },
+          {
+            "missing_content_lemmas": [
+              "inch"
+            ],
+            "qid": "test2954"
+          },
+          {
+            "missing_content_lemmas": [
+              "reopen"
+            ],
+            "qid": "test2995"
+          },
+          {
+            "missing_content_lemmas": [
+              "armoire"
+            ],
+            "qid": "test3471"
+          },
+          {
+            "missing_content_lemmas": [
+              "residence"
+            ],
+            "qid": "test376"
+          },
+          {
+            "missing_content_lemmas": [
+              "must"
+            ],
+            "qid": "test726"
+          }
+        ]
+      },
+      "test_U-": {
+        "n": 53,
+        "strict_lexical_seen_n": 52,
+        "strict_lexical_seen_pct": 98.11320754716981,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "wood"
+            ],
+            "qid": "neg_7b7b83da1e549e06"
+          }
+        ]
+      },
+      "val_U+": {
+        "n": 35,
+        "strict_lexical_seen_n": 35,
+        "strict_lexical_seen_pct": 100.0,
+        "violations": []
+      },
+      "val_U-": {
+        "n": 23,
+        "strict_lexical_seen_n": 23,
+        "strict_lexical_seen_pct": 100.0,
+        "violations": []
+      }
+    },
+    "matched_inherited_pairs": 1,
+    "negative_provenance": "inherited v3 rows retain original review metadata; no video review is claimed",
+    "positive_window_duration_seconds": {
+      "test": {
+        "max": 24.299999999999997,
+        "mean": 7.840996603417424,
+        "median": 7.0,
+        "min": 1.9610864078836663,
+        "n": 3366
+      },
+      "train": {
+        "max": 80.80000000000001,
+        "mean": 8.25871293296248,
+        "median": 7.325600000000001,
+        "min": 1.7333333333333343,
+        "n": 9805
+      },
+      "val": {
+        "max": 26.0,
+        "mean": 8.088749892511943,
+        "median": 7.100000000000001,
+        "min": 1.75,
+        "n": 1071
+      }
+    },
+    "query_word_length": {
+      "test": {
+        "0": {
+          "max": 10,
+          "mean": 6.151461470327724,
+          "median": 6,
+          "min": 3,
+          "n": 1129
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.174093879976233,
+          "median": 6.0,
+          "min": 2,
+          "n": 3366
+        }
+      },
+      "train": {
+        "0": {
+          "max": 10,
+          "mean": 6.068162926018288,
+          "median": 6,
+          "min": 3,
+          "n": 1203
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.211320754716981,
+          "median": 6,
+          "min": 2,
+          "n": 9805
+        }
+      },
+      "val": {
+        "0": {
+          "max": 10,
+          "mean": 6.130434782608695,
+          "median": 6,
+          "min": 3,
+          "n": 391
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.183940242763772,
+          "median": 6,
+          "min": 3,
+          "n": 1071
+        }
+      }
+    },
+    "rows": {
+      "test": 4495,
+      "train": 11008,
+      "val": 1462
+    },
+    "train_ambiguous_door_scope_quarantined_qids": 38,
+    "train_excluded_negative": 91,
+    "train_excluded_positive": 541,
+    "train_excluded_qids": 768,
+    "train_exclusions_by_reason": {
+      "ambiguous_cabinet_door_scope_quarantined": {
+        "negative_qids": 5,
+        "positive_qids": 33,
+        "qids": 38
+      },
+      "full_event_list_exposes_held_composition": {
+        "negative_qids": 91,
+        "positive_qids": 541,
+        "qids": 632
+      },
+      "held_query_semantics_not_resolved_in_event_graph": {
+        "negative_qids": 0,
+        "positive_qids": 6,
+        "qids": 6
+      },
+      "unresolved_event_semantics_quarantined": {
+        "negative_qids": 15,
+        "positive_qids": 77,
+        "qids": 92
+      }
+    },
+    "train_query_graph_mismatch_quarantined_qids": 6,
+    "train_target_excluded_qids": 632,
+    "train_unresolved_quarantined_qids": 136,
+    "unresolved_rows_quarantined": 259,
+    "unresolved_train_rows_quarantined": 92,
+    "videos": {
+      "test": 1299,
+      "train": 4632,
+      "val": 496
+    }
+  },
+  "CG02_close_theme_door": {
+    "condition_qids": {
+      "test": {
+        "S+": 3269,
+        "S-": 1031,
+        "U+": 82,
+        "U-": 102
+      },
+      "train": {
+        "S+": 9908,
+        "S-": 1195,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 1061,
+        "S-": 345,
+        "U+": 28,
+        "U-": 44
+      }
+    },
+    "condition_videos": {
+      "test": {
+        "S+": 1274,
+        "S-": 550,
+        "U+": 66,
+        "U-": 73
+      },
+      "train": {
+        "S+": 4619,
+        "S-": 934,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 485,
+        "S-": 199,
+        "U+": 23,
+        "U-": 33
+      }
+    },
+    "counts": {
+      "test": {
+        "S+": 3269,
+        "S-": 1031,
+        "U+": 82,
+        "U-": 102
+      },
+      "train": {
+        "S+": 9908,
+        "S-": 1195
+      },
+      "val": {
+        "S+": 1061,
+        "S-": 345,
+        "U+": 28,
+        "U-": 44
+      }
+    },
+    "distributions": {
+      "test": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 18,
+        "original_annotation_rows": 4484,
+        "positive_negative_mean_word_length_difference": 0.035895806945167585,
+        "top_actions": [
+          [
+            "physical_place",
+            866
+          ],
+          [
+            "open",
+            761
+          ],
+          [
+            "sit",
+            755
+          ],
+          [
+            "physical_take",
+            655
+          ],
+          [
+            "drink",
+            419
+          ],
+          [
+            "close",
+            402
+          ],
+          [
+            "eat",
+            394
+          ],
+          [
+            "run",
+            337
+          ],
+          [
+            "throw",
+            278
+          ],
+          [
+            "hold",
+            254
+          ],
+          [
+            "pour",
+            242
+          ],
+          [
+            "walk",
+            213
+          ],
+          [
+            "undress",
+            188
+          ],
+          [
+            "look",
+            188
+          ],
+          [
+            "dress",
+            168
+          ],
+          [
+            "turn_on",
+            146
+          ],
+          [
+            "sneeze",
+            108
+          ],
+          [
+            "watch",
+            98
+          ],
+          [
+            "laugh",
+            92
+          ],
+          [
+            "turn_off",
+            88
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            281
+          ],
+          [
+            "close|theme|door",
+            184
+          ],
+          [
+            "sit|support_surface|couch",
+            161
+          ],
+          [
+            "run|agent|person",
+            152
+          ],
+          [
+            "sit|support_surface|bed",
+            139
+          ],
+          [
+            "sit|support_surface|chair",
+            131
+          ],
+          [
+            "sit|agent|person",
+            118
+          ],
+          [
+            "eat|theme|food",
+            100
+          ],
+          [
+            "turn_on|theme|light",
+            87
+          ],
+          [
+            "physical_take|agent|person",
+            86
+          ],
+          [
+            "open|theme|cabinet",
+            80
+          ],
+          [
+            "eat|theme|sandwich",
+            74
+          ],
+          [
+            "sneeze|agent|person",
+            72
+          ],
+          [
+            "walk|agent|person",
+            71
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            71
+          ],
+          [
+            "laugh|agent|person",
+            64
+          ],
+          [
+            "physical_place|agent|person",
+            63
+          ],
+          [
+            "turn_off|theme|light",
+            63
+          ],
+          [
+            "drink|source|cup",
+            62
+          ],
+          [
+            "drink|source|glass",
+            61
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            1333
+          ],
+          [
+            "door",
+            491
+          ],
+          [
+            "couch",
+            226
+          ],
+          [
+            "box",
+            211
+          ],
+          [
+            "chair",
+            208
+          ],
+          [
+            "bed",
+            192
+          ],
+          [
+            "book",
+            187
+          ],
+          [
+            "light",
+            172
+          ],
+          [
+            "food",
+            162
+          ],
+          [
+            "shoes",
+            152
+          ],
+          [
+            "glass",
+            147
+          ],
+          [
+            "cabinet",
+            139
+          ],
+          [
+            "cup",
+            135
+          ],
+          [
+            "bag",
+            131
+          ],
+          [
+            "laptop",
+            125
+          ],
+          [
+            "closet",
+            122
+          ],
+          [
+            "window",
+            122
+          ],
+          [
+            "refrigerator",
+            100
+          ],
+          [
+            "blanket",
+            99
+          ],
+          [
+            "sandwich",
+            96
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "4BEZX",
+            18
+          ],
+          [
+            "RBQ9Y",
+            17
+          ],
+          [
+            "SJJLG",
+            16
+          ],
+          [
+            "E6DLK",
+            16
+          ],
+          [
+            "AK2KG",
+            15
+          ],
+          [
+            "QMHK8",
+            14
+          ],
+          [
+            "LFPWI",
+            14
+          ],
+          [
+            "120YL",
+            14
+          ],
+          [
+            "9JZO2",
+            14
+          ],
+          [
+            "E002I",
+            13
+          ]
+        ]
+      },
+      "train": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 12,
+        "original_annotation_rows": 11103,
+        "positive_negative_mean_word_length_difference": 0.19423862716911877,
+        "top_actions": [
+          [
+            "physical_place",
+            2452
+          ],
+          [
+            "open",
+            1807
+          ],
+          [
+            "sit",
+            1750
+          ],
+          [
+            "physical_take",
+            1361
+          ],
+          [
+            "drink",
+            1076
+          ],
+          [
+            "eat",
+            1030
+          ],
+          [
+            "throw",
+            959
+          ],
+          [
+            "run",
+            715
+          ],
+          [
+            "hold",
+            625
+          ],
+          [
+            "pour",
+            576
+          ],
+          [
+            "look",
+            560
+          ],
+          [
+            "undress",
+            537
+          ],
+          [
+            "walk",
+            529
+          ],
+          [
+            "dress",
+            511
+          ],
+          [
+            "close",
+            446
+          ],
+          [
+            "sneeze",
+            381
+          ],
+          [
+            "turn_on",
+            355
+          ],
+          [
+            "cook",
+            330
+          ],
+          [
+            "laugh",
+            298
+          ],
+          [
+            "turn_off",
+            294
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            635
+          ],
+          [
+            "sit|agent|person",
+            352
+          ],
+          [
+            "run|agent|person",
+            348
+          ],
+          [
+            "sit|support_surface|chair",
+            346
+          ],
+          [
+            "eat|theme|sandwich",
+            317
+          ],
+          [
+            "sit|support_surface|couch",
+            260
+          ],
+          [
+            "sneeze|agent|person",
+            255
+          ],
+          [
+            "walk|agent|person",
+            237
+          ],
+          [
+            "turn_on|theme|light",
+            232
+          ],
+          [
+            "eat|theme|food",
+            230
+          ],
+          [
+            "laugh|agent|person",
+            215
+          ],
+          [
+            "drink|source|glass",
+            212
+          ],
+          [
+            "open|theme|cabinet",
+            210
+          ],
+          [
+            "turn_off|theme|light",
+            204
+          ],
+          [
+            "smile|agent|person",
+            198
+          ],
+          [
+            "physical_place|agent|person",
+            195
+          ],
+          [
+            "sit|support_surface|bed",
+            193
+          ],
+          [
+            "physical_take|agent|person",
+            189
+          ],
+          [
+            "drink|theme|water",
+            173
+          ],
+          [
+            "undress|theme|clothing",
+            157
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            3991
+          ],
+          [
+            "door",
+            705
+          ],
+          [
+            "chair",
+            616
+          ],
+          [
+            "glass",
+            507
+          ],
+          [
+            "light",
+            494
+          ],
+          [
+            "book",
+            479
+          ],
+          [
+            "food",
+            435
+          ],
+          [
+            "couch",
+            429
+          ],
+          [
+            "sandwich",
+            405
+          ],
+          [
+            "laptop",
+            394
+          ],
+          [
+            "box",
+            391
+          ],
+          [
+            "shoes",
+            366
+          ],
+          [
+            "bed",
+            363
+          ],
+          [
+            "cabinet",
+            349
+          ],
+          [
+            "bag",
+            340
+          ],
+          [
+            "table",
+            312
+          ],
+          [
+            "window",
+            301
+          ],
+          [
+            "water",
+            297
+          ],
+          [
+            "clothes",
+            295
+          ],
+          [
+            "phone",
+            271
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "8F17S",
+            12
+          ],
+          [
+            "DUAOJ",
+            11
+          ],
+          [
+            "0IAGO",
+            11
+          ],
+          [
+            "B4MNI",
+            11
+          ],
+          [
+            "29T54",
+            11
+          ],
+          [
+            "8PL34",
+            11
+          ],
+          [
+            "MIV2M",
+            10
+          ],
+          [
+            "KW0K8",
+            10
+          ],
+          [
+            "9335E",
+            10
+          ],
+          [
+            "11DD3",
+            9
+          ]
+        ]
+      },
+      "val": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 12,
+        "original_annotation_rows": 1478,
+        "positive_negative_mean_word_length_difference": 0.039877626463277416,
+        "top_actions": [
+          [
+            "physical_place",
+            320
+          ],
+          [
+            "open",
+            262
+          ],
+          [
+            "sit",
+            256
+          ],
+          [
+            "physical_take",
+            201
+          ],
+          [
+            "close",
+            167
+          ],
+          [
+            "drink",
+            125
+          ],
+          [
+            "eat",
+            116
+          ],
+          [
+            "hold",
+            92
+          ],
+          [
+            "throw",
+            86
+          ],
+          [
+            "run",
+            79
+          ],
+          [
+            "pour",
+            77
+          ],
+          [
+            "look",
+            75
+          ],
+          [
+            "walk",
+            75
+          ],
+          [
+            "undress",
+            60
+          ],
+          [
+            "dress",
+            48
+          ],
+          [
+            "cook",
+            43
+          ],
+          [
+            "wash",
+            43
+          ],
+          [
+            "turn_on",
+            35
+          ],
+          [
+            "turn_off",
+            31
+          ],
+          [
+            "sneeze",
+            27
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            87
+          ],
+          [
+            "close|theme|door",
+            72
+          ],
+          [
+            "sit|support_surface|couch",
+            56
+          ],
+          [
+            "sit|support_surface|chair",
+            54
+          ],
+          [
+            "sit|support_surface|bed",
+            45
+          ],
+          [
+            "sit|agent|person",
+            42
+          ],
+          [
+            "run|agent|person",
+            36
+          ],
+          [
+            "walk|agent|person",
+            31
+          ],
+          [
+            "eat|theme|food",
+            29
+          ],
+          [
+            "open|theme|refrigerator",
+            28
+          ],
+          [
+            "eat|theme|sandwich",
+            28
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            27
+          ],
+          [
+            "drink|source|glass",
+            26
+          ],
+          [
+            "open|theme|cabinet",
+            26
+          ],
+          [
+            "open|agent|person",
+            25
+          ],
+          [
+            "undress|theme|clothing",
+            25
+          ],
+          [
+            "turn_on|theme|light",
+            25
+          ],
+          [
+            "physical_place|goal|shelf",
+            24
+          ],
+          [
+            "physical_place|agent|person",
+            24
+          ],
+          [
+            "turn_off|theme|light",
+            24
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            412
+          ],
+          [
+            "door",
+            166
+          ],
+          [
+            "chair",
+            93
+          ],
+          [
+            "couch",
+            72
+          ],
+          [
+            "box",
+            70
+          ],
+          [
+            "book",
+            68
+          ],
+          [
+            "bed",
+            60
+          ],
+          [
+            "glass",
+            59
+          ],
+          [
+            "window",
+            55
+          ],
+          [
+            "food",
+            54
+          ],
+          [
+            "light",
+            54
+          ],
+          [
+            "cabinet",
+            49
+          ],
+          [
+            "cup",
+            44
+          ],
+          [
+            "laptop",
+            44
+          ],
+          [
+            "refrigerator",
+            43
+          ],
+          [
+            "shelf",
+            43
+          ],
+          [
+            "sandwich",
+            38
+          ],
+          [
+            "table",
+            38
+          ],
+          [
+            "bag",
+            36
+          ],
+          [
+            "phone",
+            36
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "469E8",
+            12
+          ],
+          [
+            "8ZO48",
+            11
+          ],
+          [
+            "GV9M4",
+            11
+          ],
+          [
+            "V4HBP",
+            11
+          ],
+          [
+            "NVBBD",
+            11
+          ],
+          [
+            "G06QC",
+            9
+          ],
+          [
+            "1FPW9",
+            9
+          ],
+          [
+            "T8O8Y",
+            9
+          ],
+          [
+            "LOH86",
+            9
+          ],
+          [
+            "CZPU9",
+            9
+          ]
+        ]
+      }
+    },
+    "group": "CG02_close_theme_door",
+    "held_compositions": [
+      "close|theme|door"
+    ],
+    "ineligible_inherited_negatives_excluded": 3,
+    "lexical_coverage": {
+      "test_U+": {
+        "n": 82,
+        "strict_lexical_seen_n": 79,
+        "strict_lexical_seen_pct": 96.34146341463415,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "ring"
+            ],
+            "qid": "test186"
+          },
+          {
+            "missing_content_lemmas": [
+              "him"
+            ],
+            "qid": "test2151"
+          },
+          {
+            "missing_content_lemmas": [
+              "wood"
+            ],
+            "qid": "test669"
+          }
+        ]
+      },
+      "test_U-": {
+        "n": 102,
+        "strict_lexical_seen_n": 99,
+        "strict_lexical_seen_pct": 97.05882352941177,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "lead"
+            ],
+            "qid": "neg_50477198a0a8b4e6"
+          },
+          {
+            "missing_content_lemmas": [
+              "sliding"
+            ],
+            "qid": "neg_ee8f7e9c18ae061c"
+          },
+          {
+            "missing_content_lemmas": [
+              "handle"
+            ],
+            "qid": "neg_f321f5e9d0cd4124"
+          }
+        ]
+      },
+      "val_U+": {
+        "n": 28,
+        "strict_lexical_seen_n": 26,
+        "strict_lexical_seen_pct": 92.85714285714286,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "frig"
+            ],
+            "qid": "train1760"
+          },
+          {
+            "missing_content_lemmas": [
+              "him"
+            ],
+            "qid": "train9656"
+          }
+        ]
+      },
+      "val_U-": {
+        "n": 44,
+        "strict_lexical_seen_n": 44,
+        "strict_lexical_seen_pct": 100.0,
+        "violations": []
+      }
+    },
+    "matched_inherited_pairs": 0,
+    "negative_provenance": "inherited v3 rows retain original review metadata; no video review is claimed",
+    "positive_window_duration_seconds": {
+      "test": {
+        "max": 24.299999999999997,
+        "mean": 7.843289862371996,
+        "median": 7.0,
+        "min": 1.9610864078836663,
+        "n": 3351
+      },
+      "train": {
+        "max": 80.80000000000001,
+        "mean": 8.248424873107371,
+        "median": 7.300000000000001,
+        "min": 1.7333333333333343,
+        "n": 9908
+      },
+      "val": {
+        "max": 26.0,
+        "mean": 8.051760800753016,
+        "median": 7.099999999999998,
+        "min": 1.75,
+        "n": 1089
+      }
+    },
+    "query_word_length": {
+      "test": {
+        "0": {
+          "max": 10,
+          "mean": 6.151809355692851,
+          "median": 6,
+          "min": 3,
+          "n": 1133
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.187705162638019,
+          "median": 6,
+          "min": 2,
+          "n": 3351
+        }
+      },
+      "train": {
+        "0": {
+          "max": 10,
+          "mean": 6.030125523012552,
+          "median": 6,
+          "min": 3,
+          "n": 1195
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.224364150181671,
+          "median": 6.0,
+          "min": 2,
+          "n": 9908
+        }
+      },
+      "val": {
+        "0": {
+          "max": 10,
+          "mean": 6.133676092544987,
+          "median": 6,
+          "min": 3,
+          "n": 389
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.1735537190082646,
+          "median": 6,
+          "min": 3,
+          "n": 1089
+        }
+      }
+    },
+    "rows": {
+      "test": 4484,
+      "train": 11103,
+      "val": 1478
+    },
+    "train_ambiguous_door_scope_quarantined_qids": 31,
+    "train_excluded_negative": 98,
+    "train_excluded_positive": 451,
+    "train_excluded_qids": 673,
+    "train_exclusions_by_reason": {
+      "ambiguous_cabinet_door_scope_quarantined": {
+        "negative_qids": 6,
+        "positive_qids": 25,
+        "qids": 31
+      },
+      "full_event_list_exposes_held_composition": {
+        "negative_qids": 98,
+        "positive_qids": 451,
+        "qids": 549
+      },
+      "held_query_semantics_not_resolved_in_event_graph": {
+        "negative_qids": 0,
+        "positive_qids": 1,
+        "qids": 1
+      },
+      "unresolved_event_semantics_quarantined": {
+        "negative_qids": 15,
+        "positive_qids": 77,
+        "qids": 92
+      }
+    },
+    "train_query_graph_mismatch_quarantined_qids": 1,
+    "train_target_excluded_qids": 549,
+    "train_unresolved_quarantined_qids": 124,
+    "unresolved_rows_quarantined": 254,
+    "unresolved_train_rows_quarantined": 92,
+    "videos": {
+      "test": 1293,
+      "train": 4643,
+      "val": 495
+    }
+  },
+  "CG03_sit_support_surface_chair": {
+    "condition_qids": {
+      "test": {
+        "S+": 3344,
+        "S-": 1096,
+        "U+": 66,
+        "U-": 42
+      },
+      "train": {
+        "S+": 10097,
+        "S-": 1241,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 1067,
+        "S-": 373,
+        "U+": 24,
+        "U-": 18
+      }
+    },
+    "condition_videos": {
+      "test": {
+        "S+": 1289,
+        "S-": 599,
+        "U+": 44,
+        "U-": 27
+      },
+      "train": {
+        "S+": 4646,
+        "S-": 992,
+        "U+": 0,
+        "U-": 0
+      },
+      "val": {
+        "S+": 490,
+        "S-": 218,
+        "U+": 20,
+        "U-": 15
+      }
+    },
+    "counts": {
+      "test": {
+        "S+": 3344,
+        "S-": 1096,
+        "U+": 66,
+        "U-": 42
+      },
+      "train": {
+        "S+": 10097,
+        "S-": 1241
+      },
+      "val": {
+        "S+": 1067,
+        "S-": 373,
+        "U+": 24,
+        "U-": 18
+      }
+    },
+    "distributions": {
+      "test": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 17,
+        "original_annotation_rows": 4548,
+        "positive_negative_mean_word_length_difference": 0.004581273933277785,
+        "top_actions": [
+          [
+            "physical_place",
+            866
+          ],
+          [
+            "open",
+            761
+          ],
+          [
+            "sit",
+            697
+          ],
+          [
+            "physical_take",
+            655
+          ],
+          [
+            "close",
+            505
+          ],
+          [
+            "drink",
+            418
+          ],
+          [
+            "eat",
+            393
+          ],
+          [
+            "run",
+            337
+          ],
+          [
+            "throw",
+            278
+          ],
+          [
+            "hold",
+            253
+          ],
+          [
+            "pour",
+            242
+          ],
+          [
+            "walk",
+            214
+          ],
+          [
+            "undress",
+            188
+          ],
+          [
+            "look",
+            188
+          ],
+          [
+            "dress",
+            167
+          ],
+          [
+            "turn_on",
+            146
+          ],
+          [
+            "sneeze",
+            108
+          ],
+          [
+            "watch",
+            96
+          ],
+          [
+            "laugh",
+            92
+          ],
+          [
+            "turn_off",
+            88
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            281
+          ],
+          [
+            "close|theme|door",
+            254
+          ],
+          [
+            "sit|support_surface|couch",
+            161
+          ],
+          [
+            "run|agent|person",
+            152
+          ],
+          [
+            "sit|support_surface|bed",
+            139
+          ],
+          [
+            "sit|support_surface|chair",
+            108
+          ],
+          [
+            "eat|theme|food",
+            100
+          ],
+          [
+            "sit|agent|person",
+            100
+          ],
+          [
+            "turn_on|theme|light",
+            87
+          ],
+          [
+            "physical_take|agent|person",
+            86
+          ],
+          [
+            "open|theme|cabinet",
+            80
+          ],
+          [
+            "eat|theme|sandwich",
+            73
+          ],
+          [
+            "walk|agent|person",
+            72
+          ],
+          [
+            "sneeze|agent|person",
+            72
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            71
+          ],
+          [
+            "laugh|agent|person",
+            64
+          ],
+          [
+            "physical_place|agent|person",
+            63
+          ],
+          [
+            "turn_off|theme|light",
+            63
+          ],
+          [
+            "drink|source|cup",
+            62
+          ],
+          [
+            "drink|source|glass",
+            61
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            1324
+          ],
+          [
+            "door",
+            562
+          ],
+          [
+            "couch",
+            226
+          ],
+          [
+            "box",
+            211
+          ],
+          [
+            "bed",
+            192
+          ],
+          [
+            "book",
+            186
+          ],
+          [
+            "light",
+            172
+          ],
+          [
+            "chair",
+            168
+          ],
+          [
+            "food",
+            162
+          ],
+          [
+            "shoes",
+            151
+          ],
+          [
+            "glass",
+            147
+          ],
+          [
+            "cabinet",
+            144
+          ],
+          [
+            "cup",
+            135
+          ],
+          [
+            "bag",
+            131
+          ],
+          [
+            "laptop",
+            125
+          ],
+          [
+            "closet",
+            123
+          ],
+          [
+            "window",
+            122
+          ],
+          [
+            "refrigerator",
+            100
+          ],
+          [
+            "blanket",
+            99
+          ],
+          [
+            "sandwich",
+            95
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "RBQ9Y",
+            17
+          ],
+          [
+            "4BEZX",
+            17
+          ],
+          [
+            "E002I",
+            17
+          ],
+          [
+            "QMHK8",
+            16
+          ],
+          [
+            "SJJLG",
+            16
+          ],
+          [
+            "E6DLK",
+            16
+          ],
+          [
+            "AK2KG",
+            15
+          ],
+          [
+            "LFPWI",
+            14
+          ],
+          [
+            "9JZO2",
+            14
+          ],
+          [
+            "3W1GP",
+            14
+          ]
+        ]
+      },
+      "train": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 11,
+        "original_annotation_rows": 11338,
+        "positive_negative_mean_word_length_difference": 0.2042313651057741,
+        "top_actions": [
+          [
+            "physical_place",
+            2454
+          ],
+          [
+            "open",
+            1804
+          ],
+          [
+            "physical_take",
+            1358
+          ],
+          [
+            "close",
+            1130
+          ],
+          [
+            "drink",
+            1075
+          ],
+          [
+            "sit",
+            1074
+          ],
+          [
+            "eat",
+            1011
+          ],
+          [
+            "throw",
+            961
+          ],
+          [
+            "run",
+            716
+          ],
+          [
+            "hold",
+            618
+          ],
+          [
+            "pour",
+            576
+          ],
+          [
+            "look",
+            559
+          ],
+          [
+            "undress",
+            536
+          ],
+          [
+            "walk",
+            531
+          ],
+          [
+            "dress",
+            510
+          ],
+          [
+            "sneeze",
+            381
+          ],
+          [
+            "turn_on",
+            355
+          ],
+          [
+            "cook",
+            330
+          ],
+          [
+            "laugh",
+            296
+          ],
+          [
+            "turn_off",
+            292
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            635
+          ],
+          [
+            "close|theme|door",
+            552
+          ],
+          [
+            "run|agent|person",
+            349
+          ],
+          [
+            "eat|theme|sandwich",
+            309
+          ],
+          [
+            "sit|support_surface|couch",
+            260
+          ],
+          [
+            "sneeze|agent|person",
+            255
+          ],
+          [
+            "walk|agent|person",
+            238
+          ],
+          [
+            "turn_on|theme|light",
+            232
+          ],
+          [
+            "eat|theme|food",
+            227
+          ],
+          [
+            "laugh|agent|person",
+            214
+          ],
+          [
+            "drink|source|glass",
+            212
+          ],
+          [
+            "open|theme|cabinet",
+            210
+          ],
+          [
+            "sit|agent|person",
+            210
+          ],
+          [
+            "turn_off|theme|light",
+            203
+          ],
+          [
+            "smile|agent|person",
+            195
+          ],
+          [
+            "physical_place|agent|person",
+            195
+          ],
+          [
+            "sit|support_surface|bed",
+            193
+          ],
+          [
+            "physical_take|agent|person",
+            188
+          ],
+          [
+            "drink|theme|water",
+            172
+          ],
+          [
+            "undress|theme|clothing",
+            157
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            3870
+          ],
+          [
+            "door",
+            1259
+          ],
+          [
+            "glass",
+            507
+          ],
+          [
+            "light",
+            494
+          ],
+          [
+            "book",
+            473
+          ],
+          [
+            "food",
+            432
+          ],
+          [
+            "couch",
+            429
+          ],
+          [
+            "sandwich",
+            396
+          ],
+          [
+            "box",
+            390
+          ],
+          [
+            "laptop",
+            389
+          ],
+          [
+            "shoes",
+            364
+          ],
+          [
+            "bed",
+            362
+          ],
+          [
+            "cabinet",
+            356
+          ],
+          [
+            "bag",
+            339
+          ],
+          [
+            "table",
+            310
+          ],
+          [
+            "window",
+            301
+          ],
+          [
+            "water",
+            296
+          ],
+          [
+            "clothes",
+            295
+          ],
+          [
+            "phone",
+            268
+          ],
+          [
+            "pillow",
+            252
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "8PL34",
+            11
+          ],
+          [
+            "MIV2M",
+            10
+          ],
+          [
+            "0IAGO",
+            10
+          ],
+          [
+            "8F17S",
+            10
+          ],
+          [
+            "P0ILN",
+            10
+          ],
+          [
+            "29T54",
+            10
+          ],
+          [
+            "B4MNI",
+            10
+          ],
+          [
+            "DUAOJ",
+            9
+          ],
+          [
+            "YRX5H",
+            9
+          ],
+          [
+            "ZSJ2I",
+            9
+          ]
+        ]
+      },
+      "val": {
+        "generated_annotation_rows": 0,
+        "max_queries_per_video": 12,
+        "original_annotation_rows": 1482,
+        "positive_negative_mean_word_length_difference": 0.02080261427489738,
+        "top_actions": [
+          [
+            "physical_place",
+            320
+          ],
+          [
+            "open",
+            262
+          ],
+          [
+            "sit",
+            228
+          ],
+          [
+            "physical_take",
+            201
+          ],
+          [
+            "close",
+            185
+          ],
+          [
+            "drink",
+            125
+          ],
+          [
+            "eat",
+            111
+          ],
+          [
+            "hold",
+            91
+          ],
+          [
+            "throw",
+            86
+          ],
+          [
+            "run",
+            79
+          ],
+          [
+            "walk",
+            78
+          ],
+          [
+            "pour",
+            77
+          ],
+          [
+            "look",
+            75
+          ],
+          [
+            "undress",
+            60
+          ],
+          [
+            "dress",
+            48
+          ],
+          [
+            "cook",
+            43
+          ],
+          [
+            "wash",
+            43
+          ],
+          [
+            "turn_on",
+            35
+          ],
+          [
+            "turn_off",
+            31
+          ],
+          [
+            "sneeze",
+            27
+          ]
+        ],
+        "top_compositions": [
+          [
+            "open|theme|door",
+            87
+          ],
+          [
+            "close|theme|door",
+            85
+          ],
+          [
+            "sit|support_surface|couch",
+            56
+          ],
+          [
+            "sit|support_surface|bed",
+            45
+          ],
+          [
+            "sit|support_surface|chair",
+            42
+          ],
+          [
+            "run|agent|person",
+            36
+          ],
+          [
+            "sit|agent|person",
+            35
+          ],
+          [
+            "walk|agent|person",
+            33
+          ],
+          [
+            "eat|theme|food",
+            29
+          ],
+          [
+            "open|theme|refrigerator",
+            28
+          ],
+          [
+            "drink|theme|unspecified liquid",
+            27
+          ],
+          [
+            "drink|source|glass",
+            26
+          ],
+          [
+            "open|theme|cabinet",
+            26
+          ],
+          [
+            "eat|theme|sandwich",
+            26
+          ],
+          [
+            "open|agent|person",
+            25
+          ],
+          [
+            "undress|theme|clothing",
+            25
+          ],
+          [
+            "turn_on|theme|light",
+            25
+          ],
+          [
+            "physical_place|goal|shelf",
+            24
+          ],
+          [
+            "physical_place|agent|person",
+            24
+          ],
+          [
+            "turn_off|theme|light",
+            24
+          ]
+        ],
+        "top_fillers": [
+          [
+            "person",
+            405
+          ],
+          [
+            "door",
+            179
+          ],
+          [
+            "couch",
+            72
+          ],
+          [
+            "chair",
+            71
+          ],
+          [
+            "box",
+            70
+          ],
+          [
+            "book",
+            68
+          ],
+          [
+            "bed",
+            60
+          ],
+          [
+            "glass",
+            59
+          ],
+          [
+            "window",
+            55
+          ],
+          [
+            "food",
+            54
+          ],
+          [
+            "light",
+            54
+          ],
+          [
+            "cabinet",
+            51
+          ],
+          [
+            "cup",
+            44
+          ],
+          [
+            "laptop",
+            44
+          ],
+          [
+            "refrigerator",
+            43
+          ],
+          [
+            "shelf",
+            43
+          ],
+          [
+            "table",
+            38
+          ],
+          [
+            "bag",
+            36
+          ],
+          [
+            "sandwich",
+            36
+          ],
+          [
+            "phone",
+            36
+          ]
+        ],
+        "top_video_query_counts": [
+          [
+            "469E8",
+            12
+          ],
+          [
+            "GV9M4",
+            11
+          ],
+          [
+            "V4HBP",
+            11
+          ],
+          [
+            "NVBBD",
+            11
+          ],
+          [
+            "8ZO48",
+            10
+          ],
+          [
+            "CZPU9",
+            10
+          ],
+          [
+            "G06QC",
+            9
+          ],
+          [
+            "1FPW9",
+            9
+          ],
+          [
+            "T8O8Y",
+            9
+          ],
+          [
+            "LOH86",
+            9
+          ]
+        ]
+      }
+    },
+    "group": "CG03_sit_support_surface_chair",
+    "held_compositions": [
+      "sit|support_surface|chair"
+    ],
+    "ineligible_inherited_negatives_excluded": 3,
+    "lexical_coverage": {
+      "test_U+": {
+        "n": 66,
+        "strict_lexical_seen_n": 64,
+        "strict_lexical_seen_pct": 96.96969696969697,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "rise"
+            ],
+            "qid": "test1147"
+          },
+          {
+            "missing_content_lemmas": [
+              "momentarily"
+            ],
+            "qid": "test17"
+          }
+        ]
+      },
+      "test_U-": {
+        "n": 42,
+        "strict_lexical_seen_n": 40,
+        "strict_lexical_seen_pct": 95.23809523809524,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "manner"
+            ],
+            "qid": "neg_0d69eace3982783d"
+          },
+          {
+            "missing_content_lemmas": [
+              "animal",
+              "climb"
+            ],
+            "qid": "neg_5dd1cf5d170ec4db"
+          }
+        ]
+      },
+      "val_U+": {
+        "n": 24,
+        "strict_lexical_seen_n": 23,
+        "strict_lexical_seen_pct": 95.83333333333333,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "brew"
+            ],
+            "qid": "train7259"
+          }
+        ]
+      },
+      "val_U-": {
+        "n": 18,
+        "strict_lexical_seen_n": 17,
+        "strict_lexical_seen_pct": 94.44444444444444,
+        "violations": [
+          {
+            "missing_content_lemmas": [
+              "tapping"
+            ],
+            "qid": "neg_2b2bb65e8b033fcd"
+          }
+        ]
+      }
+    },
+    "matched_inherited_pairs": 0,
+    "negative_provenance": "inherited v3 rows retain original review metadata; no video review is claimed",
+    "positive_window_duration_seconds": {
+      "test": {
+        "max": 24.299999999999997,
+        "mean": 7.817903177879244,
+        "median": 7.0,
+        "min": 1.9610864078836663,
+        "n": 3410
+      },
+      "train": {
+        "max": 80.80000000000001,
+        "mean": 8.1663267610053,
+        "median": 7.279310344827586,
+        "min": 1.7333333333333343,
+        "n": 10097
+      },
+      "val": {
+        "max": 26.0,
+        "mean": 8.010354784925175,
+        "median": 7.0000000000000036,
+        "min": 1.75,
+        "n": 1091
+      }
+    },
+    "query_word_length": {
+      "test": {
+        "0": {
+          "max": 10,
+          "mean": 6.155536028119508,
+          "median": 6.0,
+          "min": 3,
+          "n": 1138
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.160117302052786,
+          "median": 6.0,
+          "min": 2,
+          "n": 3410
+        }
+      },
+      "train": {
+        "0": {
+          "max": 10,
+          "mean": 5.946011281224819,
+          "median": 6,
+          "min": 3,
+          "n": 1241
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.150242646330593,
+          "median": 6,
+          "min": 2,
+          "n": 10097
+        }
+      },
+      "val": {
+        "0": {
+          "max": 10,
+          "mean": 6.130434782608695,
+          "median": 6,
+          "min": 3,
+          "n": 391
+        },
+        "1": {
+          "max": 10,
+          "mean": 6.151237396883593,
+          "median": 6,
+          "min": 3,
+          "n": 1091
+        }
+      }
+    },
+    "rows": {
+      "test": 4548,
+      "train": 11338,
+      "val": 1482
+    },
+    "train_ambiguous_door_scope_quarantined_qids": 0,
+    "train_excluded_negative": 58,
+    "train_excluded_positive": 288,
+    "train_excluded_qids": 438,
+    "train_exclusions_by_reason": {
+      "full_event_list_exposes_held_composition": {
+        "negative_qids": 58,
+        "positive_qids": 288,
+        "qids": 346
+      },
+      "unresolved_event_semantics_quarantined": {
+        "negative_qids": 15,
+        "positive_qids": 77,
+        "qids": 92
+      }
+    },
+    "train_query_graph_mismatch_quarantined_qids": 0,
+    "train_target_excluded_qids": 346,
+    "train_unresolved_quarantined_qids": 92,
+    "unresolved_rows_quarantined": 186,
+    "unresolved_train_rows_quarantined": 92,
+    "videos": {
+      "test": 1302,
+      "train": 4679,
+      "val": 497
+    }
+  }
+}

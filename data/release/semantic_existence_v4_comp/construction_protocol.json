@@ -1,0 +1,18 @@
+{
+  "counterfactual_policy": "no sentence edits emitted where role-specific surface spans cannot be established safely",
+  "independent_audit": "separate audit pass; candidate text does not establish video absence",
+  "new_negative_candidates_are_gold_labels": false,
+  "related_negative_aware_vmr_method": {
+    "adaptation": "cross-video in-domain reassignment is separately identified; role-sensitive counterfactual editing is a distinct proposed extension and was not claimed as the paper's method",
+    "reference": "Moment of Untruth: Dealing with Negative Queries in Video Moment Retrieval",
+    "url": "https://openaccess.thecvf.com/content/WACV2025/html/Flanagan_Moment_of_Untruth_Dealing_with_Negative_Queries_in_Video_Moment_WACV_2025_paper.html"
+  },
+  "release": "semantic_existence_v4_comp",
+  "seed": 3407,
+  "selection": "deterministic coverage criteria, frozen before any model evaluation",
+  "similarity": "token cosine surrogate; not CLIP",
+  "source": "semantic_existence_v3_release only",
+  "v3_negative_status": "inherited text-reviewed annotations; source v3 records say no per-video review",
+  "video_assignment": "reconstructed from all five v3 group split files and cross-checked against clean masters",
+  "visual_review_performed": false
+}
