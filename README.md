@@ -13,6 +13,8 @@
 
 未补充版的独立明白纸见[该数据集 README](data/release/semantic_existence_v3_release/README.md)。两版本的生成流程差异、数据规模、实验归属与补充版阶段性结果见[版本对照与实验归属说明](docs/reports/SEMANTIC_EXISTENCE_V3_VERSION_GUIDE.md)。补充版数据当前保留在本地 `data/release/semantic_existence_v3_balanced/`，尚未随本分支发布。
 
+补充版的详细生成步骤见[负样本是怎样补出来的？](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)：含真实样本、CLIP 排名示例、语义过滤、补齐配额和校验边界。
+
 ## 1. 这套数据想测什么？
 
 **事件语义没有在下游训练中见过时，模型还能否判断它在视频中是否发生，并在发生时找出时间段？** 例如搜索“把杯子放进柜子”：发生了就定位，没有发生就返回空集合。语义陌生不等于事件缺席，语义熟悉也不等于事件发生。
