@@ -47,6 +47,34 @@ A1–A3 留出动作族，C1–C2 留出动作与对象的组合。动作轴每�
 
 普通实验读取 `splits/<group>/train.jsonl`、`val_seen.jsonl` 和 `test.jsonl`。`val_seen.jsonl` 是验证集的 S+/S− 子集；`matched_u_pairs.jsonl` 是配对索引，`test_matched_u.jsonl` 是展开后的测试配对样本。**下文结果来自完整 test，每组 4,611 条，不是 matched-U 子集。**
 
+### 各组 Test 的 Seen / Unseen 如何组成？
+
+以下五图对应**未补充版**：五组使用相同的 4,611 条视频–查询配对（3,453 正例、1,158 负例），按各组 Unseen 的语义分别标记 S/U。同一句话可以配给不同视频，因此配对数不等于不同句子数。训练排除命中本组 Unseen 已断言事件的完整查询；测试保留 Seen 和 Unseen，并用同一冻结模型与阈值分别评估。
+
+图中 U+ / U− 分别表示 Unseen 正例 / 负例；正例保留 GT 时间段，负例时间段为空。负例标签来自构造与语义审核，文本审核不能证明视频中绝无该事件。Rej-F1 和 G-mIoU@1 的 Seen − Unseen 差距也受子集正负比例影响。
+
+#### A1：物理放置与拿取
+
+[![A1 的 Unseen 语义、测试组成与查询示例](../../../assets/semantic_existence_v3/split_figures/A1_v3.svg)](../../../assets/semantic_existence_v3/split_figures/A1_v3.pdf)
+
+#### A2：饮用与倾倒
+
+[![A2 的 Unseen 语义、测试组成与查询示例](../../../assets/semantic_existence_v3/split_figures/A2_v3.svg)](../../../assets/semantic_existence_v3/split_figures/A2_v3.pdf)
+
+#### A3：跑步与行走
+
+[![A3 的 Unseen 语义、测试组成与查询示例](../../../assets/semantic_existence_v3/split_figures/A3_v3.svg)](../../../assets/semantic_existence_v3/split_figures/A3_v3.pdf)
+
+#### C1：坐与床、椅子、沙发的组合
+
+[![C1 的 Unseen 语义、测试组成与查询示例](../../../assets/semantic_existence_v3/split_figures/C1_v3.svg)](../../../assets/semantic_existence_v3/split_figures/C1_v3.pdf)
+
+#### C2：打开、关闭与箱子、柜子的组合
+
+[![C2 的 Unseen 语义、测试组成与查询示例](../../../assets/semantic_existence_v3/split_figures/C2_v3.svg)](../../../assets/semantic_existence_v3/split_figures/C2_v3.pdf)
+
+五图均直接读取冻结 Test 标注生成；[下载矢量图和查看生成代码](../../../assets/semantic_existence_v3/split_figures)。
+
 ## 4. Baseline 怎样训练和评估？
 
 | 项目 | 本次设置 |
