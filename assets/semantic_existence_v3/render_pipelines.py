@@ -39,9 +39,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--png',action='store_true');args=parser.parse_args()
     root=Path(__file__).resolve().parent
     draw(root/'clean_release_pipeline.svg','未补充版 v3 管线',[
-        ('原始数据','正例 + 旧反事实候选'),('语义审核','归一事件 · 排除冲突'),('五组划分','视频互斥 · 语义留出'),('Seen-only 训练','Seen 验证选模型/阈值'),('退化评估','三项指标 · Gap · CI')])
+        ('正例与改写候选','同视频替换动作/对象'),('语义审核','归一事件 · 排除冲突'),('五组划分','视频互斥 · 语义留出'),('Seen-only 训练','Seen 验证选模型/阈值'),('退化评估','三项指标 · Gap · CI')])
     draw(root/'balanced_pipeline.svg','Balanced v3 管线',[
-        ('原始 v3','保留全部原始样本'),('跨视频配对','同组 · 同 split'),('CLIP 文本排名','保留最低一半视频'),('语义过滤','去重 · 排除标注冲突'),('补齐与校验','追加伪负例至正负 1:1')])
+        ('原始 v3','保留全部原始样本'),('跨视频配对','原查询 + 另一视频'),('CLIP 文本排名','保留最低一半视频'),('语义过滤','去重 · 排除标注冲突'),('补齐与校验','追加伪负例至正负 1:1')])
     if args.png:
         import cairosvg
         for path in root.glob('*_pipeline.svg'):cairosvg.svg2png(url=str(path),write_to=str(path.with_suffix('.png')))

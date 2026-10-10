@@ -30,23 +30,32 @@
 
 ## 2. 数据怎样制作？
 
-[![未补充版 v3 数据制作与严格泛化评估流程](assets/semantic_existence_v3/clean_release_pipeline.svg)](assets/semantic_existence_v3/clean_release_pipeline.svg)
+### 未补充版：同一视频，改写查询作为负例候选
 
-未补充版：先审核与划分，再用 Seen-only 训练评估。
+[![未补充版 v3 简要管线](assets/semantic_existence_v3/clean_release_pipeline.svg)](assets/semantic_existence_v3/clean_release_pipeline.svg)
+
+1. **取正例：** 使用 Charades-STA 已标注的事件描述和时间段，例如“一个人走上楼梯”。
+2. **筛负例：** 将旧版改写候选（例如“跑上楼梯”）与同一视频的已有描述比对，剔除同义、事件重合和难以判断的候选；保留者标为缺席，不给时间段。
+3. **划分数据：** 训练、验证、测试使用不同视频，再从训练中移除指定事件。例如 A2 不用“饮用/倾倒”事件训练，留在测试中检查模型能否泛化。
+
+最终保留 **15,034 条正例、2,869 条负例**，不再追加新负例。
+
+### 补充版：不改查询，换一个视频增加负例
 
 [![Balanced v3 简要管线](assets/semantic_existence_v3/balanced_pipeline.svg)](assets/semantic_existence_v3/balanced_pipeline.svg)
 
-补充版：保留原始样本，跨视频构造伪负例；详细规则见[生成说明](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)。
+例如，把视频 A 的“用杯子喝东西”这句话配给另一个视频 B，生成一条新的缺席样本：
 
-1. **整理来源。** 正例来自 Charades-STA 原始标注，保留查询、视频和 GT 时间窗；负查询来自 v2 五划分的旧反事实候选，按 qid 去重审核。负例使用 `relevant_windows=[]`，其源事件时间窗只作追溯，不是负例的定位 GT。
-2. **解析完整事件。** 归一化动作词义、对象及 theme/source/goal/location 等角色；统一 sofa/couch，区分实体取放、穿脱衣和 “take a drink” 等不同词义。一次查询可以包含多个事件，按整句处理，不能只匹配单个动作词。
-3. **语义审核。** 对 18,661 个初始候选 qid 逐条检查完整查询、事件元数据及已有同视频原始正例文本；修正事件标注，排除同义、蕴含、语义重合、歧义和构造错误负例。无法可靠判断的样本隔离。全量复审修订了 4,405 条正例及 1,218 条负例的元数据，隔离 42 条正例；审核档案与干净发布分开保存。
-4. **冻结干净母池。** 最终保留 **15,034 个正例 qid、2,869 个负例 qid**；干净发布中隔离/排除样本均为 0。这里的“干净”表示通过当前文本语义审核规则，不是逐视频验证的缺席真值。
-5. **固定视频归属。** 沿用已保存的视频级分配，保留原始 test 视频；其余原始 train 视频按 seed 3407 补充分配。源正例及派生负例继承同一视频 split。各组共用视频分配，组内 Train/Val/Test 视频互斥。
-6. **施加语义留出。** 训练查询含任一已断言发生的 held 事件时整条移除；目的/意图事件和否定事件不当作已发生事件。训练仅含 S+/S−；验证和测试保留 S+/S−/U+/U−。动作轴三组共享合法 S− 训练交集，组合轴两组也共享合法 S− 训练交集。
-7. **校验与冻结实验输入。** 检查 qid、存在标签与空/非空时间窗、视频互斥、Seen-only 训练及 `val_seen` 一致性。实验复制独立标注快照并记录 SHA-256；文本特征仅在 qid 与查询文本完全一致时复用，同时检查视频特征覆盖。
+1. **选视频：** 只在同组、同一训练/验证/测试划分中找 B。
+2. **排相似度：** CLIP 比较这句话和 B 的已有描述，取最高相似度；候选视频从低到高排序，只保留前一半。
+3. **排除冲突：** B 已标注相同/重合事件，或配对重复，就跳过。
+4. **追加负例：** 合格配对标为缺席、不给时间段，直到负例数等于正例数；原始样本全部保留。
 
-**负例依据与边界：** 本轮采用“Charades 短视频中，语义确实不同且未被同视频已有正例描述的新事件，通常可视为缺席”的构造假设。审核使用文本和已有标注，**没有逐条视频复核，也没有使用 baseline 预测筛样**。因此仍可能存在文本无法揭示的缺席标签噪声。详见[构造协议](data/release/semantic_existence_v3_release/construction_protocol.json)、[审核汇总](data/release/semantic_existence_v3_release/audit_summary.json)及[发布验收](data/release/semantic_existence_v3_release/validation_report.json)。
+每组 Test：**3,453 正＋1,158 负 → 新增 2,295 负 → 正负各 3,453**。1:1 指完整划分，Seen/Unseen 不保证分别平衡。
+
+**两版负例均未逐视频核验；文本审核和低相似度不能证明事件缺席。补充版新增标签明确记为“伪负例”。**
+
+[原版审核细节](docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md) · [补充版完整规则与真实样本](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)
 
 ## 3. 五组怎么划分，有多大？
 
