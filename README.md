@@ -1,5 +1,9 @@
 # GMR Unseen: Semantic Novelty × Event Existence
 
+## 2026-10-10：干净 v3 数据与三个 backbone 的完整 baseline
+
+**15/15 个训练与测试均已完成。** [干净 v3 数据集](data/release/semantic_existence_v3_release/README.md) · [实验说明与复现材料](experiments/agy_test/v3_release_baselines_20261009/README.md) · [AUROC、Rej-F1、G-mIoU 的 Seen/Unseen 退化与 95% CI](experiments/agy_test/v3_release_baselines_20261009/evaluation/GENERALIZATION_DROP_COMPARISON.md) · [完整原始指标表](experiments/agy_test/v3_release_baselines_20261009/evaluation/STANDARD_EVALUATION.md)。这些结果来自最终干净 v3 发布版，与下方历史 v1/v2/DDV 实验的数据不同。
+
 **本项目研究：如何让视频检索模型将“事件是否发生”的判断泛化到未见语义，使其既能找出陌生但真实发生的事件，也能拒绝语义合理却没有发生的事件？** 例如，用户搜索“把杯子放进柜子”，即使模型在下游训练中没有见过这个动作组合，只要视频里发生了，就应该找到它；如果没有发生，即使杯子、柜子和相关动作都很熟悉，也应该拒绝返回片段。语义是否熟悉与事件是否发生是两个不同的问题。当前实验发现，模型在未见语义上既可能接受不存在的事件，也可能拒绝真实发生、甚至已经定位正确的事件，说明定位能力与存在判断能力未能同步泛化。因此，核心科学问题是：**未见语义下，事件存在判断与定位能力为何出现分离，以及如何使二者共同泛化。** 模型需要从有限的已见语义中学到能够迁移的视频—事件对应关系，并据此同时完成存在判断与时间定位；语义熟悉度是否干扰这一过程，仍是待验证的机制假设。
 
 代码基于 [Generalized Moment Retrieval (GMR)](https://github.com/dymm9977/generalized-moment-retrieval) 扩展，包含 Charades-STA 派生的四象限数据集、构建与校验脚本，以及 Moment-DETR-GMR、QD-DETR-GMR、FlashVTG-GMR 的主实验。
