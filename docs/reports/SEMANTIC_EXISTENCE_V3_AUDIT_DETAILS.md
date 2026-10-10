@@ -1,5 +1,7 @@
 # 未补充版 v3：语义审核与划分细节
 
+初始负例生成步骤已核对 [main 的 v1 说明](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/README.md#how-the-v1-dataset-was-constructed)及[实际构建器](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/scripts/build_semantic_existence.py)。v1 只改变一个动作或对象事件项，并结合重新解析、同视频查询、Charades 动作和 Action Genome 关系筛冲突；其视频复核证据是所有者批次级确认，没有逐 qid 日志。v3 本轮是旧候选的文本语义复审，没有新增逐视频复核。
+
 以下记录保留原管线的实现细节；简明介绍见[首页](../../README.md#2-数据怎样制作)。
 
 1. **整理来源。** 正例来自 Charades-STA 原始标注，保留查询、视频和 GT 时间窗；负查询来自 v2 五划分的旧反事实候选，按 qid 去重审核。负例使用 `relevant_windows=[]`，其源事件时间窗只作追溯，不是负例的定位 GT。

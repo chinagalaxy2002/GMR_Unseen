@@ -19,17 +19,19 @@
 
 ## 2. 数据怎样制作？
 
-[![未补充版 v3 简要管线](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)
+### 未补充版：v1 造候选，v2 扩展，v3 清理
 
-1. **取正例：** 使用 Charades-STA 已标注的事件描述和时间段，例如“一个人走上楼梯”。
-2. **筛负例：** 将旧版改写候选（例如“跑上楼梯”）与同一视频的已有描述比对，剔除同义、事件重合和难以判断的候选；保留者标为缺席，不给时间段。
-3. **划分数据：** 训练、验证、测试使用不同视频，再从训练中移除指定事件。例如 A2 不用“饮用/倾倒”事件训练，留在测试中检查模型能否泛化。
+[![v1 到 v3 的数据制作管线](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)](../../../assets/semantic_existence_v3/clean_release_pipeline.svg)
 
-最终保留 **15,034 条正例、2,869 条负例**，不再追加新负例。
+1. **v1：从真实事件造负例候选。** 正例来自 Charades-STA 的描述和时间段。解析句子的动作、对象，只改其中一项，视频不变，例如把“打开柜门”改为“关闭柜门”。重新解析，并用同视频其他描述、Charades 动作标注和 Action Genome 关系排除有事件发生证据的候选。
+2. **v2：扩展到五组。** 沿用上述办法，构建动作留出和动作×对象组合留出的五组数据。
+3. **v3：逐条清理旧候选。** 检查整句表达的事件，剔除同义、蕴含、重合、歧义和构造错误，保留 **15,034 条正例、2,869 条负例**。训练/验证/测试的视频互斥，指定留出事件不进入训练。
 
-**负例依据：** 上述负例通过文本语义审核保留，没有逐条看视频确认缺席；审核后的标签仍可能有噪声。
+**审核边界：** v1 记录的是数据所有者的批次级视频复核确认，没有逐条复核日志；v3 本轮清理和 balanced 新增负例没有重新逐视频核验，文本筛选不能证明事件缺席。
 
-补充版另外保留原查询、换视频新增伪负例。两者区别见[首页说明](../../../README.md#2-数据怎样制作)；完整审核记录见[原版审核细节](../../../docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md)。
+[v1 在 main 的原始说明](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/README.md#how-the-v1-dataset-was-constructed) · [v1 构建代码](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/scripts/build_semantic_existence.py) · [v3 审核细节](../../../docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md) · [补充版完整规则](../../../docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)
+
+补充版在上述 v3 上另行“保留原句、换视频”增加伪负例，详见[首页](../../../README.md#2-数据怎样制作)。
 
 ## 3. 五组怎么划分，有多大？
 

@@ -30,32 +30,25 @@
 
 ## 2. 数据怎样制作？
 
-### 未补充版：同一视频，改写查询作为负例候选
+### 未补充版：v1 造候选，v2 扩展，v3 清理
 
-[![未补充版 v3 简要管线](assets/semantic_existence_v3/clean_release_pipeline.svg)](assets/semantic_existence_v3/clean_release_pipeline.svg)
+[![v1 到 v3 的数据制作管线](assets/semantic_existence_v3/clean_release_pipeline.svg)](assets/semantic_existence_v3/clean_release_pipeline.svg)
 
-1. **取正例：** 使用 Charades-STA 已标注的事件描述和时间段，例如“一个人走上楼梯”。
-2. **筛负例：** 将旧版改写候选（例如“跑上楼梯”）与同一视频的已有描述比对，剔除同义、事件重合和难以判断的候选；保留者标为缺席，不给时间段。
-3. **划分数据：** 训练、验证、测试使用不同视频，再从训练中移除指定事件。例如 A2 不用“饮用/倾倒”事件训练，留在测试中检查模型能否泛化。
+1. **v1：从真实事件造负例候选。** 正例来自 Charades-STA 的描述和时间段。解析句子的动作、对象，只改其中一项，视频不变，例如把“打开柜门”改为“关闭柜门”。重新解析，并用同视频其他描述、Charades 动作标注和 Action Genome 关系排除有事件发生证据的候选。
+2. **v2：扩展到五组。** 沿用上述办法，构建动作留出和动作×对象组合留出的五组数据。
+3. **v3：逐条清理旧候选。** 检查整句表达的事件，剔除同义、蕴含、重合、歧义和构造错误，保留 **15,034 条正例、2,869 条负例**。训练/验证/测试的视频互斥，指定留出事件不进入训练。
 
-最终保留 **15,034 条正例、2,869 条负例**，不再追加新负例。
+### 补充版：在 v3 上“保留原句，换视频”
 
-### 补充版：不改查询，换一个视频增加负例
+[![Balanced v3 补负例管线](assets/semantic_existence_v3/balanced_pipeline.svg)](assets/semantic_existence_v3/balanced_pipeline.svg)
 
-[![Balanced v3 简要管线](assets/semantic_existence_v3/balanced_pipeline.svg)](assets/semantic_existence_v3/balanced_pipeline.svg)
+从同组、同一训练/验证/测试划分借一句正例描述，配给另一视频。CLIP 比较这句话与各候选视频已有的描述，取每个视频的最高相似度，再保留排名最低的一半视频；排除重复和语义冲突后，将合格配对标为缺席、不给时间段，追加到原始样本后，直到完整划分正负 **1:1**。
 
-例如，把视频 A 的“用杯子喝东西”这句话配给另一个视频 B，生成一条新的缺席样本：
+例如 Test 原有 **3,453 正＋1,158 负**，追加 **2,295 条伪负例**，得到正负各 **3,453**。
 
-1. **选视频：** 只在同组、同一训练/验证/测试划分中找 B。
-2. **排相似度：** CLIP 比较这句话和 B 的已有描述，取最高相似度；候选视频从低到高排序，只保留前一半。
-3. **排除冲突：** B 已标注相同/重合事件，或配对重复，就跳过。
-4. **追加负例：** 合格配对标为缺席、不给时间段，直到负例数等于正例数；原始样本全部保留。
+**审核边界：** v1 记录的是数据所有者的批次级视频复核确认，没有逐条复核日志；v3 本轮清理和 balanced 新增负例没有重新逐视频核验，文本筛选不能证明事件缺席。
 
-每组 Test：**3,453 正＋1,158 负 → 新增 2,295 负 → 正负各 3,453**。1:1 指完整划分，Seen/Unseen 不保证分别平衡。
-
-**两版负例均未逐视频核验；文本审核和低相似度不能证明事件缺席。补充版新增标签明确记为“伪负例”。**
-
-[原版审核细节](docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md) · [补充版完整规则与真实样本](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)
+[v1 在 main 的原始说明](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/README.md#how-the-v1-dataset-was-constructed) · [v1 构建代码](https://github.com/chinagalaxy2002/GMR_Unseen/blob/2762322406232361816b76e67d7a957bade6dfa8/scripts/build_semantic_existence.py) · [v3 审核细节](docs/reports/SEMANTIC_EXISTENCE_V3_AUDIT_DETAILS.md) · [补充版完整规则](docs/reports/SEMANTIC_EXISTENCE_V3_BALANCED_PIPELINE.md)
 
 ## 3. 五组怎么划分，有多大？
 
