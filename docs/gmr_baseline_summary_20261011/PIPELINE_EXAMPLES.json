@@ -1,0 +1,1540 @@
+{
+  "description": "Exact frozen test rows used in the README; no annotation or partition changes.",
+  "examples": [
+    {
+      "split": "A1_v3",
+      "unseen_rule": "动作：物理放置 / 拿取",
+      "clean_source_file": "data/release/semantic_existence_v3_release/splits/A1_v3/test.jsonl",
+      "balanced_source_file": "data/release/semantic_existence_v3_balanced/splits/A1_v3/test.jsonl",
+      "seen_positive": {
+        "duration": 36.64514384233123,
+        "qid": "test3004",
+        "query": "person opens bag.",
+        "relevant_windows": [
+          [
+            18.7,
+            30.4
+          ]
+        ],
+        "vid": "MFGLZ",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "bag",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "bag opened"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test3004",
+        "split": "test",
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "bag",
+          "object_concept": "bag",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3004",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person opens bag.”表达open(bag)；open的对象和其他并列动作均有区分。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "unseen_positive": {
+        "duration": 37.4455732946299,
+        "qid": "test1603",
+        "query": "person takes a cup.",
+        "relevant_windows": [
+          [
+            18.8,
+            23.7
+          ]
+        ],
+        "vid": "4BIMI",
+        "events": [
+          {
+            "action_family": "physical_take",
+            "anchor_object": "cup",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "taken"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test1603",
+        "split": "test",
+        "semantic_graph": {
+          "action": "physical_take",
+          "action_family": "physical_take",
+          "action_class": "physical_take",
+          "object": "cup",
+          "object_concept": "cup",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test1603",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person takes a cup.”中的被取对象、来源容器和摄影/饮用角色按全文区分。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "clean_unseen_negative": {
+        "qid": "neg_afa92e9819dbdfe8",
+        "query": "person take a bag.",
+        "vid": "3W1GP",
+        "duration": 35.06836666666667,
+        "source_qid": "test1276",
+        "source_query": "person open a bag.",
+        "source_windows": [
+          [
+            14.0,
+            31.0
+          ]
+        ],
+        "surface_token_edits": 1,
+        "query_token_delta": 0,
+        "video_id": "3W1GP",
+        "events": [
+          {
+            "action_family": "physical_take",
+            "anchor_object": "bag",
+            "anchor_role": "theme",
+            "assertion": "asserted"
+          }
+        ],
+        "semantic_graph": {
+          "action": "physical_take",
+          "action_family": "physical_take",
+          "action_class": "physical_take",
+          "object": "bag",
+          "object_concept": "bag",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "split": "test",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "existence_status": "absent_by_construction",
+        "construction_type": "legacy_adjudicated_negative",
+        "verification_status": "llm_semantic_review_passed",
+        "absence_evidence": "distinct_event_under_short_video_construction_assumption_no_original_gt_conflict",
+        "review_method": "per_qid_native_semantic_reaudit_with_original_gt_alignment",
+        "reviewer": "full_audit_worker_2",
+        "review_decision": "neg_afa92e9819dbdfe8",
+        "semantic_review_id": "neg_afa92e9819dbdfe8",
+        "semantic_review_rule_version": "full-audit-20261009-1",
+        "ontology_version": "v3-ontology-1.0.0",
+        "generation_rule_version": "legacy_minimal_edit_with_v3_full_event_review",
+        "semantic_correction_revision": "negative-full-audit-20261009-1",
+        "review_notes": "开袋拿电脑、携袋穿门口是持有而非拿取袋动作，源开袋不同。",
+        "semantic_status": "unseen",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "neg_afa92e9819dbdfe8",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "开袋拿电脑、携袋穿门口是持有而非拿取袋动作，源开袋不同。",
+        "partition": "U-",
+        "novelty_type": "unseen"
+      },
+      "clean_negative_source": {
+        "duration": 35.06836666666667,
+        "qid": "test1276",
+        "query": "person open a bag.",
+        "relevant_windows": [
+          [
+            14.0,
+            31.0
+          ]
+        ],
+        "vid": "3W1GP",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "bag",
+            "anchor_role": "theme",
+            "assertion": "asserted",
+            "state_change": "open",
+            "aspect": "present"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test1276",
+        "split": "test",
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "bag",
+          "object_concept": "bag",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test1276",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "句中动作对象、观看目标、地点和目的关系按完整句拆分；看、站、躺等动作的参与者按对应语义角色记录。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "balanced_unseen_negative": {
+        "qid": "balneg_708b2dd9733a113ff0a7e7a3",
+        "query": "person takes a cup.",
+        "vid": "GGN5G",
+        "video_id": "GGN5G",
+        "duration": 30.266666666666666,
+        "split": "test",
+        "group": "A1_v3",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "partition": "U-",
+        "semantic_status": "unseen",
+        "novelty_type": "unseen",
+        "events": [
+          {
+            "action_family": "physical_take",
+            "anchor_object": "cup",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "taken"
+          }
+        ],
+        "semantic_graph": {
+          "action": "physical_take",
+          "action_family": "physical_take",
+          "action_class": "physical_take",
+          "object": "cup",
+          "object_concept": "cup",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+        "existence_status": "pseudo_absent_unverified",
+        "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+        "source_qid": "test1603",
+        "source_vid": "4BIMI",
+        "source_split": "test",
+        "source_query": "person takes a cup.",
+        "source_windows": [
+          [
+            18.8,
+            23.7
+          ]
+        ],
+        "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+        "clip_filter": {
+          "pseudo_similarity": 0.8165580630302429,
+          "rank_ascending": 368,
+          "candidate_video_count": 1301,
+          "retained_video_count": 650,
+          "rank_fraction": 0.2828593389700231,
+          "retained_fraction": 0.5,
+          "cutoff_similarity": 0.8404459953308105,
+          "ranking_scope": "same_group_same_split_videos_except_donor_video",
+          "tie_break": "lexicographic_target_vid",
+          "target_positive_reference_count": 1,
+          "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+          "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+          "embedding_metadata": "../../clip_metadata.json",
+          "paper_section": "3.3 In-Domain Negatives"
+        },
+        "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+        "label_caveat": "Low text similarity does not prove event absence; no video verification."
+      }
+    },
+    {
+      "split": "A2_v3",
+      "unseen_rule": "动作：饮用 / 倾倒",
+      "clean_source_file": "data/release/semantic_existence_v3_release/splits/A2_v3/test.jsonl",
+      "balanced_source_file": "data/release/semantic_existence_v3_balanced/splits/A2_v3/test.jsonl",
+      "seen_positive": {
+        "duration": 22.230541666666664,
+        "qid": "test2440",
+        "query": "person take food.",
+        "relevant_windows": [
+          [
+            11.3,
+            16.8
+          ]
+        ],
+        "vid": "WM6RQ",
+        "events": [
+          {
+            "action_family": "physical_take",
+            "anchor_object": "food",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "taken"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test2440",
+        "split": "test",
+        "semantic_graph": {
+          "action": "physical_take",
+          "action_family": "physical_take",
+          "action_class": "physical_take",
+          "object": "food",
+          "object_concept": "food",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test2440",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person take food.”中的取拿/摄影动作、对象与工具/来源角色按全文记录。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "unseen_positive": {
+        "duration": 32.733333333333334,
+        "qid": "test1904",
+        "query": "person drinks from a cup.",
+        "relevant_windows": [
+          [
+            0.1,
+            5.6
+          ]
+        ],
+        "vid": "RJNAB",
+        "events": [
+          {
+            "action_family": "drink",
+            "anchor_object": "unspecified liquid",
+            "anchor_role": "theme",
+            "aspect": "event",
+            "source": "cup"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test1904",
+        "split": "test",
+        "semantic_graph": {
+          "action": "drink",
+          "action_family": "drink",
+          "action_class": "drink",
+          "object": "unspecified liquid",
+          "object_concept": "unspecified liquid",
+          "object_role": "theme",
+          "location": null,
+          "source": "cup",
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "revise",
+        "full_audit_qid": "test1904",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person drinks from a cup.”只指定从cup饮用，没有明示液体种类；事件用unspecified liquid并将容器单列为source。",
+        "semantic_correction_revision": "full-semantic-audit-20261009-1",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "clean_unseen_negative": {
+        "qid": "neg_0084bf6aafb70f6b",
+        "query": "person drink a cup of coffee.",
+        "vid": "5VUT9",
+        "duration": 26.033333333333335,
+        "source_qid": "test552",
+        "source_query": "person pour a cup of coffee.",
+        "source_windows": [
+          [
+            18.0,
+            25.0
+          ]
+        ],
+        "surface_token_edits": 1,
+        "query_token_delta": 0,
+        "video_id": "5VUT9",
+        "events": [
+          {
+            "action_family": "drink",
+            "anchor_object": "coffee",
+            "anchor_role": "theme",
+            "source": "cup"
+          }
+        ],
+        "semantic_graph": {
+          "action": "drink",
+          "action_family": "drink",
+          "action_class": "drink",
+          "object": "coffee",
+          "object_concept": "coffee",
+          "object_role": "theme",
+          "location": null,
+          "source": "cup",
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "split": "test",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "existence_status": "absent_by_construction",
+        "construction_type": "legacy_adjudicated_negative",
+        "verification_status": "llm_semantic_review_passed",
+        "absence_evidence": "distinct_event_under_short_video_construction_assumption_no_original_gt_conflict",
+        "review_method": "per_qid_native_semantic_reaudit_with_original_gt_alignment",
+        "reviewer": "full_audit_worker_1",
+        "review_decision": "neg_0084bf6aafb70f6b",
+        "semantic_review_id": "neg_0084bf6aafb70f6b",
+        "semantic_review_rule_version": "full-audit-20261009-1",
+        "ontology_version": "v3-ontology-1.0.0",
+        "generation_rule_version": "legacy_minimal_edit_with_v3_full_event_review",
+        "semantic_correction_revision": "negative-full-audit-20261009-1",
+        "review_notes": "Pouring coffee and cup retrieval/broom holding GT do not ingest coffee. 原object=cup未准确承载全文事件theme/agent；应为coffee，容器/部件另作角色信息。",
+        "semantic_status": "unseen",
+        "full_audit_decision": "revise",
+        "full_audit_qid": "neg_0084bf6aafb70f6b",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "Pouring coffee and cup retrieval/broom holding GT do not ingest coffee. 原object=cup未准确承载全文事件theme/agent；应为coffee，容器/部件另作角色信息。",
+        "partition": "U-",
+        "novelty_type": "unseen"
+      },
+      "clean_negative_source": {
+        "duration": 26.033333333333335,
+        "qid": "test552",
+        "query": "person pour a cup of coffee.",
+        "relevant_windows": [
+          [
+            18.0,
+            25.0
+          ]
+        ],
+        "vid": "5VUT9",
+        "events": [
+          {
+            "action_family": "pour",
+            "anchor_object": "coffee",
+            "anchor_role": "theme",
+            "goal": "into a cup",
+            "aspect": "event",
+            "state_change": "transferred"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test552",
+        "split": "test",
+        "semantic_graph": {
+          "action": "pour",
+          "action_family": "pour",
+          "action_class": "pour",
+          "object": "coffee",
+          "object_concept": "coffee",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": "into a cup",
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "revise",
+        "full_audit_qid": "test552",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person pour a cup of coffee.”表达pour(coffee)；被倒物与接收容器/源容器角色得到区分。",
+        "semantic_correction_revision": "full-semantic-audit-20261009-1",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "balanced_unseen_negative": {
+        "qid": "balneg_37593697e516319521e45986",
+        "query": "person drinks from a cup.",
+        "vid": "XGS3K",
+        "video_id": "XGS3K",
+        "duration": 22.12,
+        "split": "test",
+        "group": "A2_v3",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "partition": "U-",
+        "semantic_status": "unseen",
+        "novelty_type": "unseen",
+        "events": [
+          {
+            "action_family": "drink",
+            "anchor_object": "unspecified liquid",
+            "anchor_role": "theme",
+            "aspect": "event",
+            "source": "cup"
+          }
+        ],
+        "semantic_graph": {
+          "action": "drink",
+          "action_family": "drink",
+          "action_class": "drink",
+          "object": "unspecified liquid",
+          "object_concept": "unspecified liquid",
+          "object_role": "theme",
+          "location": null,
+          "source": "cup",
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+        "existence_status": "pseudo_absent_unverified",
+        "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+        "source_qid": "test1904",
+        "source_vid": "RJNAB",
+        "source_split": "test",
+        "source_query": "person drinks from a cup.",
+        "source_windows": [
+          [
+            0.1,
+            5.6
+          ]
+        ],
+        "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+        "clip_filter": {
+          "pseudo_similarity": 0.7475977540016174,
+          "rank_ascending": 118,
+          "candidate_video_count": 1301,
+          "retained_video_count": 650,
+          "rank_fraction": 0.09069946195234435,
+          "retained_fraction": 0.5,
+          "cutoff_similarity": 0.807648241519928,
+          "ranking_scope": "same_group_same_split_videos_except_donor_video",
+          "tie_break": "lexicographic_target_vid",
+          "target_positive_reference_count": 3,
+          "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+          "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+          "embedding_metadata": "../../clip_metadata.json",
+          "paper_section": "3.3 In-Domain Negatives"
+        },
+        "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+        "label_caveat": "Low text similarity does not prove event absence; no video verification."
+      }
+    },
+    {
+      "split": "A3_v3",
+      "unseen_rule": "动作：跑步 / 行走",
+      "clean_source_file": "data/release/semantic_existence_v3_release/splits/A3_v3/test.jsonl",
+      "balanced_source_file": "data/release/semantic_existence_v3_balanced/splits/A3_v3/test.jsonl",
+      "seen_positive": {
+        "duration": 35.731843575419,
+        "qid": "test2505",
+        "query": "a person eats.",
+        "relevant_windows": [
+          [
+            18.7,
+            30.3
+          ]
+        ],
+        "vid": "F66WG",
+        "events": [
+          {
+            "action_family": "eat",
+            "anchor_object": "food",
+            "anchor_role": "theme",
+            "assertion": "asserted"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test2505",
+        "split": "test",
+        "semantic_graph": {
+          "action": "eat",
+          "action_family": "eat",
+          "action_class": "eat",
+          "object": "food",
+          "object_concept": "food",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test2505",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "Generic implied food theme is faithful to bare eating predicate.",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "unseen_positive": {
+        "duration": 17.305612306213195,
+        "qid": "test3292",
+        "query": "person runs in.",
+        "relevant_windows": [
+          [
+            4.0,
+            9.0
+          ]
+        ],
+        "vid": "72M7T",
+        "events": [
+          {
+            "action_family": "run",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "goal": "inside",
+            "aspect": "event"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test3292",
+        "split": "test",
+        "semantic_graph": {
+          "action": "run",
+          "action_family": "run",
+          "action_class": "run",
+          "object": "person",
+          "object_concept": "person",
+          "object_role": "agent",
+          "location": null,
+          "source": null,
+          "goal": "inside",
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3292",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person runs in.”明确表达run(person)；跑步者、起点/方向和途经位置按句面区分。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "clean_unseen_negative": {
+        "qid": "neg_a17396e40b039066",
+        "query": "person walks to a table.",
+        "vid": "XSVLL",
+        "duration": 31.898533333333333,
+        "source_qid": "test2187",
+        "source_query": "person runs to a table.",
+        "source_windows": [
+          [
+            0.0,
+            10.8
+          ]
+        ],
+        "surface_token_edits": 1,
+        "query_token_delta": 0,
+        "video_id": "XSVLL",
+        "events": [
+          {
+            "action_family": "walk",
+            "anchor_object": "table",
+            "anchor_role": "goal",
+            "assertion": "asserted",
+            "goal": "table"
+          }
+        ],
+        "semantic_graph": {
+          "action": "walk",
+          "action_family": "walk",
+          "action_class": "walk",
+          "object": "table",
+          "object_concept": "table",
+          "object_role": "goal",
+          "location": null,
+          "source": null,
+          "goal": "table",
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "split": "test",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "existence_status": "absent_by_construction",
+        "construction_type": "legacy_adjudicated_negative",
+        "verification_status": "llm_semantic_review_passed",
+        "absence_evidence": "distinct_event_under_short_video_construction_assumption_no_original_gt_conflict",
+        "review_method": "per_qid_native_semantic_reaudit_with_original_gt_alignment",
+        "reviewer": "full_audit_worker_2",
+        "review_decision": "neg_a17396e40b039066",
+        "semantic_review_id": "neg_a17396e40b039066",
+        "semantic_review_rule_version": "full-audit-20261009-1",
+        "ontology_version": "v3-ontology-1.0.0",
+        "generation_rule_version": "legacy_minimal_edit_with_v3_full_event_review",
+        "semantic_correction_revision": "negative-full-audit-20261009-1",
+        "review_notes": "四处跑及桌旁坐不直接支持walk，原跑向桌不同。",
+        "semantic_status": "unseen",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "neg_a17396e40b039066",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "四处跑及桌旁坐不直接支持walk，原跑向桌不同。",
+        "partition": "U-",
+        "novelty_type": "unseen"
+      },
+      "clean_negative_source": {
+        "duration": 31.898533333333333,
+        "qid": "test2187",
+        "query": "person runs to a table.",
+        "relevant_windows": [
+          [
+            0,
+            10.8
+          ]
+        ],
+        "vid": "XSVLL",
+        "events": [
+          {
+            "action_family": "run",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "assertion": "asserted",
+            "goal": "table",
+            "manner": "to"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test2187",
+        "split": "test",
+        "semantic_graph": {
+          "action": "run",
+          "action_family": "run",
+          "action_class": "run",
+          "object": "person",
+          "object_concept": "person",
+          "object_role": "agent",
+          "location": null,
+          "source": null,
+          "goal": "table",
+          "manner": "to",
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test2187",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "完整句“person runs to a table.”对应run(person)；保留run/walk动作和完整路径，并把to短语中的目标行为单列为purpose。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "balanced_unseen_negative": {
+        "qid": "balneg_2e644b4bbc1e93a9dea1dd46",
+        "query": "person runs in.",
+        "vid": "AK9PN",
+        "video_id": "AK9PN",
+        "duration": 30.9309,
+        "split": "test",
+        "group": "A3_v3",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "partition": "U-",
+        "semantic_status": "unseen",
+        "novelty_type": "unseen",
+        "events": [
+          {
+            "action_family": "run",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "goal": "inside",
+            "aspect": "event"
+          }
+        ],
+        "semantic_graph": {
+          "action": "run",
+          "action_family": "run",
+          "action_class": "run",
+          "object": "person",
+          "object_concept": "person",
+          "object_role": "agent",
+          "location": null,
+          "source": null,
+          "goal": "inside",
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+        "existence_status": "pseudo_absent_unverified",
+        "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+        "source_qid": "test3292",
+        "source_vid": "72M7T",
+        "source_split": "test",
+        "source_query": "person runs in.",
+        "source_windows": [
+          [
+            4.0,
+            9.0
+          ]
+        ],
+        "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+        "clip_filter": {
+          "pseudo_similarity": 0.8495123982429504,
+          "rank_ascending": 444,
+          "candidate_video_count": 1301,
+          "retained_video_count": 650,
+          "rank_fraction": 0.3412759415833974,
+          "retained_fraction": 0.5,
+          "cutoff_similarity": 0.8685370683670044,
+          "ranking_scope": "same_group_same_split_videos_except_donor_video",
+          "tie_break": "lexicographic_target_vid",
+          "target_positive_reference_count": 5,
+          "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+          "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+          "embedding_metadata": "../../clip_metadata.json",
+          "paper_section": "3.3 In-Domain Negatives"
+        },
+        "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+        "label_caveat": "Low text similarity does not prove event absence; no video verification."
+      }
+    },
+    {
+      "split": "C1_v3",
+      "unseen_rule": "组合：坐 × 床 / 椅 / 沙发",
+      "clean_source_file": "data/release/semantic_existence_v3_release/splits/C1_v3/test.jsonl",
+      "balanced_source_file": "data/release/semantic_existence_v3_balanced/splits/C1_v3/test.jsonl",
+      "seen_positive": {
+        "duration": 30.363666666666663,
+        "qid": "test3079",
+        "query": "person sits on the floor.",
+        "relevant_windows": [
+          [
+            16.1,
+            21.7
+          ]
+        ],
+        "vid": "14HG1",
+        "events": [
+          {
+            "action_family": "sit",
+            "anchor_object": "person",
+            "anchor_role": "agent",
+            "assertion": "asserted",
+            "goal": "floor",
+            "state_change": "seated",
+            "support_surface": "floor"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test3079",
+        "split": "test",
+        "semantic_graph": {
+          "action": "sit",
+          "action_family": "sit",
+          "action_class": "sit",
+          "object": "person",
+          "object_concept": "person",
+          "object_role": "agent",
+          "location": null,
+          "source": null,
+          "goal": "floor",
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3079",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "完整句“person sits on the floor.”对应sit(person)；按sit at与sit on/in区分位置和支撑面，并将to结构中未保证发生的后续动作标为purpose。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "unseen_positive": {
+        "duration": 16.464367263550056,
+        "qid": "test2589",
+        "query": "person sit on a bed.",
+        "relevant_windows": [
+          [
+            11.4,
+            15.8
+          ]
+        ],
+        "vid": "RT1JY",
+        "events": [
+          {
+            "action_family": "sit",
+            "anchor_object": "bed",
+            "anchor_role": "support_surface",
+            "assertion": "asserted",
+            "location": "bed",
+            "state_change": "person seated on bed",
+            "aspect": "event"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test2589",
+        "split": "test",
+        "semantic_graph": {
+          "action": "sit",
+          "action_family": "sit",
+          "action_class": "sit",
+          "object": "bed",
+          "object_concept": "bed",
+          "object_role": "support_surface",
+          "location": "bed",
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test2589",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "完整句中的动作、对象及地点/同时发生的事件逐项核对；坐在chair/sofa等明确支撑面与在table处坐下按不同角色记录。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "clean_unseen_negative": {
+        "qid": "neg_f69955b1478a4a55",
+        "query": "person sits in bed.",
+        "vid": "EEGGA",
+        "duration": 30.151961078743465,
+        "source_qid": "test3538",
+        "source_query": "person sits in chair.",
+        "source_windows": [
+          [
+            0.0,
+            4.6
+          ]
+        ],
+        "surface_token_edits": 1,
+        "query_token_delta": 0,
+        "video_id": "EEGGA",
+        "events": [
+          {
+            "action_family": "sit",
+            "anchor_object": "bed",
+            "anchor_role": "support_surface"
+          }
+        ],
+        "semantic_graph": {
+          "action": "sit",
+          "action_family": "sit",
+          "action_class": "sit",
+          "object": "bed",
+          "object_concept": "bed",
+          "object_role": "support_surface",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "split": "test",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "existence_status": "absent_by_construction",
+        "construction_type": "legacy_adjudicated_negative",
+        "verification_status": "llm_semantic_review_passed",
+        "absence_evidence": "distinct_event_under_short_video_construction_assumption_no_original_gt_conflict",
+        "review_method": "per_qid_native_semantic_reaudit_with_original_gt_alignment",
+        "reviewer": "full_audit_worker_1",
+        "review_decision": "neg_f69955b1478a4a55",
+        "semantic_review_id": "neg_f69955b1478a4a55",
+        "semantic_review_rule_version": "full-audit-20261009-1",
+        "ontology_version": "v3-ontology-1.0.0",
+        "generation_rule_version": "legacy_minimal_edit_with_v3_full_event_review",
+        "semantic_correction_revision": "negative-full-audit-20261009-1",
+        "review_notes": "Eating begins alongside chair sitting; bed not asserted.",
+        "semantic_status": "unseen",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "neg_f69955b1478a4a55",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "Eating begins alongside chair sitting; bed not asserted.",
+        "partition": "U-",
+        "novelty_type": "unseen"
+      },
+      "clean_negative_source": {
+        "duration": 30.151961078743465,
+        "qid": "test3538",
+        "query": "person sits in chair.",
+        "relevant_windows": [
+          [
+            0,
+            4.6
+          ]
+        ],
+        "vid": "EEGGA",
+        "events": [
+          {
+            "action_family": "sit",
+            "anchor_object": "chair",
+            "anchor_role": "support_surface",
+            "agent": "person",
+            "aspect": "state",
+            "location": "chair",
+            "assertion": "asserted"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test3538",
+        "split": "test",
+        "semantic_graph": {
+          "action": "sit",
+          "action_family": "sit",
+          "action_class": "sit",
+          "object": "chair",
+          "object_concept": "chair",
+          "object_role": "support_surface",
+          "location": "chair",
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3538",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "句子断言人物坐在所述椅子/床面上；当前事件的坐姿、支撑面及明确修饰信息与句意一致。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "balanced_unseen_negative": {
+        "qid": "balneg_67df7a7bf507d79a86964801",
+        "query": "person sit on a bed.",
+        "vid": "8TSU4",
+        "video_id": "8TSU4",
+        "duration": 12.633333333333333,
+        "split": "test",
+        "group": "C1_v3",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "partition": "U-",
+        "semantic_status": "unseen",
+        "novelty_type": "unseen",
+        "events": [
+          {
+            "action_family": "sit",
+            "anchor_object": "bed",
+            "anchor_role": "support_surface",
+            "assertion": "asserted",
+            "location": "bed",
+            "state_change": "person seated on bed",
+            "aspect": "event"
+          }
+        ],
+        "semantic_graph": {
+          "action": "sit",
+          "action_family": "sit",
+          "action_class": "sit",
+          "object": "bed",
+          "object_concept": "bed",
+          "object_role": "support_surface",
+          "location": "bed",
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+        "existence_status": "pseudo_absent_unverified",
+        "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+        "source_qid": "test2589",
+        "source_vid": "RT1JY",
+        "source_split": "test",
+        "source_query": "person sit on a bed.",
+        "source_windows": [
+          [
+            11.4,
+            15.8
+          ]
+        ],
+        "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+        "clip_filter": {
+          "pseudo_similarity": 0.7931814789772034,
+          "rank_ascending": 498,
+          "candidate_video_count": 1301,
+          "retained_video_count": 650,
+          "rank_fraction": 0.382782475019216,
+          "retained_fraction": 0.5,
+          "cutoff_similarity": 0.8016895651817322,
+          "ranking_scope": "same_group_same_split_videos_except_donor_video",
+          "tie_break": "lexicographic_target_vid",
+          "target_positive_reference_count": 1,
+          "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+          "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+          "embedding_metadata": "../../clip_metadata.json",
+          "paper_section": "3.3 In-Domain Negatives"
+        },
+        "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+        "label_caveat": "Low text similarity does not prove event absence; no video verification."
+      }
+    },
+    {
+      "split": "C2_v3",
+      "unseen_rule": "组合：打开 / 关闭 × 箱 / 柜",
+      "clean_source_file": "data/release/semantic_existence_v3_release/splits/C2_v3/test.jsonl",
+      "balanced_source_file": "data/release/semantic_existence_v3_balanced/splits/C2_v3/test.jsonl",
+      "seen_positive": {
+        "duration": 36.64514384233123,
+        "qid": "test3004",
+        "query": "person opens bag.",
+        "relevant_windows": [
+          [
+            18.7,
+            30.4
+          ]
+        ],
+        "vid": "MFGLZ",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "bag",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "bag opened"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test3004",
+        "split": "test",
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "bag",
+          "object_concept": "bag",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3004",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person opens bag.”表达open(bag)；open的对象和其他并列动作均有区分。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "unseen_positive": {
+        "duration": 38.43555555555556,
+        "qid": "test1721",
+        "query": "person open a box.",
+        "relevant_windows": [
+          [
+            14.7,
+            21.2
+          ]
+        ],
+        "vid": "FNBYE",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "box",
+            "anchor_role": "theme",
+            "assertion": "asserted",
+            "state_change": "open",
+            "aspect": "present"
+          }
+        ],
+        "semantic_status": "unseen",
+        "construction_type": "original_positive",
+        "source_qid": "test1721",
+        "split": "test",
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "box",
+          "object_concept": "box",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test1721",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "句中动作对象、观看目标、地点和目的关系按完整句拆分；看、站、躺等动作的参与者按对应语义角色记录。",
+        "partition": "U+",
+        "novelty_type": "unseen"
+      },
+      "clean_unseen_negative": {
+        "qid": "neg_5c85f44a281380ed",
+        "query": "person opens box.",
+        "vid": "MFGLZ",
+        "duration": 36.64514384233123,
+        "source_qid": "test3004",
+        "source_query": "person opens bag.",
+        "source_windows": [
+          [
+            18.7,
+            30.4
+          ]
+        ],
+        "surface_token_edits": 1,
+        "query_token_delta": 0,
+        "video_id": "MFGLZ",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "box",
+            "anchor_role": "theme"
+          }
+        ],
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "box",
+          "object_concept": "box",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "split": "test",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "existence_status": "absent_by_construction",
+        "construction_type": "legacy_adjudicated_negative",
+        "verification_status": "llm_semantic_review_passed",
+        "absence_evidence": "distinct_event_under_short_video_construction_assumption_no_original_gt_conflict",
+        "review_method": "per_qid_native_semantic_reaudit_with_original_gt_alignment",
+        "reviewer": "full_audit_worker_1",
+        "review_decision": "neg_5c85f44a281380ed",
+        "semantic_review_id": "neg_5c85f44a281380ed",
+        "semantic_review_rule_version": "full-audit-20261009-1",
+        "ontology_version": "v3-ontology-1.0.0",
+        "generation_rule_version": "legacy_minimal_edit_with_v3_full_event_review",
+        "semantic_correction_revision": "negative-full-audit-20261009-1",
+        "review_notes": "Bag opening/home-office awakening do not open box.",
+        "semantic_status": "unseen",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "neg_5c85f44a281380ed",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "Bag opening/home-office awakening do not open box.",
+        "partition": "U-",
+        "novelty_type": "unseen"
+      },
+      "clean_negative_source": {
+        "duration": 36.64514384233123,
+        "qid": "test3004",
+        "query": "person opens bag.",
+        "relevant_windows": [
+          [
+            18.7,
+            30.4
+          ]
+        ],
+        "vid": "MFGLZ",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "bag",
+            "anchor_role": "theme",
+            "aspect": "present",
+            "state_change": "bag opened"
+          }
+        ],
+        "semantic_status": "seen",
+        "construction_type": "original_positive",
+        "source_qid": "test3004",
+        "split": "test",
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "bag",
+          "object_concept": "bag",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "exist_label": 1,
+        "existence_status": "present",
+        "full_audit_decision": "pass",
+        "full_audit_qid": "test3004",
+        "full_audit_rule_version": "full-audit-20261009-1",
+        "full_audit_reason": "“person opens bag.”表达open(bag)；open的对象和其他并列动作均有区分。",
+        "partition": "S+",
+        "novelty_type": "seen"
+      },
+      "balanced_unseen_negative": {
+        "qid": "balneg_ef4e712ac6468a04e6cac860",
+        "query": "person open a box.",
+        "vid": "TCI7K",
+        "video_id": "TCI7K",
+        "duration": 30.833333333333332,
+        "split": "test",
+        "group": "C2_v3",
+        "exist_label": 0,
+        "relevant_windows": [],
+        "partition": "U-",
+        "semantic_status": "unseen",
+        "novelty_type": "unseen",
+        "events": [
+          {
+            "action_family": "open",
+            "anchor_object": "box",
+            "anchor_role": "theme",
+            "assertion": "asserted",
+            "state_change": "open",
+            "aspect": "present"
+          }
+        ],
+        "semantic_graph": {
+          "action": "open",
+          "action_family": "open",
+          "action_class": "open",
+          "object": "box",
+          "object_concept": "box",
+          "object_role": "theme",
+          "location": null,
+          "source": null,
+          "goal": null,
+          "manner": null,
+          "assertion": "asserted",
+          "representation": "full_semantic_audit_primary_event_projection"
+        },
+        "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+        "existence_status": "pseudo_absent_unverified",
+        "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+        "source_qid": "test1721",
+        "source_vid": "FNBYE",
+        "source_split": "test",
+        "source_query": "person open a box.",
+        "source_windows": [
+          [
+            14.7,
+            21.2
+          ]
+        ],
+        "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+        "clip_filter": {
+          "pseudo_similarity": 0.8230675458908081,
+          "rank_ascending": 455,
+          "candidate_video_count": 1301,
+          "retained_video_count": 650,
+          "rank_fraction": 0.34973097617217525,
+          "retained_fraction": 0.5,
+          "cutoff_similarity": 0.8415297269821167,
+          "ranking_scope": "same_group_same_split_videos_except_donor_video",
+          "tie_break": "lexicographic_target_vid",
+          "target_positive_reference_count": 1,
+          "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+          "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+          "embedding_metadata": "../../clip_metadata.json",
+          "paper_section": "3.3 In-Domain Negatives"
+        },
+        "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+        "label_caveat": "Low text similarity does not prove event absence; no video verification."
+      }
+    },
+    {
+      "split": "C3_CG",
+      "unseen_rule": "官方 Novel-Composition；本例官方标记为 open × laptop。Test-Trivial 为 Seen",
+      "source_file": "data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2/splits/C3_CG/test.jsonl",
+      "seen_positive": {
+        "qid": "test_trivial.json:F66WG:4",
+        "source_qid": "test_trivial.json:F66WG:4",
+        "vid": "F66WG",
+        "query": "a person eats.",
+        "relevant_windows": [
+          [
+            18.7,
+            30.3
+          ]
+        ],
+        "duration": 35.67,
+        "exist_label": 1,
+        "official_subset": "test_trivial",
+        "official_split": "test",
+        "novels": {},
+        "source_file": "test_trivial.json",
+        "source_commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+        "partition": "S+",
+        "video_split": "test",
+        "pair_id": "c3cg-c104aadd6e88842e"
+      },
+      "unseen_positive": {
+        "qid": "novel_composition.json:2ECXI:0",
+        "source_qid": "novel_composition.json:2ECXI:0",
+        "vid": "2ECXI",
+        "query": "person opens laptop.",
+        "relevant_windows": [
+          [
+            5.7,
+            13.2
+          ]
+        ],
+        "duration": 27.5,
+        "exist_label": 1,
+        "official_subset": "novel_composition",
+        "official_split": "test",
+        "novels": {
+          "v-n": [
+            [
+              "open",
+              "laptop"
+            ]
+          ]
+        },
+        "source_file": "novel_composition.json",
+        "source_commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+        "partition": "U+",
+        "video_split": "test",
+        "pair_id": "c3cg-43d91f42f5498019"
+      },
+      "charades_unseen_negative": {
+        "qid": "c3cg-43d91f42f5498019-neg",
+        "pair_id": "c3cg-43d91f42f5498019",
+        "vid": "P5ANU",
+        "query": "person opens laptop.",
+        "relevant_windows": [],
+        "duration": 28.33,
+        "exist_label": 0,
+        "partition": "U-",
+        "official_subset": "novel_composition",
+        "novels": {
+          "v-n": [
+            [
+              "open",
+              "laptop"
+            ]
+          ]
+        },
+        "source_qid": "novel_composition.json:2ECXI:0",
+        "source_vid": "2ECXI",
+        "construction_method": "mout_in_domain_clip_reassignment",
+        "sampling_source": "Moment of Untruth §3.3 In-Domain negatives; lowest-scoring half of same-split videos"
+      }
+    }
+  ],
+  "implementation_boundary": {
+    "source_file": "data/release/semantic_existence_v3_release/splits/C1_v3/test.jsonl",
+    "record": {
+      "duration": 31.066666666666666,
+      "qid": "test1038",
+      "query": "person sits in a chair.",
+      "relevant_windows": [
+        [
+          0,
+          6.8
+        ]
+      ],
+      "vid": "LXEPT",
+      "events": [
+        {
+          "action_family": "sit",
+          "anchor_object": "person",
+          "anchor_role": "agent",
+          "assertion": "asserted",
+          "location": "chair",
+          "state_change": "seated on chair",
+          "support_surface": "chair"
+        }
+      ],
+      "semantic_status": "seen",
+      "construction_type": "original_positive",
+      "source_qid": "test1038",
+      "split": "test",
+      "semantic_graph": {
+        "action": "sit",
+        "action_family": "sit",
+        "action_class": "sit",
+        "object": "person",
+        "object_concept": "person",
+        "object_role": "agent",
+        "location": "chair",
+        "source": null,
+        "goal": null,
+        "manner": null,
+        "assertion": "asserted",
+        "representation": "full_semantic_audit_primary_event_projection"
+      },
+      "exist_label": 1,
+      "existence_status": "present",
+      "full_audit_decision": "pass",
+      "full_audit_qid": "test1038",
+      "full_audit_rule_version": "full-audit-20261009-1",
+      "full_audit_reason": "完整句“person sits in a chair.”对应sit(person)；坐姿支撑面按明确家具记录，to短语后的动作作为坐下的目的，不声称该动作已经发生。",
+      "partition": "S+",
+      "novelty_type": "seen"
+    },
+    "explanation": "The chair occurs in location/support_surface, while anchor_object=person and anchor_role=agent. The released held_event predicate does not match this event; frozen partition is S+."
+  }
+}
