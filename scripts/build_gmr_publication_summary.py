@@ -397,6 +397,14 @@ def write_readme(rows, counts, inventory):
 
 本分支汇总 Clean Semantic Existence v3、Balanced v3 与 Charades-CG-GMR v2 的数据、方法源码、运行脚本和冻结结果，更新于 **2026-10-11**。两个 v3 项目各完成五划分 × 三 backbone（15/15）；Charades-CG v2 完成 C3_CG × 三 backbone（3/3），共 **33 个已完成评测设置**。
 
+## GMR 方法与研究问题
+
+![原 GMR README 的 GMR Adapter 总体方法图](assets/adapter10.png)
+
+*原 GMR README 方法图：定位分支预测时间窗，存在判断分支通过阈值决定输出时间窗或空集。图源：[GMR](https://github.com/dymm9977/generalized-moment-retrieval)。*
+
+GMR 在时间定位骨干上增加存在判断分支：事件存在时返回时间窗，缺席时返回空集。我们关注：**面对训练未见的动作或组合，模型能否找准真实事件，并拒绝未发生的事件？** 为此，三套数据、三个骨干均使用 Seen 训练和选模，分别评测 Seen/Unseen 的 AUROC、Rej-F1 与 G-mIoU@1。Clean v3 三模型的五划分宏平均 AUROC 下降 18.96–20.76 pp；Balanced v3 仍下降 3.52–10.98 pp，Charades-CG 的 Moment/Flash 也有显著差距。这些结果支持进一步研究**事件存在判断与时间定位如何共同泛化到未见语义**。
+
 ## 项目与数据入口
 
 | 项目 | 实验 README | 对应数据集 | 完成设置 |

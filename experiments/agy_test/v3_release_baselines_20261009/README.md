@@ -1,5 +1,11 @@
 # Clean v3 release baselines
 
+![原 GMR README 的 GMR Adapter 总体方法图](../../../assets/adapter10.png)
+
+*原 [GMR](https://github.com/dymm9977/generalized-moment-retrieval) 方法图：存在判断决定返回定位结果或空集。*
+
+GMR 同时判断事件是否存在并定位其时间窗。我们关注：**面对训练未见的动作或组合，模型能否找准真实事件，并拒绝未发生的事件？** 本实验在五组语义划分上仅用 Seen 训练和选模，评测三个 GMR 骨干；三模型的五划分宏平均 AUROC 从 Seen 到 Unseen 下降 **18.96–20.76 pp**，表明存在判断明显退化，支持进一步联合研究拒绝与定位的语义泛化。
+
 Dataset: `data/release/semantic_existence_v3_release`, isolated from historical initial-v3 runs. Five groups × Moment-DETR-GMR / QD-DETR-GMR / FlashVTG-GMR, seed 3407, fresh training, maximum 100 epochs, early stop after 27 validations without improvement. Only S+/S− training and full Seen validation checkpoint/threshold selection. The initial six jobs run on two GPUs (three jobs per GPU), and remaining jobs are queued.
 
 Finalization is complete only when `FINAL_EVALUATION_STATUS.json` has `complete: true`. Until then, evaluation files are partial/provisional. The running queue and automatic finalizer use tmux sessions `v3_release_baselines_20261009` and `v3_release_baseline_finalize_20261009`.
