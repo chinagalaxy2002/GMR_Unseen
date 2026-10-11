@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+<title id="title">四套数据，回答同一个问题</title>
+<desc id="desc">训练没见过的语义：事件是否发生？发生在哪里？</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">四套数据，回答同一个问题</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">训练没见过的语义：事件是否发生？发生在哪里？</text>
+<text x="42" y="127" font-size="21" fill="#526572" font-weight="bold" text-anchor="start">数据</text>
+<text x="282" y="127" font-size="21" fill="#526572" font-weight="bold" text-anchor="start">正例来源</text>
+<text x="552" y="127" font-size="21" fill="#526572" font-weight="bold" text-anchor="start">负例：模型应拒绝</text>
+<text x="912" y="127" font-size="21" fill="#526572" font-weight="bold" text-anchor="start">Unseen 的语义</text>
+<rect x="30" y="145" width="1140" height="72" rx="7" fill="#F5F8FA" stroke="#E4EAF0" stroke-width="1.5"/>
+<text x="44" y="188" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">Clean v3</text>
+<text x="282" y="188" font-size="20" fill="#243746" font-weight="normal" text-anchor="start">Charades 原句与时间窗</text>
+<text x="552" y="174" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">固定视频，改动作或对象</text>
+<text x="552" y="202" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">语义审核后保留</text>
+<text x="912" y="174" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">动作族</text>
+<text x="912" y="202" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">动作 × 对象</text>
+<line x1="519" y1="181" x2="535" y2="181" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="878" y1="181" x2="894" y2="181" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="228" width="1140" height="72" rx="7" fill="#F5F8FA" stroke="#E4EAF0" stroke-width="1.5"/>
+<text x="44" y="271" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">Balanced v3</text>
+<text x="282" y="271" font-size="20" fill="#243746" font-weight="normal" text-anchor="start">保留 Clean 全部正例</text>
+<text x="552" y="257" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">原句换视频，追加负例</text>
+<text x="552" y="285" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">补齐每个划分正负 1:1</text>
+<text x="912" y="257" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">沿用 Clean</text>
+<text x="912" y="285" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">五组语义定义</text>
+<line x1="519" y1="264" x2="535" y2="264" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="878" y1="264" x2="894" y2="264" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="311" width="1140" height="72" rx="7" fill="#F5F8FA" stroke="#E4EAF0" stroke-width="1.5"/>
+<text x="44" y="354" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">Charades-CG v2</text>
+<text x="282" y="354" font-size="20" fill="#243746" font-weight="normal" text-anchor="start">官方组合划分的正例</text>
+<text x="552" y="340" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">原句换视频</text>
+<text x="552" y="368" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">每个正例对应一个负例</text>
+<text x="912" y="340" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">官方未见组合</text>
+<text x="912" y="368" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">Novel-Composition</text>
+<line x1="519" y1="347" x2="535" y2="347" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="878" y1="347" x2="894" y2="347" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="394" width="1140" height="72" rx="7" fill="#F5F8FA" stroke="#E4EAF0" stroke-width="1.5"/>
+<text x="44" y="437" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">Soccer</text>
+<text x="282" y="437" font-size="20" fill="#243746" font-weight="normal" text-anchor="start">已有世界杯正例标注</text>
+<text x="552" y="423" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">沿用源负例</text>
+<text x="552" y="451" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">本次没有新增负例</text>
+<text x="912" y="423" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">动作</text>
+<text x="912" y="451" font-size="19" fill="#243746" font-weight="normal" text-anchor="start">动作 × 球队</text>
+<line x1="519" y1="430" x2="535" y2="430" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="878" y1="430" x2="894" y2="430" stroke="#8796A5" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="495" width="1140" height="47" rx="7" fill="#EAF3F8" stroke="#C4D9E6" stroke-width="1.5"/>
+<text x="600" y="527" font-size="21" fill="#244961" font-weight="bold" text-anchor="middle">训练只用 Seen  →  Seen 验证选模型和阈值  →  Test 分别评测 Seen / Unseen</text>
+</g></svg>

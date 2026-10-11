@@ -2,7 +2,8 @@
   "datasets": [
     "data/release/semantic_existence_v3_release",
     "data/release/semantic_existence_v3_balanced",
-    "data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2"
+    "data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2",
+    "data/release/soccer_gmr_unseen_v1"
   ],
   "compressed": [
     {
@@ -13,5 +14,20 @@
       "gzip_sha256": "4cdfa707814dbcbfc54ceffb60df811e6a180955e0175784cf49239eba9dbdf1"
     }
   ],
-  "policy": "Annotations, source, configuration, predictions, calibration and bootstrap artifacts included; video, feature arrays, credentials and model weights excluded."
+  "policy": "Annotations, source, configuration, predictions, calibration and bootstrap artifacts included; video, feature arrays, credentials and model weights excluded.",
+  "soccer_experiment_inputs": "data/experiment_inputs/soccer_unseen_baselines_20261011",
+  "soccer_release_manifest": "experiments/agy_test/publication_review_20261011/soccer_unseen/docs/reports/soccer_unseen_baselines_20261011/RELEASE_MANIFEST.json",
+  "review_only": false,
+  "base_branch_commit": "8d4afc057878d3eede5ac3a51703a65b2efc95a6",
+  "result_readmes": [
+    "experiments/agy_test/v3_release_baselines_20261009/README.md",
+    "experiments/agy_test/v3_balanced_baselines_20261010/README.md",
+    "experiments/agy_test/publication_review_20261011/charades_cg/README.md",
+    "experiments/agy_test/publication_review_20261011/soccer_unseen/README.md"
+  ],
+  "previous_readme": {
+    "path": "README_EXPERIMENT_REPORT.md",
+    "source_commit": "8d4afc057878d3eede5ac3a51703a65b2efc95a6",
+    "sha256": "c45a9d8d34ac1d2b1dd90054bd80196e88aea80f68a4517b4fa88bf92a1ee354"
+  }
 }

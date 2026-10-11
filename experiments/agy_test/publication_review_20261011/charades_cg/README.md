@@ -6,7 +6,7 @@
 
 GMR 同时判断事件是否存在并定位其时间窗。我们关注：**面对训练未见的动作–对象组合，模型能否定位真实事件，同时拒绝未发生的事件？** 本实验沿用 Charades-CG 官方 Seen/Unseen 身份，只用 Seen 训练和选模；Moment 与 Flash 的 Unseen AUROC 分别比 Seen 低 **7.51、7.93 pp**，两者差距的 95% CI 均高于零，支持在官方组合划分上进一步研究存在判断与定位的共同泛化。
 
-更新日期：2026-10-11。数据来自 [`charades_cg_gmr_v2`](data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2/README.md)，重新评估来自 `charades_cg_v2_evaluation_20261011`。**3/3 个 backbone 全部完成，失败 0 个**。完成记录：`2026-10-11T11:07:12.169543`。本报告覆盖此前仅有 Unseen Test 的 v1 本地审阅稿；旧报告已完整归档。当前仍为本地审阅包，未上传。
+更新日期：2026-10-11。数据来自 [`charades_cg_gmr_v2`](data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2/README.md)，重新评估来自 `charades_cg_v2_evaluation_20261011`。**3/3 个 backbone 全部完成，失败 0 个**。完成记录：`2026-10-11T11:07:12.169543`。本报告覆盖此前仅有 Unseen Test 的 v1 本地审阅稿；旧报告已完整归档。本页为最终结果汇总，原 v1 报告另行归档。
 
 ## 1. 这套数据想测什么？
 

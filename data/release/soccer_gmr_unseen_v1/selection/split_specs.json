@@ -1,0 +1,317 @@
+{
+  "differences_from_plan": {},
+  "expected_plan_teams": {
+    "C1_soccer": {
+      "block": [
+        "Croatia",
+        "Argentina",
+        "Morocco",
+        "France",
+        "Australia",
+        "Netherlands",
+        "Poland",
+        "South Korea"
+      ],
+      "clearance": [
+        "Croatia",
+        "Argentina",
+        "Morocco",
+        "France",
+        "Senegal",
+        "Poland",
+        "Ghana",
+        "Netherlands"
+      ]
+    },
+    "C2_soccer": {
+      "dribble": [
+        "France",
+        "Morocco",
+        "Croatia",
+        "Argentina",
+        "Senegal",
+        "Ghana",
+        "Brazil",
+        "Netherlands"
+      ],
+      "interception": [
+        "France",
+        "Morocco",
+        "Croatia",
+        "Argentina",
+        "Saudi Arabia",
+        "Ghana",
+        "Japan",
+        "South Korea"
+      ]
+    }
+  },
+  "groups": {
+    "A1_soccer": {
+      "axis": "action",
+      "group": "A1_soccer",
+      "held_actions": [
+        "dribble"
+      ],
+      "held_combinations": []
+    },
+    "A2_soccer": {
+      "axis": "action",
+      "group": "A2_soccer",
+      "held_actions": [
+        "shot"
+      ],
+      "held_combinations": []
+    },
+    "A3_soccer": {
+      "axis": "action",
+      "group": "A3_soccer",
+      "held_actions": [
+        "interception"
+      ],
+      "held_combinations": []
+    },
+    "C1_soccer": {
+      "axis": "action_actor_composition",
+      "group": "C1_soccer",
+      "held_actions": [
+        "block",
+        "clearance"
+      ],
+      "held_combinations": [
+        [
+          "block",
+          "Argentina"
+        ],
+        [
+          "block",
+          "Australia"
+        ],
+        [
+          "block",
+          "Croatia"
+        ],
+        [
+          "block",
+          "France"
+        ],
+        [
+          "block",
+          "Morocco"
+        ],
+        [
+          "block",
+          "Netherlands"
+        ],
+        [
+          "block",
+          "Poland"
+        ],
+        [
+          "block",
+          "South Korea"
+        ],
+        [
+          "clearance",
+          "Argentina"
+        ],
+        [
+          "clearance",
+          "Croatia"
+        ],
+        [
+          "clearance",
+          "France"
+        ],
+        [
+          "clearance",
+          "Ghana"
+        ],
+        [
+          "clearance",
+          "Morocco"
+        ],
+        [
+          "clearance",
+          "Netherlands"
+        ],
+        [
+          "clearance",
+          "Poland"
+        ],
+        [
+          "clearance",
+          "Senegal"
+        ]
+      ],
+      "held_teams_by_action": {
+        "block": [
+          "Croatia",
+          "Argentina",
+          "Morocco",
+          "France",
+          "Australia",
+          "Netherlands",
+          "Poland",
+          "South Korea"
+        ],
+        "clearance": [
+          "Croatia",
+          "Argentina",
+          "Morocco",
+          "France",
+          "Senegal",
+          "Poland",
+          "Ghana",
+          "Netherlands"
+        ]
+      }
+    },
+    "C2_soccer": {
+      "axis": "action_actor_composition",
+      "group": "C2_soccer",
+      "held_actions": [
+        "dribble",
+        "interception"
+      ],
+      "held_combinations": [
+        [
+          "dribble",
+          "Argentina"
+        ],
+        [
+          "dribble",
+          "Brazil"
+        ],
+        [
+          "dribble",
+          "Croatia"
+        ],
+        [
+          "dribble",
+          "France"
+        ],
+        [
+          "dribble",
+          "Ghana"
+        ],
+        [
+          "dribble",
+          "Morocco"
+        ],
+        [
+          "dribble",
+          "Netherlands"
+        ],
+        [
+          "dribble",
+          "Senegal"
+        ],
+        [
+          "interception",
+          "Argentina"
+        ],
+        [
+          "interception",
+          "Croatia"
+        ],
+        [
+          "interception",
+          "France"
+        ],
+        [
+          "interception",
+          "Ghana"
+        ],
+        [
+          "interception",
+          "Japan"
+        ],
+        [
+          "interception",
+          "Morocco"
+        ],
+        [
+          "interception",
+          "Saudi Arabia"
+        ],
+        [
+          "interception",
+          "South Korea"
+        ]
+      ],
+      "held_teams_by_action": {
+        "dribble": [
+          "France",
+          "Morocco",
+          "Croatia",
+          "Argentina",
+          "Senegal",
+          "Ghana",
+          "Brazil",
+          "Netherlands"
+        ],
+        "interception": [
+          "France",
+          "Morocco",
+          "Croatia",
+          "Argentina",
+          "Saudi Arabia",
+          "Ghana",
+          "Japan",
+          "South Korea"
+        ]
+      }
+    }
+  },
+  "matches_expected_plan_teams": true,
+  "observed_teams": {
+    "C1_soccer": {
+      "block": [
+        "Croatia",
+        "Argentina",
+        "Morocco",
+        "France",
+        "Australia",
+        "Netherlands",
+        "Poland",
+        "South Korea"
+      ],
+      "clearance": [
+        "Croatia",
+        "Argentina",
+        "Morocco",
+        "France",
+        "Senegal",
+        "Poland",
+        "Ghana",
+        "Netherlands"
+      ]
+    },
+    "C2_soccer": {
+      "dribble": [
+        "France",
+        "Morocco",
+        "Croatia",
+        "Argentina",
+        "Senegal",
+        "Ghana",
+        "Brazil",
+        "Netherlands"
+      ],
+      "interception": [
+        "France",
+        "Morocco",
+        "Croatia",
+        "Argentina",
+        "Saudi Arabia",
+        "Ghana",
+        "Japan",
+        "South Korea"
+      ]
+    }
+  },
+  "selection_rule": "From clean train only, for each predeclared action retain action-team pairs with >=10 positive and >=10 negative rows; rank by (-min(pos, neg), -pos, -neg, team_name), take first eight.",
+  "train_protocol": "Use only clean S+/S- rows; exclude every U query. For composition groups also exclude all generic-actor train queries for held actions.",
+  "validation_protocol": "Keep all four quadrants in val and test; val_seen is exactly the S+/S- subset of val."
+}

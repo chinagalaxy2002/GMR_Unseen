@@ -34,3 +34,21 @@ Restart only after ensuring no existing queue is running. Do not overwrite inter
 ```
 
 Future experiments must also report Seen/Unseen Rej-F1 and G-mIoU@1 and their pp gaps. Current supplementary summary: `evaluation/GENERALIZATION_DROP_COMPARISON.md`, `degradation_metrics.csv/json`, and `degradation_bootstrap.json`. The watcher automatically includes each newly evaluated setting and final high-precision scores.
+
+<!-- FINAL_RESULT_READER_ENTRY -->
+
+## 最终结果索引（2026-10-11）
+
+全部 **15/15** 设置已完成。下表为五划分等权宏平均；单个训练种子，模型与阈值仅使用 Seen 验证确定。
+
+| Backbone | Seen → Unseen AUROC | Seen → Unseen Rej-F1 | Seen → Unseen G-mIoU@1 |
+| --- | --- | --- | --- |
+| Moment-DETR-GMR | 0.7238 → 0.5224 | 50.51% → 22.25% | 34.54% → 25.51% |
+| QD-DETR-GMR | 0.7413 → 0.5337 | 51.30% → 30.61% | 34.86% → 28.02% |
+| FlashVTG-GMR | 0.7543 → 0.5647 | 53.36% → 37.09% | 41.75% → 34.44% |
+
+- [完整三项指标、逐划分 Gap、95% CI 与拒绝/误拒率](evaluation/GENERALIZATION_DROP_COMPARISON.md)
+- [存在判断与整体拒绝、定位的标准评测表](evaluation/STANDARD_EVALUATION.md)
+- [四套数据统一结果与绝对指标置信区间](../../../docs/gmr_baseline_summary_20261011/RESULTS_WITH_CI.md)
+
+Gap = Seen − Unseen（百分点），保留负值。Rej-F1 与 G-mIoU@1 受子集正负比例影响；独立 baseline 的 Unseen Net Gain、Seen Change、Gap Reduction 未定义。

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+<title id="title">Soccer｜既有足球标注，重新组织语义划分</title>
+<desc id="desc">WorldCup 2022 · 动作泛化与动作–球队组合泛化 · 图中为实际实验输入</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">Soccer｜既有足球标注，重新组织语义划分</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">WorldCup 2022 · 动作泛化与动作–球队组合泛化 · 图中为实际实验输入</text>
+<rect x="30" y="105" width="360" height="91" rx="8" fill="#F4F7FA" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="48" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">Unseen 语义划分</text>
+<text x="48" y="177" font-size="31" fill="#243746" font-weight="bold" text-anchor="start">5 组</text>
+<rect x="420" y="105" width="360" height="91" rx="8" fill="#EDF6FC" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="438" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 正例 · 事件存在</text>
+<text x="438" y="177" font-size="31" fill="#0072B2" font-weight="bold" text-anchor="start">936</text>
+<rect x="810" y="105" width="360" height="91" rx="8" fill="#FFF3E8" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="828" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 负例 · 标注缺席</text>
+<text x="828" y="177" font-size="31" fill="#B95000" font-weight="bold" text-anchor="start">1,297</text>
+<rect x="30" y="220" width="550" height="109" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="256" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">样本来源</text>
+<line x1="50" y1="272" x2="560" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<text x="48" y="292" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">正负例均来自已有 WorldCup 2022 标注。</text>
+<text x="48" y="319" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">剔除矛盾、重复、正负冲突和时间越界样本。</text>
+<rect x="30" y="345" width="550" height="200" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="381" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">负例设计</text>
+<line x1="50" y1="397" x2="560" y2="397" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="48" y="411" width="514" height="38" rx="6" fill="#FFF3E8" stroke="#FFF3E8" stroke-width="1.5"/>
+<text x="305" y="437" font-size="22" fill="#B95000" font-weight="bold" text-anchor="middle">沿用源负例   →   本次不生成新负例</text>
+<text x="48" y="479" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">原查询、存在标签和正例时间窗保持不变。</text>
+<text x="48" y="506" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">4 个片段缺完整特征，关联 37 条查询移除。</text>
+<text x="48" y="533" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">其中 Test 移除 13 条：2,246 → 2,233。</text>
+<rect x="620" y="220" width="550" height="325" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="640" y="256" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">哪些查询属于 Unseen？</text>
+<line x1="640" y1="272" x2="1150" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<text x="642" y="308" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A1</text>
+<text x="714" y="308" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">盘带 dribble</text>
+<line x1="642" y1="322" x2="1148" y2="322" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="351" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A2</text>
+<text x="714" y="351" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">射门 shot</text>
+<line x1="642" y1="365" x2="1148" y2="365" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="394" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A3</text>
+<text x="714" y="394" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">拦截 interception</text>
+<line x1="642" y1="408" x2="1148" y2="408" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="437" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">C1</text>
+<text x="714" y="437" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">封堵 / 解围 × 指定球队</text>
+<line x1="642" y1="451" x2="1148" y2="451" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="480" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">C2</text>
+<text x="714" y="480" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">盘带 / 拦截 × 指定球队</text>
+<text x="640" y="525" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">C1/C2：每个动作 8 支球队，按训练支持量选取</text>
+<rect x="30" y="565" width="1140" height="275" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="601" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">实际使用的样本数 · 单位：视频–查询配对</text>
+<line x1="50" y1="617" x2="1150" y2="617" stroke="#C7D1D8" stroke-width="2"/>
+<text x="1148" y="601" font-size="19" fill="#526572" font-weight="normal" text-anchor="end">每组 Test：373 个视频 / 片段</text>
+<text x="82" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">划分</text>
+<text x="258" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Train</text>
+<text x="429" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Seen Val</text>
+<text x="606" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S+</text>
+<text x="773" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S−</text>
+<text x="939" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U+</text>
+<text x="1104" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U−</text>
+<rect x="43" y="659" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A1</text>
+<text x="258" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">12,021</text>
+<text x="429" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,489</text>
+<text x="606" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">814</text>
+<text x="773" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,104</text>
+<text x="939" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">122</text>
+<text x="1104" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">193</text>
+<text x="82" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A2</text>
+<text x="258" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">12,234</text>
+<text x="429" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,530</text>
+<text x="606" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">829</text>
+<text x="773" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,128</text>
+<text x="939" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">107</text>
+<text x="1104" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">169</text>
+<rect x="43" y="725" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A3</text>
+<text x="258" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">12,355</text>
+<text x="429" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,542</text>
+<text x="606" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">808</text>
+<text x="773" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,151</text>
+<text x="939" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">128</text>
+<text x="1104" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">146</text>
+<text x="82" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">C1</text>
+<text x="258" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">11,385</text>
+<text x="429" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,510</text>
+<text x="606" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">837</text>
+<text x="773" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,125</text>
+<text x="939" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">99</text>
+<text x="1104" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">172</text>
+<rect x="43" y="791" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">C2</text>
+<text x="258" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">12,187</text>
+<text x="429" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,535</text>
+<text x="606" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">863</text>
+<text x="773" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,158</text>
+<text x="939" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">73</text>
+<text x="1104" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">139</text>
+<text x="30" y="869" font-size="21" fill="#526572" font-weight="normal" text-anchor="start">S = Seen，U = Unseen；+ 有时间窗，− 空时间窗。训练与选模只用 Seen。</text>
+<text x="30" y="901" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">C1/C2 训练删去相关泛指球队查询，测试泛指仍属 Seen；原发布未改动。</text>
+</g></svg>

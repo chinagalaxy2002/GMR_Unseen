@@ -1,62 +1,29 @@
 {
-  "scope": "Packaging integrity and figure inspection; no new model training or experiment tests",
-  "completed_settings": 33,
-  "complete_five_split_macro_rows": 6,
-  "added_or_modified_files_scanned": 1812,
-  "forbidden_or_oversized_files": 0,
-  "credential_patterns": 0,
-  "source_manifest_matches": {
-    "clean_v3": 100,
-    "balanced_v3": 100,
-    "charades_cg_original": 100
-  },
-  "datasets_checksum_verified": [
-    "semantic_existence_v3_balanced",
-    "charades_cg_gmr_v2"
-  ],
-  "figure_visual_inspection": "Five grouped figures inspected; Chinese font fallback corrected in vector composition; no missing glyphs in final preview.",
+  "status": "PASS",
+  "review_only": false,
+  "base_branch": "publication/gmr-baseline-summary-20261011",
+  "base_commit": "8d4afc057878d3eede5ac3a51703a65b2efc95a6",
+  "completed_settings": 48,
+  "formal_macro_rows": 9,
+  "machine_result_rows": 57,
+  "old_metric_rows_preserved": 39,
+  "soccer_metric_rows_verified": 18,
+  "old_dataset_count_rows_preserved": 33,
+  "soccer_test_rows_per_group": 2233,
+  "original_branch_readme_unchanged": true,
+  "original_branch_worktree_clean": true,
+  "checked_relative_links": 104,
+  "root_result_figures": "four datasets",
+  "reader_homepage": true,
+  "engineering_readme_preserved": true,
+  "reader_figure_visual_inspection": "PASS: four dataset profiles, overview, proportions and signed gaps; no clipped labels or intervals",
   "training_run": false,
-  "documentation_update": {
-    "scope": "Explain construction ideas and sources; combine real examples for A1-A3, C1-C2 and C3_CG in one table.",
-    "example_splits": 6,
-    "example_source": "Frozen test annotations; full records in PIPELINE_EXAMPLES.json",
-    "reference": "Moment of Untruth, WACV 2025, Section 3.3; https://arxiv.org/html/2502.08544v2#S3.SS3",
-    "limitations_placement": "Concise note at the end of README",
-    "regenerated_outputs": [
-      "README.md",
-      "docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json"
-    ]
-  },
-  "construction_figure_update": {
-    "figures": [
-      "construction_overview",
-      "negative_construction_ideas",
-      "sample_partition_matrix",
-      "clean_construction",
-      "balanced_construction",
-      "charades_cg_construction",
-      "semantic_example_atlas"
-    ],
-    "export_formats": [
-      "svg",
-      "pdf",
-      "png"
-    ],
-    "vector_elements": "Editable text, boxes, arrows, timelines and rank strip; no raster video frames",
-    "source": "Frozen examples and counts; CONSTRUCTION_FIGURES.json records the additional Seen-negative pair",
-    "visual_inspection": "All seven PNG previews inspected. Corrected Seen-validation label width and rank-strip subtitle placement; Chinese labels render correctly.",
-    "readme_placement": "Seven figures above their corresponding prose; six-split table preserved in expandable details",
-    "training_run": false,
-    "annotation_changes": false,
-    "metric_changes": false
-  },
-  "readme_preface_update": {
-    "scope": "Original GMR method figure followed by concise method, research question and experimental evidence paragraph; joint summary and three experiment READMEs",
-    "image_matches_upstream_commit": "2fda721",
-    "image_reused_without_modification": true,
-    "evidence": "Frozen metrics.json; complete five-split macros for Clean/Balanced and separate C3_CG results",
-    "training_run": false,
-    "annotation_changes": false,
-    "metric_changes": false
-  }
+  "metric_or_ci_reestimated": false,
+  "checked_at": "2026-10-11T22:51:58.847707+08:00",
+  "publication_authorized": true,
+  "publication_stage": "validated_for_push",
+  "all_result_readme_links_checked": true,
+  "reader_and_result_relative_links": 147,
+  "original_readme_archived_byte_identical": true,
+  "original_readme_archive": "README_EXPERIMENT_REPORT.md"
 }

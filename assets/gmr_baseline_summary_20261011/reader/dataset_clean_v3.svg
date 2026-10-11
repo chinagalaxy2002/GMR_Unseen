@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+<title id="title">Clean v3｜同视频语义改写</title>
+<desc id="desc">Charades 室内活动 · 同时测试未见动作与未见动作–对象组合</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">Clean v3｜同视频语义改写</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">Charades 室内活动 · 同时测试未见动作与未见动作–对象组合</text>
+<rect x="30" y="105" width="360" height="91" rx="8" fill="#F4F7FA" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="48" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">Unseen 语义划分</text>
+<text x="48" y="177" font-size="31" fill="#243746" font-weight="bold" text-anchor="start">5 组</text>
+<rect x="420" y="105" width="360" height="91" rx="8" fill="#EDF6FC" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="438" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 正例 · 事件存在</text>
+<text x="438" y="177" font-size="31" fill="#0072B2" font-weight="bold" text-anchor="start">3,453</text>
+<rect x="810" y="105" width="360" height="91" rx="8" fill="#FFF3E8" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="828" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 负例 · 标注缺席</text>
+<text x="828" y="177" font-size="31" fill="#B95000" font-weight="bold" text-anchor="start">1,158</text>
+<rect x="30" y="220" width="550" height="109" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="256" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">样本来源</text>
+<line x1="50" y1="272" x2="560" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<text x="48" y="292" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">正例：Charades 原始查询与时间窗。</text>
+<text x="48" y="319" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">审核后样本池：15,034 正例 + 2,869 负例。</text>
+<rect x="30" y="345" width="550" height="200" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="381" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">负例设计</text>
+<line x1="50" y1="397" x2="560" y2="397" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="48" y="411" width="514" height="38" rx="6" fill="#FFF3E8" stroke="#FFF3E8" stroke-width="1.5"/>
+<text x="305" y="437" font-size="22" fill="#B95000" font-weight="bold" text-anchor="middle">视频固定   →   修改动作 / 对象</text>
+<text x="48" y="479" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">沿用早期反事实候选，逐句审核完整事件。</text>
+<text x="48" y="506" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">排除语义重合、歧义及构造错误的候选。</text>
+<text x="48" y="533" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">保留的负例标为缺席，时间窗为空。</text>
+<rect x="620" y="220" width="550" height="325" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="640" y="256" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">哪些查询属于 Unseen？</text>
+<line x1="640" y1="272" x2="1150" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<text x="642" y="308" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A1</text>
+<text x="714" y="308" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">物理放置 / 拿取</text>
+<line x1="642" y1="322" x2="1148" y2="322" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="351" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A2</text>
+<text x="714" y="351" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">饮用 / 倾倒</text>
+<line x1="642" y1="365" x2="1148" y2="365" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="394" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">A3</text>
+<text x="714" y="394" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">跑步 / 行走</text>
+<line x1="642" y1="408" x2="1148" y2="408" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="437" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">C1</text>
+<text x="714" y="437" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">坐 × 床 / 椅子 / 沙发</text>
+<line x1="642" y1="451" x2="1148" y2="451" stroke="#DCE4EA" stroke-width="2"/>
+<text x="642" y="480" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">C2</text>
+<text x="714" y="480" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">打开或关闭 × 箱子 / 柜子</text>
+<text x="640" y="525" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">整句中任一已断言发生的事件命中规则 → Unseen</text>
+<rect x="30" y="565" width="1140" height="275" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="601" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">实际使用的样本数 · 单位：视频–查询配对</text>
+<line x1="50" y1="617" x2="1150" y2="617" stroke="#C7D1D8" stroke-width="2"/>
+<text x="1148" y="601" font-size="19" fill="#526572" font-weight="normal" text-anchor="end">每组 Test：1,302 个视频 / 片段</text>
+<text x="82" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">划分</text>
+<text x="258" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Train</text>
+<text x="429" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Seen Val</text>
+<text x="606" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S+</text>
+<text x="773" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S−</text>
+<text x="939" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U+</text>
+<text x="1104" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U−</text>
+<rect x="43" y="659" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A1</text>
+<text x="258" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">9,819</text>
+<text x="429" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,254</text>
+<text x="606" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">2,857</text>
+<text x="773" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">983</text>
+<text x="939" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">596</text>
+<text x="1104" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">175</text>
+<text x="82" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A2</text>
+<text x="258" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">10,809</text>
+<text x="429" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,418</text>
+<text x="606" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">3,230</text>
+<text x="773" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,066</text>
+<text x="939" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">223</text>
+<text x="1104" y="717" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">92</text>
+<rect x="43" y="725" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">A3</text>
+<text x="258" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">10,765</text>
+<text x="429" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,416</text>
+<text x="606" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">3,218</text>
+<text x="773" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,036</text>
+<text x="939" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">235</text>
+<text x="1104" y="750" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">122</text>
+<text x="82" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">C1</text>
+<text x="258" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">10,881</text>
+<text x="429" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,361</text>
+<text x="606" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">3,311</text>
+<text x="773" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">894</text>
+<text x="939" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">142</text>
+<text x="1104" y="783" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">264</text>
+<rect x="43" y="791" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">C2</text>
+<text x="258" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">10,939</text>
+<text x="429" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,441</text>
+<text x="606" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">3,322</text>
+<text x="773" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,066</text>
+<text x="939" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">131</text>
+<text x="1104" y="816" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">92</text>
+<text x="30" y="869" font-size="21" fill="#526572" font-weight="normal" text-anchor="start">S = Seen，U = Unseen；+ 有时间窗，− 空时间窗。训练与选模只用 Seen。</text>
+<text x="30" y="901" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">文本语义审核不能证明视频中缺席；五组复用样本，不能相加作为独立数据。</text>
+</g></svg>

@@ -1,0 +1,639 @@
+{
+  "release": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/release/soccer_gmr_unseen_v1",
+  "groups": {
+    "A1_soccer": {
+      "counts": {
+        "train": {
+          "S-": 7375,
+          "S+": 4646
+        },
+        "val": {
+          "U+": 108,
+          "S-": 905,
+          "S+": 584,
+          "U-": 147
+        },
+        "test": {
+          "S+": 814,
+          "S-": 1104,
+          "U+": 122,
+          "U-": 193
+        }
+      },
+      "feature_exclusions": {
+        "train": {
+          "source": 12034,
+          "retained": 12021,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "S-": 9
+          },
+          "qids": [
+            "269",
+            "427",
+            "3189",
+            "3773",
+            "5405",
+            "8526",
+            "9592",
+            "11937",
+            "12319",
+            "12657",
+            "13488",
+            "15139",
+            "15552"
+          ]
+        },
+        "val": {
+          "source": 1755,
+          "retained": 1744,
+          "excluded": 11,
+          "excluded_partitions": {
+            "S+": 3,
+            "U-": 2,
+            "S-": 6
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        },
+        "test": {
+          "source": 2246,
+          "retained": 2233,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "U-": 2,
+            "S-": 7
+          },
+          "qids": [
+            "19877",
+            "20318",
+            "20356",
+            "20739",
+            "20911",
+            "20984",
+            "21080",
+            "21099",
+            "21322",
+            "21499",
+            "21559",
+            "21731",
+            "21747"
+          ]
+        },
+        "val_seen": {
+          "source": 1498,
+          "retained": 1489,
+          "excluded": 9,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 6
+          },
+          "qids": [
+            "17234",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        }
+      },
+      "videos": {
+        "train": 1864,
+        "val": 199,
+        "test": 360
+      },
+      "sha256": {
+        "val_seen.jsonl": "186fe552b12a0c7e6c5ccf861be684156db091ce665c150c07d8754152d1dfa5",
+        "FEATURE_FILTERING.json": "cc9fad31f3947e88aa8b64d5497900b60606f7e3911ea6b6863f324ad7d18872",
+        "train.jsonl": "e51c1ab31a3e1090a7f0e90aa9a0797da3e6fb1d8d768572306fade25c0c4e7e",
+        "test.jsonl": "9f2b3bffedeecc559bdc7fd939593c2d4f10a783a964ed0e021a2f458e471939",
+        "val.jsonl": "fc1b9eb039cc1f77cd5e82cb74727daec1ccd2fd43ec8ea06350e4f3ecd4824e"
+      }
+    },
+    "A2_soccer": {
+      "counts": {
+        "train": {
+          "S-": 7461,
+          "S+": 4773
+        },
+        "val": {
+          "S+": 623,
+          "S-": 907,
+          "U-": 145,
+          "U+": 69
+        },
+        "test": {
+          "S+": 829,
+          "S-": 1128,
+          "U-": 169,
+          "U+": 107
+        }
+      },
+      "feature_exclusions": {
+        "train": {
+          "source": 12247,
+          "retained": 12234,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "S-": 9
+          },
+          "qids": [
+            "269",
+            "427",
+            "3189",
+            "3773",
+            "5405",
+            "8526",
+            "9592",
+            "11937",
+            "12319",
+            "12657",
+            "13488",
+            "15139",
+            "15552"
+          ]
+        },
+        "val": {
+          "source": 1755,
+          "retained": 1744,
+          "excluded": 11,
+          "excluded_partitions": {
+            "S+": 2,
+            "S-": 7,
+            "U-": 1,
+            "U+": 1
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        },
+        "test": {
+          "source": 2246,
+          "retained": 2233,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "S-": 8,
+            "U-": 1
+          },
+          "qids": [
+            "19877",
+            "20318",
+            "20356",
+            "20739",
+            "20911",
+            "20984",
+            "21080",
+            "21099",
+            "21322",
+            "21499",
+            "21559",
+            "21731",
+            "21747"
+          ]
+        },
+        "val_seen": {
+          "source": 1539,
+          "retained": 1530,
+          "excluded": 9,
+          "excluded_partitions": {
+            "S+": 2,
+            "S-": 7
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18301",
+            "18308",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        }
+      },
+      "videos": {
+        "train": 1866,
+        "val": 199,
+        "test": 360
+      },
+      "sha256": {
+        "val_seen.jsonl": "1a7a2d97f3667a334ab8bca3261c470242e5a185e35d709a5870681ec11da90e",
+        "FEATURE_FILTERING.json": "78f0f10b32fd39555e6e25166c29ae4f78c3ddac3663cd6d61e14c74be595746",
+        "train.jsonl": "e6a36b13f6fa9f80af4ae0cc9735027de62eea68bc41d7f422e935bb6ba2ae9e",
+        "test.jsonl": "04a06bee146fea58522a8034918736cccefdc97fb849533c1e330e1aad2769de",
+        "val.jsonl": "62a7e900a2fc523ae852a4ee7e56e9d0da8de628173472105a5f79257906a704"
+      }
+    },
+    "A3_soccer": {
+      "counts": {
+        "train": {
+          "S-": 7536,
+          "S+": 4819
+        },
+        "val": {
+          "S+": 621,
+          "U-": 131,
+          "S-": 921,
+          "U+": 71
+        },
+        "test": {
+          "S+": 808,
+          "U-": 146,
+          "S-": 1151,
+          "U+": 128
+        }
+      },
+      "feature_exclusions": {
+        "train": {
+          "source": 12365,
+          "retained": 12355,
+          "excluded": 10,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 7
+          },
+          "qids": [
+            "269",
+            "427",
+            "3773",
+            "5405",
+            "8526",
+            "9592",
+            "12319",
+            "12657",
+            "15139",
+            "15552"
+          ]
+        },
+        "val": {
+          "source": 1755,
+          "retained": 1744,
+          "excluded": 11,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 6,
+            "U-": 2
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        },
+        "test": {
+          "source": 2246,
+          "retained": 2233,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "S-": 7,
+            "U-": 2
+          },
+          "qids": [
+            "19877",
+            "20318",
+            "20356",
+            "20739",
+            "20911",
+            "20984",
+            "21080",
+            "21099",
+            "21322",
+            "21499",
+            "21559",
+            "21731",
+            "21747"
+          ]
+        },
+        "val_seen": {
+          "source": 1551,
+          "retained": 1542,
+          "excluded": 9,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 6
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18667"
+          ]
+        }
+      },
+      "videos": {
+        "train": 1867,
+        "val": 199,
+        "test": 360
+      },
+      "sha256": {
+        "val_seen.jsonl": "9667bfc646fd5d62c1fd0a44f6a7febcf6a465880370ce8deca02f4221d1a84e",
+        "FEATURE_FILTERING.json": "a1faabaffb71d112e19d2602a7bb534bfa9923d07baae7d9ef9688c51e5efcc0",
+        "train.jsonl": "e336d0003ba757da7e3ed6bb68ff76544ce5ab1b8d696b9c5a2b65d14f5d06a4",
+        "test.jsonl": "fab3665aa4517dc146670f1db1f26a974c51d236591877a13a7d4cf1d0af851b",
+        "val.jsonl": "ce696b2bcdd5804e9ce98f87a9e8062f5114ca567e529b937a1c3ba1a9016ea8"
+      }
+    },
+    "C1_soccer": {
+      "counts": {
+        "train": {
+          "S-": 7243,
+          "S+": 4142
+        },
+        "val": {
+          "S+": 601,
+          "S-": 909,
+          "U-": 143,
+          "U+": 91
+        },
+        "test": {
+          "S+": 837,
+          "S-": 1125,
+          "U-": 172,
+          "U+": 99
+        }
+      },
+      "feature_exclusions": {
+        "train": {
+          "source": 11397,
+          "retained": 11385,
+          "excluded": 12,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 9
+          },
+          "qids": [
+            "269",
+            "427",
+            "3189",
+            "3773",
+            "5405",
+            "8526",
+            "9592",
+            "11937",
+            "12319",
+            "12657",
+            "13488",
+            "15139"
+          ]
+        },
+        "val": {
+          "source": 1755,
+          "retained": 1744,
+          "excluded": 11,
+          "excluded_partitions": {
+            "S+": 2,
+            "S-": 5,
+            "U-": 3,
+            "U+": 1
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        },
+        "test": {
+          "source": 2246,
+          "retained": 2233,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 2,
+            "S-": 7,
+            "U-": 2,
+            "U+": 2
+          },
+          "qids": [
+            "19877",
+            "20318",
+            "20356",
+            "20739",
+            "20911",
+            "20984",
+            "21080",
+            "21099",
+            "21322",
+            "21499",
+            "21559",
+            "21731",
+            "21747"
+          ]
+        },
+        "val_seen": {
+          "source": 1517,
+          "retained": 1510,
+          "excluded": 7,
+          "excluded_partitions": {
+            "S+": 2,
+            "S-": 5
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "18271",
+            "18597",
+            "18638",
+            "18652",
+            "18810"
+          ]
+        }
+      },
+      "videos": {
+        "train": 1865,
+        "val": 199,
+        "test": 360
+      },
+      "sha256": {
+        "val_seen.jsonl": "d4d3c0be8108df95497ccaf7185243f40462d25ab4702fd49ce8d82e41d6bd62",
+        "FEATURE_FILTERING.json": "412f55cc535ec3e9ca5952fe53ee9b7aeb783426623dffc845b8bd90597fdd65",
+        "train.jsonl": "406ac2b8210c70ab2701d72d64072f93165e4dd550865781dd9594c5f601773a",
+        "test.jsonl": "bdb865fdd2d1fc636db55969e474eb71533c47d0d0fbfd1e9ee2ef00a8ba5781",
+        "val.jsonl": "946dbd82e6b4b19d4a70b5cfe8f468a693d44e891fe0737a53c948824272b8b1"
+      }
+    },
+    "C2_soccer": {
+      "counts": {
+        "train": {
+          "S-": 7584,
+          "S+": 4603
+        },
+        "val": {
+          "S+": 624,
+          "S-": 911,
+          "U+": 68,
+          "U-": 141
+        },
+        "test": {
+          "S+": 863,
+          "U-": 139,
+          "S-": 1158,
+          "U+": 73
+        }
+      },
+      "feature_exclusions": {
+        "train": {
+          "source": 12200,
+          "retained": 12187,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "S-": 9
+          },
+          "qids": [
+            "269",
+            "427",
+            "3189",
+            "3773",
+            "5405",
+            "8526",
+            "9592",
+            "11937",
+            "12319",
+            "12657",
+            "13488",
+            "15139",
+            "15552"
+          ]
+        },
+        "val": {
+          "source": 1755,
+          "retained": 1744,
+          "excluded": 11,
+          "excluded_partitions": {
+            "S+": 3,
+            "U-": 4,
+            "S-": 4
+          },
+          "qids": [
+            "17234",
+            "17391",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18638",
+            "18652",
+            "18667",
+            "18810"
+          ]
+        },
+        "test": {
+          "source": 2246,
+          "retained": 2233,
+          "excluded": 13,
+          "excluded_partitions": {
+            "S+": 4,
+            "U-": 4,
+            "S-": 5
+          },
+          "qids": [
+            "19877",
+            "20318",
+            "20356",
+            "20739",
+            "20911",
+            "20984",
+            "21080",
+            "21099",
+            "21322",
+            "21499",
+            "21559",
+            "21731",
+            "21747"
+          ]
+        },
+        "val_seen": {
+          "source": 1542,
+          "retained": 1535,
+          "excluded": 7,
+          "excluded_partitions": {
+            "S+": 3,
+            "S-": 4
+          },
+          "qids": [
+            "17234",
+            "17982",
+            "18271",
+            "18301",
+            "18308",
+            "18597",
+            "18667"
+          ]
+        }
+      },
+      "videos": {
+        "train": 1868,
+        "val": 199,
+        "test": 360
+      },
+      "sha256": {
+        "val_seen.jsonl": "4a60ef58c600dd48ef7d574476c2840f649b065db3c80b61b89d9427cecfedd5",
+        "FEATURE_FILTERING.json": "81b974a9fcf55982bbd142b062d1c6f1be6b588644d29a060715098442d861eb",
+        "train.jsonl": "413c5e85e6d422a8c36c79a80f83b2e73724d535f9b9240925b6543e961c4188",
+        "test.jsonl": "95be0636c820201402a89bb89e7ef099784b6ec7975da68a60ec77c6a6809e26",
+        "val.jsonl": "07a412ce1a6ee074cfe8f031fcc14546608ddbf669a87b8da022cf701dca2a63"
+      }
+    }
+  },
+  "qids": 17968,
+  "source_video_splits_preserved": true,
+  "normalized_clip_ids_disjoint": true,
+  "match_level_independence": false,
+  "seen_only_train": true,
+  "full_feature_coverage": true,
+  "feature_coverage_scope": "retained experiment rows",
+  "source_qids": 18005,
+  "excluded_qids": 37
+}

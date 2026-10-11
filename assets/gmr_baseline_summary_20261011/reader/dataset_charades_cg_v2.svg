@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+<title id="title">Charades-CG v2｜官方组合泛化 + 跨视频负例</title>
+<desc id="desc">保留官方 Test-Trivial / Novel-Composition 身份 · 独立单划分 C3_CG</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">Charades-CG v2｜官方组合泛化 + 跨视频负例</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">保留官方 Test-Trivial / Novel-Composition 身份 · 独立单划分 C3_CG</text>
+<rect x="30" y="105" width="360" height="91" rx="8" fill="#F4F7FA" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="48" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">Unseen 语义划分</text>
+<text x="48" y="177" font-size="31" fill="#243746" font-weight="bold" text-anchor="start">1 组 · C3_CG</text>
+<rect x="420" y="105" width="360" height="91" rx="8" fill="#EDF6FC" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="438" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 正例 · 事件存在</text>
+<text x="438" y="177" font-size="31" fill="#0072B2" font-weight="bold" text-anchor="start">5,674</text>
+<rect x="810" y="105" width="360" height="91" rx="8" fill="#FFF3E8" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="828" y="135" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">每组 Test 负例 · 标注缺席</text>
+<text x="828" y="177" font-size="31" fill="#B95000" font-weight="bold" text-anchor="start">5,674</text>
+<rect x="30" y="220" width="550" height="109" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="256" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">样本来源</text>
+<line x1="50" y1="272" x2="560" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<text x="48" y="292" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">正例：官方 Train 与两个测试子集。</text>
+<text x="48" y="319" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">异常、越界时间窗直接删除；不包含 Novel-Word。</text>
+<rect x="30" y="345" width="550" height="200" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="381" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">负例设计</text>
+<line x1="50" y1="397" x2="560" y2="397" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="48" y="411" width="514" height="38" rx="6" fill="#FFF3E8" stroke="#FFF3E8" stroke-width="1.5"/>
+<text x="305" y="437" font-size="22" fill="#B95000" font-weight="bold" text-anchor="middle">每个正例查询   →   一个跨视频负例</text>
+<text x="48" y="479" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">同划分内，CLIP 比较查询与视频全部正描述。</text>
+<text x="48" y="506" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">每视频取最高相似度，从最低一半随机采样。</text>
+<text x="48" y="533" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">排除原视频及同句；两个 Test 共用候选池。</text>
+<rect x="620" y="220" width="550" height="325" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="640" y="256" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">哪些查询属于 Unseen？</text>
+<line x1="640" y1="272" x2="1150" y2="272" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="640" y="285" width="510" height="43" rx="6" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="652" y="314" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">训练</text>
+<text x="753" y="314" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">官方 Train → Seen</text>
+<rect x="640" y="346" width="510" height="43" rx="6" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="652" y="375" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">Seen</text>
+<text x="753" y="375" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">官方 Test-Trivial</text>
+<rect x="640" y="407" width="510" height="43" rx="6" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="652" y="436" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">Unseen</text>
+<text x="753" y="436" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">官方 Novel-Composition</text>
+<text x="640" y="525" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">S/U 身份继承官方；没有改成 A1–C2 规则</text>
+<rect x="30" y="565" width="1140" height="150" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="601" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">实际使用的样本数 · 单位：视频–查询配对</text>
+<line x1="50" y1="617" x2="1150" y2="617" stroke="#C7D1D8" stroke-width="2"/>
+<text x="1148" y="601" font-size="19" fill="#526572" font-weight="normal" text-anchor="end">每组 Test：2,589 个视频 / 片段</text>
+<text x="82" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">划分</text>
+<text x="258" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Train</text>
+<text x="429" y="646" font-size="21" fill="#526572" font-weight="bold" text-anchor="middle">Seen Val</text>
+<text x="606" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S+</text>
+<text x="773" y="646" font-size="21" fill="#0072B2" font-weight="bold" text-anchor="middle">Test S−</text>
+<text x="939" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U+</text>
+<text x="1104" y="646" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">Test U−</text>
+<rect x="43" y="659" width="1114" height="32" rx="2" fill="#F4F7FA" stroke="#F4F7FA" stroke-width="1.5"/>
+<text x="82" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">C3_CG</text>
+<text x="258" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">12,684</text>
+<text x="429" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">1,368</text>
+<text x="606" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">2,684</text>
+<text x="773" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">2,684</text>
+<text x="939" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">2,990</text>
+<text x="1104" y="684" font-size="22" fill="#243746" font-weight="normal" text-anchor="middle">2,990</text>
+<rect x="30" y="737" width="550" height="103" rx="6" fill="#F4F7FA" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="48" y="771" font-size="22" fill="#0072B2" font-weight="bold" text-anchor="start">Seen Test · Test-Trivial</text>
+<text x="48" y="815" font-size="25" fill="#243746" font-weight="normal" text-anchor="start">2,684 正例 + 2,684 负例 = 5,368 条</text>
+<rect x="620" y="737" width="550" height="103" rx="6" fill="#F4F7FA" stroke="#DCE4EA" stroke-width="1.5"/>
+<text x="638" y="771" font-size="22" fill="#B95000" font-weight="bold" text-anchor="start">Unseen Test · Novel-Composition</text>
+<text x="638" y="815" font-size="25" fill="#243746" font-weight="normal" text-anchor="start">2,990 正例 + 2,990 负例 = 5,980 条</text>
+<text x="30" y="869" font-size="21" fill="#526572" font-weight="normal" text-anchor="start">S = Seen，U = Unseen；+ 有时间窗，− 空时间窗。训练与选模只用 Seen。</text>
+<text x="30" y="901" font-size="20" fill="#526572" font-weight="normal" text-anchor="start">负例借鉴 Moment of Untruth §3.3；Seen Test、Unseen Test 各自正负 1:1。</text>
+</g></svg>

@@ -1,0 +1,43 @@
+[
+  {
+    "video": "WC2022_3869254_2_5220s_5370s",
+    "qids": [
+      "269",
+      "427",
+      "3189",
+      "5405",
+      "8526",
+      "9592",
+      "11937",
+      "12319",
+      "12657",
+      "15139"
+    ],
+    "error": "CalledProcessError(1, ['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', '/home/guoxiangyu/VLMbasedIter_momentretrival/generalized-moment-retrieval/Soccergmr/WC2022-GMR/WC2022_3869254_2_5220s_5370s.mp4'])",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/soccer_unseen_baselines_20261011/prepare_features.py\", line 137, in video_features\n    frames, _ = decode(path, .5)\n  File \"/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/soccer_unseen_baselines_20261011/prepare_features.py\", line 95, in decode\n    info = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', str(path)]))\n  File \"/home/guoxiangyu/miniconda3/envs/univtg/lib/python3.8/subprocess.py\", line 415, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n  File \"/home/guoxiangyu/miniconda3/envs/univtg/lib/python3.8/subprocess.py\", line 516, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', '/home/guoxiangyu/VLMbasedIter_momentretrival/generalized-moment-retrieval/Soccergmr/WC2022-GMR/WC2022_3869254_2_5220s_5370s.mp4']' returned non-zero exit status 1.\n",
+    "action": "record_and_skip",
+    "updated": "2026-10-11T03:58:39"
+  },
+  {
+    "video": "WC2022_3869685_1_2240s_2390s",
+    "qids": [
+      "19877",
+      "20318",
+      "20356",
+      "20739",
+      "20911",
+      "20984",
+      "21080",
+      "21099",
+      "21322",
+      "21499",
+      "21559",
+      "21731",
+      "21747"
+    ],
+    "error": "CalledProcessError(1, ['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', '/home/guoxiangyu/VLMbasedIter_momentretrival/generalized-moment-retrieval/Soccergmr/WC2022-GMR/WC2022_3869685_1_2240s_2390s.mp4'])",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/soccer_unseen_baselines_20261011/prepare_features.py\", line 137, in video_features\n    frames, _ = decode(path, .5)\n  File \"/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/soccer_unseen_baselines_20261011/prepare_features.py\", line 95, in decode\n    info = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', str(path)]))\n  File \"/home/guoxiangyu/miniconda3/envs/univtg/lib/python3.8/subprocess.py\", line 415, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n  File \"/home/guoxiangyu/miniconda3/envs/univtg/lib/python3.8/subprocess.py\", line 516, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['ffprobe', '-v', 'error', '-show_streams', '-of', 'json', '/home/guoxiangyu/VLMbasedIter_momentretrival/generalized-moment-retrieval/Soccergmr/WC2022-GMR/WC2022_3869685_1_2240s_2390s.mp4']' returned non-zero exit status 1.\n",
+    "action": "record_and_skip",
+    "updated": "2026-10-11T04:25:44"
+  }
+]

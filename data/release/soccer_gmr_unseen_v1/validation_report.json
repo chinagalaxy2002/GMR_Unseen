@@ -1,0 +1,1558 @@
+{
+  "check_count": 132,
+  "checks": [
+    {
+      "detail": {
+        "expected": {
+          "test": {
+            "negative": 1327,
+            "positive": 952,
+            "total": 2279,
+            "videos": 374
+          },
+          "train": {
+            "negative": 8669,
+            "positive": 5535,
+            "total": 14204,
+            "videos": 1875
+          },
+          "val": {
+            "negative": 1080,
+            "positive": 705,
+            "total": 1785,
+            "videos": 207
+          }
+        },
+        "observed": {
+          "test": {
+            "negative": 1327,
+            "positive": 952,
+            "total": 2279,
+            "videos": 374
+          },
+          "train": {
+            "negative": 8669,
+            "positive": 5535,
+            "total": 14204,
+            "videos": 1875
+          },
+          "val": {
+            "negative": 1080,
+            "positive": 705,
+            "total": 1785,
+            "videos": 207
+          }
+        }
+      },
+      "name": "WorldCup source counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": 18268,
+      "name": "Only WorldCup records enter release source pool",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "clean": 18005,
+        "quarantine": 263,
+        "source": 18268
+      },
+      "name": "Clean and quarantined qids partition source pool",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": 18005,
+        "observed": 18005
+      },
+      "name": "Clean rows exactly match recomputed clean qids",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": 263,
+        "observed": 263
+      },
+      "name": "Quarantine rows exactly match recomputed qids",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "master source fields and derived audit fields are preserved",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "master original annotation fields unchanged",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "quarantine source fields and derived audit fields are preserved",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "quarantine original annotation fields unchanged",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": {
+            "negative": 1306,
+            "positive": 940,
+            "quarantine": 33,
+            "total": 2246
+          },
+          "train": {
+            "negative": 8534,
+            "positive": 5470,
+            "quarantine": 200,
+            "total": 14004
+          },
+          "val": {
+            "negative": 1060,
+            "positive": 695,
+            "quarantine": 30,
+            "total": 1755
+          }
+        },
+        "observed": {
+          "test": {
+            "negative": 1306,
+            "positive": 940,
+            "quarantine": 33,
+            "total": 2246
+          },
+          "train": {
+            "negative": 8534,
+            "positive": 5470,
+            "quarantine": 200,
+            "total": 14004
+          },
+          "val": {
+            "negative": 1060,
+            "positive": 695,
+            "quarantine": 30,
+            "total": 1755
+          }
+        }
+      },
+      "name": "Recomputed clean and quarantine counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "Published source statistics recompute from source JSONL",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_clean": 18005,
+        "computed_quarantine": 263,
+        "recorded_clean": 18005,
+        "recorded_quarantine": 263
+      },
+      "name": "Published cleaning audit recomputes from source qids and reasons",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "train/test": [],
+        "train/val": [],
+        "val/test": []
+      },
+      "name": "Normalized video ids retain single source split",
+      "status": "pass"
+    },
+    {
+      "detail": [
+        "A1_soccer",
+        "A2_soccer",
+        "A3_soccer",
+        "C1_soccer",
+        "C2_soccer"
+      ],
+      "name": "Five group specifications are present",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed": {
+          "C1_soccer": {
+            "block": [
+              "Croatia",
+              "Argentina",
+              "Morocco",
+              "France",
+              "Australia",
+              "Netherlands",
+              "Poland",
+              "South Korea"
+            ],
+            "clearance": [
+              "Croatia",
+              "Argentina",
+              "Morocco",
+              "France",
+              "Senegal",
+              "Poland",
+              "Ghana",
+              "Netherlands"
+            ]
+          },
+          "C2_soccer": {
+            "dribble": [
+              "France",
+              "Morocco",
+              "Croatia",
+              "Argentina",
+              "Senegal",
+              "Ghana",
+              "Brazil",
+              "Netherlands"
+            ],
+            "interception": [
+              "France",
+              "Morocco",
+              "Croatia",
+              "Argentina",
+              "Saudi Arabia",
+              "Ghana",
+              "Japan",
+              "South Korea"
+            ]
+          }
+        },
+        "plan_expected": {
+          "C1_soccer": {
+            "block": [
+              "Croatia",
+              "Argentina",
+              "Morocco",
+              "France",
+              "Australia",
+              "Netherlands",
+              "Poland",
+              "South Korea"
+            ],
+            "clearance": [
+              "Croatia",
+              "Argentina",
+              "Morocco",
+              "France",
+              "Senegal",
+              "Poland",
+              "Ghana",
+              "Netherlands"
+            ]
+          },
+          "C2_soccer": {
+            "dribble": [
+              "France",
+              "Morocco",
+              "Croatia",
+              "Argentina",
+              "Senegal",
+              "Ghana",
+              "Brazil",
+              "Netherlands"
+            ],
+            "interception": [
+              "France",
+              "Morocco",
+              "Croatia",
+              "Argentina",
+              "Saudi Arabia",
+              "Ghana",
+              "Japan",
+              "South Korea"
+            ]
+          }
+        }
+      },
+      "name": "Composition teams recompute from clean train support",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected_rows": 239,
+        "recorded_rows": 239
+      },
+      "name": "Train composition candidate ledger matches recomputation",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "axis": "action",
+        "group": "A1_soccer",
+        "held_actions": [
+          "dribble"
+        ],
+        "held_combinations": []
+      },
+      "name": "A1_soccer action specification matches plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 12034,
+        "expected": 12034
+      },
+      "name": "A1_soccer train qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A1_soccer train labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer train contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1755,
+        "expected": 1755
+      },
+      "name": "A1_soccer val qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A1_soccer val labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer val contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2246,
+        "expected": 2246
+      },
+      "name": "A1_soccer test qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A1_soccer test labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer test contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1970,
+        "expected": 1970
+      },
+      "name": "A1_soccer training exclusion ledger matches all rule-based exclusions",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A1_soccer exclusion reasons are accurate",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1498,
+        "expected": 1498
+      },
+      "name": "A1_soccer val_seen is exactly seen validation subset",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer training contains only S+/S-",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": [
+            818,
+            1111,
+            122,
+            195
+          ],
+          "train": [
+            4650,
+            7384,
+            0,
+            0
+          ],
+          "val": [
+            587,
+            911,
+            108,
+            149
+          ]
+        },
+        "observed": {
+          "test": [
+            818,
+            1111,
+            122,
+            195
+          ],
+          "train": [
+            4650,
+            7384,
+            0,
+            0
+          ],
+          "val": [
+            587,
+            911,
+            108,
+            149
+          ]
+        }
+      },
+      "name": "A1_soccer four-quadrant counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "excluded": 1970,
+        "val_seen": 1498
+      },
+      "name": "A1_soccer exclusion and val_seen counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer held action absent from retained train",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 37,
+        "expected": 37
+      },
+      "name": "A1_soccer matched pair ledger matches deterministic same-clip pairing",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 74,
+        "expected": 74
+      },
+      "name": "A1_soccer matched test expansion has each paired qid once",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A1_soccer matched test rows reference valid unseen positive/negative rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_exclusions": 1970,
+        "recorded_exclusions": 1970
+      },
+      "name": "A1_soccer published statistics recompute from files",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A1_soccer semantic inventory recomputes from files",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "axis": "action",
+        "group": "A2_soccer",
+        "held_actions": [
+          "shot"
+        ],
+        "held_combinations": []
+      },
+      "name": "A2_soccer action specification matches plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 12247,
+        "expected": 12247
+      },
+      "name": "A2_soccer train qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A2_soccer train labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer train contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1755,
+        "expected": 1755
+      },
+      "name": "A2_soccer val qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A2_soccer val labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer val contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2246,
+        "expected": 2246
+      },
+      "name": "A2_soccer test qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A2_soccer test labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer test contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1757,
+        "expected": 1757
+      },
+      "name": "A2_soccer training exclusion ledger matches all rule-based exclusions",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A2_soccer exclusion reasons are accurate",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1539,
+        "expected": 1539
+      },
+      "name": "A2_soccer val_seen is exactly seen validation subset",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer training contains only S+/S-",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": [
+            833,
+            1136,
+            107,
+            170
+          ],
+          "train": [
+            4777,
+            7470,
+            0,
+            0
+          ],
+          "val": [
+            625,
+            914,
+            70,
+            146
+          ]
+        },
+        "observed": {
+          "test": [
+            833,
+            1136,
+            107,
+            170
+          ],
+          "train": [
+            4777,
+            7470,
+            0,
+            0
+          ],
+          "val": [
+            625,
+            914,
+            70,
+            146
+          ]
+        }
+      },
+      "name": "A2_soccer four-quadrant counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "excluded": 1757,
+        "val_seen": 1539
+      },
+      "name": "A2_soccer exclusion and val_seen counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer held action absent from retained train",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 35,
+        "expected": 35
+      },
+      "name": "A2_soccer matched pair ledger matches deterministic same-clip pairing",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 70,
+        "expected": 70
+      },
+      "name": "A2_soccer matched test expansion has each paired qid once",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A2_soccer matched test rows reference valid unseen positive/negative rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_exclusions": 1757,
+        "recorded_exclusions": 1757
+      },
+      "name": "A2_soccer published statistics recompute from files",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A2_soccer semantic inventory recomputes from files",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "axis": "action",
+        "group": "A3_soccer",
+        "held_actions": [
+          "interception"
+        ],
+        "held_combinations": []
+      },
+      "name": "A3_soccer action specification matches plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 12365,
+        "expected": 12365
+      },
+      "name": "A3_soccer train qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A3_soccer train labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer train contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1755,
+        "expected": 1755
+      },
+      "name": "A3_soccer val qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A3_soccer val labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer val contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2246,
+        "expected": 2246
+      },
+      "name": "A3_soccer test qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A3_soccer test labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer test contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1639,
+        "expected": 1639
+      },
+      "name": "A3_soccer training exclusion ledger matches all rule-based exclusions",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A3_soccer exclusion reasons are accurate",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1551,
+        "expected": 1551
+      },
+      "name": "A3_soccer val_seen is exactly seen validation subset",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer training contains only S+/S-",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": [
+            812,
+            1158,
+            128,
+            148
+          ],
+          "train": [
+            4822,
+            7543,
+            0,
+            0
+          ],
+          "val": [
+            624,
+            927,
+            71,
+            133
+          ]
+        },
+        "observed": {
+          "test": [
+            812,
+            1158,
+            128,
+            148
+          ],
+          "train": [
+            4822,
+            7543,
+            0,
+            0
+          ],
+          "val": [
+            624,
+            927,
+            71,
+            133
+          ]
+        }
+      },
+      "name": "A3_soccer four-quadrant counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "excluded": 1639,
+        "val_seen": 1551
+      },
+      "name": "A3_soccer exclusion and val_seen counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer held action absent from retained train",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 43,
+        "expected": 43
+      },
+      "name": "A3_soccer matched pair ledger matches deterministic same-clip pairing",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 86,
+        "expected": 86
+      },
+      "name": "A3_soccer matched test expansion has each paired qid once",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "A3_soccer matched test rows reference valid unseen positive/negative rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_exclusions": 1639,
+        "recorded_exclusions": 1639
+      },
+      "name": "A3_soccer published statistics recompute from files",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "A3_soccer semantic inventory recomputes from files",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "axis": "action_actor_composition",
+        "group": "C1_soccer",
+        "held_actions": [
+          "block",
+          "clearance"
+        ],
+        "held_combinations": [
+          [
+            "block",
+            "Argentina"
+          ],
+          [
+            "block",
+            "Australia"
+          ],
+          [
+            "block",
+            "Croatia"
+          ],
+          [
+            "block",
+            "France"
+          ],
+          [
+            "block",
+            "Morocco"
+          ],
+          [
+            "block",
+            "Netherlands"
+          ],
+          [
+            "block",
+            "Poland"
+          ],
+          [
+            "block",
+            "South Korea"
+          ],
+          [
+            "clearance",
+            "Argentina"
+          ],
+          [
+            "clearance",
+            "Croatia"
+          ],
+          [
+            "clearance",
+            "France"
+          ],
+          [
+            "clearance",
+            "Ghana"
+          ],
+          [
+            "clearance",
+            "Morocco"
+          ],
+          [
+            "clearance",
+            "Netherlands"
+          ],
+          [
+            "clearance",
+            "Poland"
+          ],
+          [
+            "clearance",
+            "Senegal"
+          ]
+        ],
+        "held_teams_by_action": {
+          "block": [
+            "Croatia",
+            "Argentina",
+            "Morocco",
+            "France",
+            "Australia",
+            "Netherlands",
+            "Poland",
+            "South Korea"
+          ],
+          "clearance": [
+            "Croatia",
+            "Argentina",
+            "Morocco",
+            "France",
+            "Senegal",
+            "Poland",
+            "Ghana",
+            "Netherlands"
+          ]
+        }
+      },
+      "name": "C1_soccer composition specification matches recomputation",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 11397,
+        "expected": 11397
+      },
+      "name": "C1_soccer train qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer train labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer train contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1755,
+        "expected": 1755
+      },
+      "name": "C1_soccer val qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer val labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer val contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2246,
+        "expected": 2246
+      },
+      "name": "C1_soccer test qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer test labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer test contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2607,
+        "expected": 2607
+      },
+      "name": "C1_soccer training exclusion ledger matches all rule-based exclusions",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer exclusion reasons are accurate",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1517,
+        "expected": 1517
+      },
+      "name": "C1_soccer val_seen is exactly seen validation subset",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer training contains only S+/S-",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": [
+            839,
+            1132,
+            101,
+            174
+          ],
+          "train": [
+            4145,
+            7252,
+            0,
+            0
+          ],
+          "val": [
+            603,
+            914,
+            92,
+            146
+          ]
+        },
+        "observed": {
+          "test": [
+            839,
+            1132,
+            101,
+            174
+          ],
+          "train": [
+            4145,
+            7252,
+            0,
+            0
+          ],
+          "val": [
+            603,
+            914,
+            92,
+            146
+          ]
+        }
+      },
+      "name": "C1_soccer four-quadrant counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "excluded": 2607,
+        "val_seen": 1517
+      },
+      "name": "C1_soccer exclusion and val_seen counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer held combinations and generic held-action queries absent from train",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer held action and team components have positive train support",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 20,
+        "expected": 20
+      },
+      "name": "C1_soccer matched pair ledger matches deterministic same-clip pairing",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 40,
+        "expected": 40
+      },
+      "name": "C1_soccer matched test expansion has each paired qid once",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C1_soccer matched test rows reference valid unseen positive/negative rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_exclusions": 2607,
+        "recorded_exclusions": 2607
+      },
+      "name": "C1_soccer published statistics recompute from files",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C1_soccer semantic inventory recomputes from files",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "axis": "action_actor_composition",
+        "group": "C2_soccer",
+        "held_actions": [
+          "dribble",
+          "interception"
+        ],
+        "held_combinations": [
+          [
+            "dribble",
+            "Argentina"
+          ],
+          [
+            "dribble",
+            "Brazil"
+          ],
+          [
+            "dribble",
+            "Croatia"
+          ],
+          [
+            "dribble",
+            "France"
+          ],
+          [
+            "dribble",
+            "Ghana"
+          ],
+          [
+            "dribble",
+            "Morocco"
+          ],
+          [
+            "dribble",
+            "Netherlands"
+          ],
+          [
+            "dribble",
+            "Senegal"
+          ],
+          [
+            "interception",
+            "Argentina"
+          ],
+          [
+            "interception",
+            "Croatia"
+          ],
+          [
+            "interception",
+            "France"
+          ],
+          [
+            "interception",
+            "Ghana"
+          ],
+          [
+            "interception",
+            "Japan"
+          ],
+          [
+            "interception",
+            "Morocco"
+          ],
+          [
+            "interception",
+            "Saudi Arabia"
+          ],
+          [
+            "interception",
+            "South Korea"
+          ]
+        ],
+        "held_teams_by_action": {
+          "dribble": [
+            "France",
+            "Morocco",
+            "Croatia",
+            "Argentina",
+            "Senegal",
+            "Ghana",
+            "Brazil",
+            "Netherlands"
+          ],
+          "interception": [
+            "France",
+            "Morocco",
+            "Croatia",
+            "Argentina",
+            "Saudi Arabia",
+            "Ghana",
+            "Japan",
+            "South Korea"
+          ]
+        }
+      },
+      "name": "C2_soccer composition specification matches recomputation",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 12200,
+        "expected": 12200
+      },
+      "name": "C2_soccer train qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer train labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer train contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1755,
+        "expected": 1755
+      },
+      "name": "C2_soccer val qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer val labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer val contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 2246,
+        "expected": 2246
+      },
+      "name": "C2_soccer test qids match independently assigned source rows",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer test labels and source annotation fields match",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer test contains only WorldCup source rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1804,
+        "expected": 1804
+      },
+      "name": "C2_soccer training exclusion ledger matches all rule-based exclusions",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer exclusion reasons are accurate",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 1542,
+        "expected": 1542
+      },
+      "name": "C2_soccer val_seen is exactly seen validation subset",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer training contains only S+/S-",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "expected": {
+          "test": [
+            867,
+            1163,
+            73,
+            143
+          ],
+          "train": [
+            4607,
+            7593,
+            0,
+            0
+          ],
+          "val": [
+            627,
+            915,
+            68,
+            145
+          ]
+        },
+        "observed": {
+          "test": [
+            867,
+            1163,
+            73,
+            143
+          ],
+          "train": [
+            4607,
+            7593,
+            0,
+            0
+          ],
+          "val": [
+            627,
+            915,
+            68,
+            145
+          ]
+        }
+      },
+      "name": "C2_soccer four-quadrant counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "excluded": 1804,
+        "val_seen": 1542
+      },
+      "name": "C2_soccer exclusion and val_seen counts match plan",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer held combinations and generic held-action queries absent from train",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer held action and team components have positive train support",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 16,
+        "expected": 16
+      },
+      "name": "C2_soccer matched pair ledger matches deterministic same-clip pairing",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "actual": 32,
+        "expected": 32
+      },
+      "name": "C2_soccer matched test expansion has each paired qid once",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "C2_soccer matched test rows reference valid unseen positive/negative rows",
+      "status": "pass"
+    },
+    {
+      "detail": {
+        "computed_exclusions": 1804,
+        "recorded_exclusions": 1804
+      },
+      "name": "C2_soccer published statistics recompute from files",
+      "status": "pass"
+    },
+    {
+      "detail": null,
+      "name": "C2_soccer semantic inventory recomputes from files",
+      "status": "pass"
+    },
+    {
+      "detail": 1755,
+      "name": "All five groups share the same clean val qid set",
+      "status": "pass"
+    },
+    {
+      "detail": 2246,
+      "name": "All five groups share the same clean test qid set",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "Required release files are present",
+      "status": "pass"
+    },
+    {
+      "detail": [],
+      "name": "No checksum or hash manifest was generated",
+      "status": "pass"
+    }
+  ],
+  "failed_check_count": 0,
+  "known_validation_scope": [
+    "No video-level annotation review was performed.",
+    "Cross-split clip ids are checked; temporal overlaps between distinct clips are intentionally ignored.",
+    "No model training or performance evaluation was run."
+  ],
+  "manual_video_review_performed": false,
+  "mechanical_checks_passed": true,
+  "observed_group_statistics": {
+    "A1_soccer": {
+      "excluded": 1970,
+      "pairs": 37,
+      "quadrants": {
+        "test": [
+          818,
+          1111,
+          122,
+          195
+        ],
+        "train": [
+          4650,
+          7384,
+          0,
+          0
+        ],
+        "val": [
+          587,
+          911,
+          108,
+          149
+        ]
+      },
+      "val_seen": 1498
+    },
+    "A2_soccer": {
+      "excluded": 1757,
+      "pairs": 35,
+      "quadrants": {
+        "test": [
+          833,
+          1136,
+          107,
+          170
+        ],
+        "train": [
+          4777,
+          7470,
+          0,
+          0
+        ],
+        "val": [
+          625,
+          914,
+          70,
+          146
+        ]
+      },
+      "val_seen": 1539
+    },
+    "A3_soccer": {
+      "excluded": 1639,
+      "pairs": 43,
+      "quadrants": {
+        "test": [
+          812,
+          1158,
+          128,
+          148
+        ],
+        "train": [
+          4822,
+          7543,
+          0,
+          0
+        ],
+        "val": [
+          624,
+          927,
+          71,
+          133
+        ]
+      },
+      "val_seen": 1551
+    },
+    "C1_soccer": {
+      "excluded": 2607,
+      "pairs": 20,
+      "quadrants": {
+        "test": [
+          839,
+          1132,
+          101,
+          174
+        ],
+        "train": [
+          4145,
+          7252,
+          0,
+          0
+        ],
+        "val": [
+          603,
+          914,
+          92,
+          146
+        ]
+      },
+      "val_seen": 1517
+    },
+    "C2_soccer": {
+      "excluded": 1804,
+      "pairs": 16,
+      "quadrants": {
+        "test": [
+          867,
+          1163,
+          73,
+          143
+        ],
+        "train": [
+          4607,
+          7593,
+          0,
+          0
+        ],
+        "val": [
+          627,
+          915,
+          68,
+          145
+        ]
+      },
+      "val_seen": 1542
+    }
+  },
+  "passed_check_count": 132,
+  "status": "pass",
+  "validated_against_source": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/label/Full",
+  "validator": "scripts/validate_soccer_gmr_unseen.py"
+}

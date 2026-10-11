@@ -1,0 +1,33 @@
+{
+  "probe": {
+    "stem": "WC2022_3857282_1_2380s_2530s",
+    "results": {
+      "clip": {
+        "existing_shape": [
+          75,
+          512
+        ],
+        "new_shape": [
+          75,
+          512
+        ],
+        "mean_cosine": 0.9958046674728394,
+        "min_cosine": 0.9870997667312622
+      },
+      "slowfast": {
+        "existing_shape": [
+          75,
+          2304
+        ],
+        "new_shape": [
+          75,
+          2304
+        ],
+        "mean_cosine": 0.5645115375518799,
+        "min_cosine": 0.4082495868206024
+      }
+    }
+  },
+  "reuse_existing": false,
+  "protocol": "Reuse original features only if both modalities have matching shape and mean cosine >=0.98; otherwise extract all videos uniformly."
+}

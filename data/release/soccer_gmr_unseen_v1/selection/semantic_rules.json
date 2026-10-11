@@ -1,0 +1,110 @@
+{
+  "accepted_worldcup_actions": [
+    "bad behaviour",
+    "block",
+    "clearance",
+    "dribble",
+    "foul committed",
+    "interception",
+    "shot",
+    "substitution"
+  ],
+  "action_parser": "casefold; normalize hyphen/underscore and whitespace; remove an explicit trailing 'by players from TEAM'; longest event phrases first; aliases and recognized non-WorldCup events listed below",
+  "cleaning_rules": [
+    "query event must parse to one event and match normalized action_type",
+    "duration and every relevant window must be valid",
+    "same normalized video/event/actor positive-negative conflicts are quarantined",
+    "generic empty-window query conflicts with any same-video/event positive",
+    "all rows in an exact normalized-video/query duplicate group are quarantined"
+  ],
+  "event_aliases": {
+    "bad behaviour": [
+      "bad behaviour",
+      "bad behavior"
+    ],
+    "block": [
+      "block"
+    ],
+    "clearance": [
+      "clearance"
+    ],
+    "corner kick": [
+      "corner kick",
+      "corner-kick"
+    ],
+    "defense": [
+      "defense",
+      "defence"
+    ],
+    "dribble": [
+      "dribble"
+    ],
+    "foul committed": [
+      "foul committed"
+    ],
+    "free kick": [
+      "free kick",
+      "free-kick"
+    ],
+    "goal": [
+      "scoring moment",
+      "goal is scored",
+      "goal"
+    ],
+    "goal kick": [
+      "goal kick",
+      "goal-kick"
+    ],
+    "header": [
+      "header",
+      "heading action"
+    ],
+    "injury": [
+      "injury"
+    ],
+    "interception": [
+      "interception"
+    ],
+    "lead to corner": [
+      "lead to corner"
+    ],
+    "offense": [
+      "offense",
+      "offence"
+    ],
+    "offside": [
+      "offside"
+    ],
+    "penalty kick": [
+      "penalty kick",
+      "penalty-kick"
+    ],
+    "red card": [
+      "red card"
+    ],
+    "save": [
+      "save"
+    ],
+    "shot": [
+      "shot"
+    ],
+    "shot off target": [
+      "shot off target"
+    ],
+    "sliding tackle": [
+      "sliding tackle",
+      "sliding-tackle"
+    ],
+    "substitution": [
+      "substitution"
+    ],
+    "throw in": [
+      "throw in",
+      "throw-in"
+    ],
+    "yellow card": [
+      "yellow card"
+    ]
+  },
+  "label_source": "exist_label = bool(relevant_windows); moment is retained but does not override relevant_windows"
+}

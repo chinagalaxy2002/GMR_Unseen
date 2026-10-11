@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / 'docs/gmr_baseline_summary_20261011'
 ASSETS = ROOT / 'assets/gmr_baseline_summary_20261011'
 CHARADES = Path('experiments/agy_test/publication_review_20261011/charades_cg')
+SOCCER = Path('experiments/agy_test/publication_review_20261011/soccer_unseen')
+SOCCER_INPUTS = Path('data/experiment_inputs/soccer_unseen_baselines_20261011')
 DATASETS = [
     ('Clean v3', Path('experiments/agy_test/v3_release_baselines_20261009'),
      Path('data/release/semantic_existence_v3_release'), 'MACRO'),
@@ -25,6 +27,7 @@ DATASETS = [
      Path('data/release/semantic_existence_v3_balanced'), 'MACRO'),
     ('Charades-CG v2', CHARADES,
      Path('data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2'), 'C3_CG'),
+    ('Soccer-GMR v1', SOCCER, Path('data/release/soccer_gmr_unseen_v1'), 'MACRO'),
 ]
 BACKBONES = ('moment', 'qd', 'flash')
 NAMES = {'moment': 'Moment-DETR-GMR', 'qd': 'QD-DETR-GMR', 'flash': 'FlashVTG-GMR'}
@@ -56,12 +59,14 @@ def load_results():
     for label, experiment, dataset, aggregate in DATASETS:
         if label == 'Charades-CG v2':
             evaluation = ROOT / experiment / 'docs/reports/charades_cg_gmr_baselines_20261011'
+        elif label == 'Soccer-GMR v1':
+            evaluation = ROOT / experiment / 'docs/reports/soccer_unseen_baselines_20261011'
         else:
             evaluation = ROOT / experiment / 'evaluation'
         rows = read_json(evaluation / 'degradation_metrics.json')
         absolute = read_json(evaluation / 'bootstrap.json')
         subset = read_json(evaluation / 'degradation_bootstrap.json')
-        status_path = (evaluation if label == 'Charades-CG v2' else ROOT / experiment) / 'FINAL_EVALUATION_STATUS.json'
+        status_path = (evaluation if label in ('Charades-CG v2', 'Soccer-GMR v1') else ROOT / experiment) / 'FINAL_EVALUATION_STATUS.json'
         status = read_json(status_path)
         if status.get('complete') is not True:
             raise ValueError(f'Incomplete experiment: {label}')
@@ -97,7 +102,12 @@ def load_results():
                 for comparison in ('unseen_net_gain', 'seen_change', 'gap_reduction'):
                     out[metric + '_' + comparison] = None
             all_rows.append(out)
-        for folder in sorted((ROOT / dataset / 'splits').iterdir()):
+        count_root = ROOT / (SOCCER_INPUTS if label == 'Soccer-GMR v1' else dataset)
+        if label == 'Soccer-GMR v1':
+            inventory[-1]['experiment_inputs'] = str(SOCCER_INPUTS)
+            inventory[-1]['feature_excluded_qids'] = 37
+            inventory[-1]['test_rows_per_split'] = 2233
+        for folder in sorted((count_root / 'splits').iterdir()):
             if not folder.is_dir():
                 continue
             for part in (('train', 'val_seen', 'test') if label == 'Charades-CG v2' else ('train', 'val', 'test')):
@@ -123,28 +133,29 @@ def save_figure(fig, name):
 
 
 def plot_composition(counts):
-    fig, axes = plt.subplots(1, 3, figsize=(14, 4.6))
+    fig, grid = plt.subplots(2, 2, figsize=(12, 8.8))
+    axes = grid.ravel()
     for ax, (label, _, _, _) in zip(axes, DATASETS):
         rows = [r for r in counts if r['dataset'] == label and r['partition'] == 'test']
+        y_positions = np.array([2]) if len(rows) == 1 else np.arange(len(rows))
         base = np.zeros(len(rows))
         for p, color, hatch in zip(('S+', 'S-', 'U+', 'U-'),
                                    ('#0072B2', '#56B4E9', '#D55E00', '#E69F00'), ('', '//', '', '//')):
             values = np.array([r[p] for r in rows])
-            ax.barh(range(len(rows)), values, left=base, color=color, hatch=hatch,
+            ax.barh(y_positions, values, left=base, color=color, hatch=hatch,
                     edgecolor='white', label=p)
             for i, value in enumerate(values):
-                if value > 900:
-                    ax.text(base[i] + value/2, i, str(value), ha='center', va='center',
+                if value > 900 or label == 'Soccer-GMR v1':
+                    ax.text(base[i] + value/2, y_positions[i], str(value), ha='center', va='center',
                             fontsize=8, color='white' if p in ('S+', 'U+') else '#202020')
             base += values
-        ax.set(yticks=range(len(rows)), yticklabels=[r['split'] for r in rows],
-               title=label, xlabel='Test video-query pairs', xlim=(0, 12000))
-        ax.invert_yaxis()
+        ax.set(yticks=y_positions, yticklabels=[r['split'] for r in rows], ylim=(4.6, -.6),
+               title=label, xlabel='Test video-query pairs', xlim=(0, max(r['total'] for r in rows) * 1.04))
         ax.grid(axis='x', alpha=.15)
         ax.set_axisbelow(True)
     axes[0].legend(ncol=4, loc='lower left', bbox_to_anchor=(0, 1.10), frameon=False)
     fig.suptitle('Test composition by release and split', y=1.05, fontsize=15)
-    fig.text(.5, -.015, 'S / U: Seen / Unseen; + / -: present / absent construction label. '
+    fig.text(.5, -.015, 'S / U: Seen / Unseen; + / -: present / absent label. '
              'Balanced v3 is balanced overall, not necessarily within Seen and Unseen.',
              ha='center', fontsize=9)
     fig.tight_layout()
@@ -152,7 +163,7 @@ def plot_composition(counts):
 
 
 def plot_performance(rows):
-    fig, axes = plt.subplots(3, 3, figsize=(13, 10))
+    fig, axes = plt.subplots(len(DATASETS), 3, figsize=(13, 3.3 * len(DATASETS)))
     for i, (label, _, _, aggregate) in enumerate(DATASETS):
         subset = [next(r for r in rows if r['dataset'] == label and r['split'] == aggregate
                        and r['backbone'] == bb) for bb in BACKBONES]
@@ -184,11 +195,12 @@ def plot_performance(rows):
 
 
 def plot_gaps(rows):
-    fig, axes = plt.subplots(3, 3, figsize=(14, 11.5),
-                             gridspec_kw={'height_ratios': [2.3, 2.3, 1]})
+    fig, axes = plt.subplots(len(DATASETS), 3, figsize=(14, 17),
+                             gridspec_kw={'height_ratios': [2.3, 2.3, 1, 2.3]})
     for i, (label, _, _, aggregate) in enumerate(DATASETS):
         subset = [r for r in rows if r['dataset'] == label]
-        order = ['A1_v3', 'A2_v3', 'A3_v3', 'C1_v3', 'C2_v3', 'MACRO'] if aggregate == 'MACRO' else ['C3_CG']
+        suffix = '_soccer' if label == 'Soccer-GMR v1' else '_v3'
+        order = [g + suffix for g in ('A1', 'A2', 'A3', 'C1', 'C2')] + ['MACRO'] if aggregate == 'MACRO' else ['C3_CG']
         subset = sorted(subset, key=lambda r: (order.index(r['split']), BACKBONES.index(r['backbone'])))
         for j, (_, title, source_key) in enumerate(METRICS):
             ax = axes[i, j]
@@ -201,7 +213,7 @@ def plot_gaps(rows):
             ax.axvline(0, color='#555555', linestyle='--', lw=.9)
             ax.set(title=f'{label} | {title}', xlabel='Seen − Unseen (pp)',
                    yticks=range(len(subset)), ylim=(len(subset)-.4, -.6))
-            ax.set_yticklabels([f'{r["split"].replace("_v3", "")} / {SHORT[r["backbone"]]}'
+            ax.set_yticklabels([f'{r["split"].replace("_v3", "").replace("_soccer", "")} / {SHORT[r["backbone"]]}'
                                 for r in subset] if j == 0 else [], fontsize=8)
             ax.grid(axis='x', alpha=.18)
     fig.suptitle('Signed generalization gaps: each split and backbone', fontsize=15)
@@ -393,9 +405,9 @@ def write_readme(rows, counts, inventory):
     for item in inventory:
         index_lines.append(f'| {item["dataset"]} | [{Path(item["experiment"]).name}]({item["experiment"]}/README.md) | '
                            f'[{Path(item["release"]).name}]({item["release"]}/README.md) | {item["completed_settings"]}/{item["completed_settings"]} |')
-    text = '''# GMR 三组基准实验汇总
+    text = '''# GMR 四组基准实验汇总
 
-本分支汇总 Clean Semantic Existence v3、Balanced v3 与 Charades-CG-GMR v2 的数据、方法源码、运行脚本和冻结结果，更新于 **2026-10-11**。两个 v3 项目各完成五划分 × 三 backbone（15/15）；Charades-CG v2 完成 C3_CG × 三 backbone（3/3），共 **33 个已完成评测设置**。
+本分支汇总 Clean Semantic Existence v3、Balanced v3、Charades-CG-GMR v2 与 Soccer-GMR-Unseen v1 的数据、方法源码、运行脚本和冻结结果，更新于 **2026-10-11**。Clean v3、Balanced v3、Soccer 各完成五划分 × 三 backbone（各 15/15）；Charades-CG v2 完成 C3_CG × 三 backbone（3/3），共 **48 个已完成评测设置**。Soccer 训练和评测于北京时间 2026-10-11 20:19 完成，失败 0 组。
 
 ## GMR 方法与研究问题
 
@@ -403,7 +415,7 @@ def write_readme(rows, counts, inventory):
 
 *原 GMR README 方法图：定位分支预测时间窗，存在判断分支通过阈值决定输出时间窗或空集。图源：[GMR](https://github.com/dymm9977/generalized-moment-retrieval)。*
 
-GMR 在时间定位骨干上增加存在判断分支：事件存在时返回时间窗，缺席时返回空集。我们关注：**面对训练未见的动作或组合，模型能否找准真实事件，并拒绝未发生的事件？** 为此，三套数据、三个骨干均使用 Seen 训练和选模，分别评测 Seen/Unseen 的 AUROC、Rej-F1 与 G-mIoU@1。Clean v3 三模型的五划分宏平均 AUROC 下降 18.96–20.76 pp；Balanced v3 仍下降 3.52–10.98 pp，Charades-CG 的 Moment/Flash 也有显著差距。这些结果支持进一步研究**事件存在判断与时间定位如何共同泛化到未见语义**。
+GMR 在时间定位骨干上增加存在判断分支：事件存在时返回时间窗，缺席时返回空集。我们关注：**面对训练未见的动作或组合，模型能否找准真实事件，并拒绝未发生的事件？** 为此，四套数据、三个骨干均使用 Seen 训练和选模，分别评测 Seen/Unseen 的 AUROC、Rej-F1 与 G-mIoU@1。Clean v3 三模型的五划分宏平均 AUROC 下降 18.96–20.76 pp；Balanced v3 仍下降 3.52–10.98 pp；Soccer 下降 12.52–18.20 pp；Charades-CG 的 Moment/Flash 也有显著差距。这些结果支持进一步研究**事件存在判断与时间定位如何共同泛化到未见语义**。
 
 ## 项目与数据入口
 
@@ -417,9 +429,9 @@ INDEX
 
 ![从视频查询配对到泛化评测](assets/gmr_baseline_summary_20261011/construction_overview.svg)
 
-*图 1：数据构建与评测的总体关系。训练与选模使用 Seen，测试同时考察事件存在判断、时间定位与语义泛化。*
+*图 1：三套 Charades 衍生数据的构建与评测关系。Soccer 从已有足球正负标注出发，独立流程见下文。四套数据均以 Seen 训练和选模，并分别测试 Seen/Unseen。*
 
-构建目标是同时评测模型的**事件存在判断**与**时间定位**，以及这两种能力能否推广到训练未见的动作或组合。整体流程为：**原始视频–查询正例 → 构造负例 → 按动作/组合确定 Seen 与 Unseen → Seen 训练和选模 → Seen/Unseen 测试**。
+构建目标是同时评测模型的**事件存在判断**与**时间定位**，以及这两种能力能否推广到训练未见的动作或组合。共同路径为：**准备视频–查询正负配对 → 按动作/组合确定 Seen 与 Unseen → Seen 训练和选模 → Seen/Unseen 测试**。Charades 三套数据构造负例，Soccer 直接沿用来源负例；四套数据分别训练和汇总，不计算跨数据集总平均。
 
 ### 负样本构建的思路与来源
 
@@ -477,7 +489,28 @@ INDEX
 3. **每个正例查询构造一个跨视频负例。** 查询文本与官方 S/U 身份不变，排除原视频和含完全相同查询的视频；使用 CLIP 文本最大余弦分数，对同 split 候选视频排序并在最低一半中均匀采样。测试候选池是 Test-Trivial 与 Novel-Composition 干净正例视频的并集，同视频两类正描述共同参与评分。
 4. **形成四分区测试集。** 每个正例对应一个负例，得到 S+/S− 各 2,684 条、U+/U− 各 2,990 条，共 11,348 条。v2 重新生成两类测试负例并全量推理；两类测试查询可共享目标视频，评估时联合按目标视频抽样。
 
-### 每个语义划分的真实例子：图示与合并对照表
+### Soccer：沿用足球正负标注，重组动作与动作×球队划分
+
+![Soccer 数据路径](experiments/agy_test/publication_review_20261011/soccer_unseen/assets/soccer_gmr_unseen_v1/construction_pipeline.svg)
+
+*Soccer 的输入已含正负标注；本次重组语义划分并统一特征，没有补充伪负例。*
+
+1. **准备并清理来源。** 从 `data/label/Full/{train,val,test}.jsonl` 只取 WorldCup 2022，沿用原 train/val/test。剔除动作字段矛盾、重复、正负冲突及 GT 越界等 263 条，保留 18,005 条。完整原句、源标签和合法时间窗不改写；本次未逐视频复核。
+2. **明确每组 Unseen 的语义。** A1/A2/A3 分别为 dribble（盘带）、shot（射门）、interception（拦截）。C1 为 block/clearance（封堵/解围）× 指定球队；C2 为 dribble/interception × 指定球队，每个动作 8 队、每组 16 个组合。球队仅按干净 Train 中正负各不少于 10 条的支持量排名选择，完整清单见 [Soccer 说明](experiments/agy_test/publication_review_20261011/soccer_unseen/README.md#每组的实际含义)。
+3. **组织训练与测试。** 每组 Train 删除对应 Unseen 查询，仅保留 S+/S−；Val/Test 保留四分区，另导出 Seen Val。C1/C2 训练还删除相关动作的不指定球队查询；Val/Test 中这种泛指查询因未明确指定组合，仍算 Seen。
+4. **提取特征并冻结。** CLIP ViT-B/32 与 SlowFast 8x8 R50 视频特征均统一重提，文本完整查询也重提。4 个片段缺少完整特征，关联母池 37 条查询从实验副本排除；三个模型使用同一冻结输入。原始 Test 2,246 条，实际 Test **2,233 条（936 正 / 1,297 负）**，原发布保留不变。
+
+| Soccer 划分 | Unseen 的语义 | 实际 Train S+ / S− | Seen Val | Test U+ / U− |
+|---|---|---:|---:|---:|
+| A1_soccer | dribble | 4646 / 7375 | 1489 | 122 / 193 |
+| A2_soccer | shot | 4773 / 7461 | 1530 | 107 / 169 |
+| A3_soccer | interception | 4819 / 7536 | 1542 | 128 / 146 |
+| C1_soccer | block/clearance × 指定球队 | 4142 / 7243 | 1510 | 99 / 172 |
+| C2_soccer | dribble/interception × 指定球队 | 4603 / 7584 | 1535 | 73 / 139 |
+
+每组实际 Val 全集均为 1,744 条、Test 均为 2,233 条。**Seen→Unseen 退化在同一 Test 文件的两个子集上计算**；五组复用相同测试 qid，只改变语义身份。读取 [冻结实验输入](data/experiment_inputs/soccer_unseen_baselines_20261011/splits/) 可复现本文计数；[原始发布](data/release/soccer_gmr_unseen_v1/) 是过滤前数据，不能替代本次评测分母。
+
+### Charades 六个语义划分的真实例子：图示与合并对照表
 
 ![六个语义划分真实样本对照图](assets/gmr_baseline_summary_20261011/semantic_example_atlas.svg)
 
@@ -497,9 +530,9 @@ PIPELINE_EXAMPLES
 例如 C2 中，“person opens bag.” 是 S+，“person open a box.” 是 U+：留出的是 **open × box** 组合，open 这个动作仍可在其他对象上出现。Clean 的负例把同一视频的 bag 改成 box；Balanced 的负例把已有的开箱查询移到另一视频。C3 的 open × laptop 则来自官方 `novels` 组合标记。
 
 <details>
-<summary>原始科研图归档：三套构建管线与五类语义留出</summary>
+<summary>科研图归档：四套构建管线与 Charades 五类语义划分</summary>
 
-![三套数据的原始构建图合并](assets/gmr_baseline_summary_20261011/construction_pipelines.svg)
+![四套数据的构建图合并](assets/gmr_baseline_summary_20261011/construction_pipelines.svg)
 
 ![五类划分原图合并](assets/gmr_baseline_summary_20261011/semantic_splits.svg)
 
@@ -509,9 +542,9 @@ PIPELINE_EXAMPLES
 
 ### 各测试划分的数据组成
 
-![三版本数据组成合并](assets/gmr_baseline_summary_20261011/dataset_composition.svg)
+![四套数据组成合并](assets/gmr_baseline_summary_20261011/dataset_composition.svg)
 
-*图 8：Balanced v3 的完整测试集与 Charades-CG v2 正负平衡，Balanced 的 Seen/Unseen 子集仍有比例差异。图中 S/U 为 Seen/Unseen，+/− 为存在/缺席构造标签；全部 train/val/test 计数见 [DATASET_COUNTS](docs/gmr_baseline_summary_20261011/DATASET_COUNTS.md)。五划分共享视频与查询，不能把行数相加当作独立样本数。*
+*图 8：Balanced v3 的完整测试集与 Charades-CG v2 正负平衡，Balanced 的 Seen/Unseen 子集仍有比例差异；Soccer 使用过滤后实际计数，其负例多于正例。图中 S/U 为 Seen/Unseen，+/− 为存在/缺席标签，各面板横轴按本数据规模绘制；全部 train/val/test 计数见 [DATASET_COUNTS](docs/gmr_baseline_summary_20261011/DATASET_COUNTS.md)。五划分共享视频与查询，不能把行数相加当作独立样本数。*
 
 | 数据集 | Test split | S+ | S− | U+ | U− | 总行数 |
 |---|---|---:|---:|---:|---:|---:|
@@ -521,14 +554,14 @@ COUNTS
 
 | 项目 | 固定设置 |
 |---|---|
-| 特征 | CLIP 文本，CLIP + SlowFast 视频；精确查询 SHA-256 核验复用特征 |
+| 特征 | CLIP 文本，CLIP + SlowFast 视频；Charades 特征按精确查询核验复用；Soccer 视频和文本统一重提，使用特征完整副本 |
 | 训练 | S+/S− only；seed 3407；从头训练，最多 100 epochs；max_es_cnt=26（连续 27 次无改善早停） |
 | Checkpoint | Moment/QD：Seen validation MR-full-mAP；Flash：Seen validation R1@0.5 与 R1@0.7 均值 |
 | 阈值 | 完整 Seen validation 的 5–95 分位数、91 个候选，最大化 Balanced Accuracy，并列取最早；score ≥ threshold 接受 |
 | 分数 | Moment/QD 原生四位 sigmoid；Flash 原生六位 logit，避免三位概率饱和并列 |
 | 定位 | 原生输出第一个合法窗口；不因窗口终点超过标注时长改选后续窗口 |
 | 不确定性 | 2,000 次 video-cluster bootstrap，seed 3407，冻结 checkpoint 与阈值；Seen/Unseen 共享视频联合重采样 |
-| 宏平均 | 仅 Clean/Balanced 的五组全部完成后作等权 MACRO；共同视频宇宙配对抽样；C3_CG 单独报告 |
+| 宏平均 | Clean/Balanced/Soccer 各自五组全部完成后作等权 MACRO；各数据集内部共同视频宇宙配对抽样；C3_CG 单独报告，不跨数据集平均 |
 
 Charades-CG v2 **复用原 C3_CG 的冻结 checkpoint、Seen-validation 原生预测及阈值**，重新推理 v2 测试；其训练/验证与 v1 相同。
 
@@ -536,7 +569,7 @@ AUROC 为存在分数的排序能力。Actual Rej-F1 将拒绝作为正决策，
 
 ## 主要结果
 
-下表各单元格为 **Seen → Unseen（Gap pp）**。AUROC 为 0–1；Rej-F1、G-mIoU@1 为百分数。Clean/Balanced 为完整五划分等权宏平均，Charades-CG 为单划分。
+下表各单元格为 **Seen → Unseen（Gap pp）**。AUROC 为 0–1；Rej-F1、G-mIoU@1 为百分数。Clean/Balanced/Soccer 分别为完整五划分等权宏平均，Charades-CG 为单划分。不同数据集的分数反映不同测试组成，不能直接作为同测试集方法净增益。
 
 | 数据 / 汇总范围 | Backbone | AUROC | Rej-F1 (%) | G-mIoU@1 (%) |
 |---|---|---:|---:|---:|
@@ -544,7 +577,7 @@ METRICS
 
 ![Seen Unseen 三指标合并](assets/gmr_baseline_summary_20261011/seen_unseen_performance.svg)
 
-*图 9：三套数据中，多数模型的 Unseen AUROC 点估计低于 Seen。每行对应一个数据版本，每列对应一项指标；圆点/方点分别为 Seen/Unseen，误差线为视频聚类 bootstrap 95% CI。*
+*图 9：四套数据中，多数模型的 Unseen AUROC 点估计低于 Seen。每行对应一个数据版本，每列对应一项指标；圆点/方点分别为 Seen/Unseen，误差线为视频聚类 bootstrap 95% CI。Soccer 聚类单位为片段 ID，并非整场比赛。*
 
 ![全部划分泛化差距合并](assets/gmr_baseline_summary_20261011/generalization_gaps.svg)
 
@@ -557,6 +590,12 @@ METRICS
 OVERALL
 
 **结果解读**：Clean v3 的三模型宏平均 AUROC Gap 为 18.96–20.76 pp；Balanced v3 为 3.52–10.98 pp。Balanced QD 的 Unseen AUROC 为 0.5093，U+ FRR 为 71.86%，Rej-F1/G-mIoU Gap 为负。Charades-CG 的 Moment/Flash 三项 Gap CI 均高于零；QD 三项 Gap CI 均含零，其 AUROC 接近随机排序。
+
+**Soccer 的 AUROC 下降明确，拒绝/定位分数需结合误拒率解读。** Moment/QD/Flash 的宏平均 AUROC Gap 分别为 +18.20/+12.52/+16.45 pp，三者 95% CI 均高于 0。三模型宏平均 Rej-F1 Gap 的 CI 均跨 0；G-mIoU Gap 均为负，只有 QD 的 CI 完全低于 0。C2/QD 的 Unseen AUROC=0.4498、U+ FRR=98.63%（73 条 U+ 误拒 72 条），但 Unseen G-mIoU=65.09%：该子集 139 条 U− 的正确拒绝会提高 G-mIoU，不能将这一高分解释为真实事件定位更好。
+
+![Soccer Unseen 正例误拒](experiments/agy_test/publication_review_20261011/soccer_unseen/assets/soccer_gmr_unseen_v1/unseen_false_rejection.svg)
+
+*Soccer C2/QD 几乎拒绝所有未见正例。图为各组 U+ FRR 及视频片段聚类 95% CI；Rej-F1/G-mIoU 的负 Gap 需与正负计数共同阅读。逐组完整结果与限制见 [Soccer 报告](experiments/agy_test/publication_review_20261011/soccer_unseen/README.md)。*
 
 独立 baseline 的 **Unseen Net Gain、Seen Change、Gap Reduction 对三项指标均为 N/A**；后续同版本、同 split、同 backbone 的方法对照按 paired bootstrap 报告这些变化。
 
@@ -571,6 +610,8 @@ OVERALL
 | Clean / Balanced 补充 bootstrap | `evaluation/degradation_cache/`、`degradation_bootstrap.json`，以及原始 Markdown/CSV/JSON |
 | Charades-CG 自含审阅包 | [README](experiments/agy_test/publication_review_20261011/charades_cg/README.md)；包内 `docs/reports/charades_cg_gmr_baselines_20261011/{frozen,source_snapshot}/` |
 | Charades-CG 原训练与 v2 执行脚本 | [原训练](experiments/agy_test/charades_cg_baselines_20261010/) · [v2 重评估](experiments/agy_test/charades_cg_v2_evaluation_20261011/)；实际 native 源码见审阅包快照 |
+| Soccer 数据与实际输入 | [原发布](data/release/soccer_gmr_unseen_v1/) · [过滤后冻结副本](data/experiment_inputs/soccer_unseen_baselines_20261011/)；原数据不改，实验排除 37 个 qid |
+| Soccer 自含报告、源码与冻结结果 | [README](experiments/agy_test/publication_review_20261011/soccer_unseen/README.md)；包内 `docs/reports/soccer_unseen_baselines_20261011/{frozen,source_snapshot}/` 保存预测、校准、抽样及代码；[独立复核](experiments/agy_test/publication_review_20261011/soccer_unseen/docs/reports/soccer_unseen_baselines_20261011/LOCAL_VERIFICATION.json) |
 | 图表 | [合并图](assets/gmr_baseline_summary_20261011/)；原图与绘制代码保留于 `assets/semantic_existence_v3/` 和 Charades-CG 包内 assets |
 | 构建过程科研示意图 | [绘图脚本](scripts/render_gmr_construction_figures.py) · [图中数据来源](docs/gmr_baseline_summary_20261011/CONSTRUCTION_FIGURES.json)；七张图均有 SVG / PDF / PNG |
 | 本次发布元数据 | [PACKAGING](docs/gmr_baseline_summary_20261011/PACKAGING.json) · [PUBLICATION_MANIFEST](docs/gmr_baseline_summary_20261011/PUBLICATION_MANIFEST.json) · [实验完成记录](docs/gmr_baseline_summary_20261011/EXPERIMENTS.json) |
@@ -608,12 +649,12 @@ python scripts/render_gmr_construction_figures.py
 
 ## 说明
 
-负例依据文本与已有标注构造，未逐视频核验缺席；组合划分按冻结事件字段判定，字段判定例子见 [例证记录](docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json)。Rej-F1 与 G-mIoU 受子集正负比例影响，因此其 Gap 需结合类别计数与正例误拒率解释；不同数据版本的差值不作为同测试集方法增益。95% CI 描述固定模型、单种子的视频抽样不确定性；Unseen 指下游留出语义。
+Charades 负例依据文本与已有标注构造；Soccer 负例及正例时间窗直接继承来源，本次未逐视频核验其真值。Charades 组合划分按冻结事件字段判定，字段例子见 [例证记录](docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json)；Soccer C1/C2 为动作×球队，泛指球队查询的处理见上文。Rej-F1 与 G-mIoU 受子集正负比例影响，因此其 Gap 需结合类别计数与正例误拒率解释；不同数据版本的差值不作为同测试集方法增益。95% CI 描述固定模型、单种子的视频抽样不确定性；Soccer 以片段聚类，未证明比赛级独立性，C2 只有 73 条 U+。Unseen 指本组下游训练未包含的语义。
 '''
     text = text.replace('\nPIPELINE_EXAMPLES\n', '\n' + examples_table + '\n')
     for key, value in [('INDEX', index_lines), ('COUNTS', count_lines), ('METRICS', metric_lines), ('OVERALL', overall_lines)]:
         text = text.replace('\n'+key+'\n', '\n'+'\n'.join(value)+'\n')
-    (ROOT / 'README.md').write_text(text)
+    (ROOT / 'README_ENGINEERING.md').write_text(text)
 
 
 def main():
@@ -633,6 +674,7 @@ def main():
         ('Clean v3', ROOT / 'assets/semantic_existence_v3/clean_release_pipeline.svg'),
         ('Balanced v3', ROOT / 'assets/semantic_existence_v3/balanced_pipeline.svg'),
         ('Charades-CG v2', ROOT / CHARADES / 'assets/charades_cg_gmr/construction_pipeline.svg'),
+        ('Soccer-GMR v1', ROOT / SOCCER / 'assets/soccer_gmr_unseen_v1/construction_pipeline.svg'),
     ], 'construction_pipelines')
     combine_svg([(group, ROOT / f'assets/semantic_existence_v3/split_figures/{group}.svg')
                  for group in ('A1_v3', 'A2_v3', 'A3_v3', 'C1_v3', 'C2_v3')], 'semantic_splits', columns=2)
@@ -648,6 +690,8 @@ def main():
     write_readme(rows, counts, inventory)
     from render_gmr_construction_figures import main as render_construction
     render_construction()
+    from build_gmr_reader_summary import main as render_reader_summary
+    render_reader_summary()
     print(f'Saved {len(rows)} setting/macro rows, {len(counts)} split counts, 5 grouped figures and 7 construction figures.')
 
 

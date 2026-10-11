@@ -1,0 +1,842 @@
+{
+  "axis": "action_actor_composition",
+  "group": "C2_soccer",
+  "held_actions": [
+    "dribble",
+    "interception"
+  ],
+  "held_combinations": [
+    [
+      "dribble",
+      "Argentina"
+    ],
+    [
+      "dribble",
+      "Brazil"
+    ],
+    [
+      "dribble",
+      "Croatia"
+    ],
+    [
+      "dribble",
+      "France"
+    ],
+    [
+      "dribble",
+      "Ghana"
+    ],
+    [
+      "dribble",
+      "Morocco"
+    ],
+    [
+      "dribble",
+      "Netherlands"
+    ],
+    [
+      "dribble",
+      "Senegal"
+    ],
+    [
+      "interception",
+      "Argentina"
+    ],
+    [
+      "interception",
+      "Croatia"
+    ],
+    [
+      "interception",
+      "France"
+    ],
+    [
+      "interception",
+      "Ghana"
+    ],
+    [
+      "interception",
+      "Japan"
+    ],
+    [
+      "interception",
+      "Morocco"
+    ],
+    [
+      "interception",
+      "Saudi Arabia"
+    ],
+    [
+      "interception",
+      "South Korea"
+    ]
+  ],
+  "matched_u_expanded_query_count": 32,
+  "matched_u_pair_count": 16,
+  "splits": {
+    "test": {
+      "by_action": {
+        "bad behaviour": {
+          "count": 30,
+          "negative": 25,
+          "positive": 5
+        },
+        "block": {
+          "count": 399,
+          "negative": 206,
+          "positive": 193
+        },
+        "clearance": {
+          "count": 455,
+          "negative": 244,
+          "positive": 211
+        },
+        "dribble": {
+          "count": 317,
+          "negative": 195,
+          "positive": 122
+        },
+        "foul committed": {
+          "count": 306,
+          "negative": 181,
+          "positive": 125
+        },
+        "interception": {
+          "count": 276,
+          "negative": 148,
+          "positive": 128
+        },
+        "shot": {
+          "count": 277,
+          "negative": 170,
+          "positive": 107
+        },
+        "substitution": {
+          "count": 186,
+          "negative": 137,
+          "positive": 49
+        }
+      },
+      "by_actor": {
+        "<unspecified>": {
+          "count": 285,
+          "negative": 0,
+          "positive": 285
+        },
+        "Argentina": {
+          "count": 172,
+          "negative": 128,
+          "positive": 44
+        },
+        "Australia": {
+          "count": 65,
+          "negative": 43,
+          "positive": 22
+        },
+        "Belgium": {
+          "count": 60,
+          "negative": 45,
+          "positive": 15
+        },
+        "Brazil": {
+          "count": 63,
+          "negative": 44,
+          "positive": 19
+        },
+        "Cameroon": {
+          "count": 32,
+          "negative": 14,
+          "positive": 18
+        },
+        "Canada": {
+          "count": 27,
+          "negative": 18,
+          "positive": 9
+        },
+        "Costa Rica": {
+          "count": 50,
+          "negative": 34,
+          "positive": 16
+        },
+        "Croatia": {
+          "count": 106,
+          "negative": 76,
+          "positive": 30
+        },
+        "Denmark": {
+          "count": 30,
+          "negative": 22,
+          "positive": 8
+        },
+        "Ecuador": {
+          "count": 24,
+          "negative": 13,
+          "positive": 11
+        },
+        "England": {
+          "count": 51,
+          "negative": 35,
+          "positive": 16
+        },
+        "France": {
+          "count": 87,
+          "negative": 61,
+          "positive": 26
+        },
+        "Germany": {
+          "count": 29,
+          "negative": 17,
+          "positive": 12
+        },
+        "Ghana": {
+          "count": 55,
+          "negative": 30,
+          "positive": 25
+        },
+        "Iran": {
+          "count": 16,
+          "negative": 9,
+          "positive": 7
+        },
+        "Japan": {
+          "count": 89,
+          "negative": 55,
+          "positive": 34
+        },
+        "Mexico": {
+          "count": 37,
+          "negative": 22,
+          "positive": 15
+        },
+        "Morocco": {
+          "count": 93,
+          "negative": 57,
+          "positive": 36
+        },
+        "Netherlands": {
+          "count": 157,
+          "negative": 102,
+          "positive": 55
+        },
+        "Poland": {
+          "count": 64,
+          "negative": 42,
+          "positive": 22
+        },
+        "Portugal": {
+          "count": 76,
+          "negative": 56,
+          "positive": 20
+        },
+        "Qatar": {
+          "count": 34,
+          "negative": 25,
+          "positive": 9
+        },
+        "Saudi Arabia": {
+          "count": 79,
+          "negative": 56,
+          "positive": 23
+        },
+        "Senegal": {
+          "count": 71,
+          "negative": 51,
+          "positive": 20
+        },
+        "Serbia": {
+          "count": 38,
+          "negative": 24,
+          "positive": 14
+        },
+        "South Korea": {
+          "count": 38,
+          "negative": 25,
+          "positive": 13
+        },
+        "Spain": {
+          "count": 65,
+          "negative": 43,
+          "positive": 22
+        },
+        "Switzerland": {
+          "count": 53,
+          "negative": 38,
+          "positive": 15
+        },
+        "Tunisia": {
+          "count": 54,
+          "negative": 32,
+          "positive": 22
+        },
+        "United States": {
+          "count": 64,
+          "negative": 42,
+          "positive": 22
+        },
+        "Uruguay": {
+          "count": 56,
+          "negative": 31,
+          "positive": 25
+        },
+        "Wales": {
+          "count": 26,
+          "negative": 16,
+          "positive": 10
+        }
+      },
+      "negative": 1306,
+      "positive": 940,
+      "quadrants": {
+        "S+": {
+          "count": 867,
+          "generic_actor": 285,
+          "multi_window": 529,
+          "negative": 0,
+          "positive": 867,
+          "single_window": 338,
+          "videos": 310
+        },
+        "S-": {
+          "count": 1163,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 1163,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 351
+        },
+        "U+": {
+          "count": 73,
+          "generic_actor": 0,
+          "multi_window": 24,
+          "negative": 0,
+          "positive": 73,
+          "single_window": 49,
+          "videos": 60
+        },
+        "U-": {
+          "count": 143,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 143,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 105
+        }
+      },
+      "total": 2246
+    },
+    "train": {
+      "by_action": {
+        "bad behaviour": {
+          "count": 231,
+          "negative": 195,
+          "positive": 36
+        },
+        "block": {
+          "count": 2442,
+          "negative": 1495,
+          "positive": 947
+        },
+        "clearance": {
+          "count": 2652,
+          "negative": 1411,
+          "positive": 1241
+        },
+        "dribble": {
+          "count": 962,
+          "negative": 635,
+          "positive": 327
+        },
+        "foul committed": {
+          "count": 1921,
+          "negative": 1226,
+          "positive": 695
+        },
+        "interception": {
+          "count": 843,
+          "negative": 565,
+          "positive": 278
+        },
+        "shot": {
+          "count": 1757,
+          "negative": 1064,
+          "positive": 693
+        },
+        "substitution": {
+          "count": 1392,
+          "negative": 1002,
+          "positive": 390
+        }
+      },
+      "by_actor": {
+        "<unspecified>": {
+          "count": 1161,
+          "negative": 0,
+          "positive": 1161
+        },
+        "Argentina": {
+          "count": 700,
+          "negative": 518,
+          "positive": 182
+        },
+        "Australia": {
+          "count": 345,
+          "negative": 223,
+          "positive": 122
+        },
+        "Belgium": {
+          "count": 238,
+          "negative": 153,
+          "positive": 85
+        },
+        "Brazil": {
+          "count": 402,
+          "negative": 283,
+          "positive": 119
+        },
+        "Cameroon": {
+          "count": 181,
+          "negative": 111,
+          "positive": 70
+        },
+        "Canada": {
+          "count": 173,
+          "negative": 98,
+          "positive": 75
+        },
+        "Costa Rica": {
+          "count": 282,
+          "negative": 182,
+          "positive": 100
+        },
+        "Croatia": {
+          "count": 691,
+          "negative": 507,
+          "positive": 184
+        },
+        "Denmark": {
+          "count": 164,
+          "negative": 91,
+          "positive": 73
+        },
+        "Ecuador": {
+          "count": 150,
+          "negative": 89,
+          "positive": 61
+        },
+        "England": {
+          "count": 430,
+          "negative": 317,
+          "positive": 113
+        },
+        "France": {
+          "count": 633,
+          "negative": 476,
+          "positive": 157
+        },
+        "Germany": {
+          "count": 187,
+          "negative": 111,
+          "positive": 76
+        },
+        "Ghana": {
+          "count": 331,
+          "negative": 228,
+          "positive": 103
+        },
+        "Iran": {
+          "count": 113,
+          "negative": 69,
+          "positive": 44
+        },
+        "Japan": {
+          "count": 376,
+          "negative": 254,
+          "positive": 122
+        },
+        "Mexico": {
+          "count": 143,
+          "negative": 89,
+          "positive": 54
+        },
+        "Morocco": {
+          "count": 600,
+          "negative": 436,
+          "positive": 164
+        },
+        "Netherlands": {
+          "count": 483,
+          "negative": 342,
+          "positive": 141
+        },
+        "Poland": {
+          "count": 516,
+          "negative": 357,
+          "positive": 159
+        },
+        "Portugal": {
+          "count": 592,
+          "negative": 435,
+          "positive": 157
+        },
+        "Qatar": {
+          "count": 416,
+          "negative": 301,
+          "positive": 115
+        },
+        "Saudi Arabia": {
+          "count": 437,
+          "negative": 312,
+          "positive": 125
+        },
+        "Senegal": {
+          "count": 430,
+          "negative": 298,
+          "positive": 132
+        },
+        "Serbia": {
+          "count": 168,
+          "negative": 98,
+          "positive": 70
+        },
+        "South Korea": {
+          "count": 462,
+          "negative": 326,
+          "positive": 136
+        },
+        "Spain": {
+          "count": 292,
+          "negative": 204,
+          "positive": 88
+        },
+        "Switzerland": {
+          "count": 263,
+          "negative": 172,
+          "positive": 91
+        },
+        "Tunisia": {
+          "count": 166,
+          "negative": 96,
+          "positive": 70
+        },
+        "United States": {
+          "count": 331,
+          "negative": 214,
+          "positive": 117
+        },
+        "Uruguay": {
+          "count": 174,
+          "negative": 108,
+          "positive": 66
+        },
+        "Wales": {
+          "count": 170,
+          "negative": 95,
+          "positive": 75
+        }
+      },
+      "excluded_train": 1804,
+      "negative": 7593,
+      "positive": 4607,
+      "pre_exclusion_total": 14004,
+      "quadrants": {
+        "S+": {
+          "count": 4607,
+          "generic_actor": 1161,
+          "multi_window": 2483,
+          "negative": 0,
+          "positive": 4607,
+          "single_window": 2124,
+          "videos": 1727
+        },
+        "S-": {
+          "count": 7593,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 7593,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 1843
+        },
+        "U+": {
+          "count": 0,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 0,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 0
+        },
+        "U-": {
+          "count": 0,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 0,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 0
+        }
+      },
+      "total": 12200
+    },
+    "val": {
+      "by_action": {
+        "bad behaviour": {
+          "count": 34,
+          "negative": 29,
+          "positive": 5
+        },
+        "block": {
+          "count": 306,
+          "negative": 156,
+          "positive": 150
+        },
+        "clearance": {
+          "count": 333,
+          "negative": 168,
+          "positive": 165
+        },
+        "dribble": {
+          "count": 257,
+          "negative": 149,
+          "positive": 108
+        },
+        "foul committed": {
+          "count": 237,
+          "negative": 164,
+          "positive": 73
+        },
+        "interception": {
+          "count": 204,
+          "negative": 133,
+          "positive": 71
+        },
+        "shot": {
+          "count": 216,
+          "negative": 146,
+          "positive": 70
+        },
+        "substitution": {
+          "count": 168,
+          "negative": 115,
+          "positive": 53
+        }
+      },
+      "by_actor": {
+        "<unspecified>": {
+          "count": 193,
+          "negative": 0,
+          "positive": 193
+        },
+        "Argentina": {
+          "count": 173,
+          "negative": 115,
+          "positive": 58
+        },
+        "Australia": {
+          "count": 25,
+          "negative": 17,
+          "positive": 8
+        },
+        "Belgium": {
+          "count": 58,
+          "negative": 40,
+          "positive": 18
+        },
+        "Brazil": {
+          "count": 26,
+          "negative": 19,
+          "positive": 7
+        },
+        "Cameroon": {
+          "count": 26,
+          "negative": 14,
+          "positive": 12
+        },
+        "Canada": {
+          "count": 14,
+          "negative": 8,
+          "positive": 6
+        },
+        "Costa Rica": {
+          "count": 65,
+          "negative": 45,
+          "positive": 20
+        },
+        "Croatia": {
+          "count": 108,
+          "negative": 81,
+          "positive": 27
+        },
+        "Denmark": {
+          "count": 18,
+          "negative": 12,
+          "positive": 6
+        },
+        "Ecuador": {
+          "count": 30,
+          "negative": 17,
+          "positive": 13
+        },
+        "England": {
+          "count": 35,
+          "negative": 28,
+          "positive": 7
+        },
+        "France": {
+          "count": 127,
+          "negative": 86,
+          "positive": 41
+        },
+        "Germany": {
+          "count": 7,
+          "negative": 2,
+          "positive": 5
+        },
+        "Ghana": {
+          "count": 64,
+          "negative": 46,
+          "positive": 18
+        },
+        "Iran": {
+          "count": 9,
+          "negative": 5,
+          "positive": 4
+        },
+        "Japan": {
+          "count": 85,
+          "negative": 64,
+          "positive": 21
+        },
+        "Mexico": {
+          "count": 33,
+          "negative": 14,
+          "positive": 19
+        },
+        "Morocco": {
+          "count": 103,
+          "negative": 74,
+          "positive": 29
+        },
+        "Netherlands": {
+          "count": 116,
+          "negative": 85,
+          "positive": 31
+        },
+        "Poland": {
+          "count": 23,
+          "negative": 14,
+          "positive": 9
+        },
+        "Portugal": {
+          "count": 78,
+          "negative": 60,
+          "positive": 18
+        },
+        "Qatar": {
+          "count": 54,
+          "negative": 33,
+          "positive": 21
+        },
+        "Saudi Arabia": {
+          "count": 60,
+          "negative": 40,
+          "positive": 20
+        },
+        "Senegal": {
+          "count": 37,
+          "negative": 22,
+          "positive": 15
+        },
+        "Serbia": {
+          "count": 20,
+          "negative": 12,
+          "positive": 8
+        },
+        "South Korea": {
+          "count": 39,
+          "negative": 26,
+          "positive": 13
+        },
+        "Spain": {
+          "count": 19,
+          "negative": 15,
+          "positive": 4
+        },
+        "Switzerland": {
+          "count": 32,
+          "negative": 20,
+          "positive": 12
+        },
+        "Tunisia": {
+          "count": 16,
+          "negative": 9,
+          "positive": 7
+        },
+        "United States": {
+          "count": 36,
+          "negative": 24,
+          "positive": 12
+        },
+        "Uruguay": {
+          "count": 19,
+          "negative": 9,
+          "positive": 10
+        },
+        "Wales": {
+          "count": 7,
+          "negative": 4,
+          "positive": 3
+        }
+      },
+      "negative": 1060,
+      "positive": 695,
+      "quadrants": {
+        "S+": {
+          "count": 627,
+          "generic_actor": 193,
+          "multi_window": 361,
+          "negative": 0,
+          "positive": 627,
+          "single_window": 266,
+          "videos": 195
+        },
+        "S-": {
+          "count": 915,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 915,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 197
+        },
+        "U+": {
+          "count": 68,
+          "generic_actor": 0,
+          "multi_window": 18,
+          "negative": 0,
+          "positive": 68,
+          "single_window": 50,
+          "videos": 55
+        },
+        "U-": {
+          "count": 145,
+          "generic_actor": 0,
+          "multi_window": 0,
+          "negative": 145,
+          "positive": 0,
+          "single_window": 0,
+          "videos": 89
+        }
+      },
+      "total": 1755
+    }
+  },
+  "train_exclusion_by_reason": {
+    "generic_actor_query_for_held_action": 375,
+    "held_out_action_actor_combination": 1429
+  },
+  "train_exclusion_count": 1804,
+  "val_seen_count": 1542
+}
