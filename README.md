@@ -14,9 +14,17 @@
 
 ## 数据版本、构建方式与划分
 
+![从视频查询配对到泛化评测](assets/gmr_baseline_summary_20261011/construction_overview.svg)
+
+*图 1：数据构建与评测的总体关系。训练与选模使用 Seen，测试同时考察事件存在判断、时间定位与语义泛化。*
+
 构建目标是同时评测模型的**事件存在判断**与**时间定位**，以及这两种能力能否推广到训练未见的动作或组合。整体流程为：**原始视频–查询正例 → 构造负例 → 按动作/组合确定 Seen 与 Unseen → Seen 训练和选模 → Seen/Unseen 测试**。
 
 ### 负样本构建的思路与来源
+
+![两种负样本构造思路及来源](assets/gmr_baseline_summary_20261011/negative_construction_ideas.svg)
+
+*图 2：C2 的真实构造例。左侧固定 MFGLZ，将 bag 改为 box；右侧保留开箱原句，将目标视频从 FNBYE 换为 TCI7K。两种流程的来源与筛选方式如下。*
 
 **Clean v3 沿用本项目早期的最小语义改写候选。** 固定视频，只修改原查询中的动作或对象，例如把“打开袋子”改为“打开箱子”，再结合原始描述与事件语义筛选。这样得到词汇和场景接近、但所指事件不同的查询，用来考察模型是否识别动作和对象的细节。v3 在这些候选上完成事件解析、语义审核和动作/组合划分。
 
@@ -24,11 +32,19 @@
 
 ### 先明确：一个样本是什么，S/U 和 +/− 怎样确定？
 
+![语义身份和存在标签四象限](assets/gmr_baseline_summary_20261011/sample_partition_matrix.svg)
+
+*图 3：Charades-CG v2 的四分区真实配对。同行查询与语义身份不变，换目标视频后时间窗变为 `[]`；时间轴按各视频真实时长绘制。*
+
 每个样本是一对 **目标视频 + 文本查询**，主要字段为 `qid`、`vid`、`query`、`relevant_windows`、`exist_label`、`partition`。正例保留原始时间窗，例如 `[[5.7, 13.2]]` 秒；负例为 `[]`，模型应拒绝该视频–查询配对。
 
 **S/U 表示查询在当前划分中的语义身份，+/− 表示它是否被标注为在目标视频中存在。** 因此 S+、S− 分别为 Seen 查询的存在/缺席配对，U+、U− 分别为 Unseen 查询的存在/缺席配对。一个 Unseen 查询换到另一视频后仍是 Unseen，只有存在标签从 + 变为 −；同一句查询也可能在不同语义划分中具有不同 S/U 身份。
 
 ### Clean v3：固定视频，修改查询，再审计和划分
+
+![Clean v3 构建和五组语义划分](assets/gmr_baseline_summary_20261011/clean_construction.svg)
+
+*图 4：Clean v3 从语义改写候选到发布池，再按动作族或动作–对象组合形成五组划分。发布池数量按不同 qid 计数。*
 
 1. **准备正例和候选负例。** 正例来自 Charades 的原句、视频及时间窗；历史候选负例在同一视频上修改查询中的动作或对象。例如视频原句为 “person opens bag.”，构造句为 “person opens box.”，负例窗口置空。
 2. **清理后形成发布池。** 逐 qid 做文本语义与原始 GT 对齐审计，筛除同义、蕴含、歧义及与已有正例冲突的候选；保留 15,034 个正例 qid、2,869 个不同负例 qid。
@@ -37,6 +53,10 @@
 动作划分按完整查询中的动作族判定；组合划分进一步区分动作作用的对象或支撑位置。例如 C2 的 open × box 属于 Unseen，open × bag 属于 Seen。`sofa` 与 `couch` 统一为沙发。
 
 ### Balanced v3：保留 Clean v3，原句不变，跨视频补负例
+
+![Balanced v3 跨视频筛选和补齐过程](assets/gmr_baseline_summary_20261011/balanced_construction.svg)
+
+*图 5：先取视频相似度排名最低一半，再过滤和采样。排名条用 10 个候选作流程示意；下方数量来自真实 C2 Test，新增 2,295 条负例后正负各 3,453 条。*
 
 1. **先复制原始样本。** Clean v3 的 qid、视频、查询、时间窗、标签和 S/U 身份均保留。每个 group、每个 train/val/test split 分别计算还缺多少负例。
 2. **从该 group/split 的已有正例取一句查询。** 原查询和它的 S/U 身份不变，原视频为 donor；候选目标视频来自同 group、同 split，并排除 donor 视频。例如 “person opens a box.” 在原视频有时间窗，把相同句子配给另一目标视频后，新增 U−，窗口为 `[]`，并记录 donor qid、原视频和目标视频。
@@ -47,14 +67,25 @@
 
 ### Charades-CG v2：使用官方组合划分，联合测试池跨视频配对
 
+![Charades CG v2 官方划分和联合测试池](assets/gmr_baseline_summary_20261011/charades_cg_construction.svg)
+
+*图 6：接收官方组合身份并清理时间窗；Seen 与 Unseen 测试共用视频候选池，每个正例查询对应一个跨视频负例，形成 11,348 条四分区测试样本。*
+
 1. **接收官方身份与正例。** 从 [Charades-CG 官方数据](https://github.com/YYJMJC/Compositional-Temporal-Grounding/tree/2372337e9166b8e26b83ce936a8474c6ae127290/Charades-CG) 读取原句、视频、时间窗及组合标记。官方 Train 视频按 seed 3407 分为训练和 Seen validation；Test-Trivial 为 Seen Test，Novel-Composition 为 Unseen Test。本包采用 C3_CG 这一个官方组合划分。
 2. **机械清理时间窗。** 按 `0 ≤ start < end ≤ duration` 删除 2,119 条异常正例，保留原句，不截断越界窗口。v2 的 Train 和 Seen validation 与 v1 逐字节相同，分别为 6,342 正 + 6,342 负、684 正 + 684 负；Train、validation、test 视频互斥。
 3. **每个正例查询构造一个跨视频负例。** 查询文本与官方 S/U 身份不变，排除原视频和含完全相同查询的视频；使用 CLIP 文本最大余弦分数，对同 split 候选视频排序并在最低一半中均匀采样。测试候选池是 Test-Trivial 与 Novel-Composition 干净正例视频的并集，同视频两类正描述共同参与评分。
 4. **形成四分区测试集。** 每个正例对应一个负例，得到 S+/S− 各 2,684 条、U+/U− 各 2,990 条，共 11,348 条。v2 重新生成两类测试负例并全量推理；两类测试查询可共享目标视频，评估时联合按目标视频抽样。
 
-### 每个语义划分的真实例子：合并对照表
+### 每个语义划分的真实例子：图示与合并对照表
 
-下表全部取自各版本的**冻结 Test 标注**，英文保持原句，时间单位为秒。A1–C2 的 S+ / U+ 在 Clean 与 Balanced 中相同；后两列分别展示两种数据版本的实际 U− 构造，S− 使用相同流程但查询属于 Seen。完整 qid、来源字段及事件结构见 [PIPELINE_EXAMPLES.json](docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json)。
+![六个语义划分真实样本对照图](assets/gmr_baseline_summary_20261011/semantic_example_atlas.svg)
+
+*图 7：A1–A3、C1–C2 与 C3_CG 的真实正负例。每格先对照 S+ 与 U+，再展示该划分中的 U− 如何构造。*
+
+图中实例及下表全部取自各版本的**冻结 Test 标注**，英文保持原句，时间单位为秒。A1–C2 的 S+ / U+ 在 Clean 与 Balanced 中相同；后两列分别展示两种数据版本的实际 U− 构造，S− 使用相同流程但查询属于 Seen。完整 qid、来源字段及事件结构见 [PIPELINE_EXAMPLES.json](docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json)。
+
+<details>
+<summary>展开六个语义划分的合并对照表</summary>
 
 | 语义划分 | 哪些查询归为 Unseen | Seen 正例 S+ | Unseen 正例 U+ | Clean v3 的 U−：固定视频改查询 | Balanced v3 / CG v2 的 U−：固定查询换视频 |
 |---|---|---|---|---|---|
@@ -65,20 +96,26 @@
 | C2_v3 | 组合：打开 / 关闭 × 箱 / 柜 | “person opens bag.”<br>`MFGLZ`；`[[18.7, 30.4]]` 秒 | “person open a box.”<br>`FNBYE`；`[[14.7, 21.2]]` 秒 | 视频 `MFGLZ` 不变：<br>“person opens bag.” → “person opens box.”；`[]` | “person open a box.” 不变：<br>`FNBYE` → `TCI7K`；`[]` |
 | C3_CG（Charades-CG v2） | 官方 Novel-Composition；本例官方标记为 open × laptop。Test-Trivial 为 Seen | “a person eats.”<br>`F66WG`；`[[18.7, 30.3]]` 秒 | “person opens laptop.”<br>`2ECXI`；`[[5.7, 13.2]]` 秒 | 不采用改句流程 | “person opens laptop.” 不变：<br>`2ECXI` → `P5ANU`；`[]` |
 
+</details>
+
 例如 C2 中，“person opens bag.” 是 S+，“person open a box.” 是 U+：留出的是 **open × box** 组合，open 这个动作仍可在其他对象上出现。Clean 的负例把同一视频的 bag 改成 box；Balanced 的负例把已有的开箱查询移到另一视频。C3 的 open × laptop 则来自官方 `novels` 组合标记。
 
-![三套数据的原始构建图合并](assets/gmr_baseline_summary_20261011/construction_pipelines.svg)
-
-*图 1：三套数据具有不同来源与负例构造过程。按项目合并原始矢量管线；最低 50% 指视频排名比例，非余弦阈值 0.5。*
-
 <details>
-<summary>五类语义留出：合并原有 A1–C2 示意图</summary>
+<summary>原始科研图归档：三套构建管线与五类语义留出</summary>
+
+![三套数据的原始构建图合并](assets/gmr_baseline_summary_20261011/construction_pipelines.svg)
 
 ![五类划分原图合并](assets/gmr_baseline_summary_20261011/semantic_splits.svg)
 
 该图保留 Clean v3 的原始定义、真实查询示例和统计；Balanced v3 沿用相同语义定义，但补充负例后的数量见下表。
 
 </details>
+
+### 各测试划分的数据组成
+
+![三版本数据组成合并](assets/gmr_baseline_summary_20261011/dataset_composition.svg)
+
+*图 8：Balanced v3 的完整测试集与 Charades-CG v2 正负平衡，Balanced 的 Seen/Unseen 子集仍有比例差异。图中 S/U 为 Seen/Unseen，+/− 为存在/缺席构造标签；全部 train/val/test 计数见 [DATASET_COUNTS](docs/gmr_baseline_summary_20261011/DATASET_COUNTS.md)。五划分共享视频与查询，不能把行数相加当作独立样本数。*
 
 | 数据集 | Test split | S+ | S− | U+ | U− | 总行数 |
 |---|---|---:|---:|---:|---:|---:|
@@ -93,10 +130,6 @@
 | Balanced v3 | C1_v3 | 3311 | 3095 | 142 | 358 | 6906 |
 | Balanced v3 | C2_v3 | 3322 | 3274 | 131 | 179 | 6906 |
 | Charades-CG v2 | C3_CG | 2684 | 2684 | 2990 | 2990 | 11348 |
-
-![三版本数据组成合并](assets/gmr_baseline_summary_20261011/dataset_composition.svg)
-
-*图 2：Balanced v3 的完整测试集与 Charades-CG v2 正负平衡，Balanced 的 Seen/Unseen 子集仍有比例差异。图中 S/U 为 Seen/Unseen，+/− 为存在/缺席构造标签；全部 train/val/test 计数见 [DATASET_COUNTS](docs/gmr_baseline_summary_20261011/DATASET_COUNTS.md)。五划分共享视频与查询，不能把行数相加当作独立样本数。*
 
 ## 统一训练和评测协议
 
@@ -133,11 +166,11 @@ AUROC 为存在分数的排序能力。Actual Rej-F1 将拒绝作为正决策，
 
 ![Seen Unseen 三指标合并](assets/gmr_baseline_summary_20261011/seen_unseen_performance.svg)
 
-*图 3：三套数据中，多数模型的 Unseen AUROC 点估计低于 Seen。每行对应一个数据版本，每列对应一项指标；圆点/方点分别为 Seen/Unseen，误差线为视频聚类 bootstrap 95% CI。*
+*图 9：三套数据中，多数模型的 Unseen AUROC 点估计低于 Seen。每行对应一个数据版本，每列对应一项指标；圆点/方点分别为 Seen/Unseen，误差线为视频聚类 bootstrap 95% CI。*
 
 ![全部划分泛化差距合并](assets/gmr_baseline_summary_20261011/generalization_gaps.svg)
 
-*图 4：泛化差距随划分、模型和指标而改变；负 Gap 原样保留。展示各 split/backbone 与五组 MACRO 的 95% CI，虚线为零。*
+*图 10：泛化差距随划分、模型和指标而改变；负 Gap 原样保留。展示各 split/backbone 与五组 MACRO 的 95% CI，虚线为零。*
 
 **完整结果与 CI**：[逐划分、逐 backbone 的三项 Seen/Unseen、Gap 及 overall 表](docs/gmr_baseline_summary_20261011/RESULTS_WITH_CI.md) · [CSV](docs/gmr_baseline_summary_20261011/metrics.csv) · [JSON](docs/gmr_baseline_summary_20261011/metrics.json)。所有汇总均读取未舍入的冻结 JSON。
 
@@ -169,6 +202,7 @@ AUROC 为存在分数的排序能力。Actual Rej-F1 将拒绝作为正决策，
 | Charades-CG 自含审阅包 | [README](experiments/agy_test/publication_review_20261011/charades_cg/README.md)；包内 `docs/reports/charades_cg_gmr_baselines_20261011/{frozen,source_snapshot}/` |
 | Charades-CG 原训练与 v2 执行脚本 | [原训练](experiments/agy_test/charades_cg_baselines_20261010/) · [v2 重评估](experiments/agy_test/charades_cg_v2_evaluation_20261011/)；实际 native 源码见审阅包快照 |
 | 图表 | [合并图](assets/gmr_baseline_summary_20261011/)；原图与绘制代码保留于 `assets/semantic_existence_v3/` 和 Charades-CG 包内 assets |
+| 构建过程科研示意图 | [绘图脚本](scripts/render_gmr_construction_figures.py) · [图中数据来源](docs/gmr_baseline_summary_20261011/CONSTRUCTION_FIGURES.json)；七张图均有 SVG / PDF / PNG |
 | 本次发布元数据 | [PACKAGING](docs/gmr_baseline_summary_20261011/PACKAGING.json) · [PUBLICATION_MANIFEST](docs/gmr_baseline_summary_20261011/PUBLICATION_MANIFEST.json) · [实验完成记录](docs/gmr_baseline_summary_20261011/EXPERIMENTS.json) |
 
 发布范围包含标注、方法/训练/评估源码、配置、脚本、冻结预测、校准与 bootstrap 产物。遵循仓库约定，视频、特征数组、模型权重和凭据不进入提交；权重以原始 SHA-256 清单追溯。Balanced 的超大 `master/negative_added.jsonl` 使用无损 gzip 存储，还原后逐字节匹配原校验值。日志归档为 `.log.gz`。
@@ -189,6 +223,14 @@ python scripts/build_gmr_publication_summary.py
 ```
 
 重绘直接合并原始 SVG 元素，并从冻结指标/标注生成数据组成、性能与 Gap 图；导出 SVG/PDF/PNG，原始矢量图可单独查看。
+
+仅重绘七张数据构建示意图：
+
+```bash
+python scripts/render_gmr_construction_figures.py
+```
+
+构建图使用原生 SVG 元素，文本、框线、箭头和时间轴均可编辑；示例句子、视频 ID、时间窗和数量来自冻结标注与统计。
 
 训练依赖见 `requirements.txt`、`requirements-flash-vtg.txt`；数据构建另见 `requirements-dataset.txt`。原始 `run_baselines.py` / `common.py` 是执行时源码记录，包含本机解释器、视频目录及历史特征清单路径；在其他机器运行须先按 README 和 `PROTOCOL.json` 配置路径并准备外部特征、冻结权重或新训练目录。`launch_native.sh` 支持 `V3_NATIVE_REPO`、`DATA_ROOT`、`FEATURE_ROOT`、`VIDEO_ROOT`、`RUN_ROOT`、`TRAIN_GPU`、`GMR_PYTHON` 和 `FLASH_PYTHON`；应使用全新 RUN_ROOT，以免覆盖已有实验。Charades 原训练脚本所用 native 源码在审阅包中，需对应设置其路径。
 

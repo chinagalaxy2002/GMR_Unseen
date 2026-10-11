@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 0 1200 450" role="img" aria-labelledby="title desc">
+<title id="title">从视频–查询配对到泛化评测</title>
+<desc id="desc">同一个基准同时回答：事件是否存在？在哪里发生？训练未见语义是否仍能识别？</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">从视频–查询配对到泛化评测</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">同一个基准同时回答：事件是否存在？在哪里发生？训练未见语义是否仍能识别？</text>
+<rect x="30" y="126" width="204" height="174" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="162" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">01  原始正例</text>
+<line x1="50" y1="178" x2="214" y2="178" stroke="#C7D1D8" stroke-width="2"/>
+<text x="45" y="216" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">视频 + 原始查询</text>
+<text x="45" y="250" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">保留事件时间窗</text>
+<line x1="238" y1="212" x2="258" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="264" y="126" width="204" height="174" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="284" y="162" font-size="23" fill="#00846A" font-weight="bold" text-anchor="start">02  构造负例</text>
+<line x1="284" y1="178" x2="448" y2="178" stroke="#C7D1D8" stroke-width="2"/>
+<text x="279" y="216" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">同视频改动作 / 对象</text>
+<text x="279" y="250" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">或同查询换目标视频</text>
+<line x1="472" y1="212" x2="492" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="498" y="126" width="204" height="174" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="518" y="162" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">03  确定语义身份</text>
+<line x1="518" y1="178" x2="682" y2="178" stroke="#C7D1D8" stroke-width="2"/>
+<text x="513" y="216" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">A1–A3：动作留出</text>
+<text x="513" y="250" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">C1–C2 / CG：组合</text>
+<line x1="706" y1="212" x2="726" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="732" y="126" width="204" height="174" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="752" y="162" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">04  训练与选模</text>
+<line x1="752" y1="178" x2="916" y2="178" stroke="#C7D1D8" stroke-width="2"/>
+<text x="747" y="216" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">训练：S+ / S−</text>
+<text x="747" y="250" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">选模：Seen val</text>
+<line x1="940" y1="212" x2="960" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="966" y="126" width="204" height="174" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="986" y="162" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">05  四分区测试</text>
+<line x1="986" y1="178" x2="1150" y2="178" stroke="#C7D1D8" stroke-width="2"/>
+<text x="981" y="216" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">S+   S−   U+   U−</text>
+<text x="981" y="250" font-size="18" fill="#243746" font-weight="normal" text-anchor="start">存在判断 + 时间定位</text>
+<line x1="30" y1="337" x2="1170" y2="337" stroke="#C7D1D8" stroke-width="2"/>
+<text x="40" y="382" font-size="23" fill="#00846A" font-weight="bold" text-anchor="start">任务 A  事件存在判断</text>
+<text x="40" y="420" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">存在 → 接受；缺席 → 拒绝</text>
+<text x="430" y="382" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">任务 B  时间定位</text>
+<text x="430" y="420" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">存在的事件 → 预测时间窗</text>
+<text x="810" y="382" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">泛化轴  Seen → Unseen</text>
+<text x="810" y="420" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">动作或动作–对象组合留出</text>
+</g></svg>

@@ -1,0 +1,62 @@
+{
+  "generator": "scripts/render_gmr_construction_figures.py",
+  "examples": "docs/gmr_baseline_summary_20261011/PIPELINE_EXAMPLES.json",
+  "counts": "docs/gmr_baseline_summary_20261011/dataset_counts.json",
+  "clean_pool_counts": "data/release/semantic_existence_v3_release/README.md",
+  "negative_sampling_reference": "https://arxiv.org/html/2502.08544v2#S3.SS3",
+  "matrix_seen_negative": {
+    "qid": "c3cg-c104aadd6e88842e-neg",
+    "pair_id": "c3cg-c104aadd6e88842e",
+    "vid": "MPHFU",
+    "query": "a person eats.",
+    "relevant_windows": [],
+    "duration": 30.25,
+    "exist_label": 0,
+    "partition": "S-",
+    "official_subset": "test_trivial",
+    "novels": {},
+    "source_qid": "test_trivial.json:F66WG:4",
+    "source_vid": "F66WG",
+    "construction_method": "mout_in_domain_clip_reassignment",
+    "sampling_source": "Moment of Untruth §3.3 In-Domain negatives; lowest-scoring half of same-split videos"
+  },
+  "rank_diagram": "Schematic ranks 1–10 illustrate bottom-half selection; not measured CLIP scores.",
+  "exports": {
+    "construction_overview": [
+      "assets/gmr_baseline_summary_20261011/construction_overview.svg",
+      "assets/gmr_baseline_summary_20261011/construction_overview.pdf",
+      "assets/gmr_baseline_summary_20261011/construction_overview.png"
+    ],
+    "negative_construction_ideas": [
+      "assets/gmr_baseline_summary_20261011/negative_construction_ideas.svg",
+      "assets/gmr_baseline_summary_20261011/negative_construction_ideas.pdf",
+      "assets/gmr_baseline_summary_20261011/negative_construction_ideas.png"
+    ],
+    "sample_partition_matrix": [
+      "assets/gmr_baseline_summary_20261011/sample_partition_matrix.svg",
+      "assets/gmr_baseline_summary_20261011/sample_partition_matrix.pdf",
+      "assets/gmr_baseline_summary_20261011/sample_partition_matrix.png"
+    ],
+    "clean_construction": [
+      "assets/gmr_baseline_summary_20261011/clean_construction.svg",
+      "assets/gmr_baseline_summary_20261011/clean_construction.pdf",
+      "assets/gmr_baseline_summary_20261011/clean_construction.png"
+    ],
+    "balanced_construction": [
+      "assets/gmr_baseline_summary_20261011/balanced_construction.svg",
+      "assets/gmr_baseline_summary_20261011/balanced_construction.pdf",
+      "assets/gmr_baseline_summary_20261011/balanced_construction.png"
+    ],
+    "charades_cg_construction": [
+      "assets/gmr_baseline_summary_20261011/charades_cg_construction.svg",
+      "assets/gmr_baseline_summary_20261011/charades_cg_construction.pdf",
+      "assets/gmr_baseline_summary_20261011/charades_cg_construction.png"
+    ],
+    "semantic_example_atlas": [
+      "assets/gmr_baseline_summary_20261011/semantic_example_atlas.svg",
+      "assets/gmr_baseline_summary_20261011/semantic_example_atlas.pdf",
+      "assets/gmr_baseline_summary_20261011/semantic_example_atlas.png"
+    ]
+  },
+  "video_symbols": "Video IDs with abstract filmstrip symbols; no generated video frames."
+}

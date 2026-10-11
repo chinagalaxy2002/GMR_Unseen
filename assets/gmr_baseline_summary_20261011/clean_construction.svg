@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">Clean v3：语义改写候选 → 审计发布池 → 五组语义留出</title>
+<desc id="desc">先判断查询是否真的改变了事件语义，再按完整查询中的已发生事件确定 Seen / Unseen。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">Clean v3：语义改写候选 → 审计发布池 → 五组语义留出</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">先判断查询是否真的改变了事件语义，再按完整查询中的已发生事件确定 Seen / Unseen。</text>
+<rect x="30" y="116" width="340" height="194" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="152" font-size="23" fill="#243746" font-weight="bold" text-anchor="start">01  原始正例与历史候选</text>
+<line x1="50" y1="168" x2="350" y2="168" stroke="#C7D1D8" stroke-width="2"/>
+<text x="50" y="205" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">Charades 原句 + 时间窗</text>
+<text x="50" y="239" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">固定视频，改动作或对象</text>
+<text x="50" y="273" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">bag → box；run → walk</text>
+<rect x="430" y="116" width="340" height="194" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="450" y="152" font-size="23" fill="#00846A" font-weight="bold" text-anchor="start">02  逐 qid 语义审计</text>
+<line x1="450" y1="168" x2="750" y2="168" stroke="#C7D1D8" stroke-width="2"/>
+<text x="450" y="205" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">对齐原始 GT 与事件结构</text>
+<text x="450" y="239" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">筛除同义、蕴含、歧义</text>
+<text x="450" y="273" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">以及与正例冲突的候选</text>
+<rect x="830" y="116" width="340" height="194" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="850" y="152" font-size="23" fill="#00846A" font-weight="bold" text-anchor="start">03  干净发布池</text>
+<line x1="850" y1="168" x2="1150" y2="168" stroke="#C7D1D8" stroke-width="2"/>
+<text x="855" y="215" font-size="26" fill="#00846A" font-weight="bold" text-anchor="start">15,034  正例 qid</text>
+<text x="855" y="266" font-size="25" fill="#526572" font-weight="bold" text-anchor="start">2,869    不同负例 qid</text>
+<line x1="378" y1="212" x2="418" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="778" y1="212" x2="818" y2="212" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="356" width="730" height="198" rx="6" fill="#FFF3E8" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="392" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">04  动作 / 组合规则 → S/U 身份</text>
+<line x1="50" y1="408" x2="740" y2="408" stroke="#C7D1D8" stroke-width="2"/>
+<text x="50" y="443" font-size="22" fill="#B95000" font-weight="bold" text-anchor="start">动作留出</text>
+<text x="180" y="443" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">A1 拿取/放置   A2 饮用/倾倒   A3 跑步/行走</text>
+<text x="50" y="488" font-size="22" fill="#B95000" font-weight="bold" text-anchor="start">组合留出</text>
+<text x="180" y="488" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">C1 坐 × 床/椅/沙发   C2 开/关 × 箱/柜</text>
+<text x="50" y="531" font-size="21" fill="#B95000" font-weight="normal" text-anchor="start">任一已发生事件命中留出规则 → 完整查询为 Unseen</text>
+<rect x="830" y="356" width="340" height="198" rx="6" fill="#EDF6FC" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="850" y="392" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">05  固定且互斥的视频分配</text>
+<line x1="850" y1="408" x2="1150" y2="408" stroke="#C7D1D8" stroke-width="2"/>
+<text x="850" y="442" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">Train：S+ / S−</text>
+<text x="850" y="476" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">选模与阈值：val_seen</text>
+<text x="850" y="510" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">Val / Test 归档：四分区</text>
+<line x1="1000" y1="312" x2="1000" y2="338" stroke="#526572" stroke-width="2"/>
+<line x1="1000" y1="338" x2="395" y2="338" stroke="#526572" stroke-width="2"/>
+<line x1="395" y1="338" x2="395" y2="352" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="768" y1="455" x2="818" y2="455" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="40" y="610" font-size="22" fill="#526572" font-weight="normal" text-anchor="start">C2 示例：open × bag → Seen；open × box → Unseen（open 动作仍可在 Seen 中出现）。</text>
+</g></svg>

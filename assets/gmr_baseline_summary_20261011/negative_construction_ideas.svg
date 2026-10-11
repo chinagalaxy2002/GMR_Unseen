@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+<title id="title">两种负样本构造：改变查询，或改变配对视频</title>
+<desc id="desc">C2 冻结 Test 实例：open × box 为 Unseen；彩色字段标出变化发生在哪里。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">两种负样本构造：改变查询，或改变配对视频</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">C2 冻结 Test 实例：open × box 为 Unseen；彩色字段标出变化发生在哪里。</text>
+<rect x="30" y="112" width="550" height="390" rx="6" fill="#EDF6FC" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="148" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">(a) Clean v3 · 固定视频，最小语义改写</text>
+<line x1="50" y1="164" x2="560" y2="164" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="620" y="112" width="550" height="390" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="640" y="148" font-size="23" fill="#00846A" font-weight="bold" text-anchor="start">(b) Balanced v3 / CG v2 · 原句跨视频配对</text>
+<line x1="640" y1="164" x2="1150" y2="164" stroke="#C7D1D8" stroke-width="2"/>
+<rect x="54" y="192" width="142" height="49" rx="3" fill="white" stroke="#243746" stroke-width="1.5"/>
+<rect x="62" y="199" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<rect x="62" y="212" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<rect x="62" y="225" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<rect x="179" y="199" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<rect x="179" y="212" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<rect x="179" y="225" width="8" height="7" rx="0" fill="#243746" stroke="#243746" stroke-width="1.5"/>
+<text x="125" y="224" font-size="21" fill="#243746" font-weight="bold" text-anchor="middle">MFGLZ</text>
+<text x="219" y="223" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">同一目标视频</text>
+<text x="54" y="280" font-size="26" fill="#0072B2" font-weight="normal" text-anchor="start">person opens bag.</text>
+<text x="54" y="316" font-size="21" fill="#0072B2" font-weight="normal" text-anchor="start">S+   [[18.7, 30.4]] 秒</text>
+<line x1="313" y1="270" x2="313" y2="366" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="335" y="348" font-size="24" fill="#B95000" font-weight="bold" text-anchor="start">bag → box</text>
+<text x="54" y="412" font-size="26" fill="#B95000" font-weight="normal" text-anchor="start">person opens box.</text>
+<text x="54" y="453" font-size="21" fill="#B95000" font-weight="normal" text-anchor="start">U−   []   语义审计后保留</text>
+<text x="644" y="216" font-size="26" fill="#B95000" font-weight="normal" text-anchor="start">person open a box.</text>
+<text x="644" y="252" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">查询文本与 Unseen 身份保持不变</text>
+<rect x="644" y="291" width="142" height="49" rx="3" fill="white" stroke="#B95000" stroke-width="1.5"/>
+<rect x="652" y="298" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<rect x="652" y="311" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<rect x="652" y="324" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<rect x="769" y="298" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<rect x="769" y="311" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<rect x="769" y="324" width="8" height="7" rx="0" fill="#B95000" stroke="#B95000" stroke-width="1.5"/>
+<text x="715" y="323" font-size="21" fill="#B95000" font-weight="bold" text-anchor="middle">FNBYE</text>
+<line x1="797" y1="316" x2="975" y2="316" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="887" y="299" font-size="20" fill="#00846A" font-weight="normal" text-anchor="middle">换目标视频</text>
+<rect x="995" y="291" width="142" height="49" rx="3" fill="white" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1003" y="298" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1003" y="311" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1003" y="324" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1120" y="298" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1120" y="311" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<rect x="1120" y="324" width="8" height="7" rx="0" fill="#00846A" stroke="#00846A" stroke-width="1.5"/>
+<text x="1066" y="323" font-size="21" fill="#00846A" font-weight="bold" text-anchor="middle">TCI7K</text>
+<text x="644" y="381" font-size="21" fill="#B95000" font-weight="normal" text-anchor="start">U+  [[14.7, 21.2]] 秒</text>
+<text x="995" y="381" font-size="21" fill="#B95000" font-weight="normal" text-anchor="start">U−  []</text>
+<text x="644" y="430" font-size="22" fill="#00846A" font-weight="normal" text-anchor="start">CLIP 文本排名 → 低相似候选 → 采样</text>
+<text x="644" y="468" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">复用真实查询，重新构造视频–查询配对</text>
+<text x="42" y="548" font-size="21" fill="#0072B2" font-weight="normal" text-anchor="start">思路来源：本项目早期最小改写候选</text>
+<text x="630" y="548" font-size="20" fill="#00846A" font-weight="normal" text-anchor="start">思路来源：Moment of Untruth (WACV 2025)</text>
+<text x="630" y="579" font-size="20" fill="#00846A" font-weight="normal" text-anchor="start">§3.3  In-Domain negative sampling</text>
+</g></svg>

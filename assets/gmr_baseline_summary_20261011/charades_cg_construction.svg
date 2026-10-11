@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Charades-CG v2：官方组合身份 → 联合测试池跨视频配对</title>
+<desc id="desc">C3_CG 使用官方划分；每个正例原句配一个负例，Train / Val / Test 视频互斥。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526572"/></marker></defs>
+<rect width="1200" height="100%" fill="white"/>
+<g font-family="Noto Sans CJK SC, Noto Sans CJK JP, sans-serif">
+<text x="30" y="43" font-size="28" fill="#243746" font-weight="bold" text-anchor="start">Charades-CG v2：官方组合身份 → 联合测试池跨视频配对</text>
+<text x="30" y="77" font-size="19" fill="#526572" font-weight="normal" text-anchor="start">C3_CG 使用官方划分；每个正例原句配一个负例，Train / Val / Test 视频互斥。</text>
+<rect x="30" y="112" width="340" height="126" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="148" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">官方 Train</text>
+<line x1="50" y1="164" x2="350" y2="164" stroke="#C7D1D8" stroke-width="2"/>
+<text x="50" y="204" font-size="23" fill="#0072B2" font-weight="normal" text-anchor="start">Seen 正例</text>
+<line x1="200" y1="243" x2="200" y2="281" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="430" y="112" width="340" height="126" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="450" y="148" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">Test-Trivial</text>
+<line x1="450" y1="164" x2="750" y2="164" stroke="#C7D1D8" stroke-width="2"/>
+<text x="450" y="204" font-size="23" fill="#0072B2" font-weight="normal" text-anchor="start">Seen Test 正例</text>
+<line x1="600" y1="243" x2="600" y2="281" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="830" y="112" width="340" height="126" rx="6" fill="white" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="850" y="148" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">Novel-Composition</text>
+<line x1="850" y1="164" x2="1150" y2="164" stroke="#C7D1D8" stroke-width="2"/>
+<text x="850" y="204" font-size="23" fill="#B95000" font-weight="normal" text-anchor="start">Unseen Test 正例</text>
+<line x1="1000" y1="243" x2="1000" y2="281" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="288" width="1140" height="63" rx="6" fill="#F4F7F9" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="600" y="328" font-size="24" fill="#243746" font-weight="normal" text-anchor="middle">统一时间窗清理：0 ≤ start &lt; end ≤ duration；删除 2,119 条异常正例</text>
+<line x1="200" y1="355" x2="200" y2="387" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="800" y1="355" x2="800" y2="387" stroke="#526572" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="30" y="394" width="340" height="232" rx="6" fill="#EDF6FC" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="50" y="430" font-size="23" fill="#0072B2" font-weight="bold" text-anchor="start">Train / Seen validation</text>
+<line x1="50" y1="446" x2="350" y2="446" stroke="#C7D1D8" stroke-width="2"/>
+<text x="50" y="483" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">按视频划分，seed 3407</text>
+<text x="50" y="520" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">Train  6,342 正 + 6,342 负</text>
+<text x="50" y="557" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">Val      684 正 + 684 负</text>
+<text x="50" y="594" font-size="21" fill="#243746" font-weight="normal" text-anchor="start">与 v1 逐字节相同</text>
+<rect x="430" y="394" width="740" height="232" rx="6" fill="#FFF3E8" stroke="#C7D1D8" stroke-width="1.5"/>
+<text x="450" y="430" font-size="23" fill="#B95000" font-weight="bold" text-anchor="start">Seen 与 Unseen 共用联合测试候选池</text>
+<line x1="450" y1="446" x2="1150" y2="446" stroke="#C7D1D8" stroke-width="2"/>
+<text x="450" y="482" font-size="24" fill="#B95000" font-weight="bold" text-anchor="start">Test-Trivial 视频 ∪ Novel-Composition 视频</text>
+<text x="450" y="524" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">两类正描述共同评分 → CLIP 最大余弦排名最低一半</text>
+<text x="450" y="563" font-size="22" fill="#243746" font-weight="normal" text-anchor="start">原句与 S/U 不变 → 换目标视频 → 每个正例对应一个负例</text>
+<text x="450" y="605" font-size="25" fill="#B95000" font-weight="bold" text-anchor="start">S+ / S− 各 2,684；U+ / U− 各 2,990 → 共 11,348 条</text>
+<text x="40" y="682" font-size="22" fill="#526572" font-weight="normal" text-anchor="start">实际 U+ → U−：“person opens laptop.”  保持原句，目标视频 2ECXI → P5ANU，窗口变为 []。</text>
+</g></svg>
