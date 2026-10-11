@@ -257,6 +257,19 @@ Soccer 原发布每组 Test 有 2,246 条；4 个片段未得到完整特征，�
 本次使用单个训练种子，checkpoint 与阈值只由 Seen 验证确定。置信区间反映固定模型的视频抽样不确定性；Soccer 按片段聚类，不能据此声称整场比赛独立。负例没有逐视频确认缺席，结果以当前构造／来源标签为准。
 
 这些实验均为独立 baseline；Unseen Net Gain、Seen Change、Gap Reduction 需要同版本、同划分、同 backbone 的新方法对照，本次不定义。
+
+## 数据、训练测试与模型代码路径
+
+[完整路径索引（Markdown）](docs/gmr_baseline_summary_20261011/DATA_CODE_PATHS.md)列出了四套数据的发布标注、逐组训练/验证/测试输入、三个 backbone 的训练与推理脚本、模型源码与配置、冻结预测和本机特征/权重目录。
+
+| 数据 | 实际输入 | 训练总控 | 测试与评测总控 | 当前结果对应的模型源码 |
+| --- | --- | --- | --- | --- |
+| Clean v3 | [冻结标注](experiments/agy_test/v3_release_baselines_20261009/groups) | [run_baselines.py](experiments/agy_test/v3_release_baselines_20261009/run_baselines.py) | [run_baselines.py](experiments/agy_test/v3_release_baselines_20261009/run_baselines.py) / [最终评测](experiments/agy_test/v3_release_baselines_20261009/finalize_baselines.py) | [native_source/models](experiments/agy_test/v3_release_baselines_20261009/native_source/models) |
+| Balanced v3 | [冻结标注](experiments/agy_test/v3_balanced_baselines_20261010/groups) | [run_baselines.py](experiments/agy_test/v3_balanced_baselines_20261010/run_baselines.py) | [run_baselines.py](experiments/agy_test/v3_balanced_baselines_20261010/run_baselines.py) | [native_source/models](experiments/agy_test/v3_balanced_baselines_20261010/native_source/models) |
+| Charades-CG v2 | [C3_CG 标注](data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2/splits/C3_CG) | [原 v1 训练](experiments/agy_test/charades_cg_baselines_20261010/run_baselines.py) | [v2 重新测试](experiments/agy_test/charades_cg_v2_evaluation_20261011/run_baselines.py) | [源码快照/models](experiments/agy_test/publication_review_20261011/charades_cg/docs/reports/charades_cg_gmr_baselines_20261011/source_snapshot/native_source/models) |
+| Soccer | [特征过滤后标注](data/experiment_inputs/soccer_unseen_baselines_20261011/splits) | [run_baselines.py](experiments/agy_test/publication_review_20261011/soccer_unseen/docs/reports/soccer_unseen_baselines_20261011/source_snapshot/run_baselines.py) | [run_baselines.py](experiments/agy_test/publication_review_20261011/soccer_unseen/docs/reports/soccer_unseen_baselines_20261011/source_snapshot/run_baselines.py) | [源码快照/models](experiments/agy_test/publication_review_20261011/soccer_unseen/docs/reports/soccer_unseen_baselines_20261011/source_snapshot/native_source/models) |
+
+三个 backbone 的具体 train.py、evaluate.py / inference.py、模型与 GMR 分支路径均在完整索引中逐项链接。CG v2 复用 v1 冻结模型和阈值；Soccer 脚本为本机实验的归档快照，运行目录与本机视频、特征和 checkpoint 路径见该索引。
 '''
     (ROOT / 'README.md').write_text(text, encoding='utf-8')
 
