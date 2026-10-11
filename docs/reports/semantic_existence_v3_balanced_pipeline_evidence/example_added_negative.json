@@ -1,0 +1,69 @@
+{
+  "qid": "balneg_b15d43a89d282f90807a119b",
+  "query": "person drinks out of a cup.",
+  "vid": "QVD5B",
+  "video_id": "QVD5B",
+  "duration": 30.192590611207702,
+  "split": "test",
+  "group": "A1_v3",
+  "exist_label": 0,
+  "relevant_windows": [],
+  "partition": "S-",
+  "semantic_status": "seen",
+  "novelty_type": "seen",
+  "events": [
+    {
+      "action_family": "drink",
+      "anchor_object": "unspecified liquid",
+      "anchor_role": "theme",
+      "assertion": "asserted",
+      "source": "cup"
+    }
+  ],
+  "semantic_graph": {
+    "action": "drink",
+    "action_family": "drink",
+    "action_class": "drink",
+    "object": "unspecified liquid",
+    "object_concept": "unspecified liquid",
+    "object_role": "theme",
+    "location": null,
+    "source": "cup",
+    "goal": null,
+    "manner": null,
+    "assertion": "asserted",
+    "representation": "full_semantic_audit_primary_event_projection"
+  },
+  "construction_type": "clip_in_domain_cross_video_pseudo_negative",
+  "existence_status": "pseudo_absent_unverified",
+  "verification_status": "clip_rank_and_annotation_veto_only_no_video_review",
+  "source_qid": "test3063",
+  "source_vid": "MZ3I3",
+  "source_split": "test",
+  "source_query": "person drinks out of a cup.",
+  "source_windows": [
+    [
+      33.1,
+      42.54147449576651
+    ]
+  ],
+  "generation_rule_version": "v3-balanced-clip-cross-video-1.0.0",
+  "clip_filter": {
+    "pseudo_similarity": 0.7135528922080994,
+    "rank_ascending": 60,
+    "candidate_video_count": 1301,
+    "retained_video_count": 650,
+    "rank_fraction": 0.04611837048424289,
+    "retained_fraction": 0.5,
+    "cutoff_similarity": 0.7940418720245361,
+    "ranking_scope": "same_group_same_split_videos_except_donor_video",
+    "tie_break": "lexicographic_target_vid",
+    "target_positive_reference_count": 1,
+    "reference_pool": "all_clean_v3_positive_annotations_of_target_video",
+    "formula": "max cosine(CLIP(query), CLIP(target_positive_query))",
+    "embedding_metadata": "../../clip_metadata.json",
+    "paper_section": "3.3 In-Domain Negatives"
+  },
+  "annotation_conflict_check": "all_target_clean_positive_queries_and_active_events_passed",
+  "label_caveat": "Low text similarity does not prove event absence; no video verification."
+}

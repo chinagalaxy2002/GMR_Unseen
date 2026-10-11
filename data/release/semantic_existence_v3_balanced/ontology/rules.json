@@ -1,0 +1,143 @@
+{
+  "version": "v3-ontology-1.0.0",
+  "status": "frozen_for_initial_review_batches",
+  "owner": "primary_agent",
+  "object_aliases": [
+    {
+      "concept": "couch",
+      "surfaces": [
+        "sofa",
+        "couch"
+      ],
+      "rule": "Treat as synonyms for the same furniture object in context."
+    },
+    {
+      "concept": "drink_container_unspecified",
+      "surfaces": [
+        "cup",
+        "glass"
+      ],
+      "rule": "Do not assume equivalence when container type matters; drinking the same liquid is normally the same drinking event."
+    },
+    {
+      "concept": "soft_cushion",
+      "surfaces": [
+        "pillow",
+        "cushion"
+      ],
+      "rule": "Contextual overlap; do not assume universal synonymy."
+    },
+    {
+      "concept": "storage_cabinet",
+      "surfaces": [
+        "cabinet",
+        "closet"
+      ],
+      "rule": "Contextual overlap; preserve distinctions in size, structure and use."
+    },
+    {
+      "concept": "cabinet_entry",
+      "surfaces": [
+        "cabinet door",
+        "cabinet"
+      ],
+      "rule": "Opening/closing a cabinet door and opening/closing its cabinet entry usually describe the same access-state event."
+    }
+  ],
+  "action_senses": [
+    {
+      "family": "physical_take",
+      "examples": [
+        "take an object",
+        "remove an object",
+        "pick up an object"
+      ],
+      "distinctions": [
+        "take a drink/sip is drink",
+        "take off clothing is undress",
+        "take into is directed carrying/placing; preserve direction"
+      ]
+    },
+    {
+      "family": "physical_place",
+      "examples": [
+        "put/place/set an object onto a surface"
+      ],
+      "distinctions": [
+        "set the table is a different sense",
+        "put on clothing is dress",
+        "put into and take out preserve container direction"
+      ]
+    },
+    {
+      "family": "drink",
+      "examples": [
+        "drink",
+        "take a drink",
+        "take a sip"
+      ],
+      "distinctions": [
+        "drink a cup/glass of liquid remains drinking; container substitution alone is weak"
+      ]
+    },
+    {
+      "family": "photograph",
+      "examples": [
+        "take a picture",
+        "take a photo"
+      ],
+      "distinctions": [
+        "look through a picture/book is inspect/view, not photograph or physical take"
+      ]
+    },
+    {
+      "family": "run",
+      "examples": [
+        "person runs",
+        "run over to a place"
+      ],
+      "distinctions": [
+        "run water/device is not locomotion"
+      ]
+    },
+    {
+      "family": "walk",
+      "examples": [
+        "person walks",
+        "walk to a place"
+      ],
+      "distinctions": [
+        "preserve direction and destination where stated"
+      ]
+    },
+    {
+      "family": "close",
+      "examples": [
+        "shut",
+        "close"
+      ],
+      "distinctions": [
+        "same object and resulting closed state are equivalent"
+      ]
+    }
+  ],
+  "review_rules": {
+    "unit": "candidate_qid once, after deduplicating across all five releases",
+    "rules": [
+      "Compare whole events and semantic roles, not changed words alone.",
+      "Equivalent or source-entailing candidates are exclude.",
+      "Candidate-entails-source, uncertain overlap, unclear syntax/roles/direction, and ambiguity are quarantine unless clearly an invalid construction, which is exclude.",
+      "Keep only clear, natural, distinct events after checking all same-video original positive queries for direct conflict.",
+      "Use the approved short-Charades construction assumption: a meaningfully distinct event is ordinarily absent; do not require per-video viewing.",
+      "Do not use existing group, partition, model predictions, verifier scores, or performance as semantic evidence.",
+      "Each result must include original source and candidate descriptions, relation, decision, and a specific reason per qid."
+    ],
+    "same_video_gt_rule": "If candidate event is expressed by any original positive query for the same vid, exclude. Otherwise do not infer presence from video viewing."
+  },
+  "fixed_protocol": {
+    "seed": 3407,
+    "video_review_required": false,
+    "sha_or_hash_required": false,
+    "preset_size_thresholds": false
+  }
+}

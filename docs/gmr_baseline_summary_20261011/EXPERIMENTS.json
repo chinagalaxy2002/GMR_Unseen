@@ -1,0 +1,48 @@
+[
+  {
+    "dataset": "Clean v3",
+    "experiment": "experiments/agy_test/v3_release_baselines_20261009",
+    "release": "data/release/semantic_existence_v3_release",
+    "evaluation": "experiments/agy_test/v3_release_baselines_20261009/evaluation",
+    "completed_settings": 15,
+    "summary_split": "MACRO",
+    "status": {
+      "training_state": {
+        "complete": 15,
+        "failed": 0,
+        "finished": "2026-10-10T04:19:22.164618"
+      },
+      "score_readout": "Moment/QD native 4-decimal sigmoid; Flash native 6-decimal logit",
+      "finalized_at": "2026-10-10T04:23:47.048473",
+      "complete": true
+    }
+  },
+  {
+    "dataset": "Balanced v3",
+    "experiment": "experiments/agy_test/v3_balanced_baselines_20261010",
+    "release": "data/release/semantic_existence_v3_balanced",
+    "evaluation": "experiments/agy_test/v3_balanced_baselines_20261010/evaluation",
+    "completed_settings": 15,
+    "summary_split": "MACRO",
+    "status": {
+      "complete": true,
+      "finished": "2026-10-10T22:52:32.210810",
+      "score_readout": "Moment/QD native sigmoid; Flash native logit"
+    }
+  },
+  {
+    "dataset": "Charades-CG v2",
+    "experiment": "experiments/agy_test/publication_review_20261011/charades_cg",
+    "release": "data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2",
+    "evaluation": "experiments/agy_test/publication_review_20261011/charades_cg/docs/reports/charades_cg_gmr_baselines_20261011",
+    "completed_settings": 3,
+    "summary_split": "C3_CG",
+    "status": {
+      "complete": true,
+      "finished": "2026-10-11T11:07:12.169543",
+      "score_readout": "Moment/QD native sigmoid; Flash native logit",
+      "dataset": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v2",
+      "training_performed": false
+    }
+  }
+]

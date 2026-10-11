@@ -1,0 +1,45 @@
+{
+  "method": "Moment of Untruth §3.3 In-Domain negatives",
+  "paper": "https://arxiv.org/html/2502.08544v2#S3.SS3",
+  "clip": {
+    "encoder": "OpenAI CLIP ViT-B/32",
+    "weights_path": "/home/guoxiangyu/Beyond_Caption-Based_Queries_for_Video_Moment_Retrieval/experiments_and_data/evaluations/flash_vtg_subset_consistency_eval/models/ViT-B-32.pt",
+    "weights_sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+    "clip_code_path": "/home/guoxiangyu/paper/新建文件夹/MomentofUntruth/UniVTG-NA/run_on_video",
+    "clip_model_sha256": "e8e189318c30073ee3ed96cff5a606691738d10d529a7bef1b943f62f0030c41",
+    "tokenizer_sha256": "d1b09f10ed3d1e2c343619cb98cbfacb92363dd8607526a43aa7fe2d60d15bad",
+    "torch": "2.10.0+cu128",
+    "numpy": "2.4.2",
+    "device": "cuda:0",
+    "unique_text_count": 7895,
+    "normalization": "L2 unit norm",
+    "token_context": 77,
+    "truncation": false,
+    "unicode_handling": "identity ftfy; source queries verified ASCII",
+    "new_encoding_environment": {
+      "torch": "2.10.0+cu128",
+      "numpy": "2.4.2",
+      "device": "cuda:0"
+    },
+    "reused_text_count": 6503,
+    "newly_encoded_text_count": 1392,
+    "reused_cache_path": "data/release/charades_cg_gmr_v1/work/c3_cg/clip_text_vectors.npz",
+    "reused_cache_sha256": "83ed9420d6db43a05bf752d274a8b40c837ab8d67d8f44ad7bac5ce4e581b321",
+    "cache_path": "data/release/charades_cg_gmr_v1/work/c3_cg_v2/clip_text_vectors.npz",
+    "cache_sha256": "ea6ba54c17490a5be7b234c2260d4fe58042d8b79a956ac6b566ba3ed5acff61",
+    "cache_bytes": 14552773
+  },
+  "seed": 3407,
+  "processing_order": "positive instances sorted by source_qid; split order train, val_seen, test",
+  "candidate_pool": "clean positives in the same split; test pool combines all included official test subsets and all their descriptions per video",
+  "score": "max cosine(CLIP(query), CLIP(each positive query of candidate video))",
+  "exclusions": [
+    "source video",
+    "any video containing an exactly identical query"
+  ],
+  "selection": "sort ascending by (score, video_id), retain floor(N/2), sample uniformly from available targets",
+  "duplicate_negative_guard": "for identical text within a split, assign distinct target videos where possible",
+  "insufficient_candidate_policy": "record deficit, do not use another negative mechanism",
+  "candidate_rank_audit_path": "data/release/charades_cg_gmr_v1/work/c3_cg_v2/negative_sampling_audit.jsonl",
+  "candidate_rank_audit_sha256": "3f1a7aef702fa1c65a2d7cab53bdea21e56e6342e8d9fda7585939366fbac57e"
+}

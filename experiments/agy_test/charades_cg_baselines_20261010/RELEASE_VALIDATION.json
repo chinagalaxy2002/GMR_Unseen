@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "source_clean_counts": {
+    "train.json": 7026,
+    "novel_composition.json": 2990
+  },
+  "removed_rows": 1707,
+  "positive_counts_by_split": {
+    "train": 6342,
+    "val_seen": 684,
+    "test": 2990
+  },
+  "negative_counts_by_split": {
+    "train": 6342,
+    "val_seen": 684,
+    "test": 2990
+  },
+  "pairs": 10016,
+  "sampling_deficits": 0,
+  "lowest_half_rank_recomputed": 10016,
+  "checks": [
+    "format",
+    "source correspondence",
+    "video split assignment",
+    "counts",
+    "duplicate negative pairs",
+    "time windows",
+    "labels and S/U identity",
+    "Train and Novel-Composition source scope; Test-Trivial and Novel-Word absent",
+    "CLIP lowest-half selection"
+  ]
+}

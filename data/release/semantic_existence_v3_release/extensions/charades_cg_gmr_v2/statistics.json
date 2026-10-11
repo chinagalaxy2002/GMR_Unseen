@@ -1,0 +1,58 @@
+{
+  "positive_counts": {
+    "train": 6342,
+    "val": 684,
+    "test_seen": 2684,
+    "test_unseen": 2990
+  },
+  "negative_counts": {
+    "train": 6342,
+    "val": 684,
+    "test": 5674
+  },
+  "four_quadrant_counts_by_output": {
+    "train": {
+      "S+": 6342,
+      "S-": 6342,
+      "U+": 0,
+      "U-": 0,
+      "total": 12684
+    },
+    "val_seen": {
+      "S+": 684,
+      "S-": 684,
+      "U+": 0,
+      "U-": 0,
+      "total": 1368
+    },
+    "test": {
+      "S+": 2684,
+      "S-": 2684,
+      "U+": 2990,
+      "U-": 2990,
+      "total": 11348
+    }
+  },
+  "removed_rows": 2119,
+  "removed_by_reason": {
+    "window_out_of_bounds_or_invalid": 2119
+  },
+  "clean_positive_rows_by_source": {
+    "train.json": 7026,
+    "novel_composition.json": 2990,
+    "test_trivial.json": 2684
+  },
+  "sampling_deficits": {
+    "train": 0,
+    "val_seen": 0,
+    "test": 0,
+    "total": 0
+  },
+  "unique_clean_queries_encoded": 7895,
+  "pair_rows": 12700,
+  "video_counts": {
+    "train": 2892,
+    "val": 321,
+    "test": 2589
+  }
+}

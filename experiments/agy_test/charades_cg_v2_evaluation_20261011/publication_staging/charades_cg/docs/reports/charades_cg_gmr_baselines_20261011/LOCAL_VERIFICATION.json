@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "dataset_checksum_files": 13,
+  "settings": [
+    {
+      "split": "C3_CG",
+      "backbone": "moment",
+      "test_rows": 11348,
+      "test_videos": 2589,
+      "validation_rows": 1368,
+      "threshold": 0.555673999786377,
+      "native_window_parity": "PASS",
+      "point_metrics_parity": "PASS",
+      "calibration_replay": "PASS",
+      "bootstrap_interval_replay": "PASS"
+    },
+    {
+      "split": "C3_CG",
+      "backbone": "qd",
+      "test_rows": 11348,
+      "test_videos": 2589,
+      "validation_rows": 1368,
+      "threshold": 0.5525670206546783,
+      "native_window_parity": "PASS",
+      "point_metrics_parity": "PASS",
+      "calibration_replay": "PASS",
+      "bootstrap_interval_replay": "PASS"
+    },
+    {
+      "split": "C3_CG",
+      "backbone": "flash",
+      "test_rows": 11348,
+      "test_videos": 2589,
+      "validation_rows": 1368,
+      "threshold": -5.869624943733219,
+      "native_window_parity": "PASS",
+      "point_metrics_parity": "PASS",
+      "calibration_replay": "PASS",
+      "bootstrap_interval_replay": "PASS"
+    }
+  ],
+  "dataset_counts": {
+    "C3_CG": {
+      "train": {
+        "S-": 6342,
+        "S+": 6342
+      },
+      "val_seen": {
+        "S-": 684,
+        "S+": 684
+      },
+      "test": {
+        "U-": 2990,
+        "U+": 2990,
+        "S-": 2684,
+        "S+": 2684
+      }
+    }
+  },
+  "source_annotations_unchanged": true,
+  "dataset_version": "charades_cg_gmr_v2",
+  "checkpoints_reused": true,
+  "calibration_reused": true,
+  "training_performed": false
+}

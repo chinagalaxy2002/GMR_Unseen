@@ -1,0 +1,62 @@
+{
+  "repository": "https://github.com/YYJMJC/Compositional-Temporal-Grounding",
+  "commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+  "files": [
+    {
+      "path": "source/train.json",
+      "sha256": "c66556077d8b6a1fd7ee91641f994cd1341c11adfa4fc078434c9fe7a4b93d8d",
+      "bytes": 621558
+    },
+    {
+      "path": "source/test_trivial.json",
+      "sha256": "45eec9d3c46187235309344ab937a065b409cbdc3f3f9d926da6fd05302d822d",
+      "bytes": 254584
+    },
+    {
+      "path": "source/novel_composition.json",
+      "sha256": "c92beda2c861bb0da356d94bba131d49e20a59d893d6e182bda1ee68a852514d",
+      "bytes": 518615
+    },
+    {
+      "path": "source/novel_word.json",
+      "sha256": "f3ccd59c9f18e221028138faaf9bdddb5215e2550215ca62c8f24659168eb7f3",
+      "bytes": 95693
+    }
+  ],
+  "dataset_path": "Charades-CG/",
+  "raw_files": {
+    "train.json": {
+      "videos": 3555,
+      "query_instances": 8281
+    },
+    "test_trivial.json": {
+      "videos": 1689,
+      "query_instances": 3096
+    },
+    "novel_composition.json": {
+      "videos": 2480,
+      "query_instances": 3442
+    },
+    "novel_word.json": {
+      "videos": 580,
+      "query_instances": 695
+    }
+  },
+  "query_instances_total": 15514,
+  "query_note": "Original source instances expanded one sentence/window at a time; source files remain verbatim in source/.",
+  "auxiliary_charades_video_metadata": {
+    "origin": "https://huggingface.co/datasets/YimuWang/ActivityNet",
+    "revision": "1a20776262cc1fe3761588843cad26b62c2b7125",
+    "files": [
+      {
+        "path": "source/Charades_v1_train.csv",
+        "sha256": "59273c6dc2139ec7eb95b980fd26bc8529774b1ede0602f6ca90b546ed12f0fc"
+      },
+      {
+        "path": "source/Charades_v1_test.csv",
+        "sha256": "8b8b207b55fb95b949018027f69d83bd46cd844d15834f8f592ee8e7446173eb"
+      }
+    ],
+    "use": "Duration cross-check only; secondary mirror, not part of Charades-CG official repository."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "source_clean_counts": {
+    "train.json": 7026,
+    "novel_composition.json": 2990,
+    "test_trivial.json": 2684
+  },
+  "removed_rows": 2119,
+  "positive_counts_by_split": {
+    "train": 6342,
+    "val_seen": 684,
+    "test": 5674
+  },
+  "negative_counts_by_split": {
+    "train": 6342,
+    "val_seen": 684,
+    "test": 5674
+  },
+  "pairs": 12700,
+  "sampling_deficits": 0,
+  "lowest_half_rank_recomputed": 12700,
+  "four_quadrant_counts_by_output": {
+    "train": {
+      "S+": 6342,
+      "S-": 6342,
+      "U+": 0,
+      "U-": 0,
+      "total": 12684
+    },
+    "val_seen": {
+      "S+": 684,
+      "S-": 684,
+      "U+": 0,
+      "U-": 0,
+      "total": 1368
+    },
+    "test": {
+      "S+": 2684,
+      "S-": 2684,
+      "U+": 2990,
+      "U-": 2990,
+      "total": 11348
+    }
+  },
+  "prior_release_preservation": {
+    "train.jsonl": "byte-identical",
+    "val_seen.jsonl": "byte-identical",
+    "prior_test_positives_unchanged": 2990
+  },
+  "video_counts": {
+    "train": 2892,
+    "val_seen": 321,
+    "test": 2589
+  },
+  "test_shared_seen_unseen_videos": 1087,
+  "checks": [
+    "format",
+    "source correspondence",
+    "video split assignment",
+    "counts",
+    "duplicate negative pairs",
+    "time windows",
+    "labels and S/U identity",
+    "official source scope; Novel-Word absent",
+    "global qid uniqueness",
+    "complete positive and pair coverage",
+    "train/val/test video disjointness",
+    "CLIP lowest-half selection"
+  ]
+}

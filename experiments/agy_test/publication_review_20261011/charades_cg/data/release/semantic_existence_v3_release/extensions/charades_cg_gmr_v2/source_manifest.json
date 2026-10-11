@@ -1,0 +1,45 @@
+{
+  "dataset": "Charades-CG-GMR",
+  "extension": "C3_CG",
+  "source_commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+  "source_files": [
+    {
+      "path": "data/release/charades_cg_gmr_v1/source/train.json",
+      "sha256": "c66556077d8b6a1fd7ee91641f994cd1341c11adfa4fc078434c9fe7a4b93d8d",
+      "bytes": 621558
+    },
+    {
+      "path": "data/release/charades_cg_gmr_v1/source/novel_composition.json",
+      "sha256": "c92beda2c861bb0da356d94bba131d49e20a59d893d6e182bda1ee68a852514d",
+      "bytes": 518615
+    },
+    {
+      "path": "data/release/charades_cg_gmr_v1/source/test_trivial.json",
+      "sha256": "45eec9d3c46187235309344ab937a065b409cbdc3f3f9d926da6fd05302d822d",
+      "bytes": 254584
+    }
+  ],
+  "construction_plan": "docs/research/charades_cg_gmr_agent_pipeline/PIPELINE_PLAN.md revision-4",
+  "created_utc": "2026-10-11T02:54:44.271427+00:00",
+  "included_subsets": [
+    "official_train",
+    "novel_composition",
+    "test_trivial"
+  ],
+  "excluded_subsets": [
+    "novel_word"
+  ],
+  "seen_unseen_definition": "Official Train/Test-Trivial are Seen; Novel-Composition is Unseen; identities inherited from source, without semantic re-audit",
+  "prior_release": "data/release/semantic_existence_v3_release/extensions/charades_cg_gmr_v1",
+  "revision": "2026-10-11: restore official Test-Trivial as Seen test; regenerate joint-pool test negatives",
+  "construction_scripts": [
+    {
+      "path": "scripts/build_charades_cg_gmr_c3.py",
+      "sha256": "cb698136ea7e8a73074e15e7a4ae7a50fdf19e6e386f7e19b9060e51bcb95ace"
+    },
+    {
+      "path": "scripts/validate_charades_cg_gmr_c3.py",
+      "sha256": "a8f0146a7165bc35b74371257d3a473ccd2c09fa63b8c8008cd6d37b984ec9ab"
+    }
+  ]
+}

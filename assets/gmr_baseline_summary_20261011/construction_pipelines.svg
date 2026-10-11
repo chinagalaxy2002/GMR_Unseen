@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="1320" height="957.8994842406876" viewBox="0 0 1320 957.8994842406876" role="img"><title>construction pipelines</title><rect width="100%" height="100%" fill="white" /><text x="14.0" y="28" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#1e293b">Clean v3</text><svg width="1296.0" height="181.44" viewBox="0 0 1100 154" role="img" aria-labelledby="title desc" x="12.0" y="40">
+  <title id="construction_pipelines_0_title">从 v1 到未补充版 v3 的数据管线</title>
+  <desc id="construction_pipelines_0_desc">Charades 正例：真实描述与时间段 → v1 生成候选：改一个动作或对象 → v2 扩展五组：动作与动作×对象留出 → v3 逐条清理：排除语义与构造错误 → 划分后评估：Seen 训练 · Unseen 测试</desc>
+  <rect width="1100" height="154" rx="12" fill="#FFFFFF" />
+  <rect x="12" y="24" width="196" height="104" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.3" />
+  <text x="110" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">Charades 正例</text>
+  <text x="110" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">真实描述与时间段</text>
+  <path d="M 213 76 H 226 M 220 70 L 226 76 L 220 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="232" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="330" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">v1 生成候选</text>
+  <text x="330" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">改一个动作或对象</text>
+  <path d="M 433 76 H 446 M 440 70 L 446 76 L 440 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="452" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="550" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">v2 扩展五组</text>
+  <text x="550" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">动作与动作×对象留出</text>
+  <path d="M 653 76 H 666 M 660 70 L 666 76 L 660 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="672" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="770" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">v3 逐条清理</text>
+  <text x="770" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">排除语义与构造错误</text>
+  <path d="M 873 76 H 886 M 880 70 L 886 76 L 880 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="892" y="24" width="196" height="104" rx="12" fill="#FFFBEB" stroke="#F4D79D" stroke-width="1.3" />
+  <text x="990" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">划分后评估</text>
+  <text x="990" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">Seen 训练 · Unseen 测试</text>
+</svg><text x="14.0" y="264.44" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#1e293b">Balanced v3</text><svg width="1296.0" height="181.44" viewBox="0 0 1100 154" role="img" aria-labelledby="title desc" x="12.0" y="276.44">
+  <title id="construction_pipelines_1_title">Balanced v3 管线</title>
+  <desc id="construction_pipelines_1_desc">原始 v3：保留全部原始样本 → 跨视频配对：原查询 + 另一视频 → CLIP 文本排名：保留最低一半视频 → 语义过滤：去重 · 排除标注冲突 → 补齐与校验：追加伪负例至正负 1:1</desc>
+  <rect width="1100" height="154" rx="12" fill="#FFFFFF" />
+  <rect x="12" y="24" width="196" height="104" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.3" />
+  <text x="110" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">原始 v3</text>
+  <text x="110" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">保留全部原始样本</text>
+  <path d="M 213 76 H 226 M 220 70 L 226 76 L 220 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="232" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="330" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">跨视频配对</text>
+  <text x="330" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">原查询 + 另一视频</text>
+  <path d="M 433 76 H 446 M 440 70 L 446 76 L 440 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="452" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="550" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">CLIP 文本排名</text>
+  <text x="550" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">保留最低一半视频</text>
+  <path d="M 653 76 H 666 M 660 70 L 666 76 L 660 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="672" y="24" width="196" height="104" rx="12" fill="#F0FDFA" stroke="#99D9D0" stroke-width="1.3" />
+  <text x="770" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">语义过滤</text>
+  <text x="770" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">去重 · 排除标注冲突</text>
+  <path d="M 873 76 H 886 M 880 70 L 886 76 L 880 82" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="892" y="24" width="196" height="104" rx="12" fill="#FFFBEB" stroke="#F4D79D" stroke-width="1.3" />
+  <text x="990" y="67" fill="#0F172A" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="22" font-weight="600" text-anchor="middle" style="">补齐与校验</text>
+  <text x="990" y="101" fill="#475569" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif" font-size="17" font-weight="400" text-anchor="middle" style="">追加伪负例至正负 1:1</text>
+</svg><text x="14.0" y="500.88" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold" fill="#1e293b">Charades-CG v2</text><svg width="1296.0" height="430.01948424068763" viewBox="0 0 628.2 208.44" version="1.1" x="12.0" y="512.88">
+ <metadata>
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:date>2026-10-11T11:09:12.967368</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="construction_pipelines_2_figure_1">
+  <g id="construction_pipelines_2_patch_1">
+   <path d="M 0 208.44  L 628.2 208.44  L 628.2 0  L 0 0  z " style="fill: #ffffff" />
+  </g>
+  <g id="construction_pipelines_2_axes_1">
+   <g id="construction_pipelines_2_patch_2">
+    <path d="M 15.57 144.6912  L 146.7 144.6912  Q 151.164 144.6912 151.164 140.256  L 151.164 51.552  Q 151.164 47.1168 146.7 47.1168  L 15.57 47.1168  Q 11.106 47.1168 11.106 51.552  L 11.106 140.256  Q 11.106 144.6912 15.57 144.6912  z " clip-path="url(#construction_pipelines_2_p64e437b110)" style="fill: #eef5fa; stroke: #0072b2; stroke-width: 1.2; stroke-linejoin: miter" />
+   </g>
+   <g id="construction_pipelines_2_patch_3">
+    <path d="M 169.02 144.6912  L 300.15 144.6912  Q 304.614 144.6912 304.614 140.256  L 304.614 51.552  Q 304.614 47.1168 300.15 47.1168  L 169.02 47.1168  Q 164.556 47.1168 164.556 51.552  L 164.556 140.256  Q 164.556 144.6912 169.02 144.6912  z " clip-path="url(#construction_pipelines_2_p64e437b110)" style="fill: #eef5fa; stroke: #0072b2; stroke-width: 1.2; stroke-linejoin: miter" />
+   </g>
+   <g id="construction_pipelines_2_patch_4">
+    <path d="M 322.47 144.6912  L 453.6 144.6912  Q 458.064 144.6912 458.064 140.256  L 458.064 51.552  Q 458.064 47.1168 453.6 47.1168  L 322.47 47.1168  Q 318.006 47.1168 318.006 51.552  L 318.006 140.256  Q 318.006 144.6912 322.47 144.6912  z " clip-path="url(#construction_pipelines_2_p64e437b110)" style="fill: #eef5fa; stroke: #0072b2; stroke-width: 1.2; stroke-linejoin: miter" />
+   </g>
+   <g id="construction_pipelines_2_patch_5">
+    <path d="M 475.92 144.6912  L 607.05 144.6912  Q 611.514 144.6912 611.514 140.256  L 611.514 51.552  Q 611.514 47.1168 607.05 47.1168  L 475.92 47.1168  Q 471.456 47.1168 471.456 51.552  L 471.456 140.256  Q 471.456 144.6912 475.92 144.6912  z " clip-path="url(#construction_pipelines_2_p64e437b110)" style="fill: #eef5fa; stroke: #0072b2; stroke-width: 1.2; stroke-linejoin: miter" />
+   </g>
+   <g id="construction_pipelines_2_text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="81.135" y="76.763312" transform="rotate(-0 81.135 76.763312)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">官方 Charades-CG</text>
+   </g>
+   <g id="construction_pipelines_2_text_2">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Noto Sans CJK JP'" transform="translate(40.529531 107.208422)">Train + Test-Trivial</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Noto Sans CJK JP'" transform="translate(33.404766 117.286453)">+ Novel-Composition</text>
+   </g>
+   <g id="construction_pipelines_2_patch_6">
+    <path d="M 153.161684 95.904  Q 157.858779 95.904 160.990627 95.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+    <path d="M 156.990627 93.904  L 160.990627 95.904  L 156.990627 97.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+   </g>
+   <g id="construction_pipelines_2_text_3">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="234.585" y="76.763312" transform="rotate(-0 234.585 76.763312)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">机械清理与划分</text>
+   </g>
+   <g id="construction_pipelines_2_text_4">
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(187.342031 107.208422)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">剔除 2,119 条异常窗口</text>
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(194.20875 117.286453)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">训练 / 验证保持不变</text>
+   </g>
+   <g id="construction_pipelines_2_patch_7">
+    <path d="M 306.611684 95.904  Q 311.308779 95.904 314.440627 95.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+    <path d="M 310.440627 93.904  L 314.440627 95.904  L 310.440627 97.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+   </g>
+   <g id="construction_pipelines_2_text_5">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="388.035" y="76.763312" transform="rotate(-0 388.035 76.763312)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">联合 Test 换视频</text>
+   </g>
+   <g id="construction_pipelines_2_text_6">
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(341.508516 107.208422)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">同视频全部 S/U 正描述</text>
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(341.552109 117.286453)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">CLIP 最低 50% 内采样</text>
+   </g>
+   <g id="construction_pipelines_2_patch_8">
+    <path d="M 460.061684 95.904  Q 464.758779 95.904 467.890627 95.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+    <path d="M 463.890627 93.904  L 467.890627 95.904  L 463.890627 97.904  " style="fill: none; stroke: #000000; stroke-width: 1.4; stroke-linecap: round" />
+   </g>
+   <g id="construction_pipelines_2_text_7">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="541.485" y="76.763312" transform="rotate(-0 541.485 76.763312)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">同句正负配对</text>
+   </g>
+   <g id="construction_pipelines_2_text_8">
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(489.880547 107.208422)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">Seen / Unseen 各自 1:1</text>
+    <text style="font-size: 9px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'" transform="translate(509.985 117.286453)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">负例是构造标签</text>
+   </g>
+   <g id="construction_pipelines_2_text_9">
+    <text style="font-size: 14px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="314.1" y="23.832" transform="rotate(-0 314.1 23.832)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">Charades-CG-GMR v2：补回 Seen 测试与联合重配负例</text>
+   </g>
+   <g id="construction_pipelines_2_text_10">
+    <text style="font-size: 10.5px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle" x="314.1" y="173.52" transform="rotate(-0 314.1 173.52)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">复用原 checkpoint 与 Seen-validation 阈值 → v2 重新推理 → 联合视频聚类 bootstrap</text>
+   </g>
+   <g id="construction_pipelines_2_text_11">
+    <text style="font-size: 10px; font-family: 'Noto Sans CJK SC', 'DejaVu Sans'; text-anchor: middle; fill: #8b3b13" x="314.1" y="195.696" transform="rotate(-0 314.1 195.696)" font-family="Noto Sans CJK SC, DejaVu Sans, sans-serif">Novel-Word 不进入主评估；低文本相似度不能确认实际视频缺席。</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="construction_pipelines_2_p64e437b110">
+   <rect x="7.2" y="7.2" width="613.8" height="194.04" />
+  </clipPath>
+ </defs>
+</svg></svg>

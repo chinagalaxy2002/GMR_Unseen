@@ -1,0 +1,92 @@
+[
+  {
+    "qid": "test_trivial.json:CVPFH:1",
+    "source_qid": "test_trivial.json:CVPFH:1",
+    "vid": "CVPFH",
+    "query": "person looking into the mirror,adjust the lights above the mirror.",
+    "relevant_windows": [
+      [
+        0.0,
+        13.2
+      ]
+    ],
+    "duration": 33.75,
+    "exist_label": 1,
+    "official_subset": "test_trivial",
+    "official_split": "test",
+    "novels": {},
+    "source_file": "test_trivial.json",
+    "source_commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+    "partition": "S+",
+    "video_split": "test",
+    "pair_id": "c3cg-31efee282f463a4e"
+  },
+  {
+    "qid": "c3cg-31efee282f463a4e-neg",
+    "pair_id": "c3cg-31efee282f463a4e",
+    "vid": "0DAO5",
+    "query": "person looking into the mirror,adjust the lights above the mirror.",
+    "relevant_windows": [],
+    "duration": 29.46,
+    "exist_label": 0,
+    "partition": "S-",
+    "official_subset": "test_trivial",
+    "novels": {},
+    "source_qid": "test_trivial.json:CVPFH:1",
+    "source_vid": "CVPFH",
+    "construction_method": "mout_in_domain_clip_reassignment",
+    "sampling_source": "Moment of Untruth §3.3 In-Domain negatives; lowest-scoring half of same-split videos"
+  },
+  {
+    "qid": "novel_composition.json:2MJA1:0",
+    "source_qid": "novel_composition.json:2MJA1:0",
+    "vid": "2MJA1",
+    "query": "person they decide to start undressing by removing their sweater.",
+    "relevant_windows": [
+      [
+        9.0,
+        24.2
+      ]
+    ],
+    "duration": 31.38,
+    "exist_label": 1,
+    "official_subset": "novel_composition",
+    "official_split": "test",
+    "novels": {
+      "v-n": [
+        [
+          "remove",
+          "sweater"
+        ]
+      ]
+    },
+    "source_file": "novel_composition.json",
+    "source_commit": "2372337e9166b8e26b83ce936a8474c6ae127290",
+    "partition": "U+",
+    "video_split": "test",
+    "pair_id": "c3cg-25a926eb571e6d34"
+  },
+  {
+    "qid": "c3cg-25a926eb571e6d34-neg",
+    "pair_id": "c3cg-25a926eb571e6d34",
+    "vid": "QD1U7",
+    "query": "person they decide to start undressing by removing their sweater.",
+    "relevant_windows": [],
+    "duration": 34.75,
+    "exist_label": 0,
+    "partition": "U-",
+    "official_subset": "novel_composition",
+    "novels": {
+      "v-n": [
+        [
+          "remove",
+          "sweater"
+        ]
+      ]
+    },
+    "source_qid": "novel_composition.json:2MJA1:0",
+    "source_vid": "2MJA1",
+    "construction_method": "mout_in_domain_clip_reassignment",
+    "sampling_source": "Moment of Untruth §3.3 In-Domain negatives; lowest-scoring half of same-split videos"
+  }
+]

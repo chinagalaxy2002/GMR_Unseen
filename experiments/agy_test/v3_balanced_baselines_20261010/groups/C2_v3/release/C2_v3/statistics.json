@@ -1,0 +1,119 @@
+{
+  "group": "C2_v3",
+  "rows": 29344,
+  "train": 20200,
+  "val": 2238,
+  "test": 6906,
+  "by_split": [
+    {
+      "group": "C2_v3",
+      "split": "train",
+      "positive": 10100,
+      "original_negative": 839,
+      "added_negative": 9261,
+      "negative": 10100,
+      "rows": 20200,
+      "original_quadrants": {
+        "S-": 839,
+        "S+": 10100
+      },
+      "quadrants": {
+        "S-": 10100,
+        "S+": 10100
+      },
+      "added_quadrant_quotas": {
+        "S": 9261
+      },
+      "donor_unique_query_count": 6389,
+      "target_video_count": 4631,
+      "bottom_half_pool_before_veto": {
+        "S": 14790535
+      },
+      "visited_rejected_candidates": {
+        "positive_event_overlap": 128,
+        "opposite_event_same_anchor": 137
+      },
+      "sampling_seed": 9375021967681498501
+    },
+    {
+      "group": "C2_v3",
+      "split": "val",
+      "positive": 1119,
+      "original_negative": 395,
+      "added_negative": 724,
+      "negative": 1119,
+      "rows": 2238,
+      "original_quadrants": {
+        "S-": 367,
+        "U-": 28,
+        "S+": 1074,
+        "U+": 45
+      },
+      "quadrants": {
+        "S-": 1062,
+        "U-": 57,
+        "S+": 1074,
+        "U+": 45
+      },
+      "added_quadrant_quotas": {
+        "S": 695,
+        "U": 29
+      },
+      "donor_unique_query_count": 928,
+      "target_video_count": 498,
+      "bottom_half_pool_before_veto": {
+        "S": 222952,
+        "U": 7192
+      },
+      "visited_rejected_candidates": {
+        "opposite_event_same_anchor": 14,
+        "positive_event_overlap": 12
+      },
+      "sampling_seed": 11765950954875483169
+    },
+    {
+      "group": "C2_v3",
+      "split": "test",
+      "positive": 3453,
+      "original_negative": 1158,
+      "added_negative": 2295,
+      "negative": 3453,
+      "rows": 6906,
+      "original_quadrants": {
+        "S-": 1066,
+        "U-": 92,
+        "S+": 3322,
+        "U+": 131
+      },
+      "quadrants": {
+        "S-": 3274,
+        "U-": 179,
+        "S+": 3322,
+        "U+": 131
+      },
+      "added_quadrant_quotas": {
+        "S": 2208,
+        "U": 87
+      },
+      "donor_unique_query_count": 2609,
+      "target_video_count": 1302,
+      "bottom_half_pool_before_veto": {
+        "S": 1641900,
+        "U": 53950
+      },
+      "visited_rejected_candidates": {
+        "opposite_event_same_anchor": 33,
+        "positive_event_overlap": 19
+      },
+      "sampling_seed": 2171399198529648970
+    }
+  ],
+  "partition_counts": {
+    "S-": 14436,
+    "S+": 14496,
+    "U-": 236,
+    "U+": 176
+  },
+  "test_matched_u_rows": 64,
+  "revision": "v3-balanced-clip-cross-video-1.0.0"
+}
