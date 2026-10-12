@@ -1,0 +1,201 @@
+{
+  "captured_at": "2026-10-13T00:16:52.661262+08:00",
+  "queue": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013",
+  "controller_pid": 2249194,
+  "state": "running",
+  "counts": {
+    "queued": 51,
+    "running": 4,
+    "complete": 0,
+    "failed": 0
+  },
+  "active": [
+    {
+      "tag": "soccer_A1_soccer_moment_with_sa",
+      "process": {
+        "state": "running",
+        "gpu": 0,
+        "pid": 2249276,
+        "argv": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-u",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+          "--output",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A1_soccer_moment_with_sa",
+          "--dataset",
+          "soccer",
+          "--split",
+          "A1_soccer",
+          "--backbone",
+          "moment",
+          "--variant",
+          "with_sa",
+          "--gpu",
+          "0",
+          "--epochs",
+          "100",
+          "--initialization",
+          "fresh",
+          "--model-kind",
+          "baseline",
+          "--lr-factor",
+          "1",
+          "--seed",
+          "3407",
+          "--workers",
+          "2",
+          "--decoder-every",
+          "50",
+          "--gradient-every",
+          "50"
+        ]
+      },
+      "run": {
+        "state": "training",
+        "epoch": 5,
+        "epochs": 100,
+        "batches": 500,
+        "global_step": 6512,
+        "elapsed_epoch_seconds": 33.41630220413208,
+        "updated": 1791821811.8086302
+      }
+    },
+    {
+      "tag": "soccer_A1_soccer_qd_with_sa",
+      "process": {
+        "state": "running",
+        "gpu": 1,
+        "pid": 2249286,
+        "argv": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-u",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+          "--output",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A1_soccer_qd_with_sa",
+          "--dataset",
+          "soccer",
+          "--split",
+          "A1_soccer",
+          "--backbone",
+          "qd",
+          "--variant",
+          "with_sa",
+          "--gpu",
+          "1",
+          "--epochs",
+          "100",
+          "--initialization",
+          "fresh",
+          "--model-kind",
+          "baseline",
+          "--lr-factor",
+          "1",
+          "--seed",
+          "3407",
+          "--workers",
+          "2",
+          "--decoder-every",
+          "50",
+          "--gradient-every",
+          "50"
+        ]
+      },
+      "run": {
+        "state": "training",
+        "epoch": 6,
+        "epochs": 100,
+        "batches": 100,
+        "global_step": 3860,
+        "elapsed_epoch_seconds": 10.799499273300171,
+        "updated": 1791821810.4725165
+      }
+    },
+    {
+      "tag": "clean_v3_A1_v3_qd_with_sa",
+      "process": {
+        "state": "running",
+        "gpu": 0,
+        "pid": 2249280,
+        "argv": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-u",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+          "--output",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A1_v3_qd_with_sa",
+          "--dataset",
+          "clean_v3",
+          "--split",
+          "A1_v3",
+          "--backbone",
+          "qd",
+          "--variant",
+          "with_sa",
+          "--gpu",
+          "0",
+          "--epochs",
+          "100",
+          "--initialization",
+          "fresh",
+          "--model-kind",
+          "baseline",
+          "--lr-factor",
+          "1",
+          "--seed",
+          "3407",
+          "--workers",
+          "2",
+          "--decoder-every",
+          "50",
+          "--gradient-every",
+          "50"
+        ]
+      },
+      "run": {
+        "state": "training",
+        "epoch": 6,
+        "epochs": 100,
+        "batches": 600,
+        "global_step": 3670,
+        "elapsed_epoch_seconds": 71.57763528823853,
+        "updated": 1791821809.4706483
+      }
+    },
+    {
+      "tag": "charades_cg_v2_C3_CG_flash_native",
+      "process": {
+        "state": "running",
+        "gpu": 1,
+        "pid": 2249283,
+        "argv": [
+          "/home/guoxiangyu/miniconda3/envs/univtg/bin/python",
+          "-u",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_flash_monitor_experiment.py",
+          "--output",
+          "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/charades_cg_v2_C3_CG_flash_native",
+          "--dataset",
+          "charades_cg_v2",
+          "--split",
+          "C3_CG",
+          "--gpu",
+          "1",
+          "--epochs",
+          "100",
+          "--seed",
+          "3407",
+          "--workers",
+          "2",
+          "--gradient-every",
+          "50"
+        ]
+      },
+      "run": {
+        "state": "training",
+        "epoch": 3,
+        "epochs": 100,
+        "batches": 200,
+        "global_step": 3372,
+        "updated": 1791821810.5474436
+      }
+    }
+  ]
+}

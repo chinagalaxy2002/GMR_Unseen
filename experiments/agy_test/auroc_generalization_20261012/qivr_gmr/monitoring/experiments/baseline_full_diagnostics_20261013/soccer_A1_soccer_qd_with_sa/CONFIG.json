@@ -1,0 +1,58 @@
+{
+  "dataset": "soccer",
+  "split": "A1_soccer",
+  "backbone": "qd",
+  "variant": "with_sa",
+  "seed": 3407,
+  "epochs": 100,
+  "learning_rate": 0.0001,
+  "lr_factor": 1.0,
+  "batch_size": 16,
+  "initialization": "fresh",
+  "model_kind": "baseline",
+  "checkpoint_epoch": null,
+  "initial_checkpoint": null,
+  "initial_checkpoint_sha256": "9f0074f1312162eb6b857d518c33f96bc07996783a4ef67b62ceb147104f855d",
+  "original_baseline": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/soccer_unseen_baselines_20261011/groups/A1_soccer/evaluation/qd/predictions.npz",
+  "original_baseline_sha256": "fd537ba845bfb935d0f30c803990d98d2fde2091f6fa30ff0168881967979a76",
+  "release_sha256": {
+    "train": "e51c1ab31a3e1090a7f0e90aa9a0797da3e6fb1d8d768572306fade25c0c4e7e",
+    "val_seen": "186fe552b12a0c7e6c5ccf861be684156db091ce665c150c07d8754152d1dfa5",
+    "test": "9f2b3bffedeecc559bdc7fd939593c2d4f10a783a964ed0e021a2f458e471939"
+  },
+  "train_counts": {
+    "S+": 4646,
+    "S-": 7375
+  },
+  "max_windows": 8,
+  "gt_windows_in_annotations": 8001,
+  "gt_windows_supervised": 8001,
+  "annotation_queries_truncated": 0,
+  "optimizer": "fresh AdamW; no original optimizer/scheduler state resumed; constant LR",
+  "weight_decay": 0.0001,
+  "selection": "maximum Seen-validation AUROC among epochs 1..N; earliest tie",
+  "threshold": "Seen-validation BA over percentiles 5..95; earliest tie",
+  "ablation": "skip decoder slot self-attention residual branch and its norm1; retain encoder/cross-attention and checkpoint parameter keys",
+  "stochasticity": "paired seed and epoch data-order generators; different branches consume different dropout draws",
+  "labels": "native localization/classification/existence; mr_only=True, no saliency labels",
+  "scope": "training from fresh DETR initialization",
+  "all_detr_parameters_trainable": true,
+  "native_clip_to_duration": true,
+  "native_existence_head": true,
+  "qivr_head": false,
+  "evidence_loss": false,
+  "decoder_monitor": {
+    "version": "decoder_slots_v1",
+    "every": 50,
+    "fixed_seen_probe": "all every epoch",
+    "raw_training": "first batch per epoch"
+  },
+  "source_sha256": {
+    "run_decoder_experiment.py": "5531a6c90884796e487d16f57ca87be9cd87171f0f2440aed94ecd4263f0f6bd",
+    "src/decoder_slot_monitor.py": "bd5b060025e88309b234ad45afe42adea13b0f5261e8b08ed909c192ddd8efd2",
+    "src/auroc_mechanism_monitor.py": "b7586f92a110fe1e8c72b1c6e92d88144b386559704f27c54c9b4c2b768390e8",
+    "src/mechanism_monitor.py": "da30992ba1a391b785ff1e6bbd68d11b6a71000a6a514ed3b2f2c307364c9e66",
+    "src/response_monitor.py": "36eff013e6a107fe2b45266122c67dc770387d1fa7c04880f73b145f0cd480e7",
+    "src/models/qd_detr_gmr/transformer.py": "08bd3b62104a2b120ad46421e5fe8b38b530c986660f3ae7404928c717bd8e81"
+  }
+}

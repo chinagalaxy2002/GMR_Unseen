@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "tests": [
+    {
+      "backbone": "moment",
+      "no_sa": false,
+      "bitwise_outputs_gradients_rng": true,
+      "exact_native_loss_split": true
+    },
+    {
+      "backbone": "moment",
+      "no_sa": true,
+      "bitwise_outputs_gradients_rng": true,
+      "exact_native_loss_split": true
+    },
+    {
+      "backbone": "qd",
+      "no_sa": false,
+      "bitwise_outputs_gradients_rng": true,
+      "exact_native_loss_split": true
+    },
+    {
+      "backbone": "qd",
+      "no_sa": true,
+      "bitwise_outputs_gradients_rng": true,
+      "exact_native_loss_split": true
+    }
+  ]
+}
