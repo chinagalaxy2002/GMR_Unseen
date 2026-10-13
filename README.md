@@ -1,5 +1,8 @@
 # GMR Baseline AUROC 退化诊断
 
+最新已完成任务更新：**2026-10-13T10:15:33.714689+08:00**，已完成 **11/55** 项。新增完成：`clean_v3_A1_v3_moment_with_sa`。[完整原始记录](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-101533) · [更新清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/updates/20261013-101533/MANIFEST.json)。
+
+
 本分支保存 Moment-DETR-GMR、QD-DETR-GMR 和 FlashVTG-GMR 的诊断脚本、实验协议及训练记录。
 
 最新训练记录快照：**2026-10-13 08:57:24（Asia/Shanghai）**。小型文本日志、配置、逐 epoch 统计和冻结评估结果保留原始目录；完整 JSONL、NPZ 与 bootstrap 数组见 [原始记录归档](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-records-20261013-085724)。不包含 checkpoint、模型缓存、特征、视频、凭据或重复源码副本。
