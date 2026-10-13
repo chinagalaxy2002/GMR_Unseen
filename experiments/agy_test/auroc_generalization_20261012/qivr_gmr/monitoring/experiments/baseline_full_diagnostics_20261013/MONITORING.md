@@ -16,25 +16,25 @@ Seen-only training, single seed; initialization and duration are frozen in SUITE
 | soccer_A2_soccer_moment_with_sa | complete / - / - | 2282265 | [1095, 49, 911, 774, 801, 1118, 1077, 590, 790, 1082] | 19.80 | 10.58 | 2.0936529535071927e-05 (3006) |
 | soccer_A2_soccer_qd_with_sa | complete / - / - | 2269149 | [964, 861, 870, 960, 559, 652, 885, 947, 822, 767] | 12.33 | 65.38 | 0.0002202240880250034 (1530) |
 | soccer_A2_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A2_v3_moment_with_sa | training / 64 / 650 | 2339296 | [3, 4, 225, 23, 1774, 5229, 7, 2385, 136, 5] | 10.11 | 1.56 | -0.0002149460816207543 (866) |
-| clean_v3_A2_v3_qd_with_sa | training / 71 / 650 | 2333334 | [6, 16, 10, 2369, 0, 0, 1, 13, 4478, 2898] | 2.35 | 1.56 | 0.0003407987001355965 (960) |
+| clean_v3_A2_v3_moment_with_sa | complete / - / - | 2339296 | [2, 2, 221, 19, 1836, 5208, 0, 2353, 149, 1] | 8.40 | 0.00 | -0.0002520585959639363 (1352) |
+| clean_v3_A2_v3_qd_with_sa | complete / - / - | 2333334 | [3, 10, 11, 2412, 0, 0, 2, 17, 4468, 2868] | 2.28 | 1.56 | 0.00028154390850681615 (1352) |
 | clean_v3_A2_v3_flash_native | complete / - / - | 2291891 | - | N/A | N/A | N/A (0) |
 | soccer_A3_soccer_moment_with_sa | complete / - / - | 2304521 | [1209, 1326, 1276, 674, 1238, 58, 917, 695, 936, 87] | 23.49 | 11.54 | 1.284673810977171e-05 (3022) |
 | soccer_A3_soccer_qd_with_sa | complete / - / - | 2282058 | [1058, 910, 882, 995, 459, 608, 921, 988, 856, 739] | 17.66 | 14.42 | -0.00012277826890129976 (1546) |
 | soccer_A3_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_moment_with_sa | training / 48 / 150 | 2343962 | [3006, 6, 9, 9, 2327, 4371, 5, 2, 4, 8] | 2.19 | 1.56 | -0.0001933378834767335 (637) |
-| clean_v3_A3_v3_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_flash_native | training / 24 / 1050 | 2339297 | - | N/A | N/A | N/A (0) |
+| clean_v3_A3_v3_moment_with_sa | complete / - / - | 2343962 | [2992, 1, 8, 0, 2340, 4378, 26, 1, 1, 0] | 1.43 | 0.00 | -2.0083433497140888e-05 (1346) |
+| clean_v3_A3_v3_qd_with_sa | training / 48 / 300 | 2395093 | [10, 5, 3, 2454, 1, 14, 2, 7, 4461, 2790] | 2.73 | 4.69 | -3.8032556656875784e-05 (639) |
+| clean_v3_A3_v3_flash_native | training / 91 / 700 | 2339297 | - | N/A | N/A | N/A (0) |
 | soccer_C1_soccer_moment_with_sa | training / 22 / 300 | 2332680 | [662, 526, 738, 569, 509, 733, 858, 655, 742, 574] | 64.13 | 80.61 | -0.0006703409915752167 (586) |
 | soccer_C1_soccer_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_C1_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C1_v3_moment_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C1_v3_moment_with_sa | complete / - / - | 2373164 | [2464, 13, 3009, 4, 2, 4539, 2, 1, 6, 2] | 1.92 | 0.00 | 0.00010588959766915534 (1362) |
 | clean_v3_C1_v3_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | clean_v3_C1_v3_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_C2_soccer_moment_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_C2_soccer_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_C2_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C2_v3_moment_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C2_v3_moment_with_sa | training / 12 / 450 | 2415491 | [0, 3215, 2, 0, 4373, 206, 0, 2297, 4, 3] | 5.56 | 1.56 | -0.00042740532014230075 (160) |
 | clean_v3_C2_v3_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | clean_v3_C2_v3_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_A1_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |

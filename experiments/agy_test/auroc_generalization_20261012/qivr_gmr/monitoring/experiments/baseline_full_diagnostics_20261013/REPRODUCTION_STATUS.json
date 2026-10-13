@@ -1,22 +1,81 @@
 {
   "jobs": {
     "publication_charades_cg_v2_C3_CG_moment_with_sa": {
-      "state": "queued",
+      "state": "complete",
       "job_kind": "publication_reproduction",
+      "gpu": 0,
+      "pid": 2364142,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py",
+        "--config",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/configs/publication_charades_cg_v2_C3_CG_moment_with_sa.json",
+        "--gpu",
+        "0"
+      ],
+      "launched_at": 1791873701.7129862,
+      "finished": 1791875864.5076284,
+      "returncode": 0,
       "output_dir": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/publication_charades_cg_v2_C3_CG_moment_with_sa",
-      "run": {}
+      "run": {
+        "state": "complete",
+        "best_epoch": 14,
+        "epochs": 40,
+        "early_stop": true,
+        "scope": "Three-setting published-native protocol reproduction; no other setting retrained",
+        "updated": 1791875861.177705
+      }
     },
     "publication_clean_v3_A1_v3_qd_with_sa": {
-      "state": "queued",
+      "state": "complete",
       "job_kind": "publication_reproduction",
+      "gpu": 0,
+      "pid": 2364486,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py",
+        "--config",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/configs/publication_clean_v3_A1_v3_qd_with_sa.json",
+        "--gpu",
+        "0"
+      ],
+      "launched_at": 1791873830.5724416,
+      "finished": 1791879477.6777487,
+      "returncode": 0,
       "output_dir": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/publication_clean_v3_A1_v3_qd_with_sa",
-      "run": {}
+      "run": {
+        "state": "complete",
+        "best_epoch": 98,
+        "epochs": 100,
+        "early_stop": false,
+        "scope": "Three-setting published-native protocol reproduction; no other setting retrained",
+        "updated": 1791879476.9627216
+      }
     },
     "publication_clean_v3_A2_v3_flash_native": {
-      "state": "queued",
+      "state": "running",
       "job_kind": "publication_reproduction",
+      "gpu": 1,
+      "pid": 2368580,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py",
+        "--config",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/configs/publication_clean_v3_A2_v3_flash_native.json",
+        "--gpu",
+        "1"
+      ],
+      "launched_at": 1791874893.001489,
       "output_dir": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/publication_clean_v3_A2_v3_flash_native",
-      "run": {}
+      "run": {
+        "state": "training",
+        "child_pid": 2368581,
+        "elapsed_seconds": 8700.562976837158,
+        "updated": 1791883593.6337974
+      }
     }
   }
 }

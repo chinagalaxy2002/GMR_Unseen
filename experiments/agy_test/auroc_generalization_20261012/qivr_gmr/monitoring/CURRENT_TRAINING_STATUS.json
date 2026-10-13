@@ -1,0 +1,98 @@
+{
+  "captured_at": "2026-10-13T17:26:46.360996+08:00",
+  "counts": {
+    "complete": 21,
+    "paused": 2,
+    "queued": 11,
+    "running": 4,
+    "cancelled": 20
+  },
+  "jobs": [
+    {
+      "job": "soccer_A1_soccer_flash_native",
+      "state": "paused",
+      "gpu": 1,
+      "epoch": 59,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "clean_v3_A3_v3_qd_with_sa",
+      "state": "running",
+      "gpu": 0,
+      "epoch": 48,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "clean_v3_A3_v3_flash_native",
+      "state": "running",
+      "gpu": 1,
+      "epoch": 91,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "soccer_C1_soccer_moment_with_sa",
+      "state": "paused",
+      "gpu": 0,
+      "epoch": 22,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "clean_v3_C2_v3_moment_with_sa",
+      "state": "running",
+      "gpu": 0,
+      "epoch": 12,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "publication_charades_cg_v2_C3_CG_moment_with_sa",
+      "state": "complete",
+      "gpu": 0,
+      "epoch": 40,
+      "epochs": 40,
+      "best_epoch": 14,
+      "early_stop": true
+    },
+    {
+      "job": "publication_clean_v3_A1_v3_qd_with_sa",
+      "state": "complete",
+      "gpu": 0,
+      "epoch": 100,
+      "epochs": 100,
+      "best_epoch": 98,
+      "early_stop": false
+    },
+    {
+      "job": "publication_clean_v3_A2_v3_flash_native",
+      "state": "running",
+      "gpu": 1,
+      "epoch": 49,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    }
+  ],
+  "upload_scope": "Only training text logs, epoch summaries, final metric tables, selection/early-stop records, calibration/configuration and status. No new raw data archive or release.",
+  "excluded": [
+    "checkpoints",
+    "NPZ arrays",
+    "per-sample predictions",
+    "bootstrap arrays",
+    "raw monitor records",
+    "features",
+    "videos",
+    "credentials",
+    "caches",
+    "TensorBoard events",
+    "duplicate source trees"
+  ]
+}
