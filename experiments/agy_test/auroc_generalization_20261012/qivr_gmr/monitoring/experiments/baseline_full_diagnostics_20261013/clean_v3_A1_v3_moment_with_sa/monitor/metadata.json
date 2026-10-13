@@ -1,0 +1,12 @@
+{
+  "training_kind": "joint_backbone",
+  "matcher": "actual criterion.matcher output; first call is final layer; auxiliary calls excluded",
+  "gt_identity": "qid + normalized GT cxw rounded to 7 decimals; duplicate GT coordinates excluded from flip calculation",
+  "flip_definition": "same GT changes slot across consecutive observed epochs in actual stochastic training; not deterministic probe stability",
+  "gradient_basis": "intersection of connected trainable transformer parameter gradients",
+  "gradient_every": 50,
+  "localization_losses": "weighted span + GIoU + foreground/background losses, including auxiliary decoder losses",
+  "existence_loss": "weighted loss_exist; saliency excluded",
+  "unseen_labels_used": false,
+  "history_scope": "starts when observer is enabled; no recovery of prior epochs"
+}

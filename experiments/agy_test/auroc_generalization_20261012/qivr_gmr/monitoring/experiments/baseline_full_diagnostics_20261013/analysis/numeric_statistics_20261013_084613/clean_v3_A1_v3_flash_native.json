@@ -1,0 +1,83 @@
+{
+  "run": {
+    "state": "complete",
+    "epochs": 100,
+    "global_steps": 122800,
+    "best_epoch": 51,
+    "updated": 1791846566.1586516
+  },
+  "validation": {
+    "best_epoch": 51,
+    "best_auroc": 0.8015992772811632,
+    "last_epoch": 100,
+    "last_auroc": 0.7802384841234251
+  },
+  "parameter_updates": {
+    "epoch": 100,
+    "modules": {
+      "transformer": {
+        "parameters": 5923593,
+        "trainable_parameters": 5923593,
+        "update_l2": 2.0839568567267475,
+        "relative_update_l2": 0.02379238041150726,
+        "actually_changed": true
+      },
+      "input_txt_proj": {
+        "parameters": 198656,
+        "trainable_parameters": 198656,
+        "update_l2": 0.4265440098665697,
+        "relative_update_l2": 0.013740532438193542,
+        "actually_changed": true
+      },
+      "input_vid_proj": {
+        "parameters": 793604,
+        "trainable_parameters": 793604,
+        "update_l2": 0.8259124325164443,
+        "relative_update_l2": 0.014047195047894336,
+        "actually_changed": true
+      },
+      "pyramid": {
+        "parameters": 791040,
+        "trainable_parameters": 791040,
+        "update_l2": 0.7222413473311213,
+        "relative_update_l2": 0.015577751220034082,
+        "actually_changed": true
+      },
+      "pooling": {
+        "parameters": 256,
+        "trainable_parameters": 256,
+        "update_l2": 0.016053825651494574,
+        "relative_update_l2": 0.032789551521578114,
+        "actually_changed": true
+      },
+      "conf_head": {
+        "parameters": 410497,
+        "trainable_parameters": 410497,
+        "update_l2": 0.4637509709328721,
+        "relative_update_l2": 0.02472693978354758,
+        "actually_changed": true
+      },
+      "class_head": {
+        "parameters": 410497,
+        "trainable_parameters": 410497,
+        "update_l2": 0.4588950170322507,
+        "relative_update_l2": 0.024413791045942185,
+        "actually_changed": true
+      },
+      "coord_head": {
+        "parameters": 198402,
+        "trainable_parameters": 198402,
+        "update_l2": 0.3499601956944681,
+        "relative_update_l2": 0.033118934732822056,
+        "actually_changed": true
+      },
+      "exist_head": {
+        "parameters": 131585,
+        "trainable_parameters": 131585,
+        "update_l2": 0.23096062829008188,
+        "relative_update_l2": 0.018675456917015793,
+        "actually_changed": true
+      }
+    }
+  }
+}

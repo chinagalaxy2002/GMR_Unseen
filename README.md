@@ -1,8 +1,12 @@
 # GMR Baseline AUROC 退化诊断
 
-本分支保存 Moment-DETR-GMR、QD-DETR-GMR 和 FlashVTG-GMR 的**诊断脚本、实验协议、交接文档与轻量汇总**，用于研究 Seen→Unseen AUROC 下降的机制。
+本分支保存 Moment-DETR-GMR、QD-DETR-GMR 和 FlashVTG-GMR 的诊断脚本、实验协议及训练记录。
 
-**归档时间：2026-10-13T00:34:57.242920+08:00。训练尚未完成，当前没有完整冻结测试后的性能结论。** 本分支不包含原始逐样本轨迹、NPZ、checkpoint、特征和历史实验大记录；这些继续保留在训练服务器。具体上传文件与 SHA256 见 [快照清单](DIAGNOSTIC_SNAPSHOT.json)。
+最新训练记录快照：**2026-10-13 08:57:24（Asia/Shanghai）**。小型文本日志、配置、逐 epoch 统计和冻结评估结果保留原始目录；完整 JSONL、NPZ 与 bootstrap 数组见 [原始记录归档](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-records-20261013-085724)。不包含 checkpoint、模型缓存、特征、视频、凭据或重复源码副本。
+
+[下载与恢复说明](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/RECORDS_README.md) · [原始路径与 SHA256 清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/RECORDS_MANIFEST.json) · [完整统计表](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/analysis/numeric_statistics_20261013_084613/STATISTICS.md)
+
+`DIAGNOSTIC_SNAPSHOT.json` 记录此前 00:34 的轻量快照；本次上传以 `RECORDS_MANIFEST.json` 为准。训练队列持续运行，上传内容为时间快照。各 split/backbone 分别保存 Seen/Unseen AUROC、Rej-F1、G-mIoU 与 bootstrap CI；已完成五划分宏平均数量为 0。
 
 ## 实验范围
 
@@ -34,7 +38,7 @@ Flash 的定位来自多尺度时序候选，存在头使用查询表征和池�
 
 最终每个 split／backbone 分别报告 S/U AUROC、实际 Rej-F1、G-mIoU@1 及 signed Gap，overall Rej-F1／RR／G-mIoU、S+/U+ FRR、样本计数及 2,000 次 video-cluster bootstrap CI。SA 对照给 paired CI；Rej-F1／G-mIoU 的 Gap 依赖子集类比例。五划分 macro 仅在五个划分全部完成后成立。
 
-昂贵梯度／逐层／LOO 诊断采用首 batch＋每 50 steps；固定 Seen probe 和全量 Seen validation 每 epoch 记录。完整原始记录保留在服务器，本分支只上传少量摘要。
+昂贵梯度／逐层／LOO 诊断采用首 batch＋每 50 steps；固定 Seen probe 和全量 Seen validation 每 epoch 记录。完整原始记录保存在同仓库 Release 附件，分支内保存可直接浏览的文本记录与校验清单。
 
 ## 文档和脚本
 
@@ -55,4 +59,4 @@ Flash 的定位来自多尺度时序候选，存在头使用查询表征和池�
 
 脚本所需的模型／数据集源码和注册表随分支提供。特征、历史 checkpoint 和数据输入需在本机准备，不能只 clone 后直接运行训练。DETR 的本机环境为 gmr（Torch 2.6.0+cu124），Flash 为 univtg（Torch 2.0.1+cu118）。Flash 使用 SlowFast→CLIP 特征顺序和原生 logit score；DETR 为 CLIP→SlowFast 和原生概率 score，BCE 与概率另存。
 
-服务器当前队列继续运行，不要重复 launch。文档中的原始数据目录和 PID 是服务器上下文；GitHub 仅提供归档快照。被省略的原始产物不能被表述为已经上传。
+服务器当前队列继续运行，不要重复 launch。文档中的原始数据目录和 PID 是服务器上下文；GitHub 仅提供归档快照。本次上传的逐文件范围见 RECORDS_MANIFEST.json。

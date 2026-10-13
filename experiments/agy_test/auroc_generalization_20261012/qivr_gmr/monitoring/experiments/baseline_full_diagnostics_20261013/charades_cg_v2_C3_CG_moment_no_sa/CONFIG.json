@@ -1,0 +1,58 @@
+{
+  "dataset": "charades_cg_v2",
+  "split": "C3_CG",
+  "backbone": "moment",
+  "variant": "no_sa",
+  "seed": 3407,
+  "epochs": 100,
+  "learning_rate": 5e-05,
+  "lr_factor": 1.0,
+  "batch_size": 16,
+  "initialization": "fresh",
+  "model_kind": "baseline",
+  "checkpoint_epoch": null,
+  "initial_checkpoint": null,
+  "initial_checkpoint_sha256": "ecb9240cf2cb92c63f001046240f5c46c28ff8f036ec55f823cd25e9b8df73da",
+  "original_baseline": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/charades_cg_v2_evaluation_20261011/groups/C3_CG/evaluation/moment/predictions.npz",
+  "original_baseline_sha256": "93172caeb5f637a52120517dd30e771a7376eb9c48c1c43a21d1444e6989c8f3",
+  "release_sha256": {
+    "train": "ffc7c48215ec866c3a5a13b7fbaa54c85cd80c79c7100ea5201128b7e0f6a79c",
+    "val_seen": "95b0a05f9369a5f10c7eea37654f0260a02bab7b9459ad7f22b0ea8630eee3e1",
+    "test": "6c80ce8054d980e9b11b8903d18839ecf1ddda474e3688d8044f0ba69cdb70b3"
+  },
+  "train_counts": {
+    "S+": 6342,
+    "S-": 6342
+  },
+  "max_windows": 8,
+  "gt_windows_in_annotations": 6342,
+  "gt_windows_supervised": 6342,
+  "annotation_queries_truncated": 0,
+  "optimizer": "fresh AdamW; no original optimizer/scheduler state resumed; constant LR",
+  "weight_decay": 0.0001,
+  "selection": "maximum Seen-validation AUROC among epochs 1..N; earliest tie",
+  "threshold": "Seen-validation BA over percentiles 5..95; earliest tie",
+  "ablation": "skip decoder slot self-attention residual branch and its norm1; retain encoder/cross-attention and checkpoint parameter keys",
+  "stochasticity": "paired seed and epoch data-order generators; different branches consume different dropout draws",
+  "labels": "native localization/classification/existence; mr_only=True, no saliency labels",
+  "scope": "training from fresh DETR initialization",
+  "all_detr_parameters_trainable": true,
+  "native_clip_to_duration": false,
+  "native_existence_head": true,
+  "qivr_head": false,
+  "evidence_loss": false,
+  "decoder_monitor": {
+    "version": "decoder_slots_v1",
+    "every": 50,
+    "fixed_seen_probe": "all every epoch",
+    "raw_training": "first batch per epoch"
+  },
+  "source_sha256": {
+    "run_decoder_experiment.py": "5531a6c90884796e487d16f57ca87be9cd87171f0f2440aed94ecd4263f0f6bd",
+    "src/decoder_slot_monitor.py": "bd5b060025e88309b234ad45afe42adea13b0f5261e8b08ed909c192ddd8efd2",
+    "src/auroc_mechanism_monitor.py": "b7586f92a110fe1e8c72b1c6e92d88144b386559704f27c54c9b4c2b768390e8",
+    "src/mechanism_monitor.py": "da30992ba1a391b785ff1e6bbd68d11b6a71000a6a514ed3b2f2c307364c9e66",
+    "src/response_monitor.py": "36eff013e6a107fe2b45266122c67dc770387d1fa7c04880f73b145f0cd480e7",
+    "src/models/moment_detr_gmr/moment_transformer.py": "31da6b456f141c5f1322e6067f11bae4a0c2eb6981f8bb521f67fc1163de628f"
+  }
+}
