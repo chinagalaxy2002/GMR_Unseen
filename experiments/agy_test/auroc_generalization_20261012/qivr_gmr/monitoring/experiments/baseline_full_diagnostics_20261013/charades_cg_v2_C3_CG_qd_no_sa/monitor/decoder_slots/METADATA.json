@@ -1,0 +1,22 @@
+{
+  "schema": "decoder_slots_v1",
+  "training_sampling": "first batch and every 50 steps",
+  "raw_training": "one sampled batch per epoch; summaries for every sampled batch",
+  "fixed_probe": "all fixed Seen queries, every epoch including epoch zero",
+  "representations": "normalized decoder outputs used by native prediction heads, layer/batch/slot/feature",
+  "query_parameters": "Moment: learned query embeddings; QD: learned reference-anchor logits",
+  "geometry": "normalized native cxw and clipped xx; not postprocessed seconds",
+  "attention": "native head-averaged returned weights; training weights include dropout; summaries row-renormalize",
+  "cross_tokens": "Moment: video then text (including padded positions); QD: video only, no global token",
+  "self_attention_disabled": [
+    true,
+    true
+  ],
+  "disabled_attention": "absent, never fabricated as zero",
+  "thresholds": {
+    "foreground": 0.5,
+    "correct_iou": 0.5,
+    "duplicate_iou": 0.9
+  },
+  "selection": "diagnostic only; no Unseen use before frozen final evaluation"
+}

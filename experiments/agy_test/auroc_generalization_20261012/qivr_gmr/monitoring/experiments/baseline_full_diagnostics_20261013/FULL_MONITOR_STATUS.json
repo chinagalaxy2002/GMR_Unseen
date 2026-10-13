@@ -45,17 +45,17 @@
       "variant": "native",
       "tag": "soccer_A1_soccer_flash_native",
       "state": "training",
-      "epoch": 13,
+      "epoch": 59,
       "gpu": 1,
       "seen_auroc": {
-        "auroc": 0.7298134413078029,
-        "strict_error_fraction": 0.2701865586921971,
+        "auroc": 0.7773632029062286,
+        "strict_error_fraction": 0.22263679709377127,
         "tie_fraction": 0.0,
         "pairs": 528520
       },
-      "positive_probability_median": 0.44918517768383026,
-      "negative_probability_median": 0.3244776129722595,
-      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A1_soccer_flash_native/monitor/auroc_mechanisms/validation_epoch_0012_scores.json"
+      "positive_probability_median": 0.5323706865310669,
+      "negative_probability_median": 0.20432943105697632,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A1_soccer_flash_native/monitor/auroc_mechanisms/validation_epoch_0058_scores.json"
     },
     {
       "dataset": "clean_v3",
@@ -139,18 +139,18 @@
       "backbone": "qd",
       "variant": "with_sa",
       "tag": "charades_cg_v2_C3_CG_qd_with_sa",
-      "state": "training",
-      "epoch": 88,
+      "state": "complete",
+      "epoch": 100,
       "gpu": 1,
       "seen_auroc": {
-        "auroc": 0.49862564549776006,
-        "strict_error_fraction": 0.498918470640539,
-        "tie_fraction": 0.004911767723402073,
+        "auroc": 0.4983787746657091,
+        "strict_error_fraction": 0.4892595157484354,
+        "tie_fraction": 0.02472341917171095,
         "pairs": 467856
       },
-      "positive_probability_median": 0.4350222647190094,
-      "negative_probability_median": 0.4356973469257355,
-      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/charades_cg_v2_C3_CG_qd_with_sa/monitor/auroc_mechanisms/validation_epoch_0087_scores.json"
+      "positive_probability_median": 0.44466276466846466,
+      "negative_probability_median": 0.4447653889656067,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/charades_cg_v2_C3_CG_qd_with_sa/monitor/auroc_mechanisms/validation_epoch_0100_scores.json"
     },
     {
       "dataset": "charades_cg_v2",
@@ -229,13 +229,18 @@
       "backbone": "moment",
       "variant": "with_sa",
       "tag": "clean_v3_A2_v3_moment_with_sa",
-      "state": "queued",
-      "epoch": null,
-      "gpu": null,
-      "seen_auroc": {},
-      "positive_probability_median": null,
-      "negative_probability_median": null,
-      "latest_complete_validation": null
+      "state": "training",
+      "epoch": 3,
+      "gpu": 0,
+      "seen_auroc": {
+        "auroc": 0.7269798136645963,
+        "strict_error_fraction": 0.2727406832298137,
+        "tie_fraction": 0.0005590062111801242,
+        "pairs": 386400
+      },
+      "positive_probability_median": 0.930635005235672,
+      "negative_probability_median": 0.8369364738464355,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A2_v3_moment_with_sa/monitor/auroc_mechanisms/validation_epoch_0002_scores.json"
     },
     {
       "dataset": "clean_v3",
@@ -243,13 +248,18 @@
       "backbone": "qd",
       "variant": "with_sa",
       "tag": "clean_v3_A2_v3_qd_with_sa",
-      "state": "queued",
-      "epoch": null,
-      "gpu": null,
-      "seen_auroc": {},
-      "positive_probability_median": null,
-      "negative_probability_median": null,
-      "latest_complete_validation": null
+      "state": "training",
+      "epoch": 23,
+      "gpu": 0,
+      "seen_auroc": {
+        "auroc": 0.8026863354037267,
+        "strict_error_fraction": 0.1946273291925466,
+        "tie_fraction": 0.005372670807453416,
+        "pairs": 386400
+      },
+      "positive_probability_median": 0.9985709488391876,
+      "negative_probability_median": 0.7418387830257416,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A2_v3_qd_with_sa/monitor/auroc_mechanisms/validation_epoch_0022_scores.json"
     },
     {
       "dataset": "clean_v3",
@@ -257,18 +267,18 @@
       "backbone": "flash",
       "variant": "native",
       "tag": "clean_v3_A2_v3_flash_native",
-      "state": "training",
-      "epoch": 61,
+      "state": "complete",
+      "epoch": 100,
       "gpu": 0,
       "seen_auroc": {
-        "auroc": 0.7826733954451345,
-        "strict_error_fraction": 0.2173266045548654,
+        "auroc": 0.7658436853002071,
+        "strict_error_fraction": 0.23415631469979298,
         "tie_fraction": 0.0,
         "pairs": 386400
       },
-      "positive_probability_median": 0.9999997615814209,
-      "negative_probability_median": 0.96562659740448,
-      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A2_v3_flash_native/monitor/auroc_mechanisms/validation_epoch_0060_scores.json"
+      "positive_probability_median": 1.0,
+      "negative_probability_median": 0.9986360371112823,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A2_v3_flash_native/monitor/auroc_mechanisms/validation_epoch_0100_scores.json"
     },
     {
       "dataset": "soccer",
@@ -276,18 +286,18 @@
       "backbone": "moment",
       "variant": "with_sa",
       "tag": "soccer_A3_soccer_moment_with_sa",
-      "state": "training",
-      "epoch": 44,
+      "state": "complete",
+      "epoch": 100,
       "gpu": 0,
       "seen_auroc": {
-        "auroc": 0.7631984767659601,
-        "strict_error_fraction": 0.2367307117342523,
-        "tie_fraction": 0.000141622999575131,
+        "auroc": 0.7767173537130578,
+        "strict_error_fraction": 0.22305797276292483,
+        "tie_fraction": 0.00044934704803467493,
         "pairs": 571941
       },
-      "positive_probability_median": 0.41866812109947205,
-      "negative_probability_median": 0.2566085755825043,
-      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A3_soccer_moment_with_sa/monitor/auroc_mechanisms/validation_epoch_0043_scores.json"
+      "positive_probability_median": 0.48247137665748596,
+      "negative_probability_median": 0.2892383933067322,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_A3_soccer_moment_with_sa/monitor/auroc_mechanisms/validation_epoch_0100_scores.json"
     },
     {
       "dataset": "soccer",
@@ -356,13 +366,18 @@
       "backbone": "flash",
       "variant": "native",
       "tag": "clean_v3_A3_v3_flash_native",
-      "state": "queued",
-      "epoch": null,
-      "gpu": null,
-      "seen_auroc": {},
-      "positive_probability_median": null,
-      "negative_probability_median": null,
-      "latest_complete_validation": null
+      "state": "training",
+      "epoch": 1,
+      "gpu": 1,
+      "seen_auroc": {
+        "auroc": 0.4617259491938532,
+        "strict_error_fraction": 0.5382714440259114,
+        "tie_fraction": 5.21356047078451e-06,
+        "pairs": 383615
+      },
+      "positive_probability_median": 0.5338647365570068,
+      "negative_probability_median": 0.5353874564170837,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A3_v3_flash_native/monitor/auroc_mechanisms/validation_epoch_0000_scores.json"
     },
     {
       "dataset": "soccer",
@@ -370,13 +385,18 @@
       "backbone": "moment",
       "variant": "with_sa",
       "tag": "soccer_C1_soccer_moment_with_sa",
-      "state": "queued",
-      "epoch": null,
-      "gpu": null,
-      "seen_auroc": {},
-      "positive_probability_median": null,
-      "negative_probability_median": null,
-      "latest_complete_validation": null
+      "state": "training",
+      "epoch": 22,
+      "gpu": 0,
+      "seen_auroc": {
+        "auroc": 0.7546800437115259,
+        "strict_error_fraction": 0.24515612958966446,
+        "tie_fraction": 0.00032765339761929607,
+        "pairs": 546309
+      },
+      "positive_probability_median": 0.2659018635749817,
+      "negative_probability_median": 0.19625060260295868,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/soccer_C1_soccer_moment_with_sa/monitor/auroc_mechanisms/validation_epoch_0021_scores.json"
     },
     {
       "dataset": "soccer",
@@ -613,13 +633,18 @@
       "backbone": "qd",
       "variant": "no_sa",
       "tag": "charades_cg_v2_C3_CG_qd_no_sa",
-      "state": "queued",
-      "epoch": null,
-      "gpu": null,
-      "seen_auroc": {},
-      "positive_probability_median": null,
-      "negative_probability_median": null,
-      "latest_complete_validation": null
+      "state": "training",
+      "epoch": 91,
+      "gpu": 1,
+      "seen_auroc": {
+        "auroc": 0.5,
+        "strict_error_fraction": 0.0,
+        "tie_fraction": 1.0,
+        "pairs": 467856
+      },
+      "positive_probability_median": 0.30878645181655884,
+      "negative_probability_median": 0.30878645181655884,
+      "latest_complete_validation": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/charades_cg_v2_C3_CG_qd_no_sa/monitor/auroc_mechanisms/validation_epoch_0090_scores.json"
     },
     {
       "dataset": "soccer",

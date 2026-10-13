@@ -27,3 +27,14 @@ Newly completed jobs: clean_v3_A1_v3_moment_with_sa.
 [Download complete job archives](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-101533). Each archive includes all 100 epochs, frozen predictions, metrics, calibration, bootstrap arrays and raw monitoring records for the listed job. Extract from the queue directory to restore original paths. These archives supersede the corresponding partial job records in the earlier release. Checkpoints and model caches are excluded.
 
 [Update manifest](updates/20261013-101533/MANIFEST.json).
+
+
+## Completed-job update 2026-10-13T12:49:45.586159+08:00
+
+Queue counts: {'complete': 14, 'paused': 2, 'queued': 35, 'running': 4}.
+
+Newly completed jobs: charades_cg_v2_C3_CG_qd_with_sa, clean_v3_A2_v3_flash_native, soccer_A3_soccer_moment_with_sa.
+
+[Download complete job archives](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-124945). Each archive includes all 100 epochs, frozen predictions, metrics, calibration, bootstrap arrays and raw monitoring records for the listed job. Extract from the queue directory to restore original paths. These archives supersede the corresponding partial job records in the earlier release. Checkpoints and model caches are excluded.
+
+[Update manifest](updates/20261013-124945/MANIFEST.json).

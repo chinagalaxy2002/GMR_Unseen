@@ -1,5 +1,11 @@
 # GMR Baseline AUROC 退化诊断
 
+当前运行：baseline 诊断（不含 QIVR）；每卡最多 2 个运行任务，CG/clean_v3 优先，Soccer 最后运行。暂停的 Soccer 保留原进程状态。
+
+
+最新已完成任务更新：**2026-10-13T12:49:45.586159+08:00**，已完成 **14/55** 项。新增完成：`charades_cg_v2_C3_CG_qd_with_sa`, `clean_v3_A2_v3_flash_native`, `soccer_A3_soccer_moment_with_sa`。[完整原始记录](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-124945) · [更新清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/updates/20261013-124945/MANIFEST.json)。
+
+
 最新已完成任务更新：**2026-10-13T10:15:33.714689+08:00**，已完成 **11/55** 项。新增完成：`clean_v3_A1_v3_moment_with_sa`。[完整原始记录](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-101533) · [更新清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/updates/20261013-101533/MANIFEST.json)。
 
 

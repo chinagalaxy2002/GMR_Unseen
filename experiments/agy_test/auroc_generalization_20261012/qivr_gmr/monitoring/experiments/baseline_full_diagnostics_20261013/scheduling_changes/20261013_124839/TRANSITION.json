@@ -1,0 +1,52 @@
+{
+  "updated_at": "2026-10-13T12:48:39.152425+08:00",
+  "jobs_per_gpu": 2,
+  "priority_datasets": [
+    "charades_cg_v2",
+    "clean_v3"
+  ],
+  "deferred_dataset": "soccer",
+  "resume_rule": "Run or resume Soccer only after all CG/clean_v3 jobs have finished",
+  "paused_soccer": [
+    {
+      "tag": "soccer_A1_soccer_flash_native",
+      "pid": 2316383,
+      "stopped_pids": [
+        2338684,
+        2338685,
+        2316383
+      ],
+      "run_status": {
+        "state": "training",
+        "epoch": 59,
+        "epochs": 100,
+        "batches": 800,
+        "global_step": 87974,
+        "updated": 1791866914.1148653
+      }
+    },
+    {
+      "tag": "soccer_C1_soccer_moment_with_sa",
+      "pid": 2332680,
+      "stopped_pids": [
+        2339105,
+        2339107,
+        2332680
+      ],
+      "run_status": {
+        "state": "training",
+        "epoch": 22,
+        "epochs": 100,
+        "batches": 300,
+        "global_step": 30204,
+        "elapsed_epoch_seconds": 22.431524753570557,
+        "updated": 1791866916.6109922
+      }
+    }
+  ],
+  "previous_controller_pid": 2249194,
+  "scheduler_source": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/priority_decoder_controller.py",
+  "scheduler_sha256": "60f4fb9d234775a0d318bd94b6acc5b6109843088a10d83745c724e775db6a4a",
+  "training_runner_changes": 0,
+  "suite_configuration_changes": 0
+}
