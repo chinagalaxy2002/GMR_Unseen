@@ -3,7 +3,7 @@
 This branch documents the behavior of **Moment-DETR-GMR, QD-DETR-GMR, and FlashVTG-GMR** on seen and unseen queries. It contains diagnostic code, training text logs, epoch summaries, evaluation tables, selection and early-stopping traces, configuration, and status snapshots.
 
 <!-- CURRENT_SNAPSHOT_START -->
-Latest uploaded log snapshot: **2026-10-13 20:44:42, Asia/Shanghai**. Queue: **25 complete, 3 running, 2 paused, 7 queued, 1 failed, and 20 cancelled**. These counts include the original diagnostic jobs and three additional publication-protocol reproductions.
+Latest uploaded log snapshot: **2026-10-13T23:09:56.677760+08:00**. Queue: **27 complete, 0 running, 0 paused, 0 queued, 1 failed, and 30 cancelled**. These counts include the original diagnostic jobs and three additional publication-protocol reproductions.
 
 [Training status](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_TRAINING_STATUS.md) · [Machine-readable status](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_TRAINING_STATUS.json) · [Upload manifest](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_LOG_UPLOAD_MANIFEST.json)
 <!-- CURRENT_SNAPSHOT_END -->
@@ -55,9 +55,9 @@ Negative examples have no localization ground truth; their ground-truth coverage
 | Soccer | A1, A2, A3, C1, C2 | 15 | 10 |
 | Total | 11 splits | **33** | **22** |
 
-The original suite has **55 settings**. Its two completed CG no-SA runs are retained; the remaining **20 no-SA runs are cancelled**. Three publication-protocol reproductions were added, giving **58 registered jobs** in total. QIVR is not part of this queue.
+The original suite has **55 settings**. Its two completed CG no-SA runs are retained; the remaining **20 no-SA runs are cancelled**. Nine unfinished Soccer baseline jobs and the final Clean C2 Flash diagnostic run were subsequently cancelled, bringing the cancelled count to **30**. Three publication-protocol reproductions were added, giving **58 registered jobs** in total. QIVR is not part of this queue.
 
-Original diagnostic runs use fresh initialization, seed **3407**, **100 epochs**, and train all model parameters with pre-extracted CLIP, SlowFast, and text features. Scheduling allows at most **two active training tasks per GPU**, prioritizes **CG and Clean v3**, and runs **Soccer last**. Paused Soccer processes retain their training state.
+Original diagnostic runs use fresh initialization, seed **3407**, **100 epochs**, and train all model parameters with pre-extracted CLIP, SlowFast, and text features. The training queue is now stopped. The remaining **nine Soccer baseline jobs** were cancelled by user request, and the final **Clean C2 Flash** run was stopped during **epoch 78/100**. Completed results and existing local logs/checkpoints are retained. The queue previously allowed at most two active training tasks per GPU and prioritized CG/Clean v3.
 
 ## Checkpoint selection and early stopping
 
@@ -71,6 +71,8 @@ Training uses **S+/S− only**. Checkpoints, thresholds, and hyperparameters are
 | Publication reproduction: Flash | Highest Seen-validation mean of R1@0.5 and R1@0.7 | Stop after **27** consecutive non-improving epochs (`es_cnt > 26`), capped at 100 epochs |
 
 Publication reproductions use `max_es_cnt=26`. Only a **strict improvement** resets the counter; ties count as non-improvements. Threshold calibration maximizes balanced accuracy on Seen validation. The original AUROC-selected runs and localization-selected reproductions retain separate labels and outputs.
+
+**Selection correction:** the user has requested Seen-validation mAP for checkpoint selection. Existing original diagnostics used AUROC throughout and remain labeled AUROC-selected. Their best epochs and test results are not relabeled as mAP-selected. The historical native Flash rule is documented separately above.
 
 The publication reference is [publication/gmr-baseline-summary-20261011](https://github.com/chinagalaxy2002/GMR_Unseen/tree/publication/gmr-baseline-summary-20261011), frozen at commit `2677cfecddd0101b187d0ab413f2b51fe09ea201`.
 
@@ -125,4 +127,4 @@ All published status files are **time-stamped snapshots**, not a live dashboard.
 | [DETR validation evidence](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FULL_MONITOR_TEST_RESULTS.json) | Four DETR combinations: matching outputs, gradients, RNG state, and exact native loss decomposition |
 | [Flash validation evidence](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FLASH_FULL_MONITOR_TEST_RESULTS.json) | Instrumentation checks; 16 historical Seen examples with maximum logit difference ≤2e-6 and zero set-IoU difference |
 
-The branch includes model/dataset source and registry support for the diagnostic runners. Execution requires locally prepared annotations and features plus the documented environments. The server uses `gmr` with Torch **2.6.0+cu124** for DETR and `univtg` with Torch **2.0.1+cu118** for Flash. Existing background training continues on the server; the repository records its uploaded snapshots.
+The branch includes model/dataset source and registry support for the diagnostic runners. Execution requires locally prepared annotations and features plus the documented environments. The server uses `gmr` with Torch **2.6.0+cu124** for DETR and `univtg` with Torch **2.0.1+cu118** for Flash. No training jobs remain active. The repository records the uploaded snapshots; the separate Clean A2 Flash reproduction still has a failed test-inference stage.

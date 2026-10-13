@@ -1,5 +1,5 @@
 {
-  "updated": 1791895451.6055157,
+  "updated": 1791904196.0968196,
   "jobs": [
     {
       "tag": "soccer_A1_soccer_moment_with_sa",
@@ -4835,7 +4835,7 @@
     {
       "tag": "soccer_A1_soccer_flash_native",
       "process": {
-        "state": "paused",
+        "state": "cancelled",
         "gpu": 1,
         "pid": 2316383,
         "argv": [
@@ -4865,15 +4865,20 @@
           2338685,
           2316383
         ],
-        "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained"
+        "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "paused"
       },
       "training": {
-        "state": "training",
+        "state": "cancelled",
         "epoch": 59,
         "epochs": 100,
         "batches": 800,
         "global_step": 87974,
-        "updated": 1791866914.1148653
+        "updated": 1791901202.8596933,
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training"
       },
       "last_completed_training_epoch": {},
       "last_fixed_probe": {},
@@ -17353,7 +17358,10 @@
     {
       "tag": "soccer_A2_soccer_flash_native",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -25506,7 +25514,10 @@
     {
       "tag": "soccer_A3_soccer_flash_native",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -28997,7 +29008,7 @@
     {
       "tag": "soccer_C1_soccer_moment_with_sa",
       "process": {
-        "state": "paused",
+        "state": "cancelled",
         "gpu": 0,
         "pid": 2332680,
         "argv": [
@@ -29039,16 +29050,21 @@
           2339107,
           2332680
         ],
-        "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained"
+        "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "paused"
       },
       "training": {
-        "state": "training",
+        "state": "cancelled",
         "epoch": 22,
         "epochs": 100,
         "batches": 300,
         "global_step": 30204,
         "elapsed_epoch_seconds": 22.431524753570557,
-        "updated": 1791866916.6109922
+        "updated": 1791901202.8596933,
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training"
       },
       "last_completed_training_epoch": {
         "epoch": 21,
@@ -31117,7 +31133,10 @@
     {
       "tag": "soccer_C1_soccer_qd_with_sa",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -31132,7 +31151,10 @@
     {
       "tag": "soccer_C1_soccer_flash_native",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -34209,7 +34231,7 @@
     {
       "tag": "clean_v3_C1_v3_flash_native",
       "process": {
-        "state": "running",
+        "state": "complete",
         "gpu": 1,
         "pid": 2423317,
         "argv": [
@@ -34233,15 +34255,16 @@
           "--gradient-every",
           "50"
         ],
-        "launched_at": 1791885490.9836218
+        "launched_at": 1791885490.9836218,
+        "finished": 1791903261.30549,
+        "exit_verification": "adopted PID exited; runner STATUS determines outcome"
       },
       "training": {
-        "state": "training",
-        "epoch": 55,
+        "state": "complete",
         "epochs": 100,
-        "batches": 1350,
-        "global_step": 74844,
-        "updated": 1791895429.3271961
+        "global_steps": 136100,
+        "best_epoch": 17,
+        "updated": 1791903259.5858915
       },
       "last_completed_training_epoch": {},
       "last_fixed_probe": {},
@@ -34249,107 +34272,107 @@
       "mean_localization_existence_cosine": null,
       "negative_cosine_fraction": null,
       "latest_parameter_updates": {
-        "epoch": 55,
+        "epoch": 100,
         "modules": {
           "transformer": {
             "parameters": 5923593,
             "trainable_parameters": 5923593,
-            "update_l2": 2.1414145434398595,
-            "relative_update_l2": 0.025016550311460814,
+            "update_l2": 2.194610359829187,
+            "relative_update_l2": 0.024923433252842797,
             "actually_changed": true
           },
           "input_txt_proj": {
             "parameters": 198656,
             "trainable_parameters": 198656,
-            "update_l2": 0.44322427144178406,
-            "relative_update_l2": 0.014310232486926205,
+            "update_l2": 0.44341937916979834,
+            "relative_update_l2": 0.014270137977625766,
             "actually_changed": true
           },
           "input_vid_proj": {
             "parameters": 793604,
             "trainable_parameters": 793604,
-            "update_l2": 0.8663298817782434,
-            "relative_update_l2": 0.014901879941618887,
+            "update_l2": 0.8729891356382444,
+            "relative_update_l2": 0.01482128217166015,
             "actually_changed": true
           },
           "pyramid": {
             "parameters": 791040,
             "trainable_parameters": 791040,
-            "update_l2": 0.7735515387454682,
-            "relative_update_l2": 0.016845619503700077,
+            "update_l2": 0.7635088058794443,
+            "relative_update_l2": 0.016419752154769297,
             "actually_changed": true
           },
           "pooling": {
             "parameters": 256,
             "trainable_parameters": 256,
-            "update_l2": 0.012075476847650828,
-            "relative_update_l2": 0.022992335928236348,
+            "update_l2": 0.012510641101940346,
+            "relative_update_l2": 0.024879519863196708,
             "actually_changed": true
           },
           "conf_head": {
             "parameters": 410497,
             "trainable_parameters": 410497,
-            "update_l2": 0.4961176047745235,
-            "relative_update_l2": 0.028174482711797642,
+            "update_l2": 0.48931745191896825,
+            "relative_update_l2": 0.025849482835180494,
             "actually_changed": true
           },
           "class_head": {
             "parameters": 410497,
             "trainable_parameters": 410497,
-            "update_l2": 0.47744757100047897,
-            "relative_update_l2": 0.02697363167714029,
+            "update_l2": 0.4850424508180497,
+            "relative_update_l2": 0.025650903733710127,
             "actually_changed": true
           },
           "coord_head": {
             "parameters": 198402,
             "trainable_parameters": 198402,
-            "update_l2": 0.36096948554744923,
-            "relative_update_l2": 0.03569922708360854,
+            "update_l2": 0.359332652719442,
+            "relative_update_l2": 0.03350983298704985,
             "actually_changed": true
           },
           "exist_head": {
             "parameters": 131585,
             "trainable_parameters": 131585,
-            "update_l2": 0.24308669028557828,
-            "relative_update_l2": 0.02237735320757101,
+            "update_l2": 0.28182726334865393,
+            "relative_update_l2": 0.02279926701664972,
             "actually_changed": true
           }
         }
       },
       "latest_training_responses": {
-        "epoch": 55,
-        "step": 74855,
+        "epoch": 100,
+        "step": 136100,
         "subsets": {
           "S+": {
             "n": 1,
             "metrics": {
               "active_count": {
                 "n": 1,
+                "mean": 3.0,
+                "q05": 3.0,
+                "median": 3.0,
+                "q95": 3.0
+              },
+              "active_coverage": {
+                "n": 1,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
-              "active_coverage": {
-                "n": 1,
-                "mean": 0.0,
-                "q05": 0.0,
-                "median": 0.0,
-                "q95": 0.0
-              },
               "active_gt_recall": {
                 "n": 1,
-                "mean": 0.0,
-                "q05": 0.0,
-                "median": 0.0,
-                "q95": 0.0
+                "mean": 1.0,
+                "q05": 1.0,
+                "median": 1.0,
+                "q95": 1.0
               },
               "correct_active_count": {
                 "n": 1,
-                "mean": 0.0,
-                "q05": 0.0,
-                "median": 0.0,
-                "q95": 0.0
+                "mean": 3.0,
+                "q05": 3.0,
+                "median": 3.0,
+                "q95": 3.0
               },
               "coverage": {
                 "n": 1,
@@ -34360,10 +34383,10 @@
               },
               "existence_logit": {
                 "n": 1,
-                "mean": 19.231245040893555,
-                "q05": 19.231245040893555,
-                "median": 19.231245040893555,
-                "q95": 19.231245040893555
+                "mean": 19.511688232421875,
+                "q05": 19.511688232421875,
+                "median": 19.511688232421875,
+                "q95": 19.511688232421875
               },
               "existence_score": {
                 "n": 1,
@@ -34374,17 +34397,17 @@
               },
               "foreground_mean": {
                 "n": 1,
-                "mean": 0.10009073466062546,
-                "q05": 0.10009073466062546,
-                "median": 0.10009073466062546,
-                "q95": 0.10009073466062546
+                "mean": 0.0635954886674881,
+                "q05": 0.0635954886674881,
+                "median": 0.0635954886674881,
+                "q95": 0.0635954886674881
               },
               "foreground_peak": {
                 "n": 1,
-                "mean": 0.6196087002754211,
-                "q05": 0.6196087002754211,
-                "median": 0.6196087002754211,
-                "q95": 0.6196087002754211
+                "mean": 0.8544819355010986,
+                "q05": 0.8544819355010986,
+                "median": 0.8544819355010986,
+                "q95": 0.8544819355010986
               },
               "gt_count": {
                 "n": 1,
@@ -34402,38 +34425,38 @@
               },
               "incorrect_active_count": {
                 "n": 1,
+                "mean": 0.0,
+                "q05": 0.0,
+                "median": 0.0,
+                "q95": 0.0
+              },
+              "oracle_iou": {
+                "n": 1,
+                "mean": 0.9749358519911766,
+                "q05": 0.9749358519911766,
+                "median": 0.9749358519911766,
+                "q95": 0.9749358519911766
+              },
+              "relative_active_count": {
+                "n": 1,
+                "mean": 3.0,
+                "q05": 3.0,
+                "median": 3.0,
+                "q95": 3.0
+              },
+              "top1_hit": {
+                "n": 1,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
-              "oracle_iou": {
-                "n": 1,
-                "mean": 0.7445844134881497,
-                "q05": 0.7445844134881497,
-                "median": 0.7445844134881497,
-                "q95": 0.7445844134881497
-              },
-              "relative_active_count": {
-                "n": 1,
-                "mean": 5.0,
-                "q05": 5.0,
-                "median": 5.0,
-                "q95": 5.0
-              },
-              "top1_hit": {
-                "n": 1,
-                "mean": 0.0,
-                "q05": 0.0,
-                "median": 0.0,
-                "q95": 0.0
-              },
               "top1_iou": {
                 "n": 1,
-                "mean": 0.0,
-                "q05": 0.0,
-                "median": 0.0,
-                "q95": 0.0
+                "mean": 0.9544843006234459,
+                "q05": 0.9544843006234459,
+                "median": 0.9544843006234459,
+                "q95": 0.9544843006234459
               },
               "valid_slots": {
                 "n": 1,
@@ -34445,9 +34468,9 @@
             },
             "active_count_histogram": [
               0,
+              0,
+              0,
               1,
-              0,
-              0,
               0,
               0,
               0,
@@ -34457,7 +34480,7 @@
               0
             ],
             "by_active_count": {
-              "1": {
+              "3": {
                 "n": 1,
                 "metrics": {
                   "existence_score": {
@@ -34473,17 +34496,17 @@
                   },
                   "top1_iou": {
                     "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
+                    "mean": 0.9544843006234459,
+                    "q05": 0.9544843006234459,
+                    "median": 0.9544843006234459,
+                    "q95": 0.9544843006234459
                   },
                   "oracle_iou": {
                     "n": 1,
-                    "mean": 0.7445844134881497,
-                    "q05": 0.7445844134881497,
-                    "median": 0.7445844134881497,
-                    "q95": 0.7445844134881497
+                    "mean": 0.9749358519911766,
+                    "q05": 0.9749358519911766,
+                    "median": 0.9749358519911766,
+                    "q95": 0.9749358519911766
                   },
                   "coverage": {
                     "n": 1,
@@ -34494,31 +34517,31 @@
                   },
                   "active_coverage": {
                     "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
+                    "mean": 1.0,
+                    "q05": 1.0,
+                    "median": 1.0,
+                    "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "correct_active_count": {
-                    "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "incorrect_active_count": {
                     "n": 1,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
+                  },
+                  "correct_active_count": {
+                    "n": 1,
+                    "mean": 3.0,
+                    "q05": 3.0,
+                    "median": 3.0,
+                    "q95": 3.0
+                  },
+                  "incorrect_active_count": {
+                    "n": 1,
+                    "mean": 0.0,
+                    "q05": 0.0,
+                    "median": 0.0,
+                    "q95": 0.0
                   },
                   "accepted": {
                     "n": 0,
@@ -34537,7 +34560,10 @@
     {
       "tag": "soccer_C2_soccer_moment_with_sa",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -34552,7 +34578,10 @@
     {
       "tag": "soccer_C2_soccer_qd_with_sa",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -34567,7 +34596,10 @@
     {
       "tag": "soccer_C2_soccer_flash_native",
       "process": {
-        "state": "queued"
+        "state": "cancelled",
+        "cancelled_at": 1791901202.8596933,
+        "cancel_reason": "User cancelled all remaining Soccer training",
+        "previous_state": "queued"
       },
       "training": {},
       "last_completed_training_epoch": {},
@@ -36041,7 +36073,7 @@
     {
       "tag": "clean_v3_C2_v3_qd_with_sa",
       "process": {
-        "state": "running",
+        "state": "complete",
         "gpu": 0,
         "pid": 2429020,
         "argv": [
@@ -36077,38 +36109,40 @@
           "--gradient-every",
           "50"
         ],
-        "launched_at": 1791888122.1382139
+        "launched_at": 1791888122.1382139,
+        "finished": 1791897042.9922261,
+        "returncode": 0
       },
       "training": {
-        "state": "training",
-        "epoch": 83,
+        "state": "complete",
         "epochs": 100,
-        "batches": 350,
-        "global_step": 56438,
-        "elapsed_epoch_seconds": 41.50953388214111,
-        "updated": 1791895448.9185317
+        "global_steps": 68400,
+        "best_epoch": 20,
+        "selected_on": "Seen validation",
+        "updated": 1791897040.2704666,
+        "scope": "training from fresh DETR initialization"
       },
       "last_completed_training_epoch": {
-        "epoch": 82,
+        "epoch": 100,
         "actual_gt_matches_by_slot": [
           6,
-          4,
-          5,
-          2460,
+          2,
           0,
-          4,
+          2450,
           0,
-          4,
-          4491,
-          3126
+          2,
+          0,
+          0,
+          4510,
+          3130
         ],
         "comparable_gt_observations": 10100,
-        "assignment_flips": 232,
-        "assignment_flip_rate": 0.02297029702970297,
+        "assignment_flips": 185,
+        "assignment_flip_rate": 0.018316831683168316,
         "duplicate_coordinate_gt_excluded": 0
       },
       "last_fixed_probe": {
-        "epoch": 82,
+        "epoch": 100,
         "n_queries": 128,
         "actual_gt_matches_by_slot": [
           0,
@@ -36123,237 +36157,237 @@
           16
         ],
         "comparable_gt": 64,
-        "flips": 1,
-        "flip_rate": 0.015625,
+        "flips": 0,
+        "flip_rate": 0.0,
         "scope": "fixed Seen training cohort, eval mode; epoch 0 is pre-continuation"
       },
-      "valid_representation_gradient_samples": 1130,
-      "mean_localization_existence_cosine": 0.0002090860129406268,
-      "negative_cosine_fraction": 0.4849557522123894,
+      "valid_representation_gradient_samples": 1368,
+      "mean_localization_existence_cosine": 0.00012276988019059852,
+      "negative_cosine_fraction": 0.4817251461988304,
       "latest_parameter_updates": {
-        "epoch": 82,
+        "epoch": 100,
         "modules": {
           "transformer": {
             "parameters": 6319881,
             "trainable_parameters": 6319881,
-            "update_l2": 4.448707932134034,
-            "relative_update_l2": 0.030395467378399287,
+            "update_l2": 4.6442456854840755,
+            "relative_update_l2": 0.031325492908745756,
             "actually_changed": true
           },
           "span_embed": {
             "parameters": 132098,
             "trainable_parameters": 132098,
-            "update_l2": 0.6656135188708797,
-            "relative_update_l2": 0.04525693310597739,
+            "update_l2": 0.6124320516575118,
+            "relative_update_l2": 0.040750193430688114,
             "actually_changed": true
           },
           "class_embed": {
             "parameters": 514,
             "trainable_parameters": 514,
-            "update_l2": 0.030377817001472084,
-            "relative_update_l2": 0.03279283211040646,
+            "update_l2": 0.03073829547323126,
+            "relative_update_l2": 0.030674110289229794,
             "actually_changed": true
           },
           "input_txt_proj": {
             "parameters": 198656,
             "trainable_parameters": 198656,
-            "update_l2": 1.0354032526737265,
-            "relative_update_l2": 0.03267223172566364,
+            "update_l2": 1.0448432827286713,
+            "relative_update_l2": 0.03278505308719275,
             "actually_changed": true
           },
           "input_vid_proj": {
             "parameters": 793604,
             "trainable_parameters": 793604,
-            "update_l2": 1.9448613191392743,
-            "relative_update_l2": 0.03087435161799045,
+            "update_l2": 1.9829720267647915,
+            "relative_update_l2": 0.030939542707115096,
             "actually_changed": true
           },
           "exist_head": {
             "parameters": 66049,
             "trainable_parameters": 66049,
-            "update_l2": 0.3477053236410397,
-            "relative_update_l2": 0.03361078697930626,
+            "update_l2": 0.3452787548979868,
+            "relative_update_l2": 0.03267793138573314,
             "actually_changed": true
           }
         }
       },
       "latest_training_responses": {
-        "epoch": 83,
-        "step": 56450,
+        "epoch": 100,
+        "step": 68400,
         "subsets": {
           "S+": {
-            "n": 736,
+            "n": 731,
             "metrics": {
               "active_count": {
-                "n": 736,
-                "mean": 1.5122282608695652,
+                "n": 731,
+                "mean": 1.3324213406292749,
                 "q05": 1.0,
                 "median": 1.0,
-                "q95": 3.0
+                "q95": 2.0
               },
               "active_coverage": {
-                "n": 736,
-                "mean": 0.9089673913043478,
+                "n": 731,
+                "mean": 0.9302325581395349,
                 "q05": 0.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "active_gt_recall": {
-                "n": 736,
-                "mean": 0.9089673913043478,
+                "n": 731,
+                "mean": 0.9302325581395349,
                 "q05": 0.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "correct_active_count": {
-                "n": 736,
-                "mean": 0.9116847826086957,
+                "n": 731,
+                "mean": 0.9302325581395349,
                 "q05": 0.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "coverage": {
-                "n": 736,
-                "mean": 0.9714673913043478,
+                "n": 731,
+                "mean": 0.9685362517099864,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "epoch": {
-                "n": 736,
-                "mean": 83.0,
-                "q05": 83.0,
-                "median": 83.0,
-                "q95": 83.0
+                "n": 731,
+                "mean": 100.0,
+                "q05": 100.0,
+                "median": 100.0,
+                "q95": 100.0
               },
               "existence_bce": {
-                "n": 736,
-                "mean": 0.01970252747041109,
-                "q05": 4.763511128658138e-06,
-                "median": 5.770403549831826e-05,
-                "q95": 0.023386134300380945
+                "n": 731,
+                "mean": 0.00879654559713502,
+                "q05": 5.264976834951085e-06,
+                "median": 4.3713225750252604e-05,
+                "q95": 0.002982832258567214
               },
               "existence_logit": {
-                "n": 736,
-                "mean": 9.133041928805735,
-                "q05": 3.7443692088127136,
-                "median": 9.760154724121094,
-                "q95": 12.25453233718872
+                "n": 731,
+                "mean": 9.708801268756634,
+                "q05": 5.814536809921265,
+                "median": 10.037837982177734,
+                "q95": 12.154444694519043
               },
               "existence_score": {
-                "n": 736,
-                "mean": 0.9900591864937703,
-                "q05": 0.9768854230642319,
-                "median": 0.9999423027038574,
-                "q95": 0.999995231628418
+                "n": 731,
+                "mean": 0.9950758725730894,
+                "q05": 0.9970216453075409,
+                "median": 0.9999562501907349,
+                "q95": 0.9999947547912598
               },
               "foreground_mean": {
-                "n": 736,
-                "mean": 0.1500881492810668,
-                "q05": 0.10063796676695347,
-                "median": 0.14580631256103516,
-                "q95": 0.2315884530544281
+                "n": 731,
+                "mean": 0.13407398657886013,
+                "q05": 0.10009831190109253,
+                "median": 0.11169799417257309,
+                "q95": 0.2100517898797989
               },
               "foreground_peak": {
-                "n": 736,
-                "mean": 0.975615633479522,
-                "q05": 0.9142867028713226,
-                "median": 0.9891344010829926,
-                "q95": 0.9994103163480759
+                "n": 731,
+                "mean": 0.9810470779376709,
+                "q05": 0.9211984276771545,
+                "median": 0.9959320425987244,
+                "q95": 0.9998368620872498
               },
               "gt_count": {
-                "n": 736,
+                "n": 731,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "gt_recall": {
-                "n": 736,
-                "mean": 0.9714673913043478,
+                "n": 731,
+                "mean": 0.9685362517099864,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "incorrect_active_count": {
-                "n": 736,
-                "mean": 0.6005434782608695,
+                "n": 731,
+                "mean": 0.4021887824897401,
                 "q05": 0.0,
                 "median": 0.0,
                 "q95": 2.0
               },
               "matched_giou_loss": {
-                "n": 736,
-                "mean": 0.20202662520434544,
-                "q05": 0.026049301028251648,
-                "median": 0.157036691904068,
-                "q95": 0.5509804040193558
+                "n": 731,
+                "mean": 0.18424988779584622,
+                "q05": 0.025479227304458618,
+                "median": 0.12871313095092773,
+                "q95": 0.5190069079399109
               },
               "matched_gt_count": {
-                "n": 736,
+                "n": 731,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "matched_iou": {
-                "n": 736,
-                "mean": 0.7983983099895894,
-                "q05": 0.4490196257829666,
-                "median": 0.8429632186889648,
-                "q95": 0.9739506840705872
+                "n": 731,
+                "mean": 0.816780800940074,
+                "q05": 0.4809930771589279,
+                "median": 0.8712868690490723,
+                "q95": 0.9745208024978638
               },
               "matched_l1": {
-                "n": 736,
-                "mean": 0.029053480594682143,
-                "q05": 0.0042548272758722305,
-                "median": 0.021720800548791885,
-                "q95": 0.08337751217186451
+                "n": 731,
+                "mean": 0.02484076847252213,
+                "q05": 0.0029909536242485046,
+                "median": 0.019027024507522583,
+                "q95": 0.0652461089193821
               },
               "max_pool_contributor_count": {
-                "n": 736,
+                "n": 731,
                 "mean": 10.0,
                 "q05": 10.0,
                 "median": 10.0,
                 "q95": 10.0
               },
               "oracle_iou": {
-                "n": 736,
-                "mean": 0.824112398186494,
-                "q05": 0.5605554481992028,
-                "median": 0.8527886547485983,
-                "q95": 0.9784132309397476
+                "n": 731,
+                "mean": 0.8348605792777593,
+                "q05": 0.5686738465261593,
+                "median": 0.8742096183746024,
+                "q95": 0.9774443683877303
               },
               "relative_active_count": {
-                "n": 736,
-                "mean": 1.5244565217391304,
+                "n": 731,
+                "mean": 1.3433652530779754,
                 "q05": 1.0,
                 "median": 1.0,
-                "q95": 3.0
+                "q95": 2.0
               },
               "step": {
-                "n": 736,
-                "mean": 56425.457880434784,
-                "q05": 56403.0,
-                "median": 56425.5,
-                "q95": 56448.0
+                "n": 731,
+                "mean": 68375.06429548563,
+                "q05": 68353.0,
+                "median": 68375.0,
+                "q95": 68398.0
               },
               "top1_hit": {
-                "n": 736,
-                "mean": 0.8084239130434783,
+                "n": 731,
+                "mean": 0.8508891928864569,
                 "q05": 0.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "top1_iou": {
-                "n": 736,
-                "mean": 0.697618847138825,
+                "n": 731,
+                "mean": 0.742040565895484,
                 "q05": 0.0,
-                "median": 0.8246548256060228,
-                "q95": 0.97441108098489
+                "median": 0.8530246229782475,
+                "q95": 0.9755280166915524
               },
               "valid_slots": {
-                "n": 736,
+                "n": 731,
                 "mean": 10.0,
                 "q05": 10.0,
                 "median": 10.0,
@@ -36361,10 +36395,10 @@
               }
             },
             "active_count_histogram": [
-              1,
-              408,
-              276,
-              51,
+              2,
+              511,
+              191,
+              27,
               0,
               0,
               0,
@@ -36375,66 +36409,66 @@
             ],
             "by_active_count": {
               "0": {
-                "n": 1,
+                "n": 2,
                 "metrics": {
                   "existence_score": {
-                    "n": 1,
-                    "mean": 0.00682845851406455,
-                    "q05": 0.00682845851406455,
-                    "median": 0.00682845851406455,
-                    "q95": 0.00682845851406455
+                    "n": 2,
+                    "mean": 0.19836827367544174,
+                    "q05": 0.07123872116208077,
+                    "median": 0.19836827367544174,
+                    "q95": 0.3254978261888027
                   },
                   "existence_bce": {
-                    "n": 1,
-                    "mean": 4.986656188964844,
-                    "q05": 4.986656188964844,
-                    "median": 4.986656188964844,
-                    "q95": 4.986656188964844
+                    "n": 2,
+                    "mean": 1.9713189005851746,
+                    "q05": 1.1690581142902374,
+                    "median": 1.9713189005851746,
+                    "q95": 2.7735796868801117
                   },
                   "top1_iou": {
-                    "n": 1,
-                    "mean": 0.7418762074033155,
-                    "q05": 0.7418762074033155,
-                    "median": 0.7418762074033155,
-                    "q95": 0.7418762074033155
+                    "n": 2,
+                    "mean": 0.9118247761715605,
+                    "q05": 0.8875996393698292,
+                    "median": 0.9118247761715605,
+                    "q95": 0.9360499129732919
                   },
                   "oracle_iou": {
-                    "n": 1,
-                    "mean": 0.7418762074033155,
-                    "q05": 0.7418762074033155,
-                    "median": 0.7418762074033155,
-                    "q95": 0.7418762074033155
+                    "n": 2,
+                    "mean": 0.9118247761715605,
+                    "q05": 0.8875996393698292,
+                    "median": 0.9118247761715605,
+                    "q95": 0.9360499129732919
                   },
                   "coverage": {
-                    "n": 1,
+                    "n": 2,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 1,
+                    "n": 2,
                     "mean": 0.0,
                     "q05": 0.0,
                     "median": 0.0,
                     "q95": 0.0
                   },
                   "active_gt_recall": {
-                    "n": 1,
+                    "n": 2,
                     "mean": 0.0,
                     "q05": 0.0,
                     "median": 0.0,
                     "q95": 0.0
                   },
                   "correct_active_count": {
-                    "n": 1,
+                    "n": 2,
                     "mean": 0.0,
                     "q05": 0.0,
                     "median": 0.0,
                     "q95": 0.0
                   },
                   "incorrect_active_count": {
-                    "n": 1,
+                    "n": 2,
                     "mean": 0.0,
                     "q05": 0.0,
                     "median": 0.0,
@@ -36447,70 +36481,70 @@
                 }
               },
               "1": {
-                "n": 408,
+                "n": 511,
                 "metrics": {
                   "existence_score": {
-                    "n": 408,
-                    "mean": 0.9878602869918242,
-                    "q05": 0.9660548150539399,
-                    "median": 0.9999507069587708,
-                    "q95": 0.999995231628418
+                    "n": 511,
+                    "mean": 0.9964496019768389,
+                    "q05": 0.9968051910400391,
+                    "median": 0.9999624490737915,
+                    "q95": 0.9999948740005493
                   },
                   "existence_bce": {
-                    "n": 408,
-                    "mean": 0.019697056403921196,
-                    "q05": 4.735158290714026e-06,
-                    "median": 4.928689122607466e-05,
-                    "q95": 0.034539235662668796
+                    "n": 511,
+                    "mean": 0.004504144034955557,
+                    "q05": 5.115154863233329e-06,
+                    "median": 3.749743336811662e-05,
+                    "q95": 0.0031999503262341022
                   },
                   "top1_iou": {
-                    "n": 408,
-                    "mean": 0.7928619292806015,
-                    "q05": 0.27443127095372677,
-                    "median": 0.86025363924592,
-                    "q95": 0.9812524920235987
+                    "n": 511,
+                    "mean": 0.8291064667576397,
+                    "q05": 0.4964539738679584,
+                    "median": 0.8870587479442408,
+                    "q95": 0.9774443683877303
                   },
                   "oracle_iou": {
-                    "n": 408,
-                    "mean": 0.8405432275296266,
-                    "q05": 0.5928640341855947,
-                    "median": 0.8679701166814653,
-                    "q95": 0.9832669952920763
+                    "n": 511,
+                    "mean": 0.851587793375739,
+                    "q05": 0.6252449780522003,
+                    "median": 0.8904463874088031,
+                    "q95": 0.9783762214210264
                   },
                   "coverage": {
-                    "n": 408,
-                    "mean": 0.9828431372549019,
+                    "n": 511,
+                    "mean": 0.974559686888454,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 408,
-                    "mean": 0.9215686274509803,
-                    "q05": 0.0,
+                    "n": 511,
+                    "mean": 0.949119373776908,
+                    "q05": 0.5,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 408,
-                    "mean": 0.9215686274509803,
-                    "q05": 0.0,
+                    "n": 511,
+                    "mean": 0.949119373776908,
+                    "q05": 0.5,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 408,
-                    "mean": 0.9215686274509803,
-                    "q05": 0.0,
+                    "n": 511,
+                    "mean": 0.949119373776908,
+                    "q05": 0.5,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 408,
-                    "mean": 0.0784313725490196,
+                    "n": 511,
+                    "mean": 0.050880626223091974,
                     "q05": 0.0,
                     "median": 0.0,
-                    "q95": 1.0
+                    "q95": 0.5
                   },
                   "accepted": {
                     "n": 0,
@@ -36519,67 +36553,67 @@
                 }
               },
               "2": {
-                "n": 276,
+                "n": 191,
                 "metrics": {
                   "existence_score": {
-                    "n": 276,
-                    "mean": 0.9952630016250886,
-                    "q05": 0.9778834134340286,
-                    "median": 0.9999223351478577,
-                    "q95": 0.9999935030937195
+                    "n": 191,
+                    "mean": 0.9990675068650571,
+                    "q05": 0.9980294406414032,
+                    "median": 0.9999493360519409,
+                    "q95": 0.9999943375587463
                   },
                   "existence_bce": {
-                    "n": 276,
-                    "mean": 0.00512460179796102,
-                    "q05": 6.4712156699897605e-06,
-                    "median": 7.76501401560381e-05,
-                    "q95": 0.02236482175067067
+                    "n": 191,
+                    "mean": 0.0009534255836852216,
+                    "q05": 5.690468697139295e-06,
+                    "median": 5.0667935283854604e-05,
+                    "q95": 0.0019725129823200405
                   },
                   "top1_iou": {
-                    "n": 276,
-                    "mean": 0.5887232826397667,
+                    "n": 191,
+                    "mean": 0.5535630345779926,
                     "q05": 0.0,
-                    "median": 0.7655530068028288,
-                    "q95": 0.9587139108103736
+                    "median": 0.7367391540651613,
+                    "q95": 0.9595576902861838
                   },
                   "oracle_iou": {
-                    "n": 276,
-                    "mean": 0.801121821802254,
-                    "q05": 0.5345520069839795,
-                    "median": 0.8293255916355838,
-                    "q95": 0.9618752433311155
+                    "n": 191,
+                    "mean": 0.8042627612446487,
+                    "q05": 0.5743823698100473,
+                    "median": 0.8293291147168075,
+                    "q95": 0.9716938951915939
                   },
                   "coverage": {
-                    "n": 276,
-                    "mean": 0.9601449275362319,
+                    "n": 191,
+                    "mean": 0.9738219895287958,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 276,
-                    "mean": 0.8913043478260869,
+                    "n": 191,
+                    "mean": 0.9109947643979057,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 276,
-                    "mean": 0.8913043478260869,
+                    "n": 191,
+                    "mean": 0.9109947643979057,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 276,
-                    "mean": 0.894927536231884,
+                    "n": 191,
+                    "mean": 0.9109947643979057,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 276,
-                    "mean": 1.105072463768116,
+                    "n": 191,
+                    "mean": 1.0890052356020943,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 2.0
@@ -36591,67 +36625,67 @@
                 }
               },
               "3": {
-                "n": 51,
+                "n": 27,
                 "metrics": {
                   "existence_score": {
-                    "n": 51,
-                    "mean": 0.9987675933276906,
-                    "q05": 0.9943961203098297,
-                    "median": 0.9999295473098755,
-                    "q95": 0.9999966621398926
+                    "n": 27,
+                    "mean": 0.9998550326735886,
+                    "q05": 0.9993830025196075,
+                    "median": 0.9999433755874634,
+                    "q95": 0.9999931693077088
                   },
                   "existence_bce": {
-                    "n": 51,
-                    "mean": 0.0012473513768750933,
-                    "q05": 3.323959163026302e-06,
-                    "median": 7.0451911597047e-05,
-                    "q95": 0.0056196998339146376
+                    "n": 27,
+                    "mean": 0.0001450052588586038,
+                    "q05": 6.861538986413507e-06,
+                    "median": 5.6574961490696296e-05,
+                    "q95": 0.000617235054960474
                   },
                   "top1_iou": {
-                    "n": 51,
-                    "mean": 0.5241235712100195,
+                    "n": 27,
+                    "mean": 0.41496518517425923,
                     "q05": 0.0,
-                    "median": 0.7784927634812104,
-                    "q95": 0.9398074906042018
+                    "median": 0.4750012551008478,
+                    "q95": 0.9303518886487566
                   },
                   "oracle_iou": {
-                    "n": 51,
-                    "mean": 0.8186978276146375,
-                    "q05": 0.5440843848387453,
-                    "median": 0.844291823616359,
-                    "q95": 0.9657870664684821
+                    "n": 27,
+                    "mean": 0.7290327439617889,
+                    "q05": 0.4377773765381052,
+                    "median": 0.7678113940957358,
+                    "q95": 0.9536874941546186
                   },
                   "coverage": {
-                    "n": 51,
-                    "mean": 0.9411764705882353,
-                    "q05": 0.5,
+                    "n": 27,
+                    "mean": 0.8148148148148148,
+                    "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 51,
-                    "mean": 0.9215686274509803,
+                    "n": 27,
+                    "mean": 0.7777777777777778,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 51,
-                    "mean": 0.9215686274509803,
+                    "n": 27,
+                    "mean": 0.7777777777777778,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 51,
-                    "mean": 0.9411764705882353,
+                    "n": 27,
+                    "mean": 0.7777777777777778,
                     "q05": 0.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 51,
-                    "mean": 2.0588235294117645,
+                    "n": 27,
+                    "mean": 2.2222222222222223,
                     "q05": 2.0,
                     "median": 2.0,
                     "q95": 3.0
@@ -36664,9 +36698,9 @@
               }
             },
             "gt_weighted_localization": {
-              "matched_iou": 0.7983983099895894,
-              "matched_l1": 0.029053480594682143,
-              "matched_giou_loss": 0.20202662520434544
+              "matched_iou": 0.816780800940074,
+              "matched_l1": 0.02484076847252213,
+              "matched_giou_loss": 0.18424988779584622
             }
           },
           "S-": {
@@ -36674,52 +36708,52 @@
             "metrics": {
               "active_count": {
                 "n": 64,
-                "mean": 0.25,
+                "mean": 0.140625,
                 "q05": 0.0,
                 "median": 0.0,
                 "q95": 1.0
               },
               "epoch": {
                 "n": 64,
-                "mean": 83.0,
-                "q05": 83.0,
-                "median": 83.0,
-                "q95": 83.0
+                "mean": 100.0,
+                "q05": 100.0,
+                "median": 100.0,
+                "q95": 100.0
               },
               "existence_bce": {
                 "n": 64,
-                "mean": 0.20619394816458225,
-                "q05": 0.0006895065307617188,
-                "median": 0.0030035972595214844,
-                "q95": 1.7372135043144177
+                "mean": 0.08932274393737316,
+                "q05": 0.00033121109008789064,
+                "median": 0.0022745132446289062,
+                "q95": 0.505636599659919
               },
               "existence_logit": {
                 "n": 64,
-                "mean": -4.840433457866311,
-                "q05": -7.279281711578369,
-                "median": -5.8064658641815186,
-                "q95": 1.525834816694253
+                "mean": -5.311129294335842,
+                "q05": -8.015742373466491,
+                "median": -6.084834814071655,
+                "q95": -0.4231692850589772
               },
               "existence_score": {
                 "n": 64,
-                "mean": 0.09478287369483951,
-                "q05": 0.0006892054399941117,
-                "median": 0.0029990801122039557,
-                "q95": 0.8135213971137989
+                "mean": 0.0574440862933443,
+                "q05": 0.000331169342098292,
+                "median": 0.002272002398967743,
+                "q95": 0.39621566087007476
               },
               "foreground_mean": {
                 "n": 64,
-                "mean": 0.02810893730566022,
-                "q05": 0.0022078760899603366,
-                "median": 0.006050605792552233,
-                "q95": 0.10805289596319195
+                "mean": 0.019287455176709045,
+                "q05": 0.0007722383976215497,
+                "median": 0.002508597797714174,
+                "q95": 0.09584029912948606
               },
               "foreground_peak": {
                 "n": 64,
-                "mean": 0.20766520419419976,
-                "q05": 0.00482259918935597,
-                "median": 0.02972047496587038,
-                "q95": 0.9582213610410687
+                "mean": 0.15615851668007963,
+                "q05": 0.0014545117679517717,
+                "median": 0.009461564011871815,
+                "q95": 0.8907560646533959
               },
               "max_pool_contributor_count": {
                 "n": 64,
@@ -36730,17 +36764,17 @@
               },
               "relative_active_count": {
                 "n": 64,
-                "mean": 1.59375,
+                "mean": 2.453125,
                 "q05": 1.0,
                 "median": 1.0,
-                "q95": 3.0
+                "q95": 7.0
               },
               "step": {
                 "n": 64,
-                "mean": 56425.984375,
-                "q05": 56402.15,
-                "median": 56426.0,
-                "q95": 56448.85
+                "mean": 68378.5625,
+                "q05": 68356.45,
+                "median": 68380.5,
+                "q95": 68397.85
               },
               "valid_slots": {
                 "n": 64,
@@ -36751,9 +36785,9 @@
               }
             },
             "active_count_histogram": [
-              51,
-              10,
-              3,
+              55,
+              9,
+              0,
               0,
               0,
               0,
@@ -36765,21 +36799,21 @@
             ],
             "by_active_count": {
               "0": {
-                "n": 51,
+                "n": 55,
                 "metrics": {
                   "existence_score": {
-                    "n": 51,
-                    "mean": 0.007043592775053363,
-                    "q05": 0.0006759210955351591,
-                    "median": 0.0019817312713712454,
-                    "q95": 0.021432839334011078
+                    "n": 55,
+                    "mean": 0.012343918323114683,
+                    "q05": 0.0003178231563651934,
+                    "median": 0.0013092071749269962,
+                    "q95": 0.030352277494966974
                   },
                   "existence_bce": {
-                    "n": 51,
-                    "mean": 0.007263485123129452,
-                    "q05": 0.0006761550903320312,
-                    "median": 0.001983642578125,
-                    "q95": 0.02168595790863037
+                    "n": 55,
+                    "mean": 0.013355757973410867,
+                    "q05": 0.0003177642822265625,
+                    "median": 0.0013098716735839844,
+                    "q95": 0.030823564529418937
                   },
                   "top1_iou": {
                     "n": 0,
@@ -36816,72 +36850,21 @@
                 }
               },
               "1": {
-                "n": 10,
+                "n": 9,
                 "metrics": {
                   "existence_score": {
-                    "n": 10,
-                    "mean": 0.31699909530580045,
-                    "q05": 0.023935320787131786,
-                    "median": 0.258786141872406,
-                    "q95": 0.8606392055749893
+                    "n": 9,
+                    "mean": 0.3330562238891919,
+                    "q05": 0.07967459559440612,
+                    "median": 0.3268091678619385,
+                    "q95": 0.7322593092918395
                   },
                   "existence_bce": {
-                    "n": 10,
-                    "mean": 0.5701764225959778,
-                    "q05": 0.024268591403961183,
-                    "median": 0.30038323998451233,
-                    "q95": 1.9755346715450284
-                  },
-                  "top1_iou": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "oracle_iou": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "coverage": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "active_coverage": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "active_gt_recall": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "correct_active_count": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "incorrect_active_count": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "accepted": {
-                    "n": 0,
-                    "mean": null
-                  }
-                }
-              },
-              "2": {
-                "n": 3,
-                "metrics": {
-                  "existence_score": {
-                    "n": 3,
-                    "mean": 0.8456299106280009,
-                    "q05": 0.663709557056427,
-                    "median": 0.9416634440422058,
-                    "q95": 0.9603267908096313
-                  },
-                  "existence_bce": {
-                    "n": 3,
-                    "mean": 2.3747369050979614,
-                    "q05": 1.1858796715736388,
-                    "median": 2.841526508331299,
-                    "q95": 3.236841416358948
+                    "n": 9,
+                    "mean": 0.5535654359393649,
+                    "q05": 0.08317227363586426,
+                    "median": 0.39572638273239136,
+                    "q95": 1.6851234912872308
                   },
                   "top1_iou": {
                     "n": 0,
@@ -36923,35 +36906,35 @@
         }
       },
       "latest_fixed_probe_responses": {
-        "epoch": 82,
+        "epoch": 100,
         "subsets": {
           "S+": {
             "n": 64,
             "metrics": {
               "active_count": {
                 "n": 64,
-                "mean": 1.25,
+                "mean": 1.15625,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 2.0
               },
               "active_coverage": {
                 "n": 64,
-                "mean": 0.953125,
+                "mean": 0.984375,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "active_gt_recall": {
                 "n": 64,
-                "mean": 0.953125,
+                "mean": 0.984375,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "correct_active_count": {
                 "n": 64,
-                "mean": 0.96875,
+                "mean": 0.984375,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
@@ -36965,38 +36948,38 @@
               },
               "existence_bce": {
                 "n": 64,
-                "mean": 0.025999744766465938,
-                "q05": 1.829555776566849e-05,
-                "median": 0.00012116901416447945,
-                "q95": 0.017055101692676485
+                "mean": 0.00039536139116336244,
+                "q05": 7.712789010838606e-06,
+                "median": 4.081783663423266e-05,
+                "q95": 0.0013827416463755063
               },
               "existence_logit": {
                 "n": 64,
-                "mean": 8.215316055342555,
-                "q05": 4.0962996840476995,
-                "median": 9.01901912689209,
-                "q95": 10.908999729156493
+                "mean": 9.750884920358658,
+                "q05": 6.583636617660522,
+                "median": 10.106379985809326,
+                "q95": 11.77291555404663
               },
               "existence_score": {
                 "n": 64,
-                "mean": 0.985728763975203,
-                "q05": 0.9830960690975189,
-                "median": 0.9998788237571716,
-                "q95": 0.9999817371368408
+                "mean": 0.9996059825643897,
+                "q05": 0.998618197441101,
+                "median": 0.9999591708183289,
+                "q95": 0.9999922990798951
               },
               "foreground_mean": {
                 "n": 64,
-                "mean": 0.12843523151241243,
-                "q05": 0.10019622333347797,
-                "median": 0.10723385214805603,
-                "q95": 0.19729059785604477
+                "mean": 0.1182770897867158,
+                "q05": 0.10004336722195148,
+                "median": 0.10108757019042969,
+                "q95": 0.19382671639323235
               },
               "foreground_peak": {
                 "n": 64,
-                "mean": 0.9810764836147428,
-                "q05": 0.9327711045742035,
-                "median": 0.9960185289382935,
-                "q95": 0.999746972322464
+                "mean": 0.9962750896811485,
+                "q05": 0.9801612377166748,
+                "median": 0.9994129538536072,
+                "q95": 0.9999116837978363
               },
               "gt_count": {
                 "n": 64,
@@ -37014,17 +36997,17 @@
               },
               "incorrect_active_count": {
                 "n": 64,
-                "mean": 0.28125,
+                "mean": 0.171875,
                 "q05": 0.0,
                 "median": 0.0,
                 "q95": 1.0
               },
               "matched_giou_loss": {
                 "n": 64,
-                "mean": 0.1698933681473136,
-                "q05": 0.037312036752700804,
-                "median": 0.13988080620765686,
-                "q95": 0.3825225472450254
+                "mean": 0.1383001795038581,
+                "q05": 0.030661597847938538,
+                "median": 0.1233428418636322,
+                "q95": 0.3038908511400222
               },
               "matched_gt_count": {
                 "n": 64,
@@ -37035,52 +37018,52 @@
               },
               "matched_iou": {
                 "n": 64,
-                "mean": 0.8301066225394607,
-                "q05": 0.6174774527549743,
-                "median": 0.8601192235946655,
-                "q95": 0.9626879632472992
+                "mean": 0.8616998023353517,
+                "q05": 0.6961091488599778,
+                "median": 0.8766571581363678,
+                "q95": 0.9693382412195206
               },
               "matched_l1": {
                 "n": 64,
-                "mean": 0.02377908758353442,
-                "q05": 0.007552643120288849,
-                "median": 0.021428614854812622,
-                "q95": 0.045854183286428436
+                "mean": 0.019255310529842973,
+                "q05": 0.004786915332078934,
+                "median": 0.01529067475348711,
+                "q95": 0.045921904966235154
               },
               "max_pool_contributor_count": {
                 "n": 64,
-                "mean": 9.9375,
-                "q05": 9.15,
+                "mean": 9.859375,
+                "q05": 9.0,
                 "median": 10.0,
                 "q95": 10.0
               },
               "oracle_iou": {
                 "n": 64,
-                "mean": 0.833501719139876,
-                "q05": 0.618240574917409,
-                "median": 0.858130161442263,
-                "q95": 0.9629431311291111
+                "mean": 0.8678787407460672,
+                "q05": 0.7189937713002815,
+                "median": 0.8820527463322172,
+                "q95": 0.978620786644383
               },
               "relative_active_count": {
                 "n": 64,
-                "mean": 1.28125,
+                "mean": 1.15625,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 2.0
               },
               "top1_hit": {
                 "n": 64,
-                "mean": 0.890625,
-                "q05": 0.0,
+                "mean": 0.96875,
+                "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "top1_iou": {
                 "n": 64,
-                "mean": 0.7595375003948612,
-                "q05": 0.14345544902029173,
-                "median": 0.837159518090825,
-                "q95": 0.9607878695518585
+                "mean": 0.8513279772712772,
+                "q05": 0.6037258276107731,
+                "median": 0.8820527463322172,
+                "q95": 0.978620786644383
               },
               "valid_slots": {
                 "n": 64,
@@ -37092,9 +37075,9 @@
             },
             "active_count_histogram": [
               0,
-              50,
-              12,
-              2,
+              54,
+              10,
+              0,
               0,
               0,
               0,
@@ -37105,70 +37088,70 @@
             ],
             "by_active_count": {
               "1": {
-                "n": 50,
+                "n": 54,
                 "metrics": {
                   "existence_score": {
-                    "n": 50,
-                    "mean": 0.9828655040264129,
-                    "q05": 0.9938315123319625,
-                    "median": 0.9998878240585327,
-                    "q95": 0.9999803364276886
+                    "n": 54,
+                    "mean": 0.9996133788868233,
+                    "q05": 0.9990880191326141,
+                    "median": 0.9999608993530273,
+                    "q95": 0.999992060661316
                   },
                   "existence_bce": {
-                    "n": 50,
-                    "mean": 0.03213479464469856,
-                    "q05": 1.9644949406938395e-05,
-                    "median": 0.00011220672604395077,
-                    "q95": 0.0061905282782390575
+                    "n": 54,
+                    "mean": 0.0003881562718106579,
+                    "q05": 7.976373308338226e-06,
+                    "median": 3.911116800736636e-05,
+                    "q95": 0.000912476814119141
                   },
                   "top1_iou": {
-                    "n": 50,
-                    "mean": 0.7930669834813583,
-                    "q05": 0.4775168494280341,
-                    "median": 0.837159518090825,
-                    "q95": 0.9603592076205193
+                    "n": 54,
+                    "mean": 0.8684526601324526,
+                    "q05": 0.7071407337600437,
+                    "median": 0.8895707033082175,
+                    "q95": 0.9789564078144968
                   },
                   "oracle_iou": {
-                    "n": 50,
-                    "mean": 0.8235990994970384,
-                    "q05": 0.5936844576315983,
-                    "median": 0.8459246082590572,
-                    "q95": 0.9619378640146664
+                    "n": 54,
+                    "mean": 0.8712546359453065,
+                    "q05": 0.7327635677641331,
+                    "median": 0.8895707033082175,
+                    "q95": 0.9789564078144968
                   },
                   "coverage": {
-                    "n": 50,
-                    "mean": 0.98,
+                    "n": 54,
+                    "mean": 0.9814814814814815,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 50,
-                    "mean": 0.94,
-                    "q05": 0.4500000000000002,
+                    "n": 54,
+                    "mean": 0.9814814814814815,
+                    "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 50,
-                    "mean": 0.94,
-                    "q05": 0.4500000000000002,
+                    "n": 54,
+                    "mean": 0.9814814814814815,
+                    "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 50,
-                    "mean": 0.94,
-                    "q05": 0.4500000000000002,
+                    "n": 54,
+                    "mean": 0.9814814814814815,
+                    "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 50,
-                    "mean": 0.06,
+                    "n": 54,
+                    "mean": 0.018518518518518517,
                     "q05": 0.0,
                     "median": 0.0,
-                    "q95": 0.5499999999999972
+                    "q95": 0.0
                   },
                   "accepted": {
                     "n": 0,
@@ -37177,142 +37160,70 @@
                 }
               },
               "2": {
-                "n": 12,
+                "n": 10,
                 "metrics": {
                   "existence_score": {
-                    "n": 12,
-                    "mean": 0.996831143895785,
-                    "q05": 0.984714338183403,
-                    "median": 0.9995619356632233,
-                    "q95": 0.9999924898147583
+                    "n": 10,
+                    "mean": 0.9995660424232483,
+                    "q05": 0.9982939153909683,
+                    "median": 0.9999463558197021,
+                    "q95": 0.9999937534332275
                   },
                   "existence_bce": {
-                    "n": 12,
-                    "mean": 0.003205349879408459,
-                    "q05": 7.533159714512294e-06,
-                    "median": 0.0004381522012408823,
-                    "q95": 0.015482250088825804
+                    "n": 10,
+                    "mean": 0.00043426903566796683,
+                    "q05": 6.231312590898597e-06,
+                    "median": 5.3659181503462605e-05,
+                    "q95": 0.0017076082527637472
                   },
                   "top1_iou": {
-                    "n": 12,
-                    "mean": 0.6517007773866837,
-                    "q05": 0.0,
-                    "median": 0.8763194749112214,
-                    "q95": 0.9511074108790156
+                    "n": 10,
+                    "mean": 0.7588546898209303,
+                    "q05": 0.2646031095453385,
+                    "median": 0.8659506665814141,
+                    "q95": 0.9524666901400501
                   },
                   "oracle_iou": {
-                    "n": 12,
-                    "mean": 0.8894459172043231,
-                    "q05": 0.7741004348017533,
-                    "median": 0.8928363588089995,
-                    "q95": 0.9645516909246594
+                    "n": 10,
+                    "mean": 0.8496489066701752,
+                    "q05": 0.6901097084978116,
+                    "median": 0.8659506665814141,
+                    "q95": 0.9524666901400501
                   },
                   "coverage": {
-                    "n": 12,
+                    "n": 10,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 12,
+                    "n": 10,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 12,
+                    "n": 10,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 12,
-                    "mean": 1.0833333333333333,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.4499999999999993
-                  },
-                  "incorrect_active_count": {
-                    "n": 12,
-                    "mean": 0.9166666666666666,
-                    "q05": 0.55,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "accepted": {
-                    "n": 0,
-                    "mean": null
-                  }
-                }
-              },
-              "3": {
-                "n": 2,
-                "metrics": {
-                  "existence_score": {
-                    "n": 2,
-                    "mean": 0.990695983171463,
-                    "q05": 0.9824965506792068,
-                    "median": 0.990695983171463,
-                    "q95": 0.9988954156637192
-                  },
-                  "existence_bce": {
-                    "n": 2,
-                    "mean": 0.009389867132995278,
-                    "q05": 0.0011131962935905905,
-                    "median": 0.009389867132995278,
-                    "q95": 0.017666537972399966
-                  },
-                  "top1_iou": {
-                    "n": 2,
-                    "mean": 0.5683207612814993,
-                    "q05": 0.3817850274248295,
-                    "median": 0.5683207612814993,
-                    "q95": 0.7548564951381692
-                  },
-                  "oracle_iou": {
-                    "n": 2,
-                    "mean": 0.7454020218241373,
-                    "q05": 0.7182394224558415,
-                    "median": 0.7454020218241373,
-                    "q95": 0.7725646211924331
-                  },
-                  "coverage": {
-                    "n": 2,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "active_coverage": {
-                    "n": 2,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "active_gt_recall": {
-                    "n": 2,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "correct_active_count": {
-                    "n": 2,
+                    "n": 10,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 2,
-                    "mean": 2.0,
-                    "q05": 2.0,
-                    "median": 2.0,
-                    "q95": 2.0
+                    "n": 10,
+                    "mean": 1.0,
+                    "q05": 1.0,
+                    "median": 1.0,
+                    "q95": 1.0
                   },
                   "accepted": {
                     "n": 0,
@@ -37322,9 +37233,9 @@
               }
             },
             "gt_weighted_localization": {
-              "matched_iou": 0.8301066225394607,
-              "matched_l1": 0.02377908758353442,
-              "matched_giou_loss": 0.1698933681473136
+              "matched_iou": 0.8616998023353517,
+              "matched_l1": 0.019255310529842973,
+              "matched_giou_loss": 0.1383001795038581
             }
           },
           "S-": {
@@ -37332,58 +37243,58 @@
             "metrics": {
               "active_count": {
                 "n": 64,
-                "mean": 0.015625,
+                "mean": 0.0,
                 "q05": 0.0,
                 "median": 0.0,
                 "q95": 0.0
               },
               "existence_bce": {
                 "n": 64,
-                "mean": 0.002689111977815628,
-                "q05": 1.1730194091796876e-05,
-                "median": 3.0040740966796875e-05,
-                "q95": 0.0006042242050170883
+                "mean": 0.00010503828525543213,
+                "q05": 9.5367431640625e-07,
+                "median": 1.9073486328125e-06,
+                "q95": 0.0001934528350830076
               },
               "existence_logit": {
                 "n": 64,
-                "mean": -9.990477377548814,
-                "q05": -11.35207576751709,
-                "median": -10.411657333374023,
-                "q95": -7.4298496961593665
+                "mean": -12.29000075161457,
+                "q05": -13.566109085083008,
+                "median": -13.027545928955078,
+                "q95": -8.554443407058717
               },
               "existence_score": {
                 "n": 64,
-                "mean": 0.0025176456843496453,
-                "q05": 1.1760996540033376e-05,
-                "median": 3.007912982866401e-05,
-                "q95": 0.000604211028257849
+                "mean": 0.0001048973693080768,
+                "q05": 1.2833038795179164e-06,
+                "median": 2.2026285932952305e-06,
+                "q95": 0.00019320462743053192
               },
               "foreground_mean": {
                 "n": 64,
-                "mean": 0.004396201233248576,
-                "q05": 0.0014972329488955438,
-                "median": 0.0018052119994536042,
-                "q95": 0.00879849549382925
+                "mean": 0.0012520089594545425,
+                "q05": 0.0006139006232842803,
+                "median": 0.0008162011799868196,
+                "q95": 0.004144102369900788
               },
               "foreground_peak": {
                 "n": 64,
-                "mean": 0.028581213426150498,
-                "q05": 0.0018885232973843813,
-                "median": 0.003809508867561817,
-                "q95": 0.0661956464871764
+                "mean": 0.005045893249189248,
+                "q05": 0.0007863509847084061,
+                "median": 0.001095013925805688,
+                "q95": 0.03550103195011607
               },
               "max_pool_contributor_count": {
                 "n": 64,
-                "mean": 9.5,
-                "q05": 8.0,
+                "mean": 9.640625,
+                "q05": 8.15,
                 "median": 10.0,
                 "q95": 10.0
               },
               "relative_active_count": {
                 "n": 64,
-                "mean": 4.296875,
+                "mean": 6.921875,
                 "q05": 1.0,
-                "median": 3.0,
+                "median": 10.0,
                 "q95": 10.0
               },
               "valid_slots": {
@@ -37395,8 +37306,8 @@
               }
             },
             "active_count_histogram": [
-              63,
-              1,
+              64,
+              0,
               0,
               0,
               0,
@@ -37409,72 +37320,21 @@
             ],
             "by_active_count": {
               "0": {
-                "n": 63,
+                "n": 64,
                 "metrics": {
                   "existence_score": {
-                    "n": 63,
-                    "mean": 0.0003298939403080906,
-                    "q05": 1.1672025084408234e-05,
-                    "median": 2.9955184800201096e-05,
-                    "q95": 0.00035631761420518154
+                    "n": 64,
+                    "mean": 0.0001048973693080768,
+                    "q05": 1.2833038795179164e-06,
+                    "median": 2.2026285932952305e-06,
+                    "q95": 0.00019320462743053192
                   },
                   "existence_bce": {
-                    "n": 63,
-                    "mean": 0.0003313942561073909,
-                    "q05": 1.163482666015625e-05,
-                    "median": 2.956390380859375e-05,
-                    "q95": 0.00035638809204101556
-                  },
-                  "top1_iou": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "oracle_iou": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "coverage": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "active_coverage": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "active_gt_recall": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "correct_active_count": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "incorrect_active_count": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "accepted": {
-                    "n": 0,
-                    "mean": null
-                  }
-                }
-              },
-              "1": {
-                "n": 1,
-                "metrics": {
-                  "existence_score": {
-                    "n": 1,
-                    "mean": 0.1403460055589676,
-                    "q05": 0.1403460055589676,
-                    "median": 0.1403460055589676,
-                    "q95": 0.1403460055589676
-                  },
-                  "existence_bce": {
-                    "n": 1,
-                    "mean": 0.15122532844543457,
-                    "q05": 0.15122532844543457,
-                    "median": 0.15122532844543457,
-                    "q95": 0.15122532844543457
+                    "n": 64,
+                    "mean": 0.00010503828525543213,
+                    "q05": 9.5367431640625e-07,
+                    "median": 1.9073486328125e-06,
+                    "q95": 0.0001934528350830076
                   },
                   "top1_iou": {
                     "n": 0,
@@ -37519,7 +37379,7 @@
     {
       "tag": "clean_v3_C2_v3_flash_native",
       "process": {
-        "state": "running",
+        "state": "cancelled",
         "gpu": 0,
         "pid": 2432780,
         "argv": [
@@ -37543,15 +37403,21 @@
           "--gradient-every",
           "50"
         ],
-        "launched_at": 1791889708.6124732
+        "launched_at": 1791889708.6124732,
+        "previous_state": "running",
+        "cancelled_at": 1791903931.9385421,
+        "cancel_reason": "User stopped the final training task",
+        "stopped_epoch": 78
       },
       "training": {
-        "state": "training",
-        "epoch": 31,
+        "state": "cancelled",
+        "epoch": 78,
         "epochs": 100,
-        "batches": 1250,
-        "global_step": 42290,
-        "updated": 1791895450.2099125
+        "batches": 1350,
+        "global_step": 106686,
+        "updated": 1791903931.9385421,
+        "cancelled_at": 1791903931.9385421,
+        "cancel_reason": "User stopped the final training task"
       },
       "last_completed_training_epoch": {},
       "last_fixed_probe": {},
@@ -37559,207 +37425,207 @@
       "mean_localization_existence_cosine": null,
       "negative_cosine_fraction": null,
       "latest_parameter_updates": {
-        "epoch": 30,
+        "epoch": 78,
         "modules": {
           "transformer": {
             "parameters": 5923593,
             "trainable_parameters": 5923593,
-            "update_l2": 2.123055094697007,
-            "relative_update_l2": 0.025137661347577573,
+            "update_l2": 2.1897403219514633,
+            "relative_update_l2": 0.02520175280031469,
             "actually_changed": true
           },
           "input_txt_proj": {
             "parameters": 198656,
             "trainable_parameters": 198656,
-            "update_l2": 0.4420127551946506,
-            "relative_update_l2": 0.014319175124710778,
+            "update_l2": 0.449051780921604,
+            "relative_update_l2": 0.014468569195401697,
             "actually_changed": true
           },
           "input_vid_proj": {
             "parameters": 793604,
             "trainable_parameters": 793604,
-            "update_l2": 0.8618857573892519,
-            "relative_update_l2": 0.01495690487467568,
+            "update_l2": 0.875145342676018,
+            "relative_update_l2": 0.014945648856366288,
             "actually_changed": true
           },
           "pyramid": {
             "parameters": 791040,
             "trainable_parameters": 791040,
-            "update_l2": 0.8072606822351854,
-            "relative_update_l2": 0.01771192603124636,
+            "update_l2": 0.7541759776738547,
+            "relative_update_l2": 0.01631716109023785,
             "actually_changed": true
           },
           "pooling": {
             "parameters": 256,
             "trainable_parameters": 256,
-            "update_l2": 0.013622326689860503,
-            "relative_update_l2": 0.02535643998125342,
+            "update_l2": 0.015797439748091457,
+            "relative_update_l2": 0.030470754579728403,
             "actually_changed": true
           },
           "conf_head": {
             "parameters": 410497,
             "trainable_parameters": 410497,
-            "update_l2": 0.49515731776407557,
-            "relative_update_l2": 0.02929992867040707,
+            "update_l2": 0.4897825862074692,
+            "relative_update_l2": 0.026566375279513776,
             "actually_changed": true
           },
           "class_head": {
             "parameters": 410497,
             "trainable_parameters": 410497,
-            "update_l2": 0.45483781017650876,
-            "relative_update_l2": 0.026594027068643236,
+            "update_l2": 0.4657799465106848,
+            "relative_update_l2": 0.025208911004403083,
             "actually_changed": true
           },
           "coord_head": {
             "parameters": 198402,
             "trainable_parameters": 198402,
-            "update_l2": 0.3534151285358788,
-            "relative_update_l2": 0.03633777633839203,
+            "update_l2": 0.36454951093314425,
+            "relative_update_l2": 0.034869102730778354,
             "actually_changed": true
           },
           "exist_head": {
             "parameters": 131585,
             "trainable_parameters": 131585,
-            "update_l2": 0.292193032332016,
-            "relative_update_l2": 0.029737471485935803,
+            "update_l2": 0.268136125504543,
+            "relative_update_l2": 0.02288637542281498,
             "actually_changed": true
           }
         }
       },
       "latest_training_responses": {
-        "epoch": 31,
-        "step": 42300,
+        "epoch": 78,
+        "step": 106704,
         "subsets": {
           "S+": {
-            "n": 8,
+            "n": 3,
             "metrics": {
               "active_count": {
-                "n": 8,
-                "mean": 1.625,
-                "q05": 0.0,
-                "median": 1.0,
-                "q95": 4.299999999999999
+                "n": 3,
+                "mean": 2.3333333333333335,
+                "q05": 1.1,
+                "median": 2.0,
+                "q95": 3.8
               },
               "active_coverage": {
-                "n": 8,
-                "mean": 0.75,
-                "q05": 0.0,
+                "n": 3,
+                "mean": 1.0,
+                "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "active_gt_recall": {
-                "n": 8,
-                "mean": 0.75,
-                "q05": 0.0,
+                "n": 3,
+                "mean": 1.0,
+                "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "correct_active_count": {
-                "n": 8,
-                "mean": 1.625,
-                "q05": 0.0,
-                "median": 1.0,
-                "q95": 4.299999999999999
+                "n": 3,
+                "mean": 1.6666666666666667,
+                "q05": 1.1,
+                "median": 2.0,
+                "q95": 2.0
               },
               "coverage": {
-                "n": 8,
+                "n": 3,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "existence_logit": {
-                "n": 8,
-                "mean": 5.960582837462425,
-                "q05": 2.1604738414287565,
-                "median": 6.702395915985107,
-                "q95": 8.251512432098389
+                "n": 3,
+                "mean": 16.969664255777996,
+                "q05": 12.392042350769042,
+                "median": 16.836185455322266,
+                "q95": 21.640721321105957
               },
               "existence_score": {
-                "n": 8,
-                "mean": 0.9743751510977745,
-                "q05": 0.8863187998533248,
-                "median": 0.998744934797287,
-                "q95": 0.9997376948595047
+                "n": 3,
+                "mean": 0.9999977350234985,
+                "q05": 0.9999938845634461,
+                "median": 1.0,
+                "q95": 1.0
               },
               "foreground_mean": {
-                "n": 8,
-                "mean": 0.1161598339676857,
-                "q05": 0.0959355391561985,
-                "median": 0.11399634182453156,
-                "q95": 0.1373764306306839
+                "n": 3,
+                "mean": 0.06056136265397072,
+                "q05": 0.05303147844970226,
+                "median": 0.06433290243148804,
+                "q95": 0.06545116901397705
               },
               "foreground_peak": {
-                "n": 8,
-                "mean": 0.5559612698853016,
-                "q05": 0.46793199628591536,
-                "median": 0.563937246799469,
-                "q95": 0.6478013813495636
+                "n": 3,
+                "mean": 0.7188982963562012,
+                "q05": 0.5770289361476898,
+                "median": 0.6767760515213013,
+                "q95": 0.8902532279491424
               },
               "gt_count": {
-                "n": 8,
+                "n": 3,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "gt_recall": {
-                "n": 8,
+                "n": 3,
                 "mean": 1.0,
                 "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "incorrect_active_count": {
-                "n": 8,
-                "mean": 0.0,
+                "n": 3,
+                "mean": 0.6666666666666666,
                 "q05": 0.0,
                 "median": 0.0,
-                "q95": 0.0
+                "q95": 1.7999999999999998
               },
               "oracle_iou": {
-                "n": 8,
-                "mean": 0.8372904169446073,
-                "q05": 0.6955928557014378,
-                "median": 0.8433593487849095,
-                "q95": 0.9648537067112162
+                "n": 3,
+                "mean": 0.8126158729283256,
+                "q05": 0.6831674994651556,
+                "median": 0.8773295520103147,
+                "q95": 0.8967646710341032
               },
               "relative_active_count": {
-                "n": 8,
-                "mean": 7.75,
-                "q05": 3.35,
-                "median": 7.5,
-                "q95": 13.299999999999999
+                "n": 3,
+                "mean": 3.6666666666666665,
+                "q05": 3.1,
+                "median": 4.0,
+                "q95": 4.0
               },
               "top1_hit": {
-                "n": 8,
-                "mean": 0.75,
-                "q05": 0.0,
+                "n": 3,
+                "mean": 1.0,
+                "q05": 1.0,
                 "median": 1.0,
                 "q95": 1.0
               },
               "top1_iou": {
-                "n": 8,
-                "mean": 0.4973169374743137,
-                "q05": 0.0,
-                "median": 0.6140844863699984,
-                "q95": 0.8008075669923966
+                "n": 3,
+                "mean": 0.7737203710766322,
+                "q05": 0.6731744949928673,
+                "median": 0.7773995072874309,
+                "q95": 0.8716908518128379
               },
               "valid_slots": {
-                "n": 8,
-                "mean": 67.0,
-                "q05": 67.0,
-                "median": 67.0,
-                "q95": 67.0
+                "n": 3,
+                "mean": 71.0,
+                "q05": 71.0,
+                "median": 71.0,
+                "q95": 71.0
               }
             },
             "active_count_histogram": [
-              2,
-              3,
+              0,
               1,
               1,
               0,
               1,
+              0,
               0,
               0,
               0,
@@ -37767,133 +37633,64 @@
               0
             ],
             "by_active_count": {
-              "0": {
-                "n": 2,
-                "metrics": {
-                  "existence_score": {
-                    "n": 2,
-                    "mean": 0.9736126363277435,
-                    "q05": 0.9507536441087723,
-                    "median": 0.9736126363277435,
-                    "q95": 0.9964716285467148
-                  },
-                  "existence_bce": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "top1_iou": {
-                    "n": 2,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "oracle_iou": {
-                    "n": 2,
-                    "mean": 0.886594459411296,
-                    "q05": 0.8567664627309821,
-                    "median": 0.886594459411296,
-                    "q95": 0.9164224560916098
-                  },
-                  "coverage": {
-                    "n": 2,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "active_coverage": {
-                    "n": 2,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "active_gt_recall": {
-                    "n": 2,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "correct_active_count": {
-                    "n": 2,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "incorrect_active_count": {
-                    "n": 2,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "accepted": {
-                    "n": 0,
-                    "mean": null
-                  }
-                }
-              },
               "1": {
-                "n": 3,
+                "n": 1,
                 "metrics": {
                   "existence_score": {
-                    "n": 3,
-                    "mean": 0.9506485462188721,
-                    "q05": 0.8676112949848175,
-                    "median": 0.9991962313652039,
-                    "q95": 0.9997024178504944
+                    "n": 1,
+                    "mean": 1.0,
+                    "q05": 1.0,
+                    "median": 1.0,
+                    "q95": 1.0
                   },
                   "existence_bce": {
                     "n": 0,
                     "mean": null
                   },
                   "top1_iou": {
-                    "n": 3,
-                    "mean": 0.6206608538421167,
-                    "q05": 0.605770864265898,
-                    "median": 0.6244765140001238,
-                    "q95": 0.6328798813077302
+                    "n": 1,
+                    "mean": 0.6615939380712491,
+                    "q05": 0.6615939380712491,
+                    "median": 0.6615939380712491,
+                    "q95": 0.6615939380712491
                   },
                   "oracle_iou": {
-                    "n": 3,
-                    "mean": 0.7896098432306564,
-                    "q05": 0.6893893014151762,
-                    "median": 0.8191557161219595,
-                    "q95": 0.8691482740222246
+                    "n": 1,
+                    "mean": 0.6615939380712491,
+                    "q05": 0.6615939380712491,
+                    "median": 0.6615939380712491,
+                    "q95": 0.6615939380712491
                   },
                   "coverage": {
-                    "n": 3,
+                    "n": 1,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_coverage": {
-                    "n": 3,
+                    "n": 1,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "active_gt_recall": {
-                    "n": 3,
+                    "n": 1,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "correct_active_count": {
-                    "n": 3,
+                    "n": 1,
                     "mean": 1.0,
                     "q05": 1.0,
                     "median": 1.0,
                     "q95": 1.0
                   },
                   "incorrect_active_count": {
-                    "n": 3,
+                    "n": 1,
                     "mean": 0.0,
                     "q05": 0.0,
                     "median": 0.0,
@@ -37910,10 +37707,10 @@
                 "metrics": {
                   "existence_score": {
                     "n": 1,
-                    "mean": 0.9996987581253052,
-                    "q05": 0.9996987581253052,
-                    "median": 0.9996987581253052,
-                    "q95": 0.9996987581253052
+                    "mean": 1.0,
+                    "q05": 1.0,
+                    "median": 1.0,
+                    "q95": 1.0
                   },
                   "existence_bce": {
                     "n": 0,
@@ -37921,17 +37718,17 @@
                   },
                   "top1_iou": {
                     "n": 1,
-                    "mean": 0.5309807366769399,
-                    "q05": 0.5309807366769399,
-                    "median": 0.5309807366769399,
-                    "q95": 0.5309807366769399
+                    "mean": 0.7773995072874309,
+                    "q05": 0.7773995072874309,
+                    "median": 0.7773995072874309,
+                    "q95": 0.7773995072874309
                   },
                   "oracle_iou": {
                     "n": 1,
-                    "mean": 0.7338909389185932,
-                    "q05": 0.7338909389185932,
-                    "median": 0.7338909389185932,
-                    "q95": 0.7338909389185932
+                    "mean": 0.8773295520103147,
+                    "q05": 0.8773295520103147,
+                    "median": 0.8773295520103147,
+                    "q95": 0.8773295520103147
                   },
                   "coverage": {
                     "n": 1,
@@ -37974,15 +37771,15 @@
                   }
                 }
               },
-              "3": {
+              "4": {
                 "n": 1,
                 "metrics": {
                   "existence_score": {
                     "n": 1,
-                    "mean": 0.9976531863212585,
-                    "q05": 0.9976531863212585,
-                    "median": 0.9976531863212585,
-                    "q95": 0.9976531863212585
+                    "mean": 0.9999932050704956,
+                    "q05": 0.9999932050704956,
+                    "median": 0.9999932050704956,
+                    "q95": 0.9999932050704956
                   },
                   "existence_bce": {
                     "n": 0,
@@ -37990,17 +37787,17 @@
                   },
                   "top1_iou": {
                     "n": 1,
-                    "mean": 0.7660478801396541,
-                    "q05": 0.7660478801396541,
-                    "median": 0.7660478801396541,
-                    "q95": 0.7660478801396541
+                    "mean": 0.8821676678712165,
+                    "q05": 0.8821676678712165,
+                    "median": 0.8821676678712165,
+                    "q95": 0.8821676678712165
                   },
                   "oracle_iou": {
                     "n": 1,
-                    "mean": 0.833266456692205,
-                    "q05": 0.833266456692205,
-                    "median": 0.833266456692205,
-                    "q95": 0.833266456692205
+                    "mean": 0.898924128703413,
+                    "q05": 0.898924128703413,
+                    "median": 0.898924128703413,
+                    "q95": 0.898924128703413
                   },
                   "coverage": {
                     "n": 1,
@@ -38025,86 +37822,17 @@
                   },
                   "correct_active_count": {
                     "n": 1,
-                    "mean": 3.0,
-                    "q05": 3.0,
-                    "median": 3.0,
-                    "q95": 3.0
+                    "mean": 2.0,
+                    "q05": 2.0,
+                    "median": 2.0,
+                    "q95": 2.0
                   },
                   "incorrect_active_count": {
                     "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
-                  },
-                  "accepted": {
-                    "n": 0,
-                    "mean": null
-                  }
-                }
-              },
-              "5": {
-                "n": 1,
-                "metrics": {
-                  "existence_score": {
-                    "n": 1,
-                    "mean": 0.998478353023529,
-                    "q05": 0.998478353023529,
-                    "median": 0.998478353023529,
-                    "q95": 0.998478353023529
-                  },
-                  "existence_bce": {
-                    "n": 0,
-                    "mean": null
-                  },
-                  "top1_iou": {
-                    "n": 1,
-                    "mean": 0.8195243214515657,
-                    "q05": 0.8195243214515657,
-                    "median": 0.8195243214515657,
-                    "q95": 0.8195243214515657
-                  },
-                  "oracle_iou": {
-                    "n": 1,
-                    "mean": 0.9891474914314984,
-                    "q05": 0.9891474914314984,
-                    "median": 0.9891474914314984,
-                    "q95": 0.9891474914314984
-                  },
-                  "coverage": {
-                    "n": 1,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "active_coverage": {
-                    "n": 1,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "active_gt_recall": {
-                    "n": 1,
-                    "mean": 1.0,
-                    "q05": 1.0,
-                    "median": 1.0,
-                    "q95": 1.0
-                  },
-                  "correct_active_count": {
-                    "n": 1,
-                    "mean": 5.0,
-                    "q05": 5.0,
-                    "median": 5.0,
-                    "q95": 5.0
-                  },
-                  "incorrect_active_count": {
-                    "n": 1,
-                    "mean": 0.0,
-                    "q05": 0.0,
-                    "median": 0.0,
-                    "q95": 0.0
+                    "mean": 2.0,
+                    "q05": 2.0,
+                    "median": 2.0,
+                    "q95": 2.0
                   },
                   "accepted": {
                     "n": 0,

@@ -1,58 +1,32 @@
 {
-  "captured_at": "2026-10-13T20:44:42.478854+08:00",
+  "captured_at": "2026-10-13T23:09:56.677760+08:00",
   "counts": {
-    "complete": 25,
-    "paused": 2,
-    "queued": 7,
-    "running": 3,
-    "cancelled": 20,
+    "complete": 27,
+    "cancelled": 30,
     "failed": 1
   },
   "jobs": [
     {
-      "job": "soccer_A1_soccer_flash_native",
-      "state": "paused",
-      "gpu": 1,
-      "epoch": 59,
-      "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
-    },
-    {
-      "job": "soccer_C1_soccer_moment_with_sa",
-      "state": "paused",
-      "gpu": 0,
-      "epoch": 22,
-      "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
-    },
-    {
       "job": "clean_v3_C1_v3_flash_native",
-      "state": "running",
+      "state": "complete",
       "gpu": 1,
-      "epoch": 56,
+      "epoch": null,
       "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
-    },
-    {
-      "job": "clean_v3_C2_v3_qd_with_sa",
-      "state": "running",
-      "gpu": 0,
-      "epoch": 83,
-      "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
+      "best_epoch": 17,
+      "early_stop": null,
+      "selection_metric": "Seen validation AUROC",
+      "best_seen_auroc": 0.8085322659056615
     },
     {
       "job": "clean_v3_C2_v3_flash_native",
-      "state": "running",
+      "state": "cancelled",
       "gpu": 0,
-      "epoch": 31,
+      "epoch": 78,
       "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
+      "best_epoch": 38,
+      "early_stop": null,
+      "selection_metric": "Seen validation AUROC",
+      "best_seen_auroc": 0.7199549419268415
     },
     {
       "job": "publication_charades_cg_v2_C3_CG_moment_with_sa",

@@ -30,13 +30,13 @@ Training measurements only; active = valid span and foreground probability >0.5.
 | soccer_C1_soccer_flash_native | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | clean_v3_C1_v3_moment_with_sa | 100 / 68100 | 0.8289 | 0.0240 | 0.9880 | 0.1682 | 1.3074 / 0.3962 | N/A / N/A |
 | clean_v3_C1_v3_qd_with_sa | 100 / 68100 | 0.7805 | 0.0313 | 0.9913 | 0.1935 | 1.7350 / 0.4528 | N/A / N/A |
-| clean_v3_C1_v3_flash_native | 55 / 74855 | N/A | N/A | 1.0000 | N/A | 1.0000 / N/A | N/A / N/A |
+| clean_v3_C1_v3_flash_native | 100 / 136100 | N/A | N/A | 1.0000 | N/A | 3.0000 / N/A | N/A / N/A |
 | soccer_C2_soccer_moment_with_sa | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | soccer_C2_soccer_qd_with_sa | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | soccer_C2_soccer_flash_native | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | clean_v3_C2_v3_moment_with_sa | 100 / 68400 | 0.8248 | 0.0237 | 0.9869 | 0.2025 | 1.3352 / 0.6094 | N/A / N/A |
-| clean_v3_C2_v3_qd_with_sa | 83 / 56450 | 0.7984 | 0.0291 | 0.9901 | 0.0948 | 1.5122 / 0.2500 | N/A / N/A |
-| clean_v3_C2_v3_flash_native | 31 / 42300 | N/A | N/A | 0.9744 | N/A | 1.6250 / N/A | N/A / N/A |
+| clean_v3_C2_v3_qd_with_sa | 100 / 68400 | 0.8168 | 0.0248 | 0.9951 | 0.0574 | 1.3324 / 0.1406 | N/A / N/A |
+| clean_v3_C2_v3_flash_native | 78 / 106704 | N/A | N/A | 1.0000 | N/A | 2.3333 / N/A | N/A / N/A |
 | soccer_A1_soccer_moment_no_sa | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | soccer_A1_soccer_qd_no_sa | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |
 | clean_v3_A1_v3_moment_no_sa | - / - | N/A | N/A | N/A | N/A | N/A / N/A | N/A / N/A |

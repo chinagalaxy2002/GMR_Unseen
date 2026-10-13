@@ -1,6 +1,6 @@
 {
-  "state": "running",
-  "controller_pid": 2355632,
+  "state": "partial_failed",
+  "controller_pid": 2461203,
   "jobs": {
     "soccer_A1_soccer_moment_with_sa": {
       "state": "complete",
@@ -81,7 +81,7 @@
       "returncode": 0
     },
     "soccer_A1_soccer_flash_native": {
-      "state": "paused",
+      "state": "cancelled",
       "gpu": 1,
       "pid": 2316383,
       "argv": [
@@ -111,7 +111,10 @@
         2338685,
         2316383
       ],
-      "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained"
+      "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "paused"
     },
     "clean_v3_A1_v3_moment_with_sa": {
       "state": "complete",
@@ -402,7 +405,10 @@
       "returncode": 0
     },
     "soccer_A2_soccer_flash_native": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "clean_v3_A2_v3_moment_with_sa": {
       "state": "complete",
@@ -591,7 +597,10 @@
       "returncode": 0
     },
     "soccer_A3_soccer_flash_native": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "clean_v3_A3_v3_moment_with_sa": {
       "state": "complete",
@@ -705,7 +714,7 @@
       "exit_verification": "adopted PID exited; runner STATUS determines outcome"
     },
     "soccer_C1_soccer_moment_with_sa": {
-      "state": "paused",
+      "state": "cancelled",
       "gpu": 0,
       "pid": 2332680,
       "argv": [
@@ -747,13 +756,22 @@
         2339107,
         2332680
       ],
-      "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained"
+      "pause_reason": "User requested CG/clean_v3 first and Soccer last; process memory retained",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "paused"
     },
     "soccer_C1_soccer_qd_with_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "soccer_C1_soccer_flash_native": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "clean_v3_C1_v3_moment_with_sa": {
       "state": "complete",
@@ -838,7 +856,7 @@
       "returncode": 0
     },
     "clean_v3_C1_v3_flash_native": {
-      "state": "running",
+      "state": "complete",
       "gpu": 1,
       "pid": 2423317,
       "argv": [
@@ -862,16 +880,27 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791885490.9836218
+      "launched_at": 1791885490.9836218,
+      "finished": 1791903261.30549,
+      "exit_verification": "adopted PID exited; runner STATUS determines outcome"
     },
     "soccer_C2_soccer_moment_with_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "soccer_C2_soccer_qd_with_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "soccer_C2_soccer_flash_native": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791901202.8596933,
+      "cancel_reason": "User cancelled all remaining Soccer training",
+      "previous_state": "queued"
     },
     "clean_v3_C2_v3_moment_with_sa": {
       "state": "complete",
@@ -915,7 +944,7 @@
       "returncode": 0
     },
     "clean_v3_C2_v3_qd_with_sa": {
-      "state": "running",
+      "state": "complete",
       "gpu": 0,
       "pid": 2429020,
       "argv": [
@@ -951,10 +980,12 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791888122.1382139
+      "launched_at": 1791888122.1382139,
+      "finished": 1791897042.9922261,
+      "returncode": 0
     },
     "clean_v3_C2_v3_flash_native": {
-      "state": "running",
+      "state": "cancelled",
       "gpu": 0,
       "pid": 2432780,
       "argv": [
@@ -978,7 +1009,11 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791889708.6124732
+      "launched_at": 1791889708.6124732,
+      "previous_state": "running",
+      "cancelled_at": 1791903931.9385421,
+      "cancel_reason": "User stopped the final training task",
+      "stopped_epoch": 78
     },
     "soccer_A1_soccer_moment_no_sa": {
       "state": "cancelled",
@@ -1296,6 +1331,14 @@
       "publication_clean_v3_A1_v3_qd_with_sa",
       "publication_clean_v3_A2_v3_flash_native"
     ],
-    "publication_reference": "2677cfecddd0101b187d0ab413f2b51fe09ea201"
-  }
+    "publication_reference": "2677cfecddd0101b187d0ab413f2b51fe09ea201",
+    "cancelled_datasets": [
+      "soccer"
+    ],
+    "soccer_policy": "All unfinished Soccer jobs cancelled by user; completed results retained",
+    "soccer_cancelled_at": 1791901202.8596933
+  },
+  "updated": 1791903931.9388866,
+  "finished": 1791903931.9388864,
+  "controller_stopped_by_user": true
 }
