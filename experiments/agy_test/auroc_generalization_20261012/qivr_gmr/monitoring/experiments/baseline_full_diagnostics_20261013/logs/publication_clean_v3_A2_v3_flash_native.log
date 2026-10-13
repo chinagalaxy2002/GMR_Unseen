@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py", line 158, in <module>
+    run(args.config.resolve(),args.gpu)
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py", line 129, in run
+    run_logged(cmd, source, env, output/'inference.log', output, 'frozen_test_inference')
+  File "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py", line 42, in run_logged
+    raise RuntimeError(f'{phase} failed with exit {code}; retained log: {log}')
+RuntimeError: frozen_test_inference failed with exit 1; retained log: /home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/publication_clean_v3_A2_v3_flash_native/inference.log

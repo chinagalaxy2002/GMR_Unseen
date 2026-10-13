@@ -635,7 +635,7 @@
       "exit_verification": "adopted PID exited; runner STATUS determines outcome"
     },
     "clean_v3_A3_v3_qd_with_sa": {
-      "state": "running",
+      "state": "complete",
       "gpu": 0,
       "pid": 2395093,
       "argv": [
@@ -671,10 +671,12 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791879477.7414067
+      "launched_at": 1791879477.7414067,
+      "finished": 1791888122.0743744,
+      "returncode": 0
     },
     "clean_v3_A3_v3_flash_native": {
-      "state": "running",
+      "state": "complete",
       "gpu": 1,
       "pid": 2339297,
       "argv": [
@@ -698,7 +700,9 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791866921.2601917
+      "launched_at": 1791866921.2601917,
+      "finished": 1791885490.9152734,
+      "exit_verification": "adopted PID exited; runner STATUS determines outcome"
     },
     "soccer_C1_soccer_moment_with_sa": {
       "state": "paused",
@@ -793,10 +797,72 @@
       "returncode": 0
     },
     "clean_v3_C1_v3_qd_with_sa": {
-      "state": "queued"
+      "state": "complete",
+      "gpu": 1,
+      "pid": 2420251,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+        "--output",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_C1_v3_qd_with_sa",
+        "--dataset",
+        "clean_v3",
+        "--split",
+        "C1_v3",
+        "--backbone",
+        "qd",
+        "--variant",
+        "with_sa",
+        "--gpu",
+        "1",
+        "--epochs",
+        "100",
+        "--initialization",
+        "fresh",
+        "--model-kind",
+        "baseline",
+        "--lr-factor",
+        "1",
+        "--seed",
+        "3407",
+        "--workers",
+        "2",
+        "--decoder-every",
+        "50",
+        "--gradient-every",
+        "50"
+      ],
+      "launched_at": 1791884142.6014192,
+      "finished": 1791893209.9075844,
+      "returncode": 0
     },
     "clean_v3_C1_v3_flash_native": {
-      "state": "queued"
+      "state": "running",
+      "gpu": 1,
+      "pid": 2423317,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/univtg/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_flash_monitor_experiment.py",
+        "--output",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_C1_v3_flash_native",
+        "--dataset",
+        "clean_v3",
+        "--split",
+        "C1_v3",
+        "--gpu",
+        "1",
+        "--epochs",
+        "100",
+        "--seed",
+        "3407",
+        "--workers",
+        "2",
+        "--gradient-every",
+        "50"
+      ],
+      "launched_at": 1791885490.9836218
     },
     "soccer_C2_soccer_moment_with_sa": {
       "state": "queued"
@@ -808,7 +874,7 @@
       "state": "queued"
     },
     "clean_v3_C2_v3_moment_with_sa": {
-      "state": "running",
+      "state": "complete",
       "gpu": 0,
       "pid": 2415491,
       "argv": [
@@ -844,13 +910,75 @@
         "--gradient-every",
         "50"
       ],
-      "launched_at": 1791882763.716852
+      "launched_at": 1791882763.716852,
+      "finished": 1791889708.543683,
+      "returncode": 0
     },
     "clean_v3_C2_v3_qd_with_sa": {
-      "state": "queued"
+      "state": "running",
+      "gpu": 0,
+      "pid": 2429020,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+        "--output",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_C2_v3_qd_with_sa",
+        "--dataset",
+        "clean_v3",
+        "--split",
+        "C2_v3",
+        "--backbone",
+        "qd",
+        "--variant",
+        "with_sa",
+        "--gpu",
+        "0",
+        "--epochs",
+        "100",
+        "--initialization",
+        "fresh",
+        "--model-kind",
+        "baseline",
+        "--lr-factor",
+        "1",
+        "--seed",
+        "3407",
+        "--workers",
+        "2",
+        "--decoder-every",
+        "50",
+        "--gradient-every",
+        "50"
+      ],
+      "launched_at": 1791888122.1382139
     },
     "clean_v3_C2_v3_flash_native": {
-      "state": "queued"
+      "state": "running",
+      "gpu": 0,
+      "pid": 2432780,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/univtg/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_flash_monitor_experiment.py",
+        "--output",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_C2_v3_flash_native",
+        "--dataset",
+        "clean_v3",
+        "--split",
+        "C2_v3",
+        "--gpu",
+        "0",
+        "--epochs",
+        "100",
+        "--seed",
+        "3407",
+        "--workers",
+        "2",
+        "--gradient-every",
+        "50"
+      ],
+      "launched_at": 1791889708.6124732
     },
     "soccer_A1_soccer_moment_no_sa": {
       "state": "cancelled",
@@ -1068,7 +1196,7 @@
       "returncode": 0
     },
     "publication_clean_v3_A2_v3_flash_native": {
-      "state": "running",
+      "state": "failed",
       "job_kind": "publication_reproduction",
       "gpu": 1,
       "pid": 2368580,
@@ -1081,7 +1209,9 @@
         "--gpu",
         "1"
       ],
-      "launched_at": 1791874893.001489
+      "launched_at": 1791874893.001489,
+      "finished": 1791884142.5385027,
+      "returncode": 1
     }
   },
   "started": 1791821311.9711854,

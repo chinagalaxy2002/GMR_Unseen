@@ -1,11 +1,12 @@
 {
-  "captured_at": "2026-10-13T17:26:46.360996+08:00",
+  "captured_at": "2026-10-13T20:44:42.478854+08:00",
   "counts": {
-    "complete": 21,
+    "complete": 25,
     "paused": 2,
-    "queued": 11,
-    "running": 4,
-    "cancelled": 20
+    "queued": 7,
+    "running": 3,
+    "cancelled": 20,
+    "failed": 1
   },
   "jobs": [
     {
@@ -13,24 +14,6 @@
       "state": "paused",
       "gpu": 1,
       "epoch": 59,
-      "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
-    },
-    {
-      "job": "clean_v3_A3_v3_qd_with_sa",
-      "state": "running",
-      "gpu": 0,
-      "epoch": 48,
-      "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
-    },
-    {
-      "job": "clean_v3_A3_v3_flash_native",
-      "state": "running",
-      "gpu": 1,
-      "epoch": 91,
       "epochs": 100,
       "best_epoch": null,
       "early_stop": null
@@ -45,10 +28,28 @@
       "early_stop": null
     },
     {
-      "job": "clean_v3_C2_v3_moment_with_sa",
+      "job": "clean_v3_C1_v3_flash_native",
+      "state": "running",
+      "gpu": 1,
+      "epoch": 56,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "clean_v3_C2_v3_qd_with_sa",
       "state": "running",
       "gpu": 0,
-      "epoch": 12,
+      "epoch": 83,
+      "epochs": 100,
+      "best_epoch": null,
+      "early_stop": null
+    },
+    {
+      "job": "clean_v3_C2_v3_flash_native",
+      "state": "running",
+      "gpu": 0,
+      "epoch": 31,
       "epochs": 100,
       "best_epoch": null,
       "early_stop": null
@@ -60,7 +61,8 @@
       "epoch": 40,
       "epochs": 40,
       "best_epoch": 14,
-      "early_stop": true
+      "early_stop": true,
+      "final_training_epoch": 40
     },
     {
       "job": "publication_clean_v3_A1_v3_qd_with_sa",
@@ -69,16 +71,19 @@
       "epoch": 100,
       "epochs": 100,
       "best_epoch": 98,
-      "early_stop": false
+      "early_stop": false,
+      "final_training_epoch": 100
     },
     {
       "job": "publication_clean_v3_A2_v3_flash_native",
-      "state": "running",
+      "state": "failed",
       "gpu": 1,
-      "epoch": 49,
+      "epoch": 51,
       "epochs": 100,
-      "best_epoch": null,
-      "early_stop": null
+      "best_epoch": 24,
+      "early_stop": true,
+      "final_training_epoch": 51,
+      "error": "RuntimeError('frozen_test_inference failed with exit 1; retained log: /home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/publication_clean_v3_A2_v3_flash_native/inference.log')"
     }
   ],
   "upload_scope": "Only training text logs, epoch summaries, final metric tables, selection/early-stop records, calibration/configuration and status. No new raw data archive or release.",

@@ -1,0 +1,38 @@
+{
+  "dataset": "clean_v3",
+  "split": "C1_v3",
+  "backbone": "flash",
+  "variant": "native",
+  "seed": 3407,
+  "epochs": 100,
+  "initialization": "fresh",
+  "model_kind": "baseline",
+  "qivr_head": false,
+  "native_existence_head": true,
+  "all_parameters_trainable": true,
+  "selection": "maximum Seen validation AUROC; earliest tie; diagnostic reproduction protocol",
+  "original_selection": "historical Flash checkpoint used Seen localization; this queue explicitly uses Seen AUROC",
+  "optimizer": "native AdamW + StepLR",
+  "batch_size": 8,
+  "learning_rate": 3e-05,
+  "video_feature_order": [
+    "slowfast",
+    "clip"
+  ],
+  "score": "native six-decimal logit",
+  "scope": "fresh native FlashVTG baseline",
+  "train_counts": {
+    "S+": 10042,
+    "S-": 839
+  },
+  "release_sha256": {
+    "train": "dbf4079eb6cfa7eb9c768e717d9db31d7335fda6467734721995815eb6f106ab",
+    "val_seen": "e4ed3a7e90f8648cde6b6c742f2ba696bcce3f29b356cdd2b9836278703a8477",
+    "test": "9b804674c840804cde2843b815b75a885c78cef5159a9b8db71ac7310ae293e9"
+  },
+  "source_sha256": {
+    "run_flash_monitor_experiment.py": "1d2f50162f454b0843cedac4084ef81d75e4715a9df77089c8d842b2c1e395d5",
+    "src/auroc_mechanism_monitor.py": "b7586f92a110fe1e8c72b1c6e92d88144b386559704f27c54c9b4c2b768390e8",
+    "src/models/flash_vtg_gmr/model.py": "145c2178b108da7ad64d3bca7b0b85497f99c9f80fbf16a790555b298808eb29"
+  }
+}
