@@ -1,85 +1,128 @@
-# GMR Baseline AUROC 退化诊断
+# GMR Baseline Generalization Diagnostics
 
-最新日志同步：**2026-10-13T20:44:42.478854+08:00**。仅更新训练文本日志、逐轮汇总、最终指标表、选模与早停记录、必要配置和进度；本次新增上传检查点 **0**、原始数组 **0**、数据归档 **0**。
+This branch documents the behavior of **Moment-DETR-GMR, QD-DETR-GMR, and FlashVTG-GMR** on seen and unseen queries. It contains diagnostic code, training text logs, epoch summaries, evaluation tables, selection and early-stopping traces, configuration, and status snapshots.
 
-[诊断日志九方面](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/DIAGNOSTIC_LOG_SCOPE.md) · [当前训练状态](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_TRAINING_STATUS.md) · [本次文件清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_LOG_UPLOAD_MANIFEST.json)。队列：完成 25，运行 3，暂停 2，排队 7，失败 1，取消 20。
+<!-- CURRENT_SNAPSHOT_START -->
+Latest uploaded log snapshot: **2026-10-13 20:44:42, Asia/Shanghai**. Queue: **25 complete, 3 running, 2 paused, 7 queued, 1 failed, and 20 cancelled**. These counts include the original diagnostic jobs and three additional publication-protocol reproductions.
 
+[Training status](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_TRAINING_STATUS.md) · [Machine-readable status](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_TRAINING_STATUS.json) · [Upload manifest](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_LOG_UPLOAD_MANIFEST.json)
+<!-- CURRENT_SNAPSHOT_END -->
 
-协议核查更新：**2026-10-13T14:01:42.403482+08:00**。剩余 20 项 no-SA 已取消，已完成 2 项 no-SA 产物保留。仅对 **CG Moment、Clean A1 QD、Clean A2 Flash** 新增发表原生协议重跑，CG Moment 与 Clean A1 QD 已完成，Clean A2 Flash 已训练结束，测试推理失败（冻结目录缺少 opt.json）；其他已完成设置不重训。每卡最多 2 个运行任务，CG/clean_v3 优先，Soccer 最后运行。
+## Diagnostic coverage
 
-发表 Moment/QD 按 Seen MR-full-mAP、Flash 按 Seen R1@0.5/R1@0.7 均值选模。`max_es_cnt=26`：Moment 连续 26 轮未改善停止（`>=26`），QD/Flash 连续 27 轮停止（`>26`）；严格改善重置计数，最多 100 epochs。旧诊断 AUROC 选模结果保持原标签，新复现结果单独保存。
+The full mechanism diagnostics below belong to the original baseline diagnostic runs. The three additional publication-protocol reproductions retain native training and validation logs, checkpoint-selection traces, early-stopping records, and final evaluation outputs separately.
 
-[协议、轮次和数值核查](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PROTOCOL_AUDIT.md) · [原生入口检查](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/NATIVE_ENTRYPOINT_CHECKS.json) · [发表预测精确回放](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PUBLISHED_PREDICTION_PARITY.json) · [完整流程回放](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PIPELINE_REPLAY_CHECKS.json) · [重跑状态](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/REPRODUCTION_STATUS.json)
+| # | Diagnostic area | Recorded measurements | Applicable models |
+|---|---|---|---|
+| 1 | **Training progress and experimental protocol** | Epoch, batch, global step, learning rate, elapsed time, seed, configuration and code hashes, selected checkpoint metric, best epoch, consecutive epochs without improvement, early stopping, process state, and errors. | All three backbones |
+| 2 | **Existence classification and score distributions** | Positive/negative raw logits, sigmoid probabilities, native benchmark scores, score saturation, rounding-induced ties, misordered positive-negative pairs, and extreme reversed pairs. | All three backbones |
+| 3 | **Temporal localization and candidate responses** | Top-1 localization IoU, best-candidate/oracle coverage, activated candidate counts, correct responses on positive examples, spurious responses on negative examples, and joint localization/existence outcomes. | All three backbones |
+| 4 | **Decoder-slot specialization and assignment stability** | Actual Hungarian ground-truth matches per query, assignment changes, training assignment-flip rates, fixed-probe flip rates, and slot utilization. Training matches come from the native criterion. | Moment and QD |
+| 5 | **Internal representations and attention** | Layer-wise query cosine similarity, distance, rank, candidate overlap, native self-attention and cross-attention; temporal representations, multiscale pyramid features, candidate boundaries, cross-attention, and native foreground/regression targets for Flash. | Model-specific instrumentation |
+| 6 | **Loss contributions and gradient interactions** | Localization, foreground-classification, and existence losses; S+/S− loss contributions; task-gradient norms, cosine similarities, and conflicts; gradient norms before clipping, clipping coefficients, and learning rates. | All three backbones |
+| 7 | **Pooling and existence-head contributions** | Which slots or temporal units contribute to pooling, contribution shares from correct/matched slots, changes in logits and probabilities after removing one unit, and existence-head ReLU activation rates. | All three backbones, with different pooling units |
+| 8 | **Parameter updates and stratified behavior** | Actual parameter changes per module and epoch; positive-negative ranking within the same video; statistics grouped by video length, ground-truth count, and truncation. | All three backbones |
+| 9 | **Seen/unseen generalization and gap decomposition** | Seen and Unseen AUROC, actual rejection F1, end-to-end G-mIoU@1, signed Seen−Unseen gaps, overall rejection F1/rate/G-mIoU, S+/U+ false-rejection rates, subset counts, video-cluster bootstrap intervals, and the 2×2 positive-negative AUROC matrix. | Completed frozen evaluations |
 
-以上回放使用历史已发表产物。实际新训练：CG Moment 完成 40 轮、最佳第 14 轮、触发早停；Clean A1 QD 完成 100 轮、最佳第 98 轮；Clean A2 Flash 已训练结束，测试推理失败（冻结目录缺少 opt.json）。
+The 2×2 AUROC matrix evaluates **S+ versus S−, U+ versus S−, S+ versus U−, and U+ versus U−**. Its symmetric gap decomposition separates changes associated with positive and negative score distributions.
 
+### Recording stages and frequency
 
-当前运行：baseline 诊断（不含 QIVR）；每卡最多 2 个运行任务，CG/clean_v3 优先，Soccer 最后运行。暂停的 Soccer 保留原进程状态。
-
-
-最新已完成任务更新：**2026-10-13T12:49:45.586159+08:00**，已完成 **14/55** 项。新增完成：`charades_cg_v2_C3_CG_qd_with_sa`, `clean_v3_A2_v3_flash_native`, `soccer_A3_soccer_moment_with_sa`。[完整原始记录](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-124945) · [更新清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/updates/20261013-124945/MANIFEST.json)。
-
-
-最新已完成任务更新：**2026-10-13T10:15:33.714689+08:00**，已完成 **11/55** 项。新增完成：`clean_v3_A1_v3_moment_with_sa`。[完整原始记录](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-completed-20261013-101533) · [更新清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/updates/20261013-101533/MANIFEST.json)。
-
-
-本分支保存 Moment-DETR-GMR、QD-DETR-GMR 和 FlashVTG-GMR 的诊断脚本、实验协议及训练记录。
-
-最新训练记录快照：**2026-10-13 08:57:24（Asia/Shanghai）**。小型文本日志、配置、逐 epoch 统计和冻结评估结果保留原始目录；完整 JSONL、NPZ 与 bootstrap 数组见 [原始记录归档](https://github.com/chinagalaxy2002/GMR_Unseen/releases/tag/diagnostics-baseline-auroc-records-20261013-085724)。不包含 checkpoint、模型缓存、特征、视频、凭据或重复源码副本。
-
-[下载与恢复说明](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/RECORDS_README.md) · [原始路径与 SHA256 清单](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/RECORDS_MANIFEST.json) · [完整统计表](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/analysis/numeric_statistics_20261013_084613/STATISTICS.md)
-
-`DIAGNOSTIC_SNAPSHOT.json` 记录此前 00:34 的轻量快照；本次上传以 `RECORDS_MANIFEST.json` 为准。训练队列持续运行，上传内容为时间快照。各 split/backbone 分别保存 Seen/Unseen AUROC、Rej-F1、G-mIoU 与 bootstrap CI；已完成五划分宏平均数量为 0。
-
-## 实验范围
-
-| 数据集 | 划分 | 原生 baseline | DETR no-SA 配对 |
-|---|---|---:|---:|
-| clean_v3 | A1/A2/A3/C1/C2_v3 | 15 | 10 |
-| Charades-CG v2 | C3_CG | 3 | 2 |
-| Soccer | A1/A2/A3/C1/C2_soccer | 15 | 10 |
-| 合计 | 11 个划分、3 个骨干 | **33** | **22** |
-
-每项 fresh initialization、seed 3407、100 epochs；两张 GPU 每卡最多两个训练进程，优先跨数据集／骨干。正式队列不含 QIVR。所有模型参数参与训练，输入 CLIP／SlowFast／文本为预提取特征。
-
-## 研究问题
-
-- 正样本存在分数下移，还是负样本分数上移？原始 logit、概率、舍入和错排分别怎样变化？
-- 正确片段是否被定位？top-1、oracle coverage 与存在判别是否脱节？
-- DETR query 获得多少真实 GT 匹配，归属是否频繁变化，是否出现重复或相似表征？
-- 池化由哪些槽位／时序单元贡献，逐单元移除后存在分数怎样变化？
-- 定位、foreground classification 与 existence 的梯度是否冲突？
-- 去 decoder self-attention 后增加的是正确覆盖，还是负样本伪响应？
-
-Flash 的定位来自多尺度时序候选，存在头使用查询表征和池化视频表征；它没有 DETR decoder query 或 Hungarian 槽位。跨骨干分析必须保留这一差异。梯度冲突、LOO 与 Gap 分解为诊断证据，不能单独证明因果。
-
-## 协议与报告
-
-仅使用 S+/S− 训练与 Seen validation 选择／校准。选择 Seen validation AUROC 最大的 checkpoint，并列取最早；阈值在 Seen validation 上最大化 BA。冻结 checkpoint／阈值后才评估 Unseen。
-
-**与历史结果的差异：**历史 baseline 按 Seen localization 选择 checkpoint，本轮按 Seen AUROC 选择，固定跑满 100 epochs。因此历史对照差异不能称作新算法收益，也不能称作完全相同选择协议的复现。
-
-最终每个 split／backbone 分别报告 S/U AUROC、实际 Rej-F1、G-mIoU@1 及 signed Gap，overall Rej-F1／RR／G-mIoU、S+/U+ FRR、样本计数及 2,000 次 video-cluster bootstrap CI。SA 对照给 paired CI；Rej-F1／G-mIoU 的 Gap 依赖子集类比例。五划分 macro 仅在五个划分全部完成后成立。
-
-昂贵梯度／逐层／LOO 诊断采用首 batch＋每 50 steps；固定 Seen probe 和全量 Seen validation 每 epoch 记录。完整原始记录保存在同仓库 Release 附件，分支内保存可直接浏览的文本记录与校验清单。
-
-## 文档和脚本
-
-| 入口 | 内容 |
+| Stage | Frequency and records |
 |---|---|
-| [交接文档](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/HANDOFF_20261013_BASELINE_FULL_DIAGNOSTICS.md) | 进程、协议、监控、验证与后续工作 |
-| [监控说明](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FULL_BASELINE_MONITORING.md) | 字段、频率与解释限制 |
-| [队列配置](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/SUITE.json) | 55 项配置 |
-| [训练状态快照](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/STATUS.json) | 上传时的队列状态，不是在线状态 |
-| [Seen 汇总](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/FULL_MONITORING.md) | 最近完整 Seen 验证摘要 |
-| [调度脚本](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/decoder_suite.py) | 两卡、每卡两个进程 |
-| [DETR runner](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py) | Moment/QD with/no-SA |
-| [Flash runner](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_flash_monitor_experiment.py) | Flash 原生时序诊断 |
-| [机制监控](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/src/auroc_mechanism_monitor.py) | 分数／LOO／梯度／损失拆分 |
-| [槽位监控](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/src/decoder_slot_monitor.py) | DETR query 与 attention |
-| [DETR 验证](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FULL_MONITOR_TEST_RESULTS.json) | 四种组合逐位输出／梯度／RNG 一致、原生损失精确拆分 |
-| [Flash 验证](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FLASH_FULL_MONITOR_TEST_RESULTS.json) | 同类检查通过；16 条历史 Seen logit 差异≤2e-6、set-IoU 一致 |
+| Training | Response summaries for each batch; native DETR matching and loss decomposition at each step. Expensive representation, attention, gradient, and leave-one-unit-out diagnostics use the first batch and every 50 steps. Flash loss attribution follows the configured sampling schedule. |
+| Fixed Seen probe | Evaluation-mode diagnostics every epoch, including assignment stability, representations, pooling contributions, and score behavior. |
+| Full Seen validation | Every epoch: existence scores, localization/candidate behavior, pooling diagnostics, stratified results, and checkpoint-selection statistics. |
+| Frozen test evaluation | After the checkpoint and Seen-validation threshold are fixed: Seen/Unseen metrics, joint outcomes, AUROC decomposition, and 2,000 video-cluster bootstrap draws. |
+| Parameter updates | Module-level update measurements every epoch. |
 
-脚本所需的模型／数据集源码和注册表随分支提供。特征、历史 checkpoint 和数据输入需在本机准备，不能只 clone 后直接运行训练。DETR 的本机环境为 gmr（Torch 2.6.0+cu124），Flash 为 univtg（Torch 2.0.1+cu118）。Flash 使用 SlowFast→CLIP 特征顺序和原生 logit score；DETR 为 CLIP→SlowFast 和原生概率 score，BCE 与概率另存。
+### Backbone-specific interpretation
 
-服务器当前队列继续运行，不要重复 launch。文档中的原始数据目录和 PID 是服务器上下文；GitHub 仅提供归档快照。本次上传的逐文件范围见 RECORDS_MANIFEST.json。
+**Moment and QD** have decoder queries and Hungarian assignments. Their diagnostics describe query specialization, matching, overlap, and query-level pooling contributions.
+
+**Flash** uses temporal representations and multiscale temporal candidates. It has no DETR decoder slots or Hungarian assignments. Flash leave-one-unit-out measurements remove a pooled video temporal unit while keeping the native query representation fixed; the removed unit is not a multiscale candidate.
+
+Flash uses its native **SlowFast → CLIP** feature order and six-decimal logit scores. Moment/QD use **CLIP → SlowFast** and four-decimal probability scores. Raw logits, sigmoid probabilities, BCE, and native benchmark scores are recorded separately.
+
+Negative examples have no localization ground truth; their ground-truth coverage and matched IoU are **N/A**. Training assignment changes include dropout and sampling effects and are compared with fixed evaluation probes. Gradient conflicts, local removal interventions, and gap decompositions are descriptive diagnostic measurements rather than standalone causal estimates. The preset probability/foreground threshold of 0.5 and IoU threshold of 0.5 are used for descriptive statistics.
+
+## Experiment scope and scheduling
+
+| Dataset | Splits | Original baseline settings | Original DETR no-SA settings |
+|---|---|---:|---:|
+| Clean v3 | A1, A2, A3, C1, C2 | 15 | 10 |
+| Charades-CG v2 | C3_CG | 3 | 2 |
+| Soccer | A1, A2, A3, C1, C2 | 15 | 10 |
+| Total | 11 splits | **33** | **22** |
+
+The original suite has **55 settings**. Its two completed CG no-SA runs are retained; the remaining **20 no-SA runs are cancelled**. Three publication-protocol reproductions were added, giving **58 registered jobs** in total. QIVR is not part of this queue.
+
+Original diagnostic runs use fresh initialization, seed **3407**, **100 epochs**, and train all model parameters with pre-extracted CLIP, SlowFast, and text features. Scheduling allows at most **two active training tasks per GPU**, prioritizes **CG and Clean v3**, and runs **Soccer last**. Paused Soccer processes retain their training state.
+
+## Checkpoint selection and early stopping
+
+Training uses **S+/S− only**. Checkpoints, thresholds, and hyperparameters are selected using **Seen validation only**. Test evaluation follows checkpoint and threshold freezing.
+
+| Protocol | Checkpoint selection | Training termination |
+|---|---|---|
+| Original full diagnostics | Highest Seen-validation AUROC; earliest epoch on a tie | Fixed 100 epochs |
+| Publication reproduction: Moment | Highest Seen-validation MR-full-mAP | Stop after **26** consecutive non-improving epochs (`es_cnt >= 26`), capped at 100 epochs |
+| Publication reproduction: QD | Highest Seen-validation MR-full-mAP; native mIoU fallback for a non-numeric mAP | Stop after **27** consecutive non-improving epochs (`es_cnt > 26`), capped at 100 epochs |
+| Publication reproduction: Flash | Highest Seen-validation mean of R1@0.5 and R1@0.7 | Stop after **27** consecutive non-improving epochs (`es_cnt > 26`), capped at 100 epochs |
+
+Publication reproductions use `max_es_cnt=26`. Only a **strict improvement** resets the counter; ties count as non-improvements. Threshold calibration maximizes balanced accuracy on Seen validation. The original AUROC-selected runs and localization-selected reproductions retain separate labels and outputs.
+
+The publication reference is [publication/gmr-baseline-summary-20261011](https://github.com/chinagalaxy2002/GMR_Unseen/tree/publication/gmr-baseline-summary-20261011), frozen at commit `2677cfecddd0101b187d0ab413f2b51fe09ea201`.
+
+### Targeted reproduction status at the uploaded snapshot
+
+| Setting | Final training epoch | Best epoch | Early stop | Evaluation state |
+|---|---:|---:|---|---|
+| CG C3 Moment | 40 | 14 | Yes | Complete |
+| Clean A1 QD | 100 | 98 | No | Complete |
+| Clean A2 Flash | 51 | 24 | Yes | Test inference failed because `frozen_checkpoints/opt.json` was missing; final test metrics were not generated |
+
+Only these three settings were added for retraining. Other completed settings were retained. Historical prediction-parity and pipeline-replay checks use published artifacts and are identified separately from new training results.
+
+[Protocol audit](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PROTOCOL_AUDIT.md) · [Native entry-point checks](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/NATIVE_ENTRYPOINT_CHECKS.json) · [Published prediction parity](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PUBLISHED_PREDICTION_PARITY.json) · [Historical pipeline replay](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PIPELINE_REPLAY_CHECKS.json) · [Reproduction status](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/REPRODUCTION_STATUS.json)
+
+## Generalization reporting
+
+Each completed split and backbone is reported separately with:
+
+- **Seen and Unseen AUROC, actual Rej-F1, and end-to-end G-mIoU@1**.
+- **Performance Gap = Seen − Unseen**, in percentage points; negative gaps remain improvements.
+- Overall Rej-F1, overall rejection rate, S+ and U+ false-rejection rates, and overall G-mIoU@1.
+- Positive/negative counts for each subset and **95% video-cluster bootstrap confidence intervals**, using 2,000 draws.
+- For available same-split, same-backbone paired comparisons: **Unseen Net Gain, Seen Change, and Gap Reduction** for all three metrics, with paired bootstrap intervals. Standalone baselines have no baseline-relative change.
+
+Rej-F1 and G-mIoU depend on subset class proportions. Cross-protocol historical differences are labeled as protocol differences. Five-split macro averages are reported only after all five splits are complete; unfinished runs and partial summaries retain explicit status labels.
+
+## Repository records and upload policy
+
+Current synchronization includes **training text logs, epoch summaries, final metric tables, selection/early-stopping traces, calibration/configuration, and progress snapshots**. It adds **zero checkpoints, raw arrays, per-sample prediction files, bootstrap arrays, or raw-data archives**. Features, videos, caches, credentials, and duplicate source trees are excluded.
+
+Existing historical Release archives remain available through the [archive index](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/RECORDS_README.md). They describe earlier snapshots; they are not newly generated archives. Local raw diagnostic records and frozen predictions retain their original paths. The [current upload manifest](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/CURRENT_LOG_UPLOAD_MANIFEST.json) specifies the files copied in the latest log synchronization. `DIAGNOSTIC_SNAPSHOT.json` describes the earlier 00:34 snapshot.
+
+All published status files are **time-stamped snapshots**, not a live dashboard. Server paths and process IDs refer to the training machine.
+
+## Documentation, entry points, and validation
+
+| Resource | Purpose |
+|---|---|
+| [Diagnostic scope](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/DIAGNOSTIC_LOG_SCOPE.md) | Nine diagnostic areas and recording stages |
+| [Full monitoring specification](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FULL_BASELINE_MONITORING.md) | Detailed fields, sampling, and interpretation |
+| [Handoff](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/HANDOFF_20261013_BASELINE_FULL_DIAGNOSTICS.md) | Implementation, operational context, evidence, and recovery notes |
+| [Original suite](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/SUITE.json) | Frozen original 55-setting configuration |
+| [Queue snapshot](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/STATUS.json) | Uploaded job states |
+| [Seen monitoring summary](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/FULL_MONITORING.md) | Latest complete Seen-validation summaries in the uploaded records |
+| [Priority scheduler](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/priority_decoder_controller.py) | CG/Clean priority, Soccer pausing, and two tasks per GPU |
+| [DETR diagnostic runner](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py) | Moment/QD baseline diagnostics |
+| [Flash diagnostic runner](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_flash_monitor_experiment.py) | Native Flash temporal diagnostics |
+| [Publication reproduction runner](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_publication_reproduction.py) | Native-protocol training and frozen evaluation |
+| [AUROC mechanism monitor](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/src/auroc_mechanism_monitor.py) | Scores, pooling interventions, gradients, and loss decomposition |
+| [Decoder-slot monitor](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/src/decoder_slot_monitor.py) | Query representations, matching, and attention |
+| [DETR validation evidence](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FULL_MONITOR_TEST_RESULTS.json) | Four DETR combinations: matching outputs, gradients, RNG state, and exact native loss decomposition |
+| [Flash validation evidence](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/FLASH_FULL_MONITOR_TEST_RESULTS.json) | Instrumentation checks; 16 historical Seen examples with maximum logit difference ≤2e-6 and zero set-IoU difference |
+
+The branch includes model/dataset source and registry support for the diagnostic runners. Execution requires locally prepared annotations and features plus the documented environments. The server uses `gmr` with Torch **2.6.0+cu124** for DETR and `univtg` with Torch **2.0.1+cu118** for Flash. Existing background training continues on the server; the repository records its uploaded snapshots.
