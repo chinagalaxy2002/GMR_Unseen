@@ -1,6 +1,6 @@
 {
   "state": "running",
-  "controller_pid": 2339218,
+  "controller_pid": 2355632,
   "jobs": {
     "soccer_A1_soccer_moment_with_sa": {
       "state": "complete",
@@ -590,7 +590,43 @@
       "state": "queued"
     },
     "clean_v3_A3_v3_moment_with_sa": {
-      "state": "queued"
+      "state": "running",
+      "gpu": 1,
+      "pid": 2343962,
+      "argv": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-u",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/run_decoder_experiment.py",
+        "--output",
+        "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/clean_v3_A3_v3_moment_with_sa",
+        "--dataset",
+        "clean_v3",
+        "--split",
+        "A3_v3",
+        "--backbone",
+        "moment",
+        "--variant",
+        "with_sa",
+        "--gpu",
+        "1",
+        "--epochs",
+        "100",
+        "--initialization",
+        "fresh",
+        "--model-kind",
+        "baseline",
+        "--lr-factor",
+        "1",
+        "--seed",
+        "3407",
+        "--workers",
+        "2",
+        "--decoder-every",
+        "50",
+        "--gradient-every",
+        "50"
+      ],
+      "launched_at": 1791868035.8789384
     },
     "clean_v3_A3_v3_qd_with_sa": {
       "state": "queued"
@@ -701,16 +737,24 @@
       "state": "queued"
     },
     "soccer_A1_soccer_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148055,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_A1_soccer_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148086,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A1_v3_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148098,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A1_v3_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148105,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "charades_cg_v2_C3_CG_moment_no_sa": {
       "state": "complete",
@@ -752,7 +796,7 @@
       "returncode": 0
     },
     "charades_cg_v2_C3_CG_qd_no_sa": {
-      "state": "running",
+      "state": "complete",
       "gpu": 1,
       "pid": 2323156,
       "argv": [
@@ -787,60 +831,106 @@
         "50",
         "--gradient-every",
         "50"
-      ]
+      ],
+      "finished": 1791868035.8132842,
+      "exit_verification": "adopted PID exited; runner STATUS determines outcome"
     },
     "soccer_A2_soccer_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148117,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_A2_soccer_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148122,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A2_v3_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148127,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A2_v3_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148134,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_A3_soccer_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148139,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_A3_soccer_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148146,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A3_v3_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148153,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_A3_v3_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148158,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_C1_soccer_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148162,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_C1_soccer_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.814817,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_C1_v3_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148174,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_C1_v3_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148181,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_C2_soccer_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148186,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "soccer_C2_soccer_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148193,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_C2_v3_moment_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148198,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
     },
     "clean_v3_C2_v3_qd_no_sa": {
-      "state": "queued"
+      "state": "cancelled",
+      "cancelled_at": 1791869370.8148205,
+      "cancel_reason": "User cancelled remaining no-SA experiments"
+    },
+    "publication_charades_cg_v2_C3_CG_moment_with_sa": {
+      "state": "queued",
+      "job_kind": "publication_reproduction"
+    },
+    "publication_clean_v3_A1_v3_qd_with_sa": {
+      "state": "queued",
+      "job_kind": "publication_reproduction"
+    },
+    "publication_clean_v3_A2_v3_flash_native": {
+      "state": "queued",
+      "job_kind": "publication_reproduction"
     }
   },
   "started": 1791821311.9711854,
   "scheduling_policy": {
-    "updated_at": "2026-10-13T12:48:39.152425+08:00",
+    "updated_at": "2026-10-13T13:53:51.045186+08:00",
     "jobs_per_gpu": 2,
     "priority_datasets": [
       "charades_cg_v2",
@@ -887,8 +977,39 @@
     ],
     "previous_controller_pid": 2249194,
     "scheduler_source": "/home/guoxiangyu/paper/Openword/generalized-moment-retrieval/experiments/agy_test/auroc_generalization_20261012/qivr_gmr/priority_decoder_controller.py",
-    "scheduler_sha256": "60f4fb9d234775a0d318bd94b6acc5b6109843088a10d83745c724e775db6a4a",
+    "scheduler_sha256": "8372b22863a6cf5ebbee68c01da29a692dcc88f7d4394fad2294283675dc8d03",
     "training_runner_changes": 0,
-    "suite_configuration_changes": 0
+    "suite_configuration_changes": 0,
+    "cancelled_variants": [
+      "no_sa"
+    ],
+    "cancelled_jobs": [
+      "soccer_A1_soccer_moment_no_sa",
+      "soccer_A1_soccer_qd_no_sa",
+      "clean_v3_A1_v3_moment_no_sa",
+      "clean_v3_A1_v3_qd_no_sa",
+      "soccer_A2_soccer_moment_no_sa",
+      "soccer_A2_soccer_qd_no_sa",
+      "clean_v3_A2_v3_moment_no_sa",
+      "clean_v3_A2_v3_qd_no_sa",
+      "soccer_A3_soccer_moment_no_sa",
+      "soccer_A3_soccer_qd_no_sa",
+      "clean_v3_A3_v3_moment_no_sa",
+      "clean_v3_A3_v3_qd_no_sa",
+      "soccer_C1_soccer_moment_no_sa",
+      "soccer_C1_soccer_qd_no_sa",
+      "clean_v3_C1_v3_moment_no_sa",
+      "clean_v3_C1_v3_qd_no_sa",
+      "soccer_C2_soccer_moment_no_sa",
+      "soccer_C2_soccer_qd_no_sa",
+      "clean_v3_C2_v3_moment_no_sa",
+      "clean_v3_C2_v3_qd_no_sa"
+    ],
+    "publication_reproduction_priority": [
+      "publication_charades_cg_v2_C3_CG_moment_with_sa",
+      "publication_clean_v3_A1_v3_qd_with_sa",
+      "publication_clean_v3_A2_v3_flash_native"
+    ],
+    "publication_reference": "2677cfecddd0101b187d0ab413f2b51fe09ea201"
   }
 }

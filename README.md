@@ -1,5 +1,14 @@
 # GMR Baseline AUROC 退化诊断
 
+协议核查更新：**2026-10-13T14:01:42.403482+08:00**。剩余 20 项 no-SA 已取消，已完成 2 项 no-SA 产物保留。仅对 **CG Moment、Clean A1 QD、Clean A2 Flash** 新增发表原生协议重跑，三个任务目前排队优先运行；其他已完成设置不重训。每卡最多 2 个运行任务，CG/clean_v3 优先，Soccer 最后运行。
+
+发表 Moment/QD 按 Seen MR-full-mAP、Flash 按 Seen R1@0.5/R1@0.7 均值选模。`max_es_cnt=26`：Moment 连续 26 轮未改善停止（`>=26`），QD/Flash 连续 27 轮停止（`>26`）；严格改善重置计数，最多 100 epochs。旧诊断 AUROC 选模结果保持原标签，新复现结果单独保存。
+
+[协议、轮次和数值核查](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PROTOCOL_AUDIT.md) · [原生入口检查](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/NATIVE_ENTRYPOINT_CHECKS.json) · [发表预测精确回放](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PUBLISHED_PREDICTION_PARITY.json) · [完整流程回放](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/publication_protocol_reproduction_20261013_v2/PIPELINE_REPLAY_CHECKS.json) · [重跑状态](experiments/agy_test/auroc_generalization_20261012/qivr_gmr/monitoring/experiments/baseline_full_diagnostics_20261013/REPRODUCTION_STATUS.json)
+
+以上回放使用历史已发表产物，三项重跑尚未完成。
+
+
 当前运行：baseline 诊断（不含 QIVR）；每卡最多 2 个运行任务，CG/clean_v3 优先，Soccer 最后运行。暂停的 Soccer 保留原进程状态。
 
 

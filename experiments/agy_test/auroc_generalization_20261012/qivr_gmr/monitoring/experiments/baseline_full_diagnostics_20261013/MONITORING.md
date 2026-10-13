@@ -16,15 +16,15 @@ Seen-only training, single seed; initialization and duration are frozen in SUITE
 | soccer_A2_soccer_moment_with_sa | complete / - / - | 2282265 | [1095, 49, 911, 774, 801, 1118, 1077, 590, 790, 1082] | 19.80 | 10.58 | 2.0936529535071927e-05 (3006) |
 | soccer_A2_soccer_qd_with_sa | complete / - / - | 2269149 | [964, 861, 870, 960, 559, 652, 885, 947, 822, 767] | 12.33 | 65.38 | 0.0002202240880250034 (1530) |
 | soccer_A2_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A2_v3_moment_with_sa | training / 3 / 100 | 2339296 | [93, 155, 114, 70, 2678, 4927, 110, 1487, 83, 74] | 71.67 | 62.50 | 0.001098343027506635 (30) |
-| clean_v3_A2_v3_qd_with_sa | training / 23 / 450 | 2333334 | [9, 33, 7, 2286, 1, 0, 13, 19, 4498, 2925] | 5.41 | 3.12 | 0.0004207427885383689 (308) |
+| clean_v3_A2_v3_moment_with_sa | training / 64 / 650 | 2339296 | [3, 4, 225, 23, 1774, 5229, 7, 2385, 136, 5] | 10.11 | 1.56 | -0.0002149460816207543 (866) |
+| clean_v3_A2_v3_qd_with_sa | training / 71 / 650 | 2333334 | [6, 16, 10, 2369, 0, 0, 1, 13, 4478, 2898] | 2.35 | 1.56 | 0.0003407987001355965 (960) |
 | clean_v3_A2_v3_flash_native | complete / - / - | 2291891 | - | N/A | N/A | N/A (0) |
 | soccer_A3_soccer_moment_with_sa | complete / - / - | 2304521 | [1209, 1326, 1276, 674, 1238, 58, 917, 695, 936, 87] | 23.49 | 11.54 | 1.284673810977171e-05 (3022) |
 | soccer_A3_soccer_qd_with_sa | complete / - / - | 2282058 | [1058, 910, 882, 995, 459, 608, 921, 988, 856, 739] | 17.66 | 14.42 | -0.00012277826890129976 (1546) |
 | soccer_A3_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_moment_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A3_v3_moment_with_sa | training / 48 / 150 | 2343962 | [3006, 6, 9, 9, 2327, 4371, 5, 2, 4, 8] | 2.19 | 1.56 | -0.0001933378834767335 (637) |
 | clean_v3_A3_v3_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_flash_native | training / 1 / 750 | 2339297 | - | N/A | N/A | N/A (0) |
+| clean_v3_A3_v3_flash_native | training / 24 / 1050 | 2339297 | - | N/A | N/A | N/A (0) |
 | soccer_C1_soccer_moment_with_sa | training / 22 / 300 | 2332680 | [662, 526, 738, 569, 509, 733, 858, 655, 742, 574] | 64.13 | 80.61 | -0.0006703409915752167 (586) |
 | soccer_C1_soccer_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | soccer_C1_soccer_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
@@ -37,25 +37,25 @@ Seen-only training, single seed; initialization and duration are frozen in SUITE
 | clean_v3_C2_v3_moment_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | clean_v3_C2_v3_qd_with_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
 | clean_v3_C2_v3_flash_native | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_A1_soccer_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_A1_soccer_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A1_v3_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A1_v3_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_A1_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_A1_soccer_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A1_v3_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A1_v3_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
 | charades_cg_v2_C3_CG_moment_no_sa | complete / - / - | 2284662 | [22, 26, 1, 0, 3946, 7, 0, 2333, 0, 7] | 0.60 | 0.00 | 8.43630950412753e-05 (1586) |
-| charades_cg_v2_C3_CG_qd_no_sa | training / 91 / 150 | 2323156 | [1, 1399, 105, 2, 0, 111, 110, 1, 3422, 1191] | 5.64 | 3.12 | 0.00021099979996601427 (1432) |
-| soccer_A2_soccer_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_A2_soccer_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A2_v3_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A2_v3_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_A3_soccer_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_A3_soccer_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_A3_v3_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_C1_soccer_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_C1_soccer_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C1_v3_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C1_v3_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_C2_soccer_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| soccer_C2_soccer_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C2_v3_moment_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
-| clean_v3_C2_v3_qd_no_sa | queued / - / - | - | - | N/A | N/A | N/A (0) |
+| charades_cg_v2_C3_CG_qd_no_sa | complete / - / - | 2323156 | [7, 1404, 112, 4, 0, 94, 142, 24, 3252, 1303] | 7.30 | 15.62 | 0.0002435652667688556 (1586) |
+| soccer_A2_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_A2_soccer_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A2_v3_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A2_v3_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_A3_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_A3_soccer_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A3_v3_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_A3_v3_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_C1_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_C1_soccer_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C1_v3_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C1_v3_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_C2_soccer_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| soccer_C2_soccer_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C2_v3_moment_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |
+| clean_v3_C2_v3_qd_no_sa | cancelled / - / - | - | - | N/A | N/A | N/A (0) |

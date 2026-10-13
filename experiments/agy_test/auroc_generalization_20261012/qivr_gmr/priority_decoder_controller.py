@@ -29,6 +29,9 @@ def process_alive(pid):
 
 
 def command(job, output, gpu, epochs):
+    if job.get('runner') == 'publication_reproduction':
+        return [sys.executable, '-u', str(ROOT/'run_publication_reproduction.py'),
+                '--config', job['config'], '--gpu', str(gpu)]
     if job['backbone'] == 'flash':
         return ['/home/guoxiangyu/miniconda3/envs/univtg/bin/python', '-u',
                 str(ROOT/'run_flash_monitor_experiment.py'), '--output', str(output/job['tag']),
@@ -43,7 +46,11 @@ def command(job, output, gpu, epochs):
 
 def run(output):
     manifest = read_json(output/'SUITE.json')
+    manifest['jobs'] = manifest['jobs'] + read_json(output/'EXTRA_JOBS.json', {}).get('jobs', [])
     state = read_json(output/'STATUS.json')
+    for job in manifest['jobs']:
+        state['jobs'].setdefault(job['tag'], dict(state='queued', job_kind=job.get('runner','baseline_diagnostic')))
+    paths = {j['tag']:Path(j.get('output_dir', output/j['tag'])) for j in manifest['jobs']}
     policy = read_json(output/'SCHEDULING_POLICY.json')
     state.update(controller_pid=os.getpid(), state='running', scheduling_policy=policy)
     save_json(output/'STATUS.json', state)
@@ -56,7 +63,7 @@ def run(output):
             process = children.get(tag)
             code = process.poll() if process else None
             if (process and code is not None) or (not process and not process_alive(entry['pid'])):
-                result = read_json(output/tag/'STATUS.json', {})
+                result = read_json(paths[tag]/'STATUS.json', {})
                 success = result.get('state') == 'complete' and (code is None or code == 0)
                 entry.update(state='complete' if success else 'failed', finished=time.time())
                 if code is not None:
@@ -70,13 +77,27 @@ def run(output):
         for gpu in manifest['gpus']:
             running = [dict(**j, gpu=state['jobs'][j['tag']]['gpu']) for j in manifest['jobs']
                        if state['jobs'][j['tag']]['state'] == 'running']
-            external = sum(index == gpu and pid not in owned for index, pid in occupancy)
+            def belongs_to_suite(pid):
+                seen = set()
+                while pid > 1 and pid not in seen:
+                    if pid in owned:
+                        return True
+                    seen.add(pid)
+                    try:
+                        pid = int(Path(f'/proc/{pid}/stat').read_text().rsplit(')',1)[1].split()[1])
+                    except FileNotFoundError:
+                        return False
+                return False
+            external = sum(index == gpu and not belongs_to_suite(pid) for index, pid in occupancy)
             slots = policy['jobs_per_gpu'] - external - sum(j['gpu'] == gpu for j in running)
             while slots > 0:
                 choices = [j for j in manifest['jobs'] if j['tag'] in eligible
                            and (state['jobs'][j['tag']]['state'] != 'paused' or state['jobs'][j['tag']]['gpu'] == gpu)]
                 if not choices:
                     break
+                priority = [j for j in choices if j.get('runner') == 'publication_reproduction']
+                if priority:
+                    choices = priority
                 job = choices[choose_job(choices, running, gpu)]
                 tag = job['tag']
                 entry = state['jobs'][tag]
@@ -88,7 +109,7 @@ def run(output):
                             os.kill(pid, signal.SIGCONT)
                     entry.update(state='running', resumed_at=time.time())
                 else:
-                    if (output/tag).exists():
+                    if paths[tag].exists():
                         entry.update(state='failed', error='Fresh output directory already exists; preserved')
                         eligible.remove(tag)
                         continue
@@ -105,9 +126,13 @@ def run(output):
                 slots -= 1
         if time.time() - last_report >= 30:
             live_report(output)
+            save_json(output/'REPRODUCTION_STATUS.json', dict(jobs={j['tag']:dict(
+                **state['jobs'][j['tag']], output_dir=str(paths[j['tag']]),
+                run=read_json(paths[j['tag']]/'STATUS.json', {}))
+                for j in manifest['jobs'] if j.get('runner') == 'publication_reproduction'}))
             last_report = time.time()
-        if all(j['state'] in ('complete', 'failed') for j in state['jobs'].values()):
-            state.update(state='complete' if all(j['state']=='complete' for j in state['jobs'].values()) else 'partial_failed', finished=time.time())
+        if all(j['state'] in ('complete', 'failed', 'cancelled') for j in state['jobs'].values()):
+            state.update(state='complete' if all(j['state'] in ('complete', 'cancelled') for j in state['jobs'].values()) else 'partial_failed', finished=time.time())
             save_json(output/'STATUS.json', state)
             live_report(output)
             final_report(output)
