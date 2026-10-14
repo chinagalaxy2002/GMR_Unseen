@@ -1,0 +1,123 @@
+{
+  "captured_at": "2026-10-14T08:48:11.161001+08:00",
+  "backbones": [
+    "Moment-DETR-GMR",
+    "QD-DETR-GMR"
+  ],
+  "runs": [
+    {
+      "dataset": "charades_cg_v2",
+      "split": "C3_CG",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/charades_cg_v2/C3_CG/moment/seed_3407",
+      "selected_epoch": 14,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "charades_cg_v2",
+      "split": "C3_CG",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/charades_cg_v2/C3_CG/qd/seed_3407",
+      "selected_epoch": 17,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A1_v3",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A1_v3/moment/seed_3407",
+      "selected_epoch": 18,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A1_v3",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A1_v3/qd/seed_3407",
+      "selected_epoch": 14,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A2_v3",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A2_v3/moment/seed_3407",
+      "selected_epoch": 15,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A2_v3",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A2_v3/qd/seed_3407",
+      "selected_epoch": 12,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A3_v3",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A3_v3/moment/seed_3407",
+      "selected_epoch": 11,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "A3_v3",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/A3_v3/qd/seed_3407",
+      "selected_epoch": 26,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "C1_v3",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C1_v3/moment/seed_3407",
+      "selected_epoch": 5,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "C1_v3",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C1_v3/qd/seed_3407",
+      "selected_epoch": 19,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "C2_v3",
+      "backbone": "moment",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C2_v3/moment/seed_3407",
+      "selected_epoch": 7,
+      "trained_epochs": 26
+    },
+    {
+      "dataset": "clean_v3",
+      "split": "C2_v3",
+      "backbone": "qd",
+      "path": "experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C2_v3/qd/seed_3407",
+      "selected_epoch": 21,
+      "trained_epochs": 26
+    }
+  ],
+  "reference_diagnostics_branch": "diagnostics/baseline-auroc-20261013",
+  "reference_diagnostics_commit": "00a6d6b41f0ec21056f2d71207385f3a67b2d962",
+  "reference_publication_commit": "2677cfecddd0101b187d0ab413f2b51fe09ea201",
+  "seed": 3407,
+  "epoch_cap": 26,
+  "published_reference_cap": 100,
+  "formal_selection": "native Seen-validation localization; AUROC diagnostic shadow only",
+  "bootstrap": "2000 shared target-video cluster draws",
+  "excluded": [
+    "Flash runs",
+    "full per-query predictions and candidate caches",
+    "checkpoints",
+    "raw NPZ tensors and bootstrap arrays",
+    "features",
+    "videos",
+    "credentials"
+  ],
+  "validation": "English-only added text; safe file extensions; SHA256 manifests; all 12 DETR final evaluations complete"
+}

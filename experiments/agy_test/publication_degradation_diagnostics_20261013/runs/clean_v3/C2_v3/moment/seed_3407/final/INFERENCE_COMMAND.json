@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+    "<LOCAL_REPOSITORY>/experiments/agy_test/publication_degradation_diagnostics_20261013/native_source/training/moment_detr_gmr/evaluate.py",
+    "--dataset",
+    "charades_semantic_existence",
+    "--model_path",
+    "<LOCAL_REPOSITORY>/experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C2_v3/moment/seed_3407/training/moment/best.ckpt",
+    "--split",
+    "test",
+    "--eval_path",
+    "<LOCAL_REPOSITORY>/experiments/agy_test/v3_release_baselines_20261009/groups/C2_v3/release/C2_v3/test.jsonl",
+    "--t_feat_dir",
+    "<LOCAL_REPOSITORY>/experiments/agy_test/v3_release_baselines_20261009/features/clip_text",
+    "--v_feat_dirs",
+    "<LOCAL_VIDEO_FEATURE_ROOT>",
+    "<LOCAL_VIDEO_FEATURE_ROOT>",
+    "--results_dir",
+    "<LOCAL_REPOSITORY>/experiments/agy_test/publication_degradation_diagnostics_20261013/runs/clean_v3/C2_v3/moment/seed_3407/final/native_test",
+    "--device",
+    "cuda"
+  ]
+}

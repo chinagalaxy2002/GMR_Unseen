@@ -1,0 +1,28 @@
+{
+  "legacy_modules": {
+    "mechanism_monitor.py": {
+      "original_sha256": "da30992ba1a391b785ff1e6bbd68d11b6a71000a6a514ed3b2f2c307364c9e66",
+      "preserved_after_additive_extension": true
+    },
+    "response_monitor.py": {
+      "original_sha256": "36eff013e6a107fe2b45266122c67dc770387d1fa7c04880f73b145f0cd480e7",
+      "preserved_after_additive_extension": true
+    },
+    "decoder_slot_monitor.py": {
+      "original_sha256": "bd5b060025e88309b234ad45afe42adea13b0f5261e8b08ed909c192ddd8efd2",
+      "preserved_after_additive_extension": true
+    },
+    "auroc_mechanism_monitor.py": {
+      "original_sha256": "b7586f92a110fe1e8c72b1c6e92d88144b386559704f27c54c9b4c2b768390e8",
+      "preserved_after_additive_extension": true
+    }
+  },
+  "frequencies": {
+    "native_train_cheap": "every step",
+    "heavy_train": "first batch / every50 globalsteps",
+    "probe": "same hash-ranked training Seen cohort <=64/class; epoch0 and each epoch",
+    "full_validation": "every epoch including LOO/ReLU"
+  },
+  "selection": "native localization; AUROC shadow only",
+  "max_epochs": 26
+}

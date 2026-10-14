@@ -1,0 +1,8 @@
+{
+  "activation": "valid span and native foreground probability > 0.5; relative activation also recorded",
+  "max_pool_contributors": "unique feature-wise max owners, NOT existence evidence or GT matches",
+  "evidence_activation": "sigmoid per-slot evidence > 0.5, when an evidence head exists",
+  "observation": "training records follow changing model state; fixed eval probes are separate",
+  "losses": "unweighted per-query existence BCE and matched localization; no optimizer changes",
+  "unseen_usage": "final frozen test diagnosis only"
+}

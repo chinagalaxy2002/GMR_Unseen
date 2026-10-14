@@ -1,0 +1,93 @@
+{
+  "status": "implemented_and_validated",
+  "sample_identity": [
+    "run_id",
+    "qid",
+    "vid",
+    "partition",
+    "epoch",
+    "native_epoch_index",
+    "phase",
+    "measurement_context"
+  ],
+  "tensor_source": "Actual input to native GMRAdapter before max over query dimension; never infer from ranked candidate order",
+  "input_layout": [
+    "batch",
+    "original_slot",
+    "feature_dimension"
+  ],
+  "index_base": 0,
+  "pool_source_slot": {
+    "shape": [
+      "feature_dimension"
+    ],
+    "dtype": "int32",
+    "definition": "Actual native torch.max indices along original slot dimension"
+  },
+  "pool_selected_value": {
+    "shape": [
+      "feature_dimension"
+    ],
+    "dtype": "same_as_observed_tensor",
+    "definition": "Actual signed max values before existence-head MLP"
+  },
+  "pool_ties": {
+    "handling": "Keep actual native winner; also retain equal-maximum source set and counts",
+    "equality": "exact native dtype equality, not an arbitrary epsilon"
+  },
+  "constraints": [
+    "pool_selected_value[d] == H[pool_source_slot[d],d]",
+    "sum(pool_owner_count) == D",
+    "pool_owner_fraction == pool_owner_count / D",
+    "runner_up_source differs from chosen source; may tie in value",
+    "signed_dimension_components + explicit_bias == native_logit within declared numerical tolerance"
+  ],
+  "flash_mean_pooling": {
+    "status": "outside_this_publication_scope"
+  },
+  "illustrative_example_not_experiment_data": {
+    "H": [
+      [
+        0.2,
+        -0.3,
+        1.1,
+        0.7
+      ],
+      [
+        0.5,
+        -0.1,
+        0.8,
+        0.7
+      ],
+      [
+        0.4,
+        -0.2,
+        1.2,
+        0.6
+      ]
+    ],
+    "pool_source_slot": [
+      1,
+      1,
+      2,
+      0
+    ],
+    "pool_selected_value": [
+      0.5,
+      -0.1,
+      1.2,
+      0.7
+    ],
+    "pool_owner_count": [
+      1,
+      2,
+      1
+    ],
+    "pool_tie_count": [
+      1,
+      1,
+      1,
+      2
+    ]
+  }
+}

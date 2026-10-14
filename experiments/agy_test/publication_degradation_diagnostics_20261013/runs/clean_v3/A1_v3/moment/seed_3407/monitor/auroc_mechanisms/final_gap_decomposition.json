@@ -1,0 +1,64 @@
+{
+  "metrics": {
+    "S+/S-": {
+      "point": 74.99025256451021,
+      "ci95": [
+        72.92654925043854,
+        76.99236055310398
+      ],
+      "valid_draws": 2000
+    },
+    "U+/S-": {
+      "point": 75.03080898769007,
+      "ci95": [
+        71.83738582538601,
+        77.85108166678869
+      ],
+      "valid_draws": 2000
+    },
+    "S+/U-": {
+      "point": 65.91349567478373,
+      "ci95": [
+        61.66701185115316,
+        70.05909207168814
+      ],
+      "valid_draws": 2000
+    },
+    "U+/U-": {
+      "point": 64.392138063279,
+      "ci95": [
+        59.314893707776115,
+        69.03247929064156
+      ],
+      "valid_draws": 2000
+    },
+    "positive_shift": {
+      "point": 0.7404005941624376,
+      "ci95": [
+        -1.4170600380937928,
+        3.104961127240454
+      ],
+      "valid_draws": 2000
+    },
+    "negative_shift": {
+      "point": 9.85771390706877,
+      "ci95": [
+        4.899996603514091,
+        14.772168195781742
+      ],
+      "valid_draws": 2000
+    },
+    "gap": {
+      "point": 10.598114501231208,
+      "ci95": [
+        5.5578121002082845,
+        15.873373827130319
+      ],
+      "valid_draws": 2000
+    }
+  },
+  "units": "AUROC percentage points / gap contributions pp",
+  "score": "native frozen evaluation score",
+  "interpretation": "descriptive symmetric ranking decomposition; not causal",
+  "bootstrap": "shared video-cluster draws from bootstrap.npz"
+}

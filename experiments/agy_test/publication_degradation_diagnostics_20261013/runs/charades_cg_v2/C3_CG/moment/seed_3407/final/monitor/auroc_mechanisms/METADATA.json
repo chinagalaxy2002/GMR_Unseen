@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "training_interval": 50,
+  "gradient": "weighted native losses on shared representations; autograd.grad without modifying .grad",
+  "flash": "temporal units and pyramid candidates; DETR query/Hungarian/decoder-SA not applicable",
+  "pooling_loo": "head-only leave-one-unit-out; diagnostic perturbation, not a training loss",
+  "score_threshold": ".5 probability descriptive only; final threshold Seen validation",
+  "records": "sampled training; full fixed Seen probe and full Seen validation; frozen final test"
+}

@@ -1,0 +1,25 @@
+{
+  "tag": "clean_v3_A3_v3_qd_seed3407",
+  "dataset": "clean_v3",
+  "split": "A3_v3",
+  "backbone": "qd",
+  "variant": "native_baseline",
+  "seed": 3407,
+  "status": "planned_not_launched",
+  "priority": 3,
+  "protocol_ref": "PROTOCOL_PLAN.json",
+  "run_dir": "runs/clean_v3/A3_v3/qd/seed_3407",
+  "reference_experiment": "v3_release_baselines_20261009",
+  "gpu": 1,
+  "epochs": 26,
+  "selection": "native Seen localization metric; AUROC diagnostic only",
+  "legacy_diagnostics": "same old modules, native gradient execution, first batch/every50 globalsteps, hash train probe64/class epoch0+, full validation LOO each epoch",
+  "train_counts": {
+    "S+": 9747,
+    "S-": 1018
+  },
+  "val_counts": {
+    "S+": 1051,
+    "S-": 365
+  }
+}

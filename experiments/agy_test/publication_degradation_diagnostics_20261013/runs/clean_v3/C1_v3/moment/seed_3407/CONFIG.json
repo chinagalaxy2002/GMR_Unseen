@@ -1,0 +1,25 @@
+{
+  "tag": "clean_v3_C1_v3_moment_seed3407",
+  "dataset": "clean_v3",
+  "split": "C1_v3",
+  "backbone": "moment",
+  "variant": "native_baseline",
+  "seed": 3407,
+  "status": "planned_not_launched",
+  "priority": 3,
+  "protocol_ref": "PROTOCOL_PLAN.json",
+  "run_dir": "runs/clean_v3/C1_v3/moment/seed_3407",
+  "reference_experiment": "v3_release_baselines_20261009",
+  "gpu": 0,
+  "epochs": 26,
+  "selection": "native Seen localization metric; AUROC diagnostic only",
+  "legacy_diagnostics": "same old modules, native gradient execution, first batch/every50 globalsteps, hash train probe64/class epoch0+, full validation LOO each epoch",
+  "train_counts": {
+    "S+": 10042,
+    "S-": 839
+  },
+  "val_counts": {
+    "S+": 1063,
+    "S-": 298
+  }
+}
