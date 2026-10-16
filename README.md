@@ -2,186 +2,183 @@
 
 本分支（`fintune`）是针对 **Soccer-GMR (Generalized Moment Retrieval in Soccer Videos)** 任务的专属微调与算法增强分支。
 
-分支经过深度精简与整洁重构，移除了全部历史无关实验与调试冗余，**聚焦于三套严格递进的方案血缘链条**，并完整收录了从训练源码、配置文件、运行日志到官方测试集（Test split, 1,036 条样本）的全部逐条预测（`.jsonl`）与评测指标（`.json`）。
+分支经过深度精简与整洁重构，**已彻底移除全部无关实验（包括 Task B、Task C、Task D 的历史冗余实验及历史中间缓存）**，分支完全干净地聚焦于三大核心基准实验：
+1. **E0 Baseline**：官方原生联合训练基线
+2. **Task A**：两阶段解耦微调（冻结定位骨干 + 独立事件与复数读取头）
+3. **min neg (A3)**：批内语义相似度难负例挖掘对比增强
+
+仓库完整收录了训练源码、配置文件、运行日志、模型权重配置以及在官方测试集（Test split, 1,036 条样本）上基于 **0.4、0.5、0.6 固定阈值** 的逐条预测（`.jsonl`）与评测指标。
 
 ---
 
-## 一、 三大核心算法流程与架构图解
+## 一、 三大算法在固定阈值下的指标动态变化科研插图 (plot-is-all-you-need 规范)
 
-### 1. 基线模型 (E0 Baseline)：端到端联合训练与梯度缠绕瓶颈
+本分支依据科研绘图规范 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)，绘制了三套学术统计数据科研插图，所有插图均提供 **300 DPI 高清位图（PNG）**、**投稿级矢量图（PDF）** 及 **自包含可复现绘图源码（Python）**：
+
+### 1. G-mIoU 检索指标在不同阈值下的演化轨迹与相对提升
 
 <p align="center">
-  <img src="assets/e0_baseline_architecture.png" alt="E0 Baseline Scientific Architecture" width="100%">
+  <img src="assets/fig1_gmiou_threshold_dynamics.png" alt="G-mIoU Threshold Dynamics" width="100%">
 </p>
 
-*图 1: E0 Baseline 架构与梯度冲突实证分析（设计规范遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig1_e0_baseline.pdf) 与 [独立绘图源码](figures/fig1_e0_baseline.py)）。(a) FlashVTG 跨模态网络架构：多模态视频特征（SlowFast 2048d + CLIP 512d）与文本查询（CLIP Text 512d）经投影后输入跨模态 Transformer 编码器，时序定位头与存在性判别头共同回传梯度；(b) 联合训练期间定位与存在性梯度余弦相似度 $\cos(\nabla \mathcal{L}_{loc}, \nabla \mathcal{L}_{exist}) < 0$，实证呈现持续冲突态势；(c) 联合训练（E0）与解耦训练的性能权衡，揭示梯度缠绕对边界敏感度造成的退化瓶颈。*
-
-- **多模态输入流**：输入时序视频特征 $V \in \mathbb{R}^{L_v \times D_v}$（$L_v=150$ 截断片段）与自然语言动作查询 $T \in \mathbb{R}^{L_t \times D_t}$，分别经各自投影层映射至 256 维隐空间。
-- **共享骨干编码器**：堆叠多层跨模态 Cross-Attention 与时序 Self-Attention，统一提取视频与文本的时序融合表征 $H \in \mathbb{R}^{L_v \times 256}$。
-- **双任务输出头**：
-  - **正例时序定位**：$\hat{s}_i, \hat{e}_i = \mathrm{Regressor}(H_i)$，监督损失为 $\mathcal{L}_{loc} = \mathcal{L}_{L1} + \mathcal{L}_{GIoU} + \mathcal{L}_{sal}$；
-  - **事件存在性判别**：$h_{cls} = \mathrm{GAP}(H), \hat{y}_{exist} = \mathbf{w}^\top h_{cls} + b$，监督损失为 $\mathcal{L}_{exist} = \mathrm{BCE}(\sigma(\hat{y}_{exist}), y_{exist})$。
-- **机制瓶颈**：存在性判别倾向于粗粒度的“语义是否存在”，而时序定位要求边界处的“微秒级变化率”。端到端反向传播时，两个互相竞争的梯度流直接冲击共享 Transformer 参数，造成定位精度大幅退化。
+*图 1: G-mIoU 综合检索指标随判决阈值 $\tau$ 的演化轨迹与相对提升（提供 [高清矢量 PDF](figures/fig1_gmiou_threshold_dynamics.pdf) 与 [绘图源码](figures/fig1_gmiou_threshold_dynamics.py)）。(a) G-mIoU@1 随连续判别阈值 $\tau \in [0.2, 0.8]$ 的动态变化轨迹，高亮标记 $\tau \in \{0.4, 0.5, 0.6\}$ 三大核心工作点；(b) 相比 E0 基线的相对净增益 $\Delta$ G-mIoU@1 曲线；(c) 在三个固定基准阈值（0.4, 0.5, 0.6）下三算法的分组柱状图对比与净增幅（min neg 在 0.4 下达到 47.66%，净增 +13.00 pp；在 0.5 下达到 53.39%，净增 +7.27 pp；在 0.6 下达到 55.64%，净增 +5.40 pp）。*
 
 ---
 
-### 2. 本方案 Task A：两阶段解耦微调与文本复数建模
+### 2. 负样本识别率 (N-acc) 与拒识 F1 在不同阈值下的权衡与阶跃
 
 <p align="center">
-  <img src="assets/task_a_twostage_architecture.png" alt="Task A Two-Stage Decoupled Fine-Tuning" width="100%">
+  <img src="assets/fig2_rejection_metrics_tradeoff.png" alt="Rejection Metrics Tradeoff" width="100%">
 </p>
 
-*图 2: Task A 两阶段解耦微调与复数建模体系（遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig2_task_a_twostage.pdf) 与 [独立绘图源码](figures/fig2_task_a_twostage.py)）。(a) 两阶段解耦微调系统架构：阶段一完全锁定 E0 骨干与定位权重，设置硬性梯度隔离屏障 $\partial \mathcal{L} / \partial \theta_{loc} \equiv 0$；阶段二独立微调多级证据交叉注意力读取头与文本复数分类先验头；(b) 官方测试集正例定位绝对零退化实证验证（$R^2 = 1.000$，点对严格落在 $y=x$ 等值线）；(c) 文本复数分类 ROC 曲线（AUROC 达 83.51%）与内嵌混淆矩阵（平衡精度 65.29%）；(d) 置信度决策门控 $\tau$ 灵敏度曲线，展示 G-mIoU@0.4 跃升至 42.42%（较 E0 基线 +7.76 pp）。*
-
-- **阶段一：定位权重绝对冻结 (Zero-Degradation Lock)**：
-  - 继承已在全量正例上充分收敛的 E0 预训练检查点，锁定全部 Backbone 与 Localization MLP 权重；
-  - 保证测试集定位性能在任何后续微调中严格守恒（Test mAP 恒定为 26.18%，边界回归质量零漂移）。
-- **梯度隔离屏障 (Gradient Barrier)**：
-  - 在骨干时序表征输出端实施硬性 `detach(·)` 算子：$\partial \mathcal{L}_{tune} / \partial \theta_{loc} \equiv 0$；
-  - 彻底斩断存在性微调梯度回传至时序定位主干的路径，从根源上消除了梯度缠绕效应。
-- **阶段二：解耦微调读取头与复数建模**：
-  - **解耦事件读取头 (Decoupled Event Head)**：利用独立微调的多级证据交叉注意力（$Q_{evt} \leftrightarrow \mathrm{detach}(H_{vid})$）对视频片段进行二次多尺度核查，输出鲁棒的存在性概率；
-  - **文本复数分类建模 (Text Plurality Modeling)**：引入 Kim 风格的文本复数先验分类头，仅基于文本查询初始嵌入 $e_0$ 判别单事件 vs 多事件，测试集复数分类 AUROC 达到 83.51%；
-  - **联合门控推理 (Inference Gating)**：在测试推理时通过置信度门控 $P(exist) \ge 0.4$ 动态过滤负样本，将 GMR 核心指标 G-mIoU@0.4 由 E0 的 34.66% 激增至 **42.42%**（+7.76 pp）。
+*图 2: 拒识能力与负样本识别率 (N-acc) 在不同判别阈值下的阶跃与帕累托前沿（提供 [高清矢量 PDF](figures/fig2_rejection_metrics_tradeoff.pdf) 与 [绘图源码](figures/fig2_rejection_metrics_tradeoff.py)）。(a) 负样本识别率 N-acc vs 正例召回率的帕累托权衡前沿，展示 min neg 如何向右上角大幅外拓前沿；(b) 拒识 F1 指标随阈值 $\tau$ 的演进变化；(c) 在固定阈值 $\{0.4, 0.5, 0.6\}$ 下 N-acc 相对 E0 基线的显著跃升（$\Delta$ N-acc 在 0.4 下激增 +31.91 pp，在 0.5 下达到 93.09%，净增 +18.09 pp，在 0.6 下达到 99.39% 彻底扫清虚警）。*
 
 ---
 
-### 3. 本方案 A3 增强：批内语义相似度难负例对比挖掘
+### 3. 0.4、0.5、0.6 固定阈值下三算法全景指标雷达与相对增益矩阵
 
 <p align="center">
-  <img src="assets/a3_hard_negative_architecture.png" alt="A3 Similarity Hard-Negative Contrastive Mining" width="100%">
+  <img src="assets/fig3_relative_metric_profiles.png" alt="Relative Metric Profiles" width="100%">
 </p>
 
-*图 3: A3 批内语义相似度难负例对比挖掘机制（遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig3_a3_hard_negative.pdf) 与 [独立绘图源码](figures/fig3_a3_hard_negative.py)）。(a) 批内文本投影空间相似度矩阵 $S_{ij} = \hat{T}_i^\top \hat{T}_j$ 热力图与自适应极值负例选取 $j^* = \operatorname{argmax}_{j \neq i} S_{ij}$；(b) 正向匹配对与高混淆负例对的双流对比前向通路与惩罚监督；(c) 各判决门控下负样本拒识准确率（N-acc）对比：A3 在 0.5 门控下达到惊人的 93.09%（较 E0 基线提升 +18.09 pp）；(d) 官方测试集 1,036 条样本全量基准指标多维对照，展现 A3 在全面保持定位精度的同时实现拒识与综合检索的跨越式突破。*
-
-- **足球场景核心痛点**：普通随机负样本（如“点球” vs “换人”）过于简单，模型无需看视频仅凭语义词频即可拒识；但在现实足球转播中，诸如“禁区右侧直接任意球攻门”与“禁区右侧直接角球”具有高度重叠的视觉元素（禁区、射门、防守人群），极易诱发假阳性虚警。
-- **批内语义相似度挖掘引擎**：
-  - 对批次内全部自然语言文本查询进行 L2 归一化投影：$\hat{T}_i = \mathrm{Normalize}(\mathrm{Pool}(T_i)) \in \mathbb{R}^{256}$；
-  - 实时计算批内稠密相似度矩阵：$S_{ij} = \hat{T}_i^\top \hat{T}_j \quad (i \neq j)$，并将对角线元素置为 $-\infty$；
-  - 针对每个视频 $V_i$，挖掘出批次内语义最逼近但事实不符的最难混淆查询：$j^* = \mathrm{argmax}_{j \neq i} S_{ij}$，组成高难度负例对抗对 $(V_i, T_{j^*})$。
-- **双流对比前向通路与监督目标**：
-  - **正例前向通路**：输入真实匹配对 $(V_i, T_i)$，计算正向存在损失 $\mathcal{L}_{exist} = \mathrm{BCE}(\sigma(\hat{y}_i^+), 1.0)$；
-  - **难负例对比前向通路**：输入对抗负例对 $(V_i, T_{j^*})$，计算负向抑制惩罚 $\mathcal{L}_{hard} = \mathrm{BCE}(\sigma(\hat{y}_i^-), 0.0)$；
-  - **多任务联合目标**：$\mathcal{L}_{total} = \mathcal{L}_{exist} + 0.1 \mathcal{L}_{multi} + 0.5 \mathcal{L}_{hard}$。
-- **评测飞跃**：难负例机制强力净化了模型对于混淆动作的判断边界，在官方测试集上取得：
-  - **AUROC 攀升至 75.03%**（历史最高，全面超越 E0 基线）；
-  - **G-mIoU@0.4 跃升至 47.62%**（较 E0 基线暴涨 **+12.96 pp**）；
-  - **负例拒识准确率 N-acc@0.5 飙升至 93.09%**（较 E0 基线大幅提升 **+18.09 pp**）。
+*图 3: 固定阈值 0.4、0.5、0.6 下全维度指标雷达特征与相对提升矩阵（提供 [高清矢量 PDF](figures/fig3_relative_metric_profiles.pdf) 与 [绘图源码](figures/fig3_relative_metric_profiles.py)）。(a)-(c) 分别展示在 $\tau = 0.4$, $\tau = 0.5$, $\tau = 0.6$ 固定阈值下六大关键评价指标（G-mIoU@1, G-mIoU@3, G-mIoU@5, Rej-F1, N-acc, AUROC）的蛛网雷达图对比；(d) 两种增强方案在三个固定阈值下相对于 E0 基线的全量指标相对提升量 $\Delta$（pp）热力矩阵，清晰展现 min neg 在全部维度上取得的统治优势。*
 
 ---
 
-## 二、 原论文各项指标完整横向对比表
+## 二、 官方测试集固定阈值 (0.4, 0.5, 0.6) 全量指标横向对比表
 
 > **评测基准**：官方统一测试集（Test Split，包含 544 条真实正例 + 492 条真实负例，共计 1,036 条样本）。所有指标与 Soccer-GMR / FlashVTG 原论文指标体系严格对齐。
 
-| 指标大类 | 原论文 / 评测基准指标 | E0 Baseline (官方基线) | Task A (两阶段微调) | A3 (难负例语义增强) | A3 相比 E0 提升幅度 |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| **正例时序定位**<br>*(Localization Only)* | **mAP (全量平均精度)** | 26.14% | **26.18%** | **26.18%** | **+0.04 pp (完全锁定)** |
-| | **mAP @ 0.5** | 48.73% | **48.86%** | **48.86%** | +0.13 pp |
-| | **mAP @ 0.75** | 28.32% | **28.40%** | **28.40%** | +0.08 pp |
-| | **Recall 1 @ 0.3** | 51.29% | **51.47%** | **51.47%** | +0.18 pp |
-| | **Recall 1 @ 0.5** | 39.15% | **39.34%** | **39.34%** | +0.19 pp |
-| | **Recall 1 @ 0.7** | 21.69% | **22.06%** | **22.06%** | +0.37 pp |
-| | **mIoU @ 1** | 34.63% | 34.78% | **34.87%** | +0.24 pp |
-| **存在性与拒识**<br>*(Existence & Rejection)* | **AUROC (全局判别能力)** | 74.27% | 73.19% | **75.03%** | <font color="green">**+0.76 pp**</font> |
-| | **Rej-F1 @ 0.4 (拒识 F1)** | 54.16% | 64.28% | **70.52%** | <font color="green">**+16.36 pp**</font> |
-| | **Rej-F1 @ 0.5 (拒识 F1)** | 68.08% | 69.18% | **73.75%** | <font color="green">**+5.67 pp**</font> |
-| | **Negative Recall (N-acc @ 0.4)** | 46.34% | 65.65% | **78.05%** | <font color="green">**+31.71 pp**</font> |
-| | **Negative Recall (N-acc @ 0.5)** | 75.00% | 78.46% | **93.09%** | <font color="green">**+18.09 pp**</font> |
-| | **Positive Recall @ 0.4** | **77.94%** | 65.07% | 60.85% | -17.09 pp (大幅压制虚警) |
-| **GMR 联合度量**<br>*(G-mIoU 综合指标)* | **G-mIoU@1 (Gate = 0.4)** | 34.66% | 42.42% | **47.62%** | <font color="green">**+12.96 pp**</font> |
-| | **G-mIoU@1 (Gate = 0.5)** | 46.19% | 47.41% | **53.39%** | <font color="green">**+7.20 pp**</font> |
-| | **G-mIoU@1 (Val 校准阈值)** | 49.24% | 52.98% | **55.55%** | <font color="green">**+6.31 pp**</font> |
-| | **G-mIoU@3 (Gate = 0.4)** | 28.24% | 36.43% | **41.75%** | <font color="green">**+13.51 pp**</font> |
-| | **G-mIoU@5 (Gate = 0.4)** | 25.85% | 34.44% | **39.97%** | <font color="green">**+14.12 pp**</font> |
-| **复数事件分类**<br>*(Plurality Modeling)* | **Plurality AUROC** | — (无) | **83.51%** | **83.12%** | 新增复数事件建模能力 |
-| | **Plurality Balanced Accuracy** | — (无) | 65.29% | **70.65%** | <font color="green">**+5.36 pp**</font> |
+| 指标大类 | 评测基准指标 | 判决阈值 $\tau$ | E0 Baseline (官方基线) | Task A (两阶段微调) | min neg (A3 难负例增强) | min neg 相比 E0 提升幅度 |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **GMR 联合度量**<br>*(G-mIoU 综合指标)* | **G-mIoU @ 1** | $\tau = 0.4$ | 34.66% | 42.39% | **47.66%** | <font color="green">**+13.00 pp**</font> |
+| | | $\tau = 0.5$ | 46.12% | 47.41% | **53.39%** | <font color="green">**+7.27 pp**</font> |
+| | | $\tau = 0.6$ | 50.24% | 51.54% | **55.64%** | <font color="green">**+5.40 pp**</font> |
+| | **G-mIoU @ 3** | $\tau = 0.4$ | 28.24% | 36.40% | **41.77%** | <font color="green">**+13.53 pp**</font> |
+| | | $\tau = 0.5$ | 40.30% | 41.72% | **47.75%** | <font color="green">**+7.45 pp**</font> |
+| | | $\tau = 0.6$ | 44.51% | 45.87% | **50.15%** | <font color="green">**+5.64 pp**</font> |
+| | **G-mIoU @ 5** | $\tau = 0.4$ | 25.85% | 34.42% | **40.02%** | <font color="green">**+14.17 pp**</font> |
+| | | $\tau = 0.5$ | 38.52% | 40.04% | **46.41%** | <font color="green">**+7.89 pp**</font> |
+| | | $\tau = 0.6$ | 42.93% | 44.46% | **49.01%** | <font color="green">**+6.08 pp**</font> |
+| **存在性与拒识**<br>*(Existence & Rejection)* | **AUROC (全局判别)** | 全局 | 74.27% | 73.19% | **75.03%** | <font color="green">**+0.76 pp**</font> |
+| | **Rej-F1 (拒识 F1)** | $\tau = 0.4$ | 54.16% | 64.09% | **70.45%** | <font color="green">**+16.29 pp**</font> |
+| | | $\tau = 0.5$ | 68.08% | 69.18% | **73.75%** | <font color="green">**+5.67 pp**</font> |
+| | | $\tau = 0.6$ | 71.51% | 72.53% | **75.29%** | <font color="green">**+3.78 pp**</font> |
+| | **Negative Recall (N-acc)** | $\tau = 0.4$ | 46.34% | 65.65% | **78.25%** | <font color="green">**+31.91 pp**</font> |
+| | | $\tau = 0.5$ | 75.00% | 78.46% | **93.09%** | <font color="green">**+18.09 pp**</font> |
+| | | $\tau = 0.6$ | 84.96% | 88.82% | **99.39%** | <font color="green">**+14.43 pp**</font> |
+| | **Positive Recall** | $\tau = 0.4$ | **77.57%** | 64.52% | 60.29% | -17.28 pp (强力压制虚警) |
+| | | $\tau = 0.5$ | **59.01%** | 56.25% | 46.32% | -12.69 pp |
+| | | $\tau = 0.6$ | **52.39%** | 49.26% | 41.54% | -10.85 pp |
+| **正例时序定位**<br>*(Localization Invariance)* | **mAP (全量平均精度)** | 全局 | 26.14% | **26.18%** | **26.18%** | **+0.04 pp (完全锁定零退化)** |
+| | **mAP @ 0.5** | 全局 | 48.73% | **48.86%** | **48.86%** | +0.13 pp |
+| | **mAP @ 0.75** | 全局 | 28.32% | **28.40%** | **28.40%** | +0.08 pp |
+| | **mIoU @ 1** | 全局 | 34.63% | 34.78% | **34.87%** | +0.24 pp |
+| **文本复数事件分类**<br>*(Plurality Prior)* | **Plurality AUROC** | 全局 | — (无) | **83.51%** | **83.12%** | 新增复数事件建模能力 |
+| | **Plurality BA** | 全局 | — (无) | 65.29% | **70.65%** | <font color="green">**+5.36 pp**</font> |
 
 ---
 
 ## 三、 分支工作目录与文件结构
 
-仓库根目录下保持极简布局，仅包含基础模型库、数据与这三套核心实验：
+当前分支已严格清理，移除了全部 Task B、C、D 等冗余文件，仅保留三大核心任务：
 
 ```
 .
 ├── configs/                                          # 模型结构协议配置文件
 ├── data/                                             # 官方数据集划分标注
 ├── eval/                                             # GMR 官方评测实现 (metrics.py, eval_main.py)
-├── models/                                           # FlashVTG 与 Transformer 基础结构源码
-├── training/                                         # 数据集加载器与推理工具
-├── requirements.txt / requirements-flash-vtg.txt     # Python 依赖清单
+├── figures/                                          # plot-is-all-you-need 科研统计插图及源码
+│   ├── fig1_gmiou_threshold_dynamics.png / .pdf / .py # G-mIoU 变化轨迹图
+│   ├── fig2_rejection_metrics_tradeoff.png / .pdf / .py # 拒识能力与 N-acc 变化图
+│   └── fig3_relative_metric_profiles.png / .pdf / .py  # 0.4/0.5/0.6 阈值全景雷达与增益矩阵
+├── assets/                                           # README 内嵌插图
+├── models/                                           # FlashVTG 基础模型架构
+├── training/                                         # 数据加载器与训练工具
+├── verify_all_thresholds.py                          # 一键官方测试集 0.4/0.5/0.6 阈值核验脚本
 └── experiments/agy_test/
     ├── soccer_flash_event_query_20261015/            # 【实验一：E0 Baseline】
-    │   ├── code/                                     # 训练与评估脚本 (run.py, evaluation.py, ...)
-    │   ├── configs/                                  # 实验协议 (protocol.json, ...)
-    │   ├── logs/E0.log                               # 113 轮完整运行日志 (773 KB)
+    │   ├── code/                                     # 训练与评估脚本 (run.py, evaluation.py)
+    │   ├── configs/protocol.json                     # 实验超参协议
+    │   ├── logs/E0.log                               # 完整运行日志 (773 KB)
     │   └── runs/E0/
-    │       ├── metrics.json                          # 官方测试集指标全量导出
-    │       ├── test_predictions.jsonl                # 官方测试集逐条前向预测 (3.12 MB)
-    │       ├── test_predictions_pre_nms.jsonl        # NMS 前定位窗口
-    │       └── trace.jsonl / CONFIG.json
+    │       ├── metrics.json                          # 测试集评测指标
+    │       └── test_predictions.jsonl                # 官方测试集逐条预测 (3.12 MB)
     │
-    ├── soccer_flash_kim_surpass_e0_20261016/         # 【实验二：Task A 两阶段微调】
-    │   ├── code/                                     # 微调主程序 (train.py, model.py, eval_checkpoint.py, ...)
+    ├── soccer_flash_kim_surpass_e0_20261016/         # 【实验二：Task A 两阶段解耦微调】
+    │   ├── code/                                     # 解耦微调主程序 (train.py, model.py, eval_checkpoint.py)
     │   ├── configs/jobs.json                         # 任务参数定义
-    │   ├── logs/E2M_scheme_A_twostage_s2024.log      # 完整微调与测试日志 (237 KB)
+    │   ├── logs/E2M_scheme_A_twostage_s2024.log      # 微调与评测日志 (237 KB)
     │   └── runs/E2M_scheme_A_twostage_s2024/
-    │       ├── test_metrics.json                     # 官方测试集指标全量导出
-    │       ├── test_predictions.jsonl                # 官方测试集逐条前向预测 (3.19 MB)
-    │       ├── test_predictions_pre_nms.jsonl        # NMS 前定位窗口
-    │       └── trace.jsonl / CONFIG.json
+    │       ├── best.ckpt                             # 最佳微调模型权重 (58 MB)
+    │       ├── test_metrics.json                     # 官方测试集评测指标
+    │       └── test_predictions.jsonl                # 官方测试集逐条预测 (3.19 MB)
     │
-    └── soccer_flash_kim_mechanism_20261016/task_a_enhancement/  # 【实验三：A3 相似度难负例增强】
-        ├── code/                                     # 难负例实现 (train.py, model.py, eval_test.py, ...)
+    └── soccer_flash_kim_mechanism_20261016/task_a_enhancement/  # 【实验三：min neg (A3) 难负例增强】
+        ├── code/                                     # 难负例实现 (train.py, model.py, eval_test.py)
         ├── configs/jobs.json                         # A3 超参配置 (hard_negative: true)
         ├── logs/A3_similarity_hardneg_s2024.log      # 完整训练日志 (98 KB)
         └── runs/A3_similarity_hardneg_s2024/
-            ├── test_metrics.json                     # 官方测试集指标全量导出
-            ├── test_predictions.jsonl                # 官方测试集逐条前向预测 (3.10 MB)
-            ├── test_predictions_pre_nms.jsonl        # NMS 前定位窗口
-            ├── validation_metrics.json               # 验证集指标
-            └── trace.jsonl / CONFIG.json
+            ├── best.ckpt                             # 最佳增强模型权重 (58 MB)
+            ├── test_metrics.json                     # 官方测试集评测指标
+            └── test_predictions.jsonl                # 官方测试集逐条预测 (3.10 MB)
 ```
 
 ---
 
-## 四、 快速验证与结果客观性核验
+## 四、 核心复现指南与一键验证
 
-所有测试预测数据均已随本分支提交，支持**无需 GPU、无需下载权重的秒级离线核验**：
-
-### 1. 一键离线核验三组模型 Test 指标
-直接在仓库根目录下运行以下命令，即可从保存的测试集预测中输出三套方案的完整指标：
+### 1. 一键离线验证三组模型在 0.4、0.5、0.6 阈值下的全部指标（无需 GPU，1 秒出结果）
+在仓库根目录直接运行提供的独立核验程序：
 
 ```bash
-python3 -c "
-import json
-
-def report(name, path, map_k, auroc_k, gm_k, rej_k):
-    with open(path) as f:
-        d = json.load(f)
-    print(f'=== {name} ===')
-    print('  mAP (Localization):', d.get(map_k, {}).get('mAP', d.get('brief', {}).get('mAP')))
-    print('  AUROC (Existence): ', round(d.get(auroc_k, d.get('brief', {}).get('AUROC')), 2))
-    print('  G-mIoU@1 (Gate=0.4):', d.get(gm_k, {}).get('G-mIoU@1', d.get('brief', {}).get('G-mIoU@1')))
-    print('  Rej-F1 @ 0.4:      ', d.get(rej_k, {}).get('Rej-F1', d.get('brief', {}).get('Rej-F1@0.4')))
-
-report('E0 Baseline', 'experiments/agy_test/soccer_flash_event_query_20261015/runs/E0/metrics.json', 'brief', 'AUROC', 'brief', 'brief')
-report('Task A (Fine-Tuning)', 'experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/runs/E2M_scheme_A_twostage_s2024/test_metrics.json', 'positive_localization', 'AUROC', 'gate_04', 'gate_04')
-report('A3 (Hard-Neg Mining)', 'experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/runs/A3_similarity_hardneg_s2024/test_metrics.json', 'positive_localization', 'AUROC', 'gate_04', 'gate_04')
-"
+python3 verify_all_thresholds.py
 ```
 
-### 2. GPU 在线复测评测命令
-若本地配备单张 GPU（显存 ≥ 12GB），可直接调用各任务评估脚本独立复验：
+该命令将直接加载官方测试集 1,036 条样本标注，并与三大模型的真实前向预测逐条对齐，打印出 0.4、0.5、0.6 三个阈值下的完整指标与相对于 E0 的净增量 $\Delta$。
 
-```bash
-# 复验 Task A 官方测试集评测
-python experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/eval_checkpoint.py \
-    --ckpt experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/runs/E2M_scheme_A_twostage_s2024/best.ckpt
+---
 
-# 复验 A3 官方测试集评测
-python experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/eval_test.py \
-    --run A3_similarity_hardneg_s2024 \
-    --device cuda:0
-```
+### 2. GPU 训练与评测复现命令
+
+#### (1) 复现 E0 Baseline（官方原生基线）
+- **训练复现**：
+  ```bash
+  python experiments/agy_test/soccer_flash_event_query_20261015/code/run.py \
+      --config experiments/agy_test/soccer_flash_event_query_20261015/configs/protocol.json \
+      --device cuda:0
+  ```
+- **评测复现**：
+  ```bash
+  python experiments/agy_test/soccer_flash_event_query_20261015/code/evaluation.py \
+      --ckpt experiments/agy_test/soccer_flash_event_query_20261015/runs/E0/best.ckpt \
+      --split test
+  ```
+
+#### (2) 复现 Task A（两阶段解耦微调）
+- **微调复现**（加载已收敛的 E0 权重，冻结定位主干，微调解耦读取头与文本复数头）：
+  ```bash
+  python experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/train.py \
+      --run_id E2M_scheme_A_twostage_s2024 \
+      --device cuda:0
+  ```
+- **测试集评测复现**：
+  ```bash
+  python experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/eval_checkpoint.py \
+      --ckpt experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/runs/E2M_scheme_A_twostage_s2024/best.ckpt \
+      --device cuda:0
+  ```
+
+#### (3) 复现 min neg（A3 批内语义相似度难负例对比增强）
+- **增强训练复现**（在 Task A 架构上开启批内语义相似度难负例挖掘与对抗监督）：
+  ```bash
+  python experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/train.py \
+      --run_id A3_similarity_hardneg_s2024 \
+      --device cuda:0
+  ```
+- **测试集评测复现**：
+  ```bash
+  python experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/eval_test.py \
+      --run A3_similarity_hardneg_s2024 \
+      --device cuda:0
+  ```
