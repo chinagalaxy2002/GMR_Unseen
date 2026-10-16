@@ -6,29 +6,165 @@
 
 ---
 
-## 一、 方案脉络与核心机制演进
+## 一、 三大核心算法流程与架构图解
+
+### 1. 基线模型 (E0 Baseline)：端到端联合训练与梯度冲突
+
+E0 基于原生 FlashVTG-GMR 架构，由跨模态 Transformer 编码器同时连接时序定位头（Localization Head）与全局池化存在性分类头（Existence Head）。双任务共享同一主干网络反向传播：
 
 ```mermaid
 flowchart TD
-    E0["1. E0 Baseline (官方基线)\n- 原生 FlashVTG-GMR 骨干\n- 训练 113 epochs 全量收敛\n- 产出 runs/E0/best.ckpt"]
-    
-    TaskA["2. Task A: Two-Stage Fine-Tuning (两阶段微调)\n- 冻结 E0 定位主干，完全锁定定位能力\n- 解耦微调 Event Query 读取与分类分支\n- 引入文本复数分类头 (Text Plurality)"]
-    
-    A3["3. A3: Similarity Hard-Negative Mining (难负例语义增强)\n- 继承 Task A 两阶段解耦与复数监督\n- 批内挖掘语义最相近但不包含动作的硬负例文本\n- 施加对比交叉熵，压制高语义相似度干扰"]
+    subgraph Inputs ["📥 多模态输入 (Inputs)"]
+        V_in["视频特征 Video Features<br/>SlowFast (2304d) + CLIP-ViT (512d)"]
+        T_in["文本查询 Text Query<br/>CLIP Text (512d)"]
+    end
 
-    E0 -->|"加载权重初始化"| TaskA
-    TaskA -->|"增强对比学习"| A3
+    subgraph Backbone ["⚙️ 跨模态时序编码骨干网络 (FlashVTG Backbone)"]
+        V_proj["视频特征投影 Linear"]
+        T_proj["文本特征投影 Linear"]
+        CrossModal["跨模态交互 Cross-Attention & FFN<br/>(视觉与文本时序深层融合)"]
+        V_in --> V_proj
+        T_in --> T_proj
+        V_proj --> CrossModal
+        T_proj --> CrossModal
+    end
+
+    subgraph LocBranch ["🎯 正例时序定位分支 (Localization Head)"]
+        CrossModal --> LocHead["时序边界预测与质量估计<br/>Boundary Regression & Saliency"]
+        LocHead --> LocLoss["定位损失 L_loc<br/>L_span (L1) + L_giou + L_saliency"]
+    end
+
+    subgraph ExistBranch ["⚡ 存在性判别分支 (Event Query Head)"]
+        CrossModal --> GAP["全局时序池化 / Event Token"]
+        GAP --> ExistMLP["存在性分类 MLP (单头分类)"]
+        ExistMLP --> ExistLoss["存在性分类损失 L_exist<br/>Binary Cross Entropy (BCE)"]
+    end
+
+    subgraph Conflict ["⚠️ 根本缺陷：双任务梯度冲突 (Gradient Entanglement)"]
+        ExistLoss -.->|"反向梯度传播 (更新特征表示)"| CrossModal
+        LocLoss -.->|"反向梯度传播 (更新时序边界)"| CrossModal
+        Note["❌ 机制痛点：存在性分类梯度持续改变共享时序特征分布，<br/>破坏了精细定位所需的边界敏感性，导致正例定位 mAP 出现严重退化！"]
+    end
+
+    style Inputs fill:#f8f9fa,stroke:#adb5bd,stroke-width:1px
+    style Backbone fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style LocBranch fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style ExistBranch fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Conflict fill:#ffebee,stroke:#d32f2f,stroke-width:2px
 ```
 
-- **E0 (Baseline)**：原生 FlashVTG-GMR 基线模型，从零训练 113 轮至完全收敛，定位 mAP 达到 26.14%，AUROC 为 74.27%。
-- **Task A (两阶段微调 Scheme A)**：以 E0 检查点为起点，**完全冻结 E0 定位主干参数**，仅微调 Event Query 存在性分支与文本复数头。在保证定位能力不退化（mAP 26.18%）的前提下，Test G-mIoU@0.4 跃升至 **42.42%**（+7.76 pp）。
-- **A3 (相似度难负例增强)**：在 Task A 基础上，针对负例误检痛点引入批内语义最相似负例挖掘（Hard Negative Mining）。模型在官方 Test 测试集上实现了全方位突破：**AUROC 达 75.03%**，**G-mIoU@0.4 达 47.62%**（较基线 E0 暴涨 **+12.96 pp**），**0.5 阈值下负例拒识准确率（N-acc）高达 93.09%**。
+---
+
+### 2. 本方案 Task A：两阶段解耦微调与文本复数建模
+
+为了彻底解决定位与拒识之间的梯度冲突，Task A 采用**两阶段解耦训练策略**：以收敛的 E0 权重为基石，**完全冻结定位主干**，通过 `detach(·)` 隔离反向传播，仅对 Event Query 读取头与新增的文本复数分类头进行微调：
+
+```mermaid
+flowchart TD
+    subgraph Stage1 ["❄️ 阶段一：E0 定位主干完全冻结 (Zero-Degradation Lock)"]
+        V_feat["输入视频 Video V"]
+        T_feat["输入查询 Text T"]
+        FrozenBackbone["【已完全冻结】FlashVTG 骨干网络<br/>(Backbone, Cross-Attention, Loc Head ❄️)<br/>参数完全固定，requires_grad = False"]
+        V_feat --> FrozenBackbone
+        T_feat --> FrozenBackbone
+        LockedPreds["🔒 锁定定位候选窗口<br/>(mAP 严格保持 26.18%，零退化风险)"]
+        FrozenBackbone --> LockedPreds
+    end
+
+    subgraph DetachOp ["🛡️ 梯度隔离屏障 (Gradient Barrier)"]
+        FrozenBackbone -->|"前向输出特征"| Detach["detach(·) 算子<br/>完全切断向主干的反向传播路径"]
+    end
+
+    subgraph Stage2 ["🔥 阶段二：解耦微调读取头与复数建模 (Task A Active Tuning)"]
+        subgraph EventQuery ["存在性独立读取头"]
+            Detach --> EvidenceRead["Evidence Cross-Attention<br/>(多阶段证据交叉读取层)"]
+            EvidenceRead --> ExistHead["存在性预测头 MLP"]
+            ExistHead --> LossExist["L_exist (BCE 损失)"]
+        end
+
+        subgraph PluralityModule ["文本复数分类头 (Text Plurality)"]
+            T_feat --> TextTok["文本初始表征 e0"]
+            TextTok --> PluralityMLP["复数预测头 MLP<br/>P(single) vs P(multi)"]
+            PluralityMLP --> LossPlurality["L_plurality (CE 损失)"]
+        end
+    end
+
+    subgraph InferenceGate ["🚦 推理阶段：置信度与复数门控 (Inference Gating)"]
+        ExistHead --> ProbExist["存在概率 P(exist)"]
+        PluralityMLP --> ProbMulti["复数概率 P(multi)"]
+        LockedPreds --> Gate["动态置信度门控器<br/>P(exist) < 0.4 ➜ 彻底拒识 (真负例输出空)<br/>P(exist) >= 0.4 ➜ 保留最优候选窗口"]
+        ProbExist --> Gate
+        ProbMulti --> Gate
+        FinalOut["🏆 最终 GMR 检索结果<br/>(G-mIoU@0.4 提升至 42.42%，较 E0 +7.76 pp)"]
+        Gate --> FinalOut
+    end
+
+    style Stage1 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style DetachOp fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Stage2 fill:#fff8e1,stroke:#ffa000,stroke-width:2px
+    style EventQuery fill:#ffffff,stroke:#ffa000,stroke-dasharray: 5 5
+    style PluralityModule fill:#ffffff,stroke:#ff8f00,stroke-dasharray: 5 5
+    style InferenceGate fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+```
+
+---
+
+### 3. 本方案 A3 增强：语义相似度难负例对比挖掘
+
+针对足球场景中“动作语义相似但画面实际不存在”（如把“角球”误判为已发生的“任意球”）的高频误检痛点，A3 在 Task A 架构上引入**批内语义相似度难负例挖掘（Similarity Hard-Negative Mining）**与对比监督：
+
+```mermaid
+flowchart TD
+    subgraph BatchInputs ["📦 Mini-Batch 多样本批次输入"]
+        V_batch["视频批次: V_1, V_2, ..., V_B"]
+        T_batch["正例文本批次: T_1, T_2, ..., T_B"]
+    end
+
+    subgraph HardNegMining ["🔍 语义相似度难负例挖掘引擎 (Hard-Negative Mining)"]
+        T_batch --> Norm["L2 归一化文本投影空间"]
+        Norm --> SimMat["批内语义相似度矩阵 S_ij = <T_i, T_j><br/>(对角线 S_ii 置为 -inf，排除自身)"]
+        SimMat --> Argmax["最强混淆负例匹配<br/>j* = argmax_{j != i} S_ij"]
+        T_batch --> Pick["抽取语义最接近的不匹配文本<br/>T_{j*} (最难混淆负例)"]
+        Argmax --> Pick
+        NoteNeg["💡 挖掘机理：自动找出语义上与目标极度相似、<br/>但在当前视频中绝不存在的高混淆负例！"]
+    end
+
+    subgraph DualForward ["⚡ 双流对比前向与监督目标 (Dual Contrastive Paths)"]
+        subgraph PosPath ["正例前向通路 (Positive Grounding)"]
+            V_batch --> VerifierPos["解耦事件检验器"]
+            T_batch --> VerifierPos
+            VerifierPos --> LogitPos["存在预测 logits+"]
+            LogitPos --> LossPos["正例存在损失: BCE(logits+, 1.0)"]
+        end
+
+        subgraph NegPath ["难负例前向通路 (Hard-Negative Contrast)"]
+            V_batch --> VerifierNeg["解耦事件检验器 (共享参数)"]
+            Pick --> VerifierNeg
+            VerifierNeg --> LogitNeg["负例预测 logits-"]
+            LogitNeg --> LossNeg["难负例惩罚损失: BCE(logits-, 0.0)"]
+        end
+    end
+
+    subgraph Objective ["🎯 联合优化目标 (Contrastive Objective)"]
+        LossPos --> TotalLoss["L_total = L_exist + 0.1 * L_plurality + 0.5 * L_hard_neg"]
+        LossNeg --> TotalLoss
+        Effect["🛡️ 算法收益：<br/>• 强迫模型从'语义泛匹配'转向'细粒度动作核实'<br/>• Test AUROC 攀升至 75.03% (超越 E0 基线)<br/>• Test G-mIoU@0.4 暴涨至 47.62% (+12.96 pp)<br/>• 负例拒识准确率 N-acc 达到惊人的 93.09%"]
+        TotalLoss --> Effect
+    end
+
+    style BatchInputs fill:#f8f9fa,stroke:#adb5bd,stroke-width:1px
+    style HardNegMining fill:#ede7f6,stroke:#512da8,stroke-width:2px
+    style DualForward fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    style PosPath fill:#ffffff,stroke:#2e7d32,stroke-dasharray: 5 5
+    style NegPath fill:#ffffff,stroke:#c62828,stroke-dasharray: 5 5
+    style Objective fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+```
 
 ---
 
 ## 二、 原论文各项指标完整横向对比表
 
-> **评测基准**：官方统一测试集（Test Split，包含 544 条真实正例 + 492 条真实负例，共计 1,036 条样本）。所有指标均与原论文评测体系及协议严格对齐。
+> **评测基准**：官方统一测试集（Test Split，包含 544 条真实正例 + 492 条真实负例，共计 1,036 条样本）。所有指标与 Soccer-GMR / FlashVTG 原论文指标体系严格对齐。
 
 | 指标大类 | 原论文 / 评测基准指标 | E0 Baseline (官方基线) | Task A (两阶段微调) | A3 (难负例语义增强) | A3 相比 E0 提升幅度 |
 | :--- | :--- | :---: | :---: | :---: | :---: |
@@ -118,7 +254,7 @@ def report(name, path, map_k, auroc_k, gm_k, rej_k):
         d = json.load(f)
     print(f'=== {name} ===')
     print('  mAP (Localization):', d.get(map_k, {}).get('mAP', d.get('brief', {}).get('mAP')))
-    print('  AUROC (Existence): ', d.get(auroc_k, d.get('brief', {}).get('AUROC')))
+    print('  AUROC (Existence): ', round(d.get(auroc_k, d.get('brief', {}).get('AUROC')), 2))
     print('  G-mIoU@1 (Gate=0.4):', d.get(gm_k, {}).get('G-mIoU@1', d.get('brief', {}).get('G-mIoU@1')))
     print('  Rej-F1 @ 0.4:      ', d.get(rej_k, {}).get('Rej-F1', d.get('brief', {}).get('Rej-F1@0.4')))
 
