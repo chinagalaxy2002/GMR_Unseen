@@ -8,157 +8,65 @@
 
 ## 一、 三大核心算法流程与架构图解
 
-### 1. 基线模型 (E0 Baseline)：端到端联合训练与梯度冲突
+### 1. 基线模型 (E0 Baseline)：端到端联合训练与梯度缠绕瓶颈
 
-E0 基于原生 FlashVTG-GMR 架构，由跨模态 Transformer 编码器同时连接时序定位头（Localization Head）与全局池化存在性分类头（Existence Head）。双任务共享同一主干网络反向传播：
+<p align="center">
+  <img src="assets/e0_baseline_architecture.png" alt="E0 Baseline Scientific Architecture" width="100%">
+</p>
 
-```mermaid
-flowchart TD
-    subgraph Inputs ["📥 多模态输入 (Inputs)"]
-        V_in["视频特征 Video Features<br/>SlowFast (2304d) + CLIP-ViT (512d)"]
-        T_in["文本查询 Text Query<br/>CLIP Text (512d)"]
-    end
+*图 1: E0 Baseline 架构与梯度冲突机理。多模态视频特征（SlowFast 2048d + CLIP 512d）与文本 Query（CLIP Text 512d）通过共享的 FlashVTG 跨模态时序 Transformer 交互。时序定位分支（Localization Head: Regressor & Saliency MLP）与存在性分类分支（Existence Head: Global Temporal Pooling + MLP）共同反向传播梯度。存在性损失 $\mathcal{L}_{exist}$ 持续改变共享特征空间分布，破坏精细定位所需的高频边界敏感度，引发梯度缠绕退化。*
 
-    subgraph Backbone ["⚙️ 跨模态时序编码骨干网络 (FlashVTG Backbone)"]
-        V_proj["视频特征投影 Linear"]
-        T_proj["文本特征投影 Linear"]
-        CrossModal["跨模态交互 Cross-Attention & FFN<br/>(视觉与文本时序深层融合)"]
-        V_in --> V_proj
-        T_in --> T_proj
-        V_proj --> CrossModal
-        T_proj --> CrossModal
-    end
-
-    subgraph LocBranch ["🎯 正例时序定位分支 (Localization Head)"]
-        CrossModal --> LocHead["时序边界预测与质量估计<br/>Boundary Regression & Saliency"]
-        LocHead --> LocLoss["定位损失 L_loc<br/>L_span (L1) + L_giou + L_saliency"]
-    end
-
-    subgraph ExistBranch ["⚡ 存在性判别分支 (Event Query Head)"]
-        CrossModal --> GAP["全局时序池化 / Event Token"]
-        GAP --> ExistMLP["存在性分类 MLP (单头分类)"]
-        ExistMLP --> ExistLoss["存在性分类损失 L_exist<br/>Binary Cross Entropy (BCE)"]
-    end
-
-    subgraph Conflict ["⚠️ 根本缺陷：双任务梯度冲突 (Gradient Entanglement)"]
-        ExistLoss -.->|"反向梯度传播 (更新特征表示)"| CrossModal
-        LocLoss -.->|"反向梯度传播 (更新时序边界)"| CrossModal
-        Note["❌ 机制痛点：存在性分类梯度持续改变共享时序特征分布，<br/>破坏了精细定位所需的边界敏感性，导致正例定位 mAP 出现严重退化！"]
-    end
-
-    style Inputs fill:#f8f9fa,stroke:#adb5bd,stroke-width:1px
-    style Backbone fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style LocBranch fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
-    style ExistBranch fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    style Conflict fill:#ffebee,stroke:#d32f2f,stroke-width:2px
-```
+- **多模态输入流**：输入时序视频特征 $V \in \mathbb{R}^{L_v \times D_v}$（$L_v=150$ 截断片段）与自然语言动作查询 $T \in \mathbb{R}^{L_t \times D_t}$，分别经各自投影层映射至 256 维隐空间。
+- **共享骨干编码器**：堆叠多层跨模态 Cross-Attention 与时序 Self-Attention，统一提取视频与文本的时序融合表征 $H \in \mathbb{R}^{L_v \times 256}$。
+- **双任务输出头**：
+  - **正例时序定位**：$\hat{s}_i, \hat{e}_i = \mathrm{Regressor}(H_i)$，监督损失为 $\mathcal{L}_{loc} = \mathcal{L}_{L1} + \mathcal{L}_{GIoU} + \mathcal{L}_{sal}$；
+  - **事件存在性判别**：$h_{cls} = \mathrm{GAP}(H), \hat{y}_{exist} = \mathbf{w}^\top h_{cls} + b$，监督损失为 $\mathcal{L}_{exist} = \mathrm{BCE}(\sigma(\hat{y}_{exist}), y_{exist})$。
+- **机制瓶颈**：存在性判别倾向于粗粒度的“语义是否存在”，而时序定位要求边界处的“微秒级变化率”。端到端反向传播时，两个互相竞争的梯度流直接冲击共享 Transformer 参数，造成定位精度大幅退化。
 
 ---
 
 ### 2. 本方案 Task A：两阶段解耦微调与文本复数建模
 
-为了彻底解决定位与拒识之间的梯度冲突，Task A 采用**两阶段解耦训练策略**：以收敛的 E0 权重为基石，**完全冻结定位主干**，通过 `detach(·)` 隔离反向传播，仅对 Event Query 读取头与新增的文本复数分类头进行微调：
+<p align="center">
+  <img src="assets/task_a_twostage_architecture.png" alt="Task A Two-Stage Decoupled Fine-Tuning" width="100%">
+</p>
 
-```mermaid
-flowchart TD
-    subgraph Stage1 ["❄️ 阶段一：E0 定位主干完全冻结 (Zero-Degradation Lock)"]
-        V_feat["输入视频 Video V"]
-        T_feat["输入查询 Text T"]
-        FrozenBackbone["【已完全冻结】FlashVTG 骨干网络<br/>(Backbone, Cross-Attention, Loc Head ❄️)<br/>参数完全固定，requires_grad = False"]
-        V_feat --> FrozenBackbone
-        T_feat --> FrozenBackbone
-        LockedPreds["🔒 锁定定位候选窗口<br/>(mAP 严格保持 26.18%，零退化风险)"]
-        FrozenBackbone --> LockedPreds
-    end
+*图 2: Task A 两阶段解耦微调与复数建模体系。阶段一将收敛的 E0 定位主干完全冻结（`requires_grad=False`），并在前向传播后设置硬性梯度隔离屏障（$\partial \mathcal{L} / \partial \theta_{loc} = 0$），将定位 mAP 严格锁定在 26.18%（实现零退化绝对保证）；阶段二在此基础上解耦微调多级证据读取头（Evidence Cross-Attention）与文本复数分类头（Text Plurality），在保持正例定位性能不变的同时解锁 +7.76 pp 显著拒识增益。*
 
-    subgraph DetachOp ["🛡️ 梯度隔离屏障 (Gradient Barrier)"]
-        FrozenBackbone -->|"前向输出特征"| Detach["detach(·) 算子<br/>完全切断向主干的反向传播路径"]
-    end
-
-    subgraph Stage2 ["🔥 阶段二：解耦微调读取头与复数建模 (Task A Active Tuning)"]
-        subgraph EventQuery ["存在性独立读取头"]
-            Detach --> EvidenceRead["Evidence Cross-Attention<br/>(多阶段证据交叉读取层)"]
-            EvidenceRead --> ExistHead["存在性预测头 MLP"]
-            ExistHead --> LossExist["L_exist (BCE 损失)"]
-        end
-
-        subgraph PluralityModule ["文本复数分类头 (Text Plurality)"]
-            T_feat --> TextTok["文本初始表征 e0"]
-            TextTok --> PluralityMLP["复数预测头 MLP<br/>P(single) vs P(multi)"]
-            PluralityMLP --> LossPlurality["L_plurality (CE 损失)"]
-        end
-    end
-
-    subgraph InferenceGate ["🚦 推理阶段：置信度与复数门控 (Inference Gating)"]
-        ExistHead --> ProbExist["存在概率 P(exist)"]
-        PluralityMLP --> ProbMulti["复数概率 P(multi)"]
-        LockedPreds --> Gate["动态置信度门控器<br/>P(exist) < 0.4 ➜ 彻底拒识 (真负例输出空)<br/>P(exist) >= 0.4 ➜ 保留最优候选窗口"]
-        ProbExist --> Gate
-        ProbMulti --> Gate
-        FinalOut["🏆 最终 GMR 检索结果<br/>(G-mIoU@0.4 提升至 42.42%，较 E0 +7.76 pp)"]
-        Gate --> FinalOut
-    end
-
-    style Stage1 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-    style DetachOp fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style Stage2 fill:#fff8e1,stroke:#ffa000,stroke-width:2px
-    style EventQuery fill:#ffffff,stroke:#ffa000,stroke-dasharray: 5 5
-    style PluralityModule fill:#ffffff,stroke:#ff8f00,stroke-dasharray: 5 5
-    style InferenceGate fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-```
+- **阶段一：定位权重绝对冻结 (Zero-Degradation Lock)**：
+  - 继承已在全量正例上充分收敛的 E0 预训练检查点，锁定全部 Backbone 与 Localization MLP 权重；
+  - 保证测试集定位性能在任何后续微调中严格守恒（Test mAP 恒定为 26.18%，边界回归质量零漂移）。
+- **梯度隔离屏障 (Gradient Barrier)**：
+  - 在骨干时序表征输出端实施硬性 `detach(·)` 算子：$\partial \mathcal{L}_{tune} / \partial \theta_{loc} \equiv 0$；
+  - 彻底斩断存在性微调梯度回传至时序定位主干的路径，从根源上消除了梯度缠绕效应。
+- **阶段二：解耦微调读取头与复数建模**：
+  - **解耦事件读取头 (Decoupled Event Head)**：利用独立微调的多级证据交叉注意力（$Q_{evt} \leftrightarrow \mathrm{detach}(H_{vid})$）对视频片段进行二次多尺度核查，输出鲁棒的存在性概率；
+  - **文本复数分类建模 (Text Plurality Modeling)**：引入 Kim 风格的文本复数先验分类头，仅基于文本查询初始嵌入 $e_0$ 判别单事件 vs 多事件，测试集复数分类 AUROC 达到 83.51%；
+  - **联合门控推理 (Inference Gating)**：在测试推理时通过置信度门控 $P(exist) \ge 0.4$ 动态过滤负样本，将 GMR 核心指标 G-mIoU@0.4 由 E0 的 34.66% 激增至 **42.42%**（+7.76 pp）。
 
 ---
 
-### 3. 本方案 A3 增强：语义相似度难负例对比挖掘
+### 3. 本方案 A3 增强：批内语义相似度难负例对比挖掘
 
-针对足球场景中“动作语义相似但画面实际不存在”（如把“角球”误判为已发生的“任意球”）的高频误检痛点，A3 在 Task A 架构上引入**批内语义相似度难负例挖掘（Similarity Hard-Negative Mining）**与对比监督：
+<p align="center">
+  <img src="assets/a3_hard_negative_architecture.png" alt="A3 Similarity Hard-Negative Contrastive Mining" width="100%">
+</p>
 
-```mermaid
-flowchart TD
-    subgraph BatchInputs ["📦 Mini-Batch 多样本批次输入"]
-        V_batch["视频批次: V_1, V_2, ..., V_B"]
-        T_batch["正例文本批次: T_1, T_2, ..., T_B"]
-    end
+*图 3: A3 批内语义相似度难负例对比挖掘机制。针对足球领域高频语义混淆，构建批内文本投影空间下的余弦相似度矩阵 $S_{ij} = \hat{T}_i^\top \hat{T}_j$（排除自身 $S_{ii} = -\infty$），自适应提取出语义极近但在当前视频中绝未发生的难负例 $j^* = \operatorname{argmax}_{j \neq i} S_{ij}$。通过正负双通路对比前向与联合损失优化，强迫模型从“粗粒度语义关联”跃迁至“细粒度动作核实”。*
 
-    subgraph HardNegMining ["🔍 语义相似度难负例挖掘引擎 (Hard-Negative Mining)"]
-        T_batch --> Norm["L2 归一化文本投影空间"]
-        Norm --> SimMat["批内语义相似度矩阵 S_ij = <T_i, T_j><br/>(对角线 S_ii 置为 -inf，排除自身)"]
-        SimMat --> Argmax["最强混淆负例匹配<br/>j* = argmax_{j != i} S_ij"]
-        T_batch --> Pick["抽取语义最接近的不匹配文本<br/>T_{j*} (最难混淆负例)"]
-        Argmax --> Pick
-        NoteNeg["💡 挖掘机理：自动找出语义上与目标极度相似、<br/>但在当前视频中绝不存在的高混淆负例！"]
-    end
-
-    subgraph DualForward ["⚡ 双流对比前向与监督目标 (Dual Contrastive Paths)"]
-        subgraph PosPath ["正例前向通路 (Positive Grounding)"]
-            V_batch --> VerifierPos["解耦事件检验器"]
-            T_batch --> VerifierPos
-            VerifierPos --> LogitPos["存在预测 logits+"]
-            LogitPos --> LossPos["正例存在损失: BCE(logits+, 1.0)"]
-        end
-
-        subgraph NegPath ["难负例前向通路 (Hard-Negative Contrast)"]
-            V_batch --> VerifierNeg["解耦事件检验器 (共享参数)"]
-            Pick --> VerifierNeg
-            VerifierNeg --> LogitNeg["负例预测 logits-"]
-            LogitNeg --> LossNeg["难负例惩罚损失: BCE(logits-, 0.0)"]
-        end
-    end
-
-    subgraph Objective ["🎯 联合优化目标 (Contrastive Objective)"]
-        LossPos --> TotalLoss["L_total = L_exist + 0.1 * L_plurality + 0.5 * L_hard_neg"]
-        LossNeg --> TotalLoss
-        Effect["🛡️ 算法收益：<br/>• 强迫模型从'语义泛匹配'转向'细粒度动作核实'<br/>• Test AUROC 攀升至 75.03% (超越 E0 基线)<br/>• Test G-mIoU@0.4 暴涨至 47.62% (+12.96 pp)<br/>• 负例拒识准确率 N-acc 达到惊人的 93.09%"]
-        TotalLoss --> Effect
-    end
-
-    style BatchInputs fill:#f8f9fa,stroke:#adb5bd,stroke-width:1px
-    style HardNegMining fill:#ede7f6,stroke:#512da8,stroke-width:2px
-    style DualForward fill:#f1f8e9,stroke:#33691e,stroke-width:2px
-    style PosPath fill:#ffffff,stroke:#2e7d32,stroke-dasharray: 5 5
-    style NegPath fill:#ffffff,stroke:#c62828,stroke-dasharray: 5 5
-    style Objective fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-```
+- **足球场景核心痛点**：普通随机负样本（如“点球” vs “换人”）过于简单，模型无需看视频仅凭语义词频即可拒识；但在现实足球转播中，诸如“禁区右侧直接任意球攻门”与“禁区右侧直接角球”具有高度重叠的视觉元素（禁区、射门、防守人群），极易诱发假阳性虚警。
+- **批内语义相似度挖掘引擎**：
+  - 对批次内全部自然语言文本查询进行 L2 归一化投影：$\hat{T}_i = \mathrm{Normalize}(\mathrm{Pool}(T_i)) \in \mathbb{R}^{256}$；
+  - 实时计算批内稠密相似度矩阵：$S_{ij} = \hat{T}_i^\top \hat{T}_j \quad (i \neq j)$，并将对角线元素置为 $-\infty$；
+  - 针对每个视频 $V_i$，挖掘出批次内语义最逼近但事实不符的最难混淆查询：$j^* = \mathrm{argmax}_{j \neq i} S_{ij}$，组成高难度负例对抗对 $(V_i, T_{j^*})$。
+- **双流对比前向通路与监督目标**：
+  - **正例前向通路**：输入真实匹配对 $(V_i, T_i)$，计算正向存在损失 $\mathcal{L}_{exist} = \mathrm{BCE}(\sigma(\hat{y}_i^+), 1.0)$；
+  - **难负例对比前向通路**：输入对抗负例对 $(V_i, T_{j^*})$，计算负向抑制惩罚 $\mathcal{L}_{hard} = \mathrm{BCE}(\sigma(\hat{y}_i^-), 0.0)$；
+  - **多任务联合目标**：$\mathcal{L}_{total} = \mathcal{L}_{exist} + 0.1 \mathcal{L}_{multi} + 0.5 \mathcal{L}_{hard}$。
+- **评测飞跃**：难负例机制强力净化了模型对于混淆动作的判断边界，在官方测试集上取得：
+  - **AUROC 攀升至 75.03%**（历史最高，全面超越 E0 基线）；
+  - **G-mIoU@0.4 跃升至 47.62%**（较 E0 基线暴涨 **+12.96 pp**）；
+  - **负例拒识准确率 N-acc@0.5 飙升至 93.09%**（较 E0 基线大幅提升 **+18.09 pp**）。
 
 ---
 
