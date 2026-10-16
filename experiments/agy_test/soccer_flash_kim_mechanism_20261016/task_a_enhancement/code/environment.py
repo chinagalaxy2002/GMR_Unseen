@@ -104,7 +104,7 @@ def options(job, device):
 def make_dataset(opt, split, smoke=False):
     from training.flash_vtg_gmr.dataset import StartEndDataset
 
-    assert split in ('train', 'val'), split
+    assert split in ('train', 'val', 'test'), split
     path = PARENT / 'tests/fixture_val.jsonl' if smoke else PARENT / 'data' / f'{split}.jsonl'
     dataset = StartEndDataset(
         dset_name=opt.dset_name,
