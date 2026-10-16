@@ -14,7 +14,7 @@
   <img src="assets/e0_baseline_architecture.png" alt="E0 Baseline Scientific Architecture" width="100%">
 </p>
 
-*图 1: E0 Baseline 架构与梯度冲突机理。多模态视频特征（SlowFast 2048d + CLIP 512d）与文本 Query（CLIP Text 512d）通过共享的 FlashVTG 跨模态时序 Transformer 交互。时序定位分支（Localization Head: Regressor & Saliency MLP）与存在性分类分支（Existence Head: Global Temporal Pooling + MLP）共同反向传播梯度。存在性损失 $\mathcal{L}_{exist}$ 持续改变共享特征空间分布，破坏精细定位所需的高频边界敏感度，引发梯度缠绕退化。*
+*图 1: E0 Baseline 架构与梯度冲突实证分析（设计规范遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig1_e0_baseline.pdf) 与 [独立绘图源码](figures/fig1_e0_baseline.py)）。(a) FlashVTG 跨模态网络架构：多模态视频特征（SlowFast 2048d + CLIP 512d）与文本查询（CLIP Text 512d）经投影后输入跨模态 Transformer 编码器，时序定位头与存在性判别头共同回传梯度；(b) 联合训练期间定位与存在性梯度余弦相似度 $\cos(\nabla \mathcal{L}_{loc}, \nabla \mathcal{L}_{exist}) < 0$，实证呈现持续冲突态势；(c) 联合训练（E0）与解耦训练的性能权衡，揭示梯度缠绕对边界敏感度造成的退化瓶颈。*
 
 - **多模态输入流**：输入时序视频特征 $V \in \mathbb{R}^{L_v \times D_v}$（$L_v=150$ 截断片段）与自然语言动作查询 $T \in \mathbb{R}^{L_t \times D_t}$，分别经各自投影层映射至 256 维隐空间。
 - **共享骨干编码器**：堆叠多层跨模态 Cross-Attention 与时序 Self-Attention，统一提取视频与文本的时序融合表征 $H \in \mathbb{R}^{L_v \times 256}$。
@@ -31,7 +31,7 @@
   <img src="assets/task_a_twostage_architecture.png" alt="Task A Two-Stage Decoupled Fine-Tuning" width="100%">
 </p>
 
-*图 2: Task A 两阶段解耦微调与复数建模体系。阶段一将收敛的 E0 定位主干完全冻结（`requires_grad=False`），并在前向传播后设置硬性梯度隔离屏障（$\partial \mathcal{L} / \partial \theta_{loc} = 0$），将定位 mAP 严格锁定在 26.18%（实现零退化绝对保证）；阶段二在此基础上解耦微调多级证据读取头（Evidence Cross-Attention）与文本复数分类头（Text Plurality），在保持正例定位性能不变的同时解锁 +7.76 pp 显著拒识增益。*
+*图 2: Task A 两阶段解耦微调与复数建模体系（遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig2_task_a_twostage.pdf) 与 [独立绘图源码](figures/fig2_task_a_twostage.py)）。(a) 两阶段解耦微调系统架构：阶段一完全锁定 E0 骨干与定位权重，设置硬性梯度隔离屏障 $\partial \mathcal{L} / \partial \theta_{loc} \equiv 0$；阶段二独立微调多级证据交叉注意力读取头与文本复数分类先验头；(b) 官方测试集正例定位绝对零退化实证验证（$R^2 = 1.000$，点对严格落在 $y=x$ 等值线）；(c) 文本复数分类 ROC 曲线（AUROC 达 83.51%）与内嵌混淆矩阵（平衡精度 65.29%）；(d) 置信度决策门控 $\tau$ 灵敏度曲线，展示 G-mIoU@0.4 跃升至 42.42%（较 E0 基线 +7.76 pp）。*
 
 - **阶段一：定位权重绝对冻结 (Zero-Degradation Lock)**：
   - 继承已在全量正例上充分收敛的 E0 预训练检查点，锁定全部 Backbone 与 Localization MLP 权重；
@@ -52,7 +52,7 @@
   <img src="assets/a3_hard_negative_architecture.png" alt="A3 Similarity Hard-Negative Contrastive Mining" width="100%">
 </p>
 
-*图 3: A3 批内语义相似度难负例对比挖掘机制。针对足球领域高频语义混淆，构建批内文本投影空间下的余弦相似度矩阵 $S_{ij} = \hat{T}_i^\top \hat{T}_j$（排除自身 $S_{ii} = -\infty$），自适应提取出语义极近但在当前视频中绝未发生的难负例 $j^* = \operatorname{argmax}_{j \neq i} S_{ij}$。通过正负双通路对比前向与联合损失优化，强迫模型从“粗粒度语义关联”跃迁至“细粒度动作核实”。*
+*图 3: A3 批内语义相似度难负例对比挖掘机制（遵循 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)；提供 [高清矢量 PDF](figures/fig3_a3_hard_negative.pdf) 与 [独立绘图源码](figures/fig3_a3_hard_negative.py)）。(a) 批内文本投影空间相似度矩阵 $S_{ij} = \hat{T}_i^\top \hat{T}_j$ 热力图与自适应极值负例选取 $j^* = \operatorname{argmax}_{j \neq i} S_{ij}$；(b) 正向匹配对与高混淆负例对的双流对比前向通路与惩罚监督；(c) 各判决门控下负样本拒识准确率（N-acc）对比：A3 在 0.5 门控下达到惊人的 93.09%（较 E0 基线提升 +18.09 pp）；(d) 官方测试集 1,036 条样本全量基准指标多维对照，展现 A3 在全面保持定位精度的同时实现拒识与综合检索的跨越式突破。*
 
 - **足球场景核心痛点**：普通随机负样本（如“点球” vs “换人”）过于简单，模型无需看视频仅凭语义词频即可拒识；但在现实足球转播中，诸如“禁区右侧直接任意球攻门”与“禁区右侧直接角球”具有高度重叠的视觉元素（禁区、射门、防守人群），极易诱发假阳性虚警。
 - **批内语义相似度挖掘引擎**：
