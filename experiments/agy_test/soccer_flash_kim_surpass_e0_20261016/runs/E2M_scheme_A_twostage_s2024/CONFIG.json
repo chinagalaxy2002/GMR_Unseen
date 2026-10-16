@@ -1,0 +1,44 @@
+{
+  "identity": {
+    "job": {
+      "run_id": "E2M_scheme_A_twostage_s2024",
+      "variant": "E2M",
+      "multi_source": "text",
+      "feature_grad_scale": 0.0,
+      "exist_weight": 0.1,
+      "multi_weight": 0.01,
+      "init_from_e0": true,
+      "freeze_backbone": true,
+      "two_stage": false,
+      "data_aug_no_target": false,
+      "tau_no": 0.0,
+      "tau_mul": 0.0,
+      "use_plurality_gating": false,
+      "epochs": 20,
+      "lr_drop": 12,
+      "early_stop_patience": 15,
+      "seed": 2024,
+      "lr": 5e-05,
+      "grad_clip": 0.1,
+      "wd": 0.0001,
+      "gpu": 0,
+      "description": "Scheme A: Fine-tuning from pre-trained E0 baseline (backbone frozen at Val mAP 26.82%, Test mAP 26.14%; only training Event Query + Presence/Plurality heads with weights 0.1/0.01). Budget: 20 epochs."
+    },
+    "smoke": false,
+    "initialization": "scratch",
+    "baseline": "E0",
+    "selection": "GMR composite & native pre-NMS mAP on Val only"
+  },
+  "identity_sha256": "28b91b48bdf642d7ef2af42af69c449621c7cbb83344850fbf57f93a23185284",
+  "runtime": {
+    "pid": 20274,
+    "CUDA_VISIBLE_DEVICES": "0",
+    "torch": "2.6.0+cu124",
+    "parameters": 12710427,
+    "n_train": 4138,
+    "n_val": 465,
+    "train_bsz": 8,
+    "eval_bsz": 1,
+    "device": "cuda"
+  }
+}

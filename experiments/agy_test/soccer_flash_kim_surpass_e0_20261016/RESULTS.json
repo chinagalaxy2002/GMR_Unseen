@@ -1,0 +1,1094 @@
+{
+  "updated": 1792142244.519172,
+  "baseline": "historical E0 (Val mAP 26.82, Test mAP 26.14, Test AUROC 74.27, Test G-mIoU@1 34.66)",
+  "jobs": [
+    {
+      "job": {
+        "run_id": "E2M_scheme_A_twostage_s2024",
+        "variant": "E2M",
+        "multi_source": "text",
+        "feature_grad_scale": 0.0,
+        "exist_weight": 0.1,
+        "multi_weight": 0.01,
+        "init_from_e0": true,
+        "freeze_backbone": true,
+        "two_stage": false,
+        "data_aug_no_target": false,
+        "tau_no": 0.0,
+        "tau_mul": 0.0,
+        "use_plurality_gating": false,
+        "epochs": 20,
+        "lr_drop": 12,
+        "early_stop_patience": 15,
+        "seed": 2024,
+        "lr": 5e-05,
+        "grad_clip": 0.1,
+        "wd": 0.0001,
+        "gpu": 0,
+        "description": "Scheme A: Fine-tuning from pre-trained E0 baseline (backbone frozen at Val mAP 26.82%, Test mAP 26.14%; only training Event Query + Presence/Plurality heads with weights 0.1/0.01). Budget: 20 epochs."
+      },
+      "queue": {
+        "run_id": "E2M_scheme_A_twostage_s2024",
+        "state": "complete",
+        "pid": 20274,
+        "gpu": 0,
+        "started": 1792139269.7530682,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/train.py",
+          "--job",
+          "E2M_scheme_A_twostage_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": 0,
+        "finished": 1792140035.8146534
+      },
+      "status": {
+        "state": "complete",
+        "selected": {
+          "epoch": 1,
+          "composite_score": 37.65242621664638,
+          "native_pre_nms_mAP": 26.82,
+          "gmr_calibrated": 52.86,
+          "selection_data": "Val only",
+          "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+          "stage": "pre-NMS"
+        },
+        "updated": 1792140021.3368304
+      },
+      "selected": {
+        "epoch": 1,
+        "composite_score": 37.65242621664638,
+        "native_pre_nms_mAP": 26.82,
+        "gmr_calibrated": 52.86,
+        "selection_data": "Val only",
+        "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+        "stage": "pre-NMS"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 53.33,
+          "MR-full-R1@0.5": 40.78,
+          "MR-full-R1@0.7": 25.88,
+          "MR-full-mAP": 26.82,
+          "MR-full-mAP@0.5": 47.34,
+          "MR-full-mAP@0.75": 29.16,
+          "MR-full-mIoU": 37.1
+        },
+        "positive_localization": {
+          "mAP": 28.29,
+          "mR@1": 18.27,
+          "mR@3": 30.64,
+          "mR@5": 38.4,
+          "mR+@1": 0.0,
+          "mR+@3": 9.76,
+          "mR+@5": 16.33,
+          "mIoU@1": 36.76,
+          "mIoU@3": 33.55,
+          "mIoU@5": 33.41,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 10.54,
+          "mIoU+@5": 10.13
+        },
+        "AUROC": 72.6,
+        "AUROC_raw": 72.593837535014,
+        "gate_04": {
+          "G-mIoU@1": 41.41,
+          "G-mIoU@3": 35.44,
+          "G-mIoU@5": 33.26,
+          "Rej-F1": 62.9,
+          "Acc": 64.73,
+          "Rej-P": 59.91,
+          "Rej-R": 66.19,
+          "TP": 162,
+          "TN": 139,
+          "FP": 71,
+          "FN": 93,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 66.19047619047619,
+          "positive_recall": 63.52941176470588,
+          "balanced_accuracy": 64.85994397759103
+        },
+        "fixed_05": {
+          "G-mIoU@1": 46.29,
+          "G-mIoU@3": 40.72,
+          "G-mIoU@5": 38.84,
+          "Rej-F1": 66.53,
+          "Acc": 63.87,
+          "Rej-P": 57.19,
+          "Rej-R": 79.52,
+          "TP": 130,
+          "TN": 167,
+          "FP": 43,
+          "FN": 125,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 79.52380952380952,
+          "positive_recall": 50.98039215686274,
+          "balanced_accuracy": 65.25210084033613
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 52.86,
+          "G-mIoU@3": 47.92,
+          "G-mIoU@5": 46.76,
+          "Rej-F1": 71.7,
+          "Acc": 64.52,
+          "Rej-P": 56.03,
+          "Rej-R": 99.52,
+          "TP": 91,
+          "TN": 209,
+          "FP": 1,
+          "FN": 164,
+          "threshold": 0.777,
+          "positive_if": "p >= threshold",
+          "negative_recall": 99.52380952380952,
+          "positive_recall": 35.68627450980392,
+          "balanced_accuracy": 67.60504201680672
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 255,
+          "accuracy": 69.80392156862744,
+          "balanced_accuracy": 62.77777777777778,
+          "AUROC": 79.003367003367,
+          "confusion": [
+            [
+              143,
+              22
+            ],
+            [
+              55,
+              35
+            ]
+          ]
+        }
+      },
+      "test_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 51.29,
+          "MR-full-R1@0.5": 39.15,
+          "MR-full-R1@0.7": 21.69,
+          "MR-full-mAP": 25.19,
+          "MR-full-mAP@0.5": 47.06,
+          "MR-full-mAP@0.75": 27.25,
+          "MR-full-mIoU": 34.54
+        },
+        "positive_localization": {
+          "mAP": 26.18,
+          "mR@1": 15.66,
+          "mR@3": 28.88,
+          "mR@5": 35.93,
+          "mR+@1": 0.0,
+          "mR+@3": 11.06,
+          "mR+@5": 19.73,
+          "mIoU@1": 34.78,
+          "mIoU@3": 31.79,
+          "mIoU@5": 31.65,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 14.26,
+          "mIoU+@5": 13.84
+        },
+        "AUROC": 73.19,
+        "AUROC_raw": 73.19165471066475,
+        "gate_04": {
+          "G-mIoU@1": 42.42,
+          "G-mIoU@3": 36.43,
+          "G-mIoU@5": 34.44,
+          "Rej-F1": 64.28,
+          "Acc": 65.35,
+          "Rej-P": 62.96,
+          "Rej-R": 65.65,
+          "TP": 354,
+          "TN": 323,
+          "FP": 169,
+          "FN": 190,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 65.65040650406505,
+          "positive_recall": 65.07352941176471,
+          "balanced_accuracy": 65.36196795791487
+        },
+        "fixed_05": {
+          "G-mIoU@1": 47.41,
+          "G-mIoU@3": 41.72,
+          "G-mIoU@5": 40.04,
+          "Rej-F1": 69.18,
+          "Acc": 66.8,
+          "Rej-P": 61.86,
+          "Rej-R": 78.46,
+          "TP": 306,
+          "TN": 386,
+          "FP": 106,
+          "FN": 238,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 78.45528455284553,
+          "positive_recall": 56.25,
+          "balanced_accuracy": 67.35264227642277
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 52.98,
+          "G-mIoU@3": 47.37,
+          "G-mIoU@5": 45.98,
+          "Rej-F1": 73.72,
+          "Acc": 68.82,
+          "Rej-P": 61.47,
+          "Rej-R": 92.07,
+          "TP": 260,
+          "TN": 453,
+          "FP": 39,
+          "FN": 284,
+          "threshold": 0.661,
+          "positive_if": "p >= threshold",
+          "negative_recall": 92.07317073170732,
+          "positive_recall": 47.794117647058826,
+          "balanced_accuracy": 69.93364418938307
+        },
+        "counts": {
+          "total": 1036,
+          "positive": 544,
+          "negative": 492
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 544,
+          "accuracy": 75.18382352941177,
+          "balanced_accuracy": 65.28645833333333,
+          "AUROC": 83.50667317708333,
+          "confusion": [
+            [
+              343,
+              41
+            ],
+            [
+              94,
+              66
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "E2M_scheme_B_plurality_s2024",
+        "variant": "E2M",
+        "multi_source": "text",
+        "feature_grad_scale": 0.0,
+        "exist_weight": 0.1,
+        "multi_weight": 0.01,
+        "use_plurality_gating": true,
+        "data_aug_no_target": false,
+        "tau_no": 0.0,
+        "tau_mul": 0.0,
+        "epochs": 60,
+        "lr_drop": 25,
+        "early_stop_patience": 20,
+        "seed": 2024,
+        "lr": 3e-05,
+        "grad_clip": 0.1,
+        "wd": 0.0001,
+        "gpu": 0,
+        "description": "Scheme B: Plurality-Conditioned Dynamic NMS Filtering. Detached Event Query with dynamic window sharpening for single-event queries. Tested on GPU 0. Budget: 60 epochs."
+      },
+      "queue": {
+        "run_id": "E2M_scheme_B_plurality_s2024",
+        "state": "complete",
+        "pid": 14769,
+        "gpu": 0,
+        "started": 1792138102.4518037,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/train.py",
+          "--job",
+          "E2M_scheme_B_plurality_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": null,
+        "finished": 1792140877.2586706
+      },
+      "status": {
+        "state": "complete",
+        "selected": {
+          "epoch": 21,
+          "composite_score": 36.31878439595687,
+          "native_pre_nms_mAP": 25.43,
+          "gmr_calibrated": 51.87,
+          "selection_data": "Val only",
+          "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+          "stage": "pre-NMS"
+        },
+        "updated": 1792140871.8988461
+      },
+      "selected": {
+        "epoch": 21,
+        "composite_score": 36.31878439595687,
+        "native_pre_nms_mAP": 25.43,
+        "gmr_calibrated": 51.87,
+        "selection_data": "Val only",
+        "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+        "stage": "pre-NMS"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 49.02,
+          "MR-full-R1@0.5": 38.04,
+          "MR-full-R1@0.7": 23.53,
+          "MR-full-mAP": 25.43,
+          "MR-full-mAP@0.5": 46.45,
+          "MR-full-mAP@0.75": 27.49,
+          "MR-full-mIoU": 33.63
+        },
+        "positive_localization": {
+          "mAP": 23.13,
+          "mR@1": 16.47,
+          "mR@3": 24.22,
+          "mR@5": 29.1,
+          "mR+@1": 0.0,
+          "mR+@3": 8.26,
+          "mR+@5": 12.43,
+          "mIoU@1": 33.67,
+          "mIoU@3": 30.98,
+          "mIoU@5": 30.99,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 8.3,
+          "mIoU+@5": 8.4
+        },
+        "AUROC": 70.7,
+        "AUROC_raw": 70.69467787114847,
+        "gate_04": {
+          "G-mIoU@1": 14.78,
+          "G-mIoU@3": 12.9,
+          "G-mIoU@5": 11.43,
+          "Rej-F1": 0.0,
+          "Acc": 54.62,
+          "Rej-P": 0.0,
+          "Rej-R": 0.0,
+          "TP": 254,
+          "TN": 0,
+          "FP": 210,
+          "FN": 1,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 0.0,
+          "positive_recall": 99.6078431372549,
+          "balanced_accuracy": 49.80392156862745
+        },
+        "fixed_05": {
+          "G-mIoU@1": 47.24,
+          "G-mIoU@3": 46.47,
+          "G-mIoU@5": 45.96,
+          "Rej-F1": 67.69,
+          "Acc": 63.87,
+          "Rej-P": 56.77,
+          "Rej-R": 83.81,
+          "TP": 121,
+          "TN": 176,
+          "FP": 34,
+          "FN": 134,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 83.80952380952381,
+          "positive_recall": 47.45098039215686,
+          "balanced_accuracy": 65.63025210084034
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 51.87,
+          "G-mIoU@3": 51.86,
+          "G-mIoU@5": 51.77,
+          "Rej-F1": 70.79,
+          "Acc": 63.44,
+          "Rej-P": 55.38,
+          "Rej-R": 98.1,
+          "TP": 89,
+          "TN": 206,
+          "FP": 4,
+          "FN": 166,
+          "threshold": 0.665,
+          "positive_if": "p >= threshold",
+          "negative_recall": 98.09523809523809,
+          "positive_recall": 34.90196078431372,
+          "balanced_accuracy": 66.4985994397759
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 255,
+          "accuracy": 71.37254901960785,
+          "balanced_accuracy": 72.07070707070707,
+          "AUROC": 79.25252525252525,
+          "confusion": [
+            [
+              115,
+              50
+            ],
+            [
+              23,
+              67
+            ]
+          ]
+        }
+      },
+      "test_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 45.04,
+          "MR-full-R1@0.5": 35.11,
+          "MR-full-R1@0.7": 21.51,
+          "MR-full-mAP": 23.63,
+          "MR-full-mAP@0.5": 43.81,
+          "MR-full-mAP@0.75": 25.88,
+          "MR-full-mIoU": 31.22
+        },
+        "positive_localization": {
+          "mAP": 19.88,
+          "mR@1": 14.5,
+          "mR@3": 20.03,
+          "mR@5": 24.09,
+          "mR+@1": 0.0,
+          "mR+@3": 7.04,
+          "mR+@5": 15.54,
+          "mIoU@1": 31.23,
+          "mIoU@3": 28.56,
+          "mIoU@5": 28.43,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 6.09,
+          "mIoU+@5": 5.84
+        },
+        "AUROC": 70.72,
+        "AUROC_raw": 70.72292712816834,
+        "gate_04": {
+          "G-mIoU@1": 13.97,
+          "G-mIoU@3": 12.58,
+          "G-mIoU@5": 11.42,
+          "Rej-F1": 3.19,
+          "Acc": 53.19,
+          "Rej-P": 88.89,
+          "Rej-R": 1.63,
+          "TP": 543,
+          "TN": 8,
+          "FP": 484,
+          "FN": 1,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 1.6260162601626018,
+          "positive_recall": 99.81617647058823,
+          "balanced_accuracy": 50.721096365375416
+        },
+        "fixed_05": {
+          "G-mIoU@1": 47.29,
+          "G-mIoU@3": 46.88,
+          "G-mIoU@5": 46.5,
+          "Rej-F1": 70.11,
+          "Acc": 67.08,
+          "Rej-P": 61.63,
+          "Rej-R": 81.3,
+          "TP": 295,
+          "TN": 400,
+          "FP": 92,
+          "FN": 249,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 81.30081300813008,
+          "positive_recall": 54.22794117647059,
+          "balanced_accuracy": 67.76437709230034
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 54.04,
+          "G-mIoU@3": 54.04,
+          "G-mIoU@5": 53.94,
+          "Rej-F1": 74.94,
+          "Acc": 68.82,
+          "Rej-P": 60.6,
+          "Rej-R": 98.17,
+          "TP": 230,
+          "TN": 483,
+          "FP": 9,
+          "FN": 314,
+          "threshold": 0.668,
+          "positive_if": "p >= threshold",
+          "negative_recall": 98.17073170731707,
+          "positive_recall": 42.279411764705884,
+          "balanced_accuracy": 70.22507173601149
+        },
+        "counts": {
+          "total": 1036,
+          "positive": 544,
+          "negative": 492
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 544,
+          "accuracy": 74.63235294117648,
+          "balanced_accuracy": 72.36979166666666,
+          "AUROC": 83.52783203125,
+          "confusion": [
+            [
+              299,
+              85
+            ],
+            [
+              53,
+              107
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "E2M_scheme_C_focal_s2024",
+        "variant": "E2M",
+        "multi_source": "text",
+        "feature_grad_scale": 0.0,
+        "exist_weight": 0.1,
+        "multi_weight": 0.01,
+        "use_focal_loss": true,
+        "data_aug_no_target": false,
+        "tau_no": 0.0,
+        "tau_mul": 0.0,
+        "use_plurality_gating": false,
+        "epochs": 60,
+        "lr_drop": 25,
+        "early_stop_patience": 20,
+        "seed": 2024,
+        "lr": 3e-05,
+        "grad_clip": 0.1,
+        "wd": 0.0001,
+        "gpu": 1,
+        "description": "Scheme C: Focal Loss for Presence Classification (gamma=2.0) to center decision boundary at 0.5 without artificial data perturbation. Tested on GPU 1. Budget: 60 epochs."
+      },
+      "queue": {
+        "run_id": "E2M_scheme_C_focal_s2024",
+        "state": "complete",
+        "pid": 14770,
+        "gpu": 1,
+        "started": 1792138102.4526482,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/train.py",
+          "--job",
+          "E2M_scheme_C_focal_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": null,
+        "finished": 1792140681.9270072
+      },
+      "status": {
+        "state": "complete",
+        "selected": {
+          "epoch": 17,
+          "composite_score": 36.04971567155558,
+          "native_pre_nms_mAP": 24.66,
+          "gmr_calibrated": 52.7,
+          "selection_data": "Val only",
+          "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+          "stage": "pre-NMS"
+        },
+        "updated": 1792140672.6224515
+      },
+      "selected": {
+        "epoch": 17,
+        "composite_score": 36.04971567155558,
+        "native_pre_nms_mAP": 24.66,
+        "gmr_calibrated": 52.7,
+        "selection_data": "Val only",
+        "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+        "stage": "pre-NMS"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 50.2,
+          "MR-full-R1@0.5": 36.08,
+          "MR-full-R1@0.7": 21.57,
+          "MR-full-mAP": 24.66,
+          "MR-full-mAP@0.5": 44.91,
+          "MR-full-mAP@0.75": 26.27,
+          "MR-full-mIoU": 33.35
+        },
+        "positive_localization": {
+          "mAP": 25.76,
+          "mR@1": 15.37,
+          "mR@3": 28.92,
+          "mR@5": 36.18,
+          "mR+@1": 0.0,
+          "mR+@3": 3.61,
+          "mR+@5": 12.5,
+          "mIoU@1": 33.26,
+          "mIoU@3": 30.7,
+          "mIoU@5": 30.6,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 6.78,
+          "mIoU+@5": 6.53
+        },
+        "AUROC": 71.08,
+        "AUROC_raw": 71.15406162464986,
+        "gate_04": {
+          "G-mIoU@1": 14.97,
+          "G-mIoU@3": 7.49,
+          "G-mIoU@5": 4.53,
+          "Rej-F1": 0.0,
+          "Acc": 54.84,
+          "Rej-P": 0.0,
+          "Rej-R": 0.0,
+          "TP": 255,
+          "TN": 0,
+          "FP": 210,
+          "FN": 0,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 0.0,
+          "positive_recall": 100.0,
+          "balanced_accuracy": 50.0
+        },
+        "fixed_05": {
+          "G-mIoU@1": 52.5,
+          "G-mIoU@3": 47.61,
+          "G-mIoU@5": 46.63,
+          "Rej-F1": 70.71,
+          "Acc": 62.58,
+          "Rej-P": 54.69,
+          "Rej-R": 100.0,
+          "TP": 81,
+          "TN": 210,
+          "FP": 0,
+          "FN": 174,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 100.0,
+          "positive_recall": 31.76470588235294,
+          "balanced_accuracy": 65.88235294117646
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 52.7,
+          "G-mIoU@3": 47.79,
+          "G-mIoU@5": 46.76,
+          "Rej-F1": 71.07,
+          "Acc": 63.23,
+          "Rej-P": 55.12,
+          "Rej-R": 100.0,
+          "TP": 84,
+          "TN": 210,
+          "FP": 0,
+          "FN": 171,
+          "threshold": 0.487,
+          "positive_if": "p >= threshold",
+          "negative_recall": 100.0,
+          "positive_recall": 32.94117647058823,
+          "balanced_accuracy": 66.47058823529412
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 255,
+          "accuracy": 72.15686274509804,
+          "balanced_accuracy": 70.4040404040404,
+          "AUROC": 80.20202020202021,
+          "confusion": [
+            [
+              126,
+              39
+            ],
+            [
+              32,
+              58
+            ]
+          ]
+        }
+      },
+      "test_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 45.77,
+          "MR-full-R1@0.5": 34.93,
+          "MR-full-R1@0.7": 19.49,
+          "MR-full-mAP": 22.7,
+          "MR-full-mAP@0.5": 42.72,
+          "MR-full-mAP@0.75": 24.36,
+          "MR-full-mIoU": 30.83
+        },
+        "positive_localization": {
+          "mAP": 23.97,
+          "mR@1": 14.07,
+          "mR@3": 26.61,
+          "mR@5": 33.27,
+          "mR+@1": 0.0,
+          "mR+@3": 8.41,
+          "mR+@5": 17.48,
+          "mIoU@1": 31.23,
+          "mIoU@3": 28.08,
+          "mIoU@5": 27.98,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 10.77,
+          "mIoU+@5": 10.68
+        },
+        "AUROC": 67.72,
+        "AUROC_raw": 67.69675095648016,
+        "gate_04": {
+          "G-mIoU@1": 13.2,
+          "G-mIoU@3": 6.51,
+          "G-mIoU@5": 4.05,
+          "Rej-F1": 0.0,
+          "Acc": 52.51,
+          "Rej-P": 0.0,
+          "Rej-R": 0.0,
+          "TP": 544,
+          "TN": 0,
+          "FP": 492,
+          "FN": 0,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 0.0,
+          "positive_recall": 100.0,
+          "balanced_accuracy": 50.0
+        },
+        "fixed_05": {
+          "G-mIoU@1": 54.41,
+          "G-mIoU@3": 49.8,
+          "G-mIoU@5": 48.87,
+          "Rej-F1": 74.32,
+          "Acc": 67.18,
+          "Rej-P": 59.13,
+          "Rej-R": 100.0,
+          "TP": 204,
+          "TN": 492,
+          "FP": 0,
+          "FN": 340,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 100.0,
+          "positive_recall": 37.5,
+          "balanced_accuracy": 68.75
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 54.33,
+          "G-mIoU@3": 49.74,
+          "G-mIoU@5": 48.81,
+          "Rej-F1": 74.34,
+          "Acc": 67.28,
+          "Rej-P": 59.23,
+          "Rej-R": 99.8,
+          "TP": 206,
+          "TN": 491,
+          "FP": 1,
+          "FN": 338,
+          "threshold": 0.489,
+          "positive_if": "p >= threshold",
+          "negative_recall": 99.79674796747967,
+          "positive_recall": 37.86764705882353,
+          "balanced_accuracy": 68.8321975131516
+        },
+        "counts": {
+          "total": 1036,
+          "positive": 544,
+          "negative": 492
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 544,
+          "accuracy": 75.73529411764706,
+          "balanced_accuracy": 70.05208333333333,
+          "AUROC": 82.98909505208333,
+          "confusion": [
+            [
+              322,
+              62
+            ],
+            [
+              70,
+              90
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "E2M_scheme_D_dualDA_s2024",
+        "variant": "E2M",
+        "multi_source": "text",
+        "feature_grad_scale": 0.0,
+        "exist_weight": 0.1,
+        "multi_weight": 0.01,
+        "data_aug_no_target": true,
+        "tau_no": 0.08,
+        "tau_mul": 0.05,
+        "use_plurality_gating": false,
+        "epochs": 60,
+        "lr_drop": 25,
+        "early_stop_patience": 20,
+        "seed": 2024,
+        "lr": 3e-05,
+        "grad_clip": 0.1,
+        "wd": 0.0001,
+        "gpu": 1,
+        "description": "Scheme D: Dual Synthetic Data Augmentation (tau_no=0.08, tau_mul=0.05) strictly testing the Kim data augmentation hypothesis on Soccer-GMR. Tested on GPU 1. Budget: 60 epochs."
+      },
+      "queue": {
+        "run_id": "E2M_scheme_D_dualDA_s2024",
+        "state": "complete",
+        "pid": 14771,
+        "gpu": 1,
+        "started": 1792138102.4531708,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_surpass_e0_20261016/code/train.py",
+          "--job",
+          "E2M_scheme_D_dualDA_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": null,
+        "finished": 1792142244.5131288
+      },
+      "status": {
+        "state": "complete",
+        "selected": {
+          "epoch": 58,
+          "composite_score": 36.20008563525782,
+          "native_pre_nms_mAP": 25.23,
+          "gmr_calibrated": 51.94,
+          "selection_data": "Val only",
+          "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+          "stage": "pre-NMS"
+        },
+        "updated": 1792142238.809272
+      },
+      "selected": {
+        "epoch": 58,
+        "composite_score": 36.20008563525782,
+        "native_pre_nms_mAP": 25.23,
+        "gmr_calibrated": 51.94,
+        "selection_data": "Val only",
+        "selection_metric": "sqrt(mAP * G-mIoU_calib)",
+        "stage": "pre-NMS"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 51.37,
+          "MR-full-R1@0.5": 40.0,
+          "MR-full-R1@0.7": 23.14,
+          "MR-full-mAP": 25.23,
+          "MR-full-mAP@0.5": 45.6,
+          "MR-full-mAP@0.75": 27.0,
+          "MR-full-mIoU": 35.12
+        },
+        "positive_localization": {
+          "mAP": 27.15,
+          "mR@1": 17.41,
+          "mR@3": 29.13,
+          "mR@5": 36.94,
+          "mR+@1": 0.0,
+          "mR+@3": 7.46,
+          "mR+@5": 16.13,
+          "mIoU@1": 35.12,
+          "mIoU@3": 31.22,
+          "mIoU@5": 31.12,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 7.22,
+          "mIoU+@5": 6.99
+        },
+        "AUROC": 71.38,
+        "AUROC_raw": 71.36881419234359,
+        "gate_04": {
+          "G-mIoU@1": 41.5,
+          "G-mIoU@3": 35.7,
+          "G-mIoU@5": 33.74,
+          "Rej-F1": 62.72,
+          "Acc": 63.44,
+          "Rej-P": 58.13,
+          "Rej-R": 68.1,
+          "TP": 152,
+          "TN": 143,
+          "FP": 67,
+          "FN": 103,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 68.0952380952381,
+          "positive_recall": 59.6078431372549,
+          "balanced_accuracy": 63.851540616246496
+        },
+        "fixed_05": {
+          "G-mIoU@1": 49.13,
+          "G-mIoU@3": 44.17,
+          "G-mIoU@5": 42.87,
+          "Rej-F1": 68.84,
+          "Acc": 63.01,
+          "Rej-P": 55.56,
+          "Rej-R": 90.48,
+          "TP": 103,
+          "TN": 190,
+          "FP": 20,
+          "FN": 152,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 90.47619047619048,
+          "positive_recall": 40.3921568627451,
+          "balanced_accuracy": 65.43417366946778
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 51.94,
+          "G-mIoU@3": 47.37,
+          "G-mIoU@5": 46.33,
+          "Rej-F1": 71.11,
+          "Acc": 63.66,
+          "Rej-P": 55.47,
+          "Rej-R": 99.05,
+          "TP": 88,
+          "TN": 208,
+          "FP": 2,
+          "FN": 167,
+          "threshold": 0.633,
+          "positive_if": "p >= threshold",
+          "negative_recall": 99.04761904761905,
+          "positive_recall": 34.509803921568626,
+          "balanced_accuracy": 66.77871148459384
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 255,
+          "accuracy": 71.37254901960785,
+          "balanced_accuracy": 71.31313131313132,
+          "AUROC": 80.53198653198653,
+          "confusion": [
+            [
+              118,
+              47
+            ],
+            [
+              26,
+              64
+            ]
+          ]
+        }
+      },
+      "test_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 48.9,
+          "MR-full-R1@0.5": 36.03,
+          "MR-full-R1@0.7": 19.85,
+          "MR-full-mAP": 23.1,
+          "MR-full-mAP@0.5": 43.53,
+          "MR-full-mAP@0.75": 24.0,
+          "MR-full-mIoU": 32.71
+        },
+        "positive_localization": {
+          "mAP": 24.56,
+          "mR@1": 14.33,
+          "mR@3": 27.55,
+          "mR@5": 34.39,
+          "mR+@1": 0.0,
+          "mR+@3": 9.88,
+          "mR+@5": 19.88,
+          "mIoU@1": 32.44,
+          "mIoU@3": 29.33,
+          "mIoU@5": 29.26,
+          "mIoU+@1": 0.0,
+          "mIoU+@3": 11.99,
+          "mIoU+@5": 12.01
+        },
+        "AUROC": 72.75,
+        "AUROC_raw": 72.75357932807269,
+        "gate_04": {
+          "G-mIoU@1": 41.8,
+          "G-mIoU@3": 36.47,
+          "G-mIoU@5": 34.89,
+          "Rej-F1": 64.67,
+          "Acc": 64.77,
+          "Rej-P": 61.74,
+          "Rej-R": 67.89,
+          "TP": 337,
+          "TN": 334,
+          "FP": 158,
+          "FN": 207,
+          "threshold": 0.4,
+          "positive_if": "p >= threshold",
+          "negative_recall": 67.88617886178862,
+          "positive_recall": 61.94852941176471,
+          "balanced_accuracy": 64.91735413677667
+        },
+        "fixed_05": {
+          "G-mIoU@1": 51.5,
+          "G-mIoU@3": 46.48,
+          "G-mIoU@5": 45.24,
+          "Rej-F1": 73.16,
+          "Acc": 68.34,
+          "Rej-P": 61.23,
+          "Rej-R": 90.85,
+          "TP": 261,
+          "TN": 447,
+          "FP": 45,
+          "FN": 283,
+          "threshold": 0.5,
+          "positive_if": "p >= threshold",
+          "negative_recall": 90.85365853658537,
+          "positive_recall": 47.97794117647059,
+          "balanced_accuracy": 69.41579985652798
+        },
+        "own_val_BA_threshold": {
+          "G-mIoU@1": 52.88,
+          "G-mIoU@3": 47.98,
+          "G-mIoU@5": 46.79,
+          "Rej-F1": 74.42,
+          "Acc": 69.21,
+          "Rej-P": 61.46,
+          "Rej-R": 94.31,
+          "TP": 253,
+          "TN": 464,
+          "FP": 28,
+          "FN": 291,
+          "threshold": 0.568,
+          "positive_if": "p >= threshold",
+          "negative_recall": 94.3089430894309,
+          "positive_recall": 46.50735294117647,
+          "balanced_accuracy": 70.40814801530368
+        },
+        "counts": {
+          "total": 1036,
+          "positive": 544,
+          "negative": 492
+        },
+        "plurality": {
+          "scope": "GT positives only",
+          "n": 544,
+          "accuracy": 74.44852941176471,
+          "balanced_accuracy": 71.328125,
+          "AUROC": 82.96468098958334,
+          "confusion": [
+            [
+              303,
+              81
+            ],
+            [
+              58,
+              102
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

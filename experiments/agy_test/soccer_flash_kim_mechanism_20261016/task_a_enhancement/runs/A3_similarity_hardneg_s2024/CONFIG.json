@@ -1,0 +1,28 @@
+{
+  "identity": {
+    "job": {
+      "run_id": "A3_similarity_hardneg_s2024",
+      "seed": 2024,
+      "epochs": 20,
+      "lr": 5e-05,
+      "lr_drop": 12,
+      "wd": 0.0001,
+      "grad_clip": 0.1,
+      "early_stop_patience": 8,
+      "multigranularity": false,
+      "cardinality": false,
+      "quality_fusion": false,
+      "hard_negative": true,
+      "hard_negative_weight": 0.5,
+      "multi_weight": 0.1,
+      "gpu": 1,
+      "description": "Task A with closest-in-batch mismatched text negatives, applied only to the detached head."
+    },
+    "e0_checkpoint_sha256": "b2ee7c66b90a743a30173f40505e36b29e7edd85c238caac3eb60a0182f6b7f9"
+  },
+  "identity_sha256": "8a2a37534520424ac7fc7c61350bf4652a6c91567837df977f472712a16930e9",
+  "trainable_parameters": 2175236,
+  "total_parameters": 12644636,
+  "selection": "Val AUROC only; Test is inaccessible",
+  "localization_contract": "E0 pred_relevant_windows_pre_exist must be exactly identical"
+}

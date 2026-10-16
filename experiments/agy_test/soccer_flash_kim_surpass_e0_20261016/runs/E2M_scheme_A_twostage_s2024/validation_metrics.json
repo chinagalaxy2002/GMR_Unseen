@@ -1,0 +1,104 @@
+{
+  "native_pre_nms": {
+    "MR-full-R1@0.3": 53.33,
+    "MR-full-R1@0.5": 40.78,
+    "MR-full-R1@0.7": 25.88,
+    "MR-full-mAP": 26.82,
+    "MR-full-mAP@0.5": 47.34,
+    "MR-full-mAP@0.75": 29.16,
+    "MR-full-mIoU": 37.1
+  },
+  "positive_localization": {
+    "mAP": 28.29,
+    "mR@1": 18.27,
+    "mR@3": 30.64,
+    "mR@5": 38.4,
+    "mR+@1": 0.0,
+    "mR+@3": 9.76,
+    "mR+@5": 16.33,
+    "mIoU@1": 36.76,
+    "mIoU@3": 33.55,
+    "mIoU@5": 33.41,
+    "mIoU+@1": 0.0,
+    "mIoU+@3": 10.54,
+    "mIoU+@5": 10.13
+  },
+  "AUROC": 72.6,
+  "AUROC_raw": 72.593837535014,
+  "gate_04": {
+    "G-mIoU@1": 41.41,
+    "G-mIoU@3": 35.44,
+    "G-mIoU@5": 33.26,
+    "Rej-F1": 62.9,
+    "Acc": 64.73,
+    "Rej-P": 59.91,
+    "Rej-R": 66.19,
+    "TP": 162,
+    "TN": 139,
+    "FP": 71,
+    "FN": 93,
+    "threshold": 0.4,
+    "positive_if": "p >= threshold",
+    "negative_recall": 66.19047619047619,
+    "positive_recall": 63.52941176470588,
+    "balanced_accuracy": 64.85994397759103
+  },
+  "fixed_05": {
+    "G-mIoU@1": 46.29,
+    "G-mIoU@3": 40.72,
+    "G-mIoU@5": 38.84,
+    "Rej-F1": 66.53,
+    "Acc": 63.87,
+    "Rej-P": 57.19,
+    "Rej-R": 79.52,
+    "TP": 130,
+    "TN": 167,
+    "FP": 43,
+    "FN": 125,
+    "threshold": 0.5,
+    "positive_if": "p >= threshold",
+    "negative_recall": 79.52380952380952,
+    "positive_recall": 50.98039215686274,
+    "balanced_accuracy": 65.25210084033613
+  },
+  "own_val_BA_threshold": {
+    "G-mIoU@1": 52.86,
+    "G-mIoU@3": 47.92,
+    "G-mIoU@5": 46.76,
+    "Rej-F1": 71.7,
+    "Acc": 64.52,
+    "Rej-P": 56.03,
+    "Rej-R": 99.52,
+    "TP": 91,
+    "TN": 209,
+    "FP": 1,
+    "FN": 164,
+    "threshold": 0.777,
+    "positive_if": "p >= threshold",
+    "negative_recall": 99.52380952380952,
+    "positive_recall": 35.68627450980392,
+    "balanced_accuracy": 67.60504201680672
+  },
+  "counts": {
+    "total": 465,
+    "positive": 255,
+    "negative": 210
+  },
+  "plurality": {
+    "scope": "GT positives only",
+    "n": 255,
+    "accuracy": 69.80392156862744,
+    "balanced_accuracy": 62.77777777777778,
+    "AUROC": 79.003367003367,
+    "confusion": [
+      [
+        143,
+        22
+      ],
+      [
+        55,
+        35
+      ]
+    ]
+  }
+}

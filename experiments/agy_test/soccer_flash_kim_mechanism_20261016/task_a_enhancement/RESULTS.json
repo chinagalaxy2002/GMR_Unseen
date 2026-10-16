@@ -1,0 +1,651 @@
+{
+  "updated": 1792144566.6911058,
+  "test_evaluated": false,
+  "jobs": [
+    {
+      "job": {
+        "run_id": "A1_multigranularity_s2024",
+        "seed": 2024,
+        "epochs": 20,
+        "lr": 5e-05,
+        "lr_drop": 12,
+        "wd": 0.0001,
+        "grad_clip": 0.1,
+        "early_stop_patience": 8,
+        "multigranularity": true,
+        "cardinality": false,
+        "quality_fusion": false,
+        "hard_negative": false,
+        "stage_aux_weight": 0.2,
+        "multi_weight": 0.1,
+        "gpu": 0,
+        "description": "Task A plus detached text/intermediate-video multi-granularity evidence and deep supervision."
+      },
+      "queue": {
+        "run_id": "A1_multigranularity_s2024",
+        "state": "complete",
+        "pid": 49775,
+        "gpu": 0,
+        "started": 1792143706.811409,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/train.py",
+          "--job",
+          "A1_multigranularity_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": 0,
+        "finished": 1792144325.178668
+      },
+      "status": {
+        "state": "complete",
+        "best_AUROC": 75.41923436041083,
+        "updated": 1792144313.1063828
+      },
+      "selected": {
+        "epoch": 6,
+        "val_AUROC": 75.41923436041083,
+        "val_G_mIoU_04": 31.81,
+        "val_G_mIoU_05": 40.6,
+        "native_pre_nms_mAP": 26.82,
+        "raw_localizer_mAP": 26.44,
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "selection_data": "Val only",
+        "selection_metric": "AUROC"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 53.33,
+          "MR-full-R1@0.5": 40.78,
+          "MR-full-R1@0.7": 25.88,
+          "MR-full-mAP": 26.82,
+          "MR-full-mAP@0.5": 47.34,
+          "MR-full-mAP@0.75": 29.16,
+          "MR-full-mIoU": 37.1
+        },
+        "raw_localizer_pre_exist": {
+          "MR-full-R1@0.3": 54.12,
+          "MR-full-R1@0.5": 43.53,
+          "MR-full-R1@0.7": 23.53,
+          "MR-full-mAP": 26.44,
+          "MR-full-mAP@0.5": 48.44,
+          "MR-full-mAP@0.75": 22.93,
+          "MR-full-mIoU": 36.7
+        },
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "localizer_matches_e0": true,
+        "AUROC": 75.41923436041083,
+        "gate_04": {
+          "G-mIoU@1": 31.81,
+          "G-mIoU@3": 24.78,
+          "G-mIoU@5": 22.05,
+          "Rej-F1": 50.15,
+          "Acc": 64.52,
+          "Rej-P": 68.6,
+          "Rej-R": 39.52,
+          "TP": 217,
+          "TN": 83,
+          "FP": 127,
+          "FN": 38,
+          "threshold": 0.4,
+          "negative_recall": 39.523809523809526,
+          "positive_recall": 85.09803921568627,
+          "balanced_accuracy": 62.3109243697479
+        },
+        "fixed_05": {
+          "G-mIoU@1": 40.6,
+          "G-mIoU@3": 34.11,
+          "G-mIoU@5": 31.78,
+          "Rej-F1": 62.83,
+          "Acc": 66.67,
+          "Rej-P": 63.29,
+          "Rej-R": 62.38,
+          "TP": 179,
+          "TN": 131,
+          "FP": 79,
+          "FN": 76,
+          "threshold": 0.5,
+          "negative_recall": 62.38095238095238,
+          "positive_recall": 70.19607843137254,
+          "balanced_accuracy": 66.28851540616246
+        },
+        "val_BA_threshold": {
+          "G-mIoU@1": 47.17,
+          "G-mIoU@3": 40.89,
+          "G-mIoU@5": 38.76,
+          "Rej-F1": 69.77,
+          "Acc": 69.25,
+          "Rej-P": 62.74,
+          "Rej-R": 78.57,
+          "TP": 157,
+          "TN": 165,
+          "FP": 45,
+          "FN": 98,
+          "threshold": 0.554,
+          "negative_recall": 78.57142857142857,
+          "positive_recall": 61.568627450980394,
+          "balanced_accuracy": 70.07002801120447
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "balanced_accuracy": 71.06060606060606,
+          "AUROC": 80.6936026936027,
+          "confusion": [
+            [
+              130,
+              35
+            ],
+            [
+              33,
+              57
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "A2_joint_cardinality_s2024",
+        "seed": 2024,
+        "epochs": 20,
+        "lr": 5e-05,
+        "lr_drop": 12,
+        "wd": 0.0001,
+        "grad_clip": 0.1,
+        "early_stop_patience": 8,
+        "multigranularity": false,
+        "cardinality": true,
+        "quality_fusion": false,
+        "hard_negative": false,
+        "gpu": 0,
+        "description": "Task A with a consistent P(N=0/1/2/3+) head; existence and plurality are derived from one distribution."
+      },
+      "queue": {
+        "run_id": "A2_joint_cardinality_s2024",
+        "state": "complete",
+        "pid": 49776,
+        "gpu": 0,
+        "started": 1792143706.811932,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/train.py",
+          "--job",
+          "A2_joint_cardinality_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": 0,
+        "finished": 1792144279.9346032
+      },
+      "status": {
+        "state": "complete",
+        "best_AUROC": 75.53314659197011,
+        "updated": 1792144273.8658092
+      },
+      "selected": {
+        "epoch": 6,
+        "val_AUROC": 75.53314659197011,
+        "val_G_mIoU_04": 34.93,
+        "val_G_mIoU_05": 45.2,
+        "native_pre_nms_mAP": 26.82,
+        "raw_localizer_mAP": 26.44,
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "selection_data": "Val only",
+        "selection_metric": "AUROC"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 53.33,
+          "MR-full-R1@0.5": 40.78,
+          "MR-full-R1@0.7": 25.88,
+          "MR-full-mAP": 26.82,
+          "MR-full-mAP@0.5": 47.34,
+          "MR-full-mAP@0.75": 29.16,
+          "MR-full-mIoU": 37.1
+        },
+        "raw_localizer_pre_exist": {
+          "MR-full-R1@0.3": 54.12,
+          "MR-full-R1@0.5": 43.53,
+          "MR-full-R1@0.7": 23.53,
+          "MR-full-mAP": 26.44,
+          "MR-full-mAP@0.5": 48.44,
+          "MR-full-mAP@0.75": 22.93,
+          "MR-full-mIoU": 36.7
+        },
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "localizer_matches_e0": true,
+        "AUROC": 75.53314659197011,
+        "gate_04": {
+          "G-mIoU@1": 34.93,
+          "G-mIoU@3": 27.82,
+          "G-mIoU@5": 25.17,
+          "Rej-F1": 55.52,
+          "Acc": 66.24,
+          "Rej-P": 68.53,
+          "Rej-R": 46.67,
+          "TP": 210,
+          "TN": 98,
+          "FP": 112,
+          "FN": 45,
+          "threshold": 0.4,
+          "negative_recall": 46.666666666666664,
+          "positive_recall": 82.35294117647058,
+          "balanced_accuracy": 64.50980392156862
+        },
+        "fixed_05": {
+          "G-mIoU@1": 45.2,
+          "G-mIoU@3": 38.87,
+          "G-mIoU@5": 36.53,
+          "Rej-F1": 68.92,
+          "Acc": 70.32,
+          "Rej-P": 65.38,
+          "Rej-R": 72.86,
+          "TP": 174,
+          "TN": 153,
+          "FP": 57,
+          "FN": 81,
+          "threshold": 0.5,
+          "negative_recall": 72.85714285714285,
+          "positive_recall": 68.23529411764706,
+          "balanced_accuracy": 70.54621848739495
+        },
+        "val_BA_threshold": {
+          "G-mIoU@1": 45.42,
+          "G-mIoU@3": 39.08,
+          "G-mIoU@5": 36.74,
+          "Rej-F1": 69.21,
+          "Acc": 70.54,
+          "Rej-P": 65.53,
+          "Rej-R": 73.33,
+          "TP": 174,
+          "TN": 154,
+          "FP": 56,
+          "FN": 81,
+          "threshold": 0.504,
+          "negative_recall": 73.33333333333333,
+          "positive_recall": 68.23529411764706,
+          "balanced_accuracy": 70.7843137254902
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "balanced_accuracy": 58.58585858585859,
+          "AUROC": 80.4983164983165,
+          "confusion": [
+            [
+              153,
+              12
+            ],
+            [
+              68,
+              22
+            ]
+          ]
+        },
+        "cardinality": {
+          "macro_f1": 41.63130766617442,
+          "accuracy": 61.29032258064516,
+          "confusion_0_1_2_3plus": [
+            [
+              185,
+              1,
+              20,
+              4
+            ],
+            [
+              67,
+              86,
+              8,
+              4
+            ],
+            [
+              55,
+              0,
+              13,
+              4
+            ],
+            [
+              12,
+              2,
+              3,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "A3_similarity_hardneg_s2024",
+        "seed": 2024,
+        "epochs": 20,
+        "lr": 5e-05,
+        "lr_drop": 12,
+        "wd": 0.0001,
+        "grad_clip": 0.1,
+        "early_stop_patience": 8,
+        "multigranularity": false,
+        "cardinality": false,
+        "quality_fusion": false,
+        "hard_negative": true,
+        "hard_negative_weight": 0.5,
+        "multi_weight": 0.1,
+        "gpu": 1,
+        "description": "Task A with closest-in-batch mismatched text negatives, applied only to the detached head."
+      },
+      "queue": {
+        "run_id": "A3_similarity_hardneg_s2024",
+        "state": "complete",
+        "pid": 49777,
+        "gpu": 1,
+        "started": 1792143706.8127692,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/train.py",
+          "--job",
+          "A3_similarity_hardneg_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": 0,
+        "finished": 1792144551.477411
+      },
+      "status": {
+        "state": "complete",
+        "best_AUROC": 74.76003734827263,
+        "updated": 1792144546.4095836
+      },
+      "selected": {
+        "epoch": 6,
+        "val_AUROC": 74.76003734827263,
+        "val_G_mIoU_04": 47.14,
+        "val_G_mIoU_05": 51.13,
+        "native_pre_nms_mAP": 26.82,
+        "raw_localizer_mAP": 26.44,
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "selection_data": "Val only",
+        "selection_metric": "AUROC"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 53.33,
+          "MR-full-R1@0.5": 40.78,
+          "MR-full-R1@0.7": 25.88,
+          "MR-full-mAP": 26.82,
+          "MR-full-mAP@0.5": 47.34,
+          "MR-full-mAP@0.75": 29.16,
+          "MR-full-mIoU": 37.1
+        },
+        "raw_localizer_pre_exist": {
+          "MR-full-R1@0.3": 54.12,
+          "MR-full-R1@0.5": 43.53,
+          "MR-full-R1@0.7": 23.53,
+          "MR-full-mAP": 26.44,
+          "MR-full-mAP@0.5": 48.44,
+          "MR-full-mAP@0.75": 22.93,
+          "MR-full-mIoU": 36.7
+        },
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "localizer_matches_e0": true,
+        "AUROC": 74.76003734827263,
+        "gate_04": {
+          "G-mIoU@1": 47.14,
+          "G-mIoU@3": 41.16,
+          "G-mIoU@5": 39.27,
+          "Rej-F1": 68.42,
+          "Acc": 66.45,
+          "Rej-P": 59.51,
+          "Rej-R": 80.48,
+          "TP": 140,
+          "TN": 169,
+          "FP": 41,
+          "FN": 115,
+          "threshold": 0.4,
+          "negative_recall": 80.47619047619048,
+          "positive_recall": 54.90196078431373,
+          "balanced_accuracy": 67.6890756302521
+        },
+        "fixed_05": {
+          "G-mIoU@1": 51.13,
+          "G-mIoU@3": 46.34,
+          "G-mIoU@5": 45.04,
+          "Rej-F1": 70.55,
+          "Acc": 64.09,
+          "Rej-P": 56.02,
+          "Rej-R": 95.24,
+          "TP": 98,
+          "TN": 200,
+          "FP": 10,
+          "FN": 157,
+          "threshold": 0.5,
+          "negative_recall": 95.23809523809523,
+          "positive_recall": 38.43137254901961,
+          "balanced_accuracy": 66.83473389355741
+        },
+        "val_BA_threshold": {
+          "G-mIoU@1": 49.94,
+          "G-mIoU@3": 44.08,
+          "G-mIoU@5": 42.22,
+          "Rej-F1": 71.21,
+          "Acc": 68.17,
+          "Rej-P": 60.2,
+          "Rej-R": 87.14,
+          "TP": 134,
+          "TN": 183,
+          "FP": 27,
+          "FN": 121,
+          "threshold": 0.419,
+          "negative_recall": 87.14285714285714,
+          "positive_recall": 52.54901960784314,
+          "balanced_accuracy": 69.84593837535013
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "balanced_accuracy": 72.77777777777777,
+          "AUROC": 81.7037037037037,
+          "confusion": [
+            [
+              121,
+              44
+            ],
+            [
+              25,
+              65
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "job": {
+        "run_id": "A4_combined_readonly_s2024",
+        "seed": 2024,
+        "epochs": 20,
+        "lr": 5e-05,
+        "lr_drop": 12,
+        "wd": 0.0001,
+        "grad_clip": 0.1,
+        "early_stop_patience": 8,
+        "multigranularity": true,
+        "cardinality": true,
+        "quality_fusion": true,
+        "hard_negative": true,
+        "hard_negative_weight": 0.5,
+        "gpu": 1,
+        "description": "Combined read-only verifier: multi-granularity cardinality, frozen saliency/attention statistics, and hard negatives."
+      },
+      "queue": {
+        "run_id": "A4_combined_readonly_s2024",
+        "state": "complete",
+        "pid": 49778,
+        "gpu": 1,
+        "started": 1792143706.8135433,
+        "command": [
+          "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+          "-B",
+          "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/task_a_enhancement/code/train.py",
+          "--job",
+          "A4_combined_readonly_s2024",
+          "--device",
+          "cuda"
+        ],
+        "exit_code": 0,
+        "finished": 1792144566.6186059
+      },
+      "status": {
+        "state": "complete",
+        "best_AUROC": 75.33333333333331,
+        "updated": 1792144553.6089842
+      },
+      "selected": {
+        "epoch": 6,
+        "val_AUROC": 75.33333333333331,
+        "val_G_mIoU_04": 47.47,
+        "val_G_mIoU_05": 46.48,
+        "native_pre_nms_mAP": 26.82,
+        "raw_localizer_mAP": 26.44,
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "selection_data": "Val only",
+        "selection_metric": "AUROC"
+      },
+      "val_metrics": {
+        "native_pre_nms": {
+          "MR-full-R1@0.3": 53.33,
+          "MR-full-R1@0.5": 40.78,
+          "MR-full-R1@0.7": 25.88,
+          "MR-full-mAP": 26.82,
+          "MR-full-mAP@0.5": 47.34,
+          "MR-full-mAP@0.75": 29.16,
+          "MR-full-mIoU": 37.1
+        },
+        "raw_localizer_pre_exist": {
+          "MR-full-R1@0.3": 54.12,
+          "MR-full-R1@0.5": 43.53,
+          "MR-full-R1@0.7": 23.53,
+          "MR-full-mAP": 26.44,
+          "MR-full-mAP@0.5": 48.44,
+          "MR-full-mAP@0.75": 22.93,
+          "MR-full-mIoU": 36.7
+        },
+        "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+        "localizer_matches_e0": true,
+        "AUROC": 75.33333333333331,
+        "gate_04": {
+          "G-mIoU@1": 47.47,
+          "G-mIoU@3": 45.93,
+          "G-mIoU@5": 45.62,
+          "Rej-F1": 65.52,
+          "Acc": 52.47,
+          "Rej-P": 48.72,
+          "Rej-R": 100.0,
+          "TP": 34,
+          "TN": 210,
+          "FP": 0,
+          "FN": 221,
+          "threshold": 0.4,
+          "negative_recall": 100.0,
+          "positive_recall": 13.333333333333334,
+          "balanced_accuracy": 56.666666666666664
+        },
+        "fixed_05": {
+          "G-mIoU@1": 46.48,
+          "G-mIoU@3": 45.6,
+          "G-mIoU@5": 45.43,
+          "Rej-F1": 63.44,
+          "Acc": 47.96,
+          "Rej-P": 46.46,
+          "Rej-R": 100.0,
+          "TP": 13,
+          "TN": 210,
+          "FP": 0,
+          "FN": 242,
+          "threshold": 0.5,
+          "negative_recall": 100.0,
+          "positive_recall": 5.098039215686274,
+          "balanced_accuracy": 52.54901960784314
+        },
+        "val_BA_threshold": {
+          "G-mIoU@1": 45.3,
+          "G-mIoU@3": 39.07,
+          "G-mIoU@5": 36.89,
+          "Rej-F1": 68.27,
+          "Acc": 68.82,
+          "Rej-P": 63.16,
+          "Rej-R": 74.29,
+          "TP": 164,
+          "TN": 156,
+          "FP": 54,
+          "FN": 91,
+          "threshold": 0.036,
+          "negative_recall": 74.28571428571429,
+          "positive_recall": 64.31372549019608,
+          "balanced_accuracy": 69.29971988795518
+        },
+        "counts": {
+          "total": 465,
+          "positive": 255,
+          "negative": 210
+        },
+        "plurality": {
+          "balanced_accuracy": 55.45454545454545,
+          "AUROC": 80.36363636363637,
+          "confusion": [
+            [
+              161,
+              4
+            ],
+            [
+              78,
+              12
+            ]
+          ]
+        },
+        "cardinality": {
+          "macro_f1": 39.71533908092023,
+          "accuracy": 63.2258064516129,
+          "confusion_0_1_2_3plus": [
+            [
+              204,
+              0,
+              5,
+              1
+            ],
+            [
+              78,
+              84,
+              2,
+              1
+            ],
+            [
+              64,
+              1,
+              5,
+              2
+            ],
+            [
+              16,
+              1,
+              0,
+              1
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

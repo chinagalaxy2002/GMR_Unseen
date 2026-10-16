@@ -1,0 +1,93 @@
+{
+  "native_pre_nms": {
+    "MR-full-R1@0.3": 53.33,
+    "MR-full-R1@0.5": 40.78,
+    "MR-full-R1@0.7": 25.88,
+    "MR-full-mAP": 26.82,
+    "MR-full-mAP@0.5": 47.34,
+    "MR-full-mAP@0.75": 29.16,
+    "MR-full-mIoU": 37.1
+  },
+  "raw_localizer_pre_exist": {
+    "MR-full-R1@0.3": 54.12,
+    "MR-full-R1@0.5": 43.53,
+    "MR-full-R1@0.7": 23.53,
+    "MR-full-mAP": 26.44,
+    "MR-full-mAP@0.5": 48.44,
+    "MR-full-mAP@0.75": 22.93,
+    "MR-full-mIoU": 36.7
+  },
+  "localizer_fingerprint": "d78b9dbcbbbc598e2abae8509ccdb6e05fe33c15adee3db217dcc97627e516f7",
+  "localizer_matches_e0": true,
+  "AUROC": 74.76003734827263,
+  "gate_04": {
+    "G-mIoU@1": 47.14,
+    "G-mIoU@3": 41.16,
+    "G-mIoU@5": 39.27,
+    "Rej-F1": 68.42,
+    "Acc": 66.45,
+    "Rej-P": 59.51,
+    "Rej-R": 80.48,
+    "TP": 140,
+    "TN": 169,
+    "FP": 41,
+    "FN": 115,
+    "threshold": 0.4,
+    "negative_recall": 80.47619047619048,
+    "positive_recall": 54.90196078431373,
+    "balanced_accuracy": 67.6890756302521
+  },
+  "fixed_05": {
+    "G-mIoU@1": 51.13,
+    "G-mIoU@3": 46.34,
+    "G-mIoU@5": 45.04,
+    "Rej-F1": 70.55,
+    "Acc": 64.09,
+    "Rej-P": 56.02,
+    "Rej-R": 95.24,
+    "TP": 98,
+    "TN": 200,
+    "FP": 10,
+    "FN": 157,
+    "threshold": 0.5,
+    "negative_recall": 95.23809523809523,
+    "positive_recall": 38.43137254901961,
+    "balanced_accuracy": 66.83473389355741
+  },
+  "val_BA_threshold": {
+    "G-mIoU@1": 49.94,
+    "G-mIoU@3": 44.08,
+    "G-mIoU@5": 42.22,
+    "Rej-F1": 71.21,
+    "Acc": 68.17,
+    "Rej-P": 60.2,
+    "Rej-R": 87.14,
+    "TP": 134,
+    "TN": 183,
+    "FP": 27,
+    "FN": 121,
+    "threshold": 0.419,
+    "negative_recall": 87.14285714285714,
+    "positive_recall": 52.54901960784314,
+    "balanced_accuracy": 69.84593837535013
+  },
+  "counts": {
+    "total": 465,
+    "positive": 255,
+    "negative": 210
+  },
+  "plurality": {
+    "balanced_accuracy": 72.77777777777777,
+    "AUROC": 81.7037037037037,
+    "confusion": [
+      [
+        121,
+        44
+      ],
+      [
+        25,
+        65
+      ]
+    ]
+  }
+}
