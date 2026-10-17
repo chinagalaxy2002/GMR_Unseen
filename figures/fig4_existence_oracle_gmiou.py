@@ -257,7 +257,9 @@ def plot(records, sample_count: int, positive_count: int):
     fig.savefig(figures / f"{stem}.png", dpi=300, bbox_inches="tight")
     fig.savefig(figures / f"{stem}.pdf", bbox_inches="tight")
     fig.savefig(figures / f"{stem}.svg", bbox_inches="tight")
-    fig.savefig(assets / f"{stem}.png", dpi=220, bbox_inches="tight")
+    # Versioned README asset name avoids GitHub's stale-image CDN cache when
+    # the figure gains an additional method curve.
+    fig.savefig(assets / f"{stem}_a3.png", dpi=220, bbox_inches="tight")
     plt.close(fig)
 
     svg_path = figures / f"{stem}.svg"

@@ -48,8 +48,10 @@
 ### 4. 完美存在性判断的 G-mIoU 上限实验
 
 <p align="center">
-  <img src="assets/fig4_existence_oracle_gmiou.png" alt="FlashVTG-GMR perfect-existence oracle analysis" width="100%">
+  <img src="assets/fig4_existence_oracle_gmiou_a3.png" alt="FlashVTG-GMR baseline, min neg A3, and perfect-existence oracle analysis" width="100%">
 </p>
+
+**曲线说明：蓝色实线为 E0 baseline，绿色点划线为我们的 min neg (A3)，橙色虚线为完美存在性 oracle。**
 
 *图 4：在完全冻结 E0 baseline 时序定位窗口的条件下，完美存在性判断将 G-mIoU@1 从 $\tau=0.4$ 时的 34.66% 提升到 62.24%（+27.58 pp），我们的 min neg (A3) 达到 47.66%，实现 +13.00 pp，即填补 47% 的 oracle 增益空间；在 $\tau=0.5$ 时，A3 从 46.12% 提升到 53.39%（+7.27 pp），填补 45% 的 oracle 增益空间。左图比较 E0、A3 与完美存在性 oracle 在全部阈值 $\tau\in[0,1]$ 下的表现，右图对比 A3 已实现的增益与 oracle 总增益。oracle 使用 Test 真实标签，仅用于分析存在性头的理论上限，不属于可报告的模型结果。提供 [矢量 PDF](figures/fig4_existence_oracle_gmiou.pdf)、[SVG](figures/fig4_existence_oracle_gmiou.svg)、[逐阈值数据](figures/fig4_existence_oracle_gmiou.csv) 与 [绘图源码](figures/fig4_existence_oracle_gmiou.py)。*
 
@@ -102,7 +104,7 @@
 │   ├── fig1_gmiou_threshold_dynamics.png / .pdf / .py # G-mIoU 变化轨迹图
 │   ├── fig2_rejection_metrics_tradeoff.png / .pdf / .py # 拒识能力与 N-acc 变化图
 │   ├── fig3_relative_metric_profiles.png / .pdf / .py  # 0.4/0.5/0.6 阈值全景雷达与增益矩阵
-│   └── fig4_existence_oracle_gmiou.png / .pdf / .svg / .py # 完美存在性判断的 G-mIoU 上限
+│   └── fig4_existence_oracle_gmiou_a3.png / .pdf / .svg / .py # E0、A3 与完美存在性上限
 ├── assets/                                           # README 内嵌插图
 ├── models/                                           # FlashVTG 基础模型架构
 ├── training/                                         # 数据加载器与训练工具
