@@ -195,3 +195,57 @@ python3 verify_all_thresholds.py
       --run A3_similarity_hardneg_s2024 \
       --device cuda:0
   ```
+
+---
+
+## 五、四 seed、Val-AUROC 选模协议下的全部插图重绘
+
+本节使用配对随机种子 2024、2025、2026、2027 重新绘制前述全部分析图。A3 检查点只依据 Val AUROC 选择，四个 seed 分别为 epoch 6、17、10、8；冻结检查点后才运行官方 Test。所有曲线覆盖存在性阈值 $\tau\in[0,1]$、步长 0.01；实线/柱高为四 seed 均值，阴影/误差棒为样本标准差（$n=4$），差值均按同 seed 配对计算。
+
+> **协议边界：** 本轮 A3 训练上限为 100 epoch、patience 为 23，但这些检查点是在 patience 触发前按要求冻结并测试的“当时 Val-AUROC 最优”模型，不应表述为自然早停收敛结果。Test 没有参与选模；本节的全阈值扫描只用于敏感性分析，不据此选择部署阈值。完整的 [选模协议](figures/data/four_seed_auroc/EVALUATION_PROTOCOL.json) 与 [检查点哈希](figures/data/four_seed_auroc/CHECKPOINT_FREEZE.json) 随仓库提供。
+
+### 5.1 G-mIoU 的阈值动态
+
+<p align="center">
+  <img src="assets/fig1_gmiou_threshold_dynamics_multiseed.png" alt="Four-seed G-mIoU threshold dynamics under Val-AUROC model selection" width="100%">
+</p>
+
+*图 5：左图给出 E0、Task A 与 min neg (A3) 的完整阈值轨迹；中图是相对同 seed E0 的配对增益；右图保留 $\tau=0.4/0.5/0.6$ 的各 seed 点。A3 的 G-mIoU@1 在三个阈值分别为 48.35±2.94、53.22±1.11、54.74±0.92%，相对 E0 的配对增益为 +15.45±6.62、+7.58±2.66、+4.16±1.29 pp。提供 [PDF](figures/fig1_gmiou_threshold_dynamics_multiseed.pdf)、[SVG](figures/fig1_gmiou_threshold_dynamics_multiseed.svg) 与 [绘图源码](figures/generate_multiseed_readme_figures.py)。*
+
+### 5.2 拒识—保留权衡
+
+<p align="center">
+  <img src="assets/fig2_rejection_metrics_tradeoff_multiseed.png" alt="Four-seed rejection and retention trade-off" width="100%">
+</p>
+
+*图 6：左图同时显示各 seed 的细线轨迹与四 seed 均值，避免仅展示聚合曲线；中图比较全阈值 Rejection F1；右图给出负样本召回率相对同 seed E0 的配对增益。在 $\tau=0.4$，A3 的负样本召回率为 82.11±8.45%，增益 +38.97±16.53 pp；与此同时正样本召回率为 54.04±7.07%，明确展示拒识增强的代价。提供 [PDF](figures/fig2_rejection_metrics_tradeoff_multiseed.pdf) 与 [SVG](figures/fig2_rejection_metrics_tradeoff_multiseed.svg)。*
+
+### 5.3 多指标相对性能画像
+
+<p align="center">
+  <img src="assets/fig3_relative_metric_profiles_multiseed.png" alt="Four-seed relative metric profiles and paired gains" width="100%">
+</p>
+
+*图 7：前三个雷达图分别对应 $\tau=0.4/0.5/0.6$，同时比较 G-mIoU@1/3/5、Rejection F1、负样本召回率与阈值无关的 AUROC；右侧热力图报告相对同 seed E0 的平均配对变化（pp）。A3 的 Test AUROC 为 75.15±0.55%。热力图为描述性统计，不代表显著性检验。提供 [PDF](figures/fig3_relative_metric_profiles_multiseed.pdf) 与 [SVG](figures/fig3_relative_metric_profiles_multiseed.svg)。*
+
+### 5.4 完美存在性判断的 G-mIoU 上限
+
+<p align="center">
+  <img src="assets/fig4_existence_oracle_gmiou_multiseed_auroc.png" alt="Four-seed E0, min neg A3, and perfect-existence oracle analysis" width="100%">
+</p>
+
+*图 8：对每个 seed 完全冻结其 E0 时序定位窗口，只用 Test 真实标签替换存在/不存在判断。oracle G-mIoU@1 为 61.88±0.20%。在 $\tau=0.4$，E0 为 32.90±3.84%，A3 为 48.35±2.94%，A3 的平均配对增益为 +15.45 pp，而 oracle 总增益为 +28.98 pp，即填补 53% 的平均增益空间；在 $\tau=0.5$ 与 0.6 时分别填补 47% 与 37%。oracle 仅用于诊断存在性头的理论上限，不是可报告的模型结果。提供 [PDF](figures/fig4_existence_oracle_gmiou_multiseed.pdf)、[SVG](figures/fig4_existence_oracle_gmiou_multiseed.svg)、[逐 seed/阈值数据](figures/data/four_seed_auroc/oracle_gmiou_per_seed.csv) 与 [绘图源码](figures/fig4_existence_oracle_gmiou_multiseed.py)。*
+
+### 5.5 数据与复现
+
+- [全部方法 × seed × 阈值原始表](figures/data/four_seed_auroc/threshold_sweep_per_seed.csv)
+- [固定阈值汇总（含每个 seed、均值与样本标准差）](figures/data/four_seed_auroc/fixed_threshold_summary.csv)
+- [相对同 seed E0 的配对增益表](figures/data/four_seed_auroc/paired_gain_summary.csv)
+- [Test 不变量与预测文件哈希](figures/data/four_seed_auroc/REPORT.json)
+
+从仓库根目录重新绘图：
+
+```bash
+python figures/generate_multiseed_readme_figures.py
+python figures/fig4_existence_oracle_gmiou_multiseed.py
+```

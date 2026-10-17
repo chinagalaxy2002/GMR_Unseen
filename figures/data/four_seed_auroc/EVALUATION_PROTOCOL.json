@@ -1,0 +1,50 @@
+{
+  "decision": "evaluate the four current Val-AUROC-best A3 checkpoints immediately",
+  "requested_by_user": true,
+  "automatic_early_stopping_reached": false,
+  "selection_data": "Val only",
+  "selection_metric": "AUROC",
+  "selected_epoch_by_seed": {
+    "2024": 6,
+    "2025": 17,
+    "2026": 10,
+    "2027": 8
+  },
+  "selected_val_AUROC_by_seed": {
+    "2024": 74.28011204481793,
+    "2025": 74.00560224089637,
+    "2026": 74.84033613445378,
+    "2027": 74.5546218487395
+  },
+  "completed_training_epochs_by_seed": {
+    "2024": 18,
+    "2025": 18,
+    "2026": 19,
+    "2027": 18
+  },
+  "interrupted_during_epoch_by_seed": {
+    "2024": 19,
+    "2025": 19,
+    "2026": 20,
+    "2027": 19
+  },
+  "max_epochs": 100,
+  "early_stop_patience": 23,
+  "test_split_size": 1036,
+  "threshold_grid": {
+    "start": 0.0,
+    "stop": 1.0,
+    "step": 0.01,
+    "count": 101
+  },
+  "seeds": [
+    2024,
+    2025,
+    2026,
+    2027
+  ],
+  "uncertainty": "sample standard deviation across paired seeds",
+  "generated": "2026-10-17T10:07:00+08:00",
+  "test_complete": true,
+  "figures_complete": true
+}
