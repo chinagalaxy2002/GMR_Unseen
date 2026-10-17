@@ -1,0 +1,182 @@
+{
+  "protocol": {
+    "source_commit": "857b1fdf03a9afc5cb81731752268ea4fdd7ebf5",
+    "seeds": [
+      2026
+    ],
+    "epochs": 100,
+    "early_stop_patience": 23,
+    "selection_metrics": {
+      "baseline": "Val native pre-NMS MR-full-mAP",
+      "minneg": "Val AUROC",
+      "no_minneg_control": "Val AUROC"
+    },
+    "max_tasks_per_gpu": 2,
+    "pipeline": [
+      "baseline",
+      "no_minneg_control",
+      "baseline_to_minneg_train",
+      "control_and_minneg_test",
+      "mechanism_comparison",
+      "threshold_report"
+    ]
+  },
+  "jobs": {
+    "baseline_s2026": {
+      "status": "complete",
+      "pid": 233359,
+      "gpu": 1,
+      "command": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-B",
+        "code/run.py",
+        "--variant",
+        "E0",
+        "--device",
+        "cuda",
+        "--seed",
+        "2026",
+        "--epochs",
+        "100",
+        "--patience",
+        "23",
+        "--run-name",
+        "E0_s2026"
+      ],
+      "cwd": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline",
+      "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/baseline_s2026.log",
+      "started": 1792224251.9926422,
+      "restart_count": 1,
+      "note": "one automatic checkpoint-resume after worker interruption",
+      "return_code": null,
+      "finished": 1792228044.3651931
+    },
+    "minneg_train_s2026": {
+      "status": "complete",
+      "pid": 241304,
+      "gpu": 1,
+      "command": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-B",
+        "code/train.py",
+        "--job",
+        "A3_similarity_hardneg_s2024",
+        "--device",
+        "cuda",
+        "--seed",
+        "2026",
+        "--epochs",
+        "100",
+        "--patience",
+        "23",
+        "--run-name",
+        "minneg_s2026",
+        "--init-checkpoint",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/best.ckpt",
+        "--reference-predictions",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/validation_predictions_pre_nms.jsonl"
+      ],
+      "cwd": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/minneg",
+      "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/minneg_train_s2026.log",
+      "started": 1792228044.3688157,
+      "return_code": 0,
+      "finished": 1792231812.8847072
+    },
+    "minneg_test_s2026": {
+      "status": "complete",
+      "pid": 246940,
+      "gpu": 1,
+      "command": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-B",
+        "code/eval_test.py",
+        "--run",
+        "minneg_s2026",
+        "--device",
+        "cuda",
+        "--reference-predictions",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/test_predictions_pre_nms.jsonl"
+      ],
+      "cwd": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/minneg",
+      "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/minneg_test_s2026.log",
+      "started": 1792231812.8864288,
+      "return_code": 0,
+      "finished": 1792231902.9743266
+    },
+    "no_minneg_train_s2026": {
+      "status": "complete",
+      "pid": 241303,
+      "gpu": 1,
+      "command": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-B",
+        "code/train.py",
+        "--job",
+        "A0_readout_no_hardneg_s2024",
+        "--device",
+        "cuda",
+        "--seed",
+        "2026",
+        "--epochs",
+        "100",
+        "--patience",
+        "23",
+        "--run-name",
+        "no_minneg_s2026",
+        "--init-checkpoint",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/best.ckpt",
+        "--reference-predictions",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/validation_predictions_pre_nms.jsonl"
+      ],
+      "cwd": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/minneg",
+      "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/no_minneg_train_s2026.log",
+      "started": 1792228044.3670132,
+      "return_code": 0,
+      "finished": 1792230987.2404616
+    },
+    "no_minneg_test_s2026": {
+      "status": "complete",
+      "pid": 245881,
+      "gpu": 1,
+      "command": [
+        "/home/guoxiangyu/miniconda3/envs/gmr/bin/python",
+        "-B",
+        "code/eval_test.py",
+        "--run",
+        "no_minneg_s2026",
+        "--device",
+        "cuda",
+        "--reference-predictions",
+        "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/test_predictions_pre_nms.jsonl"
+      ],
+      "cwd": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/minneg",
+      "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/no_minneg_test_s2026.log",
+      "started": 1792230987.2414057,
+      "return_code": 0,
+      "finished": 1792231077.302074
+    }
+  },
+  "started": 1792223598.0582068,
+  "controller_pid": 252578,
+  "updated": 1792237038.6532211,
+  "gpu_slots": {
+    "1": 0
+  },
+  "mechanism_comparison": {
+    "status": "complete",
+    "return_code": 0,
+    "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/mechanism_comparison.log"
+  },
+  "threshold_report": {
+    "status": "complete",
+    "return_code": 0,
+    "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/threshold_report.log"
+  },
+  "finished": 1792237056.592726,
+  "handoff": {
+    "status": "complete",
+    "return_code": 0,
+    "path": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/HANDOFF.md",
+    "log": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/logs/handoff.log"
+  }
+}

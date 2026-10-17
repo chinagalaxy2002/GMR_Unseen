@@ -9,6 +9,8 @@
 
 仓库完整收录了训练源码、配置文件、运行日志、模型权重配置以及在官方测试集（Test split, 1,036 条样本）上基于 **0.4、0.5、0.6 固定阈值** 的逐条预测（`.jsonl`）与评测指标。
 
+> **机制诊断补充：**另存有一组 seed 2026 的配对诊断，依次比较 E0、普通 EventReadout 微调控制组和公开 A3。这里的普通微调控制组不启用 min-neg；公开 A3 才是启用相似度难负例（`hard_negative: true`）的方案。该补充包含训练/测试日志、逐 epoch slot 诊断和完整阈值分析，属于单 seed 机制证据，不与下文四 seed 结果混合。详见[诊断总结与文件导航](experiments/agy_test/soccer_flash_kim_mechanism_20261016/diagnostics_seed2026/README.md)。
+
 ---
 
 ## 一、 三大算法在固定阈值下的指标动态变化科研插图 (plot-is-all-you-need 规范)

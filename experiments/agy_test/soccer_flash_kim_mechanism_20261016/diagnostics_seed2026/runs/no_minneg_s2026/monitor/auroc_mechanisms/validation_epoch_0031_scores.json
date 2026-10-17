@@ -1,0 +1,213 @@
+{
+  "count": 465,
+  "subsets": {
+    "logit": {
+      "ranking": {
+        "auroc": 0.7264799253034547,
+        "strict_error_fraction": 0.2735200746965453,
+        "tie_fraction": 0.0,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        -4.008406639099121,
+        -2.516253137588501,
+        -0.930450052022934,
+        0.6447162628173828,
+        8.600747108459473,
+        8.656516647338867,
+        8.673599243164062
+      ],
+      "negative_quantiles": [
+        -5.162009239196777,
+        -3.734722149372101,
+        -2.202773332595825,
+        -1.0845349431037903,
+        0.35228361189365387,
+        3.2487121224403372,
+        7.222040176391602
+      ],
+      "unique_scores": 460
+    },
+    "raw_probability": {
+      "ranking": {
+        "auroc": 0.7265452847805789,
+        "strict_error_fraction": 0.2729971988795518,
+        "tie_fraction": 0.0009150326797385621,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        0.018,
+        0.07490000000000001,
+        0.283,
+        0.656,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "negative_quantiles": [
+        0.006,
+        0.023450000000000002,
+        0.09925,
+        0.2525,
+        0.5874999999999999,
+        0.9625499999999999,
+        0.999
+      ],
+      "unique_scores": 307
+    },
+    "score": {
+      "ranking": {
+        "auroc": 0.7265452847805789,
+        "strict_error_fraction": 0.2729971988795518,
+        "tie_fraction": 0.0009150326797385621,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        0.018,
+        0.07490000000000001,
+        0.283,
+        0.656,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "negative_quantiles": [
+        0.006,
+        0.023450000000000002,
+        0.09925,
+        0.2525,
+        0.5874999999999999,
+        0.9625499999999999,
+        0.999
+      ],
+      "unique_scores": 307
+    }
+  },
+  "same_video": {
+    "videos_with_both_classes": 71,
+    "macro_auroc": 0.580762910798122,
+    "pair_weighted_auroc": 0.5437956204379562
+  },
+  "worst_pairs": [
+    {
+      "margin": -11.230446815490723,
+      "positive_qid": "4146",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.931521892547607,
+      "positive_qid": "4006",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.625104427337646,
+      "positive_qid": "4146",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -10.551894187927246,
+      "positive_qid": "3478",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.455410957336426,
+      "positive_qid": "2019",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.432242631912231,
+      "positive_qid": "3462",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.41795802116394,
+      "positive_qid": "6236",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.326179504394531,
+      "positive_qid": "4006",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -10.2619047164917,
+      "positive_qid": "1624",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.2110915184021,
+      "positive_qid": "4146",
+      "negative_qid": "2368",
+      "same_video": false
+    },
+    {
+      "margin": -10.198107719421387,
+      "positive_qid": "6079",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -10.076808214187622,
+      "positive_qid": "2460",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -9.952673435211182,
+      "positive_qid": "940",
+      "negative_qid": "3329",
+      "same_video": false
+    },
+    {
+      "margin": -9.94655179977417,
+      "positive_qid": "3478",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -9.912166595458984,
+      "positive_qid": "4006",
+      "negative_qid": "2368",
+      "same_video": false
+    },
+    {
+      "margin": -9.867493152618408,
+      "positive_qid": "4146",
+      "negative_qid": "3774",
+      "same_video": false
+    },
+    {
+      "margin": -9.85006856918335,
+      "positive_qid": "2019",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -9.826900243759155,
+      "positive_qid": "3462",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -9.812615633010864,
+      "positive_qid": "6236",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -9.723546504974365,
+      "positive_qid": "4146",
+      "negative_qid": "432",
+      "same_video": false
+    }
+  ]
+}

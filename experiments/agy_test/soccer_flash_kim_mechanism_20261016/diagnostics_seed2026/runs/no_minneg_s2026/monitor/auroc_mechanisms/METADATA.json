@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "training_interval": 50,
+  "optimization": "every native training step",
+  "scores": "full validation every epoch",
+  "pooling_provenance": "actual final Flash temporal units; exact argmax and ties",
+  "native_pooling": "mean",
+  "max_pool_status": "counterfactual_diagnostic_only",
+  "selection": "Val AUROC only; Test inaccessible until frozen"
+}

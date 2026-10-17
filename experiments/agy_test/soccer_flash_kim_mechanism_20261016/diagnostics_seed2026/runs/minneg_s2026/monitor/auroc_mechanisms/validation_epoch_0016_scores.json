@@ -1,0 +1,213 @@
+{
+  "count": 465,
+  "subsets": {
+    "logit": {
+      "ranking": {
+        "auroc": 0.7365079365079364,
+        "strict_error_fraction": 0.2634920634920635,
+        "tie_fraction": 0.0,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        -2.944547653198242,
+        -1.9100110292434693,
+        -0.8007048964500427,
+        -0.07948948442935944,
+        1.1121253371238708,
+        1.9092644333839415,
+        2.4283578395843506
+      ],
+      "negative_quantiles": [
+        -4.246028423309326,
+        -2.778325629234314,
+        -1.5097003877162933,
+        -0.910153865814209,
+        -0.2551707625389099,
+        0.3342478573322284,
+        0.7668200731277466
+      ],
+      "unique_scores": 460
+    },
+    "raw_probability": {
+      "ranking": {
+        "auroc": 0.7366293183940242,
+        "strict_error_fraction": 0.2629131652661065,
+        "tie_fraction": 0.0009150326797385622,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        0.05,
+        0.129,
+        0.31,
+        0.48,
+        0.7525,
+        0.8713,
+        0.919
+      ],
+      "negative_quantiles": [
+        0.014,
+        0.05845,
+        0.18075,
+        0.287,
+        0.437,
+        0.5828999999999996,
+        0.683
+      ],
+      "unique_scores": 347
+    },
+    "score": {
+      "ranking": {
+        "auroc": 0.7366293183940242,
+        "strict_error_fraction": 0.2629131652661065,
+        "tie_fraction": 0.0009150326797385622,
+        "pairs": 53550
+      },
+      "positive_quantiles": [
+        0.05,
+        0.129,
+        0.31,
+        0.48,
+        0.7525,
+        0.8713,
+        0.919
+      ],
+      "negative_quantiles": [
+        0.014,
+        0.05845,
+        0.18075,
+        0.287,
+        0.437,
+        0.5828999999999996,
+        0.683
+      ],
+      "unique_scores": 347
+    }
+  },
+  "same_video": {
+    "videos_with_both_classes": 71,
+    "macro_auroc": 0.6258137715179968,
+    "pair_weighted_auroc": 0.583941605839416
+  },
+  "worst_pairs": [
+    {
+      "margin": -3.7113677263259888,
+      "positive_qid": "2460",
+      "negative_qid": "3566",
+      "same_video": false
+    },
+    {
+      "margin": -3.698056697845459,
+      "positive_qid": "2460",
+      "negative_qid": "1913",
+      "same_video": false
+    },
+    {
+      "margin": -3.6094621419906616,
+      "positive_qid": "2688",
+      "negative_qid": "3566",
+      "same_video": false
+    },
+    {
+      "margin": -3.5996395349502563,
+      "positive_qid": "2670",
+      "negative_qid": "3566",
+      "same_video": false
+    },
+    {
+      "margin": -3.598236620426178,
+      "positive_qid": "2460",
+      "negative_qid": "3882",
+      "same_video": false
+    },
+    {
+      "margin": -3.596151113510132,
+      "positive_qid": "2688",
+      "negative_qid": "1913",
+      "same_video": false
+    },
+    {
+      "margin": -3.5863285064697266,
+      "positive_qid": "2670",
+      "negative_qid": "1913",
+      "same_video": false
+    },
+    {
+      "margin": -3.560150444507599,
+      "positive_qid": "2460",
+      "negative_qid": "4671",
+      "same_video": false
+    },
+    {
+      "margin": -3.547005593776703,
+      "positive_qid": "2460",
+      "negative_qid": "3551",
+      "same_video": false
+    },
+    {
+      "margin": -3.5299139618873596,
+      "positive_qid": "2460",
+      "negative_qid": "3521",
+      "same_video": false
+    },
+    {
+      "margin": -3.496331036090851,
+      "positive_qid": "2688",
+      "negative_qid": "3882",
+      "same_video": false
+    },
+    {
+      "margin": -3.4865084290504456,
+      "positive_qid": "2670",
+      "negative_qid": "3882",
+      "same_video": false
+    },
+    {
+      "margin": -3.4863529205322266,
+      "positive_qid": "2460",
+      "negative_qid": "3464",
+      "same_video": false
+    },
+    {
+      "margin": -3.4839648008346558,
+      "positive_qid": "4006",
+      "negative_qid": "3566",
+      "same_video": false
+    },
+    {
+      "margin": -3.470653772354126,
+      "positive_qid": "4006",
+      "negative_qid": "1913",
+      "same_video": false
+    },
+    {
+      "margin": -3.4700399041175842,
+      "positive_qid": "2460",
+      "negative_qid": "2368",
+      "same_video": false
+    },
+    {
+      "margin": -3.4582448601722717,
+      "positive_qid": "2688",
+      "negative_qid": "4671",
+      "same_video": false
+    },
+    {
+      "margin": -3.4484222531318665,
+      "positive_qid": "2670",
+      "negative_qid": "4671",
+      "same_video": false
+    },
+    {
+      "margin": -3.4470282196998596,
+      "positive_qid": "2460",
+      "negative_qid": "412",
+      "same_video": false
+    },
+    {
+      "margin": -3.4451000094413757,
+      "positive_qid": "2688",
+      "negative_qid": "3551",
+      "same_video": false
+    }
+  ]
+}
