@@ -1,0 +1,89 @@
+{
+  "jobs": [
+    {
+      "run_id": "TaskA_control",
+      "description": "Baseline EventReadout without moment conditioning or hard negatives",
+      "use_moment_conditioning": false,
+      "hard_negative": false,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    },
+    {
+      "run_id": "A3_reproduce_control",
+      "description": "A3 legacy control: EventReadout + naive asymmetric BCE hard negative",
+      "use_moment_conditioning": false,
+      "hard_negative": true,
+      "contrast_loss_mode": "naive_bce",
+      "hard_negative_weight": 0.5,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    },
+    {
+      "run_id": "MCEV_Idea1_local_only",
+      "description": "Idea 1: Pure candidate moment verification from localized temporal proposals",
+      "use_moment_conditioning": true,
+      "use_global_branch": false,
+      "top_k": 8,
+      "hard_negative": false,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    },
+    {
+      "run_id": "MCEV_Idea2_dual_fusion",
+      "description": "Idea 2: Dual-branch fusion of global event context and candidate moment verification",
+      "use_moment_conditioning": true,
+      "top_k": 8,
+      "hard_negative": false,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    },
+    {
+      "run_id": "MCEV_Idea3_balanced_margin",
+      "description": "Idea 3: Dual-branch MCEV + Balanced Margin Contrastive Mining (margin=2.0)",
+      "use_moment_conditioning": true,
+      "top_k": 8,
+      "hard_negative": true,
+      "contrast_loss_mode": "margin",
+      "contrast_margin": 2.0,
+      "hard_negative_weight": 0.5,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    },
+    {
+      "run_id": "MCEV_Idea4_infonce",
+      "description": "Idea 4: Dual-branch MCEV + InfoNCE Contrastive Verification Loss (T=0.5)",
+      "use_moment_conditioning": true,
+      "top_k": 8,
+      "hard_negative": true,
+      "contrast_loss_mode": "info_nce",
+      "contrast_temp": 0.5,
+      "hard_negative_weight": 0.5,
+      "lr": 3e-5,
+      "wd": 1e-4,
+      "grad_clip": 0.1,
+      "epochs": 35,
+      "patience": 12,
+      "lr_drop": 12
+    }
+  ]
+}

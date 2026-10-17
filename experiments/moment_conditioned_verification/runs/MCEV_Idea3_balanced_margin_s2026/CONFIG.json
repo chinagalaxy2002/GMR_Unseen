@@ -1,0 +1,27 @@
+{
+  "job": {
+    "run_id": "MCEV_Idea3_balanced_margin",
+    "description": "Idea 3: Dual-branch MCEV + Balanced Margin Contrastive Mining (margin=2.0)",
+    "use_moment_conditioning": true,
+    "top_k": 8,
+    "hard_negative": true,
+    "contrast_loss_mode": "margin",
+    "contrast_margin": 2.0,
+    "hard_negative_weight": 0.5,
+    "lr": 3e-05,
+    "wd": 0.0001,
+    "grad_clip": 0.1,
+    "epochs": 35,
+    "patience": 12,
+    "lr_drop": 12,
+    "seed": 2026,
+    "early_stop_patience": 12
+  },
+  "seed": 2026,
+  "device": "cuda:0",
+  "trainable_params": 2571846,
+  "frozen_params": 10469400,
+  "selection_metric": "AUROC",
+  "init_checkpoint": "/home/guoxiangyu/GMR_Unseen/experiments/agy_test/soccer_flash_kim_mechanism_20261016/multiseed_reproduction/baseline/runs/E0_s2026/best.ckpt",
+  "localizer_contract": "pred_relevant_windows_pre_exist must be bitwise invariant to E0"
+}

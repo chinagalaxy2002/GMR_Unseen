@@ -1,0 +1,130 @@
+{
+  "native_pre_nms": {
+    "MR-full-R1@0.3": 52.55,
+    "MR-full-R1@0.5": 42.35,
+    "MR-full-R1@0.7": 28.24,
+    "MR-full-mAP": 27.73,
+    "MR-full-mAP@0.5": 48.99,
+    "MR-full-mAP@0.75": 30.91,
+    "MR-full-mIoU": 36.86
+  },
+  "raw_localizer_pre_exist": {
+    "MR-full-R1@0.3": 52.55,
+    "MR-full-R1@0.5": 42.35,
+    "MR-full-R1@0.7": 26.67,
+    "MR-full-mAP": 27.93,
+    "MR-full-mAP@0.5": 48.98,
+    "MR-full-mAP@0.75": 26.48,
+    "MR-full-mIoU": 36.94
+  },
+  "localizer_fingerprint": "cd5f55f109124abb8f19633a796e0540a40aebf223451239a6ad8e6216e8dabc",
+  "localizer_matches_e0": true,
+  "AUROC": 74.45751633986929,
+  "gate_04": {
+    "G-mIoU@1": 36.27,
+    "G-mIoU@3": 29.28,
+    "G-mIoU@5": 26.82,
+    "Rej-F1": 56.91,
+    "Acc": 65.16,
+    "Rej-P": 64.46,
+    "Rej-R": 50.95,
+    "TP": 196,
+    "TN": 107,
+    "FP": 103,
+    "FN": 59,
+    "threshold": 0.4,
+    "negative_recall": 50.95238095238095,
+    "positive_recall": 76.86274509803923,
+    "balanced_accuracy": 63.90756302521008
+  },
+  "fixed_05": {
+    "G-mIoU@1": 42.44,
+    "G-mIoU@3": 36.4,
+    "G-mIoU@5": 34.28,
+    "Rej-F1": 64.43,
+    "Acc": 65.81,
+    "Rej-P": 60.76,
+    "Rej-R": 68.57,
+    "TP": 162,
+    "TN": 144,
+    "FP": 66,
+    "FN": 93,
+    "threshold": 0.5,
+    "negative_recall": 68.57142857142857,
+    "positive_recall": 63.52941176470588,
+    "balanced_accuracy": 66.05042016806722
+  },
+  "gate_06": {
+    "G-mIoU@1": 46.59,
+    "G-mIoU@3": 40.93,
+    "G-mIoU@5": 39.06,
+    "Rej-F1": 68.43,
+    "Acc": 66.67,
+    "Rej-P": 59.79,
+    "Rej-R": 80.0,
+    "TP": 142,
+    "TN": 168,
+    "FP": 42,
+    "FN": 113,
+    "threshold": 0.6,
+    "negative_recall": 80.0,
+    "positive_recall": 55.68627450980392,
+    "balanced_accuracy": 67.84313725490196
+  },
+  "val_BA_threshold": {
+    "G-mIoU@1": 47.67,
+    "G-mIoU@3": 42.01,
+    "G-mIoU@5": 40.13,
+    "Rej-F1": 69.48,
+    "Acc": 67.31,
+    "Rej-P": 60.07,
+    "Rej-R": 82.38,
+    "TP": 140,
+    "TN": 173,
+    "FP": 37,
+    "FN": 115,
+    "threshold": 0.61,
+    "negative_recall": 82.38095238095238,
+    "positive_recall": 54.90196078431373,
+    "balanced_accuracy": 68.64145658263305
+  },
+  "val_G_threshold": {
+    "G-mIoU@1": 52.99,
+    "G-mIoU@3": 47.88,
+    "G-mIoU@5": 46.65,
+    "Rej-F1": 71.48,
+    "Acc": 64.3,
+    "Rej-P": 55.91,
+    "Rej-R": 99.05,
+    "TP": 91,
+    "TN": 208,
+    "FP": 2,
+    "FN": 164,
+    "threshold": 0.84,
+    "negative_recall": 99.04761904761905,
+    "positive_recall": 35.68627450980392,
+    "balanced_accuracy": 67.3669467787115
+  },
+  "best_t_ba": 0.61,
+  "best_t_gmiou": 0.84,
+  "max_gmiou_scan": 52.99,
+  "counts": {
+    "total": 465,
+    "positive": 255,
+    "negative": 210
+  },
+  "plurality": {
+    "balanced_accuracy": 71.21212121212122,
+    "AUROC": 80.51178451178451,
+    "confusion": [
+      [
+        136,
+        29
+      ],
+      [
+        36,
+        54
+      ]
+    ]
+  }
+}
