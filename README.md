@@ -13,7 +13,7 @@
 
 ## 一、 三大算法在固定阈值下的指标动态变化科研插图 (plot-is-all-you-need 规范)
 
-本分支依据科研绘图规范 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)，绘制了三套学术统计数据科研插图，所有插图均提供 **300 DPI 高清位图（PNG）**、**投稿级矢量图（PDF）** 及 **自包含可复现绘图源码（Python）**：
+本分支依据科研绘图规范 [plot-is-all-you-need](https://github.com/liouhai/plot-is-all-you-need)，绘制了四套学术统计数据科研插图，所有插图均提供 **300 DPI 高清位图（PNG）**、**投稿级矢量图（PDF）** 及 **自包含可复现绘图源码（Python）**：
 
 ### 1. G-mIoU 检索指标在不同阈值下的演化轨迹与相对提升
 
@@ -42,6 +42,16 @@
 </p>
 
 *图 3: 固定阈值 0.4、0.5、0.6 下全维度指标雷达特征与相对提升矩阵（提供 [高清矢量 PDF](figures/fig3_relative_metric_profiles.pdf) 与 [绘图源码](figures/fig3_relative_metric_profiles.py)）。(a)-(c) 分别展示在 $\tau = 0.4$, $\tau = 0.5$, $\tau = 0.6$ 固定阈值下六大关键评价指标（G-mIoU@1, G-mIoU@3, G-mIoU@5, Rej-F1, N-acc, AUROC）的蛛网雷达图对比；(d) 两种增强方案在三个固定阈值下相对于 E0 基线的全量指标相对提升量 $\Delta$（pp）热力矩阵，清晰展现 min neg 在全部维度上取得的统治优势。*
+
+---
+
+### 4. 完美存在性判断的 G-mIoU 上限实验
+
+<p align="center">
+  <img src="assets/fig4_existence_oracle_gmiou.png" alt="FlashVTG-GMR perfect-existence oracle analysis" width="100%">
+</p>
+
+*图 4：在完全冻结 E0 baseline 时序定位窗口的条件下，完美存在性判断将 G-mIoU@1 从 $\tau=0.4$ 时的 34.66% 提升到 62.24%（+27.58 pp），在 $\tau=0.5$ 时从 46.12% 提升到 62.24%（+16.12 pp）。左图比较原始存在性头与 oracle 上限在全部阈值 $\tau\in[0,1]$ 下的表现，右图给出逐阈值剩余增益。oracle 使用 Test 真实标签，仅用于分析存在性头的理论上限，不属于可报告的模型结果；时序定位预测始终保持不变。提供 [矢量 PDF](figures/fig4_existence_oracle_gmiou.pdf)、[SVG](figures/fig4_existence_oracle_gmiou.svg)、[逐阈值数据](figures/fig4_existence_oracle_gmiou.csv) 与 [绘图源码](figures/fig4_existence_oracle_gmiou.py)。*
 
 ---
 
@@ -91,7 +101,8 @@
 ├── figures/                                          # plot-is-all-you-need 科研统计插图及源码
 │   ├── fig1_gmiou_threshold_dynamics.png / .pdf / .py # G-mIoU 变化轨迹图
 │   ├── fig2_rejection_metrics_tradeoff.png / .pdf / .py # 拒识能力与 N-acc 变化图
-│   └── fig3_relative_metric_profiles.png / .pdf / .py  # 0.4/0.5/0.6 阈值全景雷达与增益矩阵
+│   ├── fig3_relative_metric_profiles.png / .pdf / .py  # 0.4/0.5/0.6 阈值全景雷达与增益矩阵
+│   └── fig4_existence_oracle_gmiou.png / .pdf / .svg / .py # 完美存在性判断的 G-mIoU 上限
 ├── assets/                                           # README 内嵌插图
 ├── models/                                           # FlashVTG 基础模型架构
 ├── training/                                         # 数据加载器与训练工具
