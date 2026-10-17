@@ -51,7 +51,7 @@
   <img src="assets/fig4_existence_oracle_gmiou.png" alt="FlashVTG-GMR perfect-existence oracle analysis" width="100%">
 </p>
 
-*图 4：在完全冻结 E0 baseline 时序定位窗口的条件下，完美存在性判断将 G-mIoU@1 从 $\tau=0.4$ 时的 34.66% 提升到 62.24%（+27.58 pp），在 $\tau=0.5$ 时从 46.12% 提升到 62.24%（+16.12 pp）。左图比较原始存在性头与 oracle 上限在全部阈值 $\tau\in[0,1]$ 下的表现，右图给出逐阈值剩余增益。oracle 使用 Test 真实标签，仅用于分析存在性头的理论上限，不属于可报告的模型结果；时序定位预测始终保持不变。提供 [矢量 PDF](figures/fig4_existence_oracle_gmiou.pdf)、[SVG](figures/fig4_existence_oracle_gmiou.svg)、[逐阈值数据](figures/fig4_existence_oracle_gmiou.csv) 与 [绘图源码](figures/fig4_existence_oracle_gmiou.py)。*
+*图 4：在完全冻结 E0 baseline 时序定位窗口的条件下，完美存在性判断将 G-mIoU@1 从 $\tau=0.4$ 时的 34.66% 提升到 62.24%（+27.58 pp），我们的 min neg (A3) 达到 47.66%，实现 +13.00 pp，即填补 47% 的 oracle 增益空间；在 $\tau=0.5$ 时，A3 从 46.12% 提升到 53.39%（+7.27 pp），填补 45% 的 oracle 增益空间。左图比较 E0、A3 与完美存在性 oracle 在全部阈值 $\tau\in[0,1]$ 下的表现，右图对比 A3 已实现的增益与 oracle 总增益。oracle 使用 Test 真实标签，仅用于分析存在性头的理论上限，不属于可报告的模型结果。提供 [矢量 PDF](figures/fig4_existence_oracle_gmiou.pdf)、[SVG](figures/fig4_existence_oracle_gmiou.svg)、[逐阈值数据](figures/fig4_existence_oracle_gmiou.csv) 与 [绘图源码](figures/fig4_existence_oracle_gmiou.py)。*
 
 ---
 
