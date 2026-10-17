@@ -238,6 +238,7 @@ python3 verify_all_thresholds.py
 
 ### 5.5 数据与复现
 
+- [完整交接文档：从 E0 baseline 到 A3 第二阶段微调](REPRODUCTION_HANDOFF.md)
 - [全部方法 × seed × 阈值原始表](figures/data/four_seed_auroc/threshold_sweep_per_seed.csv)
 - [固定阈值汇总（含每个 seed、均值与样本标准差）](figures/data/four_seed_auroc/fixed_threshold_summary.csv)
 - [相对同 seed E0 的配对增益表](figures/data/four_seed_auroc/paired_gain_summary.csv)
